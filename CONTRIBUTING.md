@@ -78,13 +78,17 @@ To pass to the colums **"toDeploy"**, you must first validate the conditions des
 
 ### 3.1) Branches
 
-// master
-// releases/${VERSION_ID}
-// hotfixs/${VERSION_ID}
-// features/${ISSUE_ID}
-// develop
+To create a branch :  
+``` git checkout -b ${BRANCH_NAME} ```  
 
-(+) Bugs => Re-open;
+${BRANCHE_NAME} :
+- ~~master~~
+- hotfixes/${VERSION_ID} :lock:
+- releases/${VERSION_ID} :lock:
+- ~~develop~~
+- features/${ISSUE_ID} 
+
+:warning: Don't create new branch on bugs issues, re-open.  :warning: 
 
 ### 3.2) Commits
 
