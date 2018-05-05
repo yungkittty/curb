@@ -35,7 +35,13 @@ Create button on homepage for i18n.
 
 ### 1.3. Assignees (Required)
 
-### 1.4. Labels (Required)
+* NumberOfPeople: <1 people.
+
+**Example**:
+```
+```
+
+### 1.4) Labels
 
 **[enhancement]**: New feature or request.   
 **[bug]**: Something isn't working.  
