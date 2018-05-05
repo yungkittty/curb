@@ -4,24 +4,37 @@
 A button to change the language on the homepage for my Chinese :cn: friends!  
 However, big features involves great responsibilities! Here they're... "*  
 
-## 1) Issues
+## 1. Issues
 
-### 1.1) Title
+*" First of all, I've to create a issue. A issue is used to reference  
+either a bug to fix, either a feature develop. In my case it's a feature.  
+To do so, I've to go in the relevant repository, in the \"**Issues**\" section.  
+From there, I've to click on \"**New Issue**\", then fill the following informations... "*
 
-Precise description (<15 words).
-  
-**Examples**:  
-> Create button homepage languages.  
-> Fixing scrolling on groups page.
+### 1.1. Title (Required)  
 
-### 1.2) Comment (Optional)
+* Length: ~15 words.
+* Capitalization: Capitalize.
+* Content: Explicit.
+* EndOfLine: Dot.
 
-Exhaustive description of the definition of done
+**Example**:  
+```
+Create button on homepage for i18n.
+```
 
-**Examples**:  
-> ...
+### 1.2. Comment (Optional)
 
-### 1.3) Assignees
+* Length: ~80 words.
+* Capitalisation: Capitalize.
+* Content: Explications, Ressources.
+
+**Example**:  
+```
+...
+```
+
+### 1.3. Assignees (Required)
 
 People working on the issue.
 
