@@ -13,7 +13,7 @@ From there, I've to click on \"**New Issue**\", then fill the following informat
 
 ### 1.1. Title (Required)  
 
-* Length: ~15 words.
+* Length: >15 words.
 * Capitalisation: Capitalise.
 * Content: Explicit.
 * EndOfLine: Dot.
@@ -25,23 +25,17 @@ Create button on homepage for i18n.
 
 ### 1.2. Comment (Optional)
 
-* Length: ~80 words.
+* Length: >80 words.
 * Capitalisation: Capitalise.
 * Content: Explications, Ressources.
 
 **Example**:  
 ```
-...
 ```
 
 ### 1.3. Assignees (Required)
 
-People working on the issue.
-
-**Examples**:
-> CONTRIBUTE.md : Quentin Woivre; Quentin Collin.  
-
-### 1.4) Labels
+### 1.4. Labels (Required)
 
 **[enhancement]**: New feature or request.   
 **[bug]**: Something isn't working.  
