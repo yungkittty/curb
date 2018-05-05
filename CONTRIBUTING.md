@@ -14,7 +14,7 @@ From there, I've to click on \"**New Issue**\", then fill the following informat
 ### 1.1. Title (Required)  
 
 * Length: ~15 words.
-* Capitalization: Capitalize.
+* Capitalisation: Capitalise.
 * Content: Explicit.
 * EndOfLine: Dot.
 
@@ -26,7 +26,7 @@ Create button on homepage for i18n.
 ### 1.2. Comment (Optional)
 
 * Length: ~80 words.
-* Capitalisation: Capitalize.
+* Capitalisation: Capitalise.
 * Content: Explications, Ressources.
 
 **Example**:  
