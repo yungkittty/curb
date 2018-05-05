@@ -6,8 +6,8 @@ However, big features involves great responsibilities! Here they're... "*
 
 ## 1. Issues
 
-*" First of all, I've to create a issue. A issue is used to reference  
-either a bug to fix, either a feature develop. In my case it's a feature.  
+*" First of all, I've to create an issue. An issue is used to reference  
+either a bug to fix, either a feature to develop. In my case it's a feature.  
 To do so, I've to go in the relevant repository, in the \"**Issues**\" section.  
 From there, I've to click on \"**New Issue**\", then fill the following informations... "*
 
