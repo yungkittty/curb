@@ -1,3 +1,3 @@
-import { AppRegistry } from 'react-native';
+import { AppRegistry } from "react-native";
 
-AppRegistry.registerComponent('curb', () => null);
+AppRegistry.registerComponent("curb", () => null);

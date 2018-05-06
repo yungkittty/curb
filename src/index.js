@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+// import React from "react";
+import ReactDOM from "react-dom";
+import registerServiceWorker from "./registerServiceWorker";
+import "./index.css";
 
-ReactDOM.render(null, document.getElementById('root'));
+// eslint-disable-next-line
+ReactDOM.render(null, document.getElementById("root"));
 registerServiceWorker();
