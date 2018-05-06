@@ -58,26 +58,26 @@ Repository's project.
 
 ### 2.1) inReflexion
 
-This column is dedicated for the proposal of new ideas. 
-The goal is to sort them every X time to keep the good ideas.
+This column is dedicated for the proposal of new ideas.   
+The goal is to sort them every X time to keep the good ideas.  
 
 ### 2.2) toDo (Automatic)
 
-This column is dedicated for tasks to be done.
-The goal is to keep a pending list of tasks.
-To assign yourself a task, drag her to the **"inProgress"** column.
+This column is dedicated for tasks to be done.  
+The goal is to keep a pending list of tasks.  
+To assign yourself a task, drag her to the **"inProgress"** column.  
 
 ### 2.3) inProgress
 
-This column is dedicated for tasks in development.
-The goal is to keep a list of tasks that people are currently working on.
-To notify that you are done with a task, drag her to the **"toTest"** column.
+This column is dedicated for tasks in development.  
+The goal is to keep a list of tasks that people are currently working on.  
+To notify that you are done with a task, drag her to the **"toTest"** column.  
 
 ### 2.4) toTest
 
-This column is dedicated for tasks currently tested.
-The goal is to keep a list of tasks that people are currently testing.
-To pass to the colums **"toDeploy"**, you must first validate the conditions described in : [...]
+This column is dedicated for tasks currently tested.  
+The goal is to keep a list of tasks that people are currently testing.  
+To pass to the colums **"toDeploy"**, you must first validate the conditions described in : [...]  
 
 ### 2.5) toDeploy
 
@@ -103,14 +103,25 @@ ${BRANCHE_NAME} :
 
 :warning: Don't create new branch on bugs issues, re-open.  :warning: 
 
+To switch branch :  
+``` git checkout ${BRANCH_NAME} ```  
+
 ### 3.2) Commits
 
-// master => Nothing;
-// releases/${VERSION_ID} /> 
-// hotfixs/${VERSION_ID} => NS+(#${ISSUE_ID});
-// features/${ISSUE_ID}   \> 
-// develop => Nothing;
+To commit:  
+``` git commit -m "${COMMENT} #${ISSUE_ID}" ```
 
-NS+(#${ISSUE_ID}); = UpperCase; Precise; X Mots;
+${COMMENT}: (Optional)
+- Nothing Special; UpperCase; Precise;<15 words.
+
+${ISSUE_ID}:  
+- '#' + IssueId.
+
+To push:  
+``` git push origin ${BRANCH_NAME} ```  
+
+:warning: Never push on **master** and **develop**.  :warning:  
 
 ### 3.2) PRs (1PR == 1IS)
+
+...
