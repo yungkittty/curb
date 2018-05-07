@@ -122,6 +122,31 @@ To push:
 
 :warning: Never push on **master** and **develop**.  :warning:  
 
-### 3.2) PRs (1PR == 1IS)
+### 3.2) PRs (1PR == 1ISSUE) 
+ 
+- **Title**: Same as Issue Title + #{ISSUE_ID}  
+- **Review**: All  
+- **Assignees**: Same as Issue  
 
-...
+
+## 4) Development
+
+### 4.1) Visual Code
+
+#### Required:
+- **Eslint**:
+
+- **Prettier**:
+
+#### Optional:
+
+### 4.2) Comments
+
+
+
+
+
+
+
+
+
