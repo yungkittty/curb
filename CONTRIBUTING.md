@@ -57,12 +57,15 @@ Label(s) must be one of these:
 
 ### 1.5. Projects (Required)
 
-Repository's project.  
+* NumberOfProjects: 1 project.
 
-**Examples**:  
-> Repository -> curb, Project -> curb.  
+**Example**:
+```
+```
 
-## 2) Projects
+## 2. Projects
+
+*" ... "*
 
 ### 2.1) inReflexion
 
