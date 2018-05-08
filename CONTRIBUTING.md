@@ -41,13 +41,21 @@ Create button on homepage for i18n.
 ```
 ```
 
-### 1.4) Labels
+### 1.4. Labels (Required)
 
-**[enhancement]**: New feature or request.   
-**[bug]**: Something isn't working.  
-**[help wanted]**: Extra attention is needed.  
+* NumberOfLabels: <1 label.
 
-### 1.5) Projects
+Label(s) must be one of these:
+
+* **\[ENHANCEMENT\]**: Issue is a new feature.
+* **\[BUG\]**: Issue is a bug.
+* **\[HELP WANTED\]**: Issue is whatever, but **_hard_**.
+
+**Example**:
+```
+```
+
+### 1.5. Projects (Required)
 
 Repository's project.  
 
