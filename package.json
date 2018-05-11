@@ -7,13 +7,17 @@
     "web-build": "react-scripts build",
     "web-test": "react-scripts test --env=jsdom",
     "web-eject": "react-scripts eject",
-    "mb-start": "node node_modules/react-native/local-cli/cli.js start",
+    "mb-start":
+      "node node_modules/react-native/local-cli/cli.js start",
     "mb-test": "jest"
   },
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-native": "0.55.3",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-native": "^4.2.0",
     "react-scripts": "1.1.4"
   },
   "devDependencies": {
