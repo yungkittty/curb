@@ -41,43 +41,54 @@ Create button on homepage for i18n.
 ```
 ```
 
-### 1.4) Labels
+### 1.4. Labels (Required)
 
-**[enhancement]**: New feature or request.   
-**[bug]**: Something isn't working.  
-**[help wanted]**: Extra attention is needed.  
+* NumberOfLabels: <1 label.
 
-### 1.5) Projects
+Label(s) must be one of these:
 
-Repository's project.  
+* **\[ENHANCEMENT\]**: Issue is a new feature.
+* **\[BUG\]**: Issue is a bug.
+* **\[HELP WANTED\]**: Issue is whatever, but **_hard_**.
 
-**Examples**:  
-> Repository -> curb, Project -> curb.  
+**Example**:
+```
+```
 
-## 2) Projects
+### 1.5. Projects (Required)
+
+* NumberOfProjects: 1 project.
+
+**Example**:
+```
+```
+
+## 2. Projects
+
+*" ... "*
 
 ### 2.1) inReflexion
 
-This column is dedicated for the proposal of new ideas. 
-The goal is to sort them every X time to keep the good ideas.
+This column is dedicated for the proposal of new ideas.   
+The goal is to sort them every X time to keep the good ideas.  
 
 ### 2.2) toDo (Automatic)
 
-This column is dedicated for tasks to be done.
-The goal is to keep a pending list of tasks.
-To assign yourself a task, drag her to the **"inProgress"** column.
+This column is dedicated for tasks to be done.  
+The goal is to keep a pending list of tasks.  
+To assign yourself a task, drag her to the **"inProgress"** column.  
 
 ### 2.3) inProgress
 
-This column is dedicated for tasks in development.
-The goal is to keep a list of tasks that people are currently working on.
-To notify that you are done with a task, drag her to the **"toTest"** column.
+This column is dedicated for tasks in development.  
+The goal is to keep a list of tasks that people are currently working on.  
+To notify that you are done with a task, drag her to the **"toTest"** column.  
 
 ### 2.4) toTest
 
-This column is dedicated for tasks currently tested.
-The goal is to keep a list of tasks that people are currently testing.
-To pass to the colums **"toDeploy"**, you must first validate the conditions described in : [...]
+This column is dedicated for tasks currently tested.  
+The goal is to keep a list of tasks that people are currently testing.  
+To pass to the colums **"toDeploy"**, you must first validate the conditions described in : [...]  
 
 ### 2.5) toDeploy
 
@@ -103,14 +114,50 @@ ${BRANCHE_NAME} :
 
 :warning: Don't create new branch on bugs issues, re-open.  :warning: 
 
+To switch branch :  
+``` git checkout ${BRANCH_NAME} ```  
+
 ### 3.2) Commits
 
-// master => Nothing;
-// releases/${VERSION_ID} /> 
-// hotfixs/${VERSION_ID} => NS+(#${ISSUE_ID});
-// features/${ISSUE_ID}   \> 
-// develop => Nothing;
+To commit:  
+``` git commit -m "${COMMENT} #${ISSUE_ID}" ```
 
-NS+(#${ISSUE_ID}); = UpperCase; Precise; X Mots;
+${COMMENT}: (Optional)
+- Nothing Special; UpperCase; Precise;<15 words.
 
-### 3.2) PRs (1PR == 1IS)
+${ISSUE_ID}:  
+- '#' + IssueId.
+
+To push:  
+``` git push origin ${BRANCH_NAME} ```  
+
+:warning: Never push on **master** and **develop**.  :warning:  
+
+### 3.2) PRs (1PR == 1ISSUE) 
+ 
+- **Title**: Same as Issue Title + #{ISSUE_ID}  
+- **Review**: All  
+- **Assignees**: Same as Issue  
+
+
+## 4) Development
+
+### 4.1) Visual Code
+
+#### Required:
+- **Eslint**:
+
+- **Prettier**:
+
+#### Optional:
+
+### 4.2) Comments
+
+
+
+
+
+
+
+
+
