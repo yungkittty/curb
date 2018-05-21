@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
+import { I18nextProvider } from "react-i18next";
 import App from "./app";
 import theme from "./configurations/theme/index";
 
@@ -15,7 +16,9 @@ class Root extends Component {
   render() {
     return (
       <ThemeProvider theme={Root.getTheme()}>
-        <App />
+        <I18nextProvider i18n={{}}>
+          <App />
+        </I18nextProvider>
       </ThemeProvider>
     );
   }
