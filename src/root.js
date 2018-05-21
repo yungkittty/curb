@@ -14,7 +14,7 @@ class Root extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={this.getTheme()}>
+      <ThemeProvider theme={Root.getTheme()}>
         <App />
       </ThemeProvider>
     );
