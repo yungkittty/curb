@@ -1,22 +1,19 @@
-import React, { PureComponent } from "react";
-import {
-  BrowserRouter as Router
-  // Route,
-  // Link
-} from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import styled from "styled-components";
 
-const styles = {
-  appContainer: {
-    // ...
+const AppContainer = styled.div``;
+
+class App extends Component {
+  shouldComponentUpdate() {
+    return false;
   }
-};
 
-class App extends PureComponent {
   render() {
     return (
-      <div style={styles.appContainer}>
+      <AppContainer>
         <Router />
-      </div>
+      </AppContainer>
     );
   }
 }

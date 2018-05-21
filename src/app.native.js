@@ -1,23 +1,19 @@
-import React, { PureComponent } from "react";
-import { View, StyleSheet } from "react-native";
-import {
-  NativeRouter as Router
-  // Route,
-  // Link
-} from "react-router-native";
+import React, { Component } from "react";
+import { NativeRouter as Router } from "react-router-native";
+import styled from "styled-components";
 
-const styles = StyleSheet.create({
-  appContainer: {
-    // ...
+const AppContainer = styled.View``;
+
+class App extends Component {
+  shouldComponentUpdate() {
+    return false;
   }
-});
 
-class App extends PureComponent {
   render() {
     return (
-      <View style={styles.appContainer}>
+      <AppContainer>
         <Router />
-      </View>
+      </AppContainer>
     );
   }
 }
