@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { NativeRouter as Router } from "react-router-native";
 import styled from "styled-components";
 
-const AppContainer = styled.div``;
+const AppContainer = styled.View``;
 
 class App extends Component {
   shouldComponentUpdate() {
