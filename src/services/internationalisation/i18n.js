@@ -15,16 +15,19 @@ const initI18n = {
   }
 };
 
-function onI18ntError(err) {
-  return err
-    ? console.log("I18next instaciation failed with:", err)
+function onI18nError(error) {
+  return error
+    ? console.log(
+        "I18next instaciation failed with:",
+        error
+      )
     : null;
 }
 
 i18n
   .use(LngDetector)
   .use(reactI18nextModule)
-  .init(initI18n, onI18ntError);
+  .init(initI18n, onI18nError);
 
 Object.keys(translation).forEach(namespace => {
   Object.keys(translation[namespace]).forEach(language => {
