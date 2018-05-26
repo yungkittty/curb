@@ -6,14 +6,6 @@ import i18n from "./services/internationalisation/i18n";
 import theme from "./configurations/theme/index";
 
 class Root extends Component {
-  static getTheme() {
-    return theme;
-  }
-
-  shouldComponentUpdate() {
-    return false;
-  }
-
   render() {
     return (
       <ThemeProvider theme={Root.getTheme()}>
