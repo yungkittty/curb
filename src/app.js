@@ -5,10 +5,6 @@ import styled from "styled-components";
 const AppContainer = styled.div``;
 
 class App extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
-
   render() {
     return (
       <AppContainer>
