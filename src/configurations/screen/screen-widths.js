@@ -1,5 +1,5 @@
 // https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
 
-const screensWidth = {};
+const screenWidths = {};
 
-export default screensWidth;
+export default screenWidths;

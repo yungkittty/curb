@@ -1,3 +1,6 @@
-function* rootSage() { yield; };
+import { all } from "redux-saga/effects";
+import { userSaga } from "../../datas/user";
 
-export default rootSage;
+function* rootSaga() { yield all([ ...userSaga ]); }
+
+export default rootSaga;

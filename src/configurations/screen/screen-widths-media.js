@@ -1,10 +1,10 @@
 import { css } from "styled-components";
-import screensWidth from "./screens-width";
+import screenWidths from "./screen-widths";
 
-const screensWidthMedia = Object.keys(screensWidth).reduce(
+const screensWidthMedia = Object.keys(screenWidths).reduce(
   // eslint-disable-next-line
   (screensWidthMedia, screenType) => {
-    const screenEm = screensWidth[screenType] / 16;
+    const screenEm = screenWidths[screenType] / 16;
     return {
       ...screensWidthMedia,
       [screenType]: (...screenArgs) => css`
