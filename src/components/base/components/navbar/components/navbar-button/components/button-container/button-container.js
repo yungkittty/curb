@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import Button from "../../../../../../../general/button";
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled(Button)`
   background: #bdbdbd;
   cursor: pointer;
   border-radius: 90px;

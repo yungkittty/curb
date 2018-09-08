@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Section from "../../../../components/general/section";
+import Section from "../../../../../../components/general/section";
 
 const NavbarContainer = styled(Section)`
   background: #e0e0e0;

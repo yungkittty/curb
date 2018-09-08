@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Section from "../../../../components/general/section";
 
-const MainContainer = styled(Section)`
+const BaseContainer = styled(Section)`
   height: 100%;
-  width: auto;
-  flex: 1;
+  width: 100%;
+  display: flex;
 `;
 
-export default MainContainer;
+export default BaseContainer;

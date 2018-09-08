@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Section from "../../../../../../components/general/section";
+import Section from "../../../../../../../../components/general/section";
 
 const SectionContainer = styled(Section)`
   position: ${props => (props.fixed ? "absolute" : "relative")};
