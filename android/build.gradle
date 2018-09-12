@@ -31,12 +31,12 @@ allprojects {
     }
 }
 
-subprojects {
-    afterEvaluate {project ->
-        if (project.hasProperty("android")) {
+subprojects { subproject ->
+    afterEvaluate {
+        if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
             android {
                 compileSdkVersion 26
-                buildToolsVersion '26.0.3'
+                buildToolsVersion "26.0.3"
             }
         }
     }
