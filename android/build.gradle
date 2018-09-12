@@ -31,6 +31,18 @@ allprojects {
     }
 }
 
+// https://github.com/oblador/react-native-vector-icons/issues/428#issuecomment-316364055
+subprojects { subproject ->
+    afterEvaluate {
+        if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+            android {
+                compileSdkVersion 26
+                buildToolsVersion "26.0.3"
+            }
+        }
+    }
+}
+
 ext {
     buildToolsVersion = "26.0.3"
     minSdkVersion = 16
