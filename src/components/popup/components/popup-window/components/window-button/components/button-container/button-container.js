@@ -2,13 +2,9 @@ import styled from "styled-components";
 import Button from "../../../../../../../general/button";
 
 const ButtonContainer = styled(Button)`
-  background: #bdbdbd;
-  border-radius: 90px;
-  width: 54px;
-  height: 54px;
-  margin: 0 auto;
-  margin-bottom: 14px;
-  overflow: hidden;
+  display: ${props => props.hidden};
+  height: 75px;
+  background: gray;
 `;
 
 export default ButtonContainer;

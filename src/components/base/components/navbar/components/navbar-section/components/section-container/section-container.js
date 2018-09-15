@@ -11,13 +11,13 @@ const SectionContainer = styled(Section)`
   width: inherit;
 
   &:after {
+    position: absolute;
     ${props => (props.bottom ? "top" : "bottom")}: -1px;
     width: ${props => (props.fixed ? "100%" : "40px")};
     height: 1px;
-    margin: auto ${props => (props.fixed ? "none" : "20px")};
+    margin-left: 50%;
+    transform: translateX(-50%);
     content: "";
-    position: absolute;
-    left: 0;
     border-top: 1px solid #bdbdbd;
   }
 `;

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
-const Section = styled.View``;
+const Button = styled.View`
+  text-decoration: none;
+`;
 
-export default Section;
+export default Button;

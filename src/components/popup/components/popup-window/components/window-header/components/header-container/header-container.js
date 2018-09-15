@@ -3,7 +3,7 @@ import Section from "../../../../../../../../components/general/section";
 
 const HeaderContainer = styled(Section)`
   height: 75px;
-  border: 1px solid red;
+  color: #333;
 `;
 
 export default HeaderContainer;

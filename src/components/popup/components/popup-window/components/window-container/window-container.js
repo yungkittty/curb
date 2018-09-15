@@ -5,7 +5,7 @@ const WindowContainer = styled(Section)`
   background: white;
   overflow: hidden;
   width: 700px;
-  height: 760px;
+  height: 740px;
   border-radius: 25px;
   margin: auto;
   position: absolute;

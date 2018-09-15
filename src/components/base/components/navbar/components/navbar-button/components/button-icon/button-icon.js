@@ -1,17 +1,17 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
+import IconContainer from "./components/icon-container";
+import Icon from "../../../../../../../general/icon";
+import IconType from "../../../../../../../general/icon/type";
 
 const ButtonIcon = ({ icon }) => (
-  <FontAwesomeIcon
-    style={{
-      width: "100%",
-      height: "60%",
-      marginTop: "50%",
-      transform: "translateY(-50%)"
-    }}
-    icon={icon}
-    color="#e0e0e0"
-  />
+  <IconContainer>
+    <Icon icon={icon} />
+  </IconContainer>
 );
+
+ButtonIcon.propTypes = {
+  icon: PropTypes.oneOf(IconType).isRequired
+};
 
 export default ButtonIcon;

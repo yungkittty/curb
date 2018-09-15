@@ -8,6 +8,7 @@ const PopupContainer = styled(Section)`
   width: 100%;
   height: 100%;
   z-index: 10; // Render over everthing else
+  background: rgba(0, 0, 0, 0.2);
 `;
 
 export default PopupContainer;
