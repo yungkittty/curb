@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const Section = styled.View`
-  background: red;
-`;
+const Section = styled.View``;
 
 export default Section;
