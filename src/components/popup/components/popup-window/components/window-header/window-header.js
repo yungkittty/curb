@@ -5,11 +5,6 @@ import HeaderTitle from "./components/header-title";
 import HeaderButton from "./components/header-button";
 import IconType from "../../../../../general/icon/type";
 
-// HeaderTitle can be :
-// - a title (text)
-// - a progress state (1 of 3)
-// - nothing in rare cases
-
 const WindowHeader = ({ title, leftIcon, rightIcon, leftFunc, rightFunc }) => (
   <HeaderContainer>
     {leftIcon !== "none" && (
