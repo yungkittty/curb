@@ -1,11 +1,9 @@
 {
   "parser": "babel-eslint",
+  "env": { "browser": true },
   "extends": ["airbnb", "prettier"],
-  "plugins": ["import", "jsx-a11y", "react"],
+  "plugins": ["prettier"],
   "rules": {
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
-    "react/prefer-stateless-function": [0, { "ignorePureComponents": false }],
-    "react/prop-types": [0, { "ignore": ["t"] }],
-    "no-underscore-dangle": [2, { "allowAfterThis": true }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }
