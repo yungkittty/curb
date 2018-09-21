@@ -7,11 +7,11 @@ import Popup from "./components/popup/popup";
 
 const App = () => (
   <AppContainer>
-    <BaseContainer id="app">
+    <BaseContainer id="base">
       <Navbar />
       <Main />
     </BaseContainer>
-    <Popup title="Popup" button="Button" />
+    <Popup />
   </AppContainer>
 );
 
