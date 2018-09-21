@@ -12,10 +12,10 @@ import IconType from "../../../../../general/icon/type";
 
 const WindowHeader = ({ title, leftIcon, rightIcon, leftFunc, rightFunc }) => (
   <HeaderContainer>
-    {leftIcon && (
+    {leftIcon !== "none" && (
       <HeaderButton position="left" icon={leftIcon} onClick={leftFunc} />
     )}
-    {rightIcon && (
+    {rightIcon !== "none" && (
       <HeaderButton position="right" icon={rightIcon} onClick={rightFunc} />
     )}
     <HeaderTitle title={title} />

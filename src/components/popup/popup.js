@@ -7,67 +7,57 @@ import IconType from "../general/icon/type";
 class Popup extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: true };
-  }
 
-  componentDidMount() {
-    document.getElementById("app").style.filter = "blur(2px)";
-  }
-
-  componentWillUnmount() {
-    document.getElementById("app").style.filter = "blur(0px)";
+    this.state = {
+      isPopupShown: true
+    };
   }
 
   closePopup() {
-    const { open } = this.state;
+    this.setState({
+      isPopupShown: false
+    });
+  }
 
-    if (open === true) {
-      console.log("je vais me fermer!");
-    }
+  back() {}
+
+  showPopup() {
+    const { leftIcon, rightIcon, leftFunc, rightFunc, buttonLink } = this.props;
+    if (this.state.isPopupShown)
+      return (
+        <PopupContainer>
+          <PopupWindow
+            title="Popup"
+            button="Button"
+            leftIcon={leftIcon}
+            rightIcon={rightIcon}
+            leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
+            rightFunc={rightFunc ? rightFunc : this.closePopup.bind(this)}
+            buttonLink={buttonLink}
+          />
+        </PopupContainer>
+      );
+    else return null;
   }
 
   render() {
-    const {
-      title,
-      leftIcon,
-      rightIcon,
-      leftFunc,
-      rightFunc,
-      button,
-      buttonLink
-    } = this.props;
-    return (
-      <PopupContainer>
-        <PopupWindow
-          title={title}
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
-          leftFunc={leftFunc}
-          rightFunc={rightFunc}
-          button={button}
-          buttonLink={buttonLink}
-        />
-      </PopupContainer>
-    );
+    return this.showPopup();
   }
 }
 
 Popup.defaultProps = {
-  leftIcon: "arrow-left",
+  leftIcon: "none",
   rightIcon: "times",
-  leftFunc: Popup.closePopup,
-  rightFunc: () => Popup.closePopup,
-  button: undefined,
+  leftFunc: undefined,
+  rightFunc: undefined,
   buttonLink: undefined
 };
 
 Popup.propTypes = {
-  title: PropTypes.string.isRequired,
   leftIcon: PropTypes.oneOf(IconType),
   rightIcon: PropTypes.oneOf(IconType),
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
-  button: PropTypes.string,
   buttonLink: PropTypes.string
 };
 
