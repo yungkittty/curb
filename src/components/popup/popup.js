@@ -7,9 +7,9 @@ import IconType from "../general/icon/type";
 class Popup extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      isPopupShown: true
+      isPopupShown: true,
+      progress: this.props.progress
     };
   }
 
@@ -19,10 +19,23 @@ class Popup extends Component {
     });
   }
 
-  back() {}
+  back() {
+    const { progress } = this.state;
+    this.setState({
+      progress: { progress: progress["progress"] + 1, total: progress["total"] }
+    });
+  }
 
   showPopup() {
-    const { leftIcon, rightIcon, leftFunc, rightFunc, buttonLink } = this.props;
+    const {
+      progress,
+      leftIcon,
+      rightIcon,
+      leftFunc,
+      rightFunc,
+      buttonLink
+    } = this.props;
+
     if (this.state.isPopupShown)
       return (
         <PopupContainer>

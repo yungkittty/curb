@@ -5,20 +5,35 @@ import HeaderMiddle from "./components/header-middle";
 import HeaderButton from "./components/header-button";
 import IconType from "../../../../../general/icon/type";
 
-const WindowHeader = ({ title, leftIcon, rightIcon, leftFunc, rightFunc }) => (
-  <HeaderContainer>
-    {leftIcon !== "none" && (
-      <HeaderButton position="left" icon={leftIcon} onClick={leftFunc} />
-    )}
-    {rightIcon !== "none" && (
-      <HeaderButton position="right" icon={rightIcon} onClick={rightFunc} />
-    )}
-    <HeaderMiddle progress="toto" />
-  </HeaderContainer>
-);
+const WindowHeader = ({
+  title,
+  progress,
+  leftIcon,
+  leftFunc,
+  rightIcon,
+  rightFunc
+}) => {
+  return (
+    <HeaderContainer>
+      {leftIcon !== "none" && (
+        <HeaderButton position="left" icon={leftIcon} onClick={leftFunc} />
+      )}
+      {rightIcon !== "none" && (
+        <HeaderButton position="right" icon={rightIcon} onClick={rightFunc} />
+      )}
+      <HeaderMiddle title={title} progress={progress} />
+    </HeaderContainer>
+  );
+};
+
+WindowHeader.defaultProps = {
+  title: undefined,
+  progress: undefined
+};
 
 WindowHeader.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  progress: PropTypes.object,
   leftIcon: PropTypes.oneOf(IconType).isRequired,
   rightIcon: PropTypes.oneOf(IconType).isRequired,
   leftFunc: PropTypes.func.isRequired,

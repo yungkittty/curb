@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "mobile-start": "node node_modules/react-native/local-cli/cli.js start",
+    "mobile-build-android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "mobile-build-ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "mobile-eject": "node node_modules/react-native/local-cli/cli.js eject",
     "web-start": "react-scripts start",
     "web-build": "react-scripts build",
     "web-eject": "react-scripts eject"
@@ -16,6 +19,7 @@
     "i18next-browser-languagedetector": "^2.2.3",
     "i18next-react-native-language-detector": "^1.0.2",
     "prop-types": "^15.6.2",
+    "lodash": "^4.17.10",
     "react": "^16.4.1",
     "react-dom": "^16.4.2",
     "react-i18next": "^7.10.1",

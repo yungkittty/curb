@@ -4,13 +4,14 @@ import WindowContainer from "./components/window-container";
 import WindowHeader from "./components/window-header";
 import WindowContent from "./components/window-content";
 import WindowButton from "./components/window-button";
-import ProgressState from "../../../general/progress/state";
 import IconType from "../../../general/icon/type";
 
 class PopupWindow extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: true };
+    this.state = {
+      open: true
+    };
   }
 
   componentDidMount() {
@@ -36,6 +37,7 @@ class PopupWindow extends Component {
   render() {
     const {
       title,
+      progress,
       leftIcon,
       rightIcon,
       leftFunc,
@@ -46,6 +48,7 @@ class PopupWindow extends Component {
       <WindowContainer>
         <WindowHeader
           title={title}
+          progress={progress}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
           leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
@@ -59,6 +62,8 @@ class PopupWindow extends Component {
 }
 
 PopupWindow.defaultProps = {
+  title: undefined,
+  progress: undefined,
   leftFunc: undefined,
   rightFunc: undefined,
   button: undefined,
@@ -66,10 +71,8 @@ PopupWindow.defaultProps = {
 };
 
 PopupWindow.propTypes = {
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(ProgressState)
-  ]),
+  title: PropTypes.string,
+  progress: PropTypes.object,
   leftIcon: PropTypes.oneOf(IconType).isRequired,
   rightIcon: PropTypes.oneOf(IconType).isRequired,
   leftFunc: PropTypes.func,

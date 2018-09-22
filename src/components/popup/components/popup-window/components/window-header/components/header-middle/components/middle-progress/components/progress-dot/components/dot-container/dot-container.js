@@ -3,10 +3,10 @@ import Section from "../../../../../../../../../../../../../general/section";
 
 const DotContainer = styled(Section)`
   background: ${props => (props.enabled ? "#e0e0e0" : "#828282")};
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   margin: 0 9px;
-  border-radius: 10px;
+  border-radius: 5px;
   display: inline-block;
 `;
 
