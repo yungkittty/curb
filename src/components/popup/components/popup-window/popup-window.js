@@ -4,6 +4,7 @@ import WindowContainer from "./components/window-container";
 import WindowHeader from "./components/window-header";
 import WindowContent from "./components/window-content";
 import WindowButton from "./components/window-button";
+import ProgressState from "../../../general/progress/state";
 import IconType from "../../../general/icon/type";
 
 class PopupWindow extends Component {
@@ -65,7 +66,10 @@ PopupWindow.defaultProps = {
 };
 
 PopupWindow.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(ProgressState)
+  ]),
   leftIcon: PropTypes.oneOf(IconType).isRequired,
   rightIcon: PropTypes.oneOf(IconType).isRequired,
   leftFunc: PropTypes.func,

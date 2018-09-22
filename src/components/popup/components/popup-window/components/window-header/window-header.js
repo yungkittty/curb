@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import HeaderContainer from "./components/header-container";
-import HeaderTitle from "./components/header-title";
+import HeaderMiddle from "./components/header-middle";
 import HeaderButton from "./components/header-button";
 import IconType from "../../../../../general/icon/type";
 
@@ -13,7 +13,7 @@ const WindowHeader = ({ title, leftIcon, rightIcon, leftFunc, rightFunc }) => (
     {rightIcon !== "none" && (
       <HeaderButton position="right" icon={rightIcon} onClick={rightFunc} />
     )}
-    <HeaderTitle title={title} />
+    <HeaderMiddle progress="toto" />
   </HeaderContainer>
 );
 
