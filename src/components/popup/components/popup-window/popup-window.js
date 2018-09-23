@@ -64,6 +64,8 @@ class PopupWindow extends Component {
 PopupWindow.defaultProps = {
   title: undefined,
   progress: undefined,
+  leftIcon: undefined,
+  rightIcon: undefined,
   leftFunc: undefined,
   rightFunc: undefined,
   button: undefined,
@@ -73,8 +75,8 @@ PopupWindow.defaultProps = {
 PopupWindow.propTypes = {
   title: PropTypes.string,
   progress: PropTypes.object,
-  leftIcon: PropTypes.oneOf(IconType).isRequired,
-  rightIcon: PropTypes.oneOf(IconType).isRequired,
+  leftIcon: PropTypes.oneOf(IconType),
+  rightIcon: PropTypes.oneOf(IconType),
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
   button: PropTypes.string,

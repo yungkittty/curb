@@ -11,7 +11,7 @@ const App = () => (
       <Navbar />
       <Main />
     </BaseContainer>
-    <Popup progress={{ progress: 1, total: 9 }} />
+    <Popup />
   </AppContainer>
 );
 

@@ -7,9 +7,12 @@ import IconType from "../general/icon/type";
 class Popup extends Component {
   constructor(props) {
     super(props);
+    const { title, progress, button } = this.props;
     this.state = {
       isPopupShown: true,
-      progress: this.props.progress
+      title: title,
+      progress: progress,
+      button: button
     };
   }
 
@@ -19,29 +22,18 @@ class Popup extends Component {
     });
   }
 
-  back() {
-    const { progress } = this.state;
-    this.setState({
-      progress: { progress: progress["progress"] + 1, total: progress["total"] }
-    });
-  }
+  back() {}
 
-  showPopup() {
-    const {
-      progress,
-      leftIcon,
-      rightIcon,
-      leftFunc,
-      rightFunc,
-      buttonLink
-    } = this.props;
+  render() {
+    const { leftIcon, rightIcon, leftFunc, rightFunc, buttonLink } = this.props;
 
     if (this.state.isPopupShown)
       return (
         <PopupContainer>
           <PopupWindow
-            title="Popup"
-            button="Button"
+            title={this.state.title}
+            progress={this.state.progress}
+            button={this.state.button}
             leftIcon={leftIcon}
             rightIcon={rightIcon}
             leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
@@ -52,25 +44,27 @@ class Popup extends Component {
       );
     else return null;
   }
-
-  render() {
-    return this.showPopup();
-  }
 }
 
 Popup.defaultProps = {
-  leftIcon: "none",
+  title: "Popup",
+  progress: undefined,
+  leftIcon: undefined,
   rightIcon: "times",
   leftFunc: undefined,
   rightFunc: undefined,
+  button: "Button",
   buttonLink: undefined
 };
 
 Popup.propTypes = {
+  title: PropTypes.string,
+  progress: PropTypes.object,
   leftIcon: PropTypes.oneOf(IconType),
   rightIcon: PropTypes.oneOf(IconType),
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
+  button: PropTypes.string,
   buttonLink: PropTypes.string
 };
 

@@ -10,9 +10,13 @@ const HeaderButton = ({ position, icon, onClick }) => (
   </ButtonContainer>
 );
 
+HeaderButton.defaultProps = {
+  icon: undefined
+};
+
 HeaderButton.propTypes = {
   position: PropTypes.oneOf(["left", "right"]).isRequired,
-  icon: PropTypes.oneOf(IconType).isRequired,
+  icon: PropTypes.oneOf(IconType),
   onClick: PropTypes.func.isRequired
 };
 

@@ -28,14 +28,16 @@ const WindowHeader = ({
 
 WindowHeader.defaultProps = {
   title: undefined,
-  progress: undefined
+  progress: undefined,
+  leftIcon: undefined,
+  rightIcon: undefined
 };
 
 WindowHeader.propTypes = {
   title: PropTypes.string,
   progress: PropTypes.object,
-  leftIcon: PropTypes.oneOf(IconType).isRequired,
-  rightIcon: PropTypes.oneOf(IconType).isRequired,
+  leftIcon: PropTypes.oneOf(IconType),
+  rightIcon: PropTypes.oneOf(IconType),
   leftFunc: PropTypes.func.isRequired,
   rightFunc: PropTypes.func.isRequired
 };
