@@ -3,20 +3,13 @@ import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import { ThemeProvider } from "styled-components";
 import App from "./app";
-
-/* ... */
-
-import configureStore from "./configurations/store";
+// import configureStore from "./configurations/store";
 import configureI18n from "./configurations/internationalization";
 import configureTheme from "./configurations/theme";
 
-/* ... */
-
-const store = configureStore();
+const store = null; // configureStore();
 const i18n = configureI18n();
 const theme = configureTheme();
-
-/* ... */
 
 const Root = () => (
   <Provider store={store}>
