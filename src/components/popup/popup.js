@@ -21,7 +21,7 @@ class Popup extends Component {
 
   back() {}
 
-  showPopup() {
+  render() {
     const { leftIcon, rightIcon, leftFunc, rightFunc, buttonLink } = this.props;
     if (this.state.isPopupShown)
       return (
@@ -38,10 +38,6 @@ class Popup extends Component {
         </PopupContainer>
       );
     else return null;
-  }
-
-  render() {
-    return this.showPopup();
   }
 }
 

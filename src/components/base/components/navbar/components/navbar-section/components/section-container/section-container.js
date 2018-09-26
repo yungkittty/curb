@@ -3,23 +3,16 @@ import Section from "../../../../../../../../components/general/section";
 
 const SectionContainer = styled(Section)`
   position: ${props => (props.fixed ? "absolute" : "relative")};
-  top: ${props => (props.top ? "0" : "unset")};
-  bottom: ${props => (props.bottom ? "0" : "unset")};
+  ${props => (props.top ? "top" : "bottom")}: 0;
 
   padding-top: 14px;
   padding-bottom: 1px;
-  width: inherit;
+  
+  width: 80px;
 
-  &:after {
-    position: absolute;
-    ${props => (props.bottom ? "top" : "bottom")}: -1px;
-    width: ${props => (props.fixed ? "100%" : "40px")};
-    height: 1px;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    content: "";
-    border-top: 1px solid #bdbdbd;
-  }
+  border-${props => (props.top ? "bottom" : "top")} 1px solid #bdbdbd;
+  border${props => (props.top ? "Bottom" : "Top")}Width: 1px;
+  border${props => (props.top ? "Bottom" : "Top")}Color: #bdbdbd;
 `;
 
 export default SectionContainer;
