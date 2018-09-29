@@ -4,7 +4,6 @@ import WindowContainer from "./components/window-container";
 import WindowHeader from "./components/window-header";
 import WindowContent from "./components/window-content";
 import WindowButton from "./components/window-button";
-import IconType from "../../../general/icon/type";
 
 class PopupWindow extends Component {
   constructor(props) {
@@ -13,11 +12,13 @@ class PopupWindow extends Component {
   }
 
   componentDidMount() {
-    document.getElementById("base").style.filter = "blur(2px)";
+    if (typeof document !== "undefined")
+      document.getElementById("base").style.filter = "blur(2px)";
   }
 
   componentWillUnmount() {
-    document.getElementById("base").style.filter = "blur(0px)";
+    if (typeof document !== "undefined")
+      document.getElementById("base").style.filter = "blur(0px)";
   }
 
   back() {
@@ -50,7 +51,7 @@ class PopupWindow extends Component {
           leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
           rightFunc={this.rightFunc.bind(this)}
         />
-        <WindowContent size={button ? "2" : "1"} />
+        <WindowContent />
         {button && <WindowButton button={button} buttonLink={buttonLink} />}
       </WindowContainer>
     );
@@ -58,6 +59,8 @@ class PopupWindow extends Component {
 }
 
 PopupWindow.defaultProps = {
+  leftIcon: undefined,
+  rightIcon: undefined,
   leftFunc: undefined,
   rightFunc: undefined,
   button: undefined,
@@ -66,8 +69,8 @@ PopupWindow.defaultProps = {
 
 PopupWindow.propTypes = {
   title: PropTypes.string.isRequired,
-  leftIcon: PropTypes.oneOf(IconType).isRequired,
-  rightIcon: PropTypes.oneOf(IconType).isRequired,
+  leftIcon: PropTypes.string,
+  rightIcon: PropTypes.string,
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
   button: PropTypes.string,

@@ -2,16 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import ButtonContainer from "./components/button-container";
 import ButtonIcon from "./components/button-icon";
-import IconType from "../../../../../general/icon/type";
 
-const NavbarButton = ({ icon }) => (
-  <ButtonContainer>
+const NavbarButton = ({ icon, onClick }) => (
+  <ButtonContainer onClick={onClick}>
     <ButtonIcon icon={icon} />
   </ButtonContainer>
 );
 
+NavbarButton.defaultProps = {
+  icon: undefined
+};
+
 NavbarButton.propTypes = {
-  icon: PropTypes.oneOf(IconType).isRequired
+  icon: PropTypes.string
 };
 
 export default NavbarButton;

@@ -3,7 +3,7 @@ import Button from "../../../../../../../general/button";
 
 const ButtonContainer = styled(Button)`
   background: #bdbdbd;
-  border-radius: 90px;
+  border-radius: 30px;
   width: 54px;
   height: 54px;
   margin: 0 auto;

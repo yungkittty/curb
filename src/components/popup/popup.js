@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import PopupContainer from "./components/popup-container";
 import PopupWindow from "./components/popup-window";
-import IconType from "../general/icon/type";
 
 class Popup extends Component {
   constructor(props) {
@@ -42,7 +41,7 @@ class Popup extends Component {
 }
 
 Popup.defaultProps = {
-  leftIcon: "none",
+  leftIcon: undefined,
   rightIcon: "times",
   leftFunc: undefined,
   rightFunc: undefined,
@@ -50,8 +49,8 @@ Popup.defaultProps = {
 };
 
 Popup.propTypes = {
-  leftIcon: PropTypes.oneOf(IconType),
-  rightIcon: PropTypes.oneOf(IconType),
+  leftIcon: PropTypes.string,
+  rightIcon: PropTypes.string,
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
   buttonLink: PropTypes.string

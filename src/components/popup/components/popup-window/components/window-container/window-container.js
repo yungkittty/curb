@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Section from "../../../../../../components/general/section";
 
 const WindowContainer = styled(Section)`
+  display: flex;
+  flex-flow: column;
   background: white;
   overflow: hidden;
   width: 700px;

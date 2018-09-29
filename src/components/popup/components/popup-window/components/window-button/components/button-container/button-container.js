@@ -2,7 +2,9 @@ import styled from "styled-components";
 import Button from "../../../../../../../general/button";
 
 const ButtonContainer = styled(Button)`
-  display: ${props => props.hidden};
+  ${props => (props.hidden === "hidden" ? "display: none" : "")};
+  display: flex;
+  align-items: center;
   height: 75px;
   background: gray;
 `;

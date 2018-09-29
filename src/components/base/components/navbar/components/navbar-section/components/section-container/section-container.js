@@ -6,8 +6,7 @@ const SectionContainer = styled(Section)`
   ${props => (props.top ? "top" : "bottom")}: 0;
 
   padding-top: 14px;
-  padding-bottom: 1px;
-  
+
   width: 80px;
 
   border-${props => (props.top ? "bottom" : "top")} 1px solid #bdbdbd;

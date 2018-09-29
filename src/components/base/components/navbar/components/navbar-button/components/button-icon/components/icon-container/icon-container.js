@@ -6,6 +6,4 @@ const IconContainer = styled(Section)`
   width: 100%;
 `;
 
-//
-
 export default IconContainer;
