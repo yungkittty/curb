@@ -1,5 +1,1 @@
-const theme = {
-  // ...
-};
-
-export default theme;
+export { default } from "./configure-theme";
