@@ -1,2 +1,6 @@
-export { default as account } from "./cn-account";
-export { default as common } from "./cn-common";
+import common from "./cn-common";
+import signIn from "./cn-sign-in";
+import signUp from "./cn-sign-up";
+import users from "./cn-users";
+
+export default { common, signIn, signUp, users };

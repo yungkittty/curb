@@ -1,7 +1,5 @@
-// https://stackoverflow.com/a/33930998
-
-import * as cn from "./cn";
-import * as en from "./en";
-import * as fr from "./fr";
+import cn from "./cn";
+import en from "./en";
+import fr from "./fr";
 
 export default { cn, en, fr };
