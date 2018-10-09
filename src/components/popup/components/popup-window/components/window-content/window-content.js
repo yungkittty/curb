@@ -1,75 +1,12 @@
 import React from "react";
 import ContentContainer from "./components/content-container";
+import ContentLogin from "./components/content-login";
+import LoginRedirect from "./components/content-login/components/login-redirect";
 
 const WindowContent = props => (
   <ContentContainer size={props.size}>
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
-    <br />
-    <br />
-    this is my fabulous content
+    <ContentLogin />
+    <LoginRedirect />
   </ContentContainer>
 );
 

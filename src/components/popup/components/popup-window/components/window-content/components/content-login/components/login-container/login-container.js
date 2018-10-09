@@ -8,7 +8,6 @@ const LoginContainer = styled(Section)`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid blue;
 `;
 
 export default LoginContainer;
