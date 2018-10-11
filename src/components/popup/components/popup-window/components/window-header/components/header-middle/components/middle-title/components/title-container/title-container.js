@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import Section from "../../../../../../../../../../../../components/general/section";
+import Text from "../../../../../../../../../../../../components/general/text";
 
-const TitleContainer = styled(Section)`
+const TitleContainer = styled(Text)`
   font-size: 22px;
   font-weight: bold;
+  text-align: center;
 `;
 
 export default TitleContainer;
