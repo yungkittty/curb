@@ -7,7 +7,7 @@ const Icon = ({ icon, color, size }) => {
   var s = null;
   switch (size) {
     case "small":
-      s = 24;
+      s = 22;
       break;
     case "medium":
       s = 32;

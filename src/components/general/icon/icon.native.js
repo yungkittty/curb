@@ -8,7 +8,7 @@ const Icon = ({ icon, color, size }) => {
   var s = null;
   switch (size) {
     case "small":
-      s = 22;
+      s = 20;
       break;
     case "medium":
       s = 28;
@@ -28,7 +28,7 @@ const Icon = ({ icon, color, size }) => {
       }}
     >
       {FontAwesome.hasIcon(icon) ? (
-        <FontAwesome5 name={icon} color={color} size={size} solid />
+        <FontAwesome5 name={icon} color={color} size={s} solid />
       ) : null}
     </View>
   );
@@ -42,7 +42,7 @@ Icon.defaultProps = {
 Icon.propTypes = {
   icon: PropTypes.string,
   color: PropTypes.string.isRequired,
-  size: PropTypes.number.oneOf(["small", "medium", "big"])
+  size: PropTypes.oneOf(["small", "medium", "big"])
 };
 
 export default Icon;

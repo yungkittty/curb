@@ -4,11 +4,10 @@ import ButtonContainer from "./components/button-container";
 import Icon from "../../../../../../../general/icon";
 
 const color = "#333";
-const size = 22;
 
 const HeaderButton = ({ position, icon, onClick }) => (
   <ButtonContainer position={position} onClick={onClick}>
-    <Icon icon={icon} color={color} size={size} />
+    <Icon icon={icon} color={color} size={"small"} />
   </ButtonContainer>
 );
 
