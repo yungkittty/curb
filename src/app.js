@@ -7,10 +7,10 @@ import Popup from "./components/popup";
 
 const App = () => (
   <AppContainer>
-    <Popup />
     <BaseContainer id="base">
       <Navbar />
     </BaseContainer>
+    <Popup />
   </AppContainer>
 );
 
