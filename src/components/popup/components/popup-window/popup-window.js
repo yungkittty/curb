@@ -8,7 +8,9 @@ import WindowButton from "./components/window-button";
 class PopupWindow extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: true };
+    this.state = {
+      open: true
+    };
   }
 
   componentDidMount() {
@@ -36,6 +38,7 @@ class PopupWindow extends Component {
   render() {
     const {
       title,
+      progress,
       leftIcon,
       rightIcon,
       leftFunc,
@@ -46,6 +49,7 @@ class PopupWindow extends Component {
       <WindowContainer>
         <WindowHeader
           title={title}
+          progress={progress}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
           leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
@@ -59,6 +63,8 @@ class PopupWindow extends Component {
 }
 
 PopupWindow.defaultProps = {
+  title: undefined,
+  progress: undefined,
   leftIcon: undefined,
   rightIcon: undefined,
   leftFunc: undefined,
@@ -68,7 +74,8 @@ PopupWindow.defaultProps = {
 };
 
 PopupWindow.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  progress: PropTypes.object,
   leftIcon: PropTypes.string,
   rightIcon: PropTypes.string,
   leftFunc: PropTypes.func,
