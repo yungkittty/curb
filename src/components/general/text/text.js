@@ -4,6 +4,7 @@ import Root from "./root";
 const Text = styled(Root)`
     margin-top: 0px;
     margin-bottom: 6px;
+    font-family: Montserrat;
 
     ${props => props.h1 ? " \
     font-size: 38px;        \
@@ -17,7 +18,7 @@ const Text = styled(Root)`
     font-size: 24px;        \
     " : null}
 
-    ${props => props.bold ? "font-weight: bold;" : null}
+    ${props => props.bold ? "font-family: Montserrat-Bold;" : null}
     ${props => props.italic ? "font-style: italic;" : null}
     ${props => props.underline ? "text-decoration: underline black;" : null}
 
