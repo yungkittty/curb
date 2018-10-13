@@ -1,4 +1,4 @@
 import screenWidths from "./screen-widths";
-import screenWidthsMedia from "./screen-widths-media";
+import screenWidthsMedias from "./screen-widths-medias";
 
-export { screenWidths, screenWidthsMedia };
+export { screenWidths, screenWidthsMedias };
