@@ -2,16 +2,18 @@ import styled from "styled-components";
 import Root from "./root";
 
 const Text = styled(Root)`
-    margin-top: 0px;
-    margin-bottom: 6px;
+    font-size: 16px;
+    line-height: 28px;
+
 
     ${props => props.h1 ? " \
     font-size: 38px;        \
-    margin-bottom: 22px;    \
+    line-height: 34px;      \
     " : null}
     ${props => props.h2 ? " \
     font-size: 32px;        \
-    margin-bottom: 20px;    \
+    line-height: 42px;      \
+    margin-bottom: 22px;    \
     " : null}
     ${props => props.h3 ? " \
     font-size: 24px;        \
