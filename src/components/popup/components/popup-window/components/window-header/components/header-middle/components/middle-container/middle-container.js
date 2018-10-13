@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Section from "../../../../../../../../../general/section";
 
-const IconContainer = styled(Section)`
-  height: 100%;
-  width: 100%;
+const MiddleContainer = styled(Section)`
+  text-align: center;
+  flex: 1;
 `;
 
-export default IconContainer;
+export default MiddleContainer;

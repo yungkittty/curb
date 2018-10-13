@@ -4,28 +4,45 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { View } from "react-native";
 
-const Icon = ({ icon, color, size }) => (
-  <View
-    style={{
-      alignItems: "center",
-      justifyContent: "center",
-      flex: 1
-    }}
-  >
-    {FontAwesome.hasIcon(icon) ? (
-      <FontAwesome5 name={icon} color={color} size={size} solid />
-    ) : null}
-  </View>
-);
+const Icon = ({ icon, color, size }) => {
+  var s = null;
+  switch (size) {
+    case "small":
+      s = 20;
+      break;
+    case "medium":
+      s = 28;
+      break;
+    case "big":
+      s = 42;
+      break;
+    default:
+      s = null;
+  }
+  return (
+    <View
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1
+      }}
+    >
+      {FontAwesome.hasIcon(icon) ? (
+        <FontAwesome5 name={icon} color={color} size={s} solid />
+      ) : null}
+    </View>
+  );
+};
 
 Icon.defaultProps = {
-  icon: undefined
+  icon: undefined,
+  size: "medium"
 };
 
 Icon.propTypes = {
   icon: PropTypes.string,
   color: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired
+  size: PropTypes.oneOf(["small", "medium", "big"])
 };
 
 export default Icon;

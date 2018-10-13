@@ -6,9 +6,12 @@ import PopupWindow from "./components/popup-window";
 class Popup extends Component {
   constructor(props) {
     super(props);
-
+    const { title, progress, button } = this.props;
     this.state = {
-      isPopupShown: true
+      isPopupShown: true,
+      title: title,
+      progress: progress,
+      button: button
     };
   }
 
@@ -22,12 +25,14 @@ class Popup extends Component {
 
   render() {
     const { leftIcon, rightIcon, leftFunc, rightFunc, buttonLink } = this.props;
+
     if (this.state.isPopupShown)
       return (
         <PopupContainer>
           <PopupWindow
-            title="Popup"
-            button="Button"
+            title={this.state.title}
+            progress={this.state.progress}
+            button={this.state.button}
             leftIcon={leftIcon}
             rightIcon={rightIcon}
             leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
@@ -41,18 +46,24 @@ class Popup extends Component {
 }
 
 Popup.defaultProps = {
+  title: "Popup",
+  progress: undefined,
   leftIcon: undefined,
   rightIcon: "times",
   leftFunc: undefined,
   rightFunc: undefined,
+  button: "Button",
   buttonLink: undefined
 };
 
 Popup.propTypes = {
+  title: PropTypes.string,
+  progress: PropTypes.object,
   leftIcon: PropTypes.string,
   rightIcon: PropTypes.string,
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
+  button: PropTypes.string,
   buttonLink: PropTypes.string
 };
 

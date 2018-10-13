@@ -3,12 +3,26 @@ import PropTypes from "prop-types";
 import { findIconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Icon = ({ icon, color, size }) =>
-  findIconDefinition({ iconName: icon }) ? (
+const Icon = ({ icon, color, size }) => {
+  var s = null;
+  switch (size) {
+    case "small":
+      s = 22;
+      break;
+    case "medium":
+      s = 32;
+      break;
+    case "big":
+      s = 48;
+      break;
+    default:
+      s = null;
+  }
+  return findIconDefinition({ iconName: icon }) ? (
     <FontAwesomeIcon
       style={{
-        width: size + "px",
-        height: size + "px",
+        width: s + "px",
+        height: s + "px",
         marginTop: "50%",
         marginLeft: "50%",
         transform: "translate(-50%, -50%)"
@@ -17,15 +31,17 @@ const Icon = ({ icon, color, size }) =>
       icon={icon}
     />
   ) : null;
+};
 
 Icon.defaultProps = {
-  icon: undefined
+  icon: undefined,
+  size: "medium"
 };
 
 Icon.propTypes = {
   icon: PropTypes.string,
   color: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired
+  size: PropTypes.oneOf(["small", "medium", "big"])
 };
 
 export default Icon;
