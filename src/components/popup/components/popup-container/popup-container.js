@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Section from "../../../../components/general/section";
-import { screenWidthsMedia } from "../../../../configurations/screen";
+import { screenWidthsMedias } from "../../../../configurations/screen";
 
 const PopupContainer = styled(Section)`
   width: 100%;
@@ -8,10 +8,10 @@ const PopupContainer = styled(Section)`
   position: absolute;
   top: 0;
   left: 0;
-  
-  ${screenWidthsMedia.large`
+
+  ${screenWidthsMedias.large`
     background: rgba(0, 0, 0, 0.2);
-  `}
+  `};
 `;
 
 export default PopupContainer;

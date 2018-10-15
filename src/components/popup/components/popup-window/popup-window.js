@@ -15,12 +15,12 @@ class PopupWindow extends Component {
 
   componentDidMount() {
     if (typeof document !== "undefined")
-      document.getElementById("base").style.filter = "blur(2px)";
+      document.getElementById("app").style.filter = "blur(2px)";
   }
 
   componentWillUnmount() {
     if (typeof document !== "undefined")
-      document.getElementById("base").style.filter = "blur(0px)";
+      document.getElementById("app").style.filter = "blur(0px)";
   }
 
   back() {
@@ -42,6 +42,7 @@ class PopupWindow extends Component {
       leftIcon,
       rightIcon,
       leftFunc,
+      content,
       button,
       buttonLink
     } = this.props;
@@ -55,7 +56,7 @@ class PopupWindow extends Component {
           leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
           rightFunc={this.rightFunc.bind(this)}
         />
-        <WindowContent />
+        <WindowContent content={content} />
         {button && <WindowButton button={button} buttonLink={buttonLink} />}
       </WindowContainer>
     );
@@ -63,13 +64,14 @@ class PopupWindow extends Component {
 }
 
 PopupWindow.defaultProps = {
-  title: undefined,
+  title: "Popup",
   progress: undefined,
   leftIcon: undefined,
-  rightIcon: undefined,
+  rightIcon: "times",
   leftFunc: undefined,
   rightFunc: undefined,
-  button: undefined,
+  content: undefined,
+  button: "Button",
   buttonLink: undefined
 };
 
@@ -80,6 +82,7 @@ PopupWindow.propTypes = {
   rightIcon: PropTypes.string,
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
+  content: PropTypes.func,
   button: PropTypes.string,
   buttonLink: PropTypes.string
 };

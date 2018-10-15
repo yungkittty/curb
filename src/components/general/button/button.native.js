@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { TouchableHighlight } from "react-native";
 
-const button = ({ style, children, onClick }) => (
-  <TouchableHighlight style={style} onPress={onClick}>
+const button = ({ style, children, to }) => (
+  <Link style={style} to={to}>
     {children}
-  </TouchableHighlight>
+  </Link>
 );
 
 const Button = styled(button)``;
