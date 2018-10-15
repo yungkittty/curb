@@ -11,7 +11,7 @@ const ModalRoute = ({ component, render, children, ...others }) => (
     render={({ location: { state: { isModal = false } = {} } }) => (
       <Fragment>
         {isModal ? null : null}
-        <Modal component={component || render} />
+        <Modal component={component} render={render} />
       </Fragment>
     )}
   />
