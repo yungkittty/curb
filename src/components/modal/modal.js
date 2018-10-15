@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import ModalOverlay from "./components/modal-overlay";
 import ModalContainer from "./components/modal-container";
 
-const Modal = ({ component, render, ...others }) => (
+const Modal = ({ component, render }) => (
   <ModalOverlay>
     <ModalContainer>
-      {component ? createElement(component, others) : render(others)}
+      {component ? createElement(component, null) : render(null)}
     </ModalContainer>
   </ModalOverlay>
 );
