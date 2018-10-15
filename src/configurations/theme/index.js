@@ -1,1 +1,3 @@
-export { default } from "./configure-theme";
+import configureTheme from "./configure-theme";
+
+export default configureTheme;

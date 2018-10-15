@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "../../../../../../../general/button";
-import { screenWidthsMedia } from "../../../../../../../../configurations/screen";
+import { screenWidthsMedias } from "../../../../../../../../configurations/screen";
 
 const ButtonContainer = styled(Button)`
   background: #bdbdbd;
@@ -11,11 +11,11 @@ const ButtonContainer = styled(Button)`
   height: 48px;
   margin-bottom: 12px;
 
-  ${screenWidthsMedia.large`
+  ${screenWidthsMedias.large`
   width: 54px;
   height: 54px;
   margin-bottom: 14px;
-  `}
+  `};
 `;
 
 export default ButtonContainer;

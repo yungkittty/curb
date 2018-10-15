@@ -12,13 +12,14 @@ const HeaderButton = ({ position, icon, onClick }) => (
 );
 
 HeaderButton.defaultProps = {
-  icon: undefined
+  icon: undefined,
+  onClick: undefined
 };
 
 HeaderButton.propTypes = {
   position: PropTypes.oneOf(["left", "right"]).isRequired,
   icon: PropTypes.string,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 };
 
 export default HeaderButton;

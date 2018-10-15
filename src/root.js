@@ -4,7 +4,7 @@ import { I18nextProvider } from "react-i18next";
 import { ThemeProvider } from "styled-components";
 import App from "./app";
 // import configureStore from "./configurations/store";
-import configureI18n from "./configurations/internationalization";
+import configureI18n from "./configurations/internationalisation";
 import configureTheme from "./configurations/theme";
 
 const store = null; // configureStore();

@@ -27,7 +27,9 @@ WindowHeader.defaultProps = {
   title: undefined,
   progress: undefined,
   leftIcon: undefined,
-  rightIcon: undefined
+  rightIcon: undefined,
+  leftFunc: undefined,
+  rightFunc: undefined
 };
 
 WindowHeader.propTypes = {
@@ -35,8 +37,8 @@ WindowHeader.propTypes = {
   progress: PropTypes.object,
   leftIcon: PropTypes.string,
   rightIcon: PropTypes.string,
-  leftFunc: PropTypes.func.isRequired,
-  rightFunc: PropTypes.func.isRequired
+  leftFunc: PropTypes.func,
+  rightFunc: PropTypes.func
 };
 
 export default WindowHeader;

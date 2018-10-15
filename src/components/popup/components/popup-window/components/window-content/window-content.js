@@ -1,9 +1,19 @@
-import React from "react";
+import React, { createElement } from "react";
+import PropTypes from "prop-types";
 import ContentContainer from "./components/content-container";
-import StepOne from "../../../../../../scenes/register/step-one";
 
-const WindowContent = () => <ContentContainer>
-    <StepOne />
-</ContentContainer>;
+const WindowContent = ({ content }) => (
+  <ContentContainer>
+    {content ? createElement(content, null) : null}
+  </ContentContainer>
+);
+
+WindowContent.defaultProps = {
+  content: undefined
+};
+
+WindowContent.propTypes = {
+  content: PropTypes.func
+};
 
 export default WindowContent;

@@ -15,13 +15,7 @@ class Popup extends Component {
     };
   }
 
-  closePopup() {
-    this.setState({
-      isPopupShown: false
-    });
-  }
-
-  back() { }
+  back() {}
 
   render() {
     const { leftIcon, rightIcon, leftFunc, rightFunc, buttonLink } = this.props;

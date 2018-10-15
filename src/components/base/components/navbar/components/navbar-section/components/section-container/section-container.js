@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Section from "../../../../../../../../components/general/section";
-import { screenWidthsMedia } from "../../../../../../../../configurations/screen";
+import { screenWidthsMedias } from "../../../../../../../../configurations/screen";
 
 const SectionContainer = styled(Section)`
   position: ${props => (props.fixed ? "absolute" : "relative")};
@@ -14,7 +14,7 @@ const SectionContainer = styled(Section)`
   border${props => (props.top ? "Bottom" : "Top")}Width: 1px;
   border${props => (props.top ? "Bottom" : "Top")}Color: #bdbdbd;
 
-  ${screenWidthsMedia.large`
+  ${screenWidthsMedias.large`
     width: 80px;
   `}
 `;
