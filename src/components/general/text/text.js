@@ -19,14 +19,16 @@ const Text = styled(Root)`
     ${props => props.h3 ? " \
     font-size: 24px;        \
     " : null}
+    ${props => props.p ? "  \
+    display: flex;          \
+    margin-bottom: 24px;    \
+    " : null}
 
-    ${props => props.bold ? "font-family: Montserrat-Bold;" : null}
+    ${props => props.bold ? "font-weight: bold;" : null}
     ${props => props.italic ? "font-style: italic;" : null}
     ${props => props.underline ? "text-decoration: underline black;" : null}
 
     ${props => props.center ? "text-align: center;" : null}
-    
-    ${props => props.p ? "margin-bottom: 24px;" : null}
 `;
 
 export default Text;

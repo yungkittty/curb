@@ -21,7 +21,7 @@ class Popup extends Component {
     });
   }
 
-  back() {}
+  back() { }
 
   render() {
     const { leftIcon, rightIcon, leftFunc, rightFunc, buttonLink } = this.props;

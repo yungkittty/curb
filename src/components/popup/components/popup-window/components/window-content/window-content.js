@@ -1,6 +1,9 @@
 import React from "react";
 import ContentContainer from "./components/content-container";
+import StepOne from "../../../../../../scenes/register/step-one";
 
-const WindowContent = props => <ContentContainer />;
+const WindowContent = () => <ContentContainer>
+    <StepOne />
+</ContentContainer>;
 
 export default WindowContent;
