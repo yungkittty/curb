@@ -23,18 +23,6 @@ class PopupWindow extends Component {
       document.getElementById("app").style.filter = "blur(0px)";
   }
 
-  back() {
-    console.log("back");
-  }
-
-  rightFunc() {
-    const { rightFunc } = this.props;
-    this.setState({
-      open: false
-    });
-    if (rightFunc) rightFunc();
-  }
-
   render() {
     const {
       title,
@@ -42,6 +30,7 @@ class PopupWindow extends Component {
       leftIcon,
       rightIcon,
       leftFunc,
+      rightFunc,
       content,
       button,
       buttonLink
@@ -53,8 +42,8 @@ class PopupWindow extends Component {
           progress={progress}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
-          leftFunc={leftFunc ? leftFunc : this.back.bind(this)}
-          rightFunc={this.rightFunc.bind(this)}
+          leftFunc={leftFunc}
+          rightFunc={rightFunc}
         />
         <WindowContent content={content} />
         {button && <WindowButton button={button} buttonLink={buttonLink} />}
@@ -71,7 +60,7 @@ PopupWindow.defaultProps = {
   leftFunc: undefined,
   rightFunc: undefined,
   content: undefined,
-  button: "Button",
+  button: undefined,
   buttonLink: undefined
 };
 

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import ContentContainer from "./components/content-container";
 
 const WindowContent = ({ content }) => (
-  <ContentContainer>{content()}</ContentContainer>
+  <ContentContainer>
+    {content ? createElement(content, null) : null}
+  </ContentContainer>
 );
 
 WindowContent.defaultProps = {

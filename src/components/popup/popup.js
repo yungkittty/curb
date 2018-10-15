@@ -15,12 +15,6 @@ class Popup extends Component {
     };
   }
 
-  closePopup() {
-    this.setState({
-      isPopupShown: false
-    });
-  }
-
   back() {}
 
   render() {

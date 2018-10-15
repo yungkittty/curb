@@ -4,7 +4,7 @@ import ButtonContainer from "./components/button-container";
 import ButtonTitle from "./components/button-title";
 
 const WindowButton = ({ button, buttonLink }) => (
-  <ButtonContainer href={buttonLink}>
+  <ButtonContainer to={buttonLink}>
     <ButtonTitle button={button} />
   </ButtonContainer>
 );
