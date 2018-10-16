@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Input = styled.input.attrs({
+  type: props => (props.password ? "password" : null),
   placeholder: props => props.placeholder
 })`
   font-size: 18px;
