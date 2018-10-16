@@ -7,7 +7,6 @@ const DotContainer = styled(Section)`
   width: 10px;
   margin: 0 9px;
   border-radius: 5px;
-  display: inline-block;
 `;
 
 export default DotContainer;
