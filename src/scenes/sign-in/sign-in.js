@@ -6,7 +6,7 @@ const SignIn = () => (
   <PopupWindow
     title="Sign in"
     button="Login"
-    buttonLink="/sign-up-1"
+    buttonLink="/"
     content={SigninContent}
   />
 );

@@ -4,8 +4,8 @@ import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const ContentContainer = styled(Section)`
   margin: 0 auto;
-  padding: 0 38px;
-  height: 100%;
+  padding: 0 18px;
+  width: 100%;
 
   ${screenWidthsMedias.large` 
   width: 460px;

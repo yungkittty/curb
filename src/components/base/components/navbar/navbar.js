@@ -7,7 +7,7 @@ const Navbar = () => (
   <NavbarContainer>
     <NavbarAccount to="/sign-in" />
 
-    <NavbarSettings to="/sign-up" />
+    <NavbarSettings to="/sign-up-1" />
   </NavbarContainer>
 );
 
