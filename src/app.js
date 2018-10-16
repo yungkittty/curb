@@ -9,7 +9,9 @@ import ModalRoute from "./components/modal-route";
 import Route from "./components/route";
 import User from "./scenes/user";
 import SignIn from "./scenes/sign-in";
-import SignUp from "./scenes/sign-up";
+import SignUp1 from "./scenes/sign-up-1";
+import SignUp2 from "./scenes/sign-up-2";
+import SignUp3 from "./scenes/sign-up-3";
 
 const App = () => (
   <Router>
@@ -24,11 +26,13 @@ const App = () => (
         </ModalSwitch>
       </BaseContainer>
       <ModalRoute
-        path="/sign-(in|up)"
+        path="/sign-(in|up-1|up-2|up-3)"
         render={() => (
           <Fragment>
             <Route path="/sign-in" component={SignIn} />
-            <Route path="/sign-up" component={SignUp} />
+            <Route path="/sign-up-1" component={SignUp1} />
+            <Route path="/sign-up-2" component={SignUp2} />
+            <Route path="/sign-up-3" component={SignUp3} />
           </Fragment>
         )}
       />

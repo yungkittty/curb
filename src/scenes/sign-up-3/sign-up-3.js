@@ -2,13 +2,15 @@ import React from "react";
 import PopupWindow from "../../components/popup/components/popup-window";
 import SignupContent from "./components/signup-content";
 
-const SignUp = () => (
+const SignUp3 = () => (
   <PopupWindow
-    title="Sign up"
-    button="Next"
-    buttonLink="/sign-in"
+    progress={{ progress: 3, total: 3 }}
+    leftIcon="arrow-left"
+    leftTo="/sign-up-2"
+    button="Finish"
+    buttonLink="/"
     content={SignupContent}
   />
 );
 
-export default SignUp;
+export default SignUp3;

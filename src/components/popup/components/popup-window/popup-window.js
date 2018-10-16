@@ -29,7 +29,9 @@ class PopupWindow extends Component {
       progress,
       leftIcon,
       rightIcon,
+      leftTo,
       leftFunc,
+      rightTo,
       rightFunc,
       content,
       button,
@@ -42,6 +44,8 @@ class PopupWindow extends Component {
           progress={progress}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
+          leftTo={leftTo}
+          rightTo={rightTo}
           leftFunc={leftFunc}
           rightFunc={rightFunc}
         />
@@ -53,7 +57,7 @@ class PopupWindow extends Component {
 }
 
 PopupWindow.defaultProps = {
-  title: "Popup",
+  title: undefined,
   progress: undefined,
   leftIcon: undefined,
   rightIcon: "times",

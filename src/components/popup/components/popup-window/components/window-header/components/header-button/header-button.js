@@ -5,8 +5,8 @@ import Icon from "../../../../../../../general/icon";
 
 const color = "#333";
 
-const HeaderButton = ({ position, icon, onClick }) => (
-  <ButtonContainer position={position} onClick={onClick}>
+const HeaderButton = ({ position, icon, to, onClick }) => (
+  <ButtonContainer position={position} to={to} onClick={onClick}>
     <Icon icon={icon} color={color} size={"small"} />
   </ButtonContainer>
 );

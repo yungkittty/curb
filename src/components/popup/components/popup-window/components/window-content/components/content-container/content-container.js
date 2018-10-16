@@ -10,7 +10,6 @@ const ContentContainer = styled(Section)`
 
     // Fix to hide scrollbar
     width: calc(100% + 18px);
-    padding-right: 18px;
   `};
 `;
 

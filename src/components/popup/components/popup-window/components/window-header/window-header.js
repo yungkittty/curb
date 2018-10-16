@@ -8,17 +8,29 @@ const WindowHeader = ({
   title,
   progress,
   leftIcon,
+  leftTo,
   leftFunc,
+  rightTo,
   rightIcon,
   rightFunc
 }) => (
   <HeaderContainer>
     {leftIcon !== "none" && (
-      <HeaderButton position="left" icon={leftIcon} onClick={leftFunc} />
+      <HeaderButton
+        position="left"
+        icon={leftIcon}
+        to={leftTo}
+        onClick={leftFunc}
+      />
     )}
     <HeaderMiddle title={title} progress={progress} />
     {rightIcon !== "none" && (
-      <HeaderButton position="right" icon={rightIcon} onClick={rightFunc} />
+      <HeaderButton
+        position="right"
+        icon={rightIcon}
+        to={rightTo}
+        onClick={rightFunc}
+      />
     )}
   </HeaderContainer>
 );
