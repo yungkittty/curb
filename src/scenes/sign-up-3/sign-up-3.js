@@ -5,6 +5,7 @@ import SignupContent from "./components/signup-content";
 const SignUp3 = () => (
   <PopupWindow
     progress={{ progress: 3, total: 3 }}
+    rightTo="/"
     leftIcon="arrow-left"
     leftTo="/sign-up-2"
     button="Finish"
