@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Section from "../../../../components/general/section";
 
 const PopupContainer = styled(Section)`
+  elevation: 10;
   position: fixed;
   top: 0;
   left: 0;
