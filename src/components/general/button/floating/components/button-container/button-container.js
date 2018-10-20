@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "../../../button";
-import { screenWidthsMedia } from "../../../../../../configurations/screen";
+import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const ButtonContainer = styled(Button)`
   elevation: 6;
@@ -12,7 +12,7 @@ const ButtonContainer = styled(Button)`
   border-radius: 30px;
   background: #bdbdbd;
 
-  ${screenWidthsMedia.large`
+  ${screenWidthsMedias.large`
     box-shadow: 0px 4px 8px -2px rgba(0, 0, 0, 0.4);
   `}
 `;
