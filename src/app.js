@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
 import AppContainer from "./components/app-container";
-import BaseContainer from "./components/base/components/base-container";
-import Navbar from "./components/base/components/navbar";
 import AppNavigation from "./components/app-navigation";
 import Router from "./components/router";
 import ModalSwitch from "./components/modal-switch";
@@ -13,16 +11,15 @@ import SignUp from "./scenes/sign-up";
 
 const App = () => (
   <Router>
-    <AppContainer>
-      <BaseContainer id="app">
-        <Navbar />
+    <Fragment>
+      <AppContainer id="app">
         <AppNavigation />
         <ModalSwitch>
           <Route exact path="/" />
           <Route path="/users/:id" component={User} />
           <Route />
         </ModalSwitch>
-      </BaseContainer>
+      </AppContainer>
       <ModalRoute
         path="/sign-(in|up)"
         render={() => (
@@ -32,7 +29,7 @@ const App = () => (
           </Fragment>
         )}
       />
-    </AppContainer>
+    </Fragment>
   </Router>
 );
 

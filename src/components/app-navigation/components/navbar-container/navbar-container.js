@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Section from "../../../../../general/section";
-import { screenWidthsMedias } from "../../../../../../configurations/screen";
+import Section from "../../../general/section";
+import { screenWidthsMedias } from "../../../../configurations/screen";
 
 const NavbarContainer = styled(Section)`
   background: #e0e0e0;

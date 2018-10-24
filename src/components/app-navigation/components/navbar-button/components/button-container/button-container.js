@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Button from "../../../../../../../general/button";
-import { screenWidthsMedias } from "../../../../../../../../configurations/screen";
+import Button from "../../../../../general/button";
+import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const ButtonContainer = styled(Button)`
   background: #bdbdbd;
