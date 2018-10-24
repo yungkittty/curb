@@ -5,7 +5,10 @@ import Link from "../../link";
 
 const button = ({ className, children, to, onClick }) =>
   to ? (
-    <Link className={className} to={to}>
+    <Link
+      className={className}
+      to={{ pathname: to.path, state: { isModal: to.isModal ? true : false } }}
+    >
       {children}
     </Link>
   ) : (
@@ -20,7 +23,7 @@ button.defaultProps = {
 };
 
 button.propTypes = {
-  to: PropTypes.string,
+  to: PropTypes.object,
   onClick: PropTypes.func
 };
 
