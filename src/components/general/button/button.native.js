@@ -6,14 +6,17 @@ import { TouchableHighlight } from "react-native";
 
 const button = ({ style, children, to, onClick }) =>
   to ? (
-    <Link style={style} to={to}>
+    <Link
+      style={style}
+      to={{ pathname: to.path, state: { isModal: to.isModal ? true : false } }}
+    >
       {children}
     </Link>
   ) : (
-      <TouchableHighlight style={style} onPress={onClick}>
-        {children}
-      </TouchableHighlight>
-    );
+    <TouchableHighlight style={style} onPress={onClick}>
+      {children}
+    </TouchableHighlight>
+  );
 
 button.defaultProps = {
   to: undefined,
@@ -21,7 +24,7 @@ button.defaultProps = {
 };
 
 button.propTypes = {
-  to: PropTypes.string,
+  to: PropTypes.object,
   onClick: PropTypes.func
 };
 
