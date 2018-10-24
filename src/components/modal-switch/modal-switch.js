@@ -24,18 +24,21 @@ class ModalSwitch extends Component {
       props: {
         location,
         location: { state: { isModal = false } = {} },
-        children
+        children,
+        ...others
       },
       state: { prevLocation }
     } = this;
     return (
-      <Switch location={!isModal ? location : prevLocation}>{children}</Switch>
+      <Switch {...others} location={!isModal ? location : prevLocation}>
+        {children}
+      </Switch>
     );
   }
 }
 
 ModalSwitch.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
+  // eslint-disable-next-line
   location: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired
 };

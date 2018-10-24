@@ -6,9 +6,9 @@ const ModalLink = ({ to, ...others }) => <Link {...others} to={to} />;
 
 ModalLink.propTypes = {
   to: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
     state: PropTypes.shape({
-      isModal: ({ isModal }) => !isModal && new Error("") // <=
+      isModal: ({ isModal }) =>
+        !isModal && new Error("Invalid prop `state` supplied to `ModalLink`.")
     }).isRequired
   }).isRequired
 };
