@@ -3,19 +3,21 @@ import PropTypes from "prop-types";
 import ButtonContainer from "./components/button-container";
 import ButtonTitle from "./components/button-title";
 
-const WindowButton = ({ button, buttonLink }) => (
-  <ButtonContainer to={buttonLink}>
+const WindowButton = ({ button, buttonTo, buttonFunc }) => (
+  <ButtonContainer to={buttonTo} onClick={buttonFunc}>
     <ButtonTitle button={button} />
   </ButtonContainer>
 );
 
 WindowButton.defaultProps = {
-  buttonLink: undefined
+  buttonTo: undefined,
+  buttonFunc: undefined
 };
 
 WindowButton.propTypes = {
   button: PropTypes.string.isRequired,
-  buttonLink: PropTypes.string
+  buttonTo: PropTypes.string,
+  buttonFunc: PropTypes.func
 };
 
 export default WindowButton;

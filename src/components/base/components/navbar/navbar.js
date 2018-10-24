@@ -5,9 +5,9 @@ import NavbarSettings from "./components/navbar-settings";
 
 const Navbar = () => (
   <NavbarContainer>
-    <NavbarAccount to="/sign-in" />
+    <NavbarAccount />
 
-    <NavbarSettings to="/sign-up-1" />
+    <NavbarSettings />
   </NavbarContainer>
 );
 

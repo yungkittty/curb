@@ -4,6 +4,7 @@ const Input = styled.input.attrs({
   type: props => (props.password ? "password" : null),
   placeholder: props => props.placeholder
 })`
+  box-sizing: border-box;
   font-size: 18px;
   padding: 18px;
   border: 0;

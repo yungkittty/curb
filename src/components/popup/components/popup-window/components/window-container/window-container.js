@@ -8,9 +8,9 @@ const WindowContainer = styled(Section)`
   background: white;
   display: flex;
   flex-flow: column;
+  overflow: hidden;
 
   ${screenWidthsMedias.large`
-    overflow: hidden;
     width: 700px;
     height: 740px;
     border-radius: 25px;

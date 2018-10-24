@@ -4,14 +4,19 @@ import styled from "styled-components";
 import Link from "../../link";
 import { TouchableHighlight } from "react-native";
 
-const button = ({ style, children, to }) => (
-  <Link style={style} to={to}>
-    {children}
-  </Link>
-);
+const button = ({ style, children, to, onClick }) =>
+  to ? (
+    <Link style={style} to={to}>
+      {children}
+    </Link>
+  ) : (
+      <TouchableHighlight style={style} onPress={onClick}>
+        {children}
+      </TouchableHighlight>
+    );
 
 button.defaultProps = {
-  to: "/",
+  to: undefined,
   onClick: undefined
 };
 

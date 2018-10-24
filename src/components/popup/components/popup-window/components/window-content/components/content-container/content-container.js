@@ -12,10 +12,10 @@ const ContentContainer = styled(Section)`
   ${screenWidthsMedias.large`
     margin: 0 auto;
 
-    overflow-y: scroll;
+    // Need a proper fix here to hide scrollbar
+    // overflow-y: scroll;
 
-    // Fix to hide scrollbar
-    width: calc(100% + 18px);
+    // width: calc(100% + 18px);
   `};
 `;
 
