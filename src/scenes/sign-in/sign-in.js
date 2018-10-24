@@ -5,9 +5,8 @@ import SigninContent from "./components/signin-content";
 const SignIn = () => (
   <PopupWindow
     title="Sign in"
-    rightTo="/"
     button="Login"
-    buttonLink="/"
+    buttonTo={{ path: "/" }}
     content={SigninContent}
   />
 );

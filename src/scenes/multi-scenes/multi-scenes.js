@@ -36,7 +36,7 @@ class MultiScenes extends Component {
         progress={this.state.progress}
         leftIcon={n > 0 ? "arrow-left" : null}
         leftFunc={n > 0 ? this.move.bind(this, -1) : null}
-        rightTo={scenes[n].rightTo ? scenes[n].rightTo : "/"}
+        rightTo={scenes[n].rightTo ? scenes[n].rightTo : { path: "/" }}
         button={scenes[n].button}
         buttonTo={scenes[n].buttonTo}
         buttonFunc={this.move.bind(this, 1)}

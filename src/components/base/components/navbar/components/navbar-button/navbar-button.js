@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import ButtonContainer from "./components/button-container";
 import ButtonIcon from "./components/button-icon";
 
-const NavbarButton = ({ icon, to }) => (
-  <ButtonContainer to={to}>
+const NavbarButton = ({ icon }) => (
+  <ButtonContainer>
     <ButtonIcon icon={icon} />
   </ButtonContainer>
 );

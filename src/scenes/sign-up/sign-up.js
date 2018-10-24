@@ -1,9 +1,8 @@
 import React from "react";
+import MultiScenes from "../multi-scenes";
 import SignUp1 from "./scenes/sign-up-1";
 import SignUp2 from "./scenes/sign-up-2";
 import SignUp3 from "./scenes/sign-up-3";
-
-import MultiScenes from "../multi-scenes";
 
 const step_one = {
   button: "Next",
@@ -17,7 +16,7 @@ const step_two = {
 
 const step_three = {
   button: "Finish",
-  buttonTo: "/",
+  buttonTo: { path: "/" },
   content: SignUp3
 };
 

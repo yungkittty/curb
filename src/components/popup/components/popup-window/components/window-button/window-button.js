@@ -16,7 +16,7 @@ WindowButton.defaultProps = {
 
 WindowButton.propTypes = {
   button: PropTypes.string.isRequired,
-  buttonTo: PropTypes.string,
+  buttonTo: PropTypes.object,
   buttonFunc: PropTypes.func
 };
 
