@@ -4,7 +4,7 @@ import screenWidths from "./screen-widths";
 
 const screenWidthsMedias = _.reduce(
   screenWidths,
-  // eslint-disable-next-line no-shadow
+  // eslint-disable-next-line
   (screenWidthsMedias, screenWidth, screenType) =>
     _.assign({}, screenWidthsMedias, {
       [screenType]: (...screenArgs) =>

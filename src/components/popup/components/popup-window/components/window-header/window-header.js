@@ -39,8 +39,10 @@ WindowHeader.defaultProps = {
   title: undefined,
   progress: undefined,
   leftIcon: undefined,
-  rightIcon: undefined,
+  leftTo: undefined,
   leftFunc: undefined,
+  rightIcon: undefined,
+  rightTo: undefined,
   rightFunc: undefined
 };
 
@@ -48,8 +50,10 @@ WindowHeader.propTypes = {
   title: PropTypes.string,
   progress: PropTypes.object,
   leftIcon: PropTypes.string,
-  rightIcon: PropTypes.string,
+  leftTo: PropTypes.object,
   leftFunc: PropTypes.func,
+  rightIcon: PropTypes.string,
+  rightTo: PropTypes.object,
   rightFunc: PropTypes.func
 };
 

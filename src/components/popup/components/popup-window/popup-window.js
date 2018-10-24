@@ -28,14 +28,16 @@ class PopupWindow extends Component {
       title,
       progress,
       leftIcon,
-      rightIcon,
       leftTo,
       leftFunc,
+      rightIcon,
       rightTo,
       rightFunc,
       content,
+      multiContent,
       button,
-      buttonLink
+      buttonTo,
+      buttonFunc
     } = this.props;
     return (
       <WindowContainer>
@@ -49,8 +51,15 @@ class PopupWindow extends Component {
           leftFunc={leftFunc}
           rightFunc={rightFunc}
         />
-        <WindowContent content={content} />
-        {button && <WindowButton button={button} buttonLink={buttonLink} />}
+        {content ? <WindowContent content={content} /> : null}
+        {multiContent ? multiContent : null}
+        {button && (
+          <WindowButton
+            button={button}
+            buttonTo={buttonTo}
+            buttonFunc={buttonFunc}
+          />
+        )}
       </WindowContainer>
     );
   }
@@ -60,24 +69,30 @@ PopupWindow.defaultProps = {
   title: undefined,
   progress: undefined,
   leftIcon: undefined,
-  rightIcon: "times",
+  leftTo: undefined,
   leftFunc: undefined,
+  rightIcon: "times",
+  rightTo: { path: "/" },
   rightFunc: undefined,
   content: undefined,
+  multiContent: undefined,
   button: undefined,
-  buttonLink: undefined
+  buttonTo: undefined
 };
 
 PopupWindow.propTypes = {
   title: PropTypes.string,
   progress: PropTypes.object,
   leftIcon: PropTypes.string,
-  rightIcon: PropTypes.string,
+  leftTo: PropTypes.object,
   leftFunc: PropTypes.func,
+  rightIcon: PropTypes.string,
+  rightTo: PropTypes.object,
   rightFunc: PropTypes.func,
   content: PropTypes.func,
+  multiContent: PropTypes.object,
   button: PropTypes.string,
-  buttonLink: PropTypes.string
+  buttonTo: PropTypes.object
 };
 
 export default PopupWindow;

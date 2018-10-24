@@ -3,25 +3,33 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Link from "../../link";
 
-const button = ({ className, children, to }) => (
-  <Link className={className} to={to}>
-    {children}
-  </Link>
-);
+const button = ({ className, children, to, onClick }) =>
+  to ? (
+    <Link
+      className={className}
+      to={{ pathname: to.path, state: { isModal: to.isModal ? true : false } }}
+    >
+      {children}
+    </Link>
+  ) : (
+    <a className={className} onClick={onClick}>
+      {children}
+    </a>
+  );
 
 button.defaultProps = {
-  to: "/",
+  to: undefined,
   onClick: undefined
 };
 
 button.propTypes = {
-  to: PropTypes.string,
+  to: PropTypes.object,
   onClick: PropTypes.func
 };
 
 const Button = styled(button)`
-  cursor: pointer;
-  display: block;
+  ${props =>
+    props.to || props.onClick ? "cursor: pointer;" : null} display: block;
   text-decoration: none;
   border: none;
   outline: none;

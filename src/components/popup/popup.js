@@ -47,7 +47,7 @@ Popup.defaultProps = {
   leftFunc: undefined,
   rightFunc: undefined,
   button: "Button",
-  buttonLink: undefined
+  buttonTo: undefined
 };
 
 Popup.propTypes = {
@@ -58,7 +58,7 @@ Popup.propTypes = {
   leftFunc: PropTypes.func,
   rightFunc: PropTypes.func,
   button: PropTypes.string,
-  buttonLink: PropTypes.string
+  buttonTo: PropTypes.string
 };
 
 export default Popup;
