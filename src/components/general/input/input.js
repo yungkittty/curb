@@ -10,6 +10,6 @@ const Input = styled.input.attrs({
   border: 0;
   border-bottom: 1px solid #c8ccd4;
   display: inline-block;
-  witdh: 380px;
+  ${props => (props.s ? "width: 380px" : null)};
 `;
 export default Input;
