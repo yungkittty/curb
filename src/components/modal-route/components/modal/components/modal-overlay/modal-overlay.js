@@ -1,4 +1,4 @@
-import PopupContainer from "../../../popup/components/popup-container";
+import PopupContainer from "../../../../../popup/components/popup-container";
 
 const ModalOverlay = PopupContainer;
 

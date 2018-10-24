@@ -1,4 +1,4 @@
-import WindowContainer from "../../../popup/components/popup-window/components/window-container";
+import WindowContainer from "../../../../../popup/components/popup-window/components/window-container";
 
 const ModalContainer = WindowContainer;
 
