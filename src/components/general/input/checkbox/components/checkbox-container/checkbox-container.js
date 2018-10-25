@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Section from "../../../../section";
+import Container from "../../../../../container";
 
-const CheckboxContainer = styled(Section)``;
+const CheckboxContainer = styled(Container)``;
 
 export default CheckboxContainer;

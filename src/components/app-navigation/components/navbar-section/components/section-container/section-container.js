@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Section from "../../../../../../components/general/section";
+import Container from "../../../../../../components/container";
 import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
-const SectionContainer = styled(Section)`
+const SectionContainer = styled(Container)`
   position: ${props => (props.fixed ? "absolute" : "relative")};
   ${props => (props.top ? "top" : "bottom")}: 0;
 

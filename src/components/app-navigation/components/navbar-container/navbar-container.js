@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Section from "../../../general/section";
+import Container from "../../../container";
 import { screenWidthsMedias } from "../../../../configurations/screen";
 
-const NavbarContainer = styled(Section)`
+const NavbarContainer = styled(Container)`
   background: #e0e0e0;
   height: 100%;
   width: 76px;

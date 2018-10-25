@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Section from "../../../../../../../../../../../general/section";
+import Container from "../../../../../../../../../../../container";
 
-const ProgressContainer = styled(Section)`
+const ProgressContainer = styled(Container)`
   flex-direction: row;
   display: flex;
   justify-content: center;

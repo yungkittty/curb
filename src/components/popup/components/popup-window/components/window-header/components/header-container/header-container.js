@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Section from "../../../../../../../../components/general/section";
+import Container from "../../../../../../../container";
 
-const HeaderContainer = styled(Section)`
+const HeaderContainer = styled(Container)`
   display: flex;
   flex-flow: row;
   align-items: center;
