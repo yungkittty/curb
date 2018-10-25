@@ -1,17 +1,34 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import styled from "styled-components";
+import React, { Fragment } from "react";
+import AppContainer from "./components/app-container";
+import AppNavigation from "./components/app-navigation";
+import Router from "./components/router";
+import ModalSwitch from "./components/modal-switch";
+import ModalRoute from "./components/modal-route";
+import Route from "./components/route";
+import User from "./scenes/user";
+import SignIn from "./scenes/sign-in";
+import SignUp from "./scenes/sign-up";
 
-const AppContainer = styled.div``;
-
-class App extends Component {
-  render() {
-    return (
-      <AppContainer>
-        <Router />
-      </AppContainer>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <AppContainer>
+      <AppNavigation />
+      <ModalSwitch>
+        <Route exact path="/" />
+        <Route path="/users/:id" component={User} />
+        <Route />
+      </ModalSwitch>
+      <ModalRoute
+        path="/sign-(in|up)"
+        render={() => (
+          <Fragment>
+            <Route path="/sign-in" component={SignIn} />
+            <Route path="/sign-up" component={SignUp} />
+          </Fragment>
+        )}
+      />
+    </AppContainer>
+  </Router>
+);
 
 export default App;

@@ -1,10 +1,3 @@
-import homeEn from "./home/en.json";
-import homeFr from "./home/fr.json";
+import configureI18n from "./configure-i18n";
 
-export default {
-  home: {
-    en: homeEn,
-    fr: homeFr
-  }
-  // ...
-};
+export default configureI18n;

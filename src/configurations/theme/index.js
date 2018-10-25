@@ -1,5 +1,3 @@
-const theme = {
-  // ...
-};
+import configureTheme from "./configure-theme";
 
-export default theme;
+export default configureTheme;
