@@ -8,7 +8,7 @@ const Checkbox = ({ id, name, label }) => {
   return (
     <CheckboxContainer>
       <Root id={id} name={name} />
-      <Label htmlFor={id}> {label}</Label>
+      <Label htmlFor={id}>{label}</Label>
     </CheckboxContainer>
   );
 };
