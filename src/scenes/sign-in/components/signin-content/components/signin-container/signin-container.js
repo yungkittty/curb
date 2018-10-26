@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Section from "../../../../../../components/general/section";
 
-const LoginContainer = styled(Section)`
+const SigninContainer = styled(Section)`
     width: 100%;
     height: 80%;
     display: inline-flex;
@@ -10,4 +10,4 @@ const LoginContainer = styled(Section)`
     align-items: center;
 `;
 
-export default LoginContainer;
+export default SigninContainer;

@@ -1,15 +1,14 @@
 import React from "react";
-import LoginContainer from "./components/login-container";
-import LoginInput from "./components/login-input";
-import LoginRedirect from "./components/login-redirect";
+import SigninContainer from "./components/signin-container";
+import SigninInput from "./components/signin-input";
+import SigninLink from "./components/signin-link";
 
-
-const SigninContent = props => (
-  <LoginContainer size={props.size}>
-    <LoginInput placeholder='Username' />
-    <LoginInput placeholder='Password' type='password' />
-    <LoginRedirect />
-  </LoginContainer>
+const SigninContent = () => (
+  <SigninContainer>
+    <SigninInput placeholder='Username' />
+    <SigninInput placeholder='Password' type='password' />
+    <SigninLink />
+  </SigninContainer>
   );
 
 export default SigninContent;

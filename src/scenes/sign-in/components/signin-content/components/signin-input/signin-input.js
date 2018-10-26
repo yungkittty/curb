@@ -1,8 +1,8 @@
 import React from "react";
 import InputContainer from "./components/input-container";
 
-const LoginInput = props => (
+const SigninInput = props => (
   <InputContainer placeholder={ props.placeholder } type={ props.type }/>
 );
 
-export default LoginInput;
+export default SigninInput;
