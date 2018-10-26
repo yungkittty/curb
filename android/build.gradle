@@ -1,13 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext {
-        buildToolsVersion = "27.0.3"
-        minSdkVersion = 16
-        compileSdkVersion = 27
-        targetSdkVersion = 26
-        supportLibVersion = "27.1.1"
-    }
     repositories {
         jcenter()
         maven {
@@ -38,6 +31,20 @@ allprojects {
     }
 }
 
+<<<<<<< HEAD
+=======
+subprojects { subproject ->
+    afterEvaluate {
+        if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+            android {
+                compileSdkVersion 26
+                buildToolsVersion "26.0.3"
+            }
+        }
+    }
+}
+
+>>>>>>> parent of c56c499... RN 0.57
 ext {
     buildToolsVersion = "26.0.3"
     minSdkVersion = 16
