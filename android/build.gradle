@@ -31,20 +31,6 @@ allprojects {
     }
 }
 
-<<<<<<< HEAD
-=======
-subprojects { subproject ->
-    afterEvaluate {
-        if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
-            android {
-                compileSdkVersion 26
-                buildToolsVersion "26.0.3"
-            }
-        }
-    }
-}
-
->>>>>>> parent of c56c499... RN 0.57
 ext {
     buildToolsVersion = "26.0.3"
     minSdkVersion = 16
