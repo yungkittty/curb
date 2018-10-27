@@ -3,6 +3,7 @@ import Container from "../../../../../../../container";
 import { screenWidthsMedias } from "../../../../../../../../configurations/screen";
 
 const ContentContainer = styled(Container)`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
