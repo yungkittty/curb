@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Container from "../../../../../container";
 
-const SettingsContainer = styled(Container)``;
+const UserContainer = styled(Container)``;
 
-export default SettingsContainer;
+export default UserContainer;

@@ -1,33 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import L from "./root";
+import Link from "../link/root";
 
-const link = ({ className, children, to, onClick }) =>
+const button = ({ className, children, to, onClick }) =>
   to ? (
-    <L
+    <Link
       className={className}
       to={{ pathname: to.path, state: { isModal: to.isModal ? true : false } }}
     >
       {children}
-    </L>
+    </Link>
   ) : (
     <a className={className} onClick={onClick}>
       {children}
     </a>
   );
 
-link.defaultProps = {
+button.defaultProps = {
   to: undefined,
   onClick: undefined
 };
 
-link.propTypes = {
+button.propTypes = {
   to: PropTypes.object,
   onClick: PropTypes.func
 };
 
-const Link = styled(link)`
+const Button = styled(button)`
   ${props =>
     props.to || props.onClick ? "cursor: pointer;" : null} display: block;
   text-decoration: none;
@@ -35,4 +35,4 @@ const Link = styled(link)`
   outline: none;
 `;
 
-export default Link;
+export default Button;

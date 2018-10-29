@@ -1,6 +1,6 @@
 import React from "react";
 import ContentContainer from "./components/content-container";
-import Text from "../../../../components/general/text";
+import Text from "../../../../components/text";
 import ContentInput from "./components/content-input";
 
 const Signup2 = ({ onChange }) => {

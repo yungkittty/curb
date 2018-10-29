@@ -1,7 +1,7 @@
 import React from "react";
 import ContentContainer from "./components/content-container";
 import ContentText from "./components/content-text";
-import Text from "../../../../components/general/text";
+import Text from "../../../../components/text";
 
 const Signup3 = ({ data }) => {
   return (

@@ -1,12 +1,12 @@
 import React from "react";
 import SettingsContainer from "./components/settings-container";
-import SettingsButton from "./components/settings-button";
-import SectionBar from "../navigation-section/components/section-bar";
+import NavigationButton from "../navigation-button";
+import NavigationBar from "../navigation-bar";
 
 const NavigationSettings = () => (
   <SettingsContainer>
-    <SectionBar />
-    <SettingsButton />
+    <NavigationBar />
+    <NavigationButton icon="cog" />
   </SettingsContainer>
 );
 

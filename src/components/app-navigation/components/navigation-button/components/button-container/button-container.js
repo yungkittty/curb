@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../../../../general/button";
+import Button from "../../../../../button";
 import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const ButtonContainer = styled(Button)`
