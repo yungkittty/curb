@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import Section from "../../../../../../../general/section";
+import Container from "../../../../../../../container";
 import { screenWidthsMedias } from "../../../../../../../../configurations/screen";
 
-const ContentContainer = styled(Section)`
+const ContentContainer = styled(Container)`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;

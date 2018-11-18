@@ -1,14 +1,13 @@
 import React from "react";
-import NavbarContainer from "./components/navbar-container";
-import NavbarAccount from "./components/navbar-account";
-import NavbarSettings from "./components/navbar-settings";
+import NavigationContainer from "./components/navigation-container";
+import NavigationUser from "./components/navigation-user";
+import NavigationSettings from "./components/navigation-settings";
 
 const AppNavigation = () => (
-  <NavbarContainer>
-    <NavbarAccount />
-
-    <NavbarSettings />
-  </NavbarContainer>
+  <NavigationContainer>
+    <NavigationUser />
+    <NavigationSettings />
+  </NavigationContainer>
 );
 
 export default AppNavigation;

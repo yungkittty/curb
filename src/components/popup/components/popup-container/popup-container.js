@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Section from "../../../../components/general/section";
+import Container from "../../../../components/container";
 import { screenWidthsMedias } from "../../../../configurations/screen";
 
-const PopupContainer = styled(Section)`
+const PopupContainer = styled(Container)`
   elevation: 10;
   position: fixed;
   top: 0;

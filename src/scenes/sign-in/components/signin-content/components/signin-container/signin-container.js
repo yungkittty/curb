@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Section from "../../../../../../components/general/section";
+import Section from "../../../../../../components/container";
 
 const SigninContainer = styled(Section)`
     width: 100%;

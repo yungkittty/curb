@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Section from "../../../../../../components/general/section";
+import Container from "../../../../../../components/container";
 
-const HandlerContainer = styled(Section)`
+const HandlerContainer = styled(Container)`
   display: flex;
   flex-flow: row;
   flex: 1;

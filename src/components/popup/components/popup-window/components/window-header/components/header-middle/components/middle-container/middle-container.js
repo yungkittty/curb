@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Section from "../../../../../../../../../general/section";
+import Container from "../../../../../../../../../container";
 
-const MiddleContainer = styled(Section)`
+const MiddleContainer = styled(Container)`
   text-align: center;
   flex: 1;
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Text from "../../../../../../../../../../../../components/general/text";
+import Text from "../../../../../../../../../../../../components/text";
 
 const TitleContainer = styled(Text)`
   font-size: 22px;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../../../../../../general/button";
+import Button from "../../../../../../../button";
 
 const ButtonContainer = styled(Button)`
   ${props => (props.hidden === "hidden" ? "display: none" : "")};

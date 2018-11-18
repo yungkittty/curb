@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Section from "../../../../../../../../components/general/section";
+import Container from "../../../../../../../../components/container";
 
-const CheckboxContainer = styled(Section)`
-  bottom: 24px;
+const CheckboxContainer = styled(Container)`
+  margin: 0 auto;
 `;
 
 export default CheckboxContainer;

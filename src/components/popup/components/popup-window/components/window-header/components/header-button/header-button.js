@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ButtonContainer from "./components/button-container";
-import Icon from "../../../../../../../general/icon";
+import Icon from "../../../../../../../icon";
 
 const color = "#333";
 

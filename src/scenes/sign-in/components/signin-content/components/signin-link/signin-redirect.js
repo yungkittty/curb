@@ -1,6 +1,6 @@
 import React from "react";
 import LinkContainer from "./components/link-container";
-import Text from "../../../../../../components/general/text"
+import Text from "../../../../../../components/text"
 import Link from "../../../../../../components/link"
 
 const SigninLink = () => (

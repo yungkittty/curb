@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Section from "../../../../../../../../../../../../../general/section";
+import Container from "../../../../../../../../../../../../../container";
 
-const DotContainer = styled(Section)`
+const DotContainer = styled(Container)`
   background: ${props => (props.enabled ? "#e0e0e0" : "#828282")};
   height: 10px;
   width: 10px;

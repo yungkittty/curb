@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Input from "../../../../../../components/general/input";
+import Input from "../../../../../../components/input";
 import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const ContentInput = styled(Input)`

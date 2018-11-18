@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Section from "../../../../../../components/general/section";
+import Container from "../../../../../../components/container";
 import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
-const HandlerContainer = styled(Section)`
+const HandlerContainer = styled(Container)`
   position: relative;
   display: flex;
   flex-flow: row;

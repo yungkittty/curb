@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Section from "../../../../../../components/general/section";
+import Container from "../../../../../container";
 import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
-const WindowContainer = styled(Section)`
+const WindowContainer = styled(Container)`
   width: 100%;
   height: 100%;
   background: white;
