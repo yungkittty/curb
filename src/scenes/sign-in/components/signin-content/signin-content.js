@@ -5,10 +5,10 @@ import SigninLink from "./components/signin-link";
 
 const SigninContent = () => (
   <SigninContainer>
-    <SigninInput placeholder='Username' />
-    <SigninInput placeholder='Password' type='password' />
+    <SigninInput placeholder="Username" />
+    <SigninInput placeholder="Password" type="password" />
     <SigninLink />
   </SigninContainer>
-  );
+);
 
 export default SigninContent;

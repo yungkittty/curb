@@ -5,10 +5,7 @@ import Link from "../link/root";
 
 const button = ({ className, children, to, onClick }) =>
   to ? (
-    <Link
-      className={className}
-      to={{ pathname: to.path, state: { isModal: to.isModal ? true : false } }}
-    >
+    <Link className={className} to={to}>
       {children}
     </Link>
   ) : (

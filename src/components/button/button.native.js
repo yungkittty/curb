@@ -6,10 +6,7 @@ import { TouchableHighlight } from "react-native";
 
 const button = ({ style, children, to, onClick }) =>
   to ? (
-    <Link
-      style={style}
-      to={{ pathname: to.path, state: { isModal: to.isModal ? true : false } }}
-    >
+    <Link style={style} to={to}>
       {children}
     </Link>
   ) : (

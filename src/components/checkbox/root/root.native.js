@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { CheckBox } from "react-native";
+import { Switch } from "react-native";
 
-const Root = styled(CheckBox)``;
+const Root = styled(Switch)``;
 
 export default Root;
