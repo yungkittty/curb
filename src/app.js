@@ -11,13 +11,15 @@ import SignUp from "./scenes/sign-up";
 
 const App = () => (
   <Router>
-    <AppContainer>
-      <AppNavigation />
-      <ModalSwitch>
-        <Route exact path="/" />
-        <Route path="/users/:id" component={User} />
-        <Route />
-      </ModalSwitch>
+    <Fragment>
+      <AppContainer id="app">
+        <AppNavigation />
+        <ModalSwitch>
+          <Route exact path="/" />
+          <Route path="/users/:id" component={User} />
+          <Route />
+        </ModalSwitch>
+      </AppContainer>
       <ModalRoute
         path="/sign-(in|up)"
         render={() => (
@@ -27,7 +29,7 @@ const App = () => (
           </Fragment>
         )}
       />
-    </AppContainer>
+    </Fragment>
   </Router>
 );
 
