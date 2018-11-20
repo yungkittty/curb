@@ -7,7 +7,7 @@ const ContentHandler = ({ scenes, state, onChange, data }) => (
     {scenes.map((scene, i) => (
       <WindowContent
         key={i}
-        content={scene.content}
+        content={state === i || state - 1 === i ? scene.content : null}
         onChange={onChange}
         data={data}
       />
