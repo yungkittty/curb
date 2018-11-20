@@ -6,7 +6,7 @@ const SignIn = () => (
   <PopupWindow
     title="Sign in"
     button="Login"
-    buttonTo={{ path: "/" }}
+    buttonTo={{ pathname: "/" }}
     content={SigninContent}
   />
 );
