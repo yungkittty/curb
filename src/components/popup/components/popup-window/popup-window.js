@@ -23,6 +23,10 @@ class PopupWindow extends Component {
       document.getElementById("app").style.filter = "blur(0px)";
   }
 
+  callCustomButtonFunc() {
+    this.refs.windowContent.buttonFunc();
+  }
+
   render() {
     const {
       title,
@@ -35,6 +39,7 @@ class PopupWindow extends Component {
       rightFunc,
       content,
       multiContent,
+      hasToValidate,
       button,
       buttonTo,
       buttonFunc
