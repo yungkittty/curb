@@ -23,6 +23,10 @@ class PopupWindow extends Component {
       document.getElementById("app").style.filter = "blur(0px)";
   }
 
+  callCustomButtonFunc() {
+    this.refs.windowContent.buttonFunc();
+  }
+
   render() {
     const {
       title,
@@ -35,9 +39,9 @@ class PopupWindow extends Component {
       rightFunc,
       content,
       multiContent,
+      hasToValidate,
       button,
-      buttonTo,
-      buttonFunc
+      buttonTo
     } = this.props;
     return (
       <WindowContainer>
@@ -51,13 +55,21 @@ class PopupWindow extends Component {
           leftFunc={leftFunc}
           rightFunc={rightFunc}
         />
-        {content ? <WindowContent content={content} /> : null}
+        {content ? (
+          <WindowContent
+            ref="windowContent"
+            customValidate={this.setValidate}
+            content={content}
+          />
+        ) : null}
         {multiContent ? multiContent : null}
         {button && (
           <WindowButton
             button={button}
-            buttonTo={buttonTo}
-            buttonFunc={buttonFunc}
+            buttonTo={!hasToValidate ? buttonTo : null}
+            buttonFunc={
+              hasToValidate ? this.callCustomButtonFunc.bind(this) : null
+            }
           />
         )}
       </WindowContainer>
