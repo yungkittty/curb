@@ -6,9 +6,9 @@ import signUpApi from "./sign-up-api";
 
 function* signUpRequestSaga({ payload }) {
   try {
-    const respond = yield call(signUpApi.signUp, payload);
+    yield call(signUpApi.signUp, payload);
     yield put(signInActions.signInRequest(payload));
-    yield put(signUpActions.signUpSuccess(respond));
+    yield put(signUpActions.signUpSuccess());
   } catch (error) {
     yield put(signUpActions.signUpFailure(error));
   }
