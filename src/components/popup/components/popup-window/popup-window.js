@@ -72,7 +72,7 @@ PopupWindow.defaultProps = {
   leftTo: undefined,
   leftFunc: undefined,
   rightIcon: "times",
-  rightTo: { path: "/" },
+  rightTo: { pathname: "/" },
   rightFunc: undefined,
   content: undefined,
   multiContent: undefined,
