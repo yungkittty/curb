@@ -39,14 +39,8 @@ class MultiScenes extends Component {
         rightTo={scenes[n].rightTo ? scenes[n].rightTo : { pathname: "/" }}
         button={scenes[n].button}
         buttonTo={scenes[n].buttonTo}
-        buttonFunc={() => {
-          if (scenes[n].buttonFunc === undefined) this.move(1);
-          if (
-            scenes[n].buttonFunc !== undefined &&
-            scenes[n].buttonFunc(this.state.data)
-          )
-            this.move(1);
-        }}
+        buttonFunc={this.move.bind(this, 1)}
+        hasToValidate={false}
         multiContent={
           <ContentHandler
             scenes={scenes}

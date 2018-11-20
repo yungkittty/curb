@@ -56,8 +56,12 @@ class PopupWindow extends Component {
         {button && (
           <WindowButton
             button={button}
-            buttonTo={buttonTo}
-            buttonFunc={buttonFunc}
+            buttonTo={
+              !hasToValidate || hasToValidate === undefined ? buttonTo : null
+            }
+            buttonFunc={
+              buttonFunc ? buttonFunc : this.callCustomButtonFunc.bind(this)
+            }
           />
         )}
       </WindowContainer>
