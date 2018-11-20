@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import ButtonContainer from "./components/button-container";
 import ButtonIcon from "./components/button-icon";
 
+// to={{ pathname: "/sign-up", state: { isModal: true }}}
+
 const NavigationButton = ({ icon }) => (
   <ButtonContainer>
     <ButtonIcon icon={icon} />

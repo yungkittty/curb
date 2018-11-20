@@ -1,30 +1,31 @@
-import { takeLatest } from "redux-saga";
-import { call, put } from "redux-saga/effects";
+import { all, takeLatest, call, put } from "redux-saga/effects";
+import usersActions from "../users/users-actions";
 import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
 import signInApi from "./sign-in-api";
 
 function* signInRequestSaga({ payload }) {
   try {
-    const X = yield call(signInApi.signIn, payload);
-    yield put(signInActions.signInFailure(X));
+    const { id, ...others } = yield call(signInApi.signIn, payload);
+    yield put(usersActions.getUserRequest({ id }));
+    yield put(signInActions.signInSuccess({ id, ...others }));
   } catch (error) {
-    yield put(signInActions.signInSuccess(error));
+    yield put(signInActions.signInFailure(error));
   }
 }
 
 function* signOutRequestSaga({ payload }) {
   try {
-    const X = yield call(signInApi.signOut, payload);
-    yield put(signInActions.signOutSuccess(X));
+    const respond = yield call(signInApi.signOut, payload);
+    yield put(signInActions.signOutSuccess(respond));
   } catch (error) {
     yield put(signInActions.signOutFailure(error));
   }
 }
 
-const signInSaga = [
+const signInSaga = all([
   takeLatest(signInActionsTypes.SIGN_IN_REQUEST, signInRequestSaga),
   takeLatest(signInActionsTypes.SIGN_OUT_REQUEST, signOutRequestSaga)
-];
+]);
 
 export default signInSaga;

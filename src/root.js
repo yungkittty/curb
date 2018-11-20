@@ -3,11 +3,11 @@ import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import { ThemeProvider } from "styled-components";
 import App from "./app";
-// import configureStore from "./configurations/store";
+import configureStore from "./configurations/store";
 import configureI18n from "./configurations/internationalisation";
 import configureTheme from "./configurations/theme";
 
-const store = null; // configureStore();
+const store = configureStore();
 const i18n = configureI18n();
 const theme = configureTheme();
 

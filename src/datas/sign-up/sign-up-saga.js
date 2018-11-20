@@ -1,20 +1,21 @@
-import { takeLatest } from "redux-saga";
-import { call, put } from "redux-saga/effects";
+import { all, takeLatest, call, put } from "redux-saga/effects";
+import signInActions from "../sign-in/sign-in-actions";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
 import signUpApi from "./sign-up-api";
 
 function* signUpRequestSaga({ payload }) {
   try {
-    const X = yield call(signUpApi.signUp, payload);
-    yield put(signUpActions.signUpSuccess(X));
+    const respond = yield call(signUpApi.signUp, payload);
+    yield put(signInActions.signInRequest(payload));
+    yield put(signUpActions.signUpSuccess(respond));
   } catch (error) {
     yield put(signUpActions.signUpFailure(error));
   }
 }
 
-const signUpSaga = [
+const signUpSaga = all([
   takeLatest(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)
-];
+]);
 
 export default signUpSaga;
