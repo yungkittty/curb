@@ -16,7 +16,7 @@ const step_two = {
 
 const step_three = {
   button: "Finish",
-  buttonTo: { path: "/" },
+  buttonTo: { pathname: "/" },
   content: SignUp3
 };
 
