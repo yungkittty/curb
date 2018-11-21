@@ -6,7 +6,6 @@ const TitleContainer = styled(Text)`
   text-align: center;
   font-size: 18px;
   margin: auto;
-  color: #fff;
   width: 100%;
 `;
 

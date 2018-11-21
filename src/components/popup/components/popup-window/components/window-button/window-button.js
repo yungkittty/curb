@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import ButtonContainer from "./components/button-container";
 import ButtonTitle from "./components/button-title";
 
-const WindowButton = ({ button, buttonTo, buttonFunc }) => (
-  <ButtonContainer to={buttonTo} onClick={buttonFunc}>
+const WindowButton = ({ button, buttonTo, buttonFunc, buttonClicked }) => (
+  <ButtonContainer to={buttonTo} onClick={buttonFunc} loading={buttonClicked}>
     <ButtonTitle button={button} />
   </ButtonContainer>
 );

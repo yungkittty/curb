@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import ContentContainer from "./components/content-container";
 
 const WindowContent = ({ content, onChange, data }) => ({
-  buttonFunc() {
-    return this.refs.content.buttonFunc();
+  customFunc() {
+    return this.refs.content.customFunc();
   },
 
   render() {

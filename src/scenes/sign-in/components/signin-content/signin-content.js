@@ -4,7 +4,7 @@ import SigninInput from "./components/signin-input";
 import SigninLink from "./components/signin-link";
 
 const SigninContent = () => ({
-  buttonFunc() {
+  async customFunc() {
     console.log("User clicked on Login");
 
     // Make the Sign-in call here

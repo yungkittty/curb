@@ -25,8 +25,13 @@ button.propTypes = {
 };
 
 const Button = styled(button)`
-  ${props =>
-    props.to || props.onClick ? "cursor: pointer;" : null} display: block;
+  cursor: ${props =>
+    props.to || props.onClick
+      ? props.loading !== undefined && props.loading
+        ? "wait"
+        : "pointer"
+      : null};
+  display: block;
   text-decoration: none;
   border: none;
   outline: none;

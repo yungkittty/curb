@@ -9,7 +9,7 @@ class PopupWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true
+      buttonClicked: false
     };
   }
 
@@ -23,8 +23,10 @@ class PopupWindow extends Component {
       document.getElementById("app").style.filter = "blur(0px)";
   }
 
-  callCustomButtonFunc() {
-    this.refs.windowContent.buttonFunc();
+  async callCustomFunc() {
+    this.setState({ buttonClicked: true });
+    await this.refs.windowContent.customFunc();
+    this.setState({ buttonClicked: false });
   }
 
   render() {
@@ -39,11 +41,11 @@ class PopupWindow extends Component {
       rightFunc,
       content,
       multiContent,
-      hasToValidate,
       button,
       buttonTo,
-      buttonFunc
+      customFunc
     } = this.props;
+    const { buttonClicked } = this.state;
     return (
       <WindowContainer>
         <WindowHeader
@@ -67,12 +69,9 @@ class PopupWindow extends Component {
         {button && (
           <WindowButton
             button={button}
-            buttonTo={
-              !hasToValidate || hasToValidate === undefined ? buttonTo : null
-            }
-            buttonFunc={
-              buttonFunc ? buttonFunc : this.callCustomButtonFunc.bind(this)
-            }
+            buttonTo={!customFunc ? buttonTo : null}
+            buttonFunc={customFunc ? this.callCustomFunc.bind(this) : null}
+            buttonClicked={buttonClicked}
           />
         )}
       </WindowContainer>
