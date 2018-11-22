@@ -1,9 +1,9 @@
 import React from "react";
-import SigninContainer from "./components/signin-container";
-import SigninInput from "./components/signin-input";
-import SigninLink from "./components/signin-link";
+import ContentContainer from "./components/content-container";
+import ContentForm from "./components/content-form";
+import ContentRedirect from "./components/content-redirect";
 
-const SigninContent = () => ({
+const SignInContent = () => ({
   buttonFunc() {
     console.log("User clicked on Login");
 
@@ -14,13 +14,12 @@ const SigninContent = () => ({
 
   render() {
     return (
-      <SigninContainer>
-        <SigninInput placeholder="Username" />
-        <SigninInput placeholder="Password" type="password" />
-        <SigninLink />
-      </SigninContainer>
+      <ContentContainer>
+        <ContentForm />
+        <ContentRedirect />
+      </ContentContainer>
     );
   }
 });
 
-export default SigninContent;
+export default SignInContent;

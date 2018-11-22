@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import Container from "../../../../../../components/container";
+import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const ContentContainer = styled(Container)`
+    ${screenWidthsMedias.large`
+        width: 460px;
+    `};
     display: inline-flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border-style: solid;
-    border-color: green;
 `;
 
 export default ContentContainer;
