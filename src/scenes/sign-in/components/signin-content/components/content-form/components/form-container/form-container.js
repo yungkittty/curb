@@ -7,7 +7,7 @@ const ContentContainer = styled(Container)`
     flex-direction: column;
     align-items: center;
     position: absolute;
-    bottom: 345px;
+    bottom: 335px;
 `;
 
 export default ContentContainer;

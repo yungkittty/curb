@@ -15,8 +15,8 @@ const SignInContent = () => ({
   render() {
     return (
       <ContentContainer>
-        <ContentForm />
         <ContentRedirect />
+        <ContentForm />
       </ContentContainer>
     );
   }
