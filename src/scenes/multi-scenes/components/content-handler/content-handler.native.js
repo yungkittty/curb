@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import HandlerContainer from "./components/handler-container";
-import WindowContent from "../../../../components/popup/components/popup-window/components/window-content";
+import ModalContent from "../../../../components/modal/components/modal-content";
 import { Dimensions, Animated } from "react-native";
 
 const width = Dimensions.get("window").width;
@@ -37,7 +37,7 @@ class ContentHandler extends Component {
         width={width}
       >
         {scenes.map((scene, i) => (
-          <WindowContent
+          <ModalContent
             key={i}
             content={scene.content}
             onChange={this.props.onChange}

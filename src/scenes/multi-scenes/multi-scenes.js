@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PopupWindow from "../../components/popup/components/popup-window";
+import Modal from "../../components/modal";
 import ContentHandler from "./components/content-handler";
 
 class MultiScenes extends Component {
@@ -32,7 +32,7 @@ class MultiScenes extends Component {
     const { scenes } = this.props;
     const n = this.state.progress.progress - 1;
     return (
-      <PopupWindow
+      <Modal
         progress={this.state.progress}
         leftIcon={n > 0 ? "arrow-left" : null}
         leftFunc={n > 0 ? this.move.bind(this, -1) : null}

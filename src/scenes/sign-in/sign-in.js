@@ -1,9 +1,9 @@
 import React from "react";
-import PopupWindow from "../../components/popup/components/popup-window";
+import Modal from "../../components/modal";
 import SigninContent from "./components/signin-content";
 
 const SignIn = () => (
-  <PopupWindow
+  <Modal
     title="Sign in"
     customFunc={true}
     button="Login"

@@ -1,11 +1,11 @@
 import React from "react";
 import HandlerContainer from "./components/handler-container";
-import WindowContent from "../../../../components/popup/components/popup-window/components/window-content";
+import ModalContent from "../../../../components/modal/components/modal-content";
 
 const ContentHandler = ({ scenes, state, onChange, data }) => (
   <HandlerContainer state={state} length={scenes.length}>
     {scenes.map((scene, i) => (
-      <WindowContent
+      <ModalContent
         key={i}
         content={state === i || state - 1 === i ? scene.content : null}
         onChange={onChange}
