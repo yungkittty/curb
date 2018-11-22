@@ -11,14 +11,7 @@ const step_one = {
 
 const step_two = {
   button: "Next",
-  content: SignUp2,
-  buttonFunc: data => {
-    console.log("username is " + data.username);
-    console.log("password is " + data.pass);
-    console.log("password is " + data.passConfirm);
-
-    return true; // Return true to go to next slide, otherwise return false
-  }
+  content: SignUp2
 };
 
 const step_three = {

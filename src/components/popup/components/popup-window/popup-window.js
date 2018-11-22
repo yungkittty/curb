@@ -41,8 +41,7 @@ class PopupWindow extends Component {
       multiContent,
       hasToValidate,
       button,
-      buttonTo,
-      buttonFunc
+      buttonTo
     } = this.props;
     return (
       <WindowContainer>
@@ -67,11 +66,9 @@ class PopupWindow extends Component {
         {button && (
           <WindowButton
             button={button}
-            buttonTo={
-              !hasToValidate || hasToValidate === undefined ? buttonTo : null
-            }
+            buttonTo={!hasToValidate ? buttonTo : null}
             buttonFunc={
-              buttonFunc ? buttonFunc : this.callCustomButtonFunc.bind(this)
+              hasToValidate ? this.callCustomButtonFunc.bind(this) : null
             }
           />
         )}

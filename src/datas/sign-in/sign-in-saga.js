@@ -16,8 +16,8 @@ function* signInRequestSaga({ payload }) {
 
 function* signOutRequestSaga({ payload }) {
   try {
-    const respond = yield call(signInApi.signOut, payload);
-    yield put(signInActions.signOutSuccess(respond));
+    yield call(signInApi.signOut, payload);
+    yield put(signInActions.signOutSuccess());
   } catch (error) {
     yield put(signInActions.signOutFailure(error));
   }

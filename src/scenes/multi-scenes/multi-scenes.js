@@ -40,7 +40,6 @@ class MultiScenes extends Component {
         button={scenes[n].button}
         buttonTo={scenes[n].buttonTo}
         buttonFunc={this.move.bind(this, 1)}
-        hasToValidate={false}
         multiContent={
           <ContentHandler
             scenes={scenes}
