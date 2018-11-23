@@ -1,16 +1,16 @@
 import React from "react";
 import FormContainer from "./components/form-container";
-import FormInput from "./components/form-input"
+import Input from "../../../../../../../components/input";
 
 const ContentForm = ({ onChange }) => (
   <FormContainer>
-    <FormInput 
+    <Input 
         id="username" 
         placeholder="Username" 
         onChange={onChange}
         s
     />
-    <FormInput 
+    <Input 
         id="pass" 
         placeholder="Password" 
         onChange={onChange}
