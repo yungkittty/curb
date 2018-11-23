@@ -1,6 +1,6 @@
 import React from "react";
 import FormContainer from "./components/form-container";
-import Input from "../../../../../../../components/input";
+import Input from "../../../../../../components/input";
 
 const ContentForm = ({ onChange }) => (
   <FormContainer>

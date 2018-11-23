@@ -6,7 +6,9 @@ import Link from "../../../../../../components/link"
 const ContentRedirect = () => (
   <RedirectContainer>
     <Text>New to Curb?</Text>
-    <Link to={{path: "/sign-up", state: { isModal: true }}}>Sign up</Link>
+    <Link to={{path: "/sign-up", state: { isModal: true }}}>
+      <Text>Sign up</Text>
+    </Link>
   </RedirectContainer>
 );
 
