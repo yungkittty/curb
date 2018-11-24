@@ -5,7 +5,7 @@ import ButtonTitle from "./components/button-title";
 
 const ModalButton = ({ button, buttonTo, buttonFunc, buttonClicked }) => (
   <ButtonContainer to={buttonTo} onClick={buttonFunc} loading={buttonClicked}>
-    <ButtonTitle button={button} />
+    <ButtonTitle button={button} buttonClicked={buttonClicked} />
   </ButtonContainer>
 );
 

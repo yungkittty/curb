@@ -15,7 +15,7 @@ class Modal extends Component {
 
   componentDidMount() {
     if (typeof document !== "undefined")
-      document.getElementById("app").style.filter = "blur(2px)";
+      document.getElementById("app").style.filter = "blur(3.5px)";
   }
 
   componentWillUnmount() {
@@ -24,8 +24,11 @@ class Modal extends Component {
   }
 
   async callCustomFunc() {
+    const { buttonFunc } = this.props;
     this.setState({ buttonClicked: true });
-    await this.refs.windowContent.customFunc();
+    if ((await this.refs.windowContent.customFunc()) && buttonFunc) {
+      buttonFunc();
+    }
     this.setState({ buttonClicked: false });
   }
 
@@ -42,8 +45,7 @@ class Modal extends Component {
       content,
       multiContent,
       button,
-      buttonTo,
-      customFunc
+      buttonTo
     } = this.props;
     const { buttonClicked } = this.state;
     return (
@@ -59,18 +61,14 @@ class Modal extends Component {
           rightFunc={rightFunc}
         />
         {content ? (
-          <ModalContent
-            ref="windowContent"
-            customValidate={this.setValidate}
-            content={content}
-          />
+          <ModalContent ref="windowContent" content={content} />
         ) : null}
         {multiContent ? multiContent : null}
         {button && (
           <ModalButton
             button={button}
-            buttonTo={!customFunc ? buttonTo : null}
-            buttonFunc={customFunc ? this.callCustomFunc.bind(this) : null}
+            buttonTo={buttonTo}
+            buttonFunc={!buttonClicked ? this.callCustomFunc.bind(this) : null}
             buttonClicked={buttonClicked}
           />
         )}

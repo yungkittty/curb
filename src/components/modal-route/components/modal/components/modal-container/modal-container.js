@@ -12,9 +12,11 @@ const ModalContainer = styled(Container)`
   position: absolute;
   top: 0;
   left: 0;
+  transition: all 2s ease-in-out;
+  background: rgba(0, 0, 0, 0);
 
   ${screenWidthsMedias.large`
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.25);
   `};
 `;
 

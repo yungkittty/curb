@@ -6,7 +6,7 @@ import ButtonIcon from "./components/button-icon";
 // to={{ pathname: "/sign-up", state: { isModal: true }}}
 
 const NavigationButton = ({ icon }) => (
-  <ButtonContainer>
+  <ButtonContainer to={{ pathname: "/sign-in", state: { isModal: true } }}>
     <ButtonIcon icon={icon} />
   </ButtonContainer>
 );

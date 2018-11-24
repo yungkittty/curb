@@ -12,10 +12,10 @@ const link = ({ className, children, to, onClick }) =>
       {children}
     </L>
   ) : (
-    <a className={className} onClick={onClick}>
-      {children}
-    </a>
-  );
+      <a className={className} onClick={onClick}>
+        {children}
+      </a>
+    );
 
 link.defaultProps = {
   to: undefined,
