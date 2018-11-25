@@ -6,7 +6,7 @@ const AppContainer = styled(Container)`
   width: 100%;
   height: 100%;
 
-  transition: all 0.6s ease-in;
+  transition: all 0.55s ease;
 `;
 
 export default AppContainer;
