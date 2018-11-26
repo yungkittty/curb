@@ -13,16 +13,6 @@ class Modal extends Component {
     };
   }
 
-  componentDidMount() {
-    if (typeof document !== "undefined")
-      document.getElementById("app").style.filter = "blur(3.5px)";
-  }
-
-  componentWillUnmount() {
-    if (typeof document !== "undefined")
-      document.getElementById("app").style.filter = "blur(0px)";
-  }
-
   async callCustomFunc() {
     const { buttonFunc } = this.props;
     this.setState({ buttonClicked: true });
