@@ -5,11 +5,12 @@ const NavigationContainer = styled(Container)`
   display: flex;
   position: absolute;
   left: 0px;
+  top: 0px;
   flex-direction: column;
   justify-content: space-between;
   width: 76px;
   height: 100%;
-  background-color: #e0e0e0;
+  background-color: ${({ theme: { pimaryColor } }) => pimaryColor};
 `;
 
 export default NavigationContainer;

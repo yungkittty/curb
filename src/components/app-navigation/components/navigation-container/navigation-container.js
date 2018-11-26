@@ -5,6 +5,7 @@ const NavigationContainer = styled(Container)`
   display: flex;
   position: fixed;
   left: 0px;
+  top: 0px;
   flex-direction: column;
   justify-content: space-between;
   width: 80px;
