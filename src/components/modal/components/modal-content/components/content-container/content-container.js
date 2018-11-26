@@ -3,7 +3,7 @@ import ScrollContainer from "../../../../../scroll-container";
 
 const ContentContainer = styled(ScrollContainer)`
   position: relative;
-  justify-content: center;
+  margin: 0 auto;
   padding: 8px 26px;
   display: flex;
   flex: 1;
