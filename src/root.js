@@ -6,12 +6,12 @@ import App from "./app";
 import configureStore from "./configurations/store";
 import configureI18n from "./configurations/internationalisation";
 import configureTheme from "./configurations/theme";
-import { configureScreen } from "./configurations/screen";
+
+// !TODO: set screen orientation as portrait IOS.
 
 const store = configureStore();
 const i18n = configureI18n();
 const theme = configureTheme();
-configureScreen();
 
 const Root = () => (
   <Provider store={store}>

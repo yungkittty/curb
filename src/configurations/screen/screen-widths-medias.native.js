@@ -3,8 +3,6 @@ import { Dimensions } from "react-native";
 import { css } from "styled-components";
 import screenWidths from "./screen-widths";
 
-// !TODO: lock screen orientation.
-
 const screenWidthsMedias = _.reduce(
   screenWidths,
   // eslint-disable-next-line

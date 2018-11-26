@@ -3,13 +3,13 @@ import Container from "../../../container";
 
 const NavigationContainer = styled(Container)`
   display: flex;
-  position: fixed;
+  position: absolute;
   left: 0px;
   flex-direction: column;
   justify-content: space-between;
-  width: 80px;
+  width: 76px;
   height: 100%;
-  background-color: ${({ theme: { pimaryColor } }) => pimaryColor};
+  background-color: #e0e0e0;
 `;
 
 export default NavigationContainer;
