@@ -1,6 +1,3 @@
-import ModalWrapper from "../../components/modal/components/modal-wrapper";
-import SigninContent from "./components/signin-content";
-
-const SignIn = ModalWrapper(SigninContent);
+const SignIn = () => null;
 
 export default SignIn;
