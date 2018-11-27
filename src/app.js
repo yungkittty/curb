@@ -22,10 +22,10 @@ const App = () => (
       </AppContainer>
       <ModalRoute
         path="/sign-(in|up)"
-        render={() => (
+        render={props => (
           <Fragment>
-            <Route path="/sign-in" component={SignIn} />
-            <Route path="/sign-up" component={SignUp} />
+            <Route path="/sign-in" render={() => <SignIn {...props} />} />
+            <Route path="/sign-up" render={() => <SignUp {...props} />} />
           </Fragment>
         )}
       />

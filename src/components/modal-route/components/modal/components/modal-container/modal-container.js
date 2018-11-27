@@ -3,18 +3,24 @@ import Container from "../../../../../container";
 import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const ModalContainer = styled(Container)`
-  elevation: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  background: white;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
 
   ${screenWidthsMedias.large`
-    background: rgba(0, 0, 0, 0.25);
+    width: 700px;
+    height: 740px;
+    max-height: 100%;
+    border-radius: 25px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
   `};
 `;
 

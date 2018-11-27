@@ -1,15 +1,6 @@
-import React from "react";
-import Modal from "../../components/modal";
+import ModalWrapper from "../../components/modal/components/modal-wrapper";
 import SigninContent from "./components/signin-content";
 
-const SignIn = () => (
-  <Modal
-    title="Sign in"
-    customFunc={true}
-    button="Login"
-    buttonTo={{ pathname: "/" }}
-    content={SigninContent}
-  />
-);
+const SignIn = ModalWrapper(SigninContent);
 
 export default SignIn;
