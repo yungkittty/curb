@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import Container from "../../../../../../components/container";
 
-const ContentContainer = styled(Container)`
+const RedirectContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
+  position: relative;
+  bottom: 12px;
 `;
 
-export default ContentContainer;
+export default RedirectContainer;
