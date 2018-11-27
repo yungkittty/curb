@@ -4,9 +4,9 @@ import styled from "styled-components";
 import Link from "../link/root";
 import { TouchableHighlight } from "react-native";
 
-const button = ({ style, children, to, onClick }) =>
-  to ? (
-    <Link style={style} to={to}>
+const button = ({ style, children, onClick }) =>
+  typeof onClick === "object" ? (
+    <Link style={style} to={onClick}>
       {children}
     </Link>
   ) : (
@@ -16,13 +16,11 @@ const button = ({ style, children, to, onClick }) =>
   );
 
 button.defaultProps = {
-  to: undefined,
   onClick: undefined
 };
 
 button.propTypes = {
-  to: PropTypes.object,
-  onClick: PropTypes.func
+  onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 const Button = styled(button)``;
