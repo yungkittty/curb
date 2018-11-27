@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ModalOverlay from "./components/modal-overlay";
 import ModalContainer from "./components/modal-container";
 import ModalHeader from "./components/modal-header";
-import ContentContainer from "./components/modal-content/components/content-container";
+import ModalContent from "./components/modal-content";
 import ModalButton from "./components/modal-button";
 
 class Modal extends Component {
@@ -96,7 +96,7 @@ class Modal extends Component {
       others
     } = state;
 
-    const prop = {
+    const props = {
       setTitle,
       setLeftIcon,
       setLeftClick,
@@ -118,14 +118,13 @@ class Modal extends Component {
             rightIcon={rightIcon}
             rightClick={rightClick}
           />
-          {/* eslint-disable-next-line */}
-          <ContentContainer>
+          <ModalContent>
             {component
-              ? createElement(component, prop)
+              ? createElement(component, props)
               : render
-                ? render(prop)
+                ? render(props)
                 : null}
-          </ContentContainer>
+          </ModalContent>
           {button && <ModalButton button={button} buttonClick={buttonClick} />}
         </ModalContainer>
       </ModalOverlay>
