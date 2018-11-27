@@ -4,7 +4,7 @@ import ButtonContainer from "./components/button-container";
 import ButtonIcon from "./components/button-icon";
 
 const NavigationButton = ({ icon }) => (
-  <ButtonContainer>
+  <ButtonContainer onClick={{ pathname: "/sign-in", state: { isModal: true } }}>
     <ButtonIcon icon={icon} />
   </ButtonContainer>
 );

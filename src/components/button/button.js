@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Link from "../link/root";
 
-const button = ({ className, children, to, onClick }) =>
-  to ? (
-    <Link className={className} to={to}>
+const button = ({ className, children, onClick }) =>
+  typeof onClick === "object" ? (
+    <Link className={className} to={onClick}>
       {children}
     </Link>
   ) : (
@@ -15,18 +15,21 @@ const button = ({ className, children, to, onClick }) =>
   );
 
 button.defaultProps = {
-  to: undefined,
   onClick: undefined
 };
 
 button.propTypes = {
-  to: PropTypes.object,
-  onClick: PropTypes.func
+  onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 const Button = styled(button)`
-  ${props =>
-    props.to || props.onClick ? "cursor: pointer;" : null} display: block;
+  cursor: ${props =>
+    props.onClick
+      ? props.loading !== undefined && props.loading
+        ? "wait"
+        : "pointer"
+      : null};
+  display: block;
   text-decoration: none;
   border: none;
   outline: none;
