@@ -1,4 +1,4 @@
-import { all, takeLatest, call, put } from "redux-saga/effects";
+import { all, takeEvery, call, put } from "redux-saga/effects";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
@@ -13,7 +13,7 @@ function* getUsersRequestSaga({ payload }) {
 }
 
 const usersSaga = all([
-  takeLatest(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)
+  takeEvery(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)
 ]);
 
 export default usersSaga;
