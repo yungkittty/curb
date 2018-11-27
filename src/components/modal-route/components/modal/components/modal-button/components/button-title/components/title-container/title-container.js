@@ -7,7 +7,7 @@ const TitleContainer = styled(Text)`
   font-size: 18px;
   margin: auto;
   width: 100%;
-  color: ${props => (props.loading ? "#F2F2F2" : "#ffffff")};
+  color: #ffffff;
 `;
 
 export default TitleContainer;
