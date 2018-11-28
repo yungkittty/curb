@@ -2,8 +2,7 @@ import styled from "styled-components";
 import Button from "../../../../../button";
 
 const ButtonContainer = styled(Button)`
-  background: ${({ theme: { secondaryVariantColor } }) =>
-    secondaryVariantColor};
+  background: ${({ theme }) => theme.secondaryVariantColor};
   border-radius: 30px;
   margin: 0 auto;
   overflow: hidden;

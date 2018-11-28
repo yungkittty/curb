@@ -7,7 +7,7 @@ const AppContainer = styled(Container).attrs({ id: "app-container" })`
   height: 100%;
   padding-left: 80px;
   box-sizing: border-box;
-  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+  background-color: ${({ theme }) => theme.backgroundColor};
 `;
 
 export default AppContainer;

@@ -7,8 +7,6 @@ import configureStore from "./configurations/store";
 import configureI18n from "./configurations/internationalisation";
 import configureTheme from "./configurations/theme";
 
-// !TODO: set screen orientation as portrait IOS.
-
 const store = configureStore();
 const i18n = configureI18n();
 const theme = configureTheme();

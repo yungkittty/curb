@@ -10,7 +10,7 @@ const NavigationContainer = styled(Container)`
   justify-content: space-between;
   width: 76px;
   height: 100%;
-  background-color: ${({ theme: { pimaryColor } }) => pimaryColor};
+  background-color: ${({ theme }) => theme.pimaryColor};
 `;
 
 export default NavigationContainer;
