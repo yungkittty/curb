@@ -9,28 +9,15 @@ import ModalButton from "./components/modal-button";
 class Modal extends Component {
   constructor(props) {
     super(props);
-    const {
-      progress,
-      content,
-      multiContent,
-      component,
-      render,
-      ...others
-    } = this.props;
 
     this.state = {
       title: undefined,
-      progress: progress,
       leftIcon: undefined,
       leftClick: undefined,
       rightIcon: "times",
       rightClick: { pathname: "/" },
-      component: component,
-      render: render,
-      multiContent: multiContent,
       button: undefined,
-      buttonClick: undefined,
-      others: others
+      buttonClick: undefined
     };
 
     this.setTitle = this.setTitle.bind(this);
@@ -72,7 +59,6 @@ class Modal extends Component {
 
   render() {
     const {
-      state,
       setTitle,
       setLeftIcon,
       setLeftClick,
@@ -82,19 +68,17 @@ class Modal extends Component {
       setButtonClick
     } = this;
 
+    const { progress, component, render, ...others } = this.props;
+
     const {
       title,
-      progress,
       leftIcon,
       leftClick,
       rightIcon,
       rightClick,
-      component,
-      render,
       button,
-      buttonClick,
-      others
-    } = state;
+      buttonClick
+    } = this.state;
 
     const props = {
       setTitle,
@@ -119,6 +103,7 @@ class Modal extends Component {
             rightClick={rightClick}
           />
           <ModalContent>
+            {/* eslint-disable-next-line */}
             {component
               ? createElement(component, props)
               : render
@@ -139,7 +124,7 @@ Modal.defaultProps = {
 };
 
 Modal.propTypes = {
-  progress: PropTypes.object,
+  progress: PropTypes.shape({ progress: Number, total: Number }),
   component: PropTypes.func,
   render: PropTypes.func
 };

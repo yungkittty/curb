@@ -34,7 +34,7 @@ ModalHeader.defaultProps = {
 
 ModalHeader.propTypes = {
   title: PropTypes.string,
-  progress: PropTypes.object,
+  progress: PropTypes.shape({ progress: Number, total: Number }),
   leftIcon: PropTypes.string,
   leftClick: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   rightIcon: PropTypes.string,

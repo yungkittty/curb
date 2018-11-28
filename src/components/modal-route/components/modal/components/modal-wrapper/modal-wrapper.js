@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Modal from "../../../modal";
+import Modal from "../..";
 
-const ModalWrapper = props => {
-  return class Comp extends Component {
+const ModalWrapper = props =>
+  class Comp extends Component {
     componentDidMount() {
       document.getElementById("app").style.filter = "blur(3.5px)";
     }
@@ -15,6 +15,5 @@ const ModalWrapper = props => {
       return <Modal {...props} />;
     }
   };
-};
 
 export default ModalWrapper;

@@ -7,7 +7,7 @@ const color = "#333";
 
 const HeaderButton = ({ position, icon, onClick }) => (
   <ButtonContainer position={position} onClick={onClick}>
-    <Icon icon={icon} color={color} size={"small"} />
+    <Icon icon={icon} color={color} size="small" />
   </ButtonContainer>
 );
 

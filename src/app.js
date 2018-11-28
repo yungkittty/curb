@@ -20,15 +20,8 @@ const App = () => (
           <Route />
         </ModalSwitch>
       </AppContainer>
-      <ModalRoute
-        path="/sign-(in|up)"
-        render={props => (
-          <Fragment>
-            <Route path="/sign-in" render={() => <SignIn {...props} />} />
-            <Route path="/sign-up" render={() => <SignUp {...props} />} />
-          </Fragment>
-        )}
-      />
+      <ModalRoute path="/sign-in" component={SignIn} />
+      <ModalRoute path="/sign-up" component={SignUp} />
     </Fragment>
   </Router>
 );

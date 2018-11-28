@@ -1,6 +1,6 @@
 import React from "react";
 import TitleContainer from "./components/title-container";
 
-const MiddleTitle = props => <TitleContainer>{props.title}</TitleContainer>;
+const MiddleTitle = title => <TitleContainer>{title}</TitleContainer>;
 
 export default MiddleTitle;

@@ -3,21 +3,19 @@ import PropTypes from "prop-types";
 import ProgressContainer from "./components/progress-container";
 import ProgressDot from "./components/progress-dot";
 
-const MiddleProgress = ({ progress }) => {
-  const progressState = progress["progress"];
-  const total = progress["total"];
+const MiddleProgress = ({ progress: { progress, total } }) => {
+  const progressState = progress;
+  const totalState = total;
 
-  let dots = [];
-  for (let i = 0; i < total; i++) {
-    dots.push(
-      <ProgressDot key={i} enabled={i < progressState ? false : true} />
-    );
+  const dots = [];
+  for (let i = 0; i < totalState; i += 1) {
+    dots.push(<ProgressDot key={i} enabled={i >= progressState} />);
   }
   return <ProgressContainer>{dots}</ProgressContainer>;
 };
 
 MiddleProgress.propTypes = {
-  progress: PropTypes.object
+  progress: PropTypes.shape({ progress: Number, total: Number }).isRequired
 };
 
 export default MiddleProgress;
