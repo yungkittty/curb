@@ -3,7 +3,7 @@ import Container from "../../../container";
 
 const NavigationContainer = styled(Container)`
   display: flex;
-  position: fixed;
+  position: absolute;
   left: 0px;
   top: 0px;
   flex-direction: column;
