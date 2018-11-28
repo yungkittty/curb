@@ -13,25 +13,31 @@ class Modal extends Component {
 
     this.state = {
       title: undefined,
+      progress: undefined,
       leftIcon: undefined,
       leftClick: undefined,
       rightIcon: "times",
       rightClick: { pathname: "/" },
-      button: undefined,
+      buttonTitle: undefined,
       buttonClick: undefined
     };
 
     this.setTitle = this.setTitle.bind(this);
+    this.setProgress = this.setProgress.bind(this);
     this.setLeftIcon = this.setLeftIcon.bind(this);
     this.setLeftClick = this.setLeftClick.bind(this);
     this.setRightIcon = this.setRightIcon.bind(this);
     this.setRightCick = this.setRightCick.bind(this);
-    this.setButton = this.setButton.bind(this);
+    this.setButtonTitle = this.setButtonTitle.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
   }
 
   setTitle(title) {
     this.setState({ title });
+  }
+
+  setProgress(progress) {
+    this.setState({ progress });
   }
 
   setLeftIcon(leftIcon) {
@@ -50,8 +56,8 @@ class Modal extends Component {
     this.setState({ rightClick });
   }
 
-  setButton(button) {
-    this.setState({ button });
+  setButtonTitle(buttonTitle) {
+    this.setState({ buttonTitle });
   }
 
   setButtonClick(buttonClick) {
@@ -61,33 +67,36 @@ class Modal extends Component {
   render() {
     const {
       setTitle,
+      setProgress,
       setLeftIcon,
       setLeftClick,
       setRightIcon,
       setRightCick,
-      setButton,
+      setButtonTitle,
       setButtonClick
     } = this;
 
-    const { progress, component, render, ...others } = this.props;
+    const { component, render, ...others } = this.props;
 
     const {
       title,
+      progress,
       leftIcon,
       leftClick,
       rightIcon,
       rightClick,
-      button,
+      buttonTitle,
       buttonClick
     } = this.state;
 
     const props = {
       setTitle,
+      setProgress,
       setLeftIcon,
       setLeftClick,
       setRightIcon,
       setRightCick,
-      setButton,
+      setButtonTitle,
       setButtonClick,
       ...others
     };
@@ -111,7 +120,9 @@ class Modal extends Component {
                 ? render(props)
                 : null}
           </ModalContent>
-          {button && <ModalButton button={button} buttonClick={buttonClick} />}
+          {buttonTitle && (
+            <ModalButton title={buttonTitle} onClick={buttonClick} />
+          )}
         </ModalContainer>
       </ModalOverlay>
     );
@@ -119,13 +130,11 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  progress: undefined,
   component: undefined,
   render: undefined
 };
 
 Modal.propTypes = {
-  progress: PropTypes.shape({ progress: Number, total: Number }),
   component: PropTypes.func,
   render: PropTypes.func
 };
