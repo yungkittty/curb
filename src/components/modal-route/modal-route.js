@@ -1,7 +1,7 @@
-import React, { createElement, Fragment } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Route from "../route";
-import ModalWrapper from "./components/modal/components/modal-wrapper";
+import Modal from "./components/modal";
 
 // https://zhirzh.github.io/2017/05/25/react-router-twitter-pinterest-style/
 
@@ -22,7 +22,7 @@ const ModalRoute = ({
       return (
         <Fragment>
           {isModal ? null : null}
-          {createElement(ModalWrapper({ ...props, component, render }))}
+          <Modal {...props} component={component} render={render} />
         </Fragment>
       );
     }}
