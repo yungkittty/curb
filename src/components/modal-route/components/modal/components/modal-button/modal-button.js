@@ -3,19 +3,19 @@ import PropTypes from "prop-types";
 import ButtonContainer from "./components/button-container";
 import ButtonTitle from "./components/button-title";
 
-const ModalButton = ({ button, buttonClick }) => (
-  <ButtonContainer onClick={buttonClick}>
-    <ButtonTitle button={button} />
+const ModalButton = ({ title, onClick }) => (
+  <ButtonContainer onClick={onClick}>
+    <ButtonTitle title={title} />
   </ButtonContainer>
 );
 
 ModalButton.defaultProps = {
-  buttonClick: undefined
+  onClick: undefined
 };
 
 ModalButton.propTypes = {
-  button: PropTypes.string.isRequired,
-  buttonClick: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 export default ModalButton;
