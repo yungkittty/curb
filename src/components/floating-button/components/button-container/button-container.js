@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "../../../button";
-import { screenWidthsMedias } from "../../../../../../configurations/screen";
+import { screenWidthsMedias } from "../../../../configurations/screen";
 
 const ButtonContainer = styled(Button)`
   elevation: 6;
