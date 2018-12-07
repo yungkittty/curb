@@ -69,13 +69,13 @@ class Modal extends Component {
     this.setState({ rightClick });
   }
 
-  setComponent(component) {
-    const { data } = this.state;
-    this.setState({ ...this.initialState, data });
+  setComponent(newComponent) {
+    const { component, data } = this.state;
+    this.setState({ ...this.initialState, component, data });
 
     // Make some animation
 
-    this.setState({ component });
+    this.setState({ component: newComponent });
   }
 
   setButtonTitle(buttonTitle) {
