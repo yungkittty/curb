@@ -11,25 +11,38 @@ class Modal extends Component {
   constructor(props) {
     super(props);
 
+    const { component } = this.props;
+
     this.state = {
+      data: {},
       title: undefined,
       progress: undefined,
       leftIcon: undefined,
       leftClick: undefined,
       rightIcon: "times",
       rightClick: { pathname: "/" },
+      component,
       buttonTitle: undefined,
       buttonClick: undefined
     };
 
+    this.setData = this.setData.bind(this);
     this.setTitle = this.setTitle.bind(this);
     this.setProgress = this.setProgress.bind(this);
     this.setLeftIcon = this.setLeftIcon.bind(this);
     this.setLeftClick = this.setLeftClick.bind(this);
     this.setRightIcon = this.setRightIcon.bind(this);
     this.setRightCick = this.setRightCick.bind(this);
+    this.setComponent = this.setComponent.bind(this);
     this.setButtonTitle = this.setButtonTitle.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
+
+    this.initialState = this.state;
+  }
+
+  setData(newData) {
+    const { data } = this.state;
+    this.setState({ data: { ...data, ...newData } });
   }
 
   setTitle(title) {
@@ -56,6 +69,15 @@ class Modal extends Component {
     this.setState({ rightClick });
   }
 
+  setComponent(component) {
+    const { data } = this.state;
+    this.setState({ ...this.initialState, data });
+
+    // Make some animation
+
+    this.setState({ component });
+  }
+
   setButtonTitle(buttonTitle) {
     this.setState({ buttonTitle });
   }
@@ -66,36 +88,43 @@ class Modal extends Component {
 
   render() {
     const {
+      setData,
       setTitle,
       setProgress,
       setLeftIcon,
       setLeftClick,
       setRightIcon,
       setRightCick,
+      setComponent,
       setButtonTitle,
       setButtonClick
     } = this;
 
-    const { component, render, ...others } = this.props;
+    const { render, ...others } = this.props;
 
     const {
+      data,
       title,
       progress,
       leftIcon,
       leftClick,
       rightIcon,
       rightClick,
+      component,
       buttonTitle,
       buttonClick
     } = this.state;
 
     const props = {
+      data,
+      setData,
       setTitle,
       setProgress,
       setLeftIcon,
       setLeftClick,
       setRightIcon,
       setRightCick,
+      setComponent,
       setButtonTitle,
       setButtonClick,
       ...others
@@ -117,8 +146,8 @@ class Modal extends Component {
             {component
               ? createElement(component, props)
               : render
-                ? render(props)
-                : null}
+              ? render(props)
+              : null}
           </ModalContent>
           {buttonTitle && (
             <ModalButton title={buttonTitle} onClick={buttonClick} />

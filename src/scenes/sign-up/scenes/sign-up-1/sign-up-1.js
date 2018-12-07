@@ -1,35 +1,73 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+/* eslint-disable-next-line */
+import { SignUp2 } from "../..";
 import ContentContainer from "./components/content-container";
-import ContentText from "./components/content-text";
 import Text from "../../../../components/text";
-import OneCheckbox from "./components/content-checkbox";
+import ContentInput from "./components/content-input";
 
-const Signup1 = () => (
-  <ContentContainer>
-    <ContentText>
-      <Text h2 b center>
-        Important notes
-      </Text>
+class SignUp1 extends Component {
+  constructor(props) {
+    super(props);
+    const {
+      data: { username = "" },
+      setProgress,
+      setComponent,
+      setButtonTitle,
+      setButtonClick
+    } = this.props;
 
-      <Text p>
-        You’ll never be able to recover your password, due to security reasons
-        of the peer-to-peer architecture of Curb.
-      </Text>
-      <Text p>
-        If you lose your password, your account will not be recoverable and even
-        the Curb team will not be able to access it.
-      </Text>
-      <Text p>
-        It’s also a security that nobody (even the Curb team) can access your
-        private data, according to our vision.
-      </Text>
-      <Text p>
-        So please be sure to remember your password or write it on a paper.
-      </Text>
-    </ContentText>
+    this.state = { username };
 
-    <OneCheckbox id="agree" name="agree" label="I agree" />
-  </ContentContainer>
-);
+    setProgress({ progress: 1, total: 2 });
+    setButtonTitle("Next");
+    setButtonClick(() => setComponent(SignUp2));
 
-export default Signup1;
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const { setData } = this.props;
+
+    setData({ [event.target.id]: event.target.value });
+    this.setState({ [event.target.id]: event.target.value });
+  }
+
+  render() {
+    const { username } = this.state;
+
+    return (
+      <ContentContainer>
+        <Text p h3 b>
+          Choose a username
+        </Text>
+        <ContentInput
+          placeholder="Username"
+          id="username"
+          onChange={this.handleChange}
+          value={username}
+        />
+      </ContentContainer>
+    );
+  }
+}
+
+SignUp1.defaultProps = {
+  data: undefined,
+  setData: undefined,
+  setProgress: undefined,
+  setComponent: undefined,
+  setButtonTitle: undefined,
+  setButtonClick: undefined
+};
+
+SignUp1.propTypes = {
+  data: PropTypes.shape({ username: PropTypes.string }),
+  setData: PropTypes.func,
+  setProgress: PropTypes.func,
+  setComponent: PropTypes.func,
+  setButtonTitle: PropTypes.func,
+  setButtonClick: PropTypes.func
+};
+
+export default SignUp1;
