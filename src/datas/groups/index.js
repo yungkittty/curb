@@ -3,11 +3,13 @@ import groupsActions from "./groups-actions";
 import groupsApi from "./groups-api";
 import groupsReducer from "./groups-reducer";
 import groupsSaga from "./groups-saga";
+import groupsSelectors from "./groups-selectors";
 
 export {
   groupsActionsTypes,
   groupsActions,
   groupsApi,
   groupsReducer,
-  groupsSaga
+  groupsSaga,
+  groupsSelectors
 };

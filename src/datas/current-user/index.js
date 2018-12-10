@@ -1,4 +1,4 @@
 import currentUserReducer from "./current-user-reducer";
+import currentUserSelectors from "./current-user-selectors";
 
-// eslint-disable-next-line
-export { currentUserReducer };
+export { currentUserReducer, currentUserSelectors };

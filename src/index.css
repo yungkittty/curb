@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Montserrat";
-  src: url("./components/fonts/Montserrat-Regular.ttf");
-}
-
-@font-face {
-  font-family: "Montserrat-Bold";
-  src: url("./components/fonts/Montserrat-Bold.ttf");
-}
-
 body {
   margin: 0;
   padding: 0;
