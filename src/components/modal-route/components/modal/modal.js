@@ -5,25 +5,21 @@ import ModalContainer from "./components/modal-container";
 import ModalHeader from "./components/modal-header";
 import ModalContent from "./components/modal-content";
 import ModalButton from "./components/modal-button";
+import ModalSlide from "./components/modal-slide";
 import ModalBlur from "./components/modal-blur";
 
 class Modal extends Component {
   constructor(props) {
     super(props);
 
-    const { component } = this.props;
-
     this.state = {
       data: {},
-      flow: undefined,
       title: undefined,
       progress: undefined,
       leftIcon: undefined,
       leftClick: undefined,
       rightIcon: "times",
       rightClick: { pathname: "/" },
-      component,
-      oldComponent: undefined,
       buttonTitle: undefined,
       buttonClick: undefined
     };
@@ -71,34 +67,20 @@ class Modal extends Component {
     this.setState({ rightClick });
   }
 
-  setComponent(newComponent, flow) {
-    const { data, component } = this.state;
-
-    const modalContent = document.getElementById("modal-content");
-
-    modalContent.style.transition = null;
-    modalContent.style.transform =
-      flow === 1 ? "translateX(0%)" : "translateX(-50%)";
-
-    this.setState({
-      ...this.initialState,
-      data,
-      flow,
-      oldComponent: component,
-      component: newComponent
-    });
-
-    modalContent.style.transition = "all 0.45s ease-in-out";
-    modalContent.style.transform =
-      flow === 1 ? "translateX(-50%)" : "translateX(0%)";
-  }
-
   setButtonTitle(buttonTitle) {
     this.setState({ buttonTitle });
   }
 
   setButtonClick(buttonClick) {
     this.setState({ buttonClick });
+  }
+
+  setComponent(newComponent, flow) {
+    const { changeComponent } = this.props;
+    const { data } = this.state;
+
+    this.setState({ ...this.initialState, data: { ...data } });
+    changeComponent(newComponent, flow);
   }
 
   render() {
@@ -115,19 +97,16 @@ class Modal extends Component {
       setButtonClick
     } = this;
 
-    const { render, ...others } = this.props;
+    const { flow, component, oldComponent, ...others } = this.props;
 
     const {
       data,
-      flow,
       title,
       progress,
       leftIcon,
       leftClick,
       rightIcon,
       rightClick,
-      component,
-      oldComponent,
       buttonTitle,
       buttonClick
     } = this.state;
@@ -146,6 +125,8 @@ class Modal extends Component {
       setButtonClick,
       ...others
     };
+
+    console.log(data);
 
     return (
       <ModalOverlay>
@@ -183,4 +164,4 @@ Modal.propTypes = {
   render: PropTypes.func
 };
 
-export default ModalBlur(Modal);
+export default ModalSlide(ModalBlur(Modal));

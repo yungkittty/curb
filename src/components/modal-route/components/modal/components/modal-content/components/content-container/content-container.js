@@ -3,7 +3,7 @@ import ScrollContainer from "../../../../../../../scroll-container";
 
 const ContentContainer = styled(ScrollContainer).attrs({ id: "modal-content" })`
   width: 200%;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
   flex: 1;
 `;
