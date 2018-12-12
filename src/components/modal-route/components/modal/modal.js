@@ -1,4 +1,4 @@
-import React, { Component, createElement } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ModalOverlay from "./components/modal-overlay";
 import ModalContainer from "./components/modal-container";
@@ -15,6 +15,7 @@ class Modal extends Component {
 
     this.state = {
       data: {},
+      flow: undefined,
       title: undefined,
       progress: undefined,
       leftIcon: undefined,
@@ -22,6 +23,7 @@ class Modal extends Component {
       rightIcon: "times",
       rightClick: { pathname: "/" },
       component,
+      oldComponent: undefined,
       buttonTitle: undefined,
       buttonClick: undefined
     };
@@ -69,13 +71,26 @@ class Modal extends Component {
     this.setState({ rightClick });
   }
 
-  setComponent(newComponent) {
-    const { component, data } = this.state;
-    this.setState({ ...this.initialState, component, data });
+  setComponent(newComponent, flow) {
+    const { data, component } = this.state;
 
-    // Make some animation
+    const modalContent = document.getElementById("modal-content");
 
-    this.setState({ component: newComponent });
+    modalContent.style.transition = null;
+    modalContent.style.transform =
+      flow === 1 ? "translateX(0%)" : "translateX(-50%)";
+
+    this.setState({
+      ...this.initialState,
+      data,
+      flow,
+      oldComponent: component,
+      component: newComponent
+    });
+
+    modalContent.style.transition = "all 0.45s ease-in-out";
+    modalContent.style.transform =
+      flow === 1 ? "translateX(-50%)" : "translateX(0%)";
   }
 
   setButtonTitle(buttonTitle) {
@@ -104,6 +119,7 @@ class Modal extends Component {
 
     const {
       data,
+      flow,
       title,
       progress,
       leftIcon,
@@ -111,11 +127,12 @@ class Modal extends Component {
       rightIcon,
       rightClick,
       component,
+      oldComponent,
       buttonTitle,
       buttonClick
     } = this.state;
 
-    const props = {
+    const sceneProps = {
       data,
       setData,
       setTitle,
@@ -141,14 +158,12 @@ class Modal extends Component {
             rightIcon={rightIcon}
             rightClick={rightClick}
           />
-          <ModalContent>
-            {/* eslint-disable-next-line */}
-            {component
-              ? createElement(component, props)
-              : render
-              ? render(props)
-              : null}
-          </ModalContent>
+          <ModalContent
+            component={component}
+            oldComponent={oldComponent}
+            sceneProps={sceneProps}
+            flow={flow}
+          />
           {buttonTitle && (
             <ModalButton title={buttonTitle} onClick={buttonClick} />
           )}

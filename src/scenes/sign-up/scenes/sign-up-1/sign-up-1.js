@@ -21,7 +21,7 @@ class SignUp1 extends Component {
 
     setProgress({ progress: 1, total: 2 });
     setButtonTitle("Next");
-    setButtonClick(() => setComponent(SignUp2));
+    setButtonClick(() => setComponent(SignUp2, 1));
 
     this.handleChange = this.handleChange.bind(this);
   }

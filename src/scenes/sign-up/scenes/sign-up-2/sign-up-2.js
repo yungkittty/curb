@@ -26,7 +26,7 @@ class SignUp2 extends Component {
 
     setProgress({ progress: 2, total: 2 });
     setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(SignUp1));
+    setLeftClick(() => setComponent(SignUp1, -1));
     setButtonTitle("Finish");
     setButtonClick(this.submit.bind(this));
 
@@ -35,6 +35,7 @@ class SignUp2 extends Component {
 
   submit() {
     const { data } = this.props;
+
     console.log(data);
 
     // Make the API call to create account
