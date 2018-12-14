@@ -3,22 +3,17 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { TextInput } from "react-native";
 
-const onChangeHandler = (onChange, id, text) => {
-  onChange({ target: { id, value: text } });
-}
-
-const input = ({ style, children, type, placeholder, onChange, id }) =>
-  <TextInput secureTextEntry={type == "password" ? true : false} placeholder={placeholder} onChangeText={onChangeHandler.bind(null, onChange, id)} style={style}>
+const input = ({ type, placeholder, value, onChange, id, style, children }) => (
+  <TextInput
+    secureTextEntry={type === "password"}
+    placeholder={placeholder}
+    value={value}
+    onChangeText={text => onChange({ target: { id, value: text } })}
+    style={style}
+  >
     {children}
-  </TextInput>;
-
-input.defaultProps = {
-  onChange: undefined
-};
-
-input.propTypes = {
-  onChange: PropTypes.func
-};
+  </TextInput>
+);
 
 const Input = styled(input)`
   font-size: 18px;
@@ -27,5 +22,26 @@ const Input = styled(input)`
   borderBottomColor: #c8ccd4;
   ${props => (props.s ? "width: 240px" : null)};
 `;
+
+input.defaultProps = {
+  type: undefined,
+  placeholder: undefined,
+  value: undefined,
+  onChange: undefined,
+  id: undefined,
+  style: undefined,
+  children: undefined
+};
+
+input.propTypes = {
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  id: PropTypes.string,
+  /* eslint-disable-next-line */
+  style: PropTypes.array,
+  children: PropTypes.func
+};
 
 export default Input;
