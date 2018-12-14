@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { ScrollView } from "react-native";
 
-const ScrollContainer = styled(ScrollView).attrs({
-  contentContainerStyle: {
-    height: "100%"
-  }
-})``;
+const ScrollContainer = styled(ScrollView)``;
 
 export default ScrollContainer;

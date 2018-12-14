@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import ScrollContainer from "../../../../../../../scroll-container";
+import Container from "../../../../../../../container";
 
-const ContentContainer = styled(ScrollContainer).attrs({ id: "modal-content" })`
-  width: 200%;
+const ContentContainer = styled(Container).attrs({ id: "modal-content" })`
   overflow: hidden;
-  display: flex;
+  width: 200%;
   flex: 1;
+  flex-direction: row;
+  display: flex;
 `;
 
 export default ContentContainer;

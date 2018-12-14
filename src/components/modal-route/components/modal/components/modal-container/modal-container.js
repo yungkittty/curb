@@ -7,7 +7,7 @@ const ModalContainer = styled(Container)`
   height: 100%;
   background: white;
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   overflow: hidden;
 
   ${screenWidthsMedias.large`

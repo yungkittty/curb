@@ -5,7 +5,6 @@ import ModalContainer from "./components/modal-container";
 import ModalHeader from "./components/modal-header";
 import ModalContent from "./components/modal-content";
 import ModalButton from "./components/modal-button";
-import ModalSlide from "./components/modal-slide";
 import ModalBlur from "./components/modal-blur";
 
 class Modal extends Component {
@@ -13,7 +12,6 @@ class Modal extends Component {
     super(props);
 
     this.state = {
-      data: {},
       title: undefined,
       progress: undefined,
       leftIcon: undefined,
@@ -24,23 +22,17 @@ class Modal extends Component {
       buttonClick: undefined
     };
 
-    this.setData = this.setData.bind(this);
     this.setTitle = this.setTitle.bind(this);
     this.setProgress = this.setProgress.bind(this);
     this.setLeftIcon = this.setLeftIcon.bind(this);
     this.setLeftClick = this.setLeftClick.bind(this);
     this.setRightIcon = this.setRightIcon.bind(this);
     this.setRightCick = this.setRightCick.bind(this);
-    this.setComponent = this.setComponent.bind(this);
     this.setButtonTitle = this.setButtonTitle.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
+    this.resetModal = this.resetModal.bind(this);
 
     this.initialState = this.state;
-  }
-
-  setData(newData) {
-    const { data } = this.state;
-    this.setState({ data: { ...data, ...newData } });
   }
 
   setTitle(title) {
@@ -75,17 +67,12 @@ class Modal extends Component {
     this.setState({ buttonClick });
   }
 
-  setComponent(newComponent, flow) {
-    const { changeComponent } = this.props;
-    const { data } = this.state;
-
-    this.setState({ ...this.initialState, data: { ...data } });
-    changeComponent(newComponent, flow);
+  resetModal() {
+    this.setState({ ...this.initialState });
   }
 
   render() {
     const {
-      setData,
       setTitle,
       setProgress,
       setLeftIcon,
@@ -94,13 +81,13 @@ class Modal extends Component {
       setRightCick,
       setComponent,
       setButtonTitle,
-      setButtonClick
+      setButtonClick,
+      resetModal
     } = this;
 
-    const { flow, component, oldComponent, ...others } = this.props;
+    const { component, ...others } = this.props;
 
     const {
-      data,
       title,
       progress,
       leftIcon,
@@ -112,8 +99,6 @@ class Modal extends Component {
     } = this.state;
 
     const sceneProps = {
-      data,
-      setData,
       setTitle,
       setProgress,
       setLeftIcon,
@@ -125,8 +110,6 @@ class Modal extends Component {
       setButtonClick,
       ...others
     };
-
-    console.log(data);
 
     return (
       <ModalOverlay>
@@ -141,9 +124,8 @@ class Modal extends Component {
           />
           <ModalContent
             component={component}
-            oldComponent={oldComponent}
+            resetModal={resetModal}
             sceneProps={sceneProps}
-            flow={flow}
           />
           {buttonTitle && (
             <ModalButton title={buttonTitle} onClick={buttonClick} />
@@ -164,4 +146,4 @@ Modal.propTypes = {
   render: PropTypes.func
 };
 
-export default ModalSlide(ModalBlur(Modal));
+export default ModalBlur(Modal);

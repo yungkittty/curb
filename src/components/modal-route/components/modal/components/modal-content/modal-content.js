@@ -1,48 +1,84 @@
-import React, { createElement } from "react";
+import React, { Component, createElement } from "react";
 import PropTypes from "prop-types";
 import ContentContainer from "./components/content-container";
+import ContentComponent from "./components/content-component";
+import ContentSlide from "./components/content-slide";
 
-const ModalContent = ({ component, oldComponent, sceneProps, flow }) => {
-  const oldProps = {
-    ...sceneProps,
-    setData: () => {},
-    setTitle: () => {},
-    setProgress: () => {},
-    setLeftIcon: () => {},
-    setLeftClick: () => {},
-    setRightIcon: () => {},
-    setRightCick: () => {},
-    setComponent: () => {},
-    setButtonTitle: () => {},
-    setButtonClick: () => {}
-  };
+class ModalContent extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <ContentContainer>
-      {flow === 1 && oldComponent
-        ? createElement(oldComponent, oldProps)
-        : null}
-      {createElement(component, sceneProps)}
-      {flow === -1 && oldComponent
-        ? createElement(oldComponent, oldProps)
-        : null}
-    </ContentContainer>
-  );
-};
+    this.state = {
+      data: {},
+      flow: -1
+    };
+
+    this.setData = this.setData.bind(this);
+    this.setComponent = this.setComponent.bind(this);
+  }
+
+  setData(newData) {
+    const { data } = this.state;
+    this.setState({ data: { ...data, ...newData } });
+  }
+
+  setComponent(newComponent, flow) {
+    const { resetModal, slideComponent } = this.props;
+
+    this.setState({ flow });
+
+    resetModal(newComponent, flow);
+    slideComponent(newComponent, flow);
+  }
+
+  render() {
+    const { setData, setComponent } = this;
+    const { oldComponent, component, sceneProps } = this.props;
+    const { flow, data } = this.state;
+
+    const props = { ...sceneProps, setData, setComponent, data };
+
+    const oldProps = {
+      ...props,
+      setData: () => {},
+      setTitle: () => {},
+      setProgress: () => {},
+      setLeftIcon: () => {},
+      setLeftClick: () => {},
+      setRightIcon: () => {},
+      setRightCick: () => {},
+      setComponent: () => {},
+      setButtonTitle: () => {},
+      setButtonClick: () => {}
+    };
+
+    return (
+      <ContentContainer>
+        {flow === 1 && (
+          <ContentComponent component={oldComponent} props={oldProps} />
+        )}
+        <ContentComponent component={component} props={props} />
+        {flow === -1 && (
+          <ContentComponent component={oldComponent} props={oldProps} />
+        )}
+      </ContentContainer>
+    );
+  }
+}
 
 ModalContent.defaultProps = {
   component: undefined,
   oldComponent: undefined,
-  sceneProps: undefined,
-  flow: undefined
+  sceneProps: undefined
 };
 
 ModalContent.propTypes = {
+  resetModal: PropTypes.func.isRequired,
+  slideComponent: PropTypes.func.isRequired,
   component: PropTypes.func,
   oldComponent: PropTypes.func,
   /* eslint-disable-next-line */
-  sceneProps: PropTypes.object,
-  flow: PropTypes.number
+  sceneProps: PropTypes.object
 };
 
-export default ModalContent;
+export default ContentSlide(ModalContent);
