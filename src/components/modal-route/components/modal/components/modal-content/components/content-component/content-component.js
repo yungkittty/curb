@@ -1,10 +1,10 @@
-import React, { cloneElement } from "react";
+import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import ComponentContainer from "./components/component-container";
 
 const ContentComponent = ({ component, props }) => (
   <ComponentContainer>
-    {component && cloneElement(component, props)}
+    {component && createElement(component, props)}
   </ComponentContainer>
 );
 

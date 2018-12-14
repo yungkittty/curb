@@ -1,4 +1,4 @@
-import React, { Component, createElement } from "react";
+import React, { Component } from "react";
 
 const ContentSlide = WrappedComponent =>
   class extends Component {
@@ -8,7 +8,7 @@ const ContentSlide = WrappedComponent =>
       const { component } = this.props;
 
       this.state = {
-        component: createElement(component),
+        component,
         oldComponent: undefined
       };
 
@@ -26,14 +26,14 @@ const ContentSlide = WrappedComponent =>
 
       this.setState({
         oldComponent: component,
-        component: createElement(newComponent),
+        component: newComponent
       });
 
       setTimeout(() => {
         modalContent.style.transition = "all 0.45s ease-in-out";
         modalContent.style.transform =
           flow === 1 ? "translateX(-50%)" : "translateX(0%)";
-      }, 1);
+      }, 30);
     }
 
     render() {
