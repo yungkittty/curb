@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ScrollContainer from "../../../../../../components/scroll-container";
 
 const ContentContainer = styled(ScrollContainer)`
-  border: 2px solid green;
+  padding: 0 140px;
   padding-top: 18px;
 `;
 
