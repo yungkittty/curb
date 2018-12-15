@@ -3,27 +3,35 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { TextInput } from "react-native";
 
-const input = ({ type, placeholder, value, onChange, id, style, children }) => (
-  <TextInput
-    secureTextEntry={type === "password"}
-    placeholder={placeholder}
-    value={value}
-    onChangeText={text => onChange({ target: { id, value: text } })}
-    style={style}
-  >
-    {children}
-  </TextInput>
-);
+const inputfield = ({
+  type,
+  placeholder,
+  value,
+  onChange,
+  id,
+  style,
+  children
+}) => (
+    <TextInput
+      secureTextEntry={type === "password"}
+      placeholder={placeholder}
+      value={value}
+      onChangeText={text => onChange({ target: { id, value: text } })}
+      style={style}
+    >
+      {children}
+    </TextInput>
+  );
 
-const Input = styled(input)`
+const InputField = styled(inputfield)`
   font-size: 18px;
   padding: 18px;
   borderBottomWidth: 1px;
-  borderBottomColor: #c8ccd4;
-  ${props => (props.s ? "width: 240px" : null)};
+  borderBottomColor: ${props => (props.error ? "#eb5757" : "#c8ccd4")};
+  width: 100%;
 `;
 
-input.defaultProps = {
+inputfield.defaultProps = {
   type: undefined,
   placeholder: undefined,
   value: undefined,
@@ -33,7 +41,7 @@ input.defaultProps = {
   children: undefined
 };
 
-input.propTypes = {
+inputfield.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
@@ -44,4 +52,4 @@ input.propTypes = {
   children: PropTypes.func
 };
 
-export default Input;
+export default InputField;

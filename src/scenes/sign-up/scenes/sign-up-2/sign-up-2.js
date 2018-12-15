@@ -21,16 +21,35 @@ class SignUp2 extends Component {
 
     this.state = {
       password,
-      confirmPassword
+      confirmPassword,
+      error: { password: undefined }
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.checkForm = this.checkForm.bind(this);
+    this.sumbit = this.submit.bind(this);
 
     setProgress({ progress: 2, total: 2 });
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(SignUp1, -1));
     setButtonTitle("Finish");
-    setButtonClick(this.submit.bind(this));
+    setButtonClick(this.goToNext.bind(this));
+  }
 
-    this.handleChange = this.handleChange.bind(this);
+  goToNext() {
+    if (this.checkForm()) this.submit();
+  }
+
+  checkForm() {
+    const { password, confirmPassword } = this.state;
+
+    if (password === "" || (password !== "" && password !== confirmPassword))
+      this.setState({ error: { password: "Passwords don't match" } });
+    else {
+      this.setState({ error: { password: undefined } });
+      return true;
+    }
+    return false;
   }
 
   submit() {
@@ -51,7 +70,7 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { password, confirmPassword } = this.state;
+    const { password, confirmPassword, error } = this.state;
 
     return (
       <ContentContainer>
@@ -74,6 +93,7 @@ class SignUp2 extends Component {
           type="password"
           value={confirmPassword}
           onChange={this.handleChange}
+          error={error.password}
         />
       </ContentContainer>
     );

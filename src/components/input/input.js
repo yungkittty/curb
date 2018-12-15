@@ -1,15 +1,39 @@
-import styled from "styled-components";
+import React from "react";
+import PropTypes from "prop-types";
+import InputContainer from "./components/input-container";
+import InputField from "./components/input-field";
+import InputError from "./components/input-error";
 
-const Input = styled.input.attrs({
-  type: props => props.type,
-  placeholder: props => props.placeholder
-})`
-  box-sizing: border-box;
-  font-size: 18px;
-  padding: 18px;
-  border: 0;
-  border-bottom: 1px solid #c8ccd4;
-  ${props => (props.s ? "width: 380px" : null)};
-`;
+const Input = ({ type, placeholder, value, onChange, id, error }) => (
+  <InputContainer>
+    <InputField
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      id={id}
+      error={error}
+    />
+    {error && <InputError>{error}</InputError>}
+  </InputContainer>
+);
+
+Input.defaultProps = {
+  type: undefined,
+  placeholder: undefined,
+  value: undefined,
+  onChange: undefined,
+  id: undefined,
+  error: undefined
+};
+
+Input.propTypes = {
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  id: PropTypes.string,
+  error: PropTypes.string
+};
 
 export default Input;
