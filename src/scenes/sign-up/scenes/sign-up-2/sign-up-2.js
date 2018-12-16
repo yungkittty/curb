@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 /* eslint-disable-next-line */
 import { SignUp1 } from "../..";
 import ContentContainer from "./components/content-container";
-import Text from "../../../../components/text";
 import ContentInput from "./components/content-input";
 
 class SignUp2 extends Component {
@@ -74,20 +73,18 @@ class SignUp2 extends Component {
 
     return (
       <ContentContainer>
-        <Text p h3 b>
-          Choose a password
-        </Text>
         <ContentInput
+          size="modal"
+          title="Choose a password"
           id="password"
           placeholder="Password"
           type="password"
           value={password}
           onChange={this.handleChange}
         />
-        <Text p h3 b>
-          Confirm password
-        </Text>
         <ContentInput
+          size="modal"
+          title="Confirm password"
           id="confirmPassword"
           placeholder="Password"
           type="password"

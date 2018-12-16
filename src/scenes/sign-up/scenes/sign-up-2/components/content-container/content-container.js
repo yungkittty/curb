@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import ScrollContainer from "../../../../../../components/scroll-container";
+import Container from "../../../../../../components/container";
 
-const ContentContainer = styled(ScrollContainer)`
+const ContentContainer = styled(Container)`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   flex: 1;
-  padding: 0 140px;
   padding-top: 18px;
 `;
 

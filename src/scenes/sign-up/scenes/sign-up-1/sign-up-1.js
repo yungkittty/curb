@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 /* eslint-disable-next-line */
 import { SignUp2 } from "../..";
 import ContentContainer from "./components/content-container";
-import Text from "../../../../components/text";
 import ContentInput from "./components/content-input";
 
 class SignUp1 extends Component {
@@ -37,7 +36,7 @@ class SignUp1 extends Component {
 
     if (username === "")
       this.setState({
-        error: { username: "You must enter a username to continue" }
+        error: { username: "You must enter a username" }
       });
     else {
       this.setState({
@@ -63,10 +62,9 @@ class SignUp1 extends Component {
 
     return (
       <ContentContainer>
-        <Text p h3 b>
-          Choose a username
-        </Text>
         <ContentInput
+          size="modal"
+          title="Choose a username"
           id="username"
           placeholder="Username"
           onChange={this.handleChange}

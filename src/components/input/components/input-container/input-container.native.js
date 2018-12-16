@@ -5,7 +5,7 @@ const InputContainer = styled(Container)`
   width: ${props => {
     switch (props.size) {
       case "modal":
-        return 420;
+        return 300;
       default:
         return 380;
     }

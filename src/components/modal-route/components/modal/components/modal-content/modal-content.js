@@ -1,4 +1,4 @@
-import React, { Component, createElement } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ContentContainer from "./components/content-container";
 import ContentComponent from "./components/content-component";
