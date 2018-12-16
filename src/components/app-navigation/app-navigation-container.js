@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from "react";
 import { connect } from "react-redux";
 import AppNavigation from "./app-navigation";
@@ -7,29 +5,33 @@ import { currentUserSelectors } from "../../datas/current-user";
 import { usersActions, usersSelectors } from "../../datas/users";
 
 class AppNavigationContainer extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    const { currentUserId, currentUserToken, getCurrentUser } = this.props;
+    if (currentUserId && currentUserToken) getCurrentUser({ id: currentUserId });
+  }
 
   render() {
-    return <AppNavigation />;
+    const { getCurrentUser, ...others } = this.props;
+    return <AppNavigation {...others} />;
   }
 }
 
-// ...
-
 const mapStateToProps = state => {
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
-  const currentUserGroups =
-    (currentUserId && usersSelectors.getUserGroupsById(currentUserId)) || [];
-  return { currentUserId, currentUserGroups };
+  const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
+  const { avatarURL: currentUserAvatarURL = "", groups: currentUserGroupsIds = [] } =
+    usersSelectors.getUserById(state, currentUserId) || {};
+  return {
+    currentUserId,
+    currentUserToken,
+    currentUserAvatarURL,
+    currentUserGroupsIds
+  };
 };
 
-// ...
-
 const mapDispatchToProps = dispatch => ({
-  getUser: payload => dispatch(usersActions.getUserFailure(payload))
+  getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload))
 });
-
-// ...
 
 export default connect(
   mapStateToProps,

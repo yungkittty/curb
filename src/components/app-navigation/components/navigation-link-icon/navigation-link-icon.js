@@ -14,9 +14,9 @@ NavigationLinkIcon.defaultProps = { className: undefined, style: undefined };
 NavigationLinkIcon.propTypes = {
   className: PropTypes.string,
   // eslint-disable-next-line
-  style: PropTypes.object,
+  style: PropTypes.any,
   // eslint-disable-next-line
-  to: PropTypes.object.isRequired,
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   name: PropTypes.string.isRequired,
   size: PropTypes.oneOf(["small", "medium"]).isRequired,
   color: PropTypes.string.isRequired

@@ -1,3 +1,3 @@
-import NavigationListItem from "./navigation-list-item";
+import NavigationListItemContainer from "./navigation-list-item-container";
 
-export default NavigationListItem;
+export default NavigationListItemContainer;

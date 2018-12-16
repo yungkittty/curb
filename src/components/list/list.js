@@ -1,53 +1,59 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React, { cloneElement } from "react";
 import PropTypes from "prop-types";
 import ListOverlay from "./components/list-overlay";
 import ListContainer from "./components/list-container";
 
-class List extends Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
-    this.listContainerRef = React.createRef();
+    this.innerRef = React.createRef();
+    this.renderItem = this.renderItem.bind(this);
   }
 
   componentDidMount() {
+    this.hideScroll();
+  }
+
+  componentDidUpdate() {
+    this.hideScroll();
+  }
+
+  hideHorizontalScroll() {
     const {
-      contentContainerStyle,
+      current,
+      current: { style }
+    } = this.innerRef;
+    const deltaHeight = current.offsetHeight - current.clientHeight;
+    if (deltaHeight < 0) return;
+    style.height = `calc(100% + ${deltaHeight}px)`;
+    style.paddingBottom = `${deltaHeight}px`;
+  }
+
+  hideVerticalScroll() {
+    const {
+      current,
+      current: { style }
+    } = this.innerRef;
+    const deltaWidth = current.offsetWidth - current.clientWidth;
+    if (deltaWidth < 0) return;
+    style.width = `calc(100% + ${deltaWidth}px)`;
+    style.paddingRight = `${deltaWidth}px`;
+  }
+
+  hideScroll() {
+    const {
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator
     } = this.props;
+    if (!showsHorizontalScrollIndicator) this.hideHorizontalScroll();
+    if (!showsVerticalScrollIndicator) this.hideVerticalScroll();
+  }
 
-    // ...
-
-    const {
-      offsetHeight,
-      offsetWidth,
-      clientHeight,
-      clientWidth,
-      style
-    } = this.listContainerRef.current;
-
-    // ...
-
-    const deltaHeight = offsetHeight - clientHeight;
-    if (!showsHorizontalScrollIndicator && deltaHeight > 0) {
-      style.height = `calc(100% + ${style.paddingBottom ||
-        "0px"} + ${deltaHeight}px)`;
-      style.paddingBottom = `calc(${style.paddingBottom ||
-        "0px"} + ${contentContainerStyle.paddingBottom ||
-        "0px"} + ${deltaHeight}px)`;
-    }
-
-    // ...
-
-    const deltaWidth = offsetWidth - clientWidth;
-    if (!showsVerticalScrollIndicator && deltaWidth > 0) {
-      style.width = `calc(100% + ${style.paddingRight ||
-        "0px"} + ${deltaWidth}px)`;
-      style.paddingRight = `calc(${style.paddingRight ||
-        "0px"} + ${contentContainerStyle.paddingRight ||
-        "0px"} + ${deltaWidth}px)`;
-    }
+  renderItem(itemData, index) {
+    const { renderItem, keyExtractor } = this.props;
+    const itemProps = { key: itemData.key || keyExtractor(itemData, index) || index };
+    return cloneElement(renderItem({ item: itemData }), itemProps);
   }
 
   render() {
@@ -55,7 +61,6 @@ class List extends Component {
       className,
       style,
       data,
-      renderItem,
       ListHeaderComponent: ListHeader,
       ListFooterComponent: ListFooter,
       contentContainerStyle,
@@ -72,14 +77,14 @@ class List extends Component {
         horizontal={horizontal}
       >
         <ListContainer
-          innerRef={this.listContainerRef}
+          innerRef={this.innerRef}
           style={contentContainerStyle}
           showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
           showsVerticalScrollIndicator={showsVerticalScrollIndicator}
           horizontal={horizontal}
         >
           <ListHeader />
-          {_.map(data, renderItem)}
+          {_.map(data, this.renderItem)}
           <ListFooter />
         </ListContainer>
       </ListOverlay>
@@ -90,6 +95,7 @@ class List extends Component {
 List.defaultProps = {
   className: undefined,
   style: undefined,
+  keyExtractor: () => null,
   ListHeaderComponent: () => null,
   ListFooterComponent: () => null,
   contentContainerStyle: undefined,
@@ -102,7 +108,9 @@ List.propTypes = {
   className: PropTypes.string,
   // eslint-disable-next-line
   style: PropTypes.object,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // eslint-disable-next-line
+  data: PropTypes.array.isRequired,
+  keyExtractor: PropTypes.func,
   renderItem: PropTypes.func.isRequired,
   ListHeaderComponent: PropTypes.func,
   ListFooterComponent: PropTypes.func,
