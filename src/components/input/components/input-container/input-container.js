@@ -11,7 +11,7 @@ const InputContainer = styled(Container)`
     }
   }}px;
   position: relative;
-  margin-bottom: 42px;
+  margin-bottom: 58px;
 `;
 
 export default InputContainer;

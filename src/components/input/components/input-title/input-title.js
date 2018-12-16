@@ -3,7 +3,7 @@ import Text from "../../../text";
 
 const InputTitle = styled(Text)`
   display: flex;
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 24px;
   font-weight: bold;
 `;
