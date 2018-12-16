@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import ScrollContainer from "../../../../../../../../../scroll-container";
+import ContainerScroll from "../../../../../../../../../container-scroll";
 
-const ComponentContainer = styled(ScrollContainer)`
+const ComponentContainer = styled(ContainerScroll)`
   width: 50%;
   display: flex;
 `;
