@@ -1,19 +1,31 @@
-import React /* , { Fragment }  */ from "react";
+import React, { Fragment } from "react";
 import AppContainer from "./components/app-container";
 import AppNavigation from "./components/app-navigation";
 import Router from "./components/router";
-// import ModalSwitch from "./components/modal-switch";
-// import ModalRoute from "./components/modal-route";
-// import Route from "./components/route";
-// import User from "./scenes/user";
-// import SignIn from "./scenes/sign-in";
-// import SignUp from "./scenes/sign-up";
+import ModalSwitch from "./components/modal-switch";
+import ModalRoute from "./components/modal-route";
+import Route from "./components/route";
+import Discovery from "./scenes/discovery";
+import User from "./scenes/user";
+import Group from "./scenes/group";
+import SignIn from "./scenes/sign-in";
+import SignUp from "./scenes/sign-up";
 
 const App = () => (
   <Router>
-    <AppContainer>
-      <AppNavigation />
-    </AppContainer>
+    <Fragment>
+      <AppContainer>
+        <AppNavigation />
+        <ModalSwitch>
+          <Route exact path="/" component={Discovery} />
+          <Route path="/users/:id" component={User} />
+          <Route path="/groups/:id" component={Group} />
+          <Route />
+        </ModalSwitch>
+      </AppContainer>
+      <ModalRoute path="/sign-in" component={SignIn} />
+      <ModalRoute path="/sign-up" component={SignUp} />
+    </Fragment>
   </Router>
 );
 

@@ -42,7 +42,7 @@ const AppNavigation = ({
           name="plus"
           size="small"
           color={theme.secondaryVariantColor}
-          to="/discovery"
+          to="/"
         />
       )}
       contentContainerStyle={{ paddingTop: 10 }}
