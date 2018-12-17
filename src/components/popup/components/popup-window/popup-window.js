@@ -15,12 +15,12 @@ class PopupWindow extends Component {
 
   componentDidMount() {
     if (typeof document !== "undefined")
-      document.getElementById("app").style.filter = "blur(2px)";
+      document.getElementById("app-container").style.filter = "blur(2px)";
   }
 
   componentWillUnmount() {
     if (typeof document !== "undefined")
-      document.getElementById("app").style.filter = "blur(0px)";
+      document.getElementById("app-container").style.filter = "blur(0px)";
   }
 
   callCustomButtonFunc() {
