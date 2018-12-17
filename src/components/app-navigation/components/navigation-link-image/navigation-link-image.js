@@ -5,7 +5,7 @@ import LinkImageImage from "./components/link-image-image";
 
 const NavigationLinkImage = ({ className, style, to, src }) => (
   <NavigationLink className={className} style={style} to={to}>
-    {src && <LinkImageImage src={src} />}
+    {src ? <LinkImageImage src={src} /> : <React.Fragment />}
   </NavigationLink>
 );
 
