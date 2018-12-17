@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import NavigationLink from "../navigation-link";
 import LinkImageImage from "./components/link-image-image";
 
 const NavigationLinkImage = ({ className, style, to, src }) => (
   <NavigationLink className={className} style={style} to={to}>
-    {src ? <LinkImageImage src={src} /> : <Fragment />}
+    {src && <LinkImageImage src={src} />}
   </NavigationLink>
 );
 
@@ -17,9 +17,7 @@ NavigationLinkImage.defaultProps = {
 
 NavigationLinkImage.propTypes = {
   className: PropTypes.string,
-  // eslint-disable-next-line
-  style: PropTypes.any,
-  // eslint-disable-next-line
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   // eslint-disable-next-line
   src: PropTypes.any

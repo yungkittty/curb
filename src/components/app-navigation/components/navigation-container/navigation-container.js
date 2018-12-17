@@ -12,7 +12,6 @@ const NavigationContainer = styled(Container)`
   padding-left: 10px;
   padding-top: 10px;
   padding-right: 10px;
-  box-sizing: border-box;
   background-color: ${props => props.theme.pimaryColor};
 `;
 

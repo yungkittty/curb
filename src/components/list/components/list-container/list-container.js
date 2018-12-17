@@ -3,35 +3,13 @@ import styled from "styled-components";
 import Container from "../../../container";
 
 const ListContainer = styled(Container)`
-  // ...
-
   display: flex;
-
-  // ...
-
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
-
-  // ...
-
   width: 100%;
-
-  // ...
-
   height: 100%;
-
-  // ...
-
-  box-sizing: border-box;
-
-  // ...
-
   overflow: auto;
 `;
 
-ListContainer.propTypes = {
-  showsHorizontalScrollIndicator: PropTypes.bool.isRequired,
-  showsVerticalScrollIndicator: PropTypes.bool.isRequired,
-  horizontal: PropTypes.bool.isRequired
-};
+ListContainer.propTypes = { horizontal: PropTypes.bool.isRequired };
 
 export default ListContainer;

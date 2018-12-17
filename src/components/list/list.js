@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React, { cloneElement } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ListOverlay from "./components/list-overlay";
 import ListContainer from "./components/list-container";
@@ -53,7 +53,7 @@ class List extends React.Component {
   renderItem(itemData, index) {
     const { renderItem, keyExtractor } = this.props;
     const itemProps = { key: itemData.key || keyExtractor(itemData, index) || index };
-    return cloneElement(renderItem({ item: itemData }), itemProps);
+    return React.cloneElement(renderItem({ item: itemData }), itemProps);
   }
 
   render() {
@@ -106,16 +106,14 @@ List.defaultProps = {
 
 List.propTypes = {
   className: PropTypes.string,
-  // eslint-disable-next-line
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   // eslint-disable-next-line
   data: PropTypes.array.isRequired,
   keyExtractor: PropTypes.func,
   renderItem: PropTypes.func.isRequired,
   ListHeaderComponent: PropTypes.func,
   ListFooterComponent: PropTypes.func,
-  // eslint-disable-next-line
-  contentContainerStyle: PropTypes.object,
+  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool
