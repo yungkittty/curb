@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import AppContainer from "./components/app-container";
-import AppNavigation from "./components/app-navigation";
+// import AppNavigation from "./components/app-navigation";
 import Router from "./components/router";
 import ModalSwitch from "./components/modal-switch";
 import ModalRoute from "./components/modal-route";
@@ -14,7 +14,7 @@ const App = () => (
   <Router>
     <Fragment>
       <AppContainer>
-        <AppNavigation />
+        {/* <AppNavigation /> */}
         <ModalSwitch>
           <Route path="/" component={Discovery} />
           <Route path="/users/:id" component={User} />
