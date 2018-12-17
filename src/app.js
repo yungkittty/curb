@@ -16,7 +16,7 @@ const App = () => (
       <AppContainer>
         <AppNavigation />
         <ModalSwitch>
-          <Route path="/(|discovery)" component={Discovery} />
+          <Route path="/" component={Discovery} />
           <Route path="/users/:id" component={User} />
           <Route />
         </ModalSwitch>
