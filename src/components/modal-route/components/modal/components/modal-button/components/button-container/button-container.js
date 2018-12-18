@@ -5,7 +5,7 @@ const ButtonContainer = styled(Button)`
   display: flex;
   align-items: center;
   height: 75px;
-  background: #828282;
+  background: ${({ theme }) => theme.secondaryColor};
 `;
 
 export default ButtonContainer;
