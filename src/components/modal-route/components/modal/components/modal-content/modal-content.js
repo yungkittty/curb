@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import ScrollContainer from "../../../../../scroll-container";
+import ContainerScroll from "../../../../../container-scroll";
 
-const ModalContent = styled(ScrollContainer)`
+const ModalContent = styled(ContainerScroll)`
   display: flex;
   flex: 1;
   margin: 0 auto;

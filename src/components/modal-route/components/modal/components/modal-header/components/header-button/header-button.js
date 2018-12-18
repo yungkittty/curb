@@ -1,25 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withTheme } from "styled-components";
 import ButtonContainer from "./components/button-container";
 import Icon from "../../../../../../../icon";
 
-const color = "#333";
-
-const HeaderButton = ({ position, icon, onClick }) => (
-  <ButtonContainer position={position} onClick={onClick}>
-    <Icon icon={icon} color={color} size="small" />
+const HeaderButton = ({ theme, icon, to, onClick }) => (
+  <ButtonContainer to={to} onClick={onClick}>
+    <Icon icon={icon} color={theme.fontColor} size="small" />
   </ButtonContainer>
 );
 
 HeaderButton.defaultProps = {
+  theme: undefined,
   icon: undefined,
+  to: undefined,
   onClick: undefined
 };
 
 HeaderButton.propTypes = {
-  position: PropTypes.oneOf(["left", "right"]).isRequired,
+  /* eslint-disable-next-line */
+  theme: PropTypes.object,
   icon: PropTypes.string,
-  onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  onClick: PropTypes.func
 };
 
-export default HeaderButton;
+export default withTheme(HeaderButton);

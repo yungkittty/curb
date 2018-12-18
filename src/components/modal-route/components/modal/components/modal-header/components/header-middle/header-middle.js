@@ -6,7 +6,7 @@ import MiddleProgress from "./components/middle-progress";
 
 const HeaderMiddle = ({ title, progress }) => (
   <MiddleContainer>
-    {title && <MiddleTitle title={title} />}
+    {title && <MiddleTitle>{title}</MiddleTitle>}
     {progress && <MiddleProgress progress={progress} />}
   </MiddleContainer>
 );
@@ -18,7 +18,10 @@ HeaderMiddle.defaultProps = {
 
 HeaderMiddle.propTypes = {
   title: PropTypes.string,
-  progress: PropTypes.shape({ progress: Number, total: Number })
+  progress: PropTypes.shape({
+    progress: PropTypes.number,
+    total: PropTypes.number
+  })
 };
 
 export default HeaderMiddle;

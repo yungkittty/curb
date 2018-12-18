@@ -1,11 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import TitleContainer from "./components/title-container";
+import styled from "styled-components";
 
-const ButtonTitle = ({ title }) => <TitleContainer>{title}</TitleContainer>;
-
-ButtonTitle.propTypes = {
-  title: PropTypes.string.isRequired
-};
+const ButtonTitle = styled(Text)`
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+  margin: auto;
+  width: 100%;
+  color: ${({ theme }) => theme.fontColor};
+`;
 
 export default ButtonTitle;

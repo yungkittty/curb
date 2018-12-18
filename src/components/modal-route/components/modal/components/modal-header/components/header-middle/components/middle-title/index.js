@@ -1,3 +1,3 @@
-import HeaderMiddle from "./header-middle";
+import MiddleTitle from "./middle-title";
 
-export default HeaderMiddle;
+export default MiddleTitle;
