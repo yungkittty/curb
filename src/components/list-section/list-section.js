@@ -3,50 +3,51 @@ import React from "react";
 import PropTypes from "prop-types";
 import ContainerScroll from "../container-scroll";
 
-/* eslint-disable */
-
 class ListSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderSection = this.renderSection.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
   renderItem({ data: itemData, ...sectionData }, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
-    const itemParams = {
-      item: itemData,
-      index: itemIndex,
-      section: sectionData
-    };
-    const itemProps = {
-      key: itemData.key || keyExtractor(itemData, itemIndex) || itemIndex
-    };
+    const itemParams = { item: itemData, index: itemIndex, section: sectionData };
+    const itemProps = { key: itemData.key || keyExtractor(itemData, itemIndex) || itemIndex };
     return React.cloneElement(renderItem(itemParams), itemProps);
   }
 
-  renderSection_(
+  // eslint-disable-next-line
+  renderSectionLayout(
+    renderSectionLayout,
     { data, ...sectionData },
-    sectionIndex,
-    sectionIndexSuffix,
-    renderSection_
+    sectionIndex
   ) {
-    const sectionParams = { section: sectionData };
-    const sectionProps = { key: `${sectionIndex}${sectionIndexSuffix}` };
-    return React.cloneElement(renderSection_(sectionParams), sectionProps);
+    const sectionLayoutParams = { section: sectionData };
+    const sectionLayoutProps = { key: sectionIndex };
+    return React.cloneElement(
+      renderSectionLayout(sectionLayoutParams),
+      sectionLayoutProps
+    );
   }
 
   renderSection(sectionData, sectionIndex) {
     const { renderSectionHeader, renderSectionFooter } = this.props;
-    return [
-      this.renderSection_(
-        sectionData,
-        sectionIndex,
-        ":header",
-        renderSectionHeader
-      ),
-      ..._.map(sectionData, this.renderItem),
-      this.renderSection_(
-        sectionData,
-        sectionIndex,
-        ":footer",
-        renderSectionFooter
-      )
-    ];
+    return (
+      <React.Fragment>
+        {this.renderSectionLayout(
+          renderSectionHeader,
+          sectionData,
+          `${sectionIndex}:header`
+        )}
+        {_.map(sectionData, this.renderItem)}
+        {this.renderSectionLayout(
+          renderSectionFooter,
+          sectionData,
+          `${sectionIndex}:footer`
+        )}
+      </React.Fragment>
+    );
   }
 
   render() {
@@ -95,10 +96,7 @@ ListSection.defaultProps = {
 ListSection.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  contentContainerStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]), // !
+  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool,

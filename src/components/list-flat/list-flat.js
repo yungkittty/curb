@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 import ContainerScroll from "../container-scroll";
 
 class ListFlat extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
   renderItem(itemData, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
     const itemParams = { item: itemData, index: itemIndex };
