@@ -8,7 +8,7 @@ const NavigationContainer = styled(Container)`
   top: 0px;
   flex-direction: column;
   justify-content: space-between;
-  width: 80px;
+  width: 76px;
   height: 100%;
   background-color: ${({ theme }) => theme.pimaryColor};
 `;
