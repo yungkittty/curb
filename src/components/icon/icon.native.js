@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { View } from "react-native";
 
@@ -27,9 +26,7 @@ const Icon = ({ icon, color, size }) => {
         flex: 1
       }}
     >
-      {FontAwesome.hasIcon(icon) ? (
-        <FontAwesome5 name={icon} color={color} size={s} solid />
-      ) : null}
+      <FontAwesome5 name={icon} color={color} size={s} solid />
     </View>
   );
 };
