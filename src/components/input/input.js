@@ -16,7 +16,7 @@ const Input = ({
   error
 }) => (
   <InputContainer size={size}>
-    <InputTitle>{title}</InputTitle>
+    {title && <InputTitle>{title}</InputTitle>}
     <InputField
       type={type}
       placeholder={placeholder}

@@ -3,11 +3,10 @@ import Container from "../../../../../../../../components/container";
 
 const ImageContainer = styled(Container)`
   position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
-  cursor: pointer;
-  margin-bottom: 42px;
+  width: 140px;
+  height: 140px;
+  border-radius: 70px;
+  margin-bottom: 38px;
 `;
 
 export default ImageContainer;

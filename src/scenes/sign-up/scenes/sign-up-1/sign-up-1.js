@@ -5,7 +5,7 @@ import { SignUp2 } from "../..";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
 import SelectImage from "./components/select-image";
-import ContentInput from "./components/content-input";
+import Input from "../../../../components/input";
 
 class SignUp1 extends Component {
   constructor(props) {
@@ -93,7 +93,7 @@ class SignUp1 extends Component {
       <ContentContainer>
         <ContentTitle>Create account</ContentTitle>
         <SelectImage />
-        <ContentInput
+        <Input
           size="modal"
           id="name"
           placeholder="Username"
@@ -101,7 +101,7 @@ class SignUp1 extends Component {
           value={name.data}
           error={name.error ? name.errorMsg : null}
         />
-        <ContentInput
+        <Input
           size="modal"
           id="email"
           placeholder="Mail address"

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { SignUp1 } from "../..";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
-import ContentInput from "./components/content-input";
+import Input from "../../../../components/input";
 
 class SignUp2 extends Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class SignUp2 extends Component {
     return (
       <ContentContainer>
         <ContentTitle>Choose your password</ContentTitle>
-        <ContentInput
+        <Input
           size="modal"
           id="password"
           placeholder="Password"
@@ -120,7 +120,7 @@ class SignUp2 extends Component {
           onChange={this.handleChange}
           error={password.error ? password.errorMsg : null}
         />
-        <ContentInput
+        <Input
           size="modal"
           id="confirmPassword"
           placeholder="Confirm password"
