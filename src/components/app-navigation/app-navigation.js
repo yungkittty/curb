@@ -5,7 +5,7 @@ import NavigationContainer from "./components/navigation-container";
 import NavigationLinkIcon from "./components/navigation-link-icon";
 import NavigationLinkImage from "./components/navigation-link-image";
 import NavigationRule from "./components/navigation-rule";
-import List from "../list";
+import ListFlat from "../list-flat";
 import NavigationListItem from "./components/navigation-list-item";
 import NavigationListFooter from "./components/navigation-list-footer";
 
@@ -31,7 +31,7 @@ const AppNavigation = ({
       />
     )}
     <NavigationRule />
-    <List
+    <ListFlat
       data={currentUserGroupsIds}
       keyExtractor={currentUserGroupId => currentUserGroupId}
       renderItem={({ item: currentUserGroupId }) => (
@@ -42,7 +42,7 @@ const AppNavigation = ({
           name="plus"
           size="small"
           color={theme.secondaryVariantColor}
-          to="/discovery"
+          to="/"
         />
       )}
       contentContainerStyle={{ paddingTop: 10 }}

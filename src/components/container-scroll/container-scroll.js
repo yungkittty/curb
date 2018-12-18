@@ -13,7 +13,6 @@ const ContainerScroll = ({
   showsVerticalScrollIndicator
 }) => (
   <ScrollContainer
-    /* ... */
     className={className}
     style={style}
     horizontal={horizontal}
@@ -40,9 +39,9 @@ ContainerScroll.defaultProps = {
 
 ContainerScroll.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf([PropTypes.array, PropTypes.object]),
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   children: PropTypes.node.isRequired,
-  contentContainerStyle: PropTypes.oneOf([PropTypes.array, PropTypes.object]),
+  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool
