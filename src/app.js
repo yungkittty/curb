@@ -12,7 +12,7 @@ import SignUp from "./scenes/sign-up";
 const App = () => (
   <Router>
     <Fragment>
-      <AppContainer id="app">
+      <AppContainer>
         <AppNavigation />
         <ModalSwitch>
           <Route exact path="/" />
@@ -22,10 +22,10 @@ const App = () => (
       </AppContainer>
       <ModalRoute
         path="/sign-(in|up)"
-        render={props => (
+        render={() => (
           <Fragment>
-            <Route path="/sign-in" render={() => <SignIn {...props} />} />
-            <Route path="/sign-up" render={() => <SignUp {...props} />} />
+            <Route path="/sign-in" component={SignIn} />
+            <Route path="/sign-up" component={SignUp} />
           </Fragment>
         )}
       />
