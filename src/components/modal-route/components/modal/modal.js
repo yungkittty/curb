@@ -11,13 +11,17 @@ class Modal extends Component {
   constructor(props) {
     super(props);
 
+    const {
+      history: { goBack }
+    } = this.props;
+
     this.state = {
       title: undefined,
       progress: undefined,
       leftIcon: undefined,
       leftClick: undefined,
       rightIcon: "times",
-      rightClick: { pathname: "/" },
+      rightClick: () => goBack(),
       buttonTitle: undefined,
       buttonClick: undefined
     };
@@ -137,11 +141,14 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
+  history: undefined,
   component: undefined,
   render: undefined
 };
 
 Modal.propTypes = {
+  /* eslint-disable-next-line */
+  history: PropTypes.object,
   component: PropTypes.func,
   render: PropTypes.func
 };
