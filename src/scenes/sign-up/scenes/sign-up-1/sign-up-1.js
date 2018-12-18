@@ -3,21 +3,35 @@ import PropTypes from "prop-types";
 /* eslint-disable-next-line */
 import { SignUp2 } from "../..";
 import ContentContainer from "./components/content-container";
+import ContentTitle from "./components/content-title";
+import SelectImage from "./components/select-image";
 import ContentInput from "./components/content-input";
 
 class SignUp1 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { username = "" },
+      data: { name = "", email = "" },
       setProgress,
       setButtonTitle,
       setButtonClick
     } = this.props;
 
-    this.state = { username, error: { username: undefined } };
+    this.state = {
+      name: {
+        data: name,
+        error: false,
+        errorMsg: "You must enter a username"
+      },
+      email: {
+        data: email,
+        error: false,
+        errorMsg: "You must enter a mail"
+      }
+    };
 
     this.handleChange = this.handleChange.bind(this);
+    this.checkInput = this.checkInput.bind(this);
     this.checkForm = this.checkForm.bind(this);
 
     setProgress({ progress: 1, total: 2 });
@@ -32,16 +46,29 @@ class SignUp1 extends Component {
   }
 
   checkForm() {
-    const { username } = this.state;
+    const { name, email } = this.state;
 
-    if (username === "")
-      this.setState({
-        error: { username: "You must enter a username" }
-      });
+    const nameCheck = this.checkInput("name", name.data);
+    const emailCheck = this.checkInput("email", email.data);
+
+    return nameCheck && emailCheck;
+  }
+
+  checkInput(id, value) {
+    if (value.length === 0)
+      this.setState(prev => ({
+        [id]: {
+          ...prev[id],
+          error: true
+        }
+      }));
     else {
-      this.setState({
-        error: { username: undefined }
-      });
+      this.setState(prev => ({
+        [id]: {
+          ...prev[id],
+          error: false
+        }
+      }));
       return true;
     }
     return false;
@@ -49,27 +76,38 @@ class SignUp1 extends Component {
 
   handleChange(event) {
     const { setData } = this.props;
+    const { id, value } = event.target;
 
-    setData({ [event.target.id]: event.target.value });
+    setData({ [id]: value });
+
     this.setState(
-      { [event.target.id]: event.target.value },
-      this.checkForm.bind(this)
+      prev => ({ [id]: { ...prev[id], data: value } }),
+      this.checkInput.bind(this, id, value)
     );
   }
 
   render() {
-    const { username, error } = this.state;
+    const { name, email } = this.state;
 
     return (
       <ContentContainer>
+        <ContentTitle>Create account</ContentTitle>
+        <SelectImage />
         <ContentInput
           size="modal"
-          title="Choose a username"
-          id="username"
+          id="name"
           placeholder="Username"
           onChange={this.handleChange}
-          value={username}
-          error={error.username}
+          value={name.data}
+          error={name.error ? name.errorMsg : null}
+        />
+        <ContentInput
+          size="modal"
+          id="email"
+          placeholder="Mail address"
+          onChange={this.handleChange}
+          value={email.data}
+          error={email.error ? email.errorMsg : null}
         />
       </ContentContainer>
     );
@@ -86,7 +124,8 @@ SignUp1.defaultProps = {
 };
 
 SignUp1.propTypes = {
-  data: PropTypes.shape({ username: PropTypes.string }),
+  /* eslint-disable-next-line */
+  data: PropTypes.object,
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setComponent: PropTypes.func,

@@ -19,9 +19,16 @@ class SignUp2 extends Component {
     } = this.props;
 
     this.state = {
-      password,
-      confirmPassword,
-      error: { password: undefined }
+      password: {
+        data: password,
+        error: false,
+        errorMsg: "You must enter a password"
+      },
+      confirmPassword: {
+        data: confirmPassword,
+        error: false,
+        errorMsg: "Passwords don't match"
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -39,58 +46,85 @@ class SignUp2 extends Component {
     if (this.checkForm()) this.submit();
   }
 
+  submit() {
+    const {
+      data: { confirmPassword, ...others },
+      signUp
+    } = this.props;
+
+    signUp({ ...others });
+  }
+
   checkForm() {
     const { password, confirmPassword } = this.state;
 
-    if (password === "" || (password !== "" && password !== confirmPassword))
-      this.setState({ error: { password: "Passwords don't match" } });
+    const passwordCheck = this.checkInput("password", password.data);
+    const confirmPasswordCheck = this.checkInput(
+      "confirmPassword",
+      confirmPassword.data
+    );
+
+    return passwordCheck && confirmPasswordCheck;
+  }
+
+  checkInput(id, value) {
+    const { password, confirmPassword } = this.state;
+    if (
+      value.length === 0 ||
+      (id === "confirmPassword" && password.data !== confirmPassword.data)
+    )
+      this.setState(prev => ({
+        [id]: {
+          ...prev[id],
+          error: true
+        }
+      }));
     else {
-      this.setState({ error: { password: undefined } });
+      this.setState(prev => ({
+        [id]: {
+          ...prev[id],
+          error: false
+        }
+      }));
       return true;
     }
     return false;
   }
 
-  submit() {
-    const { data } = this.props;
-
-    console.log(data);
-
-    // Make the API call to create account
-
-    // Then redirect to Home
-  }
-
   handleChange(event) {
     const { setData } = this.props;
+    const { id, value } = event.target;
 
-    setData({ [event.target.id]: event.target.value });
-    this.setState({ [event.target.id]: event.target.value });
+    setData({ [id]: value });
+
+    this.setState(
+      prev => ({ [id]: { ...prev[id], data: value } }),
+      this.checkInput.bind(this, id, value)
+    );
   }
 
   render() {
-    const { password, confirmPassword, error } = this.state;
+    const { password, confirmPassword } = this.state;
 
     return (
       <ContentContainer>
         <ContentInput
           size="modal"
-          title="Choose a password"
           id="password"
           placeholder="Password"
           type="password"
-          value={password}
+          value={password.data}
           onChange={this.handleChange}
+          error={password.error ? password.errorMsg : null}
         />
         <ContentInput
           size="modal"
-          title="Confirm password"
           id="confirmPassword"
-          placeholder="Password"
+          placeholder="Confirm password"
           type="password"
-          value={confirmPassword}
+          value={confirmPassword.data}
           onChange={this.handleChange}
-          error={error.password}
+          error={confirmPassword.error ? confirmPassword.errorMsg : null}
         />
       </ContentContainer>
     );
@@ -109,10 +143,8 @@ SignUp2.defaultProps = {
 };
 
 SignUp2.propTypes = {
-  data: PropTypes.shape({
-    password: PropTypes.string,
-    confirmPassword: PropTypes.string
-  }),
+  /* eslint-disable-next-line */
+  data: PropTypes.object,
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,
