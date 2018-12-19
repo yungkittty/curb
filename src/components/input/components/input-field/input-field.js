@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-const InputField = styled.input.attrs({
-  type: props => props.type,
-  placeholder: props => props.placeholder
-})`
+const InputField = styled.input`
   box-sizing: border-box;
   font-size: 18px;
   padding: 18px;

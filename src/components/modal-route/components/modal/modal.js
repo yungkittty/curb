@@ -23,7 +23,7 @@ class Modal extends Component {
       leftClick: undefined,
       rightIcon: "times",
       rightTo: undefined,
-      rightClick: () => goBack(),
+      rightClick: goBack,
       buttonTitle: undefined,
       buttonTo: undefined,
       buttonClick: undefined
