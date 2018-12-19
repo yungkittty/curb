@@ -3,7 +3,7 @@ import Container from "../../../../../../components/container";
 
 const ImageContainer = styled(Container)`
     position: relative;
-    display: block;
+    display: flex;
     border-radius: 200px;
     overflow: hidden;
     width: 200px;
