@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-/* eslint-disable-next-line */
-import { SignUp1 } from "../..";
+import SignUp1 from "../sign-up-1";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
 import Input from "../../../../components/input";
@@ -146,8 +145,10 @@ SignUp2.defaultProps = {
 };
 
 SignUp2.propTypes = {
-  /* eslint-disable-next-line */
-  data: PropTypes.object,
+  data: PropTypes.shape({
+    password: PropTypes.string,
+    confirmPassword: PropTypes.string
+  }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,

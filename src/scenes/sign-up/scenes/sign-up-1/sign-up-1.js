@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-/* eslint-disable-next-line */
-import { SignUp2 } from "../..";
+import SignUp2 from "../sign-up-2";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
 import SelectImage from "./components/select-image";
@@ -124,8 +123,7 @@ SignUp1.defaultProps = {
 };
 
 SignUp1.propTypes = {
-  /* eslint-disable-next-line */
-  data: PropTypes.object,
+  data: PropTypes.shape({ name: PropTypes.string, email: PropTypes.string }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setComponent: PropTypes.func,

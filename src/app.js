@@ -7,7 +7,7 @@ import ModalRoute from "./components/modal-route";
 import Route from "./components/route";
 import User from "./scenes/user";
 import SignIn from "./scenes/sign-in";
-import { SignUp1 } from "./scenes/sign-up";
+import SignUp1 from "./scenes/sign-up/scenes/sign-up-1";
 
 const App = () => (
   <Router>
