@@ -13,13 +13,12 @@ class User extends Component {
     this.state = {
       username: "Antoine",
       avatar: "https://avatars2.githubusercontent.com/u/26574636",
-      editMode: false,
-      owner: false
+      editMode: false
     };
   }
 
   render() {
-    const { editMode, username, avatar, owner } = this.state;
+    const { editMode, username, avatar } = this.state;
 
     return (
       <UserContainer>

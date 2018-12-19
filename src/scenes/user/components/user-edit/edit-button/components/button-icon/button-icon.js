@@ -1,17 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { string } from "prop-types";
 import Icon from "../../../../../../../components/icon";
 
 const color = "#dedede";
 
-const ButtonIcon = ({ icon }) => <Icon icon={icon} color={color} size="big" />;
+const ButtonIcon = ({ icon, size }) => <Icon icon={icon} color={color} size={size} />;
 
 ButtonIcon.defaultProps = {
-  icon: undefined
+  icon: undefined,
+  size: "big"
 };
 
 ButtonIcon.propTypes = {
-  icon: PropTypes.string
+  icon: string,
+  size: string
 };
 
 export default ButtonIcon;
