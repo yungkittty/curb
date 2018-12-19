@@ -5,7 +5,7 @@ import ButtonIcon from "./components/button-icon";
 
 const EditButton = ({ icon, size, avatar }) => (
   <ButtonContainer background={avatar}>
-    <ButtonIcon icon={icon} size={size}/>
+    <ButtonIcon icon={icon} size={size} />
   </ButtonContainer>
 );
 
@@ -16,7 +16,8 @@ EditButton.defaultProps = {
 
 EditButton.propTypes = {
   icon: string,
-  size: string
+  size: string,
+  avatar: string.isRequired,
 };
 
 export default EditButton;

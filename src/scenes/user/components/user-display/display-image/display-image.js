@@ -5,8 +5,8 @@ const DisplayImage = styled(Image)`
     position: absolute;
     top: 0;
     left: 0;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     filter: ${props => props.editMode && "blur(2px)"};
 `;
 
