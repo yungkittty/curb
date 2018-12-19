@@ -37,9 +37,9 @@ class ListFlat extends React.Component {
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         horizontal={horizontal}
       >
-        <FlatHeader />
+        {FlatHeader && <FlatHeader />}
         {_.map(data, this.renderItem)}
-        <FlatFooter />
+        {FlatFooter && <FlatFooter />}
       </ContainerScroll>
     );
   }
@@ -52,8 +52,8 @@ ListFlat.defaultProps = {
   showsHorizontalScrollIndicator: true,
   showsVerticalScrollIndicator: true,
   horizontal: false,
-  ListHeaderComponent: React.Fragment,
-  ListFooterComponent: React.Fragment,
+  ListHeaderComponent: undefined,
+  ListFooterComponent: undefined,
   keyExtractor: () => undefined
 };
 

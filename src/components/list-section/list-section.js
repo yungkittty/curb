@@ -35,17 +35,19 @@ class ListSection extends React.Component {
     const { renderSectionHeader, renderSectionFooter } = this.props;
     return (
       <React.Fragment>
-        {this.renderSectionLayout(
-          renderSectionHeader,
-          sectionData,
-          `${sectionIndex}:header`
-        )}
+        {renderSectionHeader &&
+          this.renderSectionLayout(
+            renderSectionHeader,
+            sectionData,
+            `${sectionIndex}:header`
+          )}
         {_.map(sectionData, this.renderItem)}
-        {this.renderSectionLayout(
-          renderSectionFooter,
-          sectionData,
-          `${sectionIndex}:footer`
-        )}
+        {renderSectionFooter &&
+          this.renderSectionLayout(
+            renderSectionFooter,
+            sectionData,
+            `${sectionIndex}:footer`
+          )}
       </React.Fragment>
     );
   }
@@ -71,9 +73,9 @@ class ListSection extends React.Component {
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         horizontal={horizontal}
       >
-        <SectionHeader />
+        {SectionHeader && <SectionHeader />}
         {_.map(sections, this.renderSection)}
-        <SectionFooter />
+        {SectionFooter && <SectionFooter />}
       </ContainerScroll>
     );
   }
@@ -86,11 +88,11 @@ ListSection.defaultProps = {
   showsHorizontalScrollIndicator: true,
   showsVerticalScrollIndicator: true,
   horizontal: false,
-  ListHeaderComponent: React.Fragment,
-  ListFooterComponent: React.Fragment,
+  ListHeaderComponent: undefined,
+  ListFooterComponent: undefined,
   keyExtractor: () => undefined,
-  renderSectionHeader: React.Fragment,
-  renderSectionFooter: React.Fragment
+  renderSectionHeader: undefined,
+  renderSectionFooter: undefined
 };
 
 ListSection.propTypes = {

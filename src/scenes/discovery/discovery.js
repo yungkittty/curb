@@ -1,12 +1,3 @@
-import React from "react";
-import ListSection from "../../components/list-section";
-
-const Discovery = () => (
-  <ListSection
-    section={[{}, {}]}
-    renderItem={() => null}
-    renderSection={() => null}
-  />
-);
+const Discovery = () => null;
 
 export default Discovery;

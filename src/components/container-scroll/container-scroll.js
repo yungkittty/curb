@@ -41,7 +41,7 @@ ContainerScroll.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   children: PropTypes.node.isRequired,
-  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // !
+  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool
