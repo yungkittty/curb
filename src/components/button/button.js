@@ -1,35 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import Link from "../link/root";
 
-const button = ({ className, children, to, onClick }) =>
-  to ? (
-    <Link className={className} to={to}>
-      {children}
-    </Link>
-  ) : (
-    <a className={className} onClick={onClick}>
-      {children}
-    </a>
-  );
-
-button.defaultProps = {
-  to: undefined,
-  onClick: undefined
-};
-
-button.propTypes = {
-  to: PropTypes.object,
-  onClick: PropTypes.func
-};
-
-const Button = styled(button)`
-  ${props =>
-    props.to || props.onClick ? "cursor: pointer;" : null} display: block;
-  text-decoration: none;
-  border: none;
-  outline: none;
+const Button = styled.button.attrs({ type: "button" })`
+  display: block; // !
+  padding: 0px;
+  border-width: initial;
+  border-style: initial;
+  border-color: initial;
+  outline: initial;
+  background-color: initial;
+  cursor: pointer;
 `;
 
 export default Button;

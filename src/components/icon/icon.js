@@ -20,13 +20,7 @@ const Icon = ({ icon, color, size }) => {
   }
   return findIconDefinition({ iconName: icon }) ? (
     <FontAwesomeIcon
-      style={{
-        width: s + "px",
-        height: s + "px",
-        marginTop: "50%",
-        marginLeft: "50%",
-        transform: "translate(-50%, -50%)"
-      }}
+      style={{ width: `${s}px`, height: `${s}px` }}
       color={color}
       icon={icon}
     />
