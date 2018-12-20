@@ -25,7 +25,6 @@ class Modal extends Component {
       rightTo: undefined,
       rightClick: goBack,
       buttonTitle: undefined,
-      buttonTo: undefined,
       buttonClick: undefined
     };
 
@@ -38,7 +37,6 @@ class Modal extends Component {
     this.setRightTo = this.setRightTo.bind(this);
     this.setRightCick = this.setRightCick.bind(this);
     this.setButtonTitle = this.setButtonTitle.bind(this);
-    this.setButtonTo = this.setButtonTo.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
   }
 
@@ -78,10 +76,6 @@ class Modal extends Component {
     this.setState({ buttonTitle });
   }
 
-  setButtonTo(buttonTo) {
-    this.setState({ buttonTo });
-  }
-
   setButtonClick(buttonClick) {
     this.setState({ buttonClick });
   }
@@ -97,7 +91,6 @@ class Modal extends Component {
       setRightTo,
       setRightCick,
       setButtonTitle,
-      setButtonTo,
       setButtonClick
     } = this;
 
@@ -113,7 +106,6 @@ class Modal extends Component {
       rightTo,
       rightClick,
       buttonTitle,
-      buttonTo,
       buttonClick
     } = this.state;
 
@@ -127,7 +119,6 @@ class Modal extends Component {
       setRightTo,
       setRightCick,
       setButtonTitle,
-      setButtonTo,
       setButtonClick,
       ...others
     };
@@ -154,11 +145,7 @@ class Modal extends Component {
               : null}
           </ModalContent>
           {buttonTitle && (
-            <ModalButton
-              title={buttonTitle}
-              to={buttonTo}
-              onClick={buttonClick}
-            />
+            <ModalButton title={buttonTitle} onClick={buttonClick} />
           )}
         </ModalContainer>
       </ModalOverlay>

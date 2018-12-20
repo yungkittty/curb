@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../../../../../../../../../button";
+import Link from "../../../../../../../../../link";
 
-const ButtonContainer = styled(Button)`
+const LinkContainer = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,4 +9,4 @@ const ButtonContainer = styled(Button)`
   width: 75px;
 `;
 
-export default ButtonContainer;
+export default LinkContainer;
