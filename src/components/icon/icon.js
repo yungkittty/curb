@@ -9,13 +9,15 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fab, fas);
 
-const Icon = ({ name, size, color, style, ...others }) => {
+const Icon = ({ size, style, ...others }) => {
   const X = (() => {
     switch (size) {
       case "small":
         return 20;
       case "medium":
         return 40;
+      case "large":
+        return 80;
       default:
         return undefined;
     }
@@ -23,17 +25,13 @@ const Icon = ({ name, size, color, style, ...others }) => {
   return (
     <FontAwesomeIcon
       {...others}
-      icon={name}
-      color={color}
       style={{ ...style, width: `${X}px`, height: `${X}px` }}
     />
   );
 };
 
 Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["small", "medium"]).isRequired,
-  color: PropTypes.string.isRequired
+  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired
 };
 
 export default Icon;

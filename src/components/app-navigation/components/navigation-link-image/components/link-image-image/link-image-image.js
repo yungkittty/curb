@@ -7,7 +7,7 @@ import Image from "../../../../../image";
 const LinkImageImage = styled(Image)`
   width: 60px;
   height: 60px;
-  border-radius: 50px;
+  border-radius: 30px;
 `;
 
 export default LinkImageImage;

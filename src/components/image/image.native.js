@@ -1,9 +1,9 @@
 import React from "react";
-import ReactNative from "react-native";
+import { Image as ReactNativeImage } from "react-native";
 import PropTypes from "prop-types";
 
 const Image = ({ src: uri, ...others }) => (
-  <ReactNative.Image {...others} source={{ uri }} />
+  <ReactNativeImage {...others} source={{ uri }} />
 );
 
 Image.propTypes = {

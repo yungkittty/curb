@@ -19,7 +19,7 @@ const AppNavigation = ({
   <NavigationContainer>
     {!currentUserId || !currentUserToken ? (
       <NavigationLinkIcon
-        name="user"
+        icon="user"
         size="medium"
         color={theme.pimaryColor}
         to={{ pathname: "/sign-in", state: { isModal: true } }}
@@ -39,7 +39,7 @@ const AppNavigation = ({
       )}
       ListFooterComponent={() => (
         <NavigationListFooter
-          name="plus"
+          icon="plus"
           size="small"
           color={theme.secondaryVariantColor}
           to="/"
@@ -50,7 +50,7 @@ const AppNavigation = ({
     />
     <NavigationRule style={{ paddingBottom: 10 }} />
     <NavigationLinkIcon
-      name="cog"
+      icon="cog"
       size="medium"
       color={theme.pimaryColor}
       to={{ pathname: "/settings", state: { isModal: true } }}
