@@ -6,7 +6,6 @@ const ModalContainer = styled(Container)`
   flex-flow: column;
   width: 700px;
   height: 740px;
-  max-height: 100%;
   border-radius: 25px;
   margin: auto;
   position: absolute;
