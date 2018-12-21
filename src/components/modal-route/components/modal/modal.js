@@ -91,8 +91,11 @@ class Modal extends Component {
 
   resetModal() {
     this.setState({ ...this.initialState });
+  }
 
   render() {
+    const {
+      setTitle,
       setProgress,
       setLeftIcon,
       setLeftTo,
