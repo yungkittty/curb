@@ -6,10 +6,10 @@ import ContentRedirect from "./components/content-redirect";
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    const { setTitle, setButton, setButtonClick } = this.props;
+    const { setTitle, setButtonTitle, setButtonClick } = this.props;
 
     setTitle("Sign in");
-    setButton("Login");
+    setButtonTitle("Login");
     setButtonClick(this.customFunc.bind(this));
   }
 
