@@ -9,6 +9,10 @@ const Button = styled.button.attrs({ type: "button" })`
   outline: initial;
   background-color: initial;
   cursor: pointer;
+
+  &::-moz-focus-inner {
+    border: none;
+  }
 `;
 
 export default Button;
