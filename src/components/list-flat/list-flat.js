@@ -52,8 +52,8 @@ ListFlat.defaultProps = {
   showsHorizontalScrollIndicator: true,
   showsVerticalScrollIndicator: true,
   horizontal: false,
-  ListHeaderComponent: undefined,
-  ListFooterComponent: undefined,
+  ListHeaderComponent: null,
+  ListFooterComponent: null,
   keyExtractor: () => undefined
 };
 

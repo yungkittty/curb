@@ -9,10 +9,11 @@ const ScrollContainerContent = styled(Container)`
   height: calc(100% ${props => (props.showsVerticalScrollIndicator ? " + 30px" : "")});
   ${props => props.showsHorizontalScrollIndicator ? "padding-right: 30px" : ""};
   ${props => props.showsVerticalScrollIndicator ? "margin-bottom: -30px" : ""};
-  overflow: auto;
+  overflow: ${props => props.scrollEnabled ? "auto" : "hidden"};
 `;
 
 ScrollContainerContent.propTypes = {
+  scrollEnabled: PropTypes.bool.isRequired,
   showsHorizontalScrollIndicator: PropTypes.bool.isRequired,
   showsVerticalScrollIndicator: PropTypes.bool.isRequired,
   horizontal: PropTypes.bool.isRequired

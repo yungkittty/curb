@@ -10,7 +10,7 @@ class ListSection extends React.Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  renderItem({ data: itemData, ...sectionData }, itemIndex) {
+  renderItem(sectionData, itemData, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
     const itemParams = { item: itemData, index: itemIndex, section: sectionData };
     const itemProps = { key: itemData.key || keyExtractor(itemData, itemIndex) || itemIndex };
@@ -31,7 +31,7 @@ class ListSection extends React.Component {
     );
   }
 
-  renderSection(sectionData, sectionIndex) {
+  renderSection({ data: itemData, ...sectionData }, sectionIndex) {
     const { renderSectionHeader, renderSectionFooter } = this.props;
     return (
       <React.Fragment>
@@ -41,7 +41,7 @@ class ListSection extends React.Component {
             sectionData,
             `${sectionIndex}:header`
           )}
-        {_.map(sectionData, this.renderItem)}
+        {_.map(itemData, this.renderItem.bind(undefined, sectionData))}
         {renderSectionFooter &&
           this.renderSectionLayout(
             renderSectionFooter,
@@ -88,11 +88,11 @@ ListSection.defaultProps = {
   showsHorizontalScrollIndicator: true,
   showsVerticalScrollIndicator: true,
   horizontal: false,
-  ListHeaderComponent: undefined,
-  ListFooterComponent: undefined,
+  ListHeaderComponent: null,
+  ListFooterComponent: null,
   keyExtractor: () => undefined,
-  renderSectionHeader: undefined,
-  renderSectionFooter: undefined
+  renderSectionHeader: null,
+  renderSectionFooter: null
 };
 
 ListSection.propTypes = {
@@ -103,7 +103,7 @@ ListSection.propTypes = {
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool,
   // eslint-disable-next-line
-  sections: PropTypes.array.isRequired,
+  sections: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.array.isRequired })).isRequired,
   ListHeaderComponent: PropTypes.func,
   ListFooterComponent: PropTypes.func,
   keyExtractor: PropTypes.func,
