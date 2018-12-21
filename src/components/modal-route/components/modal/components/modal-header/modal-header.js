@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import HeaderContainer from "./components/header-container";
 import HeaderMiddle from "./components/header-middle";
+import HeaderLink from "./components/header-link";
 import HeaderButton from "./components/header-button";
 
 const ModalHeader = ({
@@ -15,9 +16,17 @@ const ModalHeader = ({
   rightClick
 }) => (
   <HeaderContainer>
-    <HeaderButton icon={leftIcon} to={leftTo} onClick={leftClick} />
+    {leftTo ? (
+      <HeaderLink icon={leftIcon} to={leftTo} />
+    ) : (
+      <HeaderButton icon={leftIcon} onClick={leftClick} />
+    )}
     <HeaderMiddle title={title} progress={progress} />
-    <HeaderButton icon={rightIcon} to={rightTo} onClick={rightClick} />
+    {rightTo ? (
+      <HeaderLink icon={rightIcon} to={rightTo} />
+    ) : (
+      <HeaderButton icon={rightIcon} onClick={rightClick} />
+    )}
   </HeaderContainer>
 );
 
