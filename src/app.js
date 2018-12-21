@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import AppContainer from "./components/app-container";
 import AppNavigation from "./components/app-navigation";
 import Router from "./components/router";
@@ -13,7 +13,7 @@ import SignUp from "./scenes/sign-up";
 
 const App = () => (
   <Router>
-    <Fragment>
+    <React.Fragment>
       <AppContainer>
         <AppNavigation />
         <ModalSwitch>
@@ -25,7 +25,7 @@ const App = () => (
       </AppContainer>
       <ModalRoute path="/sign-in" component={SignIn} />
       <ModalRoute path="/sign-up" component={SignUp} />
-    </Fragment>
+    </React.Fragment>
   </Router>
 );
 

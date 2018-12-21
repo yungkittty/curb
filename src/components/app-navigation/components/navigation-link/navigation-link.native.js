@@ -8,7 +8,7 @@ const NavigationLink = styled(Link)`
   width: 50px;
   min-height: 50px;
   margin-bottom: 10px;
-  border-radius: 50px;
+  border-radius: 25px;
   overflow: hidden;
   background-color: ${props => props.theme.secondaryVariantColor};
 `;
