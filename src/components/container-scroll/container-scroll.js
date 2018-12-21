@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import PropTypes from "prop-types";
 import ScrollContainer from "./components/scroll-container";
@@ -46,5 +47,13 @@ ContainerScroll.propTypes = {
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool
 };
+=======
+import styled from "styled-components";
+import Container from "../container";
+
+const ContainerScroll = styled(Container)`
+  overflow-y: auto;
+`;
+>>>>>>> c6916fa5c8ecb1c8cf35fe4fc568e1793fe12c66
 
 export default ContainerScroll;

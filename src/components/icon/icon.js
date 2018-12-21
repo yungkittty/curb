@@ -22,8 +22,12 @@ const Icon = ({ name, size, color, style, ...others }) => {
   })();
   return (
     <FontAwesomeIcon
+<<<<<<< HEAD
       {...others}
       icon={name}
+=======
+      style={{ width: `${s}px`, height: `${s}px` }}
+>>>>>>> c6916fa5c8ecb1c8cf35fe4fc568e1793fe12c66
       color={color}
       style={{ ...style, width: `${X}px`, height: `${X}px` }}
     />
