@@ -15,6 +15,9 @@ const Icon = ({ icon, color, size }) => {
     case "big":
       s = 48;
       break;
+    case "huge":
+      s = 78;
+      break;
     default:
       s = null;
   }
@@ -35,7 +38,7 @@ Icon.defaultProps = {
 Icon.propTypes = {
   icon: PropTypes.string,
   color: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["small", "medium", "big"])
+  size: PropTypes.oneOf(["small", "medium", "big", "huge"])
 };
 
 export default Icon;

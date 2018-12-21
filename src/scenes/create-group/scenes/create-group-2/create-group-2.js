@@ -5,12 +5,13 @@ import CreateGroup1 from "../create-group-1";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
 import ContentDiscover from "./components/content-discover";
+import ContentError from "./components/content-error";
 
 class CreateGroup2 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { groupName = "" },
+      data: { discoverability = undefined },
       setProgress,
       setComponent,
       setLeftIcon,
@@ -20,10 +21,10 @@ class CreateGroup2 extends Component {
     } = this.props;
 
     this.state = {
-      groupName: {
-        data: groupName,
+      discoverability: {
+        data: discoverability,
         error: false,
-        errorMsg: "You must enter a group name"
+        errorMsg: "You must choose an option"
       }
     };
 
@@ -34,7 +35,7 @@ class CreateGroup2 extends Component {
     setProgress({ progress: 2, total: 4 });
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(CreateGroup1, -1));
-    setButtonTitle("Finish");
+    setButtonTitle("Next");
     setButtonClick(this.goToNext.bind(this));
   }
 
@@ -45,15 +46,18 @@ class CreateGroup2 extends Component {
   }
 
   checkForm() {
-    const { groupName } = this.state;
+    const { discoverability } = this.state;
 
-    const groupNameCheck = this.checkInput("groupName", groupName.data);
+    const discoverabilityCheck = this.checkInput(
+      "discoverability",
+      discoverability.data
+    );
 
-    return groupNameCheck;
+    return discoverabilityCheck;
   }
 
   checkInput(id, value) {
-    if (value.length === 0)
+    if (value === undefined)
       this.setState(prev => ({
         [id]: {
           ...prev[id],
@@ -72,30 +76,45 @@ class CreateGroup2 extends Component {
     return false;
   }
 
-  handleChange(event) {
+  handleChange(newSelection) {
+    const { discoverability } = this.state;
     const { setData } = this.props;
-    const { id, value } = event.target;
 
-    setData({ [id]: value });
+    const value =
+      newSelection === discoverability.data ? undefined : newSelection;
+
+    setData({ discoverability: value });
 
     this.setState(
-      prev => ({ [id]: { ...prev[id], data: value } }),
-      this.checkInput.bind(this, id, value)
+      prev => ({
+        discoverability: {
+          ...prev.discoverability,
+          data: value
+        }
+      }),
+      this.checkInput.bind(this, "discoverability", value)
     );
   }
 
   render() {
+    const { discoverability } = this.state;
     return (
       <ContentContainer>
         <ContentTitle>Discoverability</ContentTitle>
-        <ContentDiscover />
+        <ContentDiscover
+          onClick={this.handleChange}
+          discoverability={discoverability.data}
+        />
+        {discoverability.error && (
+          <ContentError>{discoverability.errorMsg}</ContentError>
+        )}
       </ContentContainer>
     );
   }
 }
 
 CreateGroup2.defaultProps = {
-  data: undefined,
+  data: { discoverability: undefined },
   setData: undefined,
   setProgress: undefined,
   setLeftIcon: undefined,
@@ -106,7 +125,7 @@ CreateGroup2.defaultProps = {
 };
 
 CreateGroup2.propTypes = {
-  data: PropTypes.shape({ name: PropTypes.string, email: PropTypes.string }),
+  data: PropTypes.shape({ discoverability: PropTypes.number }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,

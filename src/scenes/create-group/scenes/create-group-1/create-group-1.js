@@ -93,7 +93,7 @@ class CreateGroup1 extends Component {
           placeholder="Group name"
           onChange={this.handleChange}
           value={groupName.data}
-          error={groupName.error ? groupName.errorMsg : null}
+          error={groupName.error && groupName.errorMsg}
         />
       </ContentContainer>
     );

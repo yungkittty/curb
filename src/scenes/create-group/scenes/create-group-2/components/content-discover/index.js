@@ -1,3 +1,3 @@
-import ContentOption from "./content-option";
+import ContentDiscover from "./content-discover";
 
-export default ContentOption;
+export default ContentDiscover;

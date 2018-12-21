@@ -1,10 +1,15 @@
 import styled from "styled-components";
-import Container from "../../../../../../../../../../components/container";
+import Button from "../../../../../../../../../../components/button";
 
-const OptionContainer = styled(Container)`
-  width: 50%;
-  height: 100%;
-  border: 1px solid red;
+const OptionContainer = styled(Button)`
+  padding: 0 22px;
+  flex: 1;
+
+  background: ${({ selected, theme }) => selected && theme.pimaryVariantColor};
+
+  &:hover {
+    background: ${({ theme }) => theme.pimaryVariantColor};
+  }
 `;
 
 export default OptionContainer;
