@@ -29,8 +29,8 @@ input.propTypes = {
 const Input = styled(input)`
   font-size: 18px;
   padding: 18px;
-  borderbottomwidth: 1px;
-  borderbottomcolor: #c8ccd4;
+  border-bottom-width: 1px;
+  border-bottom-color: #c8ccd4;
   ${props => (props.s ? "width: 240px" : null)};
 `;
 

@@ -8,9 +8,17 @@ class SignIn extends Component {
     super(props);
     const { setTitle, setButtonTitle, setButtonClick } = this.props;
 
+    this.state = { username: "", password: "" };
+
     setTitle("Sign in");
     setButtonTitle("Login");
     setButtonClick(this.customFunc.bind(this));
+
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(id, value) {
+    this.setState({ [id]: value });
   }
 
   customFunc() {
@@ -24,7 +32,7 @@ class SignIn extends Component {
   render() {
     return (
       <ContentContainer>
-        <ContentForm />
+        <ContentForm onChange={this.onChange} />
         <ContentRedirect />
       </ContentContainer>
     );
