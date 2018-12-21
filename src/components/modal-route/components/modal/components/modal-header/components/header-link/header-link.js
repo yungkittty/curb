@@ -1,26 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import ButtonContainer from "./components/button-container";
+import LinkContainer from "./components/link-container";
 import Icon from "../../../../../../../icon";
 
-const HeaderButton = ({ theme, icon, onClick }) => (
-  <ButtonContainer onClick={onClick}>
+const HeaderLink = ({ theme, icon, to }) => (
+  <LinkContainer to={to}>
     <Icon icon={icon} color={theme.fontColor} size="small" />
-  </ButtonContainer>
+  </LinkContainer>
 );
 
-HeaderButton.defaultProps = {
+HeaderLink.defaultProps = {
   theme: undefined,
   icon: undefined,
-  onClick: undefined
+  to: undefined
 };
 
-HeaderButton.propTypes = {
+HeaderLink.propTypes = {
   /* eslint-disable-next-line */
   theme: PropTypes.object,
   icon: PropTypes.string,
-  onClick: PropTypes.func
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };
 
-export default withTheme(HeaderButton);
+export default withTheme(HeaderLink);

@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import DotContainer from "./components/dot-container";
+import styled from "styled-components";
+import Container from "../../../../../../../../../../../container";
 
-const ProgressDot = ({ enabled }) => {
-  return <DotContainer enabled={enabled} />;
-};
-
-ProgressDot.propTypes = {
-  enabled: PropTypes.bool.isRequired
-};
+const ProgressDot = styled(Container)`
+  background: ${({ theme, enabled }) =>
+    enabled ? theme.pimaryColor : theme.secondaryColor};
+  height: 10px;
+  width: 10px;
+  margin: 0 9px;
+  border-radius: 5px;
+`;
 
 export default ProgressDot;

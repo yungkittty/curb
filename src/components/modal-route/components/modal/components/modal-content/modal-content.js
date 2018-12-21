@@ -1,30 +1,10 @@
-import React, { createElement } from "react";
-import PropTypes from "prop-types";
-import ContentContainer from "./components/content-container";
+import styled from "styled-components";
+import ContainerScroll from "../../../../../container-scroll";
 
-const ModalContent = ({
-  onChange,
-  data,
-  setParameter,
-  component,
-  render,
-  others
-}) => (
-  <ContentContainer>
-    {component
-      ? createElement(component, { onChange, data, setParameter, ...others })
-      : render
-        ? render(others)
-        : null}
-  </ContentContainer>
-);
-
-ModalContent.defaultProps = {
-  content: undefined
-};
-
-ModalContent.propTypes = {
-  content: PropTypes.func
-};
+const ModalContent = styled(ContainerScroll)`
+  display: flex;
+  flex: 1;
+  margin: 0 auto;
+`;
 
 export default ModalContent;
