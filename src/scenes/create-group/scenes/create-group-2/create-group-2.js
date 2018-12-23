@@ -98,6 +98,7 @@ class CreateGroup2 extends Component {
 
   render() {
     const { discoverability } = this.state;
+
     return (
       <ContentContainer>
         <ContentTitle>Discoverability</ContentTitle>

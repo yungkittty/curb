@@ -72,6 +72,8 @@ class CreateGroup1 extends Component {
     const { setData } = this.props;
     const { id, value } = event.target;
 
+    console.log(event);
+
     setData({ [id]: value });
 
     this.setState(
@@ -93,7 +95,7 @@ class CreateGroup1 extends Component {
           placeholder="Group name"
           onChange={this.handleChange}
           value={groupName.data}
-          error={groupName.error && groupName.errorMsg}
+          error={groupName.error ? groupName.errorMsg : null}
         />
       </ContentContainer>
     );
