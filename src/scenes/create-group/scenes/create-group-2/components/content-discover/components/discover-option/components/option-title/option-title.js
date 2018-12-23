@@ -8,7 +8,6 @@ const OptionTitle = styled(Text)`
     selected === false ? theme.secondaryColor : theme.fontVariantColor};
   display: flex;
   margin: auto;
-  width: fit-content;
   margin-top: 24px;
 `;
 

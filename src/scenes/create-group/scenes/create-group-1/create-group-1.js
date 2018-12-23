@@ -72,8 +72,6 @@ class CreateGroup1 extends Component {
     const { setData } = this.props;
     const { id, value } = event.target;
 
-    console.log(event);
-
     setData({ [id]: value });
 
     this.setState(

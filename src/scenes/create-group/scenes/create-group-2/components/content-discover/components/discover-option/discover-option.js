@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import OptionContainer from "./components/option-container";
@@ -15,13 +15,15 @@ const DiscoverOption = ({
   onClick
 }) => (
   <OptionContainer selected={selected} onClick={onClick}>
-    <OptionIcon
-      icon={icon}
-      size="huge"
-      color={selected === false ? theme.pimaryColor : theme.fontVariantColor}
-    />
-    <OptionTitle selected={selected}>{title}</OptionTitle>
-    <OptionDescription selected={selected}>{description}</OptionDescription>
+    <Fragment>
+      <OptionIcon
+        icon={icon}
+        size="huge"
+        color={selected === false ? theme.pimaryColor : theme.fontVariantColor}
+      />
+      <OptionTitle selected={selected}>{title}</OptionTitle>
+      <OptionDescription selected={selected}>{description}</OptionDescription>
+    </Fragment>
   </OptionContainer>
 );
 

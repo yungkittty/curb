@@ -16,14 +16,13 @@ const App = () => (
       <AppContainer>
         <AppNavigation />
         <ModalSwitch>
-          <Route exact path="/" />
           <Route path="/users/:id" component={User} />
           <Route />
         </ModalSwitch>
       </AppContainer>
       <ModalRoute path="/sign-in" component={SignIn} />
       <ModalRoute path="/sign-up" component={SignUp1} />
-      <ModalRoute path="/create-group" component={CreateGroup1} />
+      <ModalRoute path="/" component={CreateGroup1} />
     </Fragment>
   </Router>
 );
