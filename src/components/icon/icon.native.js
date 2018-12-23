@@ -16,7 +16,7 @@ const Icon = ({ icon, color, size }) => {
       s = 42;
       break;
     case "huge":
-      s = 56;
+      s = 52;
       break;
     default:
       s = null;

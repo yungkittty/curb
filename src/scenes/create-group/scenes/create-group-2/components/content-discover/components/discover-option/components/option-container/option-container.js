@@ -6,7 +6,7 @@ const OptionContainer = styled(Button)`
   flex: 1;
 
   background: ${({ selected, theme }) =>
-    selected ? theme.pimaryVariantColor : "red"};
+    selected ? theme.pimaryVariantColor : "transparent"};
 
   &:hover {
     background: ${({ theme }) => theme.pimaryVariantColor};
