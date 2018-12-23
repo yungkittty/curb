@@ -16,14 +16,11 @@ const DiscoverOption = ({ icon, title, description, selected, onClick }) => (
 );
 
 DiscoverOption.defaultProps = {
-  theme: undefined,
   selected: undefined,
   onClick: undefined
 };
 
 DiscoverOption.propTypes = {
-  /* eslint-disable-next-line */
-  theme: PropTypes.object,
   icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
