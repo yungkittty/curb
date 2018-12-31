@@ -23,7 +23,7 @@ OptionIcon.propTypes = {
   /* eslint-disable-next-line */
   theme: PropTypes.object.isRequired,
   icon: PropTypes.string.isRequired,
-  size: PropTypes.number,
+  size: PropTypes.string,
   selected: PropTypes.bool
 };
 
