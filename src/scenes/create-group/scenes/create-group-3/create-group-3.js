@@ -1,19 +1,18 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import PropTypes from "prop-types";
 /* eslint-disable-next-line */
-import CreateGroup1 from "../create-group-1";
-/* eslint-disable-next-line */
-import CreateGroup3 from "../create-group-3";
+import CreateGroup2 from "../create-group-2";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
-import ContentDiscover from "./components/content-discover";
+import ContentModules from "./components/content-modules";
 import ContentError from "./components/content-error";
 
-class CreateGroup2 extends Component {
+class CreateGroup3 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { discoverability = undefined },
+      data: { modulesList = [] },
       setProgress,
       setComponent,
       setLeftIcon,
@@ -23,10 +22,10 @@ class CreateGroup2 extends Component {
     } = this.props;
 
     this.state = {
-      discoverability: {
-        data: discoverability,
+      modulesList: {
+        data: modulesList,
         error: false,
-        errorMsg: "You must choose an option"
+        errorMsg: "You must choose at least one module"
       }
     };
 
@@ -34,9 +33,9 @@ class CreateGroup2 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setProgress({ progress: 2, total: 4 });
+    setProgress({ progress: 3, total: 4 });
     setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(CreateGroup1, -1));
+    setLeftClick(() => setComponent(CreateGroup2, -1));
     setButtonTitle("Next");
     setButtonClick(this.goToNext.bind(this));
   }
@@ -44,22 +43,19 @@ class CreateGroup2 extends Component {
   goToNext() {
     const { setComponent } = this.props;
 
-    if (this.checkForm()) setComponent(CreateGroup3, 1);
+    if (this.checkForm()) console.log("ok!");
   }
 
   checkForm() {
-    const { discoverability } = this.state;
+    const { modulesList } = this.state;
 
-    const discoverabilityCheck = this.checkInput(
-      "discoverability",
-      discoverability.data
-    );
+    const modulesListCheck = this.checkInput("modulesList", modulesList.data);
 
-    return discoverabilityCheck;
+    return modulesListCheck;
   }
 
   checkInput(id, value) {
-    if (value === undefined)
+    if (value.length === 0)
       this.setState(prev => ({
         [id]: {
           ...prev[id],
@@ -78,46 +74,48 @@ class CreateGroup2 extends Component {
     return false;
   }
 
-  handleChange(newSelection) {
-    const { discoverability } = this.state;
+  handleChange(selection) {
+    const { modulesList } = this.state;
     const { setData } = this.props;
 
-    const value =
-      newSelection === discoverability.data ? undefined : newSelection;
+    const value = modulesList.data;
 
-    setData({ discoverability: value });
+    if (_.includes(value, selection)) _.pull(value, selection);
+    else value.push(selection);
+
+    setData({ modulesList: value });
 
     this.setState(
       prev => ({
-        discoverability: {
-          ...prev.discoverability,
+        modulesList: {
+          ...prev.modulesList,
           data: value
         }
       }),
-      this.checkInput.bind(this, "discoverability", value)
+      this.checkInput.bind(this, "modulesList", value)
     );
   }
 
   render() {
-    const { discoverability } = this.state;
+    const { modulesList } = this.state;
 
     return (
       <ContentContainer>
-        <ContentTitle>Discoverability</ContentTitle>
-        <ContentDiscover
+        <ContentTitle>Modules</ContentTitle>
+        <ContentModules
           onClick={this.handleChange}
-          discoverability={discoverability.data}
+          modules={modulesList.data}
         />
-        {discoverability.error && (
-          <ContentError>{discoverability.errorMsg}</ContentError>
+        {modulesList.error && (
+          <ContentError>{modulesList.errorMsg}</ContentError>
         )}
       </ContentContainer>
     );
   }
 }
 
-CreateGroup2.defaultProps = {
-  data: { discoverability: undefined },
+CreateGroup3.defaultProps = {
+  data: { modulesList: undefined },
   setData: undefined,
   setProgress: undefined,
   setLeftIcon: undefined,
@@ -127,8 +125,8 @@ CreateGroup2.defaultProps = {
   setButtonClick: undefined
 };
 
-CreateGroup2.propTypes = {
-  data: PropTypes.shape({ discoverability: PropTypes.number }),
+CreateGroup3.propTypes = {
+  data: PropTypes.shape({ modulesList: PropTypes.array }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,
@@ -138,4 +136,4 @@ CreateGroup2.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default CreateGroup2;
+export default CreateGroup3;

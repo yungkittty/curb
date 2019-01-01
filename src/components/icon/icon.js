@@ -13,7 +13,7 @@ const Icon = ({ icon, color, size }) => {
       s = 32;
       break;
     case "big":
-      s = 48;
+      s = 42;
       break;
     case "huge":
       s = 78;

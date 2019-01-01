@@ -7,13 +7,13 @@ const Icon = ({ icon, color, size }) => {
   var s = null;
   switch (size) {
     case "small":
-      s = 20;
+      s = 18;
       break;
     case "medium":
       s = 28;
       break;
     case "big":
-      s = 42;
+      s = 32;
       break;
     case "huge":
       s = 52;
