@@ -13,7 +13,13 @@ class CreateGroup2 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { discoverability = undefined },
+      data: {
+        discoverability: {
+          value = undefined,
+          error = false,
+          errorMsg = "You must choose an option"
+        } = {}
+      },
       setProgress,
       setComponent,
       setLeftIcon,
@@ -24,9 +30,9 @@ class CreateGroup2 extends Component {
 
     this.state = {
       discoverability: {
-        data: discoverability,
-        error: false,
-        errorMsg: "You must choose an option"
+        value,
+        error,
+        errorMsg
       }
     };
 
@@ -48,69 +54,50 @@ class CreateGroup2 extends Component {
   }
 
   checkForm() {
-    const { discoverability } = this.state;
+    const {
+      discoverability: { value }
+    } = this.state;
 
-    const discoverabilityCheck = this.checkInput(
-      "discoverability",
-      discoverability.data
-    );
-
-    return discoverabilityCheck;
+    return this.checkInput("discoverability", value);
   }
 
   checkInput(id, value) {
-    if (value === undefined)
-      this.setState(prev => ({
-        [id]: {
-          ...prev[id],
-          error: true
-        }
-      }));
-    else {
-      this.setState(prev => ({
-        [id]: {
-          ...prev[id],
-          error: false
-        }
-      }));
-      return true;
-    }
-    return false;
-  }
-
-  handleChange(newSelection) {
-    const { discoverability } = this.state;
     const { setData } = this.props;
 
-    const value =
-      newSelection === discoverability.data ? undefined : newSelection;
-
-    setData({ discoverability: value });
-
-    this.setState(
-      prev => ({
-        discoverability: {
-          ...prev.discoverability,
-          data: value
+    this.setState(prev => {
+      const obj = {
+        [id]: {
+          ...prev[id],
+          value,
+          error: value === undefined
         }
-      }),
-      this.checkInput.bind(this, "discoverability", value)
-    );
+      };
+      setData(obj);
+      return obj;
+    });
+
+    return value !== undefined;
+  }
+
+  handleChange(clickValue) {
+    const {
+      discoverability: { value }
+    } = this.state;
+    const newValue = clickValue === value ? undefined : clickValue;
+
+    this.checkInput("discoverability", newValue);
   }
 
   render() {
-    const { discoverability } = this.state;
+    const {
+      discoverability: { value, error, errorMsg }
+    } = this.state;
 
     return (
       <ContentContainer>
         <ContentTitle>Discoverability</ContentTitle>
-        <ContentDiscover
-          onClick={this.handleChange}
-          discoverability={discoverability.data}
-        />
-        {discoverability.error && (
-          <ContentError>{discoverability.errorMsg}</ContentError>
-        )}
+        {error && <ContentError>{errorMsg}</ContentError>}
+        <ContentDiscover onClick={this.handleChange} discoverability={value} />
       </ContentContainer>
     );
   }
@@ -128,7 +115,7 @@ CreateGroup2.defaultProps = {
 };
 
 CreateGroup2.propTypes = {
-  data: PropTypes.shape({ discoverability: PropTypes.number }),
+  data: PropTypes.shape({ discoverability: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,

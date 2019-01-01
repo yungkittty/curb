@@ -12,7 +12,13 @@ class CreateGroup3 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { modulesList = [] },
+      data: {
+        modulesList: {
+          value = [],
+          error = false,
+          errorMsg = "You must choose at least one module"
+        } = {}
+      },
       setProgress,
       setComponent,
       setLeftIcon,
@@ -23,9 +29,9 @@ class CreateGroup3 extends Component {
 
     this.state = {
       modulesList: {
-        data: modulesList,
-        error: false,
-        errorMsg: "You must choose at least one module"
+        value,
+        error,
+        errorMsg
       }
     };
 
@@ -47,68 +53,53 @@ class CreateGroup3 extends Component {
   }
 
   checkForm() {
-    const { modulesList } = this.state;
+    const {
+      modulesList: { value }
+    } = this.state;
 
-    const modulesListCheck = this.checkInput("modulesList", modulesList.data);
-
-    return modulesListCheck;
+    return this.checkInput("modulesList", value);
   }
 
   checkInput(id, value) {
-    if (value.length === 0)
-      this.setState(prev => ({
-        [id]: {
-          ...prev[id],
-          error: true
-        }
-      }));
-    else {
-      this.setState(prev => ({
-        [id]: {
-          ...prev[id],
-          error: false
-        }
-      }));
-      return true;
-    }
-    return false;
-  }
-
-  handleChange(selection) {
-    const { modulesList } = this.state;
     const { setData } = this.props;
 
-    const value = modulesList.data;
-
-    if (_.includes(value, selection)) _.pull(value, selection);
-    else value.push(selection);
-
-    setData({ modulesList: value });
-
-    this.setState(
-      prev => ({
-        modulesList: {
-          ...prev.modulesList,
-          data: value
+    this.setState(prev => {
+      const obj = {
+        [id]: {
+          ...prev[id],
+          value,
+          error: value.length === 0
         }
-      }),
-      this.checkInput.bind(this, "modulesList", value)
-    );
+      };
+      setData(obj);
+      return obj;
+    });
+
+    return value.length !== 0;
+  }
+
+  handleChange(clickValue) {
+    const {
+      modulesList: { value }
+    } = this.state;
+    const newValue = value;
+
+    if (_.includes(newValue, clickValue)) _.pull(newValue, clickValue);
+    else newValue.push(clickValue);
+
+    this.checkInput("modulesList", newValue);
   }
 
   render() {
-    const { modulesList } = this.state;
+    const {
+      modulesList: { value, error, errorMsg }
+    } = this.state;
 
     return (
       <ContentContainer>
         <ContentTitle>Modules</ContentTitle>
-        <ContentModules
-          onClick={this.handleChange}
-          modules={modulesList.data}
-        />
-        {modulesList.error && (
-          <ContentError>{modulesList.errorMsg}</ContentError>
-        )}
+        {error && <ContentError>{errorMsg}</ContentError>}
+        <ContentModules onClick={this.handleChange} modules={value} />
       </ContentContainer>
     );
   }
@@ -126,7 +117,7 @@ CreateGroup3.defaultProps = {
 };
 
 CreateGroup3.propTypes = {
-  data: PropTypes.shape({ modulesList: PropTypes.array }),
+  data: PropTypes.shape({ modulesList: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,

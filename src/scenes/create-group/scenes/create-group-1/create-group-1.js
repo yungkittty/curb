@@ -11,7 +11,13 @@ class CreateGroup1 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { groupName = "" },
+      data: {
+        groupName: {
+          value = "",
+          error = false,
+          errorMsg = "You must enter a group name"
+        } = {}
+      },
       setProgress,
       setButtonTitle,
       setButtonClick
@@ -19,9 +25,9 @@ class CreateGroup1 extends Component {
 
     this.state = {
       groupName: {
-        data: groupName,
-        error: false,
-        errorMsg: "You must enter a group name"
+        value,
+        error,
+        errorMsg
       }
     };
 
@@ -41,47 +47,41 @@ class CreateGroup1 extends Component {
   }
 
   checkForm() {
-    const { groupName } = this.state;
+    const {
+      groupName: { value }
+    } = this.state;
 
-    const groupNameCheck = this.checkInput("groupName", groupName.data);
-
-    return groupNameCheck;
+    return this.checkInput("groupName", value);
   }
 
   checkInput(id, value) {
-    if (value.length === 0)
-      this.setState(prev => ({
+    const { setData } = this.props;
+
+    this.setState(prev => {
+      const obj = {
         [id]: {
           ...prev[id],
-          error: true
+          value,
+          error: value.length === 0
         }
-      }));
-    else {
-      this.setState(prev => ({
-        [id]: {
-          ...prev[id],
-          error: false
-        }
-      }));
-      return true;
-    }
-    return false;
+      };
+      setData(obj);
+      return obj;
+    });
+
+    return value.length !== 0;
   }
 
   handleChange(event) {
-    const { setData } = this.props;
     const { id, value } = event.target;
 
-    setData({ [id]: value });
-
-    this.setState(
-      prev => ({ [id]: { ...prev[id], data: value } }),
-      this.checkInput.bind(this, id, value)
-    );
+    this.checkInput(id, value);
   }
 
   render() {
-    const { groupName } = this.state;
+    const {
+      groupName: { value, error, errorMsg }
+    } = this.state;
 
     return (
       <ContentContainer>
@@ -92,8 +92,8 @@ class CreateGroup1 extends Component {
           id="groupName"
           placeholder="Group name"
           onChange={this.handleChange}
-          value={groupName.data}
-          error={groupName.error ? groupName.errorMsg : null}
+          value={value}
+          error={error ? errorMsg : null}
         />
       </ContentContainer>
     );
@@ -110,7 +110,7 @@ CreateGroup1.defaultProps = {
 };
 
 CreateGroup1.propTypes = {
-  data: PropTypes.shape({ name: PropTypes.string, email: PropTypes.string }),
+  data: PropTypes.shape({ groupName: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setComponent: PropTypes.func,
