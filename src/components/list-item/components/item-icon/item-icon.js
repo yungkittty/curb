@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import IconContainer from "./components/icon-container";
-import Icon from "../../../../../../../../../../components/icon";
+import Icon from "../../../icon";
 
 const ItemIcon = ({ theme, icon }) => (
   <IconContainer>

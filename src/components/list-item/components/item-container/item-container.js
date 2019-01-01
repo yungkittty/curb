@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Button from "../../../../../../../../../../components/button";
-import { screenWidthsMedias } from "../../../../../../../../../../configurations/screen";
+import Button from "../../../button";
+import { screenWidthsMedias } from "../../../../configurations/screen";
 
 const ItemContainer = styled(Button)`
   position: relative;

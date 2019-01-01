@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Text from "../../../../../../../../../../../../components/text";
+import Text from "../../../../../text";
 
 const PreviewDescription = styled(Text)`
   line-height: 14;

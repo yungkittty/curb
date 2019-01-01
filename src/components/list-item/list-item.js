@@ -5,7 +5,7 @@ import ItemIcon from "./components/item-icon";
 import ItemPreview from "./components/item-preview";
 import ItemSelection from "./components/item-selection";
 
-const ModulesItem = ({ icon, title, description, selected, onClick }) => (
+const ListItem = ({ icon, title, description, selected, onClick }) => (
   <ItemContainer selected={selected} onClick={onClick}>
     <React.Fragment>
       <ItemIcon icon={icon} />
@@ -15,7 +15,7 @@ const ModulesItem = ({ icon, title, description, selected, onClick }) => (
   </ItemContainer>
 );
 
-ModulesItem.defaultProps = {
+ListItem.defaultProps = {
   icon: undefined,
   title: undefined,
   description: undefined,
@@ -23,7 +23,7 @@ ModulesItem.defaultProps = {
   onClick: undefined
 };
 
-ModulesItem.propTypes = {
+ListItem.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
@@ -31,4 +31,4 @@ ModulesItem.propTypes = {
   onClick: PropTypes.func
 };
 
-export default ModulesItem;
+export default ListItem;

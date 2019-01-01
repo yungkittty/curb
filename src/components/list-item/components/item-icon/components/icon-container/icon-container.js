@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Container from "../../../../../../../../../../../../components/container";
-import { screenWidthsMedias } from "../../../../../../../../../../../../configurations/screen";
+import Container from "../../../../../container";
+import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const IconContainer = styled(Container)`
   display: flex;

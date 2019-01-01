@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ModulesContainer from "./components/modules-container";
 import ListFlat from "../../../../../../components/list-flat";
-import ModulesItem from "./components/modules-item";
+import ListItem from "../../../../../../components/list-item";
 
 const modulesData = [
   {
@@ -40,7 +40,7 @@ const ContentModules = ({ onClick, modules }) => (
       extraData={{ modules }}
       keyExtractor={module => module.id}
       renderItem={({ item: module }) => (
-        <ModulesItem
+        <ListItem
           icon={module.icon}
           title={module.title}
           description={module.description}

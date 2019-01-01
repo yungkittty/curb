@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import SelectionContainer from "./components/selection-container";
-import Icon from "../../../../../../../../../../components/icon";
+import Icon from "../../../icon";
 import SelectionEmpty from "./components/selection-empty/selection-empty";
 
 const ItemSelection = ({ theme, selected }) => (
