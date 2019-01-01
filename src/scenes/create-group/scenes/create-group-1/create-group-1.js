@@ -12,7 +12,7 @@ class CreateGroup1 extends Component {
     super(props);
     const {
       data: {
-        groupName: {
+        name: {
           value = "",
           error = false,
           errorMsg = "You must enter a group name"
@@ -24,7 +24,7 @@ class CreateGroup1 extends Component {
     } = this.props;
 
     this.state = {
-      groupName: {
+      name: {
         value,
         error,
         errorMsg
@@ -48,10 +48,10 @@ class CreateGroup1 extends Component {
 
   checkForm() {
     const {
-      groupName: { value }
+      name: { value }
     } = this.state;
 
-    return this.checkInput("groupName", value);
+    return this.checkInput("name", value);
   }
 
   checkInput(id, value) {
@@ -80,7 +80,7 @@ class CreateGroup1 extends Component {
 
   render() {
     const {
-      groupName: { value, error, errorMsg }
+      name: { value, error, errorMsg }
     } = this.state;
 
     return (
@@ -89,7 +89,7 @@ class CreateGroup1 extends Component {
         <SelectImage />
         <Input
           size="modal"
-          id="groupName"
+          id="name"
           placeholder="Group name"
           onChange={this.handleChange}
           value={value}
@@ -110,7 +110,7 @@ CreateGroup1.defaultProps = {
 };
 
 CreateGroup1.propTypes = {
-  data: PropTypes.shape({ groupName: PropTypes.object }),
+  data: PropTypes.shape({ name: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setComponent: PropTypes.func,
