@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Container from "../../../../../container";
-import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const PreviewContainer = styled(Container)`
   flex: 1;
@@ -9,9 +8,10 @@ const PreviewContainer = styled(Container)`
   margin-bottom: auto;
   margin-left: 4px;
 
-  ${screenWidthsMedias.large`
-    height: fit-content;
-  `}
+  ${({ titleCentered }) =>
+    titleCentered
+      ? "position: absolute; display: flex; margin-left: 0px; align-items: center; justify-content: center; width: 100%; height: 100%;"
+      : null};
 `;
 
 export default PreviewContainer;

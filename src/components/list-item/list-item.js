@@ -5,12 +5,30 @@ import ItemIcon from "./components/item-icon";
 import ItemPreview from "./components/item-preview";
 import ItemSelection from "./components/item-selection";
 
-const ListItem = ({ icon, title, description, selected, onClick }) => (
-  <ItemContainer selected={selected} onClick={onClick}>
+const ListItem = ({
+  icon,
+  title,
+  titleColor,
+  backgroundColor,
+  description,
+  selected,
+  onClick,
+  uniqueSelection
+}) => (
+  <ItemContainer
+    backgroundColor={backgroundColor}
+    selected={selected}
+    onClick={onClick}
+  >
     <React.Fragment>
       <ItemIcon icon={icon} />
-      <ItemPreview title={title} description={description} />
-      <ItemSelection selected={selected} />
+      <ItemPreview
+        title={title}
+        titleColor={titleColor}
+        titleCentered={!icon && !description}
+        description={description}
+      />
+      <ItemSelection selected={selected} uniqueSelection={uniqueSelection} />
     </React.Fragment>
   </ItemContainer>
 );
@@ -20,7 +38,8 @@ ListItem.defaultProps = {
   title: undefined,
   description: undefined,
   selected: undefined,
-  onClick: undefined
+  onClick: undefined,
+  uniqueSelection: undefined
 };
 
 ListItem.propTypes = {
@@ -28,7 +47,8 @@ ListItem.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   selected: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  uniqueSelection: PropTypes.bool
 };
 
 export default ListItem;

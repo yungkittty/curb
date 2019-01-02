@@ -9,14 +9,15 @@ const ItemContainer = styled(Button)`
   width: 100%;
   height: 100px;
 
-  background: ${({ selected, theme }) =>
-    selected ? theme.pimaryVariantColor : "transparent"};
+  background: ${({ backgroundColor, selected, theme }) =>
+    backgroundColor || (selected ? theme.pimaryVariantColor : "transparent")};
 
   ${screenWidthsMedias.medium`
     height: 125px;
 
     &:hover {
-      background: ${({ theme }) => theme.pimaryVariantColor};
+      background: ${({ backgroundColor, theme }) =>
+        !backgroundColor ? theme.pimaryVariantColor : null};
     }
   `}
 `;

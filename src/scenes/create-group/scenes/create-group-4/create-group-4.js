@@ -2,23 +2,21 @@ import React, { Component } from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 /* eslint-disable-next-line */
-import CreateGroup2 from "../create-group-2";
-/* eslint-disable-next-line */
-import CreateGroup4 from "../create-group-4";
+import CreateGroup3 from "../create-group-3";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
-import ContentModules from "./components/content-modules";
+import ContentThemes from "./components/content-themes";
 import ContentError from "./components/content-error";
 
-class CreateGroup3 extends Component {
+class CreateGroup4 extends Component {
   constructor(props) {
     super(props);
     const {
       data: {
-        modulesList: {
-          value = [],
+        theme: {
+          value = undefined,
           error = false,
-          errorMsg = "You must choose at least one module"
+          errorMsg = "You must choose a theme"
         } = {}
       },
       setProgress,
@@ -30,7 +28,7 @@ class CreateGroup3 extends Component {
     } = this.props;
 
     this.state = {
-      modulesList: {
+      theme: {
         value,
         error,
         errorMsg
@@ -41,25 +39,25 @@ class CreateGroup3 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setProgress({ progress: 3, total: 4 });
+    setProgress({ progress: 4, total: 4 });
     setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(CreateGroup2, -1));
-    setButtonTitle("Next");
+    setLeftClick(() => setComponent(CreateGroup3, -1));
+    setButtonTitle("Finish");
     setButtonClick(this.goToNext.bind(this));
   }
 
   goToNext() {
     const { setComponent } = this.props;
 
-    if (this.checkForm()) setComponent(CreateGroup4, 1);
+    if (this.checkForm()) console.log("ok!");
   }
 
   checkForm() {
     const {
-      modulesList: { value }
+      theme: { value }
     } = this.state;
 
-    return this.checkInput("modulesList", value);
+    return this.checkInput("theme", value);
   }
 
   checkInput(id, value) {
@@ -70,45 +68,42 @@ class CreateGroup3 extends Component {
         [id]: {
           ...prev[id],
           value,
-          error: value.length === 0
+          error: value === undefined
         }
       };
       setData(obj);
       return obj;
     });
 
-    return value.length !== 0;
+    return value !== undefined;
   }
 
   handleChange(clickValue) {
     const {
-      modulesList: { value }
+      theme: { value }
     } = this.state;
-    const newValue = value;
+    const newValue = clickValue === value ? undefined : clickValue;
 
-    if (_.includes(newValue, clickValue)) _.pull(newValue, clickValue);
-    else newValue.push(clickValue);
-
-    this.checkInput("modulesList", newValue);
+    this.checkInput("theme", newValue);
   }
 
   render() {
     const {
-      modulesList: { value, error, errorMsg }
+      theme: { value, error, errorMsg }
     } = this.state;
 
     return (
       <ContentContainer>
-        <ContentTitle>Modules</ContentTitle>
+        <ContentTitle>Theme</ContentTitle>
         {error && <ContentError>{errorMsg}</ContentError>}
-        <ContentModules onClick={this.handleChange} modules={value} />
+        <ContentThemes onClick={this.handleChange} value={value} />
       </ContentContainer>
     );
   }
 }
 
-CreateGroup3.defaultProps = {
-  data: { modulesList: undefined },
+CreateGroup4.defaultProps = {
+  data: { theme: undefined },
   setData: undefined,
   setProgress: undefined,
   setLeftIcon: undefined,
@@ -118,8 +113,8 @@ CreateGroup3.defaultProps = {
   setButtonClick: undefined
 };
 
-CreateGroup3.propTypes = {
-  data: PropTypes.shape({ modulesList: PropTypes.object }),
+CreateGroup4.propTypes = {
+  data: PropTypes.shape({ theme: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,
@@ -129,4 +124,4 @@ CreateGroup3.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default CreateGroup3;
+export default CreateGroup4;

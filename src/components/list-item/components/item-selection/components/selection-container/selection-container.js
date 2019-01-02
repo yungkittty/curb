@@ -3,6 +3,8 @@ import Container from "../../../../../container";
 import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const SelectionContainer = styled(Container)`
+  position: absolute;
+  right: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
