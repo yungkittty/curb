@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ComponentContainer from "./components/component-container";
 
 const ContentComponent = ({ component, props }) => (
-  <ComponentContainer>
+  <ComponentContainer style={{ width: "100%" }}>
     {component && createElement(component, props)}
   </ComponentContainer>
 );
