@@ -1,4 +1,5 @@
-import { all, takeLatest, call, put } from "redux-saga/effects";
+import { all, takeLatest, select, call, put } from "redux-saga/effects";
+import { currentUserSelectors } from "../current-user";
 import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
 import signInApi from "./sign-in-api";
@@ -12,9 +13,10 @@ function* signInRequestSaga({ payload }) {
   }
 }
 
-function* signOutRequestSaga({ payload }) {
+function* signOutRequestSaga() {
   try {
-    yield call(signInApi.signOut, payload);
+    const token = yield select(currentUserSelectors.getCurrentUserToken);
+    yield call(signInApi.signOut, token);
     yield put(signInActions.signOutSuccess());
   } catch (error) {
     yield put(signInActions.signOutFailure(error));
