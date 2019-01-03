@@ -15,11 +15,15 @@ const ItemPreview = ({ title, titleColor, titleCentered, description }) => (
 
 ItemPreview.defaultProps = {
   title: undefined,
+  titleColor: undefined,
+  titleCentered: undefined,
   description: undefined
 };
 
 ItemPreview.propTypes = {
   title: PropTypes.string,
+  titleColor: PropTypes.string,
+  titleCentered: PropTypes.bool,
   description: PropTypes.string
 };
 

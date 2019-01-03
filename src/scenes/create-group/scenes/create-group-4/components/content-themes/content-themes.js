@@ -36,7 +36,6 @@ const themesData = [
 const ContentThemes = ({ onClick, value }) => (
   <ThemesContainer>
     <ListFlat
-      showsVerticalScrollIndicator={false}
       data={themesData}
       extraData={{ value }}
       keyExtractor={theme => theme.id}
