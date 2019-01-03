@@ -11,7 +11,7 @@ const OptionDescription = styled(Text)`
   text-align: center;
   margin: auto;
   margin-top: -16px;
-  line-height: 19;
+  line-height: 22;
 
   ${screenWidthsMedias.large`
     font-size: 18px;
