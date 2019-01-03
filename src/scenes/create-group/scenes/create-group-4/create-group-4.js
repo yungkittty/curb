@@ -35,6 +35,7 @@ class CreateGroup4 extends Component {
       }
     };
 
+    this.sumbit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -47,9 +48,16 @@ class CreateGroup4 extends Component {
   }
 
   goToNext() {
-    const { setComponent } = this.props;
+    if (this.checkForm()) this.submit();
+  }
 
-    if (this.checkForm()) console.log("ok!");
+  submit() {
+    const {
+      data: { ...others },
+      createGroup
+    } = this.props;
+
+    createGroup({ ...others });
   }
 
   checkForm() {

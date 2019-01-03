@@ -1,3 +1,3 @@
-import CreateGroup4 from "./create-group-4";
+import CreateGroup4Container from "./create-group-4-container";
 
-export default CreateGroup4;
+export default CreateGroup4Container;
