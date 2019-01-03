@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+/* eslint-disable-next-line */
 import SignUp2 from "../sign-up-2";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
@@ -10,23 +11,26 @@ class SignUp1 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { name = "", email = "" },
+      data: {
+        name = {
+          value: "",
+          error: false,
+          errorMsg: "You must enter a username"
+        },
+        email = {
+          value: "",
+          error: false,
+          errorMsg: "You must enter a mail"
+        }
+      },
       setProgress,
       setButtonTitle,
       setButtonClick
     } = this.props;
 
     this.state = {
-      name: {
-        data: name,
-        error: false,
-        errorMsg: "You must enter a username"
-      },
-      email: {
-        data: email,
-        error: false,
-        errorMsg: "You must enter a mail"
-      }
+      name,
+      email
     };
 
     this.checkForm = this.checkForm.bind(this);
@@ -47,42 +51,34 @@ class SignUp1 extends Component {
   checkForm() {
     const { name, email } = this.state;
 
-    const nameCheck = this.checkInput("name", name.data);
-    const emailCheck = this.checkInput("email", email.data);
+    const nameCheck = this.checkInput("name", name.value);
+    const emailCheck = this.checkInput("email", email.value);
 
     return nameCheck && emailCheck;
   }
 
   checkInput(id, value) {
-    if (value.length === 0)
-      this.setState(prev => ({
+    const { setData } = this.props;
+
+    this.setState(prev => {
+      const obj = {
         [id]: {
           ...prev[id],
-          error: true
+          value,
+          error: value.length === 0
         }
-      }));
-    else {
-      this.setState(prev => ({
-        [id]: {
-          ...prev[id],
-          error: false
-        }
-      }));
-      return true;
-    }
-    return false;
+      };
+      setData(obj);
+      return obj;
+    });
+
+    return value.length !== 0;
   }
 
   handleChange(event) {
-    const { setData } = this.props;
     const { id, value } = event.target;
 
-    setData({ [id]: value });
-
-    this.setState(
-      prev => ({ [id]: { ...prev[id], data: value } }),
-      this.checkInput.bind(this, id, value)
-    );
+    this.checkInput(id, value);
   }
 
   render() {
@@ -97,7 +93,7 @@ class SignUp1 extends Component {
           id="name"
           placeholder="Username"
           onChange={this.handleChange}
-          value={name.data}
+          value={name.value}
           error={name.error ? name.errorMsg : null}
         />
         <Input
@@ -105,7 +101,7 @@ class SignUp1 extends Component {
           id="email"
           placeholder="Mail address"
           onChange={this.handleChange}
-          value={email.data}
+          value={email.value}
           error={email.error ? email.errorMsg : null}
         />
       </ContentContainer>
@@ -123,7 +119,7 @@ SignUp1.defaultProps = {
 };
 
 SignUp1.propTypes = {
-  data: PropTypes.shape({ name: PropTypes.string, email: PropTypes.string }),
+  data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setComponent: PropTypes.func,
