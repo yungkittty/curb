@@ -12,8 +12,9 @@ const ListItem = ({
   backgroundColor,
   description,
   selected,
-  onClick,
-  uniqueSelection
+  selectedColorAlternate,
+  uniqueSelection,
+  onClick
 }) => (
   <ItemContainer
     backgroundColor={backgroundColor}
@@ -28,7 +29,11 @@ const ListItem = ({
         titleCentered={!icon && !description}
         description={description}
       />
-      <ItemSelection selected={selected} uniqueSelection={uniqueSelection} />
+      <ItemSelection
+        selected={selected}
+        uniqueSelection={uniqueSelection}
+        selectedColorAlternate={selectedColorAlternate}
+      />
     </React.Fragment>
   </ItemContainer>
 );
@@ -36,19 +41,25 @@ const ListItem = ({
 ListItem.defaultProps = {
   icon: undefined,
   title: undefined,
+  titleColor: undefined,
+  backgroundColor: undefined,
   description: undefined,
   selected: undefined,
-  onClick: undefined,
-  uniqueSelection: undefined
+  selectedColorAlternate: undefined,
+  uniqueSelection: undefined,
+  onClick: undefined
 };
 
 ListItem.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
+  titleColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
   description: PropTypes.string,
   selected: PropTypes.bool,
-  onClick: PropTypes.func,
-  uniqueSelection: PropTypes.bool
+  selectedColorAlternate: PropTypes.bool,
+  uniqueSelection: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 export default ListItem;

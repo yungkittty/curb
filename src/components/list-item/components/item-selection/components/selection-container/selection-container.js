@@ -11,10 +11,13 @@ const SelectionContainer = styled(Container)`
   width: 75px;
   height: 100px;
 
+  opacity: ${({ selected, selectedColorAlternate }) =>
+    selectedColorAlternate ? (selected ? "0.4" : "0.15") : "1"};
+
   ${screenWidthsMedias.medium`
     width: 94px;
     height: 125px;
-  `}
+  `};
 `;
 
 export default SelectionContainer;
