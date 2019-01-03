@@ -30,7 +30,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload))
+  getCurrentUser: payload =>
+    dispatch(usersActions.getUserRequest(payload))
 });
 
 export default connect(
