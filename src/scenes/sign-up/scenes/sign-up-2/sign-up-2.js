@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+/* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
@@ -9,7 +10,18 @@ class SignUp2 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: { password = "", confirmPassword = "" },
+      data: {
+        password = {
+          value: "",
+          error: false,
+          errorMsg: "You must enter a password"
+        },
+        confirmPassword = {
+          value: "",
+          error: false,
+          errorMsg: "Passwords don't match"
+        }
+      },
       setProgress,
       setComponent,
       setLeftIcon,
@@ -19,16 +31,8 @@ class SignUp2 extends Component {
     } = this.props;
 
     this.state = {
-      password: {
-        data: password,
-        error: false,
-        errorMsg: "You must enter a password"
-      },
-      confirmPassword: {
-        data: confirmPassword,
-        error: false,
-        errorMsg: "Passwords don't match"
-      }
+      password,
+      confirmPassword
     };
 
     this.sumbit = this.submit.bind(this);
@@ -49,59 +53,52 @@ class SignUp2 extends Component {
 
   submit() {
     const {
-      data: { confirmPassword, ...others },
+      data: { name, email, password },
       signUp
     } = this.props;
 
-    signUp({ ...others });
+    signUp({ name: name.value, email: email.value, password: password.value });
   }
 
   checkForm() {
     const { password, confirmPassword } = this.state;
 
-    const passwordCheck = this.checkInput("password", password.data);
+    const passwordCheck = this.checkInput("password", password.value);
     const confirmPasswordCheck = this.checkInput(
       "confirmPassword",
-      confirmPassword.data
+      confirmPassword.value
     );
 
     return passwordCheck && confirmPasswordCheck;
   }
 
   checkInput(id, value) {
-    const { password, confirmPassword } = this.state;
-    if (
+    const { password } = this.state;
+    const { setData } = this.props;
+
+    const error =
       value.length === 0 ||
-      (id === "confirmPassword" && password.data !== confirmPassword.data)
-    )
-      this.setState(prev => ({
+      (id === "confirmPassword" && password.value !== value);
+
+    this.setState(prev => {
+      const obj = {
         [id]: {
           ...prev[id],
-          error: true
+          value,
+          error
         }
-      }));
-    else {
-      this.setState(prev => ({
-        [id]: {
-          ...prev[id],
-          error: false
-        }
-      }));
-      return true;
-    }
-    return false;
+      };
+      setData(obj);
+      return obj;
+    });
+
+    return !error;
   }
 
   handleChange(event) {
-    const { setData } = this.props;
     const { id, value } = event.target;
 
-    setData({ [id]: value });
-
-    this.setState(
-      prev => ({ [id]: { ...prev[id], data: value } }),
-      this.checkInput.bind(this, id, value)
-    );
+    this.checkInput(id, value);
   }
 
   render() {
@@ -115,7 +112,7 @@ class SignUp2 extends Component {
           id="password"
           placeholder="Password"
           type="password"
-          value={password.data}
+          value={password.value}
           onChange={this.handleChange}
           error={password.error ? password.errorMsg : null}
         />
@@ -124,7 +121,7 @@ class SignUp2 extends Component {
           id="confirmPassword"
           placeholder="Confirm password"
           type="password"
-          value={confirmPassword.data}
+          value={confirmPassword.value}
           onChange={this.handleChange}
           error={confirmPassword.error ? confirmPassword.errorMsg : null}
         />
@@ -135,6 +132,7 @@ class SignUp2 extends Component {
 
 SignUp2.defaultProps = {
   data: undefined,
+  signUp: () => null,
   setData: undefined,
   setProgress: undefined,
   setLeftIcon: undefined,
@@ -146,9 +144,10 @@ SignUp2.defaultProps = {
 
 SignUp2.propTypes = {
   data: PropTypes.shape({
-    password: PropTypes.string,
-    confirmPassword: PropTypes.string
+    password: PropTypes.object,
+    confirmPassword: PropTypes.object
   }),
+  signUp: PropTypes.func,
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,

@@ -15,7 +15,8 @@ const InputField = styled(inputField)`
   font-size: 18px;
   padding: 18px;
   border-bottom-width: 1px;
-  border-bottom-color: ${props => (props.error ? "#eb5757" : "#c8ccd4")};
+  border-bottom-color: ${({ theme, error }) =>
+    error ? theme.errorColor : theme.pimaryColor};
   width: 100%;
 `;
 
