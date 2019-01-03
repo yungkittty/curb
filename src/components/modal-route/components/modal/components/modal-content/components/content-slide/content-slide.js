@@ -24,16 +24,18 @@ const ContentSlide = WrappedComponent =>
       modalContent.style.transform =
         flow === 1 ? "translateX(0%)" : "translateX(-50%)";
 
-      this.setState({
-        oldComponent: component,
-        component: newComponent
-      });
-
-      setTimeout(() => {
-        modalContent.style.transition = "all 0.45s ease-in-out";
-        modalContent.style.transform =
-          flow === 1 ? "translateX(-50%)" : "translateX(0%)";
-      }, 30);
+      this.setState(
+        {
+          oldComponent: component,
+          component: newComponent
+        },
+        () =>
+          setTimeout(() => {
+            modalContent.style.transition = "all 0.45s ease-in-out";
+            modalContent.style.transform =
+              flow === 1 ? "translateX(-50%)" : "translateX(0%)";
+          }, 80)
+      );
     }
 
     render() {
