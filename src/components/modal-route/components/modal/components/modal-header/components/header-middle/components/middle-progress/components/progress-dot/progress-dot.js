@@ -3,7 +3,7 @@ import Container from "../../../../../../../../../../../container";
 
 const ProgressDot = styled(Container)`
   background: ${({ theme, enabled }) =>
-    enabled ? theme.pimaryColor : theme.secondaryColor};
+    enabled ? theme.primaryColor : theme.secondaryColor};
   height: 10px;
   width: 10px;
   margin: 0 9px;

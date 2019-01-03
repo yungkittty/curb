@@ -21,7 +21,7 @@ const AppNavigation = ({
       <NavigationLinkIcon
         icon="user"
         size="medium"
-        color={theme.pimaryColor}
+        color={theme.primaryColor}
         to={{ pathname: "/sign-in", state: { isModal: true } }}
       />
     ) : (
@@ -52,7 +52,7 @@ const AppNavigation = ({
     <NavigationLinkIcon
       icon="cog"
       size="medium"
-      color={theme.pimaryColor}
+      color={theme.primaryColor}
       to={{ pathname: "/settings", state: { isModal: true } }}
     />
   </NavigationContainer>
