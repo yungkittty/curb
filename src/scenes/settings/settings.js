@@ -32,12 +32,12 @@ class Settings extends Component {
           showsVerticalScrollIndicator={false}
           data={settingsData}
           extraData={{ settingsData }}
-          keyExtractor={setting => setting.id}
-          renderItem={({ item: setting }) => (
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
             <ListItem
-              title={setting.title}
-              description={setting.description}
-              onClick={() => setComponent(setting.scene, 1)}
+              title={item.title}
+              description={item.description}
+              onClick={() => setComponent(item.scene, 1)}
             />
           )}
         />
