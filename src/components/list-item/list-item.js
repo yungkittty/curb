@@ -13,7 +13,7 @@ const ListItem = ({
   description,
   selected,
   selectedColorAlternate,
-  uniqueSelection,
+  selectionType,
   onClick
 }) => (
   <ItemContainer
@@ -27,13 +27,16 @@ const ListItem = ({
         title={title}
         titleColor={titleColor}
         titleCentered={!icon && !description}
+        icon={icon}
         description={description}
       />
-      <ItemSelection
-        selected={selected}
-        uniqueSelection={uniqueSelection}
-        selectedColorAlternate={selectedColorAlternate}
-      />
+      {selectionType !== undefined && (
+        <ItemSelection
+          selected={selected}
+          selectionType={selectionType}
+          selectedColorAlternate={selectedColorAlternate}
+        />
+      )}
     </React.Fragment>
   </ItemContainer>
 );
@@ -46,7 +49,7 @@ ListItem.defaultProps = {
   description: undefined,
   selected: undefined,
   selectedColorAlternate: undefined,
-  uniqueSelection: undefined,
+  selectionType: undefined,
   onClick: undefined
 };
 
@@ -58,7 +61,7 @@ ListItem.propTypes = {
   description: PropTypes.string,
   selected: PropTypes.bool,
   selectedColorAlternate: PropTypes.bool,
-  uniqueSelection: PropTypes.bool,
+  selectionType: PropTypes.bool,
   onClick: PropTypes.func
 };
 

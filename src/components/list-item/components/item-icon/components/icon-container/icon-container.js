@@ -6,11 +6,11 @@ const IconContainer = styled(Container)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: ${({ icon }) => (icon ? "100" : "20")}px;
   height: 100px;
 
   ${screenWidthsMedias.medium`
-    width: 125px;
+  width: ${({ icon }) => (icon ? "125" : "45")}px;
     height: 125px;
   `}
 `;
