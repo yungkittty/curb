@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import _ from "lodash";
 import PropTypes from "prop-types";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";

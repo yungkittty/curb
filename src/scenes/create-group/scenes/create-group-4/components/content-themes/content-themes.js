@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import ThemesContainer from "./components/themes-container";
