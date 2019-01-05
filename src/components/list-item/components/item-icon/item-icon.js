@@ -5,7 +5,7 @@ import IconContainer from "./components/icon-container";
 import Icon from "../../../icon";
 
 const ItemIcon = ({ theme, icon }) => (
-  <IconContainer>
+  <IconContainer icon={icon}>
     <Icon icon={icon} color={theme.fontVariantColor} size="big" />
   </IconContainer>
 );

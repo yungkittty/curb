@@ -45,6 +45,7 @@ const ContentModules = ({ onClick, modules }) => (
           title={module.title}
           description={module.description}
           selected={_.includes(modules, module.id)}
+          selectionType={false}
           onClick={() => onClick(module.id)}
         />
       )}

@@ -45,8 +45,8 @@ const ContentThemes = ({ onClick, value }) => (
           titleColor="#ffffff"
           backgroundColor={theme.backgroundColor}
           selected={theme.id === value}
+          selectionType={true}
           selectedColorAlternate
-          uniqueSelection
           onClick={() => onClick(theme.id)}
         />
       )}

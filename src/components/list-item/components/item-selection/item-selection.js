@@ -9,7 +9,7 @@ const ItemSelection = ({
   theme,
   selected,
   selectedColorAlternate,
-  uniqueSelection
+  selectionType
 }) => (
   <SelectionContainer
     selected={selected}
@@ -17,13 +17,13 @@ const ItemSelection = ({
   >
     {selected ? (
       <Icon
-        icon={uniqueSelection ? "check-circle" : "check-square"}
+        icon={selectionType ? "check-circle" : "check-square"}
         color={selectedColorAlternate ? "#333333" : theme.secondaryVariantColor}
         size="small"
       />
     ) : (
       <SelectionEmpty
-        uniqueSelection={uniqueSelection}
+        selectionType={selectionType}
         selectedColorAlternate={selectedColorAlternate}
       />
     )}
@@ -34,7 +34,7 @@ ItemSelection.defaultProps = {
   theme: undefined,
   selected: undefined,
   selectedColorAlternate: false,
-  uniqueSelection: false
+  selectionType: false
 };
 
 ItemSelection.propTypes = {
@@ -42,7 +42,7 @@ ItemSelection.propTypes = {
   theme: PropTypes.object,
   selected: PropTypes.bool,
   selectedColorAlternate: PropTypes.bool,
-  uniqueSelection: PropTypes.bool
+  selectionType: PropTypes.bool
 };
 
 export default withTheme(ItemSelection);
