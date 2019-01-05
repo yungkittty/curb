@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 /* eslint-disable-next-line */
 import General from "../../";
+import Text from "../../../../../../components/text";
 
 class Logout extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Logout extends Component {
   }
 
   render() {
-    return "Logout scene";
+    return <Text>Logout scene</Text>;
   }
 }
 
