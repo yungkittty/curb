@@ -38,15 +38,15 @@ const ContentModules = ({ onClick, modules }) => (
       showsVerticalScrollIndicator={false}
       data={modulesData}
       extraData={{ modules }}
-      keyExtractor={module => module.id}
-      renderItem={({ item: module }) => (
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => (
         <ListItem
-          icon={module.icon}
-          title={module.title}
-          description={module.description}
-          selected={_.includes(modules, module.id)}
+          icon={item.icon}
+          title={item.title}
+          description={item.description}
+          selected={_.includes(modules, item.id)}
           selectionType={false}
-          onClick={() => onClick(module.id)}
+          onClick={() => onClick(item.id)}
         />
       )}
     />

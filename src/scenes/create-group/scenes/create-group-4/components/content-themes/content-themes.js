@@ -37,17 +37,17 @@ const ContentThemes = ({ onClick, value }) => (
     <ListFlat
       data={themesData}
       extraData={{ value }}
-      keyExtractor={theme => theme.id}
-      renderItem={({ item: theme }) => (
+      keyExtractor={item => item.id}
+      renderItem={({ item }) => (
         <ListItem
-          icon={theme.icon}
-          title={theme.title}
+          icon={item.icon}
+          title={item.title}
           titleColor="#ffffff"
-          backgroundColor={theme.backgroundColor}
-          selected={theme.id === value}
+          backgroundColor={item.backgroundColor}
+          selected={item.id === value}
           selectionType={true}
           selectedColorAlternate
-          onClick={() => onClick(theme.id)}
+          onClick={() => onClick(item.id)}
         />
       )}
     />
