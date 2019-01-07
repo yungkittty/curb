@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import CreateGroup4 from "./create-group-4";
-import { signUpActions } from "../../../../datas/sign-up";
+import { groupsActions } from "../../../../datas/groups";
 
 const mapDispatchToProps = dispatch => ({
-  signUp: payload => dispatch(signUpActions.signUpRequest(payload))
+  postGroup: payload => dispatch(groupsActions.postGroupRequest(payload))
 });
 
 export default connect(

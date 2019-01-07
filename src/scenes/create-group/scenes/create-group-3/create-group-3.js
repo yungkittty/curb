@@ -15,7 +15,7 @@ class CreateGroup3 extends Component {
     super(props);
     const {
       data: {
-        modulesList: {
+        modules: {
           value = [],
           error = false,
           errorMsg = "You must choose at least one module"
@@ -30,7 +30,7 @@ class CreateGroup3 extends Component {
     } = this.props;
 
     this.state = {
-      modulesList: {
+      modules: {
         value,
         error,
         errorMsg
@@ -56,10 +56,10 @@ class CreateGroup3 extends Component {
 
   checkForm() {
     const {
-      modulesList: { value }
+      modules: { value }
     } = this.state;
 
-    return this.checkInput("modulesList", value);
+    return this.checkInput("modules", value);
   }
 
   checkInput(id, value) {
@@ -82,19 +82,19 @@ class CreateGroup3 extends Component {
 
   handleChange(clickValue) {
     const {
-      modulesList: { value }
+      modules: { value }
     } = this.state;
     const newValue = value;
 
     if (_.includes(newValue, clickValue)) _.pull(newValue, clickValue);
     else newValue.push(clickValue);
 
-    this.checkInput("modulesList", newValue);
+    this.checkInput("modules", newValue);
   }
 
   render() {
     const {
-      modulesList: { value, error, errorMsg }
+      modules: { value, error, errorMsg }
     } = this.state;
 
     return (
@@ -108,7 +108,7 @@ class CreateGroup3 extends Component {
 }
 
 CreateGroup3.defaultProps = {
-  data: { modulesList: undefined },
+  data: { modules: undefined },
   setData: undefined,
   setProgress: undefined,
   setLeftIcon: undefined,
@@ -119,7 +119,7 @@ CreateGroup3.defaultProps = {
 };
 
 CreateGroup3.propTypes = {
-  data: PropTypes.shape({ modulesList: PropTypes.object }),
+  data: PropTypes.shape({ modules: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,

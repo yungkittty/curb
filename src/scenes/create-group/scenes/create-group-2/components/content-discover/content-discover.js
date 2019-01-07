@@ -9,15 +9,15 @@ const ContentDiscover = ({ onClick, discoverability }) => (
       icon="globe"
       title="Public"
       description="Your group will be visible by everyone through the discovery"
-      selected={discoverability && discoverability === 1}
-      onClick={() => onClick(1)}
+      selected={discoverability !== undefined && discoverability === true}
+      onClick={() => onClick(true)}
     />
     <DiscoverOption
       icon="users"
       title="Private"
       description="Your group will only be accessible by invitation"
-      selected={discoverability && discoverability === 2}
-      onClick={() => onClick(2)}
+      selected={discoverability !== undefined && discoverability === false}
+      onClick={() => onClick(false)}
     />
   </DiscoverContainer>
 );
@@ -29,7 +29,7 @@ ContentDiscover.defaultProps = {
 
 ContentDiscover.propTypes = {
   onClick: PropTypes.func,
-  discoverability: PropTypes.number
+  discoverability: PropTypes.bool
 };
 
 export default ContentDiscover;

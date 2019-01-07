@@ -52,11 +52,16 @@ class CreateGroup4 extends Component {
 
   submit() {
     const {
-      data: { ...others },
-      createGroup
+      data: { name, discoverability, modules, theme },
+      postGroup
     } = this.props;
 
-    createGroup({ ...others });
+    postGroup({
+      name: name.value,
+      public: discoverability.value,
+      modules: modules.value,
+      theme: theme.value
+    });
   }
 
   checkForm() {
@@ -110,6 +115,7 @@ class CreateGroup4 extends Component {
 }
 
 CreateGroup4.defaultProps = {
+  postGroup: () => null,
   data: { theme: undefined },
   setData: undefined,
   setProgress: undefined,
@@ -121,6 +127,7 @@ CreateGroup4.defaultProps = {
 };
 
 CreateGroup4.propTypes = {
+  postGroup: PropTypes.func,
   data: PropTypes.shape({ theme: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
