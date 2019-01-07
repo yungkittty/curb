@@ -1,3 +1,3 @@
-import General from "./general";
+import GeneralContainer from "./general-container";
 
-export default General;
+export default GeneralContainer;

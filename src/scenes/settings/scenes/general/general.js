@@ -7,8 +7,6 @@ import Settings from "../../";
 /* eslint-disable-next-line */
 import Language from "./scenes/language";
 /* eslint-disable-next-line */
-import Logout from "./scenes/logout";
-/* eslint-disable-next-line */
 import DeleteAccount from "./scenes/delete-account";
 
 const generalData = [
@@ -23,8 +21,7 @@ const generalData = [
     id: "logout",
     title: "Logout",
     description: "Disconnect your account from this device",
-    icon: "sign-out-alt",
-    scene: Logout
+    icon: "sign-out-alt"
   },
   {
     id: "delete-account",
@@ -40,9 +37,17 @@ class General extends Component {
     super(props);
     const { setTitle, setLeftClick, setLeftIcon, setComponent } = this.props;
 
+    this.signOut = this.signOut.bind(this);
+
     setTitle("General");
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(Settings, -1));
+  }
+
+  signOut() {
+    const { signOut } = this.props;
+
+    signOut();
   }
 
   render() {
@@ -59,7 +64,9 @@ class General extends Component {
             icon={item.icon}
             title={item.title}
             description={item.description}
-            onClick={() => setComponent(item.scene, 1)}
+            onClick={() =>
+              item.scene ? setComponent(item.scene, 1) : this.signOut()
+            }
           />
         )}
       />
@@ -68,6 +75,7 @@ class General extends Component {
 }
 
 General.defaultProps = {
+  signOut: () => null,
   setTitle: undefined,
   setLeftClick: undefined,
   setLeftIcon: undefined,
@@ -75,6 +83,7 @@ General.defaultProps = {
 };
 
 General.propTypes = {
+  signOut: PropTypes.func,
   setTitle: PropTypes.func,
   setLeftClick: PropTypes.func,
   setLeftIcon: PropTypes.func,
