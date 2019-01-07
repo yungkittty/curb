@@ -19,7 +19,7 @@ const AppNavigation = ({
   <NavigationContainer>
     {!currentUserId || !currentUserToken ? (
       <NavigationLinkIcon
-        icon="user"
+        icon="sign-in-alt"
         size="medium"
         color={theme.pimaryColor}
         to={{ pathname: "/sign-in", state: { isModal: true } }}
