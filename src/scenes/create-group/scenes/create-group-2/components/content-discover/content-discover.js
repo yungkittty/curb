@@ -9,14 +9,28 @@ const ContentDiscover = ({ onClick, discoverability }) => (
       icon="globe"
       title="Public"
       description="Your group will be visible by everyone through the discovery"
-      selected={discoverability !== undefined && discoverability === true}
+      selected={
+        // eslint-disable-next-line
+        discoverability === true
+          ? true
+          : discoverability === undefined
+          ? undefined
+          : false
+      }
       onClick={() => onClick(true)}
     />
     <DiscoverOption
       icon="users"
       title="Private"
       description="Your group will only be accessible by invitation"
-      selected={discoverability !== undefined && discoverability === false}
+      selected={
+        // eslint-disable-next-line
+        discoverability === false
+          ? true
+          : discoverability === undefined
+          ? undefined
+          : false
+      }
       onClick={() => onClick(false)}
     />
   </DiscoverContainer>
