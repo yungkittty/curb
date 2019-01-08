@@ -4,29 +4,8 @@ import ListFlat from "../../../../../../components/list-flat";
 import ListItem from "../../../../../../components/list-item";
 /* eslint-disable-next-line */
 import General from "../../";
-
-const languageData = [
-  {
-    id: "english",
-    title: "English"
-  },
-  {
-    id: "french",
-    title: "French"
-  },
-  {
-    id: "deutsch",
-    title: "Deutsch"
-  },
-  {
-    id: "espanol",
-    title: "Español"
-  },
-  {
-    id: "italiano",
-    title: "Italiano"
-  }
-];
+/* eslint-disable-next-line */
+import languageData from "./language-data";
 
 class Language extends Component {
   constructor(props) {

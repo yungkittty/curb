@@ -4,16 +4,7 @@ import SettingsContainer from "./components/settings-container";
 import ListFlat from "../../components/list-flat";
 import ListItem from "../../components/list-item";
 /* eslint-disable-next-line */
-import General from "./scenes/general";
-
-const settingsData = [
-  {
-    id: "general",
-    title: "General",
-    description: "Language  ·  Logout  ·  Delete account",
-    scene: General
-  }
-];
+import settingsData from "./settings-data";
 
 class Settings extends Component {
   constructor(props) {
@@ -47,10 +38,12 @@ class Settings extends Component {
 }
 
 Settings.defaultProps = {
+  setComponent: () => null,
   setTitle: undefined
 };
 
 Settings.propTypes = {
+  setComponent: PropTypes.func,
   setTitle: PropTypes.func
 };
 
