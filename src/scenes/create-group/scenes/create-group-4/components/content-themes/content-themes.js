@@ -3,34 +3,7 @@ import PropTypes from "prop-types";
 import ThemesContainer from "./components/themes-container";
 import ListFlat from "../../../../../../components/list-flat";
 import ListItem from "../../../../../../components/list-item";
-
-const themesData = [
-  {
-    id: "blue",
-    title: "Blue",
-    backgroundColor: "#56CCF2"
-  },
-  {
-    id: "red",
-    title: "Red",
-    backgroundColor: "#EB5757"
-  },
-  {
-    id: "green",
-    title: "Green",
-    backgroundColor: "#6FCF97"
-  },
-  {
-    id: "yellow",
-    title: "Yellow",
-    backgroundColor: "#F2C94C"
-  },
-  {
-    id: "magenta",
-    title: "Magenta",
-    backgroundColor: "#BB6BD9"
-  }
-];
+import themesData from "./content-themes-data";
 
 const ContentThemes = ({ onClick, value }) => (
   <ThemesContainer>
