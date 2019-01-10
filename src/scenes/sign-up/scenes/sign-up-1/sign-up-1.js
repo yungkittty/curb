@@ -16,13 +16,11 @@ class SignUp1 extends Component {
       data: {
         name = {
           value: "",
-          error: false,
-          errorMsg: t("validation:username.missing")
+          error: false
         },
         email = {
           value: "",
-          error: false,
-          errorMsg: t("validation:mail.missing")
+          error: false
         }
       },
       setProgress,
@@ -97,7 +95,7 @@ class SignUp1 extends Component {
           placeholder={t("signUp:username")}
           onChange={this.handleChange}
           value={name.value}
-          error={name.error ? name.errorMsg : null}
+          error={name.error && t("validation:username.missing")}
         />
         <Input
           size="modal"
@@ -105,7 +103,7 @@ class SignUp1 extends Component {
           placeholder={t("signUp:mailAddress")}
           onChange={this.handleChange}
           value={email.value}
-          error={email.error ? email.errorMsg : null}
+          error={email.error && t("validation:mail.missing")}
         />
       </ContentContainer>
     );
