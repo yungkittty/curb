@@ -44,7 +44,6 @@ class SignIn extends Component {
       signIn
     } = this.props;
 
-    console.log(username.value, password.value);
     signIn({ usernname: username.value, password: password.value });
   }
 
@@ -71,7 +70,7 @@ class SignIn extends Component {
 
   handleChange(event) {
     const { id, value } = event.target;
-    console.log(id, value);
+
     this.checkInput(id, value);
   }
 
