@@ -15,11 +15,11 @@ class SignUp2 extends Component {
       data: {
         password = {
           value: "",
-          error: false
+          error: undefined
         },
         confirmPassword = {
           value: "",
-          error: false
+          error: undefined
         }
       },
       setProgress,
@@ -77,8 +77,14 @@ class SignUp2 extends Component {
     const { setData } = this.props;
 
     const error =
-      value.length === 0 ||
-      (id === "confirmPassword" && password.value !== value);
+      // eslint-disable-next-line
+      id === "password"
+        ? value.length === 0
+          ? "missing"
+          : undefined
+        : password.value !== value
+        ? "dontmatch"
+        : undefined;
 
     this.setState(prev => {
       const obj = {
@@ -92,7 +98,7 @@ class SignUp2 extends Component {
       return obj;
     });
 
-    return !error;
+    return error === undefined;
   }
 
   handleChange(event) {
@@ -115,7 +121,7 @@ class SignUp2 extends Component {
           type="password"
           value={password.value}
           onChange={this.handleChange}
-          error={password.error && t("validation:password.missing")}
+          error={password.error && t(`validation:password.${password.error}`)}
         />
         <Input
           size="modal"
@@ -124,7 +130,10 @@ class SignUp2 extends Component {
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={confirmPassword.error && t("validation:password.dontmatch")}
+          error={
+            confirmPassword.error &&
+            t(`validation:password.${confirmPassword.error}`)
+          }
         />
       </ContentContainer>
     );

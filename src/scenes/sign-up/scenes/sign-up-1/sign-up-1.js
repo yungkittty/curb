@@ -16,11 +16,11 @@ class SignUp1 extends Component {
       data: {
         name = {
           value: "",
-          error: false
+          error: undefined
         },
         email = {
           value: "",
-          error: false
+          error: undefined
         }
       },
       setProgress,
@@ -60,19 +60,21 @@ class SignUp1 extends Component {
   checkInput(id, value) {
     const { setData } = this.props;
 
+    const error = value.length === 0 ? "missing" : undefined;
+
     this.setState(prev => {
       const obj = {
         [id]: {
           ...prev[id],
           value,
-          error: value.length === 0
+          error
         }
       };
       setData(obj);
       return obj;
     });
 
-    return value.length !== 0;
+    return error === undefined;
   }
 
   handleChange(event) {
@@ -95,7 +97,7 @@ class SignUp1 extends Component {
           placeholder={t("signUp:username")}
           onChange={this.handleChange}
           value={name.value}
-          error={name.error && t("validation:username.missing")}
+          error={name.error && t(`validation:username.${name.error}`)}
         />
         <Input
           size="modal"
@@ -103,7 +105,7 @@ class SignUp1 extends Component {
           placeholder={t("signUp:mailAddress")}
           onChange={this.handleChange}
           value={email.value}
-          error={email.error && t("validation:mail.missing")}
+          error={email.error && t(`validation:email.${email.error}`)}
         />
       </ContentContainer>
     );

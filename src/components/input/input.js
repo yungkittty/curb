@@ -48,7 +48,7 @@ Input.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   id: PropTypes.string,
-  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+  error: PropTypes.string
 };
 
 export default Input;
