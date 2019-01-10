@@ -15,13 +15,11 @@ class SignUp2 extends Component {
       data: {
         password = {
           value: "",
-          error: false,
-          errorMsg: t("validation:password.missing")
+          error: false
         },
         confirmPassword = {
           value: "",
-          error: false,
-          errorMsg: t("validation:password.dontmatch")
+          error: false
         }
       },
       setProgress,
@@ -117,7 +115,7 @@ class SignUp2 extends Component {
           type="password"
           value={password.value}
           onChange={this.handleChange}
-          error={password.error ? password.errorMsg : null}
+          error={password.error && t("validation:password.missing")}
         />
         <Input
           size="modal"
@@ -126,7 +124,7 @@ class SignUp2 extends Component {
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={confirmPassword.error ? confirmPassword.errorMsg : null}
+          error={confirmPassword.error && t("validation:password.dontmatch")}
         />
       </ContentContainer>
     );
