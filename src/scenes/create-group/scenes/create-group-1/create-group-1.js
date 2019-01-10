@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import CreateGroup2 from "../create-group-2";
 import ContentContainer from "./components/content-container";
@@ -11,12 +12,12 @@ class CreateGroup1 extends Component {
   constructor(props) {
     super(props);
     const {
+      t,
       data: {
-        name: {
-          value = "",
-          error = false,
-          errorMsg = "You must enter a group name"
-        } = {}
+        groupName = {
+          value: "",
+          error: false
+        }
       },
       setProgress,
       setButtonTitle,
@@ -24,11 +25,7 @@ class CreateGroup1 extends Component {
     } = this.props;
 
     this.state = {
-      name: {
-        value,
-        error,
-        errorMsg
-      }
+      groupName
     };
 
     this.checkForm = this.checkForm.bind(this);
@@ -36,7 +33,7 @@ class CreateGroup1 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setProgress({ progress: 1, total: 4 });
-    setButtonTitle("Next");
+    setButtonTitle(t("common:next"));
     setButtonClick(this.goToNext.bind(this));
   }
 
@@ -48,10 +45,10 @@ class CreateGroup1 extends Component {
 
   checkForm() {
     const {
-      name: { value }
+      groupName: { value }
     } = this.state;
 
-    return this.checkInput("name", value);
+    return this.checkInput("groupName", value);
   }
 
   checkInput(id, value) {
@@ -79,21 +76,22 @@ class CreateGroup1 extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const {
-      name: { value, error, errorMsg }
+      groupName: { value, error }
     } = this.state;
 
     return (
       <ContentContainer>
-        <ContentTitle>Create group</ContentTitle>
+        <ContentTitle>{t("createGroup:createGroup")}</ContentTitle>
         <SelectImage />
         <Input
           size="modal"
-          id="name"
-          placeholder="Group name"
+          id="groupName"
+          placeholder={t("createGroup:groupName")}
           onChange={this.handleChange}
           value={value}
-          error={error ? errorMsg : null}
+          error={error ? t("validation:groupName.missing") : null}
         />
       </ContentContainer>
     );
@@ -110,6 +108,7 @@ CreateGroup1.defaultProps = {
 };
 
 CreateGroup1.propTypes = {
+  t: PropTypes.func.isRequired,
   data: PropTypes.shape({ name: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
@@ -118,4 +117,4 @@ CreateGroup1.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default CreateGroup1;
+export default withNamespaces()(CreateGroup1);

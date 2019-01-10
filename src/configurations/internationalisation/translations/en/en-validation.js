@@ -4,6 +4,9 @@ const enValidation = {
   password: {
     missing: "Missing password",
     dontmatch: "Passwords don't match"
+  },
+  groupName: {
+    missing: "Missing group name"
   }
 };
 

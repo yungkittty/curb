@@ -4,6 +4,9 @@ const frValidation = {
   password: {
     missing: "Mot de passe manquant",
     dontmatch: "Les mots de passe ne correspondent pas"
+  },
+  groupName: {
+    missing: "Nom du groupe manquant"
   }
 };
 
