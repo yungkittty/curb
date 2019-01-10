@@ -6,6 +6,8 @@ const ContentTitle = styled(Text)`
   font-weight: 700;
   margin-bottom: 58px;
   color: ${({ theme }) => theme.fontColor};
+  text-align: center;
+  line-height: 1.45;
 `;
 
 export default ContentTitle;
