@@ -7,7 +7,7 @@ import ListContainer from "./components/list-container";
 class List extends React.Component {
   constructor(props) {
     super(props);
-    this.innerRef = React.createRef();
+    this.listContainer = React.createRef();
     this.renderItem = this.renderItem.bind(this);
   }
 
@@ -23,7 +23,7 @@ class List extends React.Component {
     const {
       current,
       current: { style }
-    } = this.innerRef;
+    } = this.listContainer;
     const deltaHeight = current.offsetHeight - current.clientHeight;
     if (deltaHeight < 0) return;
     style.height = `calc(100% + ${deltaHeight}px)`;
@@ -34,7 +34,7 @@ class List extends React.Component {
     const {
       current,
       current: { style }
-    } = this.innerRef;
+    } = this.listContainer;
     const deltaWidth = current.offsetWidth - current.clientWidth;
     if (deltaWidth < 0) return;
     style.width = `calc(100% + ${deltaWidth}px)`;
@@ -77,7 +77,7 @@ class List extends React.Component {
         horizontal={horizontal}
       >
         <ListContainer
-          innerRef={this.innerRef}
+          ref={this.listContainer}
           style={contentContainerStyle}
           showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
           showsVerticalScrollIndicator={showsVerticalScrollIndicator}

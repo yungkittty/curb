@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import AppNavigation from "./app-navigation";
 import { currentUserSelectors } from "../../datas/current-user";
@@ -19,12 +20,12 @@ class AppNavigationContainer extends React.Component {
 const mapStateToProps = state => {
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
   const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
-  const { avatarURL: currentUserAvatarURL = "", groups: currentUserGroupsIds = [] } =
+  const { avatarUrl: currentUserAvatarUrl = "", groups: currentUserGroupsIds = [] } =
     usersSelectors.getUserById(state, currentUserId) || {};
   return {
     currentUserId,
     currentUserToken,
-    currentUserAvatarURL,
+    currentUserAvatarUrl,
     currentUserGroupsIds
   };
 };
@@ -33,6 +34,12 @@ const mapDispatchToProps = dispatch => ({
   getCurrentUser: payload =>
     dispatch(usersActions.getUserRequest(payload))
 });
+
+AppNavigationContainer.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
+  currentUserToken: PropTypes.string.isRequired,
+  getCurrentUser: PropTypes.func.isRequired
+}
 
 export default connect(
   mapStateToProps,

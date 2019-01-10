@@ -12,7 +12,7 @@ import NavigationListFooter from "./components/navigation-list-footer";
 const AppNavigation = ({
   currentUserId,
   currentUserToken,
-  currentUserAvatarURL,
+  currentUserAvatarUrl,
   currentUserGroupsIds,
   theme
 }) => (
@@ -26,7 +26,7 @@ const AppNavigation = ({
       />
     ) : (
       <NavigationLinkImage
-        src={`${currentUserAvatarURL}`}
+        src={`${currentUserAvatarUrl}`}
         to={`/users/${currentUserId}`}
       />
     )}
@@ -61,7 +61,7 @@ const AppNavigation = ({
 AppNavigation.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   currentUserToken: PropTypes.string.isRequired,
-  currentUserAvatarURL: PropTypes.string.isRequired,
+  currentUserAvatarUrl: PropTypes.string.isRequired,
   currentUserGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired

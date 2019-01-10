@@ -4,17 +4,17 @@ import NavigationLinkImage from "../navigation-link-image";
 
 const NavigationListItem = ({
   currentUserGroupId,
-  currentUserGroupAvatarURL
+  currentUserGroupAvatarUrl
 }) => (
   <NavigationLinkImage
-    src={currentUserGroupAvatarURL}
+    src={currentUserGroupAvatarUrl}
     to={`/groups/${currentUserGroupId}`}
   />
 );
 
 NavigationListItem.propTypes = {
   currentUserGroupId: PropTypes.string.isRequired,
-  currentUserGroupAvatarURL: PropTypes.string.isRequired
+  currentUserGroupAvatarUrl: PropTypes.string.isRequired
 };
 
 export default NavigationListItem;

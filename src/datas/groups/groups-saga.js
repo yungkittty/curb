@@ -3,10 +3,10 @@ import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
 import groupsApi from "./groups-api";
 
-function* getGroupRequestSaga({ payload }) {
+function* getGroupRequestSaga(action) {
   try {
-    const respond = yield call(groupsApi.getGroup, payload);
-    yield put(groupsActions.getGroupSuccess(respond));
+    const { data: payload } = yield call(groupsApi.getGroup, action.payload);
+    yield put(groupsActions.getGroupSuccess(payload));
   } catch (error) {
     yield put(groupsActions.getGroupFailure(error));
   }
