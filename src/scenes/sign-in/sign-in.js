@@ -1,42 +1,111 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ContentContainer from "./components/content-container";
-import ContentForm from "./components/content-form";
 import ContentRedirect from "./components/content-redirect";
+import ContentForm from "./components/content-form";
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    const { setTitle, setButtonTitle, setButtonClick } = this.props;
+    const {
+      data: {
+        username = {
+          value: "",
+          error: false,
+          errorMsg: "You must enter a username"
+        },
+        password = {
+          value: "",
+          error: false,
+          errorMsg: "You must enter a password"
+        }
+      },
+      setButtonTitle,
+      setButtonClick
 
-    this.state = { username: "", password: "" };
+    } = this.props;
 
-    setTitle("Sign in");
+    this.state = { 
+      username, 
+      password 
+    };
+
+    this.submit = this.submit.bind(this);
+    this.checkInput = this.checkInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
     setButtonTitle("Login");
-    setButtonClick(this.customFunc.bind(this));
-
-    this.onChange = this.onChange.bind(this);
+    setButtonClick(this.submit.bind(this));
   }
 
-  onChange(id, value) {
-    this.setState({ [id]: value });
+  submit() {
+    const {
+      data: { username, password },
+      signIn
+    } = this.props;
+
+    console.log(username.value, password.value);
+    signIn({ usernname: username.value, password: password.value });
   }
 
-  customFunc() {
-    console.log("User clicked on Login");
+  checkInput(id, value) {
+    const { setData } = this.props;
 
-    // Make the Sign-in call here
+    const error =
+      value.length === 0; 
 
-    return true;
+    this.setState(prev => {
+      const obj = {
+        [id]: {
+          ...prev[id],
+          value,
+          error
+        }
+      };
+      setData(obj);
+      return obj;
+    });
+
+    return !error;
+  }
+
+  handleChange(event) {
+    const { id, value } = event.target;
+    console.log(id, value);
+    this.checkInput(id, value);
   }
 
   render() {
+    const { username, password } = this.state;
+
     return (
       <ContentContainer>
-        <ContentForm onChange={this.onChange} />
+        <ContentForm username={username} password={password} onChange={this.handleChange} />
         <ContentRedirect />
       </ContentContainer>
     );
   }
 }
+
+SignIn.defaultProps = {
+  data: undefined,
+  signIn: () => null,
+  setData: undefined,
+  setTitle: undefined,
+  setButtonTitle: undefined,
+  setButtonClick: undefined
+};
+
+SignIn.propTypes = {
+  data: PropTypes.shape({
+    username: PropTypes.object,
+    password: PropTypes.object
+  }),
+  signIn: PropTypes.func,
+  setData: PropTypes.func,
+  setTitle: PropTypes.func,
+  setButtonTitle: PropTypes.func,
+  setButtonClick: PropTypes.func
+};
 
 export default SignIn;

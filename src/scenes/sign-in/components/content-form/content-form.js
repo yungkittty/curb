@@ -2,15 +2,24 @@ import React from "react";
 import FormContainer from "./components/form-container";
 import Input from "../../../../components/input";
 
-const ContentForm = ({ onChange }) => (
+const ContentForm = ({ onChange, username, password }) => (
   <FormContainer>
-    <Input id="username" placeholder="Username" onChange={onChange} s />
-    <Input
-      id="pass"
-      placeholder="Password"
+    <Input 
+      size="modal"
+      id="username" 
+      placeholder="Username"
+      value={username.value}
       onChange={onChange}
+      error={username.error ? username.errorMsg : null}
+    />
+    <Input
+      size="modal"
+      id="password"
+      placeholder="Password"
       type="password"
-      s
+      value={password.value}
+      onChange={onChange}
+      error={password.error ? password.errorMsg : null}
     />
   </FormContainer>
 );
