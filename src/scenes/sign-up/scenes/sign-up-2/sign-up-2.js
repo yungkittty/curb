@@ -37,7 +37,7 @@ class SignUp2 extends Component {
       confirmPassword
     };
 
-    this.sumbit = this.submit.bind(this);
+    this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
