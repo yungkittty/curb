@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
 import ContentContainer from "./components/content-container";
@@ -10,16 +11,17 @@ class SignUp2 extends Component {
   constructor(props) {
     super(props);
     const {
+      t,
       data: {
         password = {
           value: "",
           error: false,
-          errorMsg: "You must enter a password"
+          errorMsg: t("validation:password.missing")
         },
         confirmPassword = {
           value: "",
           error: false,
-          errorMsg: "Passwords don't match"
+          errorMsg: t("validation:password.dontmatch")
         }
       },
       setProgress,
@@ -43,7 +45,7 @@ class SignUp2 extends Component {
     setProgress({ progress: 2, total: 2 });
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(SignUp1, -1));
-    setButtonTitle("Finish");
+    setButtonTitle(t("common:finish"));
     setButtonClick(this.goToNext.bind(this));
   }
 
@@ -102,15 +104,16 @@ class SignUp2 extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const { password, confirmPassword } = this.state;
 
     return (
       <ContentContainer>
-        <ContentTitle>Choose your password</ContentTitle>
+        <ContentTitle>{t("signUp:choosePassword")}</ContentTitle>
         <Input
           size="modal"
           id="password"
-          placeholder="Password"
+          placeholder={t("signUp:password")}
           type="password"
           value={password.value}
           onChange={this.handleChange}
@@ -119,7 +122,7 @@ class SignUp2 extends Component {
         <Input
           size="modal"
           id="confirmPassword"
-          placeholder="Confirm password"
+          placeholder={t("signUp:confirmPassword")}
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
@@ -132,7 +135,6 @@ class SignUp2 extends Component {
 
 SignUp2.defaultProps = {
   data: undefined,
-  signUp: () => null,
   setData: undefined,
   setProgress: undefined,
   setLeftIcon: undefined,
@@ -143,11 +145,12 @@ SignUp2.defaultProps = {
 };
 
 SignUp2.propTypes = {
+  t: PropTypes.func.isRequired,
   data: PropTypes.shape({
     password: PropTypes.object,
     confirmPassword: PropTypes.object
   }),
-  signUp: PropTypes.func,
+  signUp: PropTypes.func.isRequired,
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,
@@ -157,4 +160,4 @@ SignUp2.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default SignUp2;
+export default withNamespaces()(SignUp2);
