@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import AppNavigation from "./app-navigation";
 import { currentUserSelectors } from "../../datas/current-user";
@@ -33,6 +34,12 @@ const mapDispatchToProps = dispatch => ({
   getCurrentUser: payload =>
     dispatch(usersActions.getUserRequest(payload))
 });
+
+AppNavigationContainer.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
+  currentUserToken: PropTypes.string.isRequired,
+  getCurrentUser: PropTypes.func.isRequired
+}
 
 export default connect(
   mapStateToProps,

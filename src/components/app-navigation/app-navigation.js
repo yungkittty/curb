@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import NavigationContainer from "./components/navigation-container";
-import NavigationLinkIcon from "./components/navigation-link-icon";
-import NavigationLinkImage from "./components/navigation-link-image";
+import NavigationButtonIcon from "./components/navigation-button-icon";
+import NavigationButtonImage from "./components/navigation-button-image";
 import NavigationRule from "./components/navigation-rule";
 import ListFlat from "../list-flat";
 import NavigationListItem from "./components/navigation-list-item";
@@ -18,16 +18,16 @@ const AppNavigation = ({
 }) => (
   <NavigationContainer>
     {!currentUserId || !currentUserToken ? (
-      <NavigationLinkIcon
-        icon="user"
+      <NavigationButtonIcon
+        icon="sign-in-alt"
         size="medium"
         color={theme.primaryColor}
-        to={{ pathname: "/sign-in", state: { isModal: true } }}
+        onClick={{ pathname: "/sign-in", state: { isModal: true } }}
       />
     ) : (
-      <NavigationLinkImage
+      <NavigationButtonImage
         src={`${currentUserAvatarURL}`}
-        to={`/users/${currentUserId}`}
+        onClick={`/users/${currentUserId}`}
       />
     )}
     <NavigationRule />
@@ -42,18 +42,18 @@ const AppNavigation = ({
           icon="plus"
           size="small"
           color={theme.secondaryVariantColor}
-          to="/"
+          onClick="/"
         />
       )}
       contentContainerStyle={{ paddingTop: 10 }}
       showsVerticalScrollIndicator={false}
     />
     <NavigationRule style={{ paddingBottom: 10 }} />
-    <NavigationLinkIcon
+    <NavigationButtonIcon
       icon="cog"
       size="medium"
       color={theme.primaryColor}
-      to={{ pathname: "/settings", state: { isModal: true } }}
+      onClick={{ pathname: "/settings", state: { isModal: true } }}
     />
   </NavigationContainer>
 );

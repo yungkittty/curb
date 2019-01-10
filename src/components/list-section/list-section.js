@@ -60,9 +60,9 @@ class ListSection extends React.Component {
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
       horizontal,
-      sections,
-      ListHeaderComponent: SectionHeader,
-      ListFooterComponent: SectionFooter
+      sections: sectionsData,
+      ListHeaderComponent,
+      ListFooterComponent
     } = this.props;
     return (
       <ContainerScroll
@@ -73,9 +73,9 @@ class ListSection extends React.Component {
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         horizontal={horizontal}
       >
-        {SectionHeader && <SectionHeader />}
-        {_.map(sections, this.renderSection)}
-        {SectionFooter && <SectionFooter />}
+        {ListHeaderComponent && <ListHeaderComponent />}
+        {_.map(sectionsData, this.renderSection)}
+        {ListFooterComponent && <ListFooterComponent />}
       </ContainerScroll>
     );
   }

@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import NavigationLinkImage from "../navigation-link-image";
+import NavigationButtonImage from "../navigation-button-image";
 
 const NavigationListItem = ({
   currentUserGroupId,
   currentUserGroupAvatarURL
 }) => (
-  <NavigationLinkImage
+  <NavigationButtonImage
     src={currentUserGroupAvatarURL}
     to={`/groups/${currentUserGroupId}`}
   />

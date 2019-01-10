@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ScrollContainer from "./components/scroll-container";
 import ScrollContainerContent from "./components/scroll-container-content";
 
-const ContainerScroll = React.forwardRef((props, innerRef) => {
+const ContainerScroll = React.forwardRef((props, ref) => {
   const {
     className,
     style,
@@ -20,7 +20,7 @@ const ContainerScroll = React.forwardRef((props, innerRef) => {
       horizontal={horizontal}
     >
       <ScrollContainerContent
-        innerRef={innerRef}
+        ref={ref}
         style={contentContainerStyle}
         showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}

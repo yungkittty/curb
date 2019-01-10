@@ -29,7 +29,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 NavigationListItemContainer.propTypes = {
-  currentUserGroupId: PropTypes.string.isRequired
+  currentUserGroupId: PropTypes.string.isRequired,
+  getCurrentUserGroup: PropTypes.func.isRequired
 };
 
 export default connect(
