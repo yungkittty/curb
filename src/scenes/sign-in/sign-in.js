@@ -19,7 +19,7 @@ class SignIn extends Component {
           error: false,
           errorMsg: "You must enter a password"
         }
-      },
+      } = {},
       setButtonTitle,
       setButtonClick
 
@@ -35,21 +35,34 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setButtonTitle("Login");
-    setButtonClick(this.submit.bind(this));
+    setButtonClick(this.validate.bind(this));
+  }
+
+  validate() {
+    if (this.checkForm()) this.submit();
   }
 
   submit() {
     const {
-      data: { username, password },
       signIn
     } = this.props;
+    
+    signIn({ username: this.state.username.value, password: this.state.password.value });
+  }
 
-    signIn({ usernname: username.value, password: password.value });
+  checkForm() {
+    const { username, password } = this.state;
+
+    const usernameCheck = this.checkInput("username", username.value);
+    const passwordCheck = this.checkInput(
+      "password",
+      password.value
+    );
+
+    return usernameCheck && passwordCheck;
   }
 
   checkInput(id, value) {
-    const { setData } = this.props;
-
     const error =
       value.length === 0; 
 
@@ -61,7 +74,6 @@ class SignIn extends Component {
           error
         }
       };
-      setData(obj);
       return obj;
     });
 
