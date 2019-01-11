@@ -14,13 +14,16 @@ class Language extends Component {
     const {
       t,
       lng,
+      i18n: {
+        options: { fallbackLng }
+      },
       setTitle,
       setLeftClick,
       setLeftIcon,
       setComponent
     } = this.props;
 
-    this.state = { key: lng || "en" };
+    this.state = { key: lng || fallbackLng[0] };
 
     setTitle(t("settings:general.menu.language.title"));
     setLeftIcon("arrow-left");
@@ -70,8 +73,9 @@ Language.defaultProps = {
 Language.propTypes = {
   t: PropTypes.func.isRequired,
   lng: PropTypes.string,
-  i18n: PropTypes.shape({ changeLanguage: PropTypes.func.isRequired })
-    .isRequired,
+  i18n: PropTypes.shape({
+    changeLanguage: PropTypes.func.isRequired
+  }).isRequired,
   setTitle: PropTypes.func,
   setLeftClick: PropTypes.func,
   setLeftIcon: PropTypes.func,

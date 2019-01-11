@@ -4,7 +4,7 @@ import translations from "./translations";
 const configureI18n = () =>
   i18next.createInstance().init({
     resources: translations,
-    fallbackLng: "en",
+    fallbackLng: ["en", "fr"],
     interpolation: { escapeValue: false }
   });
 
