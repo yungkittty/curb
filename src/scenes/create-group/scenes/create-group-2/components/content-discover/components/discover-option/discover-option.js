@@ -8,7 +8,7 @@ import OptionDescription from "./components/option-description";
 const DiscoverOption = ({ icon, title, description, selected, onClick }) => (
   <OptionContainer selected={selected} onClick={onClick}>
     <Fragment>
-      <OptionIcon icon={icon} size="huge" selected={selected} />
+      <OptionIcon icon={icon} size="large" selected={selected} />
       <OptionTitle selected={selected}>{title}</OptionTitle>
       <OptionDescription selected={selected}>{description}</OptionDescription>
     </Fragment>
