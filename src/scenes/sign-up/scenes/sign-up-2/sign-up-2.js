@@ -39,15 +39,16 @@ class SignUp2 extends Component {
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.validate = this.validate.bind(this);
 
     setProgress({ progress: 2, total: 2 });
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(SignUp1, -1));
     setButtonTitle(t("common:finish"));
-    setButtonClick(this.goToNext.bind(this));
+    setButtonClick(this.validate);
   }
 
-  goToNext() {
+  validate() {
     if (this.checkForm()) this.submit();
   }
 

@@ -36,10 +36,11 @@ class SignUp1 extends Component {
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.goToNext = this.goToNext.bind(this);
 
     setProgress({ progress: 1, total: 2 });
     setButtonTitle(t("common:next"));
-    setButtonClick(this.goToNext.bind(this));
+    setButtonClick(this.goToNext);
   }
 
   goToNext() {
