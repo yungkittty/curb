@@ -1,27 +1,19 @@
 const modulesData = [
   {
     id: "text",
-    icon: "align-left",
-    title: "Post",
-    description: "Allows users to post textual content"
+    icon: "align-left"
   },
   {
     id: "image",
-    icon: "image",
-    title: "Image",
-    description: "Allows users to post images"
+    icon: "image"
   },
   {
     id: "video",
-    icon: "video",
-    title: "Video",
-    description: "Allows users to post videos"
+    icon: "video"
   },
   {
     id: "localisation",
-    icon: "map-marker-alt",
-    title: "Localisation",
-    description: "Allows users to post localisation points"
+    icon: "map-marker-alt"
   }
 ];
 

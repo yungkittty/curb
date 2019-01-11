@@ -16,7 +16,7 @@ class CreateGroup1 extends Component {
       data: {
         groupName = {
           value: "",
-          error: false
+          error: undefined
         }
       },
       setProgress,
@@ -54,19 +54,21 @@ class CreateGroup1 extends Component {
   checkInput(id, value) {
     const { setData } = this.props;
 
+    const error = value.length === 0 ? "missing" : undefined;
+
     this.setState(prev => {
       const obj = {
         [id]: {
           ...prev[id],
           value,
-          error: value.length === 0
+          error
         }
       };
       setData(obj);
       return obj;
     });
 
-    return value.length !== 0;
+    return error === undefined;
   }
 
   handleChange(event) {
@@ -91,7 +93,7 @@ class CreateGroup1 extends Component {
           placeholder={t("createGroup:groupName")}
           onChange={this.handleChange}
           value={value}
-          error={error ? t("validation:groupName.missing") : null}
+          error={error && t(`validation:groupName.${error}`)}
         />
       </ContentContainer>
     );

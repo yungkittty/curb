@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import CreateGroup1 from "../create-group-1";
 /* eslint-disable-next-line */
@@ -13,13 +14,8 @@ class CreateGroup2 extends Component {
   constructor(props) {
     super(props);
     const {
-      data: {
-        discoverability: {
-          value = undefined,
-          error = false,
-          errorMsg = "You must choose an option"
-        } = {}
-      },
+      t,
+      data: { discoverability = { value: undefined, error: undefined } },
       setProgress,
       setComponent,
       setLeftIcon,
@@ -29,11 +25,7 @@ class CreateGroup2 extends Component {
     } = this.props;
 
     this.state = {
-      discoverability: {
-        value,
-        error,
-        errorMsg
-      }
+      discoverability
     };
 
     this.checkForm = this.checkForm.bind(this);
@@ -43,7 +35,7 @@ class CreateGroup2 extends Component {
     setProgress({ progress: 2, total: 4 });
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(CreateGroup1, -1));
-    setButtonTitle("Next");
+    setButtonTitle(t("common:next"));
     setButtonClick(this.goToNext.bind(this));
   }
 
@@ -64,39 +56,47 @@ class CreateGroup2 extends Component {
   checkInput(id, value) {
     const { setData } = this.props;
 
+    const error = value === undefined ? "missing" : undefined;
+
     this.setState(prev => {
       const obj = {
         [id]: {
           ...prev[id],
           value,
-          error: value === undefined
+          error
         }
       };
       setData(obj);
       return obj;
     });
 
-    return value !== undefined;
+    return error === undefined;
   }
 
   handleChange(clickValue) {
     const {
       discoverability: { value }
     } = this.state;
+
     const newValue = clickValue === value ? undefined : clickValue;
 
     this.checkInput("discoverability", newValue);
   }
 
   render() {
+    const { t } = this.props;
     const {
-      discoverability: { value, error, errorMsg }
+      discoverability: { value, error }
     } = this.state;
 
     return (
       <ContentContainer>
-        <ContentTitle>Discoverability</ContentTitle>
-        {error && <ContentError>{errorMsg}</ContentError>}
+        <ContentTitle>{t("createGroup:discoverability")}</ContentTitle>
+        {error && (
+          <ContentError>
+            {t(`validation:discoverability.${error}`)}
+          </ContentError>
+        )}
         <ContentDiscover onClick={this.handleChange} discoverability={value} />
       </ContentContainer>
     );
@@ -115,6 +115,7 @@ CreateGroup2.defaultProps = {
 };
 
 CreateGroup2.propTypes = {
+  t: PropTypes.func.isRequired,
   data: PropTypes.shape({ discoverability: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
@@ -125,4 +126,4 @@ CreateGroup2.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default CreateGroup2;
+export default withNamespaces()(CreateGroup2);

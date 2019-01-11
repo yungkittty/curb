@@ -1,12 +1,13 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 import ModulesContainer from "./components/modules-container";
 import ListFlat from "../../../../../../components/list-flat";
 import ListItem from "../../../../../../components/list-item";
 import modulesData from "./content-modules-data";
 
-const ContentModules = ({ onClick, modules }) => (
+const ContentModules = ({ t, onClick, modules }) => (
   <ModulesContainer>
     <ListFlat
       showsVerticalScrollIndicator={false}
@@ -16,8 +17,8 @@ const ContentModules = ({ onClick, modules }) => (
       renderItem={({ item }) => (
         <ListItem
           icon={item.icon}
-          title={item.title}
-          description={item.description}
+          title={t(`modules:${item.id}.title`)}
+          description={t(`modules:${item.id}.description`)}
           selected={_.includes(modules, item.id)}
           selectionType={false}
           onClick={() => onClick(item.id)}
@@ -33,9 +34,10 @@ ContentModules.defaultProps = {
 };
 
 ContentModules.propTypes = {
+  t: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   /* eslint-disable-next-line */
   modules: PropTypes.array
 };
 
-export default ContentModules;
+export default withNamespaces()(ContentModules);

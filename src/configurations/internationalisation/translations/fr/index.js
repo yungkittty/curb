@@ -5,4 +5,6 @@ import validation from "./fr-validation";
 import signUp from "./fr-sign-up";
 import createGroup from "./fr-create-group";
 
-export default { common, glossary, validation, signUp, createGroup };
+import modules from "./fr-modules";
+
+export default { common, glossary, validation, signUp, createGroup, modules };

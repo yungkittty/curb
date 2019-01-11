@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import CreateGroup2 from "../create-group-2";
 /* eslint-disable-next-line */
@@ -14,12 +15,12 @@ class CreateGroup3 extends Component {
   constructor(props) {
     super(props);
     const {
+      t,
       data: {
-        modules: {
-          value = [],
-          error = false,
-          errorMsg = "You must choose at least one module"
-        } = {}
+        modules = {
+          value: [],
+          error: undefined
+        }
       },
       setProgress,
       setComponent,
@@ -30,11 +31,7 @@ class CreateGroup3 extends Component {
     } = this.props;
 
     this.state = {
-      modules: {
-        value,
-        error,
-        errorMsg
-      }
+      modules
     };
 
     this.checkForm = this.checkForm.bind(this);
@@ -44,7 +41,7 @@ class CreateGroup3 extends Component {
     setProgress({ progress: 3, total: 4 });
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(CreateGroup2, -1));
-    setButtonTitle("Next");
+    setButtonTitle(t("common:next"));
     setButtonClick(this.goToNext.bind(this));
   }
 
@@ -65,19 +62,21 @@ class CreateGroup3 extends Component {
   checkInput(id, value) {
     const { setData } = this.props;
 
+    const error = value.length === 0 ? "missing" : undefined;
+
     this.setState(prev => {
       const obj = {
         [id]: {
           ...prev[id],
           value,
-          error: value.length === 0
+          error
         }
       };
       setData(obj);
       return obj;
     });
 
-    return value.length !== 0;
+    return error === undefined;
   }
 
   handleChange(clickValue) {
@@ -93,14 +92,17 @@ class CreateGroup3 extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const {
-      modules: { value, error, errorMsg }
+      modules: { value, error }
     } = this.state;
 
     return (
       <ContentContainer>
-        <ContentTitle>Modules</ContentTitle>
-        {error && <ContentError>{errorMsg}</ContentError>}
+        <ContentTitle>{t("createGroup:modules")}</ContentTitle>
+        {error && (
+          <ContentError>{t(`validation:modules.${error}`)}</ContentError>
+        )}
         <ContentModules onClick={this.handleChange} modules={value} />
       </ContentContainer>
     );
@@ -119,6 +121,7 @@ CreateGroup3.defaultProps = {
 };
 
 CreateGroup3.propTypes = {
+  t: PropTypes.func.isRequired,
   data: PropTypes.shape({ modules: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
@@ -129,4 +132,4 @@ CreateGroup3.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default CreateGroup3;
+export default withNamespaces()(CreateGroup3);

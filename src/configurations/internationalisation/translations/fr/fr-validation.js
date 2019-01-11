@@ -7,6 +7,15 @@ const frValidation = {
   },
   groupName: {
     missing: "Nom du groupe manquant"
+  },
+  discoverability: {
+    missing: "Vous devez choisir une option"
+  },
+  modules: {
+    missing: "Vous devez choisir au moins un module"
+  },
+  theme: {
+    missing: "Vous devez choisir un thème"
   }
 };
 

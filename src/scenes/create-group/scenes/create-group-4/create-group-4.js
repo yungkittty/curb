@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";
 import ContentContainer from "./components/content-container";
@@ -11,12 +12,12 @@ class CreateGroup4 extends Component {
   constructor(props) {
     super(props);
     const {
+      t,
       data: {
-        theme: {
-          value = undefined,
-          error = false,
-          errorMsg = "You must choose a theme"
-        } = {}
+        theme = {
+          value: undefined,
+          error: undefined
+        }
       },
       setProgress,
       setComponent,
@@ -27,11 +28,7 @@ class CreateGroup4 extends Component {
     } = this.props;
 
     this.state = {
-      theme: {
-        value,
-        error,
-        errorMsg
-      }
+      theme
     };
 
     this.sumbit = this.submit.bind(this);
@@ -42,7 +39,7 @@ class CreateGroup4 extends Component {
     setProgress({ progress: 4, total: 4 });
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(CreateGroup3, -1));
-    setButtonTitle("Finish");
+    setButtonTitle(t("common:finish"));
     setButtonClick(this.goToNext.bind(this));
   }
 
@@ -52,12 +49,12 @@ class CreateGroup4 extends Component {
 
   submit() {
     const {
-      data: { name, discoverability, modules, theme },
+      data: { groupName, discoverability, modules, theme },
       postGroup
     } = this.props;
 
     postGroup({
-      name: name.value,
+      name: groupName.value,
       public: discoverability.value,
       modules: modules.value,
       theme: theme.value
@@ -75,19 +72,21 @@ class CreateGroup4 extends Component {
   checkInput(id, value) {
     const { setData } = this.props;
 
+    const error = value === undefined ? "missing" : undefined;
+
     this.setState(prev => {
       const obj = {
         [id]: {
           ...prev[id],
           value,
-          error: value === undefined
+          error
         }
       };
       setData(obj);
       return obj;
     });
 
-    return value !== undefined;
+    return error === undefined;
   }
 
   handleChange(clickValue) {
@@ -100,14 +99,15 @@ class CreateGroup4 extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const {
-      theme: { value, error, errorMsg }
+      theme: { value, error }
     } = this.state;
 
     return (
       <ContentContainer>
-        <ContentTitle>Theme</ContentTitle>
-        {error && <ContentError>{errorMsg}</ContentError>}
+        <ContentTitle>{t("createGroup:theme")}</ContentTitle>
+        {error && <ContentError>{t(`validation:theme.${error}`)}</ContentError>}
         <ContentThemes onClick={this.handleChange} value={value} />
       </ContentContainer>
     );
@@ -115,7 +115,6 @@ class CreateGroup4 extends Component {
 }
 
 CreateGroup4.defaultProps = {
-  postGroup: () => null,
   data: { theme: undefined },
   setData: undefined,
   setProgress: undefined,
@@ -127,7 +126,8 @@ CreateGroup4.defaultProps = {
 };
 
 CreateGroup4.propTypes = {
-  postGroup: PropTypes.func,
+  t: PropTypes.func.isRequired,
+  postGroup: PropTypes.func.isRequired,
   data: PropTypes.shape({ theme: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
@@ -138,4 +138,4 @@ CreateGroup4.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default CreateGroup4;
+export default withNamespaces()(CreateGroup4);

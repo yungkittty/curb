@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 import DiscoverContainer from "./components/discover-container";
 import DiscoverOption from "./components/discover-option";
 
-const ContentDiscover = ({ onClick, discoverability }) => (
+const ContentDiscover = ({ t, onClick, discoverability }) => (
   <DiscoverContainer>
     <DiscoverOption
       icon="globe"
-      title="Public"
-      description="Your group will be visible by everyone through the discovery"
+      title={t("glossary:public")}
+      description={t("createGroup:discoverabilityOptions.public")}
       selected={
         // eslint-disable-next-line
         discoverability === true
@@ -21,8 +22,8 @@ const ContentDiscover = ({ onClick, discoverability }) => (
     />
     <DiscoverOption
       icon="users"
-      title="Private"
-      description="Your group will only be accessible by invitation"
+      title={t("glossary:private")}
+      description={t("createGroup:discoverabilityOptions.private")}
       selected={
         // eslint-disable-next-line
         discoverability === false
@@ -42,8 +43,9 @@ ContentDiscover.defaultProps = {
 };
 
 ContentDiscover.propTypes = {
+  t: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   discoverability: PropTypes.bool
 };
 
-export default ContentDiscover;
+export default withNamespaces()(ContentDiscover);
