@@ -6,7 +6,7 @@ import Icon from "../../../icon";
 
 const ItemIcon = ({ theme, icon }) => (
   <IconContainer icon={icon}>
-    <Icon icon={icon} color={theme.fontVariantColor} size="medium" />
+    {icon && <Icon icon={icon} color={theme.fontVariantColor} size="medium" />}
   </IconContainer>
 );
 
