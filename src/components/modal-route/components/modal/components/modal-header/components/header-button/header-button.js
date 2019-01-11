@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import ButtonContainer from "./components/button-container";
@@ -6,7 +6,9 @@ import Icon from "../../../../../../../icon";
 
 const HeaderButton = ({ theme, icon, onClick }) => (
   <ButtonContainer onClick={onClick}>
-    <Icon icon={icon} color={theme.fontColor} size="small" />
+    <Fragment>
+      {icon && <Icon icon={icon} color={theme.fontColor} size="small" />}
+    </Fragment>
   </ButtonContainer>
 );
 
