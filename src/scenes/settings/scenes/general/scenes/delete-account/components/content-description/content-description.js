@@ -6,6 +6,7 @@ const ContentDescritpion = styled(Text)`
   font-weight: 400;
   line-height: 1.9;
   margin-bottom: 38px;
+  padding: 0px 48px;
 `;
 
 export default ContentDescritpion;

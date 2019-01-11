@@ -4,7 +4,7 @@ import Container from "../../../../../../../../components/container";
 const ContentContainer = styled(Container)`
   display: flex;
   flex-flow: column;
-  padding: 48px 114px;
+  padding: 36px 80px;
 `;
 
 export default ContentContainer;

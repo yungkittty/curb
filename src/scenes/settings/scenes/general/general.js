@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 import ListFlat from "../../../../components/list-flat";
 import ListItem from "../../../../components/list-item";
 /* eslint-disable-next-line */
@@ -10,11 +11,11 @@ import generalData from "./general-data";
 class General extends Component {
   constructor(props) {
     super(props);
-    const { setTitle, setLeftClick, setLeftIcon, setComponent } = this.props;
+    const { t, setTitle, setLeftClick, setLeftIcon, setComponent } = this.props;
 
     this.signOut = this.signOut.bind(this);
 
-    setTitle("General");
+    setTitle(t("settings:general.title"));
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(Settings, -1));
   }
@@ -26,7 +27,7 @@ class General extends Component {
   }
 
   render() {
-    const { setComponent } = this.props;
+    const { t, setComponent } = this.props;
 
     return (
       <ListFlat
@@ -37,8 +38,8 @@ class General extends Component {
         renderItem={({ item }) => (
           <ListItem
             icon={item.icon}
-            title={item.title}
-            description={item.description}
+            title={t(`settings:general.menu.${item.id}.title`)}
+            description={t(`settings:general.menu.${item.id}.description`)}
             onClick={() =>
               item.scene ? setComponent(item.scene, 1) : this.signOut()
             }
@@ -50,7 +51,6 @@ class General extends Component {
 }
 
 General.defaultProps = {
-  signOut: () => null,
   setTitle: undefined,
   setLeftClick: undefined,
   setLeftIcon: undefined,
@@ -58,11 +58,12 @@ General.defaultProps = {
 };
 
 General.propTypes = {
-  signOut: PropTypes.func,
+  t: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
   setTitle: PropTypes.func,
   setLeftClick: PropTypes.func,
   setLeftIcon: PropTypes.func,
   setComponent: PropTypes.func
 };
 
-export default General;
+export default withNamespaces()(General);

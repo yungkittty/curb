@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import General from "../../";
 import ContentContainer from "./components/content-container";
@@ -10,6 +11,7 @@ class DeleteAccount extends Component {
   constructor(props) {
     super(props);
     const {
+      t,
       setTitle,
       setLeftClick,
       setLeftIcon,
@@ -18,30 +20,29 @@ class DeleteAccount extends Component {
       setButtonClick
     } = this.props;
 
-    setTitle("Delete account");
+    setTitle(t("settings:general.menu.deleteAccount.title"));
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(General, -1));
-    setButtonTitle("Delete my account");
+    setButtonTitle(t("settings:general.menu.deleteAccount.buttonTitle"));
     setButtonClick(() => console.log("Delete account call"));
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <ContentContainer>
         <ContentTitle>
-          Are you sure you want to delete your account ?
+          {t("settings:general.menu.deleteAccount.contentTitle")}
         </ContentTitle>
         <ContentDescription>
-          You’ll never be able to recover your account, and all of your data
-          content will be deleted forever.
+          {t("settings:general.menu.deleteAccount.contentDescription1")}
         </ContentDescription>
         <ContentDescription>
-          If you ever want to join Curb again, you’ll have to create a new
-          account.
+          {t("settings:general.menu.deleteAccount.contentDescription2")}
         </ContentDescription>
         <ContentDescription>
-          If you agree with that, you can confirm this action by clicking the
-          button below :
+          {t("settings:general.menu.deleteAccount.contentDescription3")}
         </ContentDescription>
       </ContentContainer>
     );
@@ -58,6 +59,7 @@ DeleteAccount.defaultProps = {
 };
 
 DeleteAccount.propTypes = {
+  t: PropTypes.func.isRequired,
   setTitle: PropTypes.func,
   setLeftClick: PropTypes.func,
   setLeftIcon: PropTypes.func,
@@ -66,4 +68,4 @@ DeleteAccount.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default DeleteAccount;
+export default withNamespaces()(DeleteAccount);

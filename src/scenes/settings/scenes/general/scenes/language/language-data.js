@@ -1,23 +1,23 @@
 const languageData = [
   {
     id: "english",
-    title: "English"
+    key: "en"
   },
   {
     id: "french",
-    title: "French"
+    key: "fr"
   },
   {
-    id: "deutsch",
-    title: "Deutsch"
+    id: "german",
+    key: "de"
   },
   {
-    id: "espanol",
-    title: "Español"
+    id: "spanish",
+    key: "es"
   },
   {
-    id: "italiano",
-    title: "Italiano"
+    id: "chinese",
+    key: "cn"
   }
 ];
 
