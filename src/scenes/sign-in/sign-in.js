@@ -12,7 +12,7 @@ class SignIn extends Component {
         email = {
           value: "",
           error: false,
-          errorMsg: "You must enter a email"
+          errorMsg: "You must enter an email"
         },
         password = {
           value: "",
