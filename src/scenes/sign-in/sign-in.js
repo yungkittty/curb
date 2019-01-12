@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 import ContentContainer from "./components/content-container";
 import ContentRedirect from "./components/content-redirect";
 import ContentForm from "./components/content-form";
@@ -8,16 +9,15 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     const {
+      t,
       data: {
         email = {
           value: "",
-          error: false,
-          errorMsg: "You must enter an email"
+          error: undefined
         },
         password = {
           value: "",
-          error: false,
-          errorMsg: "You must enter a password"
+          error: undefined
         }
       } = {},
       setTitle,
@@ -36,8 +36,8 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setTitle("Sign in");
-    setButtonTitle("Login");
+    setTitle(t("signIn:signin"));
+    setButtonTitle(t("signIn:login"));
     setButtonClick(this.validate.bind(this));
   }
 
@@ -71,7 +71,7 @@ class SignIn extends Component {
 
   checkInput(id, value) {
     const error =
-      value.length === 0; 
+      value.length === 0 ? "missing" : undefined; 
 
     this.setState(prev => {
       const obj = {
@@ -84,7 +84,7 @@ class SignIn extends Component {
       return obj;
     });
 
-    return !error;
+    return error === undefined;
   }
 
   handleChange(event) {
@@ -123,4 +123,4 @@ SignIn.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default SignIn;
+export default withNamespaces()(SignIn);
