@@ -7,10 +7,12 @@ const NavigationContainer = styled(Container)`
   left: 0px;
   top: 0px;
   flex-direction: column;
-  justify-content: space-between;
   width: 80px;
   height: 100%;
-  background-color: ${({ theme }) => theme.pimaryColor};
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  background-color: ${props => props.theme.pimaryColor};
 `;
 
 export default NavigationContainer;
