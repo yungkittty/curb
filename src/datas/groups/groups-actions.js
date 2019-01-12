@@ -13,6 +13,19 @@ const groupsActions = {
     type: groupsActionsTypes.GET_GROUP_FAILURE,
     payload: error,
     error: true
+  }),
+  getGroupsRequest: payload => ({
+    type: groupsActionsTypes.GET_GROUPS_REQUEST,
+    payload
+  }),
+  getGroupsSuccess: payload => ({
+    type: groupsActionsTypes.GET_GROUPS_SUCCESS,
+    payload
+  }),
+  getGroupsFailure: error => ({
+    type: groupsActionsTypes.GET_GROUPS_FAILURE,
+    payload: error,
+    error: true
   })
 };
 

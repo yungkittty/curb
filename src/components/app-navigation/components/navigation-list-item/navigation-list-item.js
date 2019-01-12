@@ -4,17 +4,17 @@ import NavigationButtonImage from "../navigation-button-image";
 
 const NavigationListItem = ({
   currentUserGroupId,
-  currentUserGroupAvatarURL
+  currentUserGroupAvatarUrl
 }) => (
   <NavigationButtonImage
-    src={currentUserGroupAvatarURL}
-    to={`/groups/${currentUserGroupId}`}
+    src={currentUserGroupAvatarUrl}
+    onClick={`/groups/${currentUserGroupId}`}
   />
 );
 
 NavigationListItem.propTypes = {
   currentUserGroupId: PropTypes.string.isRequired,
-  currentUserGroupAvatarURL: PropTypes.string.isRequired
+  currentUserGroupAvatarUrl: PropTypes.string.isRequired
 };
 
 export default NavigationListItem;

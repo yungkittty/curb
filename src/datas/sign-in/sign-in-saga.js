@@ -4,10 +4,10 @@ import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
 import signInApi from "./sign-in-api";
 
-function* signInRequestSaga({ payload }) {
+function* signInRequestSaga(action) {
   try {
-    const respond = yield call(signInApi.signIn, payload);
-    yield put(signInActions.signInSuccess(respond));
+    const { data: payload } = yield call(signInApi.signIn, action.payload);
+    yield put(signInActions.signInSuccess(payload));
   } catch (error) {
     yield put(signInActions.signInFailure(error));
   }

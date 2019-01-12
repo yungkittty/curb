@@ -5,6 +5,8 @@ import ListFlat from "../../../../components/list-flat";
 
 /* eslint-disable */
 
+/** @todo button centered margin 80px ! */
+
 class DiscoverySection extends React.Component {
   constructor(props) {
     super(props);
@@ -23,18 +25,29 @@ class DiscoverySection extends React.Component {
           onClick={() => {
             console.log(this.listFlat);
             this.currentIndex--;
-            this.listFlat.current.scrollToIndex({ index: this.currentIndex, viewOffset: 0 });
+            this.listFlat.current.scrollToIndex({
+              index: this.currentIndex,
+              viewOffset: 0
+            });
           }}
         />
         <ListFlat
           {...this.props}
           ref={this.listFlat}
-          getItemLayout={(data, index) => ({ lenght: 130, offset: index * 130, index })} />
+          getItemLayout={(data, index) => ({
+            lenght: 130,
+            offset: index * 130,
+            index
+          })}
+        />
         <SectionButton
           icon="angle-right"
           onClick={() => {
             this.currentIndex++;
-            this.listFlat.current.scrollToIndex({ index: this.currentIndex, viewOffset: 0 });
+            this.listFlat.current.scrollToIndex({
+              index: this.currentIndex,
+              viewOffset: 0
+            });
           }}
         />
       </SectionContainer>

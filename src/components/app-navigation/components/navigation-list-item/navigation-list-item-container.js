@@ -18,9 +18,9 @@ class NavigationListItemContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const currentUserGroupId = ownProps.currentUserGroupId || "";
-  const { avatarURL: currentUserGroupAvatarURL = "" } =
+  const { avatarUrl: currentUserGroupAvatarUrl = "" } =
     groupsSelectors.getGroupById(state, currentUserGroupId) || {};
-  return { currentUserGroupId, currentUserGroupAvatarURL };
+  return { currentUserGroupId, currentUserGroupAvatarUrl };
 };
 
 const mapDispatchToProps = dispatch => ({
