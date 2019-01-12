@@ -6,7 +6,11 @@ import Icon from "../../../../../../../icon";
 
 const HeaderButton = ({ theme, icon, onClick }) => (
   <ButtonContainer onClick={onClick}>
-    <Icon icon={icon} color={theme.fontColor} size="small" />
+    {icon ? (
+      <Icon icon={icon} color={theme.fontColor} size="small" />
+    ) : (
+      <React.Fragment />
+    )}
   </ButtonContainer>
 );
 
