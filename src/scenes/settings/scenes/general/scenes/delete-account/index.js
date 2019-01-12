@@ -1,3 +1,3 @@
-import DeleteAccount from "./delete-account";
+import DeleteAccountContainer from "./delete-account-container";
 
-export default DeleteAccount;
+export default DeleteAccountContainer;

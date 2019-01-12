@@ -20,11 +20,19 @@ class DeleteAccount extends Component {
       setButtonClick
     } = this.props;
 
+    this.deleteAccount = this.deleteAccount.bind(this);
+
     setTitle(t("settings:general.menu.deleteAccount.title"));
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(General, -1));
     setButtonTitle(t("settings:general.menu.deleteAccount.buttonTitle"));
-    setButtonClick(() => console.log("Delete account call"));
+    setButtonClick(this.deleteAccount);
+  }
+
+  deleteAccount() {
+    const { deleteAccount } = this.props;
+
+    deleteAccount();
   }
 
   render() {
@@ -60,6 +68,7 @@ DeleteAccount.defaultProps = {
 
 DeleteAccount.propTypes = {
   t: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   setTitle: PropTypes.func,
   setLeftClick: PropTypes.func,
   setLeftIcon: PropTypes.func,

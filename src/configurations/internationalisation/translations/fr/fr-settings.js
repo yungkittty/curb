@@ -25,7 +25,7 @@ const frSettings = {
         contentDescription1:
           "Cette action étant irréversible, tout votre contenu publié sera définitivement supprimé.",
         contentDescription2:
-          "Si vous souhaiterez rejoindre Curb à nouveau, vous aurez à créer un nouveau compte.",
+          "Si vous souhaitez rejoindre Curb à nouveau, vous aurez à créer un nouveau compte.",
         contentDescription3:
           "Si vous acceptez cela, vous pouvez cliquer sur le bouton ci-dessous :"
       }

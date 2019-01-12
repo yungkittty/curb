@@ -14,8 +14,21 @@ function* signUpRequestSaga({ payload }) {
   }
 }
 
+function* deleteAccountRequestSaga({ payload }) {
+  try {
+    yield call(signUpApi.deleteAccount, payload);
+    yield put(signUpActions.deleteAccountSuccess());
+  } catch (error) {
+    yield put(signUpActions.deleteAccountFailure(error));
+  }
+}
+
 const signUpSaga = all([
-  takeLatest(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)
+  takeLatest(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga),
+  takeLatest(
+    signUpActionsTypes.DELETE_ACCOUNT_REQUEST,
+    deleteAccountRequestSaga
+  )
 ]);
 
 export default signUpSaga;
