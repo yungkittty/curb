@@ -19,7 +19,7 @@ const Icon = ({ size, icon, ...others }) => {
 };
 
 Icon.propTypes = {
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
+  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
   icon: PropTypes.string.isRequired
 };
 
