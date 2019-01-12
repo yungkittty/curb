@@ -9,10 +9,10 @@ class SignIn extends Component {
     super(props);
     const {
       data: {
-        username = {
+        email = {
           value: "",
           error: false,
-          errorMsg: "You must enter a username"
+          errorMsg: "You must enter a email"
         },
         password = {
           value: "",
@@ -20,20 +20,23 @@ class SignIn extends Component {
           errorMsg: "You must enter a password"
         }
       } = {},
+      setTitle,
       setButtonTitle,
       setButtonClick
 
     } = this.props;
 
     this.state = { 
-      username, 
+      email, 
       password 
     };
 
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.validate = this.validate.bind(this);
 
+    setTitle("Sign in");
     setButtonTitle("Login");
     setButtonClick(this.validate.bind(this));
   }
@@ -46,20 +49,24 @@ class SignIn extends Component {
     const {
       signIn
     } = this.props;
+    const { 
+      email, 
+      password 
+    } = this.state;
     
-    signIn({ username: this.state.username.value, password: this.state.password.value });
+    signIn({ email: email.value, password: password.value });
   }
 
   checkForm() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
-    const usernameCheck = this.checkInput("username", username.value);
+    const emailCheck = this.checkInput("email", email.value);
     const passwordCheck = this.checkInput(
       "password",
       password.value
     );
 
-    return usernameCheck && passwordCheck;
+    return emailCheck && passwordCheck;
   }
 
   checkInput(id, value) {
@@ -87,11 +94,11 @@ class SignIn extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
     return (
       <ContentContainer>
-        <ContentForm username={username} password={password} onChange={this.handleChange} />
+        <ContentForm email={email} password={password} onChange={this.handleChange} />
         <ContentRedirect />
       </ContentContainer>
     );
@@ -100,8 +107,6 @@ class SignIn extends Component {
 
 SignIn.defaultProps = {
   data: undefined,
-  signIn: () => null,
-  setData: undefined,
   setTitle: undefined,
   setButtonTitle: undefined,
   setButtonClick: undefined
@@ -109,11 +114,10 @@ SignIn.defaultProps = {
 
 SignIn.propTypes = {
   data: PropTypes.shape({
-    username: PropTypes.object,
+    email: PropTypes.object,
     password: PropTypes.object
   }),
-  signIn: PropTypes.func,
-  setData: PropTypes.func,
+  signIn: PropTypes.func.isRequired,
   setTitle: PropTypes.func,
   setButtonTitle: PropTypes.func,
   setButtonClick: PropTypes.func
