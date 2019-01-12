@@ -8,11 +8,9 @@ const enSettings = {
         title: "Language",
         description: "Display language of the application",
         menu: {
-          english: "English",
-          french: "French",
-          german: "German",
-          spanish: "Spanish",
-          chinese: "Chinese"
+          en: "English",
+          fr: "French",
+          cn: "Chinese"
         }
       },
       logout: {

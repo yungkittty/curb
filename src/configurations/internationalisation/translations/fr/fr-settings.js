@@ -8,16 +8,14 @@ const frSettings = {
         title: "Language",
         description: "Langue d'affichage de l'application",
         menu: {
-          english: "Anglais",
-          french: "Français",
-          german: "Allemand",
-          spanish: "Espagnol",
-          chinese: "Chinois"
+          en: "Anglais",
+          fr: "Français",
+          cn: "Chinois"
         }
       },
       logout: {
         title: "Déconnexion",
-        description: "Déconnectes votre compte de cet appareil"
+        description: "Déconnecte votre compte de cet appareil"
       },
       deleteAccount: {
         title: "Supprimer mon compte",

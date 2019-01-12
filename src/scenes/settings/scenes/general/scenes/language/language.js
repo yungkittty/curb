@@ -5,8 +5,6 @@ import ListFlat from "../../../../../../components/list-flat";
 import ListItem from "../../../../../../components/list-item";
 /* eslint-disable-next-line */
 import General from "../../";
-/* eslint-disable-next-line */
-import languageData from "./language-data";
 
 class Language extends Component {
   constructor(props) {
@@ -15,6 +13,7 @@ class Language extends Component {
       t,
       lng,
       i18n: {
+        store: { data },
         options: { fallbackLng }
       },
       setTitle,
@@ -23,7 +22,7 @@ class Language extends Component {
       setComponent
     } = this.props;
 
-    this.state = { key: lng || fallbackLng[0] };
+    this.state = { languages: Object.keys(data), key: lng || fallbackLng[0] };
 
     setTitle(t("settings:general.menu.language.title"));
     setLeftIcon("arrow-left");
@@ -41,20 +40,19 @@ class Language extends Component {
 
   render() {
     const { t } = this.props;
-    const { key } = this.state;
+    const { languages, key } = this.state;
 
     return (
       <ListFlat
         showsVerticalScrollIndicator={false}
-        data={languageData}
-        extraData={{ languageData }}
-        keyExtractor={item => item.id}
+        data={languages}
+        extraData={{ languages }}
         renderItem={({ item }) => (
           <ListItem
-            title={t(`settings:general.menu.language.menu.${item.id}`)}
-            selected={key === item.key}
+            title={t(`settings:general.menu.language.menu.${item}`)}
+            selected={key === item}
             selectionType={true}
-            onClick={() => this.handleChange(item.key)}
+            onClick={() => this.handleChange(item)}
           />
         )}
       />
