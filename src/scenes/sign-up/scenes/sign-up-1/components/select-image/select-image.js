@@ -7,7 +7,7 @@ const SelectImage = () => (
   <ImageContainer>
     <Fragment>
       <ImageCircle />
-      <Icon icon="file-image" color="#BDBDBD" size="big" />
+      <Icon icon="file-image" color="#BDBDBD" size="medium" />
     </Fragment>
   </ImageContainer>
 );

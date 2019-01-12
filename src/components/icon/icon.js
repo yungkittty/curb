@@ -30,8 +30,11 @@ const Icon = ({ size, style, ...others }) => {
   );
 };
 
+Icon.defaultProps = { style: undefined };
+
 Icon.propTypes = {
-  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired
+  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 export default Icon;

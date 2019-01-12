@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Button from "../../../../../../../../components/button";
 
 const ImageContainer = styled(Button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 140px;
   height: 140px;

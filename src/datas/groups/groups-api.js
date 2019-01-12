@@ -1,14 +1,9 @@
+import axios from "axios";
+
 const groupsApi = {
+  postGroup: () => axios.post(`${process.env.REACT_APP_API_URL}/groups`),
   getGroup: ({ id }) =>
-    fetch(`${process.env.REACT_APP_API_URL}/groups/${id}`, {
-      method: "GET",
-      headers: { Accept: "application/json" }
-    }),
-  postGroup: () =>
-    fetch(`${process.env.REACT_APP_API_URL}/groups`, {
-      method: "POST",
-      headers: { Accept: "application/json" }
-    })
+    axios.get(`${process.env.REACT_APP_API_URL}/groups/${id}`)
 };
 
 export default groupsApi;
