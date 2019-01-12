@@ -1,3 +1,3 @@
-import AppNavigation from "./app-navigation";
+import AppNavigationContainer from "./app-navigation-container";
 
-export default AppNavigation;
+export default AppNavigationContainer;

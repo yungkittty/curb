@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import SignUp2 from "../sign-up-2";
 import ContentContainer from "./components/content-container";
@@ -11,16 +12,15 @@ class SignUp1 extends Component {
   constructor(props) {
     super(props);
     const {
+      t,
       data: {
         name = {
           value: "",
-          error: false,
-          errorMsg: "You must enter a username"
+          error: undefined
         },
         email = {
           value: "",
-          error: false,
-          errorMsg: "You must enter a mail"
+          error: undefined
         }
       },
       setProgress,
@@ -36,10 +36,11 @@ class SignUp1 extends Component {
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.goToNext = this.goToNext.bind(this);
 
     setProgress({ progress: 1, total: 2 });
-    setButtonTitle("Next");
-    setButtonClick(this.goToNext.bind(this));
+    setButtonTitle(t("common:next"));
+    setButtonClick(this.goToNext);
   }
 
   goToNext() {
@@ -60,19 +61,21 @@ class SignUp1 extends Component {
   checkInput(id, value) {
     const { setData } = this.props;
 
+    const error = value.length === 0 ? "missing" : undefined;
+
     this.setState(prev => {
       const obj = {
         [id]: {
           ...prev[id],
           value,
-          error: value.length === 0
+          error
         }
       };
       setData(obj);
       return obj;
     });
 
-    return value.length !== 0;
+    return error === undefined;
   }
 
   handleChange(event) {
@@ -83,26 +86,27 @@ class SignUp1 extends Component {
 
   render() {
     const { name, email } = this.state;
+    const { t } = this.props;
 
     return (
       <ContentContainer>
-        <ContentTitle>Create account</ContentTitle>
+        <ContentTitle>{t("signUp:createAccount")}</ContentTitle>
         <SelectImage />
         <Input
           size="modal"
           id="name"
-          placeholder="Username"
+          placeholder={t("signUp:username")}
           onChange={this.handleChange}
           value={name.value}
-          error={name.error ? name.errorMsg : null}
+          error={name.error && t(`validation:username.${name.error}`)}
         />
         <Input
           size="modal"
           id="email"
-          placeholder="Mail address"
+          placeholder={t("signUp:mailAddress")}
           onChange={this.handleChange}
           value={email.value}
-          error={email.error ? email.errorMsg : null}
+          error={email.error && t(`validation:email.${email.error}`)}
         />
       </ContentContainer>
     );
@@ -119,6 +123,7 @@ SignUp1.defaultProps = {
 };
 
 SignUp1.propTypes = {
+  t: PropTypes.func.isRequired,
   data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object }),
   setData: PropTypes.func,
   setProgress: PropTypes.func,
@@ -127,4 +132,4 @@ SignUp1.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default SignUp1;
+export default withNamespaces()(SignUp1);
