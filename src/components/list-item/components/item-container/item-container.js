@@ -15,9 +15,11 @@ const ItemContainer = styled(Button)`
   ${screenWidthsMedias.medium`
     height: 125px;
 
+    ${({ disabled }) => disabled && "cursor: default;"}
+    
     &:hover {
-      background: ${({ backgroundColor, theme }) =>
-        !backgroundColor ? theme.pimaryVariantColor : null};
+      background: ${({ theme, backgroundColor, disabled }) =>
+        !disabled ? !backgroundColor && theme.pimaryVariantColor : null};
     }
   `}
 `;

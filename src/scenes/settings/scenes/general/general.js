@@ -27,7 +27,7 @@ class General extends Component {
   }
 
   render() {
-    const { t, setComponent } = this.props;
+    const { t, setComponent, currentUserToken } = this.props;
 
     return (
       <ListFlat
@@ -40,6 +40,7 @@ class General extends Component {
             icon={item.icon}
             title={t(`settings:general.menu.${item.id}.title`)}
             description={t(`settings:general.menu.${item.id}.description`)}
+            disabled={item.needSignedInUser && !currentUserToken}
             onClick={() =>
               item.scene ? setComponent(item.scene, 1) : this.signOut()
             }
@@ -60,6 +61,7 @@ General.defaultProps = {
 General.propTypes = {
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
+  currentUserToken: PropTypes.string.isRequired,
   setTitle: PropTypes.func,
   setLeftClick: PropTypes.func,
   setLeftIcon: PropTypes.func,

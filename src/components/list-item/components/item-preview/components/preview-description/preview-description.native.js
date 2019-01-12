@@ -5,7 +5,8 @@ const PreviewDescription = styled(Text)`
   line-height: 14;
   font-size: 10px;
   font-weight: 400;
-  color: ${({ theme }) => theme.fontVariantColor};
+  color: ${({ theme, disabled }) =>
+    !disabled ? theme.fontVariantColor : theme.secondaryVariantColor};
 `;
 
 export default PreviewDescription;

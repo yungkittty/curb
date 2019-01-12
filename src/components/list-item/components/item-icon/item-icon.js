@@ -4,21 +4,29 @@ import { withTheme } from "styled-components";
 import IconContainer from "./components/icon-container";
 import Icon from "../../../icon";
 
-const ItemIcon = ({ theme, icon }) => (
+const ItemIcon = ({ theme, icon, disabled }) => (
   <IconContainer icon={icon}>
-    {icon && <Icon icon={icon} color={theme.fontVariantColor} size="medium" />}
+    {icon && (
+      <Icon
+        icon={icon}
+        color={!disabled ? theme.fontVariantColor : theme.secondaryVariantColor}
+        size="medium"
+      />
+    )}
   </IconContainer>
 );
 
 ItemIcon.defaultProps = {
   theme: undefined,
-  icon: undefined
+  icon: undefined,
+  disabled: undefined
 };
 
 ItemIcon.propTypes = {
   /* eslint-disable-next-line */
   theme: PropTypes.object,
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default withTheme(ItemIcon);

@@ -47,6 +47,7 @@ class Language extends Component {
         showsVerticalScrollIndicator={false}
         data={languages}
         extraData={{ languages }}
+        keyExtractor={item => item}
         renderItem={({ item }) => (
           <ListItem
             title={t(`settings:general.menu.language.menu.${item}`)}

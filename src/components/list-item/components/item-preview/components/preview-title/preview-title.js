@@ -4,7 +4,8 @@ import Text from "../../../../../text";
 const PreviewTitle = styled(Text)`
   font-size: 18px;
   font-weight: 700;
-  color: ${({ titleColor, theme }) => titleColor || theme.fontColor};
+  color: ${({ theme, titleColor, disabled }) =>
+    !disabled ? titleColor || theme.fontColor : theme.secondaryVariantColor};
 `;
 
 export default PreviewTitle;

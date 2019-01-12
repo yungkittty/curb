@@ -6,15 +6,15 @@ const SelectionEmpty = styled(Container)`
   border: 2px solid
     ${({ theme, selectedColorAlternate }) =>
       selectedColorAlternate ? "#333333" : theme.secondaryVariantColor};
-  width: 14px;
-  height: 14px;
-  border-radius: ${({ selectionType }) => (selectionType ? "7" : "2")}px;
+  ${({ selectionType }) =>
+    selectionType
+      ? "width: 20px; height: 20px; border-radius: 10px;"
+      : "width: 18px; height: 18px; border-radius: 2px;"}
 
   ${screenWidthsMedias.medium`
-    width: 18px;
-    height: 18px;
-    border-radius: ${({ selectionType }) => (selectionType ? "9" : "2")}px;
-  `}
+      width: 18px;
+      height: 18px;
+  `};
 `;
 
 export default SelectionEmpty;

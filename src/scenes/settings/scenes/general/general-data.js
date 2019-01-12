@@ -11,12 +11,14 @@ const generalData = [
   },
   {
     id: "logout",
-    icon: "sign-out-alt"
+    icon: "sign-out-alt",
+    needSignedInUser: true
   },
   {
     id: "deleteAccount",
     icon: "trash-alt",
-    scene: DeleteAccount
+    scene: DeleteAccount,
+    needSignedInUser: true
   }
 ];
 
