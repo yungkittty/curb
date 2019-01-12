@@ -49,11 +49,13 @@ class CreateGroup4 extends Component {
 
   submit() {
     const {
-      data: { groupName, discoverability, modules, theme },
-      postGroup
+      postGroup,
+      currentUserId,
+      data: { groupName, discoverability, modules, theme }
     } = this.props;
 
     postGroup({
+      creatorId: currentUserId,
       name: groupName.value,
       public: discoverability.value,
       modules: modules.value,
@@ -127,8 +129,9 @@ CreateGroup4.defaultProps = {
 
 CreateGroup4.propTypes = {
   t: PropTypes.func.isRequired,
-  postGroup: PropTypes.func.isRequired,
   data: PropTypes.shape({ theme: PropTypes.object }),
+  postGroup: PropTypes.func.isRequired,
+  currentUserId: PropTypes.string.isRequired,
   setData: PropTypes.func,
   setProgress: PropTypes.func,
   setLeftIcon: PropTypes.func,
