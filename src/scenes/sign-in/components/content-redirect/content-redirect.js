@@ -8,7 +8,7 @@ import Link from "../../../../components/link";
 const ContentRedirect = ({ t }) => (
   <RedirectContainer>
     <Text>{t("signIn:redirectMsg")}</Text>
-    <Link to={{ path: "/sign-up", state: { isModal: true } }}>
+    <Link to={{ pathname: "/sign-up", state: { isModal: true } }}>
       <Text>{t("signUp:createAccount")}</Text>
     </Link>
   </RedirectContainer>
