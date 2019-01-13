@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Text from "../../../../../../components/text";
 
-const HeaderTitle = styled(Text).attrs(() => ({ type: "h3" }))`
-  padding-bottom: 25px;
+const HeaderTitle = styled(Text)`
+  margin-bottom: 25px;
   color: ${props => props.theme.secondaryColor};
 `;
 

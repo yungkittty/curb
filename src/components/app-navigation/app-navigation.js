@@ -17,7 +17,7 @@ const AppNavigation = ({
   theme
 }) => (
   <NavigationContainer>
-    {!currentUserId || !currentUserToken ? (
+    {!currentUserToken ? (
       <NavigationButtonIcon
         icon="sign-in-alt"
         size="medium"
@@ -40,7 +40,7 @@ const AppNavigation = ({
       ListFooterComponent={() => (
         <NavigationListFooter
           icon="plus"
-          size="extra-small"
+          size="small"
           color={theme.secondaryVariantColor}
           onClick="/"
         />

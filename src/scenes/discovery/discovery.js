@@ -3,9 +3,9 @@ import React from "react";
 import ContainerScroll from "../../components/container-scroll";
 import DiscoveryHeader from "./components/discovery-header";
 import ListSection from "../../components/list-section";
-// import DiscoveryListSectionHeader from "./components/discovery-list-section-header";
-// import DiscoverySection from "./components/discovery-section";
-// import DiscoverySectionItem from "./components/discovery-section-item";
+import DiscoveryListSectionHeader from "./components/discovery-list-section-header";
+// import DiscoveryList from "./components/discovery-list";
+// import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
 
 const Discovery = (/* { discoveryGroups } */) => (
@@ -13,8 +13,14 @@ const Discovery = (/* { discoveryGroups } */) => (
     <ContainerScroll>
       <DiscoveryHeader />
       <ListSection
-        sections={[{ data: [{}] }]} // !
-        renderSection={() => <React.Fragment />}
+        /* eslint-disable-next-line */
+        sections={[{ data: [{}] }]}
+        renderSectionHeader={() => (
+          /* eslint-disable-next-line */
+          <DiscoveryListSectionHeader type="h3">
+            All groups
+          </DiscoveryListSectionHeader>
+        )}
         renderItem={() => <React.Fragment />}
       />
     </ContainerScroll>
@@ -23,7 +29,7 @@ const Discovery = (/* { discoveryGroups } */) => (
 );
 
 Discovery.propTypes = {
-  // discoveryGroups: PropTypes.arrayOf(PropTypes.string).isRequired
+  /* discoveryGroups: PropTypes.arrayOf(PropTypes.string).isRequired */
 };
 
 export default Discovery;

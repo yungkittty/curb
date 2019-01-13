@@ -31,6 +31,6 @@ const Text = styled.Text`
 
 Text.defaultProps = { type: undefined };
 
-Text.propTypes = { type: PropTypes.oneOf(["h1", "h2"]) };
+Text.propTypes = { type: PropTypes.oneOf(["h1", "h2", "h3"]) };
 
 export default Text;
