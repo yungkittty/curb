@@ -113,11 +113,11 @@ SignIn.defaultProps = {
 };
 
 SignIn.propTypes = {
-  t: PropTypes.func.isRequired,
   data: PropTypes.shape({
     email: PropTypes.object,
     password: PropTypes.object
   }),
+  t: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   setTitle: PropTypes.func,
   setButtonTitle: PropTypes.func,
