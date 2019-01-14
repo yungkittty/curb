@@ -10,16 +10,6 @@ class SignIn extends Component {
     super(props);
     const {
       t,
-      data: {
-        email = {
-          value: "",
-          error: undefined
-        },
-        password = {
-          value: "",
-          error: undefined
-        }
-      } = {},
       setTitle,
       setButtonTitle,
       setButtonClick
@@ -27,8 +17,14 @@ class SignIn extends Component {
     } = this.props;
 
     this.state = { 
-      email, 
-      password 
+      email : {
+        value: "",
+        error: undefined
+      },
+      password : {
+        value: "",
+        error: undefined
+      }
     };
 
     this.submit = this.submit.bind(this);
@@ -50,10 +46,9 @@ class SignIn extends Component {
       signIn
     } = this.props;
     const { 
-      email, 
+      email,
       password 
     } = this.state;
-    
     signIn({ email: email.value, password: password.value });
   }
 
@@ -105,20 +100,12 @@ class SignIn extends Component {
   }
 }
 
-SignIn.defaultProps = {
-  data: undefined
-};
-
 SignIn.propTypes = {
   t: PropTypes.func.isRequired,
-  data: PropTypes.shape({
-    email: PropTypes.object,
-    password: PropTypes.object
-  }),
   signIn: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.isRequired,
-  setButtonClick: PropTypes.isRequired
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
 export default withNamespaces("signIn")(SignIn);
