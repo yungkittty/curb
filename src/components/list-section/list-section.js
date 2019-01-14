@@ -18,11 +18,7 @@ class ListSection extends React.Component {
   }
 
   // eslint-disable-next-line
-  renderSectionLayout(
-    renderSectionLayout,
-    { data, ...sectionData },
-    sectionIndex
-  ) {
+  renderSectionLayout(renderSectionLayout, { data, ...sectionData }, sectionIndex) {
     const sectionLayoutParams = { section: sectionData };
     const sectionLayoutProps = { key: sectionIndex };
     return React.cloneElement(

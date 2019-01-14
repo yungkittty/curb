@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Link from "../../../../components/link";
+import ButtonImage from "../../../../components/button-image";
 
-const DiscoveryListItem = styled(Link)`
-  min-width: 75px;
-  height: 75px;
-  border-radius: 35px; // !
-  margin-right: 30px;
+const DiscoveryListItem = styled(ButtonImage)`
+  min-width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-right: 35px;
   background-color: ${props => props.theme.primaryVariantColor};
 `;
 

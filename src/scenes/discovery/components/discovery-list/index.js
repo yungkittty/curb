@@ -1,3 +1,3 @@
-import DiscoverySection from "./discovery-section";
+import DiscoveryList from "./discovery-list";
 
-export default DiscoverySection;
+export default DiscoveryList;

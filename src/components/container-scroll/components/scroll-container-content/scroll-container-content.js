@@ -5,9 +5,8 @@ import Container from "../../../container";
 const ScrollContainerContent = styled(Container)`
   display: flex;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
-  width: calc(100%${props => (!props.showsVerticalScrollIndicator ? " + 30px" : "")});
-  height: calc(100%${props => (!props.showsHorizontalScrollIndicator ? " + 30px" : "")});
-  ${props => !props.showsVerticalScrollIndicator ? "padding-right: 30px" : ""};
+  flex-grow: 1;
+  ${props => !props.showsVerticalScrollIndicator ? "margin-right: -30px" : ""};
   ${props => !props.showsHorizontalScrollIndicator ? "margin-bottom: -30px" : ""};
   overflow: auto;
 `;

@@ -12,10 +12,8 @@ library.add(fab, fas);
 const Icon = ({ size, style, ...others }) => {
   const X = (() => {
     switch (size) {
-      case "extra-small":
-        return 20;
       case "small":
-        return 30;
+        return 20;
       case "medium":
         return 40;
       case "large":

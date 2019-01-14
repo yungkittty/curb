@@ -3,34 +3,31 @@ import PropTypes from "prop-types";
 import ScrollContainer from "./components/scroll-container";
 import ScrollContainerContent from "./components/scroll-container-content";
 
-const ContainerScroll = React.forwardRef((props, ref) => {
-  const {
-    className,
-    style,
-    children,
-    contentContainerStyle,
-    showsHorizontalScrollIndicator,
-    showsVerticalScrollIndicator,
-    horizontal
-  } = props;
-  return (
-    <ScrollContainer
-      className={className}
-      style={style}
+const ContainerScroll = React.forwardRef(({
+  className,
+  style,
+  children,
+  contentContainerStyle,
+  showsHorizontalScrollIndicator,
+  showsVerticalScrollIndicator,
+  horizontal
+}, ref) => (
+  <ScrollContainer
+    className={className}
+    style={style}
+    horizontal={horizontal}
+  >
+    <ScrollContainerContent
+      ref={ref}
+      style={contentContainerStyle}
+      showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
+      showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       horizontal={horizontal}
     >
-      <ScrollContainerContent
-        ref={ref}
-        style={contentContainerStyle}
-        showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
-        showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-        horizontal={horizontal}
-      >
-        {children}
-      </ScrollContainerContent>
-    </ScrollContainer>
-  );
-});
+      {children}
+    </ScrollContainerContent>
+  </ScrollContainer>
+));
 
 ContainerScroll.defaultProps = {
   className: undefined,
