@@ -26,25 +26,19 @@ const ContentForm = ({ onChange, email, password, t } ) => (
   </FormContainer>
 );
 
-ContentForm.defaultProps = {
-  onChange: undefined,
-  email: undefined,
-  password: undefined,
-};
-
 ContentForm.propTypes = {
   t: PropTypes.func.isRequired,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   email: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.bool,
     errorMsg: PropTypes.string
-  }),
+  }).isRequired,
   password: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.bool,
     errorMsg: PropTypes.string
-  }),
+  }).isRequired,
 };
 
 export default withNamespaces()(ContentForm);
