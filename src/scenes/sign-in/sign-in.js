@@ -106,10 +106,7 @@ class SignIn extends Component {
 }
 
 SignIn.defaultProps = {
-  data: undefined,
-  setTitle: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
+  data: undefined
 };
 
 SignIn.propTypes = {
@@ -119,9 +116,9 @@ SignIn.propTypes = {
     password: PropTypes.object
   }),
   signIn: PropTypes.func.isRequired,
-  setTitle: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  setTitle: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.isRequired,
+  setButtonClick: PropTypes.isRequired
 };
 
 export default withNamespaces("signIn")(SignIn);

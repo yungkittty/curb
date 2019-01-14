@@ -3,7 +3,7 @@ import Container from "../../../../components/container";
 
 const ContentContainer = styled(Container)`
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   align-items: center;
   flex: 1;
 `;
