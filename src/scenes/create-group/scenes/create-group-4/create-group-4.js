@@ -58,7 +58,7 @@ class CreateGroup4 extends Component {
       creatorId: currentUserId,
       name: groupName.value,
       public: discoverability.value,
-      modules: modules.value,
+      mediaTypes: modules.value,
       theme: theme.value
     });
   }

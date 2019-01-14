@@ -11,28 +11,20 @@ const ContentDiscover = ({ t, onClick, discoverability }) => (
       title={t("glossary:public")}
       description={t("createGroup:discoverabilityOptions.public")}
       selected={
-        // eslint-disable-next-line
-        discoverability === true
-          ? true
-          : discoverability === undefined
-          ? undefined
-          : false
+        discoverability === undefined ? undefined : discoverability === "public"
       }
-      onClick={() => onClick(true)}
+      onClick={() => onClick("public")}
     />
     <DiscoverOption
       icon="users"
       title={t("glossary:private")}
       description={t("createGroup:discoverabilityOptions.private")}
       selected={
-        // eslint-disable-next-line
-        discoverability === false
-          ? true
-          : discoverability === undefined
+        discoverability === undefined
           ? undefined
-          : false
+          : discoverability === "private"
       }
-      onClick={() => onClick(false)}
+      onClick={() => onClick("private")}
     />
   </DiscoverContainer>
 );
