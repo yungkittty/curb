@@ -1,4 +1,5 @@
 const enSignIn = {
+    createAccount: "Create account",
     signIn: "Sign in",
     login: "Login",
     email: "Mail address",

@@ -1,4 +1,5 @@
 const frSignIn = {
+    createAccount: "Créer un compte",
     signIn: "Se connecter",
     login: "Connexion",
     email: "Adresse email",

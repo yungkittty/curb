@@ -7,9 +7,9 @@ import Link from "../../../../components/link";
 
 const ContentRedirect = ({ t }) => (
   <RedirectContainer>
-    <Text>{t("signIn:redirectMsg")}</Text>
+    <Text>{t("redirectMsg")}</Text>
     <Link to={{ pathname: "/sign-up", state: { isModal: true } }}>
-      <Text>{t("signUp:createAccount")}</Text>
+      <Text>{t("createAccount")}</Text>
     </Link>
   </RedirectContainer>
 );
@@ -18,4 +18,4 @@ ContentRedirect.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
-export default withNamespaces()(ContentRedirect);
+export default withNamespaces("signIn")(ContentRedirect);

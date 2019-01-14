@@ -36,8 +36,8 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setTitle(t("signIn:signIn"));
-    setButtonTitle(t("signIn:login"));
+    setTitle(t("signIn"));
+    setButtonTitle(t("login"));
     setButtonClick(this.validate.bind(this));
   }
 
@@ -124,4 +124,4 @@ SignIn.propTypes = {
   setButtonClick: PropTypes.func
 };
 
-export default withNamespaces()(SignIn);
+export default withNamespaces("signIn")(SignIn);
