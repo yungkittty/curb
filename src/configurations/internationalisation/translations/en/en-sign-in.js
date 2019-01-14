@@ -1,9 +1,9 @@
-const enSignin = {
-    signin: "Sign in",
+const enSignIn = {
+    signIn: "Sign in",
     login: "Login",
     email: "Mail address",
     password: "Password",
     redirectMsg: "New to curb ?"
   };
   
-  export default enSignin;
+  export default enSignIn;

@@ -36,7 +36,7 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setTitle(t("signIn:signin"));
+    setTitle(t("signIn:signIn"));
     setButtonTitle(t("signIn:login"));
     setButtonClick(this.validate.bind(this));
   }
@@ -113,11 +113,11 @@ SignIn.defaultProps = {
 };
 
 SignIn.propTypes = {
+  t: PropTypes.func.isRequired,
   data: PropTypes.shape({
     email: PropTypes.object,
     password: PropTypes.object
   }),
-  t: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   setTitle: PropTypes.func,
   setButtonTitle: PropTypes.func,

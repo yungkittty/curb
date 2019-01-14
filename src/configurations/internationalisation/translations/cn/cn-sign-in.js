@@ -1,3 +1,3 @@
-const cnSignin = {};
+const cnSignIn = {};
 
-export default cnSignin;
+export default cnSignIn;
