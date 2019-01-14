@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import ContentContainer from "./components/content-container";
-import ContentRedirect from "./components/content-redirect";
-import ContentForm from "./components/content-form";
+import SignInContainer from "./components/content-container";
+import SignInRedirect from "./components/content-redirect";
+import SignInForm from "./components/content-form";
 
 class SignIn extends Component {
   constructor(props) {
@@ -97,10 +97,10 @@ class SignIn extends Component {
     const { email, password } = this.state;
 
     return (
-      <ContentContainer>
-        <ContentForm email={email} password={password} onChange={this.handleChange} />
-        <ContentRedirect />
-      </ContentContainer>
+      <SignInContainer>
+        <SignInForm email={email} password={password} onChange={this.handleChange} />
+        <SignInRedirect />
+      </SignInContainer>
     );
   }
 }
