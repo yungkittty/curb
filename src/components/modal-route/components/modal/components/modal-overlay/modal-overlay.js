@@ -1,5 +1,11 @@
-import PopupContainer from "../../../../../popup/components/popup-container";
+import styled from "styled-components";
+import Container from "../../../../../container";
 
-const ModalOverlay = PopupContainer;
+const ModalOverlay = styled(Container)`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+`;
 
 export default ModalOverlay;

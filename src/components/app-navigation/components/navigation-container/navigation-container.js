@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import Container from "../../../container";
-import { screenWidthsMedias } from "../../../../configurations/screen";
 
 const NavigationContainer = styled(Container)`
   display: flex;
-  justify-content: space-between;
+  position: absolute;
+  left: 0px;
+  top: 0px;
   flex-direction: column;
-  background: #e0e0e0;
+  width: 80px;
   height: 100%;
-  width: 76px;
-
-  ${screenWidthsMedias.large`
-    width: 80px;
-  `};
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  background-color: ${props => props.theme.pimaryColor};
 `;
 
 export default NavigationContainer;

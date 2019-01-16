@@ -1,15 +1,3 @@
-import React from "react";
-import PopupWindow from "../../components/popup/components/popup-window";
-import SigninContent from "./components/signin-content";
-
-const SignIn = () => (
-  <PopupWindow
-    title="Sign in"
-    hasToValidate={true}
-    button="Login"
-    buttonTo={{ pathname: "/" }}
-    content={SigninContent}
-  />
-);
+const SignIn = () => null;
 
 export default SignIn;
