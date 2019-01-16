@@ -31,13 +31,11 @@ ContentForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   email: PropTypes.shape({
     value: PropTypes.string,
-    error: PropTypes.bool,
-    errorMsg: PropTypes.string
+    error: PropTypes.string
   }).isRequired,
   password: PropTypes.shape({
     value: PropTypes.string,
-    error: PropTypes.bool,
-    errorMsg: PropTypes.string
+    error: PropTypes.string
   }).isRequired,
 };
 
