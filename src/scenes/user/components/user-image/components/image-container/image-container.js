@@ -10,12 +10,11 @@ const ImageContainer = styled(Container)`
     width: 170px;
     height: 170px;
     margin-top: 70px;
-
     ${screenWidthsMedias.large`
-    border-radius: 200px;
-    width: 200px;
-    height: 200px;
-  `};
+     border-radius: 200px;
+     width: 200px;
+     height: 200px;
+    `};
 `;
 
 export default ImageContainer;
