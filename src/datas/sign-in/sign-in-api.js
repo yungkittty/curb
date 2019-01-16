@@ -6,11 +6,9 @@ const signInApi = {
       ...payload
     }),
   signOut: token =>
-    axios.post(
-      `${process.env.REACT_APP_API_URL}/accounts/sign-out`,
-      {},
-      { headers: { Authorization: `Bearer ${token}` } }
-    )
+    axios.post(`${process.env.REACT_APP_API_URL}/accounts/sign-out`, null, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
 };
 
 export default signInApi;
