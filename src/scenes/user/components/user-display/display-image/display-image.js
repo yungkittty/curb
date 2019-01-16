@@ -7,7 +7,7 @@ const DisplayImage = styled(Image)`
     left: 0;
     width: 100%;
     height: 100%;
-    filter: ${props => props.editMode && "blur(2px)"};
+    
 `;
 
 export default DisplayImage;

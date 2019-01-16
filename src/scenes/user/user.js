@@ -6,6 +6,7 @@ import DisplayUsername from "./components/user-display/display-username";
 import EditButton from "./components/user-edit/edit-button";
 import EditUsername from "./components/user-edit/edit-username";
 import ImageContainer from "./components/user-image/components/image-container";
+import Input from "../../components/input";
 
 class User extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class User extends Component {
           {editMode && <EditButton avatar={avatar} icon="plus" size="big" />}
         </ImageContainer>
         {editMode ? (
-          <EditUsername placeholder={username} />
+          <EditUsername placeholder={username} b />
         ) : (
           <DisplayUsername h3 bold>
             {username}
