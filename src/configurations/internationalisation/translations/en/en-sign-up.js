@@ -1,4 +1,4 @@
-const enSignup = {
+const enSignUp = {
   createAccount: "Create account",
   choosePassword: "Choose your password",
   username: "Username",
@@ -7,4 +7,4 @@ const enSignup = {
   confirmPassword: "Confirm password"
 };
 
-export default enSignup;
+export default enSignUp;

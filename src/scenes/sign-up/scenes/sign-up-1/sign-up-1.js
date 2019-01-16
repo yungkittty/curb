@@ -90,12 +90,12 @@ class SignUp1 extends Component {
 
     return (
       <ContentContainer>
-        <ContentTitle>{t("signUp:createAccount")}</ContentTitle>
+        <ContentTitle>{t("createAccount")}</ContentTitle>
         <SelectImage />
         <Input
           size="modal"
           id="name"
-          placeholder={t("signUp:username")}
+          placeholder={t("username")}
           onChange={this.handleChange}
           value={name.value}
           error={name.error && t(`validation:username.${name.error}`)}
@@ -103,7 +103,7 @@ class SignUp1 extends Component {
         <Input
           size="modal"
           id="email"
-          placeholder={t("signUp:mailAddress")}
+          placeholder={t("mailAddress")}
           onChange={this.handleChange}
           value={email.value}
           error={email.error && t(`validation:email.${email.error}`)}
@@ -113,23 +113,15 @@ class SignUp1 extends Component {
   }
 }
 
-SignUp1.defaultProps = {
-  data: undefined,
-  setData: undefined,
-  setProgress: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
-};
-
 SignUp1.propTypes = {
   t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object }),
-  setData: PropTypes.func,
-  setProgress: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object })
+    .isRequired,
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(SignUp1);
+export default withNamespaces("signUp")(SignUp1);
