@@ -6,7 +6,7 @@ const RedirectContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
   position: relative;
-  bottom: 40px;
+  bottom: 20px;
 `;
 
 export default RedirectContainer;
