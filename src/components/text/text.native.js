@@ -6,17 +6,17 @@ const Text = styled.Text`
     switch (props.type) {
       case "h1":
         return `
-          font-size: 24px;
-          font-weight: bold;
+          font-size: 36px;
+          font-weight: normal;
         `;
       case "h2":
         return `
-          font-size: 18px;
-          font-weight: normal;
+          font-size: 24px;
+          font-weight: bold;
         `;
       case "h3":
         return `
-          font-size: 14px;
+          font-size: 18px;
           font-weight: normal;
         `;
       default:

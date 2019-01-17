@@ -11,7 +11,7 @@ class ListFlat extends React.Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  scrollToIndex({ animated = true, index: itemIndex, viewOffset }) {
+  scrollToIndex({ animated = true, index: itemIndex, viewOffset = 0 }) {
     const { getItemLayout, data: itemsData, horizontal } = this.props;
     const scrollToOffset = getItemLayout(itemsData[itemIndex], itemIndex).offset + viewOffset;
     this.containerScroll.current.scrollTo({

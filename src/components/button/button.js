@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Button = styled(({ onClick, ...others }) =>
-  typeof onClick !== "string" || typeof onClick !== "object" ? (
+  typeof onClick !== "string" && typeof onClick !== "object" ? (
     <button {...others} type="button" onClick={onClick} />
   ) : (
     <Link {...others} to={onClick} />

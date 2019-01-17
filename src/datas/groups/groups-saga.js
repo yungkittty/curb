@@ -12,18 +12,8 @@ function* getGroupRequestSaga(action) {
   }
 }
 
-function* getGroupsRequestSaga(action) {
-  try {
-    const { data: payload } = yield call(groupsApi.getGroups, action.payload);
-    yield put(groupsActions.getGroupsSuccess(payload));
-  } catch (error) {
-    yield put(groupsActions.getGroupsFailure(error));
-  }
-}
-
 const groupsSaga = all([
-  takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
-  takeEvery(groupsActionsTypes.GET_GROUPS_REQUEST, getGroupsRequestSaga)
+  takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga)
 ]);
 
 export default groupsSaga;

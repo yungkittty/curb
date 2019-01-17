@@ -1,24 +1,30 @@
-/* eslint-disable */
-
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Discovery from "./discovery";
+import { discoveryActions, discoverySelectors } from "../../datas/discovery";
 
 class DiscoveryContainer extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    const { getDiscovery } = this.props;
+    getDiscovery({});
+  }
 
   render() {
-    const { ...others } = this.props;
-    return <Discovery {...others} />;
+    return <Discovery {...this.props} />;
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  discoveryGroups: discoverySelectors.getDiscoveryGroups(state)
+});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+  getDiscovery: payload =>
+    dispatch(discoveryActions.getDiscoveryRequest(payload))
+});
 
-DiscoveryContainer.propTypes = {};
+DiscoveryContainer.propTypes = { getDiscovery: PropTypes.func.isRequired };
 
 export default connect(
   mapStateToProps,
