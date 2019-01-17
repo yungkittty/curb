@@ -1,3 +1,3 @@
-import ButtonFloating from "./button-floating";
+import ButtonIconFloat from "./button-icon-float";
 
-export default ButtonFloating;
+export default ButtonIconFloat;

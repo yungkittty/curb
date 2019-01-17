@@ -28,7 +28,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getDiscoveryGroup: payload => dispatch(groupsActions.getGroupRequest(payload))
+  getDiscoveryGroup: payload =>
+    dispatch(groupsActions.getGroupRequest(payload))
 });
 
 DiscoveryListItemContainer.propTypes = {

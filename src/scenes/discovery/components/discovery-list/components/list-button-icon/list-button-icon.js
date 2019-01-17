@@ -13,8 +13,7 @@ const ListButtonIcon = styled(ButtonIcon).attrs(props => ({
   height: 40px;
   border-radius: 20px;
   box-shadow: 0px 3.6px 3.24px 0px rgba(0, 0, 0, 0.189); // 6
-  background-color: ${({ disabled, theme }) =>
-    disabled ? theme.primaryVariantColor : theme.primaryColor};
+  background-color: ${props => props.theme.primaryColor};
 `;
 
 export default ListButtonIcon;

@@ -4,9 +4,16 @@ import ListItemContainer from "./components/list-item-container";
 import ListItemButtonImage from "./components/list-item-button-image";
 import ListItemTitle from "./components/list-item-title";
 
-const DiscoveryListItem = ({ discoveryGroupId, discoveryGroupName, discoveryGroupAvatarUrl }) => (
+const DiscoveryListItem = ({
+  discoveryGroupId,
+  discoveryGroupName,
+  discoveryGroupAvatarUrl
+}) => (
   <ListItemContainer>
-    <ListItemButtonImage src={discoveryGroupAvatarUrl} onClick={`groups/${discoveryGroupId}`} />
+    <ListItemButtonImage
+      src={discoveryGroupAvatarUrl}
+      onClick={`groups/${discoveryGroupId}`}
+    />
     <ListItemTitle>{discoveryGroupName}</ListItemTitle>
   </ListItemContainer>
 );
