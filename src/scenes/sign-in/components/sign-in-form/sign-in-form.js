@@ -4,7 +4,7 @@ import { withNamespaces } from "react-i18next";
 import FormContainer from "./components/form-container";
 import Input from "../../../../components/input";
 
-const ContentForm = ({ onChange, email, password, t } ) => (
+const SignInForm = ({ onChange, email, password, t } ) => (
   <FormContainer>
     <Input 
       size="modal"
@@ -26,7 +26,7 @@ const ContentForm = ({ onChange, email, password, t } ) => (
   </FormContainer>
 );
 
-ContentForm.propTypes = {
+SignInForm.propTypes = {
   t: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   email: PropTypes.shape({
@@ -39,4 +39,4 @@ ContentForm.propTypes = {
   }).isRequired,
 };
 
-export default withNamespaces()(ContentForm);
+export default withNamespaces()(SignInForm);
