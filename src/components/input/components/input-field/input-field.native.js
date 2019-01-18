@@ -3,15 +3,13 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TextInput } from "react-native";
 
-const inputField = ({ type, onChange, id, ...others }) => (
+const InputField = styled(({ type, onChange, id, ...others }) => (
   <TextInput
     secureTextEntry={type === "password"}
     onChangeText={text => onChange({ target: { id, value: text } })}
     {...others}
   />
-);
-
-const InputField = styled(inputField)`
+))`
   font-size: 18px;
   padding: 18px;
   border-bottom-width: 1px;
