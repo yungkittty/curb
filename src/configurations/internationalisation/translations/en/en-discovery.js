@@ -1,7 +1,7 @@
 const enDiscovery = {
-  discoveryTitle: "Discovery",
-  discoverySubtitle: "Join popular groups on the network",
-  discoveryListSectionHeader: "All Groups"
+  title: "Discovery",
+  subtitle: "Join popular groups on the network",
+  section: "All Groups"
 };
 
 export default enDiscovery;

@@ -53,7 +53,7 @@ const AppNavigation = ({
       icon="cog"
       size="medium"
       color={theme.primaryColor}
-      onClick={{ pathname: "/settings", state: { isModal: true } }}
+      onClick={() => undefined}
     />
   </NavigationContainer>
 );

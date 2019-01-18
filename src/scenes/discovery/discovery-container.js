@@ -7,16 +7,18 @@ import { discoveryActions, discoverySelectors } from "../../datas/discovery";
 class DiscoveryContainer extends React.Component {
   componentDidMount() {
     const { getDiscovery } = this.props;
-    getDiscovery({});
+    getDiscovery({ count: 25 });
   }
 
   render() {
-    return <Discovery {...this.props} />;
+    const { getDiscovery, ...others } = this.props;
+    return <Discovery {...others} />;
   }
 }
 
 const mapStateToProps = state => ({
-  discoveryGroups: discoverySelectors.getDiscoveryGroups(state)
+  /* eslint-disable-next-line */
+  discoveryGroups: discoverySelectors.getDiscoveryGroups(state) || []
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -7,22 +7,22 @@ const Text = styled.Text`
       case "h1":
         return `
           font-size: 36px;
-          font-weight: normal;
+          font-weight: 700;
         `;
       case "h2":
         return `
           font-size: 24px;
-          font-weight: bold;
+          font-weight: 400;
         `;
       case "h3":
         return `
           font-size: 18px;
-          font-weight: normal;
+          font-weight: 400;
         `;
       default:
         return `
           font-size: 14px;
-          font-weight: normal;
+          font-weight: 400;
         `;
     }
   }}

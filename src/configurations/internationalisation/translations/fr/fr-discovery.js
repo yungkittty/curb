@@ -1,7 +1,7 @@
 const frDiscovery = {
-  discoveryTitle: "Découverte",
-  discoverySubtitle: "Rejoint des groupes populaires sur le réseau",
-  discoveryListSectionHeader: "Tous les groupes"
+  title: "Découverte",
+  subtitle: "Rejoint des groupes populaires sur le réseau",
+  section: "Tous les groupes"
 };
 
 export default frDiscovery;

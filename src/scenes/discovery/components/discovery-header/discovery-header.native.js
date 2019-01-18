@@ -1,20 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { withTheme } from "styled-components";
 import HeaderContainer from "./components/header-container";
 import HeaderButtonIcon from "./components/header-button-icon";
-import HeaderTitle from "./components/header-title";
-import HeaderSubtitle from "./components/header-subtitle";
 
-const DiscoveryHeader = () => (
+const DiscoveryHeader = ({ theme, children }) => (
   <HeaderContainer>
-    <HeaderButtonIcon onClick={() => undefined} />
-    <HeaderTitle type="h1">
-      {/* eslint-disable-next-line */}
-      Discovery
-    </HeaderTitle>
-    <HeaderSubtitle type="h3">
-      Join popular groups on the network
-    </HeaderSubtitle>
+    <HeaderButtonIcon
+      icon="qrcode"
+      size="medium"
+      color={theme.primaryColor}
+      onClick={() => undefined}
+    />
+    {children}
   </HeaderContainer>
 );
 
-export default DiscoveryHeader;
+DiscoveryHeader.propTypes = {
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired
+};
+
+export default withTheme(DiscoveryHeader);

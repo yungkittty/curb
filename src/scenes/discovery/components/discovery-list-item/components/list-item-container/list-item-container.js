@@ -5,6 +5,7 @@ const ListItemContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   min-width: 140px;
+  height: 160px;
   padding-right: 40px;
 `;
 

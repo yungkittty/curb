@@ -9,13 +9,13 @@ class DiscoveryList extends React.Component {
     super(props);
     this.listFlat = React.createRef();
     this.scrollToCurrentIndex = 0;
+    this.scrollToOffset = 0;
     this.isScrollable = this.isScrollable.bind(this);
     this.scrollToLeft = this.scrollToLeft.bind(this);
     this.scrollToRight = this.scrollToRight.bind(this);
     this.state = {
       isScrollableToLeft: false,
-      isScrollableToRight: true,
-      scrollToOffset: 0
+      isScrollableToRight: true
     };
   }
 
@@ -23,7 +23,7 @@ class DiscoveryList extends React.Component {
     window.addEventListener("resize", this.isScrollable);
     const { current: containerScroll } = this.listFlat.current.containerScroll;
     containerScroll.addEventListener("scroll", this.isScrollable);
-    this.setState({ scrollToOffset: Math.floor(containerScroll.clientWidth / 140) });
+    this.isScrollable();
   }
 
   componentWillUnmount() {
@@ -37,48 +37,33 @@ class DiscoveryList extends React.Component {
       current: containerScroll,
       current: { scrollWidth, scrollLeft, clientWidth }
     } = this.listFlat.current.containerScroll;
-    if (event.type === "resize")
+    if (!event || event.type === "resize") {
       this.scrollToCurrentIndex = Math.floor(scrollLeft / 140);
+      this.scrollToOffset = Math.floor(containerScroll.clientWidth / 140); }
     this.setState({
       isScrollableToLeft: scrollLeft !== 0,
-      isScrollableToRight: scrollWidth - scrollLeft >= clientWidth + 40,
-      ...(event.type === "resize"
-        ? { scrollToOffset: Math.floor(containerScroll.clientWidth / 140) }
-        : {})
+      isScrollableToRight: scrollWidth - scrollLeft >= clientWidth + 40
     });
   }
 
   scrollToLeft() {
-    const {
-      current: listFlat,
-      current: { containerScroll: { current: containerScroll } }
-    } = this.listFlat;
-    const scrollToOffset = Math.floor(containerScroll.clientWidth / 140);
-    this.scrollToCurrentIndex = Math.max(this.scrollToCurrentIndex - scrollToOffset, 0);
+    this.scrollToCurrentIndex =
+      Math.max(this.scrollToCurrentIndex - this.scrollToOffset, 0);
+    const { current: listFlat } = this.listFlat;
     listFlat.scrollToIndex({ index: this.scrollToCurrentIndex });
-    this.setState({ scrollToOffset });
   }
 
   scrollToRight() {
-    const {
-      current: listFlat,
-      current: { containerScroll: { current: containerScroll } }
-    } = this.listFlat;
-    const scrollToOffset = Math.floor(containerScroll.clientWidth / 140);
+    const { data: itemsData } = this.props;
     this.scrollToCurrentIndex = Math.min(
-      this.scrollToCurrentIndex + scrollToOffset,
-      // eslint-disable-next-line
-      this.props.data.length - scrollToOffset);
+      this.scrollToCurrentIndex + this.scrollToOffset,
+      itemsData.length - this.scrollToOffset);
+    const { current: listFlat } = this.listFlat;
     listFlat.scrollToIndex({ index: this.scrollToCurrentIndex });
-    this.setState({ scrollToOffset });
   }
 
   render() {
-    const {
-      isScrollableToLeft,
-      isScrollableToRight,
-      // scrollToOffset // !
-    } = this.state;
+    const { isScrollableToLeft, isScrollableToRight } = this.state;
     return (
       <ListContainer>
         {isScrollableToLeft ? (
@@ -91,13 +76,13 @@ class DiscoveryList extends React.Component {
         <ListFlat
           {...this.props}
           ref={this.listFlat}
+          style={{ height: 160 }}
           contentContainerStyle={{ paddingLeft: 40 }}
           getItemLayout={(itemData, itemIndex) => ({ offset: 140 * itemIndex })}
         />
         {isScrollableToRight ? (
           <ListButtonIcon
             icon="angle-right"
-            // style={{ left: 200 + 140 * (scrollToOffset - 1) }}
             style={{ right: 20 }}
             onClick={this.scrollToRight}
           />

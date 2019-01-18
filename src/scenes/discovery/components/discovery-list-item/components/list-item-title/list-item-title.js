@@ -6,7 +6,7 @@ const ListItemTitle = styled(Text)`
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
-  white-space: no-wrap;
+  white-space: nowrap;
 `;
 
 export default ListItemTitle;

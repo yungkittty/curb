@@ -1,16 +1,17 @@
 import styled from "styled-components";
-import NavigationButton from "../navigation-button";
 import ButtonImage from "../../../button-image";
 
 // https://facebook.github.io/react-native/docs/image
 // https://github.com/facebook/react-native/issues/2468#issuecomment-287399569
 
-const NavigationButtonImage = styled(NavigationButton).attrs(() => ({
-  as: ButtonImage
-}))`
+const NavigationButtonImage = styled(ButtonImage)`
   width: 50px;
   height: 50px;
+  min-height: 50px;
+  margin-bottom: 10px;
   border-radius: 25px;
+  overflow: hidden;
+  background-color: ${props => props.theme.secondaryVariantColor};
 `;
 
 export default NavigationButtonImage;

@@ -14,7 +14,9 @@ const DiscoveryListItem = ({
       src={discoveryGroupAvatarUrl}
       onClick={`groups/${discoveryGroupId}`}
     />
-    <ListItemTitle>{discoveryGroupName}</ListItemTitle>
+    <ListItemTitle>
+      {discoveryGroupName}
+    </ListItemTitle>
   </ListItemContainer>
 );
 

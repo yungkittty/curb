@@ -5,7 +5,7 @@ const ListItemTitle = styled(Text).attrs(() => ({
   numberOfLines: 1,
   ellipsizeMode: "tail"
 }))`
-  width: 100px;
+  width: 70px;
   text-align: center;
 `;
 

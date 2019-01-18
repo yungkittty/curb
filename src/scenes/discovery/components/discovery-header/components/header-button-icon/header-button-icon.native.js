@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import ButtonIcon from "../../../../../../components/button-icon";
 
-const HeaderButtonIcon = styled(ButtonIcon).attrs(props => ({
-  icon: "qrcode",
-  size: "medium",
-  color: props.theme.primaryColor
-}))`
+const HeaderButtonIcon = styled(ButtonIcon)`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
 `;
 
 export default HeaderButtonIcon;

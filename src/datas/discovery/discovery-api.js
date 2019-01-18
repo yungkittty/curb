@@ -1,33 +1,8 @@
-// import axios from "axios";
+import axios from "axios";
 
 const discoveryApi = {
-  getDiscovery: () =>
-    new Promise(resolve =>
-      resolve({
-        data: {
-          groups: [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      })
-    )
+  getDiscovery: ({ count }) =>
+    axios.get(`${process.env.REACT_APP_API_URL}/groups?count=${count}`)
 };
 
 export default discoveryApi;

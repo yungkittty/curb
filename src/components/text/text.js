@@ -8,22 +8,22 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
       case "h1":
         return `
           font-size: 48px;
-          font-weight: bold;
+          font-weight: 700;
         `;
       case "h2":
         return `
           font-size: 36px;
-          font-weight: normal;
+          font-weight: 400;
         `;
       case "h3":
         return `
           font-size: 24px;
-          font-weight: normal;
+          font-weight: 400;
         `;
       default:
         return `
           font-size: 14px;
-          font-weight: normal;
+          font-weight: 400;
         `;
     }
   }};
