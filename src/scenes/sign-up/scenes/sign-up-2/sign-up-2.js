@@ -110,7 +110,7 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { t, currentUserToken } = this.props;
+    const { currentUserToken, t } = this.props;
     const { password, confirmPassword } = this.state;
 
     return currentUserToken ? (
