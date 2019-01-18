@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
+import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
 import ContentContainer from "./components/content-container";
@@ -109,10 +110,12 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, currentUserToken } = this.props;
     const { password, confirmPassword } = this.state;
 
-    return (
+    return currentUserToken ? (
+      <Redirect to="/" />
+    ) : (
       <ContentContainer>
         <ContentTitle>{t("choosePassword")}</ContentTitle>
         <Input
@@ -141,7 +144,12 @@ class SignUp2 extends Component {
   }
 }
 
+SignUp2.defaultProps = {
+  currentUserToken: undefined
+};
+
 SignUp2.propTypes = {
+  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   data: PropTypes.shape({
     password: PropTypes.object,
