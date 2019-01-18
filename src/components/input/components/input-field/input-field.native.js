@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TextInput } from "react-native";
 
@@ -17,26 +16,5 @@ const InputField = styled(({ type, onChange, id, ...others }) => (
     error ? theme.errorColor : theme.pimaryColor};
   width: 100%;
 `;
-
-InputField.defaultProps = {
-  type: undefined,
-  placeholder: undefined,
-  value: undefined,
-  onChange: undefined,
-  id: undefined,
-  style: undefined,
-  children: undefined
-};
-
-InputField.propTypes = {
-  type: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  id: PropTypes.string,
-  /* eslint-disable-next-line */
-  style: PropTypes.array,
-  children: PropTypes.func
-};
 
 export default InputField;
