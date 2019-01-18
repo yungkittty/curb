@@ -2,13 +2,15 @@ import axios from "axios";
 
 const signInApi = {
   signIn: payload =>
-    axios.post(`${process.env.REACT_APP_API_URL}/accounts/sign-in`, {
-      data: payload
-    }),
+    axios.post(`${process.env.REACT_APP_API_URL}/accounts/sign-in`, payload),
   signOut: token =>
-    axios.post(`${process.env.REACT_APP_API_URL}/accounts/sign-out`, {
-      headers: { Authorization: `Bearer${token}` }
-    })
+    axios.post(
+      `${process.env.REACT_APP_API_URL}/accounts/sign-out`,
+      undefined,
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
 };
 
 export default signInApi;
