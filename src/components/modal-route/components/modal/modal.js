@@ -12,6 +12,7 @@ class Modal extends Component {
     super(props);
 
     const {
+      onCloseRequest,
       history: { goBack }
     } = this.props;
 
@@ -23,7 +24,7 @@ class Modal extends Component {
       leftClick: undefined,
       rightIcon: "times",
       rightTo: undefined,
-      rightClick: goBack,
+      rightClick: onCloseRequest || goBack,
       buttonTitle: undefined,
       buttonTo: undefined,
       buttonClick: undefined
@@ -174,13 +175,14 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  history: undefined,
+  onCloseRequest: undefined,
   component: undefined,
   render: undefined
 };
 
 Modal.propTypes = {
-  history: PropTypes.shape({ goBack: PropTypes.func }),
+  onCloseRequest: PropTypes.func,
+  history: PropTypes.shape({ goBack: PropTypes.func }).isRequired,
   component: PropTypes.func,
   render: PropTypes.func
 };
