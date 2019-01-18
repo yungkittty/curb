@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import SignInContainer from "./components/content-container";
-import SignInRedirect from "./components/content-redirect";
-import SignInForm from "./components/content-form";
+import SignInContainer from "./components/sign-in-container";
+import SignInRedirect from "./components/sign-in-redirect";
+import SignInForm from "./components/sign-in-form";
 
 class SignIn extends Component {
   constructor(props) {

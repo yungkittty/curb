@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Container from "../../../../components/container";
 
-const ContentContainer = styled(Container)`
+const SignInContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -9,4 +9,4 @@ const ContentContainer = styled(Container)`
   flex: 1;
 `;
 
-export default ContentContainer;
+export default SignInContainer;
