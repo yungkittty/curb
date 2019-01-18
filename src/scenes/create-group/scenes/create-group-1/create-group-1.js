@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import CreateGroup2 from "../create-group-2";
-import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
+import CreateGroup1Container from "./components/create-group-1-container";
+import CreateGroup1Title from "./components/create-group-1-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
 
@@ -84,8 +84,8 @@ class CreateGroup1 extends Component {
     } = this.state;
 
     return (
-      <ContentContainer>
-        <ContentTitle>{t("createGroup")}</ContentTitle>
+      <CreateGroup1Container>
+        <CreateGroup1Title>{t("createGroup")}</CreateGroup1Title>
         <SelectImage />
         <Input
           size="modal"
@@ -95,7 +95,7 @@ class CreateGroup1 extends Component {
           value={value}
           error={error && t(`validation:groupName.${error}`)}
         />
-      </ContentContainer>
+      </CreateGroup1Container>
     );
   }
 }

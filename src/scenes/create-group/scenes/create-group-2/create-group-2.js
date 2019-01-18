@@ -5,10 +5,10 @@ import { withNamespaces } from "react-i18next";
 import CreateGroup1 from "../create-group-1";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";
-import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
-import ContentDiscover from "./components/content-discover";
-import ContentError from "./components/content-error";
+import CreateGroup2Container from "./components/create-group-2-container";
+import CreateGroup2Title from "./components/create-group-2-title";
+import CreateGroup2Discover from "./components/create-group-2-discover";
+import CreateGroup2Error from "./components/create-group-2-error";
 
 class CreateGroup2 extends Component {
   constructor(props) {
@@ -90,15 +90,20 @@ class CreateGroup2 extends Component {
     } = this.state;
 
     return (
-      <ContentContainer>
-        <ContentTitle>{t("createGroup:discoverability")}</ContentTitle>
+      <CreateGroup2Container>
+        <CreateGroup2Title>
+          {t("createGroup:discoverability")}
+        </CreateGroup2Title>
         {error && (
-          <ContentError>
+          <CreateGroup2Error>
             {t(`validation:discoverability.${error}`)}
-          </ContentError>
+          </CreateGroup2Error>
         )}
-        <ContentDiscover onClick={this.handleChange} discoverability={value} />
-      </ContentContainer>
+        <CreateGroup2Discover
+          onClick={this.handleChange}
+          discoverability={value}
+        />
+      </CreateGroup2Container>
     );
   }
 }

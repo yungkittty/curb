@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";
-import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
-import ContentThemes from "./components/content-themes";
-import ContentError from "./components/content-error";
+import CreateGroup4Container from "./components/create-group-4-container";
+import CreateGroup4Title from "./components/create-group-4-title";
+import CreateGroup4Themes from "./components/create-group-4-themes";
+import CreateGroup4Error from "./components/create-group-4-error";
 
 class CreateGroup4 extends Component {
   constructor(props) {
@@ -107,11 +107,15 @@ class CreateGroup4 extends Component {
     } = this.state;
 
     return (
-      <ContentContainer>
-        <ContentTitle>{t("theme")}</ContentTitle>
-        {error && <ContentError>{t(`validation:theme.${error}`)}</ContentError>}
-        <ContentThemes onClick={this.handleChange} value={value} />
-      </ContentContainer>
+      <CreateGroup4Container>
+        <CreateGroup4Title>{t("theme")}</CreateGroup4Title>
+        {error && (
+          <CreateGroup4Error>
+            {t(`validation:theme.${error}`)}
+          </CreateGroup4Error>
+        )}
+        <CreateGroup4Themes onClick={this.handleChange} value={value} />
+      </CreateGroup4Container>
     );
   }
 }

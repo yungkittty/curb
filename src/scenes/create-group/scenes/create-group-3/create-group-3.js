@@ -6,10 +6,10 @@ import { withNamespaces } from "react-i18next";
 import CreateGroup2 from "../create-group-2";
 /* eslint-disable-next-line */
 import CreateGroup4 from "../create-group-4";
-import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
-import ContentModules from "./components/content-modules";
-import ContentError from "./components/content-error";
+import CreateGroup3Container from "./components/create-group-3-container";
+import CreateGroup3Title from "./components/create-group-3-title";
+import CreateGroup3Modules from "./components/create-group-3-modules";
+import CreateGroup3Error from "./components/create-group-3-error";
 
 class CreateGroup3 extends Component {
   constructor(props) {
@@ -98,13 +98,15 @@ class CreateGroup3 extends Component {
     } = this.state;
 
     return (
-      <ContentContainer>
-        <ContentTitle>{t("modules")}</ContentTitle>
+      <CreateGroup3Container>
+        <CreateGroup3Title>{t("modules")}</CreateGroup3Title>
         {error && (
-          <ContentError>{t(`validation:modules.${error}`)}</ContentError>
+          <CreateGroup3Error>
+            {t(`validation:modules.${error}`)}
+          </CreateGroup3Error>
         )}
-        <ContentModules onClick={this.handleChange} modules={value} />
-      </ContentContainer>
+        <CreateGroup3Modules onClick={this.handleChange} modules={value} />
+      </CreateGroup3Container>
     );
   }
 }
