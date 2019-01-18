@@ -4,7 +4,7 @@ import Button from "../../../../../../../../components/button";
 const ImageContainer = styled(Button)`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-sign-up-1: center;
   position: relative;
   width: 140px;
   height: 140px;

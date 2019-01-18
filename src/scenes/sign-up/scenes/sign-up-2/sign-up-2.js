@@ -4,8 +4,8 @@ import { withNamespaces } from "react-i18next";
 import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
-import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
+import SignUp2Container from "./components/sign-up-2-container";
+import SignUp2Title from "./components/sign-up-2-title";
 import Input from "../../../../components/input";
 
 class SignUp2 extends Component {
@@ -116,8 +116,8 @@ class SignUp2 extends Component {
     return currentUserToken ? (
       <Redirect to="/" />
     ) : (
-      <ContentContainer>
-        <ContentTitle>{t("choosePassword")}</ContentTitle>
+      <SignUp2Container>
+        <SignUp2Title>{t("choosePassword")}</SignUp2Title>
         <Input
           size="modal"
           id="password"
@@ -139,7 +139,7 @@ class SignUp2 extends Component {
             t(`validation:password.${confirmPassword.error}`)
           }
         />
-      </ContentContainer>
+      </SignUp2Container>
     );
   }
 }

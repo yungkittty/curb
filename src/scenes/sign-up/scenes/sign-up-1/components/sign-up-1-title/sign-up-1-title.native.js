@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../../../../../../components/text";
 
-const ContentTitle = styled(Text)`
+const SignUp1Title = styled(Text)`
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 42px;
@@ -10,4 +10,4 @@ const ContentTitle = styled(Text)`
   line-height: 36;
 `;
 
-export default ContentTitle;
+export default SignUp1Title;

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import Text from "../../../../../../components/text";
 
-const ContentTitle = styled(Text)`
-  font-size: 28px;
+const SignUp2Title = styled(Text)`
+  font-size: 36px;
   font-weight: 700;
-  margin-bottom: 46px;
+  margin-bottom: 58px;
   color: ${({ theme }) => theme.fontColor};
   text-align: center;
-  line-height: 36;
+  line-height: 1.45;
 `;
 
-export default ContentTitle;
+export default SignUp2Title;
