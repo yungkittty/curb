@@ -85,12 +85,12 @@ class CreateGroup1 extends Component {
 
     return (
       <ContentContainer>
-        <ContentTitle>{t("createGroup:createGroup")}</ContentTitle>
+        <ContentTitle>{t("createGroup")}</ContentTitle>
         <SelectImage />
         <Input
           size="modal"
           id="groupName"
-          placeholder={t("createGroup:groupName")}
+          placeholder={t("groupName")}
           onChange={this.handleChange}
           value={value}
           error={error && t(`validation:groupName.${error}`)}
@@ -100,23 +100,14 @@ class CreateGroup1 extends Component {
   }
 }
 
-CreateGroup1.defaultProps = {
-  data: undefined,
-  setData: undefined,
-  setProgress: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
-};
-
 CreateGroup1.propTypes = {
   t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ name: PropTypes.object }),
-  setData: PropTypes.func,
-  setProgress: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  data: PropTypes.shape({ name: PropTypes.object }).isRequired,
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(CreateGroup1);
+export default withNamespaces("createGroup")(CreateGroup1);

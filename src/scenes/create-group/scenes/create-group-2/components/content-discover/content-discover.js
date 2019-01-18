@@ -9,7 +9,7 @@ const ContentDiscover = ({ t, onClick, discoverability }) => (
     <DiscoverOption
       icon="globe"
       title={t("glossary:public")}
-      description={t("createGroup:discoverabilityOptions.public")}
+      description={t("discoverabilityOptions.public")}
       selected={
         discoverability === undefined ? undefined : discoverability === "public"
       }
@@ -18,7 +18,7 @@ const ContentDiscover = ({ t, onClick, discoverability }) => (
     <DiscoverOption
       icon="users"
       title={t("glossary:private")}
-      description={t("createGroup:discoverabilityOptions.private")}
+      description={t("discoverabilityOptions.private")}
       selected={
         discoverability === undefined
           ? undefined
@@ -37,7 +37,7 @@ ContentDiscover.defaultProps = {
 ContentDiscover.propTypes = {
   t: PropTypes.func.isRequired,
   onClick: PropTypes.func,
-  discoverability: PropTypes.bool
+  discoverability: PropTypes.string
 };
 
-export default withNamespaces()(ContentDiscover);
+export default withNamespaces("createGroup")(ContentDiscover);

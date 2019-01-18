@@ -14,7 +14,7 @@ const ContentThemes = ({ t, onClick, value }) => (
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
         <ListItem
-          title={t(`createGroup:themeList.${item.id}`)}
+          title={t(`themeList.${item.id}`)}
           titleColor="#ffffff"
           backgroundColor={item.backgroundColor}
           selected={item.id === value}
@@ -38,4 +38,4 @@ ContentThemes.propTypes = {
   value: PropTypes.string
 };
 
-export default withNamespaces()(ContentThemes);
+export default withNamespaces("createGroup")(ContentThemes);

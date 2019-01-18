@@ -17,8 +17,8 @@ const ContentModules = ({ t, onClick, modules }) => (
       renderItem={({ item }) => (
         <ListItem
           icon={item.icon}
-          title={t(`modules:${item.id}.title`)}
-          description={t(`modules:${item.id}.description`)}
+          title={t(`${item.id}.title`)}
+          description={t(`${item.id}.description`)}
           selected={_.includes(modules, item.id)}
           selectionType={false}
           onClick={() => onClick(item.id)}
@@ -40,4 +40,4 @@ ContentModules.propTypes = {
   modules: PropTypes.array
 };
 
-export default withNamespaces()(ContentModules);
+export default withNamespaces("modules")(ContentModules);

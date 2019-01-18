@@ -103,27 +103,16 @@ class CreateGroup2 extends Component {
   }
 }
 
-CreateGroup2.defaultProps = {
-  data: { discoverability: undefined },
-  setData: undefined,
-  setProgress: undefined,
-  setLeftIcon: undefined,
-  setLeftClick: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
-};
-
 CreateGroup2.propTypes = {
   t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ discoverability: PropTypes.object }),
-  setData: PropTypes.func,
-  setProgress: PropTypes.func,
-  setLeftIcon: PropTypes.func,
-  setLeftClick: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  data: PropTypes.shape({ discoverability: PropTypes.object }).isRequired,
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setLeftIcon: PropTypes.func.isRequired,
+  setLeftClick: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
 export default withNamespaces()(CreateGroup2);

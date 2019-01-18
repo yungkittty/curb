@@ -99,7 +99,7 @@ class CreateGroup3 extends Component {
 
     return (
       <ContentContainer>
-        <ContentTitle>{t("createGroup:modules")}</ContentTitle>
+        <ContentTitle>{t("modules")}</ContentTitle>
         {error && (
           <ContentError>{t(`validation:modules.${error}`)}</ContentError>
         )}
@@ -109,27 +109,16 @@ class CreateGroup3 extends Component {
   }
 }
 
-CreateGroup3.defaultProps = {
-  data: { modules: undefined },
-  setData: undefined,
-  setProgress: undefined,
-  setLeftIcon: undefined,
-  setLeftClick: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
-};
-
 CreateGroup3.propTypes = {
   t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ modules: PropTypes.object }),
-  setData: PropTypes.func,
-  setProgress: PropTypes.func,
-  setLeftIcon: PropTypes.func,
-  setLeftClick: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  data: PropTypes.shape({ modules: PropTypes.object }).isRequired,
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setLeftIcon: PropTypes.func.isRequired,
+  setLeftClick: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(CreateGroup3);
+export default withNamespaces("createGroup")(CreateGroup3);

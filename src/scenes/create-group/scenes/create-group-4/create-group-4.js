@@ -108,7 +108,7 @@ class CreateGroup4 extends Component {
 
     return (
       <ContentContainer>
-        <ContentTitle>{t("createGroup:theme")}</ContentTitle>
+        <ContentTitle>{t("theme")}</ContentTitle>
         {error && <ContentError>{t(`validation:theme.${error}`)}</ContentError>}
         <ContentThemes onClick={this.handleChange} value={value} />
       </ContentContainer>
@@ -116,29 +116,18 @@ class CreateGroup4 extends Component {
   }
 }
 
-CreateGroup4.defaultProps = {
-  data: { theme: undefined },
-  setData: undefined,
-  setProgress: undefined,
-  setLeftIcon: undefined,
-  setLeftClick: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
-};
-
 CreateGroup4.propTypes = {
   t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ theme: PropTypes.object }),
+  data: PropTypes.shape({ theme: PropTypes.object }).isRequired,
   postGroup: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  setData: PropTypes.func,
-  setProgress: PropTypes.func,
-  setLeftIcon: PropTypes.func,
-  setLeftClick: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setLeftIcon: PropTypes.func.isRequired,
+  setLeftClick: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(CreateGroup4);
+export default withNamespaces("createGroup")(CreateGroup4);
