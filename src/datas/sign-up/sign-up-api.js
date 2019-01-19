@@ -5,12 +5,10 @@ const signUpApi = {
     axios.post(`${process.env.REACT_APP_API_URL}/accounts/sign-up`, {
       data: payload
     }),
-  deleteAccount: ({ id, token }) =>
-    axios.delete(
-      `${process.env.REACT_APP_API_URL}/accounts/${id}`,
-      {},
-      { headers: { Authorization: `Bearer ${token}` } }
-    )
+  deleteAccount: (token, { id }) =>
+    axios.delete(`${process.env.REACT_APP_API_URL}/accounts/${id}`, undefined, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
 };
 
 export default signUpApi;
