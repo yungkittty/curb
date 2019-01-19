@@ -18,7 +18,7 @@ class DiscoveryContainer extends React.Component {
 
 const mapStateToProps = state => ({
   /* eslint-disable-next-line */
-  discoveryGroups: discoverySelectors.getDiscoveryGroups(state) || []
+  discoveryGroups: discoverySelectors.getDiscoveryGroups(state) || [{}]
 });
 
 const mapDispatchToProps = dispatch => ({
