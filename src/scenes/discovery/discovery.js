@@ -14,14 +14,7 @@ const Discovery = ({ t, discoveryGroups }) => (
   <React.Fragment>
     <ListSection
       /* eslint-disable-next-line */
-      sections={[
-        { data: [{}] },
-     /* { data: [{}] },
-        { data: [{}] },
-        { data: [{}] },
-        { data: [{}] },
-        { data: [{}] } */
-      ]}
+      sections={[{ data: [{}] }]}
       ListHeaderComponent={() => (
         <DiscoveryHeader>
           <DiscoveryTitle type="h1">
