@@ -6,15 +6,25 @@ import ContainerScroll from "../container-scroll";
 class ListFlat extends React.Component {
   constructor(props) {
     super(props);
+    this.containerScroll = React.createRef();
+    this.scrollToIndex = this.scrollToIndex.bind(this);
     this.renderItem = this.renderItem.bind(this);
+  }
+
+  scrollToIndex({ animated = true, index: itemIndex, viewOffset = 0 }) {
+    const { getItemLayout, data: itemsData, horizontal } = this.props;
+    const scrollToOffset = getItemLayout(itemsData[itemIndex], itemIndex).offset + viewOffset;
+    this.containerScroll.current.scrollTo({
+      left: +horizontal && scrollToOffset,
+      top: !+horizontal && scrollToOffset,
+      behavior: animated ? "smooth" : "auto"
+    });
   }
 
   renderItem(itemData, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
     const itemParams = { item: itemData, index: itemIndex };
-    const itemProps = {
-      key: itemData.key || keyExtractor(itemData, itemIndex) || itemIndex
-    };
+    const itemProps = { key: itemData.key || keyExtractor(itemData, itemIndex) || itemIndex };
     return React.cloneElement(renderItem(itemParams), itemProps);
   }
 
@@ -26,13 +36,13 @@ class ListFlat extends React.Component {
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
       horizontal,
-      data,
-      ListHeaderComponent: FlatHeader,
-      ListFooterComponent: FlatFooter
+      data: itemsData,
+      ListHeaderComponent,
+      ListFooterComponent
     } = this.props;
-
     return (
       <ContainerScroll
+        ref={this.containerScroll}
         className={className}
         style={style}
         contentContainerStyle={contentContainerStyle}
@@ -40,9 +50,9 @@ class ListFlat extends React.Component {
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         horizontal={horizontal}
       >
-        {FlatHeader && <FlatHeader />}
-        {_.map(data, this.renderItem)}
-        {FlatFooter && <FlatFooter />}
+        {ListHeaderComponent && <ListHeaderComponent />}
+        {_.map(itemsData, this.renderItem)}
+        {ListFooterComponent && <ListFooterComponent />}
       </ContainerScroll>
     );
   }
@@ -57,16 +67,14 @@ ListFlat.defaultProps = {
   horizontal: false,
   ListHeaderComponent: null,
   ListFooterComponent: null,
-  keyExtractor: () => undefined
+  keyExtractor: () => undefined,
+  getItemLayout: () => undefined
 };
 
 ListFlat.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  contentContainerStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]),
+  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool,
@@ -75,7 +83,8 @@ ListFlat.propTypes = {
   ListHeaderComponent: PropTypes.func,
   ListFooterComponent: PropTypes.func,
   keyExtractor: PropTypes.func,
-  renderItem: PropTypes.func.isRequired
+  renderItem: PropTypes.func.isRequired,
+  getItemLayout: PropTypes.func
 };
 
 export default ListFlat;
