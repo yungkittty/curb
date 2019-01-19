@@ -18,7 +18,7 @@ const CreateGroup4Themes = ({ t, onClick, value }) => (
           titleColor="#ffffff"
           backgroundColor={item.backgroundColor}
           selected={item.id === value}
-          selectionType={true}
+          selectionType
           selectedColorAlternate
           onClick={() => onClick(item.id)}
         />

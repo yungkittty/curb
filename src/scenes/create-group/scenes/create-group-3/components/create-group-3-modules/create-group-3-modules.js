@@ -10,7 +10,6 @@ import modulesData from "./create-group-3-modules-data";
 const CreateGroup3Modules = ({ t, onClick, modules }) => (
   <ModulesContainer>
     <ListFlat
-      showsVerticalScrollIndicator={false}
       data={modulesData}
       extraData={{ modules }}
       keyExtractor={item => item.id}
