@@ -18,7 +18,7 @@ class DiscoveryListItemContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const discoveryGroupId = ownProps.discoveryGroupId || "";
-  const { avatarUrl: discoveryGroupAvatarUrl = "", name: discoveryGroupName = "Something" } =
+  const { avatarUrl: discoveryGroupAvatarUrl = "", name: discoveryGroupName = "" } =
     groupsSelectors.getGroupById(state, discoveryGroupId) || {};
   return {
     discoveryGroupId,

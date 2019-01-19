@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Container from "../../../../../../../../../container";
 
 const ProgressContainer = styled(Container)`
-  flex-direction: row;
   display: flex;
+  flex-direction: row;
   justify-content: center;
 `;
 
