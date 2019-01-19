@@ -5,15 +5,13 @@ import Container from "../../../container";
 const ScrollContainerContent = styled(Container)`
   display: flex;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
-  width: calc(100% ${props => (props.showsHorizontalScrollIndicator ? " + 30px" : "")});
-  height: calc(100% ${props => (props.showsVerticalScrollIndicator ? " + 30px" : "")});
-  ${props => props.showsHorizontalScrollIndicator ? "padding-right: 30px" : ""};
-  ${props => props.showsVerticalScrollIndicator ? "margin-bottom: -30px" : ""};
-  overflow: ${props => props.scrollEnabled ? "auto" : "hidden"};
+  flex-grow: 1;
+  ${props => !props.showsVerticalScrollIndicator ? "margin-right: -30px" : ""};
+  ${props => !props.showsHorizontalScrollIndicator ? "margin-bottom: -30px" : ""};
+  overflow: auto;
 `;
 
 ScrollContainerContent.propTypes = {
-  scrollEnabled: PropTypes.bool.isRequired,
   showsHorizontalScrollIndicator: PropTypes.bool.isRequired,
   showsVerticalScrollIndicator: PropTypes.bool.isRequired,
   horizontal: PropTypes.bool.isRequired

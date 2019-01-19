@@ -34,9 +34,6 @@ Input.defaultProps = {
   title: undefined,
   type: undefined,
   placeholder: undefined,
-  value: undefined,
-  onChange: undefined,
-  id: undefined,
   error: undefined
 };
 
@@ -45,9 +42,9 @@ Input.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-  id: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   error: PropTypes.string
 };
 
