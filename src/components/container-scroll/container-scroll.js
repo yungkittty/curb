@@ -3,24 +3,23 @@ import PropTypes from "prop-types";
 import ScrollContainer from "./components/scroll-container";
 import ScrollContainerContent from "./components/scroll-container-content";
 
-const ContainerScroll = ({
+const ContainerScroll = React.forwardRef(({
   className,
   style,
   children,
   contentContainerStyle,
-  scrollEnabled,
   showsHorizontalScrollIndicator,
   showsVerticalScrollIndicator,
   horizontal
-}) => (
+}, ref) => (
   <ScrollContainer
     className={className}
     style={style}
     horizontal={horizontal}
   >
     <ScrollContainerContent
+      ref={ref}
       style={contentContainerStyle}
-      scrollEnabled={scrollEnabled}
       showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       horizontal={horizontal}
@@ -28,13 +27,12 @@ const ContainerScroll = ({
       {children}
     </ScrollContainerContent>
   </ScrollContainer>
-);
+));
 
 ContainerScroll.defaultProps = {
   className: undefined,
   style: undefined,
   contentContainerStyle: undefined,
-  scrollEnabled: true,
   showsHorizontalScrollIndicator: true,
   showsVerticalScrollIndicator: true,
   horizontal: false
@@ -45,7 +43,6 @@ ContainerScroll.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   children: PropTypes.node.isRequired,
   contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  scrollEnabled: PropTypes.bool,
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool
