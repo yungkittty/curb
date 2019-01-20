@@ -7,6 +7,8 @@ const currentUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case signInActionsTypes.SIGN_IN_SUCCESS:
       return _.assign({}, state, action.payload);
+    case signInActionsTypes.SIGN_OUT_SUCCESS:
+      return _.assign({}, state, initialState);
     default:
       return state;
   }
