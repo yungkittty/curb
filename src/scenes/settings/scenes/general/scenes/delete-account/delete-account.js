@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router";
 import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import General from "../../";
@@ -36,9 +37,11 @@ class DeleteAccount extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { currentUserToken, t } = this.props;
 
-    return (
+    return !currentUserToken ? (
+      <Redirect to="/" />
+    ) : (
       <ContentContainer>
         <ContentTitle>
           {t("settings:general.menu.deleteAccount.contentTitle")}
@@ -58,6 +61,7 @@ class DeleteAccount extends Component {
 }
 
 DeleteAccount.defaultProps = {
+  currentUserToken: undefined,
   setTitle: undefined,
   setLeftClick: undefined,
   setLeftIcon: undefined,
@@ -67,6 +71,7 @@ DeleteAccount.defaultProps = {
 };
 
 DeleteAccount.propTypes = {
+  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   setTitle: PropTypes.func,
