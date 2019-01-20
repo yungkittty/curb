@@ -1,10 +1,10 @@
-import React, { createElement } from "react";
+import React, { createElement, Fragment } from "react";
 import PropTypes from "prop-types";
 import ComponentContainer from "./components/component-container";
 
 const ContentComponent = ({ component, props }) => (
   <ComponentContainer>
-    {component && createElement(component, props)}
+    {component ? createElement(component, props) : <Fragment />}
   </ComponentContainer>
 );
 

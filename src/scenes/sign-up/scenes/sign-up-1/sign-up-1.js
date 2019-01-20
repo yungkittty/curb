@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
+import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp2 from "../sign-up-2";
-import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
+import SignUp1Container from "./components/sign-up-1-container";
+import SignUp1Title from "./components/sign-up-1-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
 
@@ -85,17 +86,19 @@ class SignUp1 extends Component {
   }
 
   render() {
+    const { currentUserToken, t } = this.props;
     const { name, email } = this.state;
-    const { t } = this.props;
 
-    return (
-      <ContentContainer>
-        <ContentTitle>{t("signUp:createAccount")}</ContentTitle>
+    return currentUserToken ? (
+      <Redirect to="/" />
+    ) : (
+      <SignUp1Container>
+        <SignUp1Title>{t("createAccount")}</SignUp1Title>
         <SelectImage />
         <Input
           size="modal"
           id="name"
-          placeholder={t("signUp:username")}
+          placeholder={t("username")}
           onChange={this.handleChange}
           value={name.value}
           error={name.error && t(`validation:username.${name.error}`)}
@@ -103,33 +106,30 @@ class SignUp1 extends Component {
         <Input
           size="modal"
           id="email"
-          placeholder={t("signUp:mailAddress")}
+          placeholder={t("mailAddress")}
           onChange={this.handleChange}
           value={email.value}
           error={email.error && t(`validation:email.${email.error}`)}
         />
-      </ContentContainer>
+      </SignUp1Container>
     );
   }
 }
 
 SignUp1.defaultProps = {
-  data: undefined,
-  setData: undefined,
-  setProgress: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
+  currentUserToken: undefined
 };
 
 SignUp1.propTypes = {
+  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object }),
-  setData: PropTypes.func,
-  setProgress: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object })
+    .isRequired,
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(SignUp1);
+export default withNamespaces("signUp")(SignUp1);

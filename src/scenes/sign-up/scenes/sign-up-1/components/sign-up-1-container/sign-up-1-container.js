@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Container from "../../../../../../components/container";
 
-const ContentContainer = styled(Container)`
+const SignUp1Container = styled(Container)`
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -9,4 +9,4 @@ const ContentContainer = styled(Container)`
   padding-top: 18px;
 `;
 
-export default ContentContainer;
+export default SignUp1Container;

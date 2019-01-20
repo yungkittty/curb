@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
+import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
-import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
+import SignUp2Container from "./components/sign-up-2-container";
+import SignUp2Title from "./components/sign-up-2-title";
 import Input from "../../../../components/input";
 
 class SignUp2 extends Component {
@@ -109,16 +110,18 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { currentUserToken, t } = this.props;
     const { password, confirmPassword } = this.state;
 
-    return (
-      <ContentContainer>
-        <ContentTitle>{t("signUp:choosePassword")}</ContentTitle>
+    return currentUserToken ? (
+      <Redirect to="/" />
+    ) : (
+      <SignUp2Container>
+        <SignUp2Title>{t("choosePassword")}</SignUp2Title>
         <Input
           size="modal"
           id="password"
-          placeholder={t("signUp:password")}
+          placeholder={t("password")}
           type="password"
           value={password.value}
           onChange={this.handleChange}
@@ -127,7 +130,7 @@ class SignUp2 extends Component {
         <Input
           size="modal"
           id="confirmPassword"
-          placeholder={t("signUp:confirmPassword")}
+          placeholder={t("confirmPassword")}
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
@@ -136,36 +139,30 @@ class SignUp2 extends Component {
             t(`validation:password.${confirmPassword.error}`)
           }
         />
-      </ContentContainer>
+      </SignUp2Container>
     );
   }
 }
 
 SignUp2.defaultProps = {
-  data: undefined,
-  setData: undefined,
-  setProgress: undefined,
-  setLeftIcon: undefined,
-  setLeftClick: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
+  currentUserToken: undefined
 };
 
 SignUp2.propTypes = {
+  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   data: PropTypes.shape({
     password: PropTypes.object,
     confirmPassword: PropTypes.object
-  }),
+  }).isRequired,
   signUp: PropTypes.func.isRequired,
-  setData: PropTypes.func,
-  setProgress: PropTypes.func,
-  setLeftIcon: PropTypes.func,
-  setLeftClick: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setLeftIcon: PropTypes.func.isRequired,
+  setLeftClick: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(SignUp2);
+export default withNamespaces("signUp")(SignUp2);

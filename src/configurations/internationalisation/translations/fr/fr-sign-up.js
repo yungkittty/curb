@@ -1,4 +1,4 @@
-const frSignup = {
+const frSignUp = {
   createAccount: "Créer un compte",
   choosePassword: "Choisissez votre mot de passe",
   username: "Nom d'utilisateur",
@@ -7,4 +7,4 @@ const frSignup = {
   confirmPassword: "Confirmer le mot de passe"
 };
 
-export default frSignup;
+export default frSignUp;
