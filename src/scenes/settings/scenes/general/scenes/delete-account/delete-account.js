@@ -23,10 +23,10 @@ class DeleteAccount extends Component {
 
     this.deleteAccount = this.deleteAccount.bind(this);
 
-    setTitle(t("settings:general.menu.deleteAccount.title"));
+    setTitle(t("general.menu.deleteAccount.title"));
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(General, -1));
-    setButtonTitle(t("settings:general.menu.deleteAccount.buttonTitle"));
+    setButtonTitle(t("general.menu.deleteAccount.buttonTitle"));
     setButtonClick(this.deleteAccount);
   }
 
@@ -44,16 +44,16 @@ class DeleteAccount extends Component {
     ) : (
       <ContentContainer>
         <ContentTitle>
-          {t("settings:general.menu.deleteAccount.contentTitle")}
+          {t("general.menu.deleteAccount.contentTitle")}
         </ContentTitle>
         <ContentDescription>
-          {t("settings:general.menu.deleteAccount.contentDescription1")}
+          {t("general.menu.deleteAccount.contentDescription1")}
         </ContentDescription>
         <ContentDescription>
-          {t("settings:general.menu.deleteAccount.contentDescription2")}
+          {t("general.menu.deleteAccount.contentDescription2")}
         </ContentDescription>
         <ContentDescription>
-          {t("settings:general.menu.deleteAccount.contentDescription3")}
+          {t("general.menu.deleteAccount.contentDescription3")}
         </ContentDescription>
       </ContentContainer>
     );
@@ -61,25 +61,19 @@ class DeleteAccount extends Component {
 }
 
 DeleteAccount.defaultProps = {
-  currentUserToken: undefined,
-  setTitle: undefined,
-  setLeftClick: undefined,
-  setLeftIcon: undefined,
-  setComponent: undefined,
-  setButtonTitle: undefined,
-  setButtonClick: undefined
+  currentUserToken: undefined
 };
 
 DeleteAccount.propTypes = {
   currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-  setTitle: PropTypes.func,
-  setLeftClick: PropTypes.func,
-  setLeftIcon: PropTypes.func,
-  setComponent: PropTypes.func,
-  setButtonTitle: PropTypes.func,
-  setButtonClick: PropTypes.func
+  setTitle: PropTypes.func.isRequired,
+  setLeftClick: PropTypes.func.isRequired,
+  setLeftIcon: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(DeleteAccount);
+export default withNamespaces("settings")(DeleteAccount);

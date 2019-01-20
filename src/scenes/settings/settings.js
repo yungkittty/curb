@@ -12,7 +12,7 @@ class Settings extends Component {
     super(props);
     const { t, setTitle } = this.props;
 
-    setTitle(t("settings:settings"));
+    setTitle(t("settings"));
   }
 
   render() {
@@ -27,8 +27,8 @@ class Settings extends Component {
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <ListItem
-              title={t(`settings:${item.id}.title`)}
-              description={t(`settings:${item.id}.description`)}
+              title={t(`${item.id}.title`)}
+              description={t(`${item.id}.description`)}
               onClick={() => setComponent(item.scene, 1)}
             />
           )}
@@ -38,15 +38,10 @@ class Settings extends Component {
   }
 }
 
-Settings.defaultProps = {
-  setComponent: () => null,
-  setTitle: undefined
-};
-
 Settings.propTypes = {
   t: PropTypes.func.isRequired,
-  setComponent: PropTypes.func,
-  setTitle: PropTypes.func
+  setComponent: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(Settings);
+export default withNamespaces("settings")(Settings);

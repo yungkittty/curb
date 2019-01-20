@@ -24,7 +24,7 @@ class Language extends Component {
 
     this.state = { languages: Object.keys(data), key: lng || fallbackLng[0] };
 
-    setTitle(t("settings:general.menu.language.title"));
+    setTitle(t("general.menu.language.title"));
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(General, -1));
 
@@ -50,9 +50,9 @@ class Language extends Component {
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <ListItem
-            title={t(`settings:general.menu.language.menu.${item}`)}
+            title={t(`general.menu.language.menu.${item}`)}
             selected={key === item}
-            selectionType={true}
+            selectionType
             onClick={() => this.handleChange(item)}
           />
         )}
@@ -62,11 +62,7 @@ class Language extends Component {
 }
 
 Language.defaultProps = {
-  lng: undefined,
-  setTitle: undefined,
-  setLeftClick: undefined,
-  setLeftIcon: undefined,
-  setComponent: undefined
+  lng: undefined
 };
 
 Language.propTypes = {
@@ -75,10 +71,10 @@ Language.propTypes = {
   i18n: PropTypes.shape({
     changeLanguage: PropTypes.func.isRequired
   }).isRequired,
-  setTitle: PropTypes.func,
-  setLeftClick: PropTypes.func,
-  setLeftIcon: PropTypes.func,
-  setComponent: PropTypes.func
+  setTitle: PropTypes.func.isRequired,
+  setLeftClick: PropTypes.func.isRequired,
+  setLeftIcon: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired
 };
 
-export default withI18n()(withNamespaces()(Language));
+export default withI18n()(withNamespaces("settings")(Language));

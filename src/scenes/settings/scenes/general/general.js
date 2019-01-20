@@ -15,7 +15,7 @@ class General extends Component {
 
     this.signOut = this.signOut.bind(this);
 
-    setTitle(t("settings:general.title"));
+    setTitle(t("general.title"));
     setLeftIcon("arrow-left");
     setLeftClick(() => setComponent(Settings, -1));
   }
@@ -38,8 +38,8 @@ class General extends Component {
         renderItem={({ item }) => (
           <ListItem
             icon={item.icon}
-            title={t(`settings:general.menu.${item.id}.title`)}
-            description={t(`settings:general.menu.${item.id}.description`)}
+            title={t(`general.menu.${item.id}.title`)}
+            description={t(`general.menu.${item.id}.description`)}
             disabled={item.needSignedInUser && !currentUserToken}
             onClick={() =>
               item.scene ? setComponent(item.scene, 1) : this.signOut()
@@ -51,21 +51,14 @@ class General extends Component {
   }
 }
 
-General.defaultProps = {
-  setTitle: undefined,
-  setLeftClick: undefined,
-  setLeftIcon: undefined,
-  setComponent: undefined
-};
-
 General.propTypes = {
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   currentUserToken: PropTypes.string.isRequired,
-  setTitle: PropTypes.func,
-  setLeftClick: PropTypes.func,
-  setLeftIcon: PropTypes.func,
-  setComponent: PropTypes.func
+  setTitle: PropTypes.func.isRequired,
+  setLeftClick: PropTypes.func.isRequired,
+  setLeftIcon: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired
 };
 
-export default withNamespaces()(General);
+export default withNamespaces("settings")(General);
