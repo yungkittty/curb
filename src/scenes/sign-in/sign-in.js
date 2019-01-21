@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router";
 import { withNamespaces } from "react-i18next";
 import SignInContainer from "./components/sign-in-container";
 import SignInRedirect from "./components/sign-in-redirect";
@@ -74,9 +75,12 @@ class SignIn extends Component {
   }
 
   render() {
+    const { currentUserToken } = this.props;
     const { email, password } = this.state;
 
-    return (
+    return currentUserToken ? (
+      <Redirect to="/" />
+    ):(
       <SignInContainer>
         <SignInForm
           email={email}
@@ -89,7 +93,12 @@ class SignIn extends Component {
   }
 }
 
+SignIn.defaultProps = {
+  currentUserToken: undefined
+};
+
 SignIn.propTypes = {
+  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
