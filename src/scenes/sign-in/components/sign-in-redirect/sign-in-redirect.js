@@ -14,8 +14,6 @@ const SignInRedirect = ({ t }) => (
   </RedirectContainer>
 );
 
-SignInRedirect.propTypes = {
-  t: PropTypes.func.isRequired,
-};
+SignInRedirect.propTypes = { t: PropTypes.func.isRequired };
 
 export default withNamespaces("signIn")(SignInRedirect);

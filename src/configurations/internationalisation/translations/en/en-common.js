@@ -1,6 +1,3 @@
-const enCommon = {
-  next: "Next",
-  finish: "Finish"
-};
+const enCommon = {};
 
 export default enCommon;

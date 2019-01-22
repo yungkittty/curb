@@ -7,9 +7,7 @@ const signInApi = {
     axios.post(
       `${process.env.REACT_APP_API_URL}/accounts/sign-out`,
       undefined,
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      }
+      { headers: { Authorization: `Bearer ${token}` } }
     )
 };
 

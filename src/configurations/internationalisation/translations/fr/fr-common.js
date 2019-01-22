@@ -1,6 +1,3 @@
-const frCommon = {
-  next: "Suivant",
-  finish: "Terminer"
-};
+const frCommon = {};
 
 export default frCommon;
