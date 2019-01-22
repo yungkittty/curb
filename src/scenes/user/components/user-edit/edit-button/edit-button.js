@@ -2,21 +2,19 @@ import React from "react";
 import { string } from "prop-types";
 import ButtonContainer from "./components/button-container";
 import ButtonIcon from "./components/button-icon";
+import Icon from "../../../../../components/icon";
+
+const color = "#dedede";
 
 const EditButton = ({ icon, size, avatar }) => (
   <ButtonContainer background={avatar}>
-    <ButtonIcon icon={icon} size={size} />
+    <Icon icon={icon} size={size} color={color} />
   </ButtonContainer>
 );
 
-EditButton.defaultProps = {
-  icon: undefined,
-  size: 'medium'
-};
-
 EditButton.propTypes = {
-  icon: string,
-  size: string,
+  icon: string.isRequired,
+  size: string.isRequired,
   avatar: string.isRequired,
 };
 

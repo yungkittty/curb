@@ -25,10 +25,10 @@ class User extends Component {
       <UserContainer>
         <ImageContainer>
           <DisplayImage src={avatar} editMode={editMode} />
-          {editMode && <EditButton avatar={avatar} icon="plus" size="big" />}
+          {editMode && <EditButton avatar={avatar} icon="plus" size="large" />}
         </ImageContainer>
         {editMode ? (
-          <EditUsername placeholder={username} b />
+          <Input placeholder={username} />
         ) : (
           <DisplayUsername h3 bold>
             {username}
