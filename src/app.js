@@ -10,7 +10,6 @@ import User from "./scenes/user";
 import Group from "./scenes/group";
 import SignIn from "./scenes/sign-in";
 import SignUp1 from "./scenes/sign-up/scenes/sign-up-1";
-import CreateGroup1 from "./scenes/create-group/scenes/create-group-1";
 
 const App = () => (
   <Router>
@@ -26,7 +25,6 @@ const App = () => (
       </AppContainer>
       <ModalRoute path="/sign-in" component={SignIn} />
       <ModalRoute path="/sign-up" component={SignUp1} />
-      <ModalRoute path="/create-group" component={CreateGroup1} />
     </React.Fragment>
   </Router>
 );
