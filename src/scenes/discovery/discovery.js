@@ -39,7 +39,6 @@ const Discovery = ({ t, discoveryGroups }) => (
             <DiscoveryListItem discoveryGroupId={discoveryGroupId} />
           )}
           showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
           horizontal
         />
       )}

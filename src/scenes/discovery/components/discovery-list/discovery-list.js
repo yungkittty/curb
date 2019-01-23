@@ -26,20 +26,22 @@ class DiscoveryList extends React.Component {
     this.isScrollable();
   }
 
+  componentDidUpdate(prevProps) {
+    const { data: prevItemsData } = prevProps;
+    const { data: itemsData } = this.props;
+    if (prevItemsData !== itemsData) this.isScrollable();
+  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.isScrollable);
     const { current: containerScroll } = this.listFlat.current.containerScroll;
     containerScroll.removeEventListener("scroll", this.isScrollable);
   }
 
-  isScrollable(event) {
+  isScrollable() {
     const {
-      current: containerScroll,
       current: { scrollWidth, scrollLeft, clientWidth }
     } = this.listFlat.current.containerScroll;
-    if (!event || event.type === "resize") {
-      this.scrollToCurrentIndex = Math.floor(scrollLeft / 140);
-      this.scrollToOffset = Math.floor(containerScroll.clientWidth / 140); }
     this.setState({
       isScrollableToLeft: scrollLeft !== 0,
       isScrollableToRight: scrollWidth - scrollLeft >= clientWidth + 40
@@ -47,6 +49,8 @@ class DiscoveryList extends React.Component {
   }
 
   scrollToLeft() {
+    const { current: containerScroll } = this.listFlat.current.containerScroll;
+    this.scrollToOffset = Math.floor(containerScroll.clientWidth / 140);
     this.scrollToCurrentIndex =
       Math.max(this.scrollToCurrentIndex - this.scrollToOffset, 0);
     const { current: listFlat } = this.listFlat;
@@ -54,6 +58,8 @@ class DiscoveryList extends React.Component {
   }
 
   scrollToRight() {
+    const { current: containerScroll } = this.listFlat.current.containerScroll;
+    this.scrollToOffset = Math.floor(containerScroll.clientWidth / 140);
     const { data: itemsData } = this.props;
     this.scrollToCurrentIndex = Math.min(
       this.scrollToCurrentIndex + this.scrollToOffset,
