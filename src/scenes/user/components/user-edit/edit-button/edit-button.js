@@ -1,14 +1,16 @@
 import React from "react";
 import { string } from "prop-types";
 import ButtonContainer from "./components/button-container";
-import ButtonIcon from "./components/button-icon";
+import IconContainer from "./components/icon-container";
 import Icon from "../../../../../components/icon";
 
 const color = "#dedede";
 
 const EditButton = ({ icon, size, avatar }) => (
   <ButtonContainer background={avatar}>
-    <Icon icon={icon} size={size} color={color} />
+    <IconContainer>
+      <Icon icon={icon} size={size} color={color} />
+    </IconContainer>
   </ButtonContainer>
 );
 

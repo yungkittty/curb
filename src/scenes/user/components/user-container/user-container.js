@@ -8,7 +8,7 @@ const UserContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  
+  flex: 1;
 `;
 
 export default UserContainer;
