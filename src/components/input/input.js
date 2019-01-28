@@ -25,7 +25,7 @@ const Input = ({
       id={id}
       error={error}
     />
-    <InputError>{error}</InputError>
+    {error && <InputError>{error}</InputError>}
   </InputContainer>
 );
 
