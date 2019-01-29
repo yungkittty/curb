@@ -6,6 +6,7 @@ import ModalHeader from "./components/modal-header";
 import ModalContent from "./components/modal-content";
 import ModalButton from "./components/modal-button";
 import ModalBlur from "./components/modal-blur";
+import Loading from "../../../loading";
 
 class Modal extends Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class Modal extends Component {
       rightClick: onCloseRequest || goBack,
       buttonTitle: undefined,
       buttonTo: undefined,
-      buttonClick: undefined
+      buttonClick: undefined,
+      modalLoading: undefined
     };
 
     this.setTitle = this.setTitle.bind(this);
@@ -41,6 +43,7 @@ class Modal extends Component {
     this.setButtonTitle = this.setButtonTitle.bind(this);
     this.setButtonTo = this.setButtonTo.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
+    this.setModalLoading = this.setModalLoading.bind(this);
     this.resetModal = this.resetModal.bind(this);
 
     this.initialState = this.state;
@@ -90,6 +93,10 @@ class Modal extends Component {
     this.setState({ buttonClick });
   }
 
+  setModalLoading(modalLoading) {
+    this.setState({ modalLoading });
+  }
+
   resetModal() {
     this.setState({ ...this.initialState });
   }
@@ -108,6 +115,7 @@ class Modal extends Component {
       setButtonTitle,
       setButtonTo,
       setButtonClick,
+      setModalLoading,
       resetModal
     } = this;
 
@@ -124,7 +132,8 @@ class Modal extends Component {
       rightClick,
       buttonTitle,
       buttonTo,
-      buttonClick
+      buttonClick,
+      modalLoading
     } = this.state;
 
     const sceneProps = {
@@ -140,12 +149,14 @@ class Modal extends Component {
       setButtonTitle,
       setButtonTo,
       setButtonClick,
+      setModalLoading,
       ...others
     };
 
     return (
       <ModalOverlay>
         <ModalContainer>
+          {modalLoading && <Loading />}
           <ModalHeader
             title={title}
             progress={progress}

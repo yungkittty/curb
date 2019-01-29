@@ -56,10 +56,12 @@ class SignUp2 extends Component {
   submit() {
     const {
       data: { name, email, password },
-      signUp
+      signUp,
+      setModalLoading
     } = this.props;
 
     signUp({ name: name.value, email: email.value, password: password.value });
+    setModalLoading(true);
   }
 
   checkForm() {
@@ -156,6 +158,7 @@ SignUp2.propTypes = {
     confirmPassword: PropTypes.object
   }).isRequired,
   signUp: PropTypes.func.isRequired,
+  setModalLoading: PropTypes.func.isRequired,
   setData: PropTypes.func.isRequired,
   setProgress: PropTypes.func.isRequired,
   setLeftIcon: PropTypes.func.isRequired,
