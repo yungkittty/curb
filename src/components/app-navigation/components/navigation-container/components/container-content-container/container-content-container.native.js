@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Container from "../../../container";
+import Container from "../../../../../container";
 
-const NavigationContainer = styled(Container)`
+const ContainerContentContainer = styled(Container)`
   display: flex;
   position: absolute;
   flex-direction: column;
-  width: 80px;
+  width: 70px;
   height: 100%;
   padding-left: 10px;
   padding-top: 10px;
@@ -13,4 +13,4 @@ const NavigationContainer = styled(Container)`
   background-color: ${props => props.theme.primaryColor};
 `;
 
-export default NavigationContainer;
+export default ContainerContentContainer;
