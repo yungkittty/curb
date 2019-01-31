@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ModalOverlay from "./components/modal-overlay";
 import ModalContainer from "./components/modal-container";
 import ModalHeader from "./components/modal-header";
-import ModalContent from "./components/modal-content";
 import ModalButton from "./components/modal-button";
 import ModalBlur from "./components/modal-blur";
 
@@ -136,14 +135,12 @@ class Modal extends Component {
             rightTo={rightTo}
             rightClick={rightClick}
           />
-          <ModalContent>
-            {/* eslint-disable-next-line */}
-            {component
-              ? createElement(component, props)
-              : render
-              ? render(props)
-              : null}
-          </ModalContent>
+          {/* eslint-disable-next-line */}
+          {component
+            ? createElement(component, props)
+            : render
+            ? render(props)
+            : null}
           {buttonTitle && (
             <ModalButton title={buttonTitle} onClick={buttonClick} />
           )}

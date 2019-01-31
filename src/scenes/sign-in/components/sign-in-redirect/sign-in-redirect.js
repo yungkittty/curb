@@ -9,7 +9,7 @@ const SignInRedirect = ({ t }) => (
   <RedirectContainer>
     <Text>{t("redirectMsg")}</Text>
     <Link to={{ pathname: "/sign-up", state: { isModal: true } }}>
-      <Text>{t("createAccount")}</Text>
+      {t("createAccount")}
     </Link>
   </RedirectContainer>
 );
