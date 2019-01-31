@@ -8,7 +8,7 @@ import SignUp1Container from "./components/sign-up-1-container";
 import SignUp1Title from "./components/sign-up-1-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
-import RegexExpressions from "../../../../components/regex-expressions";
+import RegexExpressions from "../../../../configurations/regex-expressions";
 
 class SignUp1 extends Component {
   constructor(props) {
