@@ -38,7 +38,7 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
-  size: PropTypes.string,
+  size: PropTypes.oneOf(["modal"]),
   title: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
