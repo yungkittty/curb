@@ -7,7 +7,7 @@ const ContainerScroll = ({ contentContainerStyle, ...others }) => (
     {...others}
     contentContainerStyle={[
       contentContainerStyle,
-      { flexGrow: 1, flexShrink: 1 }
+      { flexGrow: 1 }
     ]}
   />
 );
