@@ -1,17 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
 import AppContainer from "./components/app-container";
 import AppNavigation from "./components/app-navigation";
 import Router from "./components/router";
 import ModalSwitch from "./components/modal-switch";
 import ModalRoute from "./components/modal-route";
 import Route from "./components/route";
+import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
 import SignIn from "./scenes/sign-in";
 import SignUp1 from "./scenes/sign-up/scenes/sign-up-1";
 
-const App = () => (
+const App = ({ currentUserToken }) => (
   <Router>
     <React.Fragment>
       <AppContainer>
@@ -23,10 +25,23 @@ const App = () => (
           <Route />
         </ModalSwitch>
       </AppContainer>
-      <ModalRoute path="/sign-in" component={SignIn} />
-      <ModalRoute path="/sign-up" component={SignUp1} />
+      <Route
+        path="/sign-(in|up)"
+        component={props =>
+          !currentUserToken ? (
+            <React.Fragment>
+              <ModalRoute {...props} path="/sign-in" component={SignIn} />
+              <ModalRoute {...props} path="/sign-up" component={SignUp1} />
+            </React.Fragment>
+          ) : (
+            <Redirect to="/" />
+          )
+        }
+      />
     </React.Fragment>
   </Router>
 );
+
+App.propTypes = { currentUserToken: PropTypes.string.isRequired };
 
 export default App;
