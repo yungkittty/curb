@@ -11,8 +11,8 @@ const rotate = keyframes`
   }
 `;
 
-const LoadingIcon = styled(IconContainer)`
+const LoaderIcon = styled(IconContainer)`
   animation: ${rotate} 2s linear infinite;
 `;
 
-export default LoadingIcon;
+export default LoaderIcon;

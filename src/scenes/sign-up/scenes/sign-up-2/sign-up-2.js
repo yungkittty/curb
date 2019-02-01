@@ -57,11 +57,15 @@ class SignUp2 extends Component {
     const {
       data: { name, email, password },
       signUp,
-      setModalLoading
+      setModalLoading,
+      setLeftClick,
+      setButtonClick
     } = this.props;
 
     signUp({ name: name.value, email: email.value, password: password.value });
     setModalLoading(true);
+    setLeftClick(undefined);
+    setButtonClick(undefined); 
   }
 
   checkForm() {

@@ -6,7 +6,6 @@ import ModalHeader from "./components/modal-header";
 import ModalContent from "./components/modal-content";
 import ModalButton from "./components/modal-button";
 import ModalBlur from "./components/modal-blur";
-import Loading from "../loading";
 
 class Modal extends Component {
   constructor(props) {
@@ -156,7 +155,6 @@ class Modal extends Component {
     return (
       <ModalOverlay>
         <ModalContainer>
-          {modalLoading && <Loading />}
           <ModalHeader
             title={title}
             progress={progress}
@@ -171,6 +169,7 @@ class Modal extends Component {
             component={component}
             resetModal={resetModal}
             sceneProps={sceneProps}
+            modalLoading={modalLoading}
           />
           {buttonTitle && (
             <ModalButton
