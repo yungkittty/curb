@@ -6,7 +6,6 @@ const ContainerScroll = ({ contentContainerStyle, ...others }) => (
   <ScrollView
     {...others}
     contentContainerStyle={[
-      /* eslint-disable-next-line */
       contentContainerStyle,
       { flexGrow: 1 }
     ]}
