@@ -12,7 +12,7 @@ const DiscoveryListItem = ({
   <ListItemContainer>
     <ListItemButtonImage
       src={discoveryGroupAvatarUrl}
-      onClick={`groups/${discoveryGroupId}`}
+      onClick={`/groups/${discoveryGroupId}`}
     />
     <ListItemTitle>
       {discoveryGroupName}
