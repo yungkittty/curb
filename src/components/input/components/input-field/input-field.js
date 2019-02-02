@@ -6,7 +6,7 @@ const InputField = styled.input`
   padding: 18px;
   border: 0;
   border-bottom: 1px solid
-    ${({ theme, error }) => (error ? theme.errorColor : theme.pimaryColor)};
+    ${({ theme, error }) => (error ? theme.errorColor : theme.primaryColor)};
   width: 100%;
 `;
 
