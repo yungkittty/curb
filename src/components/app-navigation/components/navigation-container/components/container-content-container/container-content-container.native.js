@@ -4,6 +4,8 @@ import Container from "../../../../../container";
 const ContainerContentContainer = styled(Container)`
   display: flex;
   position: absolute;
+  left: 0px;
+  zIndex: 1;
   flex-direction: column;
   width: 70px;
   height: 100%;

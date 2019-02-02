@@ -1,10 +1,10 @@
+import { Animated } from "react-native";
 import styled from "styled-components";
-import Container from "../../../../../container";
 
-const ContainerContainer = styled(Container)`
-  position: absolute;
-  left: -70px;
+const ContainerContainer = styled(Animated.View)`
+  position: relative;
   zIndex: 1;
+  width: 110px;
   height: 100%;
 `;
 

@@ -4,6 +4,7 @@ import Container from "../../../container";
 const NavigationContainer = styled(Container)`
   display: flex;
   position: absolute;
+  left: 0px;
   flex-direction: column;
   width: 80px;
   height: 100%;
