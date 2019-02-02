@@ -1,22 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import InputContainer from "./components/input-container";
-import InputTitle from "./components/input-title";
 import InputField from "./components/input-field";
 import InputError from "./components/input-error";
 
-const Input = ({
-  size,
-  title,
-  type,
-  placeholder,
-  value,
-  onChange,
-  id,
-  error
-}) => (
+const Input = ({ size, type, placeholder, value, onChange, id, error }) => (
   <InputContainer size={size}>
-    {title && <InputTitle>{title}</InputTitle>}
     <InputField
       type={type}
       placeholder={placeholder}
@@ -31,7 +20,6 @@ const Input = ({
 
 Input.defaultProps = {
   size: undefined,
-  title: undefined,
   type: undefined,
   placeholder: undefined,
   error: undefined
@@ -39,7 +27,6 @@ Input.defaultProps = {
 
 Input.propTypes = {
   size: PropTypes.oneOf(["modal"]),
-  title: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
