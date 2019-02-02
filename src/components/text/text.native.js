@@ -1,23 +1,22 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Text = styled.span.attrs(({ type }) => ({ as: type }))`
-  margin: 0px;
+const Text = styled.Text`
   ${props => {
     switch (props.type) {
       case "h1":
         return `
-          font-size: 48px;
+          font-size: 36px;
           font-weight: 700;
         `;
       case "h2":
         return `
-          font-size: 36px;
+          font-size: 24px;
           font-weight: 400;
         `;
       case "h3":
         return `
-          font-size: 24px;
+          font-size: 18px;
           font-weight: 400;
         `;
       default:
@@ -26,7 +25,7 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
           font-weight: 400;
         `;
     }
-  }};
+  }}
   ${props => `color: ${props.theme.fontColor}`}
 `;
 
