@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Animated, View } from "react-native";
+import { Animated, Easing } from "react-native";
 import IconContainer from "./components/icon-container";
 
 class LoaderIcon extends Component {
@@ -7,25 +7,37 @@ class LoaderIcon extends Component {
     super(props);
 
     this.state = {
-      rotateZ: 0
+      rotateZ: new Animated.Value(0)
     };
   }
 
   componentDidMount() {
-    setInterval(() => {
-      this.setState({ rotateZ: (this.state.rotateZ + 2) % 360 });
-    }, 1);
+    const { rotateZ } = this.state;
+    Animated.loop(
+      Animated.timing(rotateZ, {
+        toValue: 1,
+        easing: Easing.linear,
+        duration: 2000
+      })
+    ).start();
   }
 
   render() {
     const { rotateZ } = this.state;
+
     return (
       <Animated.View
         style={{
-          transform: [{ rotateZ: rotateZ + "deg" }],
+          transform: [
+            {
+              rotateZ: rotateZ.interpolate({
+                inputRange: [0, 1],
+                outputRange: ["0deg", "360deg"]
+              })
+            }
+          ],
           width: 30,
-          height: 31,
-          zIndex: 10
+          height: 31
         }}
       >
         <IconContainer {...this.props} />
