@@ -192,7 +192,7 @@ Modal.defaultProps = {
 
 Modal.propTypes = {
   onCloseRequest: PropTypes.func,
-  history: PropTypes.shape({ goBack: PropTypes.func }).isRequired,
+  history: PropTypes.shape({ goBack: PropTypes.func.isRequired }).isRequired,
   component: PropTypes.func,
   render: PropTypes.func
 };
