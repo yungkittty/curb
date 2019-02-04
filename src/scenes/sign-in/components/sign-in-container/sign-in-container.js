@@ -1,12 +1,14 @@
-import styled from "styled-components";
-import Container from "../../../../components/container";
+import React from "react";
+import ContainerScroll from "../../../../components/container-scroll";
 
-const SignInContainer = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  flex: 1;
-`;
+const SignInContainer = props => (
+  <ContainerScroll
+    {...props}
+    contentContainerStyle={{
+      justifyContent: "center",
+      alignItems: "center"
+    }}
+  />
+);
 
 export default SignInContainer;

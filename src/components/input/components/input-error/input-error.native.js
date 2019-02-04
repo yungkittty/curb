@@ -4,7 +4,7 @@ import Text from "../../../text";
 const InputError = styled(Text)`
   position: absolute;
   left: 0px;
-  bottom: -32px;
+  bottom: -22px;
   font-size: 12px;
   color: ${({ theme }) => theme.errorColor};
 `;

@@ -6,8 +6,11 @@ const ScrollContainerContent = styled(Container)`
   display: flex;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
   flex-grow: 1;
-  ${props => !props.showsVerticalScrollIndicator ? "margin-right: -30px" : ""};
-  ${props => !props.showsHorizontalScrollIndicator ? "margin-bottom: -30px" : ""};
+  flex-shrink: 1;
+  ${props =>
+    !props.showsVerticalScrollIndicator ? "margin-right: -30px" : ""};
+  ${props =>
+    !props.showsHorizontalScrollIndicator ? "margin-bottom: -30px" : ""};
   overflow: auto;
 `;
 

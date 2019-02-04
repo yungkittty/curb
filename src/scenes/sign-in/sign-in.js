@@ -8,7 +8,8 @@ import SignInForm from "./components/sign-in-form";
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    const { t, setTitle, setButtonTitle, setButtonClick } = this.props;
+
+    const { t, setTitle, setButtonTitle, setButtonClick } = props;
 
     this.state = {
       email: {
@@ -43,39 +44,30 @@ class SignIn extends Component {
 
   checkForm() {
     const { email, password } = this.state;
-
     const emailCheck = this.checkInput("email", email.value);
     const passwordCheck = this.checkInput("password", password.value);
-
     return emailCheck && passwordCheck;
   }
 
   checkInput(id, value) {
     const error = value.length === 0 ? "missing" : undefined;
-
-    this.setState(prev => {
-      const obj = {
-        [id]: {
-          ...prev[id],
-          value,
-          error
-        }
-      };
-      return obj;
-    });
-
+    this.setState(prevState => ({
+      [id]: {
+        ...prevState[id],
+        value,
+        error
+      }
+    }));
     return error === undefined;
   }
 
   handleChange(event) {
     const { id, value } = event.target;
-
     this.checkInput(id, value);
   }
 
   render() {
     const { email, password } = this.state;
-
     return (
       <SignInContainer>
         <SignInForm

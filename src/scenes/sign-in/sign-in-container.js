@@ -7,6 +7,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  undefined,
   mapDispatchToProps
 )(SignIn);

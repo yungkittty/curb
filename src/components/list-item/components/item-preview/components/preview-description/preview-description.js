@@ -7,7 +7,7 @@ const PreviewDescription = styled(Text)`
   font-weight: 400;
   color: ${({ theme, disabled }) =>
     !disabled ? theme.fontVariantColor : theme.secondaryVariantColor};
-  margin-top: -2px;
+  margin-top: 6px;
 `;
 
 export default PreviewDescription;

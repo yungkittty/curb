@@ -8,6 +8,7 @@ import SignUp1Container from "./components/sign-up-1-container";
 import SignUp1Title from "./components/sign-up-1-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
+import RegexExpressions from "../../../../configurations/regex-expressions";
 
 class SignUp1 extends Component {
   constructor(props) {
@@ -62,7 +63,11 @@ class SignUp1 extends Component {
   checkInput(id, value) {
     const { setData } = this.props;
 
-    const error = value.length === 0 ? "missing" : undefined;
+    let error = value.length === 0 ? "missing" : undefined;
+    if (error === undefined && id === "email")
+      error = !RegExp(RegexExpressions.email).test(value)
+        ? "invalid"
+        : undefined;
 
     this.setState(prev => {
       const obj = {

@@ -9,13 +9,11 @@ const SignInRedirect = ({ t }) => (
   <RedirectContainer>
     <Text>{t("redirectMsg")}</Text>
     <Link to={{ pathname: "/sign-up", state: { isModal: true } }}>
-      <Text>{t("createAccount")}</Text>
+      {t("createAccount")}
     </Link>
   </RedirectContainer>
 );
 
-SignInRedirect.propTypes = {
-  t: PropTypes.func.isRequired,
-};
+SignInRedirect.propTypes = { t: PropTypes.func.isRequired };
 
 export default withNamespaces("signIn")(SignInRedirect);
