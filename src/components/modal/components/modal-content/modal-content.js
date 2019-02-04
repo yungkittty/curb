@@ -27,7 +27,7 @@ class ModalContent extends Component {
 
     this.setState({ flow });
 
-    resetModal(newComponent, flow);
+    resetModal();
     slideComponent(newComponent, flow);
   }
 
