@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
+import Loader from "../../components/loader";
 import SignInContainer from "./components/sign-in-container";
 import SignInRedirect from "./components/sign-in-redirect";
 import SignInForm from "./components/sign-in-form";
@@ -19,7 +20,8 @@ class SignIn extends Component {
       password: {
         value: "",
         error: undefined
-      }
+      },
+      loading: false
     };
 
     this.submit = this.submit.bind(this);
@@ -40,6 +42,7 @@ class SignIn extends Component {
     const { signIn } = this.props;
     const { email, password } = this.state;
     signIn({ email: email.value, password: password.value });
+    this.setState({ loading: true });
   }
 
   checkForm() {
@@ -67,8 +70,10 @@ class SignIn extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
-    return (
+    const { email, password, loading } = this.state;
+    return loading ? (
+      <Loader />
+    ) : (
       <SignInContainer>
         <SignInForm
           email={email}
