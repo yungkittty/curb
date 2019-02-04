@@ -33,7 +33,7 @@ class ModalContent extends Component {
 
   render() {
     const { setData, setComponent } = this;
-    const { oldComponent, component, sceneProps, modalLoading } = this.props;
+    const { oldComponent, component, sceneProps } = this.props;
     const { flow, data } = this.state;
 
     const props = { ...sceneProps, setData, setComponent, data };
@@ -57,7 +57,7 @@ class ModalContent extends Component {
         {flow === 1 && (
           <ContentComponent component={oldComponent} props={oldProps} />
         )}
-        <ContentComponent component={component} props={modalLoading ? oldProps : props} modalLoading={modalLoading} />
+        <ContentComponent component={component} props={props} />
         {flow === -1 && (
           <ContentComponent component={oldComponent} props={oldProps} />
         )}
@@ -69,8 +69,7 @@ class ModalContent extends Component {
 ModalContent.defaultProps = {
   component: undefined,
   oldComponent: undefined,
-  sceneProps: undefined,
-  modalLoading: undefined
+  sceneProps: undefined
 };
 
 ModalContent.propTypes = {
@@ -79,8 +78,7 @@ ModalContent.propTypes = {
   component: PropTypes.func,
   oldComponent: PropTypes.func,
   /* eslint-disable-next-line */
-  sceneProps: PropTypes.object,
-  modalLoading: PropTypes.bool
+  sceneProps: PropTypes.object
 };
 
 export default ContentSlide(ModalContent);

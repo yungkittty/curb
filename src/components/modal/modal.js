@@ -27,8 +27,7 @@ class Modal extends Component {
       rightClick: onCloseRequest || goBack,
       buttonTitle: undefined,
       buttonTo: undefined,
-      buttonClick: undefined,
-      modalLoading: undefined
+      buttonClick: undefined
     };
 
     this.setTitle = this.setTitle.bind(this);
@@ -42,7 +41,6 @@ class Modal extends Component {
     this.setButtonTitle = this.setButtonTitle.bind(this);
     this.setButtonTo = this.setButtonTo.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
-    this.setModalLoading = this.setModalLoading.bind(this);
     this.resetModal = this.resetModal.bind(this);
 
     this.initialState = this.state;
@@ -92,10 +90,6 @@ class Modal extends Component {
     this.setState({ buttonClick });
   }
 
-  setModalLoading(modalLoading) {
-    this.setState({ modalLoading });
-  }
-
   resetModal() {
     this.setState({ ...this.initialState });
   }
@@ -114,7 +108,6 @@ class Modal extends Component {
       setButtonTitle,
       setButtonTo,
       setButtonClick,
-      setModalLoading,
       resetModal
     } = this;
 
@@ -131,8 +124,7 @@ class Modal extends Component {
       rightClick,
       buttonTitle,
       buttonTo,
-      buttonClick,
-      modalLoading
+      buttonClick
     } = this.state;
 
     const sceneProps = {
@@ -148,7 +140,6 @@ class Modal extends Component {
       setButtonTitle,
       setButtonTo,
       setButtonClick,
-      setModalLoading,
       ...others
     };
 
@@ -169,7 +160,6 @@ class Modal extends Component {
             component={component}
             resetModal={resetModal}
             sceneProps={sceneProps}
-            modalLoading={modalLoading}
           />
           {buttonTitle && (
             <ModalButton

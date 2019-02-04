@@ -4,6 +4,7 @@ import { withNamespaces } from "react-i18next";
 import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
+import Loader from "../../../../components/loader";
 import SignUp2Container from "./components/sign-up-2-container";
 import SignUp2Title from "./components/sign-up-2-title";
 import Input from "../../../../components/input";
@@ -33,7 +34,8 @@ class SignUp2 extends Component {
 
     this.state = {
       password,
-      confirmPassword
+      confirmPassword,
+      loading: false
     };
 
     this.submit = this.submit.bind(this);
@@ -57,15 +59,14 @@ class SignUp2 extends Component {
     const {
       data: { name, email, password },
       signUp,
-      setModalLoading,
       setLeftClick,
       setButtonClick
     } = this.props;
 
     signUp({ name: name.value, email: email.value, password: password.value });
-    setModalLoading(true);
     setLeftClick(undefined);
-    setButtonClick(undefined); 
+    setButtonClick(undefined);
+    this.setState({ loading: true });
   }
 
   checkForm() {
@@ -117,10 +118,13 @@ class SignUp2 extends Component {
 
   render() {
     const { currentUserToken, t } = this.props;
-    const { password, confirmPassword } = this.state;
+    const { password, confirmPassword, loading } = this.state;
 
+    /* eslint-disable-next-line */
     return currentUserToken ? (
       <Redirect to="/" />
+    ) : loading ? (
+      <Loader />
     ) : (
       <SignUp2Container>
         <SignUp2Title>{t("choosePassword")}</SignUp2Title>
@@ -162,7 +166,6 @@ SignUp2.propTypes = {
     confirmPassword: PropTypes.object
   }).isRequired,
   signUp: PropTypes.func.isRequired,
-  setModalLoading: PropTypes.func.isRequired,
   setData: PropTypes.func.isRequired,
   setProgress: PropTypes.func.isRequired,
   setLeftIcon: PropTypes.func.isRequired,
