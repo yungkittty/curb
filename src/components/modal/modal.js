@@ -111,7 +111,7 @@ class Modal extends Component {
       resetModal
     } = this;
 
-    const { component, ...others } = this.props;
+    const { component, render, ...others } = this.props;
 
     const {
       title,
@@ -158,6 +158,7 @@ class Modal extends Component {
           />
           <ModalContent
             component={component}
+            render={render}
             resetModal={resetModal}
             sceneProps={sceneProps}
           />
