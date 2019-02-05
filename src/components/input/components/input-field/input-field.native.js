@@ -13,7 +13,7 @@ const InputField = styled(({ type, onChange, id, ...others }) => (
   padding: 18px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
-    error ? theme.errorColor : theme.pimaryColor};
+    error ? theme.errorColor : theme.primaryColor};
   width: 100%;
 `;
 

@@ -11,7 +11,7 @@ import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
 import SignIn from "./scenes/sign-in";
-import SignUp1 from "./scenes/sign-up/scenes/sign-up-1";
+import SignUp from "./scenes/sign-up";
 
 const App = ({ currentUserToken }) => (
   <Router>
@@ -31,7 +31,7 @@ const App = ({ currentUserToken }) => (
           !currentUserToken ? (
             <React.Fragment>
               <ModalRoute {...props} path="/sign-in" component={SignIn} />
-              <ModalRoute {...props} path="/sign-up" component={SignUp1} />
+              <ModalRoute {...props} path="/sign-up" component={SignUp} />
             </React.Fragment>
           ) : (
             <Redirect to="/" />

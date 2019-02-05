@@ -7,7 +7,7 @@ import { groupsActions, groupsSelectors } from "../../../../datas/groups";
 class NavigationListItemContainer extends React.Component {
   componentDidMount() {
     const { currentUserGroupId, getCurrentUserGroup } = this.props;
-    if (currentUserGroupId) getCurrentUserGroup({ id: currentUserGroupId });
+    getCurrentUserGroup({ id: currentUserGroupId });
   }
 
   render() {
