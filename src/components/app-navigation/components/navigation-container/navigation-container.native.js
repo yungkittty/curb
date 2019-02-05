@@ -8,7 +8,8 @@ import ContainerZipper from "./components/container-zipper";
 class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { containerContainer: new Animated.ValueXY({ x: -70 }) };
+    // Position => Container
+    this.state = { containerPosition: new Animated.ValueXY({ x: -70, y: 0 }) };
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: this.moveContainerTo.bind(this),
@@ -17,23 +18,37 @@ class NavigationContainer extends React.Component {
   }
 
   moveContainerTo(event) {
-    const { containerContainer } = this.state;
+    const { containerPosition } = this.state;
     const { pageX } = event.nativeEvent;
-    containerContainer.setValue({ x: pageX > 70 ? 0 : pageX - 70 });
+    const containerX = pageX > 70 ? 0 : pageX - 70;
+    containerPosition.setValue({ x: containerX });
   }
 
   moveContainerToEnd(event) {
-    const { containerContainer } = this.state;
+    const { containerPosition } = this.state;
     const { pageX } = event.nativeEvent;
-    containerContainer.setValue({ x: pageX < 35 ? -70 : 0 });
+    containerPosition.setValue({ x: pageX < 35 ? -70 : 0 });
   }
 
   render() {
-    const { containerContainer } = this.state;
+    const { containerPosition } = this.state;
     const { children } = this.props;
     return (
-      <ContainerContainer style={containerContainer.getLayout()}>
+      <ContainerContainer
+        style={[
+          containerPosition.getLayout(),
+          // ...
+          {
+            backgroundColor: containerPosition.x.interpolate({
+              inputRange: [-70, 0],
+              outputRange: ["rgba(0,0,0,0)", "rgba(0,0,0,0.25)"]
+            })
+          }
+          // ...
+        ]}
+      >
         <ContainerContentContainer>
+          {/* eslint-disable-next-line */}
           {children}
         </ContainerContentContainer>
         <ContainerZipper
