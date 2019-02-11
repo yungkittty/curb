@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ModalOverlay from "./components/modal-overlay";
 import ModalContainer from "./components/modal-container";
 import ModalHeader from "./components/modal-header";
-import ModalContent from "./components/modal-content";
 import ModalButton from "./components/modal-button";
 import ModalBlur from "./components/modal-blur";
 
