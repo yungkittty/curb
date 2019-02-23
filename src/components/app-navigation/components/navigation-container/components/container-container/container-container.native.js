@@ -1,13 +1,12 @@
-import { Animated, Dimensions } from "react-native";
+import { Animated } from "react-native";
 import styled from "styled-components";
-
-/** @todo Button are not accesible ! */
 
 const ContainerContainer = styled(Animated.View)`
   position: absolute;
-  zIndex: 1;
-  width: ${Dimensions.get("window").width + 70}px;
+  zIndex: 6;
+  width: 110px;
   height: 100%;
+  elevation: 6;
 `;
 
 export default ContainerContainer;

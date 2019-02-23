@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { PanResponder, Animated } from "react-native";
+import ContainerOverlay from "./components/container-overlay";
 import ContainerContainer from "./components/container-container";
 import ContainerContentContainer from "./components/container-content-container";
 import ContainerZipper from "./components/container-zipper";
@@ -8,8 +9,7 @@ import ContainerZipper from "./components/container-zipper";
 class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
-    // Position => Container
-    this.state = { containerPosition: new Animated.ValueXY({ x: -70, y: 0 }) };
+    this.state = { containerAnimated: new Animated.ValueXY({ x: -70, y: 0 }), X: false };
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: this.moveContainerTo.bind(this),
@@ -18,44 +18,35 @@ class NavigationContainer extends React.Component {
   }
 
   moveContainerTo(event) {
-    const { containerPosition } = this.state;
+    const { containerAnimated, X } = this.state;
     const { pageX } = event.nativeEvent;
-    const containerX = pageX > 70 ? 0 : pageX - 70;
-    containerPosition.setValue({ x: containerX });
+    containerAnimated.setValue({ x: pageX > 70 ? 0 : pageX - 70 });
+    if (!X) this.setState({ X: true });
   }
 
   moveContainerToEnd(event) {
-    const { containerPosition } = this.state;
+    const { containerAnimated } = this.state;
     const { pageX } = event.nativeEvent;
-    containerPosition.setValue({ x: pageX < 35 ? -70 : 0 });
+    containerAnimated.setValue({ x: pageX < 35 ? -70 : 0 });
+    this.setState({ X: pageX >= 35 });
   }
 
   render() {
-    const { containerPosition } = this.state;
+    const { containerAnimated, X } = this.state;
     const { children } = this.props;
     return (
-      <ContainerContainer
-        style={[
-          containerPosition.getLayout(),
-          // ...
-          {
-            backgroundColor: containerPosition.x.interpolate({
-              inputRange: [-70, 0],
-              outputRange: ["rgba(0,0,0,0)", "rgba(0,0,0,0.25)"]
-            })
-          }
-          // ...
-        ]}
-      >
-        <ContainerContentContainer>
-          {/* eslint-disable-next-line */}
-          {children}
-        </ContainerContentContainer>
-        <ContainerZipper
-          {...this.panResponder.panHandlers}
-          hitSlop={{ top: 15, right: 20, bottom: 15 }}
-        />
-      </ContainerContainer>
+      <React.Fragment>
+        {X ? <ContainerOverlay style={{ opacity: containerAnimated.x.interpolate({ inputRange: [-70, 0], outputRange: [0, 0.25] }) }} /> : null}
+        <ContainerContainer style={containerAnimated.getLayout()}>
+          <ContainerContentContainer>
+            {children}
+          </ContainerContentContainer>
+          <ContainerZipper
+            {...this.panResponder.panHandlers}
+            hitSlop={{ top: 20, right: 20, bottom: 20 }} // !
+          />
+        </ContainerContainer>
+      </React.Fragment>
     );
   }
 }
