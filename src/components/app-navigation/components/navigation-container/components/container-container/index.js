@@ -1,3 +1,4 @@
-import ContainerContainer from "./container-container.native";
+// eslint-disable-next-line
+import ContainerContainer from "./container-container";
 
 export default ContainerContainer;

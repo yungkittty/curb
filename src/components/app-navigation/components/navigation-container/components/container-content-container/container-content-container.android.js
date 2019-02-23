@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Container from "../../../../../container";
 
+// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33
+
 const ContainerContentContainer = styled(Container)`
   display: flex;
   position: absolute;
