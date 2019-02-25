@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Dimensions, Animated, Easing } from "react-native";
 
-const deviceWidth = Dimensions.get("window").width;
-
 const ContentSlide = WrappedComponent =>
   class extends Component {
     constructor(props) {
@@ -15,6 +13,8 @@ const ContentSlide = WrappedComponent =>
         oldComponent: undefined,
         slide: undefined
       };
+
+      this.deviceWidth = Dimensions.get("window").width;
 
       this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
         WrappedComponent
@@ -30,12 +30,12 @@ const ContentSlide = WrappedComponent =>
         {
           oldComponent: component,
           component: newComponent,
-          slide: new Animated.Value(flow === 1 ? 0 : -deviceWidth)
+          slide: new Animated.Value(flow === 1 ? 0 : -this.deviceWidth)
         },
         () => {
           const { slide } = this.state;
           Animated.timing(slide, {
-            toValue: flow === 1 ? -deviceWidth : 0,
+            toValue: flow === 1 ? -this.deviceWidth : 0,
             easing: Easing.inOut(Easing.quad),
             duration: 450,
             useNativeDriver: true
