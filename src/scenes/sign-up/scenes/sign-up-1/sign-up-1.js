@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp2 from "../sign-up-2";
 import SignUp1Container from "./components/sign-up-1-container";
@@ -91,12 +90,10 @@ class SignUp1 extends Component {
   }
 
   render() {
-    const { currentUserToken, t } = this.props;
+    const { t } = this.props;
     const { name, email } = this.state;
 
-    return currentUserToken ? (
-      <Redirect to="/" />
-    ) : (
+    return (
       <SignUp1Container>
         <SignUp1Title>{t("createAccount")}</SignUp1Title>
         <SelectImage />
@@ -121,12 +118,7 @@ class SignUp1 extends Component {
   }
 }
 
-SignUp1.defaultProps = {
-  currentUserToken: undefined
-};
-
 SignUp1.propTypes = {
-  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object })
     .isRequired,
