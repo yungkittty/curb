@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-const ContentSlide = WrappedComponent =>
-  class extends Component {
+const ContentSlide = WrappedComponent => {
+  class NewComponent extends Component {
     constructor(props) {
       super(props);
 
@@ -17,8 +17,9 @@ const ContentSlide = WrappedComponent =>
 
     slideComponent(newComponent, flow) {
       const { component } = this.state;
+      const { forwardedRef } = this.props;
 
-      const modalContent = document.getElementById("modal-content");
+      const modalContent = forwardedRef.current;
 
       modalContent.style.transition = null;
       modalContent.style.transform =
@@ -40,6 +41,7 @@ const ContentSlide = WrappedComponent =>
 
     render() {
       const { component, oldComponent } = this.state;
+      const { forwardedRef } = this.props;
 
       return (
         <WrappedComponent
@@ -47,9 +49,15 @@ const ContentSlide = WrappedComponent =>
           slideComponent={this.slideComponent}
           component={component}
           oldComponent={oldComponent}
+          forwardedRef={forwardedRef}
         />
       );
     }
-  };
+  }
+
+  return React.forwardRef((props, ref) => (
+    <NewComponent {...props} forwardedRef={ref} />
+  ));
+};
 
 export default ContentSlide;

@@ -33,7 +33,13 @@ class ModalContent extends Component {
 
   render() {
     const { setData, setComponent } = this;
-    const { oldComponent, component, render, sceneProps } = this.props;
+    const {
+      oldComponent,
+      component,
+      render,
+      sceneProps,
+      forwardedRef
+    } = this.props;
     const { flow, data } = this.state;
 
     const props = { ...sceneProps, setData, setComponent, data };
@@ -53,7 +59,7 @@ class ModalContent extends Component {
     };
 
     return (
-      <ContentContainer>
+      <ContentContainer ref={forwardedRef}>
         {flow === 1 && (
           <ContentComponent component={oldComponent} props={oldProps} />
         )}
@@ -79,6 +85,8 @@ ModalContent.propTypes = {
   component: PropTypes.func,
   render: PropTypes.func,
   oldComponent: PropTypes.func,
+  /* eslint-disable-next-line */
+  forwardedRef: PropTypes.object.isRequired,
   /* eslint-disable-next-line */
   sceneProps: PropTypes.object
 };

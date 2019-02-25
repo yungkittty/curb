@@ -30,6 +30,8 @@ class Modal extends Component {
       buttonClick: undefined
     };
 
+    this.modalContentRef = React.createRef();
+
     this.setTitle = this.setTitle.bind(this);
     this.setProgress = this.setProgress.bind(this);
     this.setLeftIcon = this.setLeftIcon.bind(this);
@@ -96,6 +98,7 @@ class Modal extends Component {
 
   render() {
     const {
+      modalContentRef,
       setTitle,
       setProgress,
       setLeftIcon,
@@ -161,6 +164,7 @@ class Modal extends Component {
             render={render}
             resetModal={resetModal}
             sceneProps={sceneProps}
+            ref={modalContentRef}
           />
           {buttonTitle && (
             <ModalButton
