@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Animated, Easing } from "react-native";
-import IconContainer from "./components/icon-container";
+import Icon from "../../../icon";
 
 class LoaderIcon extends Component {
   constructor(props) {
@@ -35,12 +35,10 @@ class LoaderIcon extends Component {
                 outputRange: ["0deg", "360deg"]
               })
             }
-          ],
-          width: 30,
-          height: 31
+          ]
         }}
       >
-        <IconContainer {...this.props} />
+        <Icon {...this.props} />
       </Animated.View>
     );
   }
