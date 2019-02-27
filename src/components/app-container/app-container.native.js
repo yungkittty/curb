@@ -1,10 +1,10 @@
+import { Dimensions } from "react-native";
 import styled from "styled-components";
 import Container from "../container";
 
 const AppContainer = styled(Container)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  width: ${Dimensions.get("window").width};
+  height: ${Dimensions.get("window").height};
   background-color: ${props => props.theme.backgroundColor};
 `;
 

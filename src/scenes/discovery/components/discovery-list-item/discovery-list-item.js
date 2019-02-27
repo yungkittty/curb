@@ -11,7 +11,7 @@ const DiscoveryListItem = ({
 }) => (
   <ListItemContainer>
     <ListItemButtonImage
-      src={discoveryGroupAvatarUrl}
+      src={`${process.env.REACT_APP_API_URL}${discoveryGroupAvatarUrl}`}
       onClick={`/groups/${discoveryGroupId}`}
     />
     <ListItemTitle>

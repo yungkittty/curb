@@ -42,6 +42,7 @@ const Discovery = ({ t, discoveryGroups }) => (
           horizontal
         />
       )}
+      showsHorizontalScrollIndicator={false}
     />
     <ButtonIconFloat icon="plus" onClick={() => undefined} />
   </React.Fragment>
