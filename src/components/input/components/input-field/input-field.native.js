@@ -9,7 +9,7 @@ const InputField = styled(({ type, onChange, id, ...others }) => (
     onChangeText={text => onChange({ target: { id, value: text } })}
   />
 ))`
-  font-size: 18px;
+  font-size: 14px;
   padding: 18px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
