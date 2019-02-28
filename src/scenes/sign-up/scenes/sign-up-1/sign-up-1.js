@@ -1,35 +1,132 @@
-import React from "react";
-import ContentContainer from "./components/content-container";
-import ContentText from "./components/content-text";
-import Text from "../../../../components/text";
-import OneCheckbox from "./components/content-checkbox";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
+/* eslint-disable-next-line */
+import SignUp2 from "../sign-up-2";
+import SignUp1Container from "./components/sign-up-1-container";
+import SignUp1Title from "./components/sign-up-1-title";
+import SelectImage from "./components/select-image";
+import Input from "../../../../components/input";
+import RegexExpressions from "../../../../configurations/regex-expressions";
 
-const Signup1 = () => (
-  <ContentContainer>
-    <ContentText>
-      <Text h2 b center>
-        Important notes
-      </Text>
+class SignUp1 extends Component {
+  constructor(props) {
+    super(props);
+    const {
+      t,
+      data: {
+        name = {
+          value: "",
+          error: undefined
+        },
+        email = {
+          value: "",
+          error: undefined
+        }
+      },
+      setProgress,
+      setButtonTitle,
+      setButtonClick
+    } = this.props;
 
-      <Text p>
-        You’ll never be able to recover your password, due to security reasons
-        of the peer-to-peer architecture of Curb.
-      </Text>
-      <Text p>
-        If you lose your password, your account will not be recoverable and even
-        the Curb team will not be able to access it.
-      </Text>
-      <Text p>
-        It’s also a security that nobody (even the Curb team) can access your
-        private data, according to our vision.
-      </Text>
-      <Text p>
-        So please be sure to remember your password or write it on a paper.
-      </Text>
-    </ContentText>
+    this.state = {
+      name,
+      email
+    };
 
-    <OneCheckbox id="agree" name="agree" label="I agree" />
-  </ContentContainer>
-);
+    this.checkForm = this.checkForm.bind(this);
+    this.checkInput = this.checkInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.goToNext = this.goToNext.bind(this);
 
-export default Signup1;
+    setProgress({ progress: 1, total: 2 });
+    setButtonTitle(t("common:next"));
+    setButtonClick(this.goToNext);
+  }
+
+  goToNext() {
+    const { setComponent } = this.props;
+
+    if (this.checkForm()) setComponent(SignUp2, 1);
+  }
+
+  checkForm() {
+    const { name, email } = this.state;
+
+    const nameCheck = this.checkInput("name", name.value);
+    const emailCheck = this.checkInput("email", email.value);
+
+    return nameCheck && emailCheck;
+  }
+
+  checkInput(id, value) {
+    const { setData } = this.props;
+
+    let error = value.length === 0 ? "missing" : undefined;
+    if (error === undefined && id === "email")
+      error = !RegExp(RegexExpressions.email).test(value)
+        ? "invalid"
+        : undefined;
+
+    this.setState(prev => {
+      const obj = {
+        [id]: {
+          ...prev[id],
+          value,
+          error
+        }
+      };
+      setData(obj);
+      return obj;
+    });
+
+    return error === undefined;
+  }
+
+  handleChange(event) {
+    const { id, value } = event.target;
+
+    this.checkInput(id, value);
+  }
+
+  render() {
+    const { t } = this.props;
+    const { name, email } = this.state;
+
+    return (
+      <SignUp1Container>
+        <SignUp1Title>{t("createAccount")}</SignUp1Title>
+        <SelectImage />
+        <Input
+          size="modal"
+          id="name"
+          placeholder={t("username")}
+          onChange={this.handleChange}
+          value={name.value}
+          error={name.error && t(`validation:username.${name.error}`)}
+        />
+        <Input
+          size="modal"
+          id="email"
+          placeholder={t("mailAddress")}
+          onChange={this.handleChange}
+          value={email.value}
+          error={email.error && t(`validation:email.${email.error}`)}
+        />
+      </SignUp1Container>
+    );
+  }
+}
+
+SignUp1.propTypes = {
+  t: PropTypes.func.isRequired,
+  data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object })
+    .isRequired,
+  setData: PropTypes.func.isRequired,
+  setProgress: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired,
+  setButtonTitle: PropTypes.func.isRequired,
+  setButtonClick: PropTypes.func.isRequired
+};
+
+export default withNamespaces("signUp")(SignUp1);

@@ -1,16 +1,18 @@
-import React, { Component, createElement } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ModalBlur from "./components/modal-blur";
 import ModalOverlay from "./components/modal-overlay";
 import ModalContainer from "./components/modal-container";
 import ModalHeader from "./components/modal-header";
+import ModalContent from "./components/modal-content";
 import ModalButtonText from "./components/modal-button-text";
-import ModalBlur from "./components/modal-blur";
 
 class Modal extends Component {
   constructor(props) {
     super(props);
 
     const {
+      onCloseRequest,
       history: { goBack }
     } = this.props;
 
@@ -20,10 +22,12 @@ class Modal extends Component {
       leftIcon: undefined,
       leftClick: undefined,
       rightIcon: "times",
-      rightClick: goBack,
+      rightClick: onCloseRequest || goBack,
       buttonTitle: undefined,
       buttonClick: undefined
     };
+
+    this.modalContentRef = React.createRef();
 
     this.setTitle = this.setTitle.bind(this);
     this.setProgress = this.setProgress.bind(this);
@@ -33,6 +37,9 @@ class Modal extends Component {
     this.setRightCick = this.setRightCick.bind(this);
     this.setButtonTitle = this.setButtonTitle.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
+    this.resetModal = this.resetModal.bind(this);
+
+    this.initialState = this.state;
   }
 
   setTitle(title) {
@@ -67,18 +74,23 @@ class Modal extends Component {
     this.setState({ buttonClick });
   }
 
+  resetModal() {
+    this.setState({ ...this.initialState });
+  }
+
   render() {
     const {
+      modalContentRef,
       setTitle,
       setProgress,
       setLeftIcon,
-      setLeftTo,
       setLeftClick,
       setRightIcon,
-      setRightTo,
       setRightCick,
+      setComponent,
       setButtonTitle,
-      setButtonClick
+      setButtonClick,
+      resetModal
     } = this;
 
     const { component, render, ...others } = this.props;
@@ -94,15 +106,14 @@ class Modal extends Component {
       buttonClick
     } = this.state;
 
-    const props = {
+    const sceneProps = {
       setTitle,
       setProgress,
       setLeftIcon,
-      setLeftTo,
       setLeftClick,
       setRightIcon,
-      setRightTo,
       setRightCick,
+      setComponent,
       setButtonTitle,
       setButtonClick,
       ...others
@@ -119,12 +130,13 @@ class Modal extends Component {
             rightIcon={rightIcon}
             rightClick={rightClick}
           />
-          {/* eslint-disable-next-line */}
-          {component
-            ? createElement(component, props)
-            : render
-            ? render(props)
-            : null}
+          <ModalContent
+            component={component}
+            render={render}
+            resetModal={resetModal}
+            sceneProps={sceneProps}
+            ref={modalContentRef}
+          />
           {buttonTitle && (
             <ModalButtonText
               type="h3"
@@ -139,13 +151,14 @@ class Modal extends Component {
 }
 
 Modal.defaultProps = {
-  history: undefined,
+  onCloseRequest: undefined,
   component: undefined,
   render: undefined
 };
 
 Modal.propTypes = {
-  history: PropTypes.shape({ goBack: PropTypes.func }),
+  onCloseRequest: PropTypes.func,
+  history: PropTypes.shape({ goBack: PropTypes.func.isRequired }).isRequired,
   component: PropTypes.func,
   render: PropTypes.func
 };

@@ -19,9 +19,14 @@ const Text = styled.Text`
           font-size: 18px;
           font-weight: 400;
         `;
-      default:
+      case "h4":
         return `
           font-size: 14px;
+          font-weight: 400;
+        `;
+      default:
+        return `
+          font-size: 12px;
           font-weight: 400;
         `;
     }
@@ -31,6 +36,6 @@ const Text = styled.Text`
 
 Text.defaultProps = { type: undefined };
 
-Text.propTypes = { type: PropTypes.oneOf(["h1", "h2", "h3"]) };
+Text.propTypes = { type: PropTypes.oneOf(["h1", "h2", "h3", "h4"]) };
 
 export default Text;

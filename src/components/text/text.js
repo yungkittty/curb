@@ -20,6 +20,11 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
           font-size: 24px;
           font-weight: 400;
         `;
+      case "h4":
+        return `
+          font-size: 18px;
+          font-weight: 400;
+        `;
       default:
         return `
           font-size: 14px;
@@ -32,6 +37,6 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
 
 Text.defaultProps = { type: undefined };
 
-Text.propTypes = { type: PropTypes.oneOf(["h1", "h2", "h3"]) };
+Text.propTypes = { type: PropTypes.oneOf(["h1", "h2", "h3", "h4"]) };
 
 export default Text;
