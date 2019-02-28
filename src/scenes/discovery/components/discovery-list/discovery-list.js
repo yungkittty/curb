@@ -46,7 +46,8 @@ class DiscoveryList extends React.Component {
     } = this.listFlat.current.containerScroll.current;
     this.setState({
       isScrollableToLeft: scrollLeft !== 0,
-      isScrollableToRight: scrollWidth - scrollLeft > clientWidth
+      // eslint-disable-next-line
+      isScrollableToRight: scrollWidth - scrollLeft > clientWidth + 40
     });
   }
 
@@ -84,9 +85,8 @@ class DiscoveryList extends React.Component {
         <ListFlat
           {...this.props}
           ref={this.listFlat}
-          style={{ height: 160 }}
           contentContainerStyle={{ paddingLeft: 40 }}
-          getItemLayout={(itemData, itemIndex) => ({ offset: 140 * itemIndex })}
+          getItemLayout={(_, itemIndex) => ({ offset: 140 * itemIndex })}
         />
         {isScrollableToRight ? (
           <ListButtonIcon

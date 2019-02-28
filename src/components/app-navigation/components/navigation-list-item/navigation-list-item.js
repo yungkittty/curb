@@ -7,7 +7,7 @@ const NavigationListItem = ({
   currentUserGroupAvatarUrl
 }) => (
   <NavigationButtonImage
-    src={currentUserGroupAvatarUrl}
+    src={`${process.env.REACT_APP_API_URL}${currentUserGroupAvatarUrl}`}
     onClick={`/groups/${currentUserGroupId}`}
   />
 );

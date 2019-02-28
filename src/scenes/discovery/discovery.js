@@ -10,11 +10,12 @@ import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
 
-const Discovery = ({ t, discoveryGroups }) => (
+const Discovery = ({ t, discoveryGroupsIds }) => (
   <React.Fragment>
     <ListSection
       /* eslint-disable-next-line */
       sections={[{ data: [{}] }]}
+      keyExtractor={(_, sectionIndex) => sectionIndex}
       ListHeaderComponent={() => (
         <DiscoveryHeader>
           <DiscoveryTitle type="h1">
@@ -33,7 +34,7 @@ const Discovery = ({ t, discoveryGroups }) => (
       )}
       renderItem={() => (
         <DiscoveryList
-          data={discoveryGroups}
+          data={discoveryGroupsIds}
           keyExtractor={discoveryGroupId => discoveryGroupId}
           renderItem={({ item: discoveryGroupId }) => (
             <DiscoveryListItem discoveryGroupId={discoveryGroupId} />
@@ -42,7 +43,6 @@ const Discovery = ({ t, discoveryGroups }) => (
           horizontal
         />
       )}
-      showsHorizontalScrollIndicator={false}
     />
     <ButtonIconFloat icon="plus" onClick={() => undefined} />
   </React.Fragment>
@@ -50,7 +50,7 @@ const Discovery = ({ t, discoveryGroups }) => (
 
 Discovery.propTypes = {
   t: PropTypes.func.isRequired,
-  discoveryGroups: PropTypes.arrayOf(PropTypes.string).isRequired
+  discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default withNamespaces("discovery")(Discovery);

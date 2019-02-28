@@ -4,8 +4,8 @@ import ListFlat from "../../../../components/list-flat";
 const DiscoveryList = props => (
   <ListFlat
     {...props}
-    style={{ height: 100 }}
     contentContainerStyle={{ paddingLeft: 20 }}
+    getItemLayout={(_, itemIndex) => ({ length: 90, offset: 90 * itemIndex, index: itemIndex })}
   />
 );
 

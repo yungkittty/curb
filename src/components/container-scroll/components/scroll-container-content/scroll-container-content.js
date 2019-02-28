@@ -8,7 +8,8 @@ const ScrollContainerContent = styled(Container)`
   width: ${props => (!props.showsVerticalScrollIndicator ? "calc(100% + 30px)" : "100%")};
   height: ${props => (!props.showsHorizontalScrollIndicator ? "calc(100% + 30px)" : "100%")};
   flex-shrink: 1;
-  overflow: auto;
+  overflow-y: ${props => (!props.horizontal ? "auto" : "hidden")};
+  overflow-x: ${props => (props.horizontal ? "auto" : "hidden")};
 `;
 
 ScrollContainerContent.propTypes = {
