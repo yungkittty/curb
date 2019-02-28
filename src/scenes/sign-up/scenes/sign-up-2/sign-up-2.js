@@ -51,20 +51,20 @@ class SignUp2 extends Component {
   }
 
   validate() {
-    if (this.checkForm()) this.submit();
+    const { loading } = this.state;
+
+    if (!loading && this.checkForm()) this.submit();
   }
 
   submit() {
     const {
       data: { name, email, password },
       signUp,
-      setLeftClick,
-      setButtonClick
+      setLeftClick
     } = this.props;
 
     signUp({ name: name.value, email: email.value, password: password.value });
     setLeftClick(undefined);
-    setButtonClick(undefined);
     this.setState({ loading: true });
   }
 
