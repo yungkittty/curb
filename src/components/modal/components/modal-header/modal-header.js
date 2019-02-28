@@ -19,13 +19,17 @@ const ModalHeader = ({
     {leftTo ? (
       <HeaderLink icon={leftIcon} to={leftTo} />
     ) : (
-      <HeaderButton icon={leftIcon} onClick={leftClick} />
+      leftClick && (
+        <HeaderButton position="left" icon={leftIcon} onClick={leftClick} />
+      )
     )}
     <HeaderMiddle title={title} progress={progress} />
     {rightTo ? (
       <HeaderLink icon={rightIcon} to={rightTo} />
     ) : (
-      <HeaderButton icon={rightIcon} onClick={rightClick} />
+      rightClick && (
+        <HeaderButton position="right" icon={rightIcon} onClick={rightClick} />
+      )
     )}
   </HeaderContainer>
 );

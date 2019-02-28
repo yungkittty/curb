@@ -4,8 +4,8 @@ import { withTheme } from "styled-components";
 import ButtonContainer from "./components/button-container";
 import Icon from "../../../../../icon";
 
-const HeaderButton = ({ theme, icon, onClick }) => (
-  <ButtonContainer onClick={onClick}>
+const HeaderButton = ({ theme, position, icon, onClick }) => (
+  <ButtonContainer position={position} onClick={onClick}>
     {icon ? (
       <Icon icon={icon} color={theme.fontColor} size="small" />
     ) : (
@@ -21,6 +21,7 @@ HeaderButton.defaultProps = {
 };
 
 HeaderButton.propTypes = {
+  position: PropTypes.string.isRequired,
   /* eslint-disable-next-line */
   theme: PropTypes.object,
   icon: PropTypes.string,
