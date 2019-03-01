@@ -5,13 +5,11 @@ import ComponentContainer from "./components/component-container";
 const ContentComponent = ({ component, render, props }) => (
   <ComponentContainer>
     {/* eslint-disable-next-line */}
-    {component ? (
-      createElement(component, props)
-    ) : render ? (
-      render(props)
-    ) : (
-      <React.Fragment />
-    )}
+    {component
+      ? createElement(component, props)
+      : render
+      ? render(props)
+      : null}
   </ComponentContainer>
 );
 

@@ -64,7 +64,6 @@ class ModalContent extends Component {
           <ContentComponent component={oldComponent} props={oldProps} />
         )}
         <ContentComponent component={component} render={render} props={props} />
-
         {flow === -1 && (
           <ContentComponent component={oldComponent} props={oldProps} />
         )}

@@ -4,7 +4,7 @@ import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
 import Loader from "../../../../components/loader";
-import SignUp2Container from "./components/sign-up-2-container";
+import SignUpContainer from "../../components/sign-up-container";
 import SignUp2Title from "./components/sign-up-2-title";
 import Input from "../../../../components/input";
 
@@ -122,7 +122,7 @@ class SignUp2 extends Component {
     return loading ? (
       <Loader />
     ) : (
-      <SignUp2Container>
+      <SignUpContainer>
         <SignUp2Title>{t("choosePassword")}</SignUp2Title>
         <Input
           size="modal"
@@ -145,7 +145,7 @@ class SignUp2 extends Component {
             t(`validation:password.${confirmPassword.error}`)
           }
         />
-      </SignUp2Container>
+      </SignUpContainer>
     );
   }
 }
