@@ -13,12 +13,12 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
       case "h2":
         return `
           font-size: 36px;
-          font-weight: 400;
+          font-weight: 600;
         `;
       case "h3":
         return `
           font-size: 24px;
-          font-weight: 400;
+          font-weight: 400; // || 500
         `;
       case "h4":
         return `

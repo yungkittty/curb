@@ -12,7 +12,7 @@ const Text = styled.Text`
       case "h2":
         return `
           font-size: 24px;
-          font-weight: 400;
+          font-weight: 600;
         `;
       case "h3":
         return `
@@ -33,6 +33,8 @@ const Text = styled.Text`
   }}
   ${props => `color: ${props.theme.fontColor}`}
 `;
+
+ // H3 => || 500 & 600 MODAL
 
 Text.defaultProps = { type: undefined };
 

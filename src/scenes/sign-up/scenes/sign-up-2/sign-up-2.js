@@ -4,9 +4,11 @@ import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
 import Loader from "../../../../components/loader";
-import SignUp2Container from "./components/sign-up-2-container";
-import SignUp2Title from "./components/sign-up-2-title";
+import SignUpContainer from "../../components/sign-up-container";
+import SignUpTitle from "../../components/sign-up-title";
 import Input from "../../../../components/input";
+
+/** @todo regex-utils ! */
 
 class SignUp2 extends Component {
   constructor(props) {
@@ -63,8 +65,8 @@ class SignUp2 extends Component {
     } = this.props;
 
     signUp({ name: name.value, email: email.value, password: password.value });
-    setLeftClick(undefined);
-    setButtonClick(undefined);
+    setLeftClick(undefined); // !
+    setButtonClick(undefined); // !
     this.setState({ loading: true });
   }
 
@@ -122,8 +124,8 @@ class SignUp2 extends Component {
     return loading ? (
       <Loader />
     ) : (
-      <SignUp2Container>
-        <SignUp2Title>{t("choosePassword")}</SignUp2Title>
+      <SignUpContainer>
+        <SignUpTitle type="h2">{t("choosePassword")}</SignUpTitle>
         <Input
           size="modal"
           id="password"
@@ -145,7 +147,7 @@ class SignUp2 extends Component {
             t(`validation:password.${confirmPassword.error}`)
           }
         />
-      </SignUp2Container>
+      </SignUpContainer>
     );
   }
 }

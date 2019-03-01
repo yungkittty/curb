@@ -139,7 +139,7 @@ class Modal extends Component {
           />
           {buttonTitle && (
             <ModalButtonText
-              type="h3"
+              type="h4"
               text={buttonTitle}
               onClick={buttonClick}
             />

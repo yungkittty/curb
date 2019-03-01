@@ -5,7 +5,7 @@ import { screenWidthsMedias } from "../../../../configurations/screen";
 const ModalContainer = styled(Container)`
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => theme.backgroundColor};
+  background: ${props => props.theme.backgroundColor};
   display: flex;
   flex-flow: column;
   overflow: hidden;
