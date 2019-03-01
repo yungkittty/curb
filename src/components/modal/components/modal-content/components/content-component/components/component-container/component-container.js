@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import ContainerScroll from "../../../../../../../container-scroll";
+import Container from "../../../../../../../container";
 
-const ComponentContainer = styled(ContainerScroll)` // !
-  position: relative;
-  width: 50%;
+const ComponentContainer = styled(Container)`
   display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  width: 50%;
 `;
 
 export default ComponentContainer;

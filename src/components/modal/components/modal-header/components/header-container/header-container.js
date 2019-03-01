@@ -3,6 +3,7 @@ import Container from "../../../../../container";
 
 const HeaderContainer = styled(Container)`
   display: flex;
+  position: relative;
   flex-flow: row;
   align-items: center;
   height: 75px;

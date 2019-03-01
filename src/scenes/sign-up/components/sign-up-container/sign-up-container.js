@@ -1,12 +1,14 @@
-import styled from "styled-components";
-import Container from "../../../../components/container";
+import React from "react";
+import ContainerScroll from "../../../../components/container-scroll";
 
-const SignUpContainer = styled(Container)`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  flex: 1;
-  padding-top: 15px;
-`;
+const SignUpContainer = props => (
+  <ContainerScroll
+    {...props}
+    contentContainerStyle={{
+      alignItems: "center",
+      paddingTop: 15
+    }}
+  />
+);
 
 export default SignUpContainer;

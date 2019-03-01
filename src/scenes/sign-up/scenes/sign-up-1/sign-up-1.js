@@ -7,7 +7,7 @@ import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
-import RegexExpressions from "../../../../configurations/regex-expressions";
+import inputRegex from "../../../../utils/input-regex";
 
 class SignUp1 extends Component {
   constructor(props) {
@@ -64,9 +64,7 @@ class SignUp1 extends Component {
 
     let error = value.length === 0 ? "missing" : undefined;
     if (error === undefined && id === "email")
-      error = !RegExp(RegexExpressions.email).test(value)
-        ? "invalid"
-        : undefined;
+      error = !RegExp(inputRegex.email).test(value) ? "invalid" : undefined;
 
     this.setState(prev => {
       const obj = {
@@ -95,7 +93,9 @@ class SignUp1 extends Component {
 
     return (
       <SignUpContainer>
-        <SignUpTitle type="h2">{t("createAccount")}</SignUpTitle>
+        <SignUpTitle type="h2" weight={700}>
+          {t("createAccount")}
+        </SignUpTitle>
         <SelectImage />
         <Input
           size="modal"

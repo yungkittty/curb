@@ -76,6 +76,7 @@ ModalContent.defaultProps = {
   component: undefined,
   render: undefined,
   oldComponent: undefined,
+  forwardedRef: undefined,
   sceneProps: undefined
 };
 
@@ -86,7 +87,7 @@ ModalContent.propTypes = {
   render: PropTypes.func,
   oldComponent: PropTypes.func,
   /* eslint-disable-next-line */
-  forwardedRef: PropTypes.object.isRequired,
+  forwardedRef: PropTypes.object,
   /* eslint-disable-next-line */
   sceneProps: PropTypes.object
 };

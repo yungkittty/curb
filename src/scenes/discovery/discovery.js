@@ -18,17 +18,17 @@ const Discovery = ({ t, discoveryGroupsIds }) => (
       keyExtractor={(_, sectionIndex) => sectionIndex}
       ListHeaderComponent={() => (
         <DiscoveryHeader>
-          <DiscoveryTitle type="h1">
+          <DiscoveryTitle type="h1" weight={700}>
             {t("title")}
           </DiscoveryTitle>
-          <DiscoverySubtitle type="h3">
+          <DiscoverySubtitle type="h3" weight={400}>
             {t("subtitle")}
           </DiscoverySubtitle>
         </DiscoveryHeader>
       )}
       renderSectionHeader={() => (
         /* eslint-disable-next-line */
-        <DiscoveryListSectionHeader type="h3">
+        <DiscoveryListSectionHeader type="h3" weight={500}>
           {t("section")}
         </DiscoveryListSectionHeader>
       )}

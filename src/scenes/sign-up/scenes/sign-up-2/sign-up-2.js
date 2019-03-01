@@ -8,8 +8,6 @@ import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
 import Input from "../../../../components/input";
 
-/** @todo regex-utils ! */
-
 class SignUp2 extends Component {
   constructor(props) {
     super(props);
@@ -53,20 +51,20 @@ class SignUp2 extends Component {
   }
 
   validate() {
-    if (this.checkForm()) this.submit();
+    const { loading } = this.state;
+
+    if (!loading && this.checkForm()) this.submit();
   }
 
   submit() {
     const {
       data: { name, email, password },
       signUp,
-      setLeftClick,
-      setButtonClick
+      setLeftClick
     } = this.props;
 
     signUp({ name: name.value, email: email.value, password: password.value });
-    setLeftClick(undefined); // !
-    setButtonClick(undefined); // !
+    setLeftClick(undefined);
     this.setState({ loading: true });
   }
 
@@ -125,7 +123,9 @@ class SignUp2 extends Component {
       <Loader />
     ) : (
       <SignUpContainer>
-        <SignUpTitle type="h2">{t("choosePassword")}</SignUpTitle>
+        <SignUpTitle type="h2" weight={700}>
+          {t("choosePassword")}
+        </SignUpTitle>
         <Input
           size="modal"
           id="password"
