@@ -8,7 +8,7 @@ const ZipperContainer = styled(Container)`
   position: absolute;
   left: 70px;
   top: 65%;
-  zIndex: 6;
+  zIndex: 8;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,9 +16,9 @@ const ZipperContainer = styled(Container)`
   height: 30px;
   border-top-end-radius: 5px;
   border-bottom-end-radius: 5px;
-  shadow-offset: 0px 3.6px; // 6
-  shadow-radius: 3.24px; // 6
-  shadow-color: rgba(0, 0, 0, 0.189); // 6
+  shadow-offset: 0px 4.8px; // 8
+  shadow-radius: 4.32px; // 8
+  shadow-color: rgba(0, 0, 0, 0.192); // 8
   background-color: ${props => props.theme.primaryColor};
 `;
 

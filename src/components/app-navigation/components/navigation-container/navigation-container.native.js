@@ -48,7 +48,9 @@ class NavigationContainer extends React.Component {
           />
         ) : null}
         <ContainerContainer style={containerAnimated.getLayout()}>
-          <ContainerContentContainer>{children}</ContainerContentContainer>
+          <ContainerContentContainer>
+            {children}
+          </ContainerContentContainer>
           <ContainerZipper
             {...this.panResponder.panHandlers}
             hitSlop={{ top: 20, right: 20, bottom: 20 }}

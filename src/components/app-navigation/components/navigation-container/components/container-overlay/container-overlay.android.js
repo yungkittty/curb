@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 const ContainerOverlay = styled(Animated.View)`
   position: absolute;
-  zIndex: 4;
+  zIndex: 6;
   width: 100%;
   height: 100%;
-  elevation: 4;
+  elevation: 6;
   background-color: black;
 `;
 
