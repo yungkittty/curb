@@ -13,9 +13,9 @@ const ModalHeader = ({
   rightClick
 }) => (
   <HeaderContainer>
-    <HeaderButtonIcon icon={leftIcon} onClick={leftClick} />
+    <HeaderButtonIcon icon={leftIcon} position="left" onClick={leftClick} />
     <HeaderMiddle title={title} progress={progress} />
-    <HeaderButtonIcon icon={rightIcon} onClick={rightClick} />
+    <HeaderButtonIcon icon={rightIcon} position="right" onClick={rightClick} />
   </HeaderContainer>
 );
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListContainer from "./components/list-container";
+import Container from "../../../../components/container";
 import ListButtonIcon from "./components/list-button-icon";
 import ListFlat from "../../../../components/list-flat";
 
@@ -40,11 +40,14 @@ class DiscoveryList extends React.Component {
 
   isScrollable() {
     const {
-      current: { scrollWidth, scrollLeft, clientWidth }
-    } = this.listFlat.current.containerScroll;
+      scrollLeft,
+      scrollWidth,
+      clientWidth
+    } = this.listFlat.current.containerScroll.current;
     this.setState({
       isScrollableToLeft: scrollLeft !== 0,
-      isScrollableToRight: scrollWidth - scrollLeft >= clientWidth + 40
+      // eslint-disable-next-line
+      isScrollableToRight: scrollWidth - scrollLeft > clientWidth + 40
     });
   }
 
@@ -71,7 +74,7 @@ class DiscoveryList extends React.Component {
   render() {
     const { isScrollableToLeft, isScrollableToRight } = this.state;
     return (
-      <ListContainer>
+      <Container style={{ position: "relative" }}>
         {isScrollableToLeft ? (
           <ListButtonIcon
             icon="angle-left"
@@ -82,9 +85,8 @@ class DiscoveryList extends React.Component {
         <ListFlat
           {...this.props}
           ref={this.listFlat}
-          style={{ height: 160 }}
           contentContainerStyle={{ paddingLeft: 40 }}
-          getItemLayout={(itemData, itemIndex) => ({ offset: 140 * itemIndex })}
+          getItemLayout={(_, itemIndex) => ({ offset: 140 * itemIndex })}
         />
         {isScrollableToRight ? (
           <ListButtonIcon
@@ -93,7 +95,7 @@ class DiscoveryList extends React.Component {
             onClick={this.scrollToRight}
           />
         ) : null}
-      </ListContainer>
+      </Container>
     );
   }
 }

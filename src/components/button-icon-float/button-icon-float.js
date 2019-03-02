@@ -7,7 +7,7 @@ const ButtonIconFloat = styled(ButtonIcon).attrs(props => ({
   size: "medium",
   color: props.theme.secondaryVariantColor
 }))`
-  position: absolute;
+  position: fixed;
   right: 30px;
   bottom: 30px;
   zIndex: 3;

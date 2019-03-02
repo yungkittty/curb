@@ -10,30 +10,31 @@ import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
 
-const Discovery = ({ t, discoveryGroups }) => (
+const Discovery = ({ t, discoveryGroupsIds }) => (
   <React.Fragment>
     <ListSection
       /* eslint-disable-next-line */
       sections={[{ data: [{}] }]}
+      keyExtractor={(_, sectionIndex) => sectionIndex}
       ListHeaderComponent={() => (
         <DiscoveryHeader>
-          <DiscoveryTitle type="h1">
+          <DiscoveryTitle type="h1" weight={700}>
             {t("title")}
           </DiscoveryTitle>
-          <DiscoverySubtitle type="h3">
+          <DiscoverySubtitle type="h3" weight={400}>
             {t("subtitle")}
           </DiscoverySubtitle>
         </DiscoveryHeader>
       )}
       renderSectionHeader={() => (
         /* eslint-disable-next-line */
-        <DiscoveryListSectionHeader type="h3">
+        <DiscoveryListSectionHeader type="h3" weight={500}>
           {t("section")}
         </DiscoveryListSectionHeader>
       )}
       renderItem={() => (
         <DiscoveryList
-          data={discoveryGroups}
+          data={discoveryGroupsIds}
           keyExtractor={discoveryGroupId => discoveryGroupId}
           renderItem={({ item: discoveryGroupId }) => (
             <DiscoveryListItem discoveryGroupId={discoveryGroupId} />
@@ -49,7 +50,7 @@ const Discovery = ({ t, discoveryGroups }) => (
 
 Discovery.propTypes = {
   t: PropTypes.func.isRequired,
-  discoveryGroups: PropTypes.arrayOf(PropTypes.string).isRequired
+  discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default withNamespaces("discovery")(Discovery);

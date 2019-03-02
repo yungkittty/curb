@@ -4,8 +4,8 @@ import Container from "../../../../../../components/container";
 const ListItemContainer = styled(Container)`
   display: flex;
   flex-direction: column;
-  min-width: 140px;
-  height: 160px;
+  min-width: max-content;
+  min-height: max-content;
   padding-right: 40px;
 `;
 

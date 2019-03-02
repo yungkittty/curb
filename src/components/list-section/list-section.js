@@ -13,7 +13,7 @@ class ListSection extends React.Component {
   renderItem(sectionData, itemData, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
     const itemParams = { item: itemData, index: itemIndex, section: sectionData };
-    const itemProps = { key: itemData.key || keyExtractor(itemData, itemIndex) || itemIndex };
+    const itemProps = { key: keyExtractor ? keyExtractor(itemData, itemIndex) : itemData.key };
     return React.cloneElement(renderItem(itemParams), itemProps);
   }
 
@@ -30,7 +30,7 @@ class ListSection extends React.Component {
   renderSection({ data: itemData, ...sectionData }, sectionIndex) {
     const { renderSectionHeader, renderSectionFooter } = this.props;
     return (
-      <React.Fragment>
+      <React.Fragment key={`${sectionIndex}:section`}>
         {renderSectionHeader &&
           this.renderSectionLayout(
             renderSectionHeader,

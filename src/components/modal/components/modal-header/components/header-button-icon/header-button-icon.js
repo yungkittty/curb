@@ -5,6 +5,8 @@ const HeaderButtonIcon = styled(ButtonIcon).attrs(props => ({
   size: "small",
   color: props.theme.fontColor
 }))`
+  position: absolute;
+  ${props => props.position}: 0px;
   height: 75px;
   width: 75px;
 `;

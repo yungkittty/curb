@@ -5,10 +5,11 @@ import Container from "../../../container";
 const ScrollContainerContent = styled(Container)`
   display: flex;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
-  flex-grow: 1;
-  ${props => !props.showsVerticalScrollIndicator ? "margin-right: -30px" : ""};
-  ${props => !props.showsHorizontalScrollIndicator ? "margin-bottom: -30px" : ""};
-  overflow: auto;
+  width: ${props => (!props.showsVerticalScrollIndicator ? "calc(100% + 30px)" : "100%")};
+  height: ${props => (!props.showsHorizontalScrollIndicator ? "calc(100% + 30px)" : "100%")};
+  flex-shrink: 1;
+  overflow-y: ${props => (!props.horizontal ? "auto" : "hidden")};
+  overflow-x: ${props => (props.horizontal ? "auto" : "hidden")};
 `;
 
 ScrollContainerContent.propTypes = {
