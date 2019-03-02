@@ -24,7 +24,6 @@ class Modal extends Component {
       rightIcon: "times",
       rightClick: onCloseRequest || goBack,
       buttonTitle: undefined,
-      buttonTo: undefined,
       buttonClick: undefined
     };
 
@@ -37,7 +36,6 @@ class Modal extends Component {
     this.setRightIcon = this.setRightIcon.bind(this);
     this.setRightCick = this.setRightCick.bind(this);
     this.setButtonTitle = this.setButtonTitle.bind(this);
-    this.setButtonTo = this.setButtonTo.bind(this);
     this.setButtonClick = this.setButtonClick.bind(this);
     this.resetModal = this.resetModal.bind(this);
 
@@ -70,10 +68,6 @@ class Modal extends Component {
 
   setButtonTitle(buttonTitle) {
     this.setState({ buttonTitle });
-  }
-
-  setButtonTo(buttonTo) {
-    this.setState({ buttonTo });
   }
 
   setButtonClick(buttonClick) {
@@ -109,7 +103,6 @@ class Modal extends Component {
       rightIcon,
       rightClick,
       buttonTitle,
-      buttonTo,
       buttonClick
     } = this.state;
 
@@ -122,7 +115,6 @@ class Modal extends Component {
       setRightCick,
       setComponent,
       setButtonTitle,
-      setButtonTo,
       setButtonClick,
       ...others
     };
