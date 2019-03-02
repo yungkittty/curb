@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Container from "../../../container";
 
 const InputContainer = styled(Container)`
-  width: ${props => {
-    switch (props.size) {
+  width: ${({ size }) => {
+    switch (size) {
       case "modal":
         return 420;
       default:
