@@ -25,7 +25,7 @@ Text.defaultProps = { type: undefined, weight: 400 };
 
 Text.propTypes = {
   type: PropTypes.oneOf(["h1", "h2", "h3", "h4"]),
-  weight: PropTypes.oneOf([500, 600, 700, 800])
+  weight: PropTypes.oneOf([400, 500, 600, 700, 800])
 };
 
 export default Text;

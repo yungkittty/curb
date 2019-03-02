@@ -1,19 +1,27 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import MiddleContainer from "./components/middle-container";
 import Text from "../../../../../text";
-import MiddleProgress from "./components/middle-progress";
+import MiddleDot from "./components/middle-dot";
 
-const HeaderMiddle = ({ title, progress }) => (
+const HeaderMiddle = ({ title, progress: { total, progress } }) => (
   <MiddleContainer>
-    {title && <Text type="h3" weight={600}>{title}</Text>}
-    {progress && <MiddleProgress progress={progress} />}
+    {title && (
+      <Text type="h3" weight={600}>
+        {title}
+      </Text>
+    )}
+    {progress &&
+      _.times(total, index => (
+        <MiddleDot key={index} enabled={index >= progress} />
+      ))}
   </MiddleContainer>
 );
 
 HeaderMiddle.defaultProps = {
   title: undefined,
-  progress: undefined
+  progress: {}
 };
 
 HeaderMiddle.propTypes = {

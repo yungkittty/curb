@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Container from "../../../../../../../../../container";
+import Container from "../../../../../../../container";
 
-const ProgressDot = styled(Container)`
+const MiddleDot = styled(Container)`
   background: ${({ theme, enabled }) =>
     enabled ? theme.primaryColor : theme.secondaryColor};
   height: 10px;
@@ -10,4 +10,4 @@ const ProgressDot = styled(Container)`
   border-radius: 5px;
 `;
 
-export default ProgressDot;
+export default MiddleDot;

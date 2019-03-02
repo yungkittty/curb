@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import NavigationButtonImage from "../navigation-button-image";
@@ -7,7 +8,11 @@ const NavigationListItem = ({
   currentUserGroupAvatarUrl
 }) => (
   <NavigationButtonImage
-    src={`${process.env.REACT_APP_API_URL}${currentUserGroupAvatarUrl}`}
+    src={`${process.env.REACT_APP_API_URL}${_.replace(
+      currentUserGroupAvatarUrl,
+      "medium",
+      "small"
+    )}`}
     onClick={`/groups/${currentUserGroupId}`}
   />
 );
