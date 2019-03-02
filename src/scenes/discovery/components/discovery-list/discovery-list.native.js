@@ -5,7 +5,11 @@ const DiscoveryList = props => (
   <ListFlat
     {...props}
     contentContainerStyle={{ paddingLeft: 20 }}
-    getItemLayout={(_, itemIndex) => ({ length: 90, offset: 90 * itemIndex, index: itemIndex })}
+    getItemLayout={(_, itemIndex) => ({
+      length: 90,
+      offset: 90 * itemIndex,
+      index: itemIndex
+    })}
   />
 );
 
