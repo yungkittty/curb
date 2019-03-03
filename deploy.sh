@@ -15,6 +15,7 @@ tar -xf jdk.tar.gz
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 mkdir sdk && mv sdk.zip sdk && cd sdk && unzip -qq sdk.zip
 yes | ./tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &> /dev/null
+yes | ./tools/bin/sdkmanager --licenses
 cd ..
 
 # Install NDK
