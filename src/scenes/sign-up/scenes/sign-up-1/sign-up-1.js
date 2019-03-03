@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp2 from "../sign-up-2";
-import SignUp1Container from "./components/sign-up-1-container";
+import SignUpContainer from "../../components/sign-up-container";
 import SignUp1Title from "./components/sign-up-1-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
@@ -91,13 +90,11 @@ class SignUp1 extends Component {
   }
 
   render() {
-    const { currentUserToken, t } = this.props;
+    const { t } = this.props;
     const { name, email } = this.state;
 
-    return currentUserToken ? (
-      <Redirect to="/" />
-    ) : (
-      <SignUp1Container>
+    return (
+      <SignUpContainer>
         <SignUp1Title>{t("createAccount")}</SignUp1Title>
         <SelectImage />
         <Input
@@ -116,17 +113,12 @@ class SignUp1 extends Component {
           value={email.value}
           error={email.error && t(`validation:email.${email.error}`)}
         />
-      </SignUp1Container>
+      </SignUpContainer>
     );
   }
 }
 
-SignUp1.defaultProps = {
-  currentUserToken: undefined
-};
-
 SignUp1.propTypes = {
-  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object })
     .isRequired,

@@ -8,7 +8,7 @@ import { usersActions, usersSelectors } from "../../datas/users";
 class AppNavigationContainer extends React.Component {
   componentDidMount() {
     const { currentUserId, currentUserToken, getCurrentUser } = this.props;
-    if (currentUserId && currentUserToken) getCurrentUser({ id: currentUserId });
+    if (currentUserToken) getCurrentUser({ id: currentUserId });
   }
 
   render() {

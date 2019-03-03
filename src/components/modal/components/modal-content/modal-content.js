@@ -33,7 +33,13 @@ class ModalContent extends Component {
 
   render() {
     const { setData, setComponent } = this;
-    const { oldComponent, component, sceneProps } = this.props;
+    const {
+      oldComponent,
+      component,
+      render,
+      sceneProps,
+      forwardedRef
+    } = this.props;
     const { flow, data } = this.state;
 
     const props = { ...sceneProps, setData, setComponent, data };
@@ -53,11 +59,11 @@ class ModalContent extends Component {
     };
 
     return (
-      <ContentContainer>
+      <ContentContainer ref={forwardedRef}>
         {flow === 1 && (
           <ContentComponent component={oldComponent} props={oldProps} />
         )}
-        <ContentComponent component={component} props={props} />
+        <ContentComponent component={component} render={render} props={props} />
         {flow === -1 && (
           <ContentComponent component={oldComponent} props={oldProps} />
         )}
@@ -68,7 +74,9 @@ class ModalContent extends Component {
 
 ModalContent.defaultProps = {
   component: undefined,
+  render: undefined,
   oldComponent: undefined,
+  forwardedRef: undefined,
   sceneProps: undefined
 };
 
@@ -76,7 +84,10 @@ ModalContent.propTypes = {
   resetModal: PropTypes.func.isRequired,
   slideComponent: PropTypes.func.isRequired,
   component: PropTypes.func,
+  render: PropTypes.func,
   oldComponent: PropTypes.func,
+  /* eslint-disable-next-line */
+  forwardedRef: PropTypes.object,
   /* eslint-disable-next-line */
   sceneProps: PropTypes.object
 };

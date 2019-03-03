@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Container from "../../../../../container";
 
 const HeaderContainer = styled(Container)`
+  position: relative;
   display: flex;
   flex-flow: row;
   align-items: center;

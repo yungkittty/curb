@@ -1,14 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ImageContainer from "./components/image-container";
-import ImageCircle from "./components/image-circle/image-circle";
 import Icon from "../../../../../../components/icon";
+// import Image from "../../../../../../components/image";
 
 const SelectImage = () => (
   <ImageContainer>
-    <Fragment>
-      <ImageCircle />
-      <Icon icon="file-image" color="#BDBDBD" size="medium" />
-    </Fragment>
+    <Icon icon="file-image" color="#BDBDBD" size="medium" />
   </ImageContainer>
 );
 

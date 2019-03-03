@@ -1,3 +1,4 @@
-import SignUp1Container from "./sign-up-1-container";
+/* eslint-disable-next-line */
+import SignUp1 from "./sign-up-1";
 
-export default SignUp1Container;
+export default SignUp1;

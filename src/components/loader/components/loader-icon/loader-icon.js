@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import IconContainer from "./components/icon-container";
+import Icon from "../../../icon";
 
 const rotate = keyframes`
   from {
@@ -11,7 +11,7 @@ const rotate = keyframes`
   }
 `;
 
-const LoaderIcon = styled(IconContainer)`
+const LoaderIcon = styled(Icon)`
   animation: ${rotate} 2s linear infinite;
 `;
 

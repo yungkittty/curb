@@ -12,7 +12,7 @@ const NavigationContainer = styled(Container)`
   padding-left: 10px;
   padding-top: 10px;
   padding-right: 10px;
-  background-color: ${props => props.theme.pimaryColor};
+  background-color: ${props => props.theme.primaryColor};
 `;
 
 export default NavigationContainer;

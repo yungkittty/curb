@@ -1,15 +1,12 @@
 import styled from "styled-components";
-import Button from "../../../../../../../../components/button";
+import ButtonContainer from "../../../../../../../../components/button-container";
 
-const ImageContainer = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+const ImageContainer = styled(ButtonContainer)`
   width: 140px;
   height: 140px;
-  border-radius: 70px;
   margin-bottom: 38px;
+  border-radius: 70px;
+  border: 1px solid ${props => props.theme.secondaryColor};
 `;
 
 export default ImageContainer;

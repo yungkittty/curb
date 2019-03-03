@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Container from "../../../container";
 
 const LoaderContainer = styled(Container)`
+  display: flex;
   position: absolute;
   align-items: center;
   justify-content: center;

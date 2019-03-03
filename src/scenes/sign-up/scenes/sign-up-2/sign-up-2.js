@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import { Redirect } from "react-router";
 /* eslint-disable-next-line */
 import SignUp1 from "../sign-up-1";
 import Loader from "../../../../components/loader";
-import SignUp2Container from "./components/sign-up-2-container";
+import SignUpContainer from "../../components/sign-up-container";
 import SignUp2Title from "./components/sign-up-2-title";
 import Input from "../../../../components/input";
 
@@ -52,20 +51,20 @@ class SignUp2 extends Component {
   }
 
   validate() {
-    if (this.checkForm()) this.submit();
+    const { loading } = this.state;
+
+    if (!loading && this.checkForm()) this.submit();
   }
 
   submit() {
     const {
       data: { name, email, password },
       signUp,
-      setLeftClick,
-      setButtonClick
+      setLeftClick
     } = this.props;
 
     signUp({ name: name.value, email: email.value, password: password.value });
     setLeftClick(undefined);
-    setButtonClick(undefined);
     this.setState({ loading: true });
   }
 
@@ -117,16 +116,13 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { currentUserToken, t } = this.props;
+    const { t } = this.props;
     const { password, confirmPassword, loading } = this.state;
 
-    /* eslint-disable-next-line */
-    return currentUserToken ? (
-      <Redirect to="/" />
-    ) : loading ? (
+    return loading ? (
       <Loader />
     ) : (
-      <SignUp2Container>
+      <SignUpContainer>
         <SignUp2Title>{t("choosePassword")}</SignUp2Title>
         <Input
           size="modal"
@@ -149,17 +145,12 @@ class SignUp2 extends Component {
             t(`validation:password.${confirmPassword.error}`)
           }
         />
-      </SignUp2Container>
+      </SignUpContainer>
     );
   }
 }
 
-SignUp2.defaultProps = {
-  currentUserToken: undefined
-};
-
 SignUp2.propTypes = {
-  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   data: PropTypes.shape({
     password: PropTypes.object,
