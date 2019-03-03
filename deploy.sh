@@ -15,7 +15,7 @@ npm install
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 mkdir sdk && mv sdk.zip sdk && cd sdk && unzip -qq sdk.zip
 yes | ./tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &> /dev/null
-yes | ./tools/bin/sdkmanager --licenses
+yes | ./tools/bin/sdkmanager --licenses &> /dev/null
 cd ..
 
 # Install NDK
@@ -32,7 +32,7 @@ df -h
 
 # Export variables for mobile build
 ls /opt/build/repo/sdk/build-tools/27.0.3/
-export ANDROID_HOME=/opt/build/repo/sdk/build-tools/27.0.3/
+export ANDROID_HOME=/opt/build/repo/sdk/platforms/android-27/
 
 
 # Build native (Android)
