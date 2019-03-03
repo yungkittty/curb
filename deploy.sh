@@ -1,10 +1,5 @@
 #!/bin/bash
 
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-
-docker info
-
 # Install modules
 #npm install
 
@@ -12,8 +7,9 @@ docker info
 # npm run web-build
 
 # Install Java
-#wget --continue --no-check-certificate -O jdk.zip --header "Cookie: oraclelicense=a" https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz
-#unzip jdk.zip
+wget -O jdk.tar.gz https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
+tar -xf jdk.tar.gz
+ls
 
 # Install Android SDK
 #wget --output-file=sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
@@ -36,9 +32,4 @@ cd ./android && ./gradlew assembleRelease && cd ..
 cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
 
 # Cleaning
-ls | grep -v build | parallel rm
-
-#
-# Download & Install JAVA/ Android NDK for linux before build Android
-#
-#
+#ls | grep -v build | parallel rm
