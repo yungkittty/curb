@@ -8,8 +8,9 @@
 
 # Install Java
 wget -q -O jdk.tar.gz https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
-echo FINISHED!
 tar -xf jdk.tar.gz
+cd jdk-11.0.2
+echo ---------------- STATUS ---------------
 ls
 
 # Install Android SDK
