@@ -16,22 +16,23 @@ unzip -qq sdk.zip
 ls tools/bin
 yes | ./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28"
 
+
+wget -q -O ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
+unzip -qq ndk.zip
+
+ls
 echo ---------------- STATUS ---------------
 
-
-#wget https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
-
-
 # Build native (Android)
-react-native bundle     \
---platform android      \
---dev false             \
---entry-file index.js   \
---bundle-output android/app/src/main/assets/index.android.bundle \
---assets-dest android/app/src/main/res/
+#react-native bundle     \
+#--platform android      \
+#--dev false             \
+#--entry-file index.js   \
+#--bundle-output android/app/src/main/assets/index.android.bundle \
+#--assets-dest android/app/src/main/res/
 
-cd ./android && ./gradlew assembleRelease && cd ..
-cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
+#cd ./android && ./gradlew assembleRelease && cd ..
+#cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
 
 # Cleaning
 #ls | grep -v build | parallel rm
