@@ -10,14 +10,12 @@
 wget -q -O jdk.tar.gz https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
 tar -xf jdk.tar.gz
 
-
 # Install Android SDK
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 unzip -qq sdk.zip
-ls
-echo ---------------- STATUS ---------------
+./tools/sdkmanager "platform-tools" "platforms;android-28"
 
-#sdkmanager "platform-tools" "platforms;android-28"
+echo ---------------- STATUS ---------------
 
 
 #wget https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
