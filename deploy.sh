@@ -10,8 +10,9 @@ tar -xf jdk.tar.gz
 
 # Install Android SDK
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-unzip -qq sdk.zip
+mkdir sdk && mv sdk.zip sdk && cd sdk && unzip -qq sdk.zip
 yes | ./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28" &> /dev/null
+cd ..
 
 # Install NDK
 wget -q -O ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
@@ -25,9 +26,12 @@ echo ---------------- STATUS ---------------
 # npm run web-build
 
 # Export Mobile variables
-pwd
-#export ANDROID_HOME=
+ls sdk
+export ANDROID_HOME=/opt/build/repo
 
+
+# Clearup before mobile build
+rm -rf jdk.tar.gz sdk.zip ndk.zip
 
 # Build native (Android)
 react-native bundle                                                 \
