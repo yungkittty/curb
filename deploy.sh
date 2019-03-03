@@ -15,7 +15,6 @@ npm install
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 mkdir sdk && unzip -qq -d sdk sdk.zip
 yes | ./tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &> /dev/null
-cd ..
 
 # Install NDK
 wget -q -O ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
@@ -30,6 +29,7 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 export ANDROID_HOME=/opt/build/repo/sdk/
 export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
 
+echo -- START SEARCHING --
 for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b
 
 # Build native (Android)
@@ -42,6 +42,3 @@ react-native bundle                                                 \
 
 cd ./android && ./gradlew assembleRelease && cd ..
 cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
-
-# Cleaning
-ls | grep -v build | parallel rm
