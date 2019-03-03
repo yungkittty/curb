@@ -15,8 +15,8 @@ wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333
 unzip -qq sdk.zip
 ls 
 echo --NEXT --
-ls tools
-./tools/sdkmanager "platform-tools" "platforms;android-28"
+ls tools/bin
+./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28"
 
 echo ---------------- STATUS ---------------
 
