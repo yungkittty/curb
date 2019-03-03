@@ -9,7 +9,8 @@
     "mobile-eject": "react-native eject",
     "web-start": "react-scripts start",
     "web-build": "react-scripts build",
-    "web-eject": "react-scripts eject"
+    "web-eject": "react-scripts eject",
+    "deploy": "deploy.sh"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
