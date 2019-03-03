@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt-get install column -y
+
 # Install modules
 npm install
 
