@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install modules
-#npm install
+npm install
 
 # Build web
 # npm run web-build
@@ -14,22 +14,22 @@ tar -xf jdk.tar.gz
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 unzip -qq sdk.zip
 ls tools/bin
-yes | ./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28"
+yes | ./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28" &> /dev/null
 
-
+# Install NDK
 wget -q -O ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
 unzip -qq ndk.zip
 
-ls
+cd android-ndk-r19b && ls
 echo ---------------- STATUS ---------------
 
 # Build native (Android)
-#react-native bundle     \
-#--platform android      \
-#--dev false             \
-#--entry-file index.js   \
-#--bundle-output android/app/src/main/assets/index.android.bundle \
-#--assets-dest android/app/src/main/res/
+react-native bundle     \
+--platform android      \
+--dev false             \
+--entry-file index.js   \
+--bundle-output android/app/src/main/assets/index.android.bundle \
+--assets-dest android/app/src/main/res/
 
 #cd ./android && ./gradlew assembleRelease && cd ..
 #cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
