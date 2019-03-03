@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir tmp
+npm config set tmp tmp/
 
 # Install modules
 npm install
@@ -20,18 +22,12 @@ yes | ./tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &> /dev
 wget -q -O ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
 unzip -qq ndk.zip
 
-#cd android-ndk-r19b && ls
-
 # Clearup before mobile build
 rm -rf jdk.tar.gz sdk.zip ndk.zip
 
 # Export variables for mobile build
 export ANDROID_HOME=/opt/build/repo/sdk/
 export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
-
-df -i /
-echo -- START SEARCHING --
-for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b
 
 # Build native (Android)
 react-native bundle                                                 \
