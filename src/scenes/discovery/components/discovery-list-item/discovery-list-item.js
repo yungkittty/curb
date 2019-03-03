@@ -1,23 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListItemContainer from "./components/list-item-container";
-import ListItemButtonImage from "./components/list-item-button-image";
+import Container from "../../../../components/container";
+import ListItemButtonContainer from "./components/list-item-button-container";
+import ListItemImage from "./components/list-item-image";
 import ListItemTitle from "./components/list-item-title";
+
+// https://stackoverflow.com/a/38997047
 
 const DiscoveryListItem = ({
   discoveryGroupId,
   discoveryGroupName,
   discoveryGroupAvatarUrl
 }) => (
-  <ListItemContainer>
-    <ListItemButtonImage
-      src={`${process.env.REACT_APP_API_URL}${discoveryGroupAvatarUrl}`}
-      onClick={`/groups/${discoveryGroupId}`}
-    />
-    <ListItemTitle>
-      {discoveryGroupName}
-    </ListItemTitle>
-  </ListItemContainer>
+  <Container>
+    <ListItemButtonContainer onClick={`/groups/${discoveryGroupId}`}>
+      <React.Fragment>
+        <ListItemImage src={`${process.env.REACT_APP_API_URL}${discoveryGroupAvatarUrl}`} />
+        <ListItemTitle>{discoveryGroupName}</ListItemTitle>
+      </React.Fragment>
+    </ListItemButtonContainer>
+  </Container>
 );
 
 DiscoveryListItem.propTypes = {

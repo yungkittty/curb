@@ -9,12 +9,13 @@ const InputField = styled(({ type, onChange, id, ...others }) => (
     onChangeText={text => onChange({ target: { id, value: text } })}
   />
 ))`
-  font-size: 14px;
+  width: 100%;
   padding: 18px;
+  font-family: "Montserrat";
+  font-size: 14px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
     error ? theme.errorColor : theme.primaryColor};
-  width: 100%;
 `;
 
 export default InputField;

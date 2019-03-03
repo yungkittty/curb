@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Text = styled.span.attrs(({ type }) => ({ as: type }))`
   margin: 0px;
+  font-family: "Montserrat";
   ${props => {
     switch (props.type) {
       case "h1":
