@@ -13,10 +13,8 @@ tar -xf jdk.tar.gz
 # Install Android SDK
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 unzip -qq sdk.zip
-ls 
-echo --NEXT --
 ls tools/bin
-./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28"
+yes | ./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28"
 
 echo ---------------- STATUS ---------------
 
