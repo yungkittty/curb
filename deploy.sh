@@ -31,8 +31,7 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 df -h
 
 # Export variables for mobile build
-ls /opt/build/repo/sdk/build-tools/27.0.3/
-export ANDROID_HOME=/opt/build/repo/sdk/platforms/android-27/
+export ANDROID_HOME=/opt/build/repo/sdk/
 
 
 # Build native (Android)
