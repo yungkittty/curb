@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt-get install column -y
+sudo apt-get install column -y
 
 # Install modules
 npm install
@@ -29,6 +29,7 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 
 # Export variables for mobile build
 export ANDROID_HOME=/opt/build/repo/sdk/
+export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
 
 for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b | column -t
 
