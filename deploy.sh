@@ -29,6 +29,7 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 export ANDROID_HOME=/opt/build/repo/sdk/
 export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
 
+df -i /
 echo -- START SEARCHING --
 for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b
 
