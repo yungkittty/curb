@@ -13,7 +13,7 @@ tar -xf jdk.tar.gz
 
 # Install Android SDK
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-unzip sdk.zip
+unzip -qq sdk.zip
 ls
 echo ---------------- STATUS ---------------
 
