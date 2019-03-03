@@ -1,10 +1,8 @@
 #!/bin/bash
 
+
 # Install modules
 npm install
-
-# Build web
-# npm run web-build
 
 # Install Java
 wget -q -O jdk.tar.gz https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
@@ -23,6 +21,10 @@ unzip -qq ndk.zip
 cd android-ndk-r19b && ls
 echo ---------------- STATUS ---------------
 
+
+# Build web
+# npm run web-build
+
 # Build native (Android)
 react-native bundle     \
 --platform android      \
@@ -31,7 +33,7 @@ react-native bundle     \
 --bundle-output android/app/src/main/assets/index.android.bundle \
 --assets-dest android/app/src/main/res/
 
-#cd ./android && ./gradlew assembleRelease && cd ..
+cd ./android && ./gradlew assembleRelease && cd ..
 #cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
 
 # Cleaning
