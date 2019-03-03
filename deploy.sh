@@ -6,6 +6,9 @@ npm config set tmp tmp/
 echo STEP 1:
 cat /etc/sysctl.conf
 
+echo STEP 3:
+cat /proc/sys/fs/inotify/max_user_watches
+
 echo STEP 2:
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
