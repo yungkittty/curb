@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo apt-get install column -y
 
 # Install modules
 npm install
@@ -14,7 +13,7 @@ npm install
 
 # Install Android SDK
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-mkdir sdk && mv sdk.zip sdk && cd sdk && unzip -qq sdk.zip
+mkdir sdk && unzip -qq -d sdk sdk.zip
 yes | ./tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &> /dev/null
 cd ..
 
@@ -31,7 +30,7 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 export ANDROID_HOME=/opt/build/repo/sdk/
 export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
 
-for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b | column -t
+for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b
 
 # Build native (Android)
 react-native bundle                                                 \
