@@ -1,9 +1,5 @@
 #!/bin/bash
 
-alias dirsizes='du -ks * | sort -n -b | column -t'
-alias dircounts='for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b | column -t'
-
-
 # Install modules
 npm install
 
@@ -32,7 +28,7 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 # Export variables for mobile build
 export ANDROID_HOME=/opt/build/repo/sdk/
 
-dircounts
+for dp in *; do [ -d $dp ] && echo $(find $dp|wc -l) $dp; done | sort -n -b | column -t
 
 # Build native (Android)
 react-native bundle                                                 \
