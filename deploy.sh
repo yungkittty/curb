@@ -1,6 +1,9 @@
 #!/bin/bash
 
-apt-get install -y jdk
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+
+docker info
 
 # Install modules
 #npm install
