@@ -11,14 +11,13 @@ tar -xf jdk.tar.gz
 # Install Android SDK
 wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 unzip -qq sdk.zip
-ls tools/bin
 yes | ./tools/bin/sdkmanager "build-tools;28.0.3" "platforms;android-28" &> /dev/null
 
 # Install NDK
 wget -q -O ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip
 unzip -qq ndk.zip
 
-cd android-ndk-r19b && ls
+#cd android-ndk-r19b && ls
 echo ---------------- STATUS ---------------
 
 
