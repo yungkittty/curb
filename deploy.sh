@@ -1,8 +1,6 @@
 #!/bin/bash
 
-apt-get update
-apt-get install wget -y
-
+apt-get install -y jdk
 
 # Install modules
 #npm install
@@ -11,11 +9,12 @@ apt-get install wget -y
 # npm run web-build
 
 # Install Java
-#wget http://download.oracle.com/otn-pub/java/jdk/11.0.2+9/f51449fcd52f4d52b93a989c5c56ed3c/jdk-11.0.2_linux-x64_bin.tar.gz
+wget --continue --no-check-certificate -O jdk.zip --header "Cookie: oraclelicense=a" https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz
+unzip jdk.zip
 
 # Install Android SDK
-wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-
+wget --output-file=sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+unzip sdk.zip
 sdkmanager "platform-tools" "platforms;android-28"
 
 
