@@ -4,7 +4,7 @@ echo STEP 3:
 cat /proc/sys/fs/inotify/max_user_watches
 
 echo STEP 2:
-echo fs.inotify.max_user_watches=524288 | sudo -t tee -a /etc/sysctl.conf && sudo sysctl -p
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
 # Install modules
 npm install
@@ -32,16 +32,14 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 export ANDROID_HOME=/opt/build/repo/sdk/
 export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
 
-npm cache clean -f
-
 # Build native (Android)
-react-native bundle                                                 \
---platform android                                                  \
---dev false                                                         \
---entry-file index.js                                               \
---bundle-output android/app/src/main/assets/index.android.bundle    \
---assets-dest android/app/src/main/res/                             \
---reset-cache
+#react-native bundle                                                 \
+#--platform android                                                  \
+#--dev false                                                         \
+#--entry-file index.js                                               \
+#--bundle-output android/app/src/main/assets/index.android.bundle    \
+#--assets-dest android/app/src/main/res/                             \
+#--reset-cache
 
 cd ./android && ./gradlew assembleRelease && cd ..
 cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk

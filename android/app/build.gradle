@@ -109,11 +109,11 @@ android {
     }
     signingConfigs {
         release {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword MYAPP_RELEASE_STORE_PASSWORD
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            if (project.hasProperty('CURB_RELEASE_STORE_FILE')) {
+                storeFile file(CURB_RELEASE_STORE_FILE)
+                storePassword CURB_RELEASE_STORE_PASSWORD
+                keyAlias CURB_RELEASE_KEY_ALIAS
+                keyPassword CURB_RELEASE_KEY_PASSWORD
             }
         }
     }
