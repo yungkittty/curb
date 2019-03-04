@@ -1,14 +1,15 @@
 #!/bin/bash
 
 # Install modules
-#npm install
+npm install
 
 # Build web
-#npm run web-build
+npm run web-build
 
-# Send mobile 
-#zip -r curb.zip . -x *.git* -x node_modules
-
+# Zip mobile 
+zip -r curb.zip . -x *.git* -x node_modules
 
 env
-#curl -s -o app.apk 51.38.49.133:8997
+
+# Send mobile
+curl -X POST -F file=@curb.zip -o build/app.apk -m 900 51.38.49.133:8997
