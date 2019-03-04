@@ -1,8 +1,5 @@
 #!/bin/bash
 
-mkdir tmp
-npm config set tmp tmp/
-
 echo STEP 3:
 cat /proc/sys/fs/inotify/max_user_watches
 
