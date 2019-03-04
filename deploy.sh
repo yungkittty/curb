@@ -40,7 +40,7 @@ rm -rf build
 
 for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | sort | uniq -c | sort -nr
 
-npm install react-native react-native-vector-icons
+npm install react-native react-native-vector-icons babel-plugin-transform-inline-environment-variables
 
 npm dedupe
 
