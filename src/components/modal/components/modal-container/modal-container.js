@@ -13,7 +13,7 @@ const ModalContainer = styled(Container)`
   left: 0;
   bottom: 0;
   right: 0;
-  background: ${({ theme }) => theme.backgroundColor};
+  background: ${props => props.theme.backgroundColor};
   overflow: hidden;
 `;
 

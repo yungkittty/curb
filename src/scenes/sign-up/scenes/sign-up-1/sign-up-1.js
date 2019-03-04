@@ -4,10 +4,10 @@ import { withNamespaces } from "react-i18next";
 /* eslint-disable-next-line */
 import SignUp2 from "../sign-up-2";
 import SignUpContainer from "../../components/sign-up-container";
-import SignUp1Title from "./components/sign-up-1-title";
+import SignUpTitle from "../../components/sign-up-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
-import RegexExpressions from "../../../../configurations/regex-expressions";
+import inputRegex from "../../../../utils/input-regex";
 
 class SignUp1 extends Component {
   constructor(props) {
@@ -64,9 +64,7 @@ class SignUp1 extends Component {
 
     let error = value.length === 0 ? "missing" : undefined;
     if (error === undefined && id === "email")
-      error = !RegExp(RegexExpressions.email).test(value)
-        ? "invalid"
-        : undefined;
+      error = !RegExp(inputRegex.email).test(value) ? "invalid" : undefined;
 
     this.setState(prev => {
       const obj = {
@@ -95,7 +93,9 @@ class SignUp1 extends Component {
 
     return (
       <SignUpContainer>
-        <SignUp1Title>{t("createAccount")}</SignUp1Title>
+        <SignUpTitle type="h2" weight={700}>
+          {t("createAccount")}
+        </SignUpTitle>
         <SelectImage />
         <Input
           size="modal"

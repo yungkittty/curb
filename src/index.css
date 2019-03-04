@@ -142,10 +142,6 @@
     url("./fonts/Montserrat-BlackItalic.ttf") format("truetype");
 }
 
-* {
-  font-family: "Montserrat";
-}
-
 body {
   margin: 0;
   padding: 0;
