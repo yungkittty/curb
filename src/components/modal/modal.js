@@ -11,10 +11,7 @@ class Modal extends Component {
   constructor(props) {
     super(props);
 
-    const {
-      onCloseRequest,
-      history: { goBack }
-    } = this.props;
+    const { onCloseRequest, history: { goBack } = {} } = this.props;
 
     this.state = {
       title: undefined,
