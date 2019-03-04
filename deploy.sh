@@ -40,6 +40,8 @@ rm -rf build
 
 for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | sort | uniq -c | sort -nr
 
+npm install react-native
+
 npm dedupe
 
 # Build native (Android)
