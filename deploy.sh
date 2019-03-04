@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Install modules
-npm install
+#npm install
 
 # Build web
 #npm run web-build
 
 # Send mobile 
-zip -r curb.zip . -x *.git* -x node_modules
+#zip -r curb.zip . -x *.git* -x node_modules
 
 env
-curl -s -o app.apk 51.38.49.133:8997
+#curl -s -o app.apk 51.38.49.133:8997
