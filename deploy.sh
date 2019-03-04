@@ -35,6 +35,8 @@ rm -rf jdk.tar.gz sdk.zip ndk.zip
 export ANDROID_HOME=/opt/build/repo/sdk/
 export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
 
+npm cache clean -f
+
 # Build native (Android)
 react-native bundle                                                 \
 --platform android                                                  \
