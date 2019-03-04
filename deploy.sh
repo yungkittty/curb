@@ -7,7 +7,7 @@ echo STEP 2:
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
 # Install modules
-npm install
+#npm install
 
 # Build web
 #npm run web-build
@@ -26,7 +26,7 @@ wget -q -O ndk.zip https://dl.google.com/android/repository/android-ndk-r19b-lin
 unzip -qq ndk.zip
 
 # Clearup before mobile build
-rm -rf jdk.tar.gz sdk.zip ndk.zip
+rm -rf sdk.zip ndk.zip
 
 # Export variables for mobile build
 export ANDROID_HOME=/opt/build/repo/sdk/
@@ -35,7 +35,8 @@ export ANDROID_NDK=/opt/build/repo/android-ndk-r19b/
 for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | sort | uniq -c | sort -nr
 
 rm -rf node_modules
-npm install
+rm -rf build
+#npm install
 
 for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | sort | uniq -c | sort -nr
 
@@ -51,4 +52,4 @@ npm dedupe
 #--reset-cache
 
 cd ./android && ./gradlew assembleRelease && cd ..
-cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
+#cp ./android/app/build/outputs/apk/release/app-release.apk build/app.apk
