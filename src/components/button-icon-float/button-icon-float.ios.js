@@ -10,7 +10,7 @@ const ButtonIconFloat = styled(ButtonIcon).attrs(props => ({
   position: absolute;
   right: 15px;
   bottom: 15px;
-  zIndex: 6;
+  zIndex: 4;
   width: 60px;
   height: 60px;
   border-radius: 30px;
