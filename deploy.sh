@@ -39,6 +39,8 @@ npm install
 
 for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | sort | uniq -c | sort -nr
 
+npm dedupe
+
 # Build native (Android)
 #react-native bundle                                                 \
 #--platform android                                                  \
