@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import ButtonImage from "../../../../../../components/button-image";
+import Image from "../../../../../../components/image";
 
 // https://facebook.github.io/react-native/docs/image
 // https://github.com/facebook/react-native/issues/2468#issuecomment-287399569
 
-const ListItemButtonImage = styled(ButtonImage)`
+const ListItemImage = styled(Image)`
   width: 100px;
   height: 100px;
   border-radius: 50px;
@@ -12,4 +12,4 @@ const ListItemButtonImage = styled(ButtonImage)`
   background-color: ${props => props.theme.primaryVariantColor};
 `;
 
-export default ListItemButtonImage;
+export default ListItemImage;
