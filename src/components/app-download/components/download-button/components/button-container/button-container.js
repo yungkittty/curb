@@ -6,7 +6,7 @@ const ButtonContainer = styled(Container)`
   align-items: center;
   justify-content: center;
   position: relative;
-  background: ${({ theme }) => theme.linkColor};
+  background: ${({ theme }) => theme.buttonColor};
   height: 50px;
   width: 220px;
   border-radius: 12px;

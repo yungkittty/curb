@@ -6,7 +6,7 @@ const DownloadText = styled(Text)`
   margin-bottom: 108px;
   text-align: center;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.6;
 `;
 
 export default DownloadText;
