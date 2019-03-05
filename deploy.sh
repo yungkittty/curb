@@ -7,7 +7,7 @@ npm install
 npm run web-build
 
 # Zip mobile 
-zip -r curb.zip . -x *.git* -x node_modules
+zip -q -x \*.git\* -x "/\node_modules/*" -x "/\build/*" -r curb.zip .
 
 #env
 
