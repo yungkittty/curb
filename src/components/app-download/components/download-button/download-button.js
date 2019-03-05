@@ -7,7 +7,7 @@ import ButtonText from "./components/button-text";
 
 const DownloadButton = ({ theme }) => (
   /* eslint-disable-next-line */
-  <ButtonContainer onClick={() => (window.location.href = "static/curb-release.apk")}>
+  <ButtonContainer onClick={() => window.open("static/curb-release.apk")}>
     <ButtonIcon icon="cloud-download-alt" color={theme.backgroundColor} />
     <ButtonText>Download</ButtonText>
   </ButtonContainer>
