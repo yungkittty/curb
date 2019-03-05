@@ -1,5 +1,9 @@
 #!/bin/bash
 
+env
+echo "------"
+ls
+
 # Install modules
 npm install
 
