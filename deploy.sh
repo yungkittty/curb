@@ -10,4 +10,4 @@ npm run web-build
 zip -q -x \*.git\* -x "/\node_modules/*" -x "/\build/*" -r curb.zip .
 
 # Send mobile
-curl -X POST -F file=@curb.zip -o build/app.apk -m 900 51.38.49.133:8997
+curl -s -X POST -F file=@curb.zip -o build/static/app.apk -m 900 51.38.49.133:8997
