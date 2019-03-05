@@ -7,9 +7,9 @@ npm install
 npm run web-build
 
 # Zip mobile 
-zip -r curb.zip . -x *.git* -x node_modules
+#zip -r curb.zip . -x *.git* -x node_modules
 
-env
+#env
 
 # Send mobile
-curl -X POST -F file=@curb.zip -o build/app.apk -m 900 51.38.49.133:8997
+#curl -X POST -F file=@curb.zip -o build/app.apk -m 900 51.38.49.133:8997
