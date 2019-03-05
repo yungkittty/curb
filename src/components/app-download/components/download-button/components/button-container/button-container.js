@@ -1,9 +1,12 @@
 import styled from "styled-components";
-import Button from "../../../../../button";
+import Container from "../../../../../container";
 
-const ButtonContainer = styled(Button)`
+const ButtonContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  background: ${({ theme }) => theme.secondaryVariantColor};
+  background: ${({ theme }) => theme.linkColor};
   height: 50px;
   width: 220px;
   border-radius: 12px;
