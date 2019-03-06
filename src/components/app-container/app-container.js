@@ -2,9 +2,8 @@ import styled from "styled-components";
 import Container from "../container";
 
 const AppContainer = styled(Container).attrs({ id: "app-container" })`
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   padding-left: 80px;
   background-color: ${props => props.theme.backgroundColor};
 `;

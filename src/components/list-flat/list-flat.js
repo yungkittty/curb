@@ -24,7 +24,7 @@ class ListFlat extends React.Component {
   renderItem(itemData, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
     const itemParams = { item: itemData, index: itemIndex };
-    const itemProps = { key: itemData.key || keyExtractor(itemData, itemIndex) || itemIndex };
+    const itemProps = { key: keyExtractor ? keyExtractor(itemData, itemIndex) : itemData.key };
     return React.cloneElement(renderItem(itemParams), itemProps);
   }
 

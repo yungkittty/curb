@@ -5,7 +5,7 @@ import { withNamespaces } from "react-i18next";
 import SignUp1 from "../sign-up-1";
 import Loader from "../../../../components/loader";
 import SignUpContainer from "../../components/sign-up-container";
-import SignUp2Title from "./components/sign-up-2-title";
+import SignUpTitle from "../../components/sign-up-title";
 import Input from "../../../../components/input";
 
 class SignUp2 extends Component {
@@ -123,7 +123,9 @@ class SignUp2 extends Component {
       <Loader />
     ) : (
       <SignUpContainer>
-        <SignUp2Title>{t("choosePassword")}</SignUp2Title>
+        <SignUpTitle type="h2" weight={700}>
+          {t("choosePassword")}
+        </SignUpTitle>
         <Input
           size="modal"
           id="password"
