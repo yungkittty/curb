@@ -8,7 +8,16 @@ import { usersActions, usersSelectors } from "../../datas/users";
 class AppNavigationContainer extends React.Component {
   componentDidMount() {
     const { currentUserId, currentUserToken, getCurrentUser } = this.props;
-    if (currentUserToken) getCurrentUser({ id: currentUserId });
+    if (currentUserToken) {
+      getCurrentUser({ id: currentUserId });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { currentUserId, currentUserToken, getCurrentUser } = this.props;
+    if (currentUserToken && currentUserToken !== prevProps.currentUserToken) {
+      getCurrentUser({ id: currentUserId });
+    }
   }
 
   render() {
@@ -39,7 +48,7 @@ AppNavigationContainer.propTypes = {
   currentUserId: PropTypes.string.isRequired,
   currentUserToken: PropTypes.string.isRequired,
   getCurrentUser: PropTypes.func.isRequired
-}
+};
 
 export default connect(
   mapStateToProps,

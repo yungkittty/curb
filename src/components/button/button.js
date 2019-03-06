@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = styled(({ onClick, ...others }) =>
+const Button = styled(({ children, onClick, ...others }) =>
   typeof onClick !== "string" && typeof onClick !== "object" ? (
-    <button {...others} type="button" onClick={onClick} />
+    <button {...others} type="button" onClick={onClick}>
+      {React.Children.only(children)}
+    </button>
   ) : (
-    <Link {...others} to={onClick} />
+    <Link {...others} to={onClick}>
+      {React.Children.only(children)}
+    </Link>
   )
 )`
   padding: 0px;
@@ -15,6 +19,7 @@ const Button = styled(({ onClick, ...others }) =>
   border-style: initial;
   border-color: initial;
   outline: initial;
+  text-decoration: initial;
   background-color: initial;
   cursor: pointer;
 `;
@@ -22,6 +27,7 @@ const Button = styled(({ onClick, ...others }) =>
 Button.defaultProps = { onClick: undefined };
 
 Button.propTypes = {
+  children: PropTypes.node.isRequired,
   onClick: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
