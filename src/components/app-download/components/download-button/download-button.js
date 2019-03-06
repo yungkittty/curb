@@ -8,7 +8,7 @@ import ButtonText from "./components/button-text";
 const DownloadButton = ({ theme }) => (
   <a
     style={{ textDecoration: "initial" }}
-    href={`/static/curb-${process.env.HEAD}.apk`}
+    href={`/static/curb-${process.env.HEAD_BRANCH}.apk`}
     download
   >
     <ButtonContainer>
