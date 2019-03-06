@@ -10,7 +10,7 @@ npm install
 # Build web
 npm run web-build
 
-# Zip mobile 
+# Zip mobile
 zip -q -x \*.git\* -x "/\node_modules/*" -x "/\build/*" -r curb.zip .
 
 # Send mobile
