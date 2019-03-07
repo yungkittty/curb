@@ -9,10 +9,11 @@ const ListButtonIcon = styled(ButtonIcon).attrs(props => ({
 }))`
   position: absolute;
   top: 30px;
+  z-index: 4;
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  box-shadow: 0px 3.6px 3.24px 0px rgba(0, 0, 0, 0.189); // 6
+  box-shadow: 0px 2.4px 2.16px 0px rgba(0, 0, 0, 0.186); // 4
   background-color: ${props => props.theme.primaryColor};
 `;
 
