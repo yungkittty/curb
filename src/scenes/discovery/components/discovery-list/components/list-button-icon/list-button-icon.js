@@ -9,7 +9,7 @@ const ListButtonIcon = styled(ButtonIcon).attrs(props => ({
 }))`
   position: absolute;
   top: 30px;
-  zIndex: 4;
+  z-index: 4;
   width: 40px;
   height: 40px;
   border-radius: 20px;

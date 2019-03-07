@@ -8,7 +8,7 @@ const ZipperContainer = styled(Container)`
   position: absolute;
   left: 70px;
   top: 65%;
-  zIndex: 8;
+  z-index: 8;
   flex-direction: column;
   justify-content: center;
   align-items: center;
