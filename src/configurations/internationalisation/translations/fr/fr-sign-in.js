@@ -1,9 +1,9 @@
 const frSignIn = {
-  createAccount: "Créer un compte",
   signIn: "Se connecter",
   email: "Adresse email",
   password: "Mot de passe",
-  redirectMsg: "Nouveau sur Curb ?"
+  forgotPass: "Mot de passe oublié",
+  signUp: "Créer un compte"
 };
 
 export default frSignIn;

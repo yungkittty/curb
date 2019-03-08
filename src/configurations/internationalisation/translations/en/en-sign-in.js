@@ -1,9 +1,9 @@
 const enSignIn = {
-  createAccount: "Create account",
   signIn: "Sign in",
   email: "Mail address",
   password: "Password",
-  redirectMsg: "New to curb?"
+  forgotPass: "Forgot my password",
+  signUp: "Sign up"
 };
 
 export default enSignIn;

@@ -4,5 +4,14 @@ import validation from "./en-validation";
 import signIn from "./en-sign-in";
 import signUp from "./en-sign-up";
 import discovery from "./en-discovery";
+import forgotPass from "./en-forgot-pass";
 
-export default { common, glossary, validation, signIn, signUp, discovery };
+export default {
+  common,
+  glossary,
+  validation,
+  signIn,
+  signUp,
+  discovery,
+  forgotPass
+};

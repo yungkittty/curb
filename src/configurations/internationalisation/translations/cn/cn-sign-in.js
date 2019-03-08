@@ -1,9 +1,9 @@
 const cnSignIn = {
-  createAccount: "",
   signIn: "",
   email: "",
   password: "",
-  redirectMsg: ""
+  forgotPass: "",
+  signUp: ""
 };
 
 export default cnSignIn;

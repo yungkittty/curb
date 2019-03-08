@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import Loader from "../../components/loader";
-import SignInContainer from "./components/sign-in-container";
-import SignInFooter from "./components/sign-in-footer";
-import SignInForm from "./components/sign-in-form";
+import ForgotPasswordContainer from "./components/forgot-password-container";
+import ForgotPasswordForm from "./components/forgot-password-form";
+import inputRegex from "../../utils/input-regex";
 
-class SignIn extends Component {
+class ForgotPassword extends Component {
   constructor(props) {
     super(props);
 
@@ -14,10 +14,6 @@ class SignIn extends Component {
 
     this.state = {
       email: {
-        value: "",
-        error: undefined
-      },
-      password: {
         value: "",
         error: undefined
       },
@@ -29,8 +25,8 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setTitle(t("signIn"));
-    setButtonTitle(t("signIn"));
+    setTitle(t("forgotPass"));
+    setButtonTitle(t("resetPass"));
     setButtonClick(this.validate);
   }
 
@@ -40,20 +36,22 @@ class SignIn extends Component {
 
   submit() {
     const { signIn } = this.props;
-    const { email, password } = this.state;
-    signIn({ email: email.value, password: password.value });
+    const { email } = this.state;
+    signIn({ email: email.value });
     this.setState({ loading: true });
   }
 
   checkForm() {
-    const { email, password } = this.state;
+    const { email } = this.state;
     const emailCheck = this.checkInput("email", email.value);
-    const passwordCheck = this.checkInput("password", password.value);
-    return emailCheck && passwordCheck;
+    return emailCheck;
   }
 
   checkInput(id, value) {
-    const error = value.length === 0 ? "missing" : undefined;
+    let error = value.length === 0 ? "missing" : undefined;
+    if (error === undefined && id === "email")
+      error = !RegExp(inputRegex.email).test(value) ? "invalid" : undefined;
+
     this.setState(prevState => ({
       [id]: {
         ...prevState[id],
@@ -70,23 +68,18 @@ class SignIn extends Component {
   }
 
   render() {
-    const { email, password, loading } = this.state;
+    const { email, loading } = this.state;
     return loading ? (
       <Loader />
     ) : (
-      <SignInContainer>
-        <SignInForm
-          email={email}
-          password={password}
-          onChange={this.handleChange}
-        />
-        <SignInFooter />
-      </SignInContainer>
+      <ForgotPasswordContainer>
+        <ForgotPasswordForm email={email} onChange={this.handleChange} />
+      </ForgotPasswordContainer>
     );
   }
 }
 
-SignIn.propTypes = {
+ForgotPassword.propTypes = {
   t: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
@@ -94,4 +87,4 @@ SignIn.propTypes = {
   setButtonClick: PropTypes.func.isRequired
 };
 
-export default withNamespaces("signIn")(SignIn);
+export default withNamespaces("forgotPass")(ForgotPassword);
