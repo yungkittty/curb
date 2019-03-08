@@ -1,7 +1,7 @@
 const enForgotPass = {
   forgotPass: "Forgotten password",
   email: "Mail address",
-  resetPass: "Reset pass"
+  resetPass: "Reset my password"
 };
 
 export default enForgotPass;
