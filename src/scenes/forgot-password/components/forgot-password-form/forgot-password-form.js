@@ -9,7 +9,7 @@ const ForgotPasswordForm = ({ onChange, email, t }) => (
     <Input
       size="modal"
       id="email"
-      placeholder={t("email")}
+      placeholder={t("common:email")}
       value={email.value}
       onChange={onChange}
       error={email.error && t(`validation:email.${email.error}`)}
@@ -26,4 +26,4 @@ ForgotPasswordForm.propTypes = {
   }).isRequired
 };
 
-export default withNamespaces("forgotPass")(ForgotPasswordForm);
+export default withNamespaces()(ForgotPasswordForm);

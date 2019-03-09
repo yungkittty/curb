@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import Loader from "../../components/loader";
 import SignInContainer from "./components/sign-in-container";
+// eslint-disable-next-line
 import SignInFooter from "./components/sign-in-footer";
 import SignInForm from "./components/sign-in-form";
 
@@ -71,6 +72,8 @@ class SignIn extends Component {
 
   render() {
     const { email, password, loading } = this.state;
+    const { setComponent } = this.props;
+
     return loading ? (
       <Loader />
     ) : (
@@ -80,7 +83,7 @@ class SignIn extends Component {
           password={password}
           onChange={this.handleChange}
         />
-        <SignInFooter />
+        <SignInFooter setComponent={setComponent} />
       </SignInContainer>
     );
   }
@@ -91,7 +94,8 @@ SignIn.propTypes = {
   signIn: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
   setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+  setButtonClick: PropTypes.func.isRequired,
+  setComponent: PropTypes.func.isRequired
 };
 
 export default withNamespaces("signIn")(SignIn);

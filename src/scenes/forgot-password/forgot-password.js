@@ -5,12 +5,21 @@ import Loader from "../../components/loader";
 import ForgotPasswordContainer from "./components/forgot-password-container";
 import ForgotPasswordForm from "./components/forgot-password-form";
 import inputRegex from "../../utils/input-regex";
+import SignIn from "../sign-in";
 
 class ForgotPassword extends Component {
   constructor(props) {
     super(props);
 
-    const { t, setTitle, setButtonTitle, setButtonClick } = props;
+    const {
+      t,
+      setLeftIcon,
+      setLeftClick,
+      setComponent,
+      setTitle,
+      setButtonTitle,
+      setButtonClick
+    } = props;
 
     this.state = {
       email: {
@@ -25,6 +34,8 @@ class ForgotPassword extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
+    setLeftIcon("arrow-left");
+    setLeftClick(() => setComponent(SignIn, -1));
     setTitle(t("forgotPass"));
     setButtonTitle(t("resetPass"));
     setButtonClick(this.validate);

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Container from "../../../../../../components/container";
+import Button from "../../../../../../components/button";
 
-const FooterLink = styled(Container)`
+const FooterButton = styled(Button)`
   height: 28px;
   width: 50%;
   display: flex;
@@ -9,4 +9,4 @@ const FooterLink = styled(Container)`
   align-items: center;
 `;
 
-export default FooterLink;
+export default FooterButton;
