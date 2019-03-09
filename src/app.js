@@ -13,6 +13,7 @@ import Group from "./scenes/group";
 import SignIn from "./scenes/sign-in";
 import SignUp from "./scenes/sign-up";
 import ForgotPassword from "./scenes/forgot-password";
+import ResetPassword from "./scenes/reset-password";
 
 const App = ({ currentUserToken }) => (
   <Router>
@@ -40,6 +41,7 @@ const App = ({ currentUserToken }) => (
         }
       />
       <ModalRoute path="/forgot-password" component={ForgotPassword} />
+      <ModalRoute path="/reset-password" component={ResetPassword} />
     </React.Fragment>
   </Router>
 );

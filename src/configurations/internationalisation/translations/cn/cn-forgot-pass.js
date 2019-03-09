@@ -1,6 +1,7 @@
 const cnForgotPass = {
   forgotPass: "",
-  resetPass: ""
+  resetPass: "",
+  reset: ""
 };
 
 export default cnForgotPass;
