@@ -1,7 +1,5 @@
 const cnSignIn = {
   signIn: "",
-  email: "",
-  password: "",
   forgotPass: "",
   signUp: ""
 };
