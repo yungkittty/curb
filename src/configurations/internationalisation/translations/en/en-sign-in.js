@@ -1,6 +1,6 @@
 const enSignIn = {
   signIn: "Sign in",
-  forgotPass: "Forgot my password",
+  forgotPass: "Forgot password",
   signUp: "Sign up"
 };
 
