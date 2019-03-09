@@ -5,7 +5,8 @@ const FooterContainer = styled(Container)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 28px;
+  height: 64px;
+  margin-bottom: 12px;
   width: 100%;
 `;
 
