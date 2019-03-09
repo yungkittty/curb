@@ -9,7 +9,7 @@ const SignInForm = ({ onChange, email, password, t }) => (
     <Input
       size="modal"
       id="email"
-      placeholder={t("signIn:email")}
+      placeholder={t("common:email")}
       value={email.value}
       onChange={onChange}
       error={email.error && t(`validation:email.${email.error}`)}
@@ -17,7 +17,7 @@ const SignInForm = ({ onChange, email, password, t }) => (
     <Input
       size="modal"
       id="password"
-      placeholder={t("signIn:password")}
+      placeholder={t("common:password")}
       type="password"
       value={password.value}
       onChange={onChange}

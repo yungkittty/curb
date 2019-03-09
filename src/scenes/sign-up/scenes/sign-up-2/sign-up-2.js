@@ -129,7 +129,7 @@ class SignUp2 extends Component {
         <Input
           size="modal"
           id="password"
-          placeholder={t("password")}
+          placeholder={t("common:password")}
           type="password"
           value={password.value}
           onChange={this.handleChange}
@@ -138,7 +138,7 @@ class SignUp2 extends Component {
         <Input
           size="modal"
           id="confirmPassword"
-          placeholder={t("confirmPassword")}
+          placeholder={t("common:confirmPassword")}
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
