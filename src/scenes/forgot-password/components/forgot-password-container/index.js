@@ -1,3 +1,3 @@
-import ForgotPassContainer from "./forgot-password-container";
+import ForgotPasswordContainer from "./forgot-password-container";
 
-export default ForgotPassContainer;
+export default ForgotPasswordContainer;
