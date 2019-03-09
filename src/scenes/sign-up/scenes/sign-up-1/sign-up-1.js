@@ -1,96 +1,68 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-/* eslint-disable-next-line */
-import SignUp2 from "../sign-up-2";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
 import SelectImage from "./components/select-image";
 import Input from "../../../../components/input";
 import inputRegex from "../../../../utils/input-regex";
+/* eslint-disable */
+import SignIn from "../../../sign-in";
+import SignUp2 from "../sign-up-2";
+/* eslint-enable */
 
 class SignUp1 extends Component {
   constructor(props) {
     super(props);
     const {
       t,
-      data: {
-        name = {
-          value: "",
-          error: undefined
-        },
-        email = {
-          value: "",
-          error: undefined
-        }
-      },
-      setProgress,
-      setButtonTitle,
-      setButtonClick
+      setAppModalHeaderSteps,
+      setAppModalHeaderLeftButton,
+      setAppModalScene,
+      setAppModalFooterButton
     } = this.props;
 
-    this.state = {
-      name,
-      email
-    };
-
+    this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.goToNext = this.goToNext.bind(this);
 
-    setProgress({ progress: 1, total: 2 });
-    setButtonTitle(t("common:next"));
-    setButtonClick(this.goToNext);
+    setAppModalHeaderSteps({ headerCurrentStep: 1, headerSteps: 2 });
+    setAppModalHeaderLeftButton({ headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () => setAppModalScene({ scene: SignIn, sceneDirection: -1 }) });
+    setAppModalFooterButton({ footerText: t("common:next"), footerOnClick: this.goToNext });
   }
 
   goToNext() {
-    const { setComponent } = this.props;
-
-    if (this.checkForm()) setComponent(SignUp2, 1);
+    const { setAppModalScene } = this.props;
+    if (this.checkForm()) {
+      setAppModalScene({ scene: SignUp2, sceneDirection: 1 });
+    }
   }
 
   checkForm() {
-    const { name, email } = this.state;
-
+    const { name, email } = this.props;
     const nameCheck = this.checkInput("name", name.value);
     const emailCheck = this.checkInput("email", email.value);
-
     return nameCheck && emailCheck;
   }
 
   checkInput(id, value) {
-    const { setData } = this.props;
-
     let error = value.length === 0 ? "missing" : undefined;
     if (error === undefined && id === "email")
       error = !RegExp(inputRegex.email).test(value) ? "invalid" : undefined;
-
-    this.setState(prev => {
-      const obj = {
-        [id]: {
-          ...prev[id],
-          value,
-          error
-        }
-      };
-      setData(obj);
-      return obj;
-    });
-
+    const { setAppModalSceneData, [id]: Y } = this.props;
+    setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
 
   handleChange(event) {
     const { id, value } = event.target;
-
     this.checkInput(id, value);
   }
 
   render() {
-    const { t } = this.props;
-    const { name, email } = this.state;
-
+    const { t, name, email } = this.props;
     return (
       <SignUpContainer>
         <SignUpTitle type="h2" weight={700}>
@@ -118,15 +90,20 @@ class SignUp1 extends Component {
   }
 }
 
+SignUp1.defaultProps = {
+  name: { value: "", error: undefined },
+  email: { value: "", error: undefined }
+}
+
 SignUp1.propTypes = {
-  t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ name: PropTypes.object, email: PropTypes.object })
-    .isRequired,
-  setData: PropTypes.func.isRequired,
-  setProgress: PropTypes.func.isRequired,
-  setComponent: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+  setAppModalHeaderSteps: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
+  name: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string.isRequired }),
+  email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string.isRequired }),
+  t: PropTypes.func.isRequired
 };
 
 export default withNamespaces("signUp")(SignUp1);

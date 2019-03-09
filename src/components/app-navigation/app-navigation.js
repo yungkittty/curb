@@ -9,8 +9,10 @@ import NavigationRule from "./components/navigation-rule";
 import ListFlat from "../list-flat";
 import NavigationListItem from "./components/navigation-list-item";
 import NavigationListFooter from "./components/navigation-list-footer";
+import SignIn from "../../scenes/sign-in";
 
 const AppNavigation = ({
+  showAppModal,
   currentUserId,
   currentUserToken,
   currentUserAvatarUrl,
@@ -23,7 +25,7 @@ const AppNavigation = ({
         icon="sign-in-alt"
         size="medium"
         color={theme.primaryColor}
-        onClick={{ pathname: "/sign-in", state: { isModal: true } }}
+        onClick={() => showAppModal({ scene: SignIn })}
       />
     ) : (
       <NavigationButtonImage
@@ -64,6 +66,7 @@ const AppNavigation = ({
 );
 
 AppNavigation.propTypes = {
+  showAppModal: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
   currentUserToken: PropTypes.string.isRequired,
   currentUserAvatarUrl: PropTypes.string.isRequired,
