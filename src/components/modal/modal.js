@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ModalBlur from "./components/modal-blur";
 import ModalOverlay from "./components/modal-overlay";
 import ModalContainer from "./components/modal-container";
 import ModalHeader from "./components/modal-header";
 import ModalContent from "./components/modal-content";
-import ModalButton from "./components/modal-button";
-import ModalBlur from "./components/modal-blur";
+import ModalButtonText from "./components/modal-button-text";
 
 class Modal extends Component {
   constructor(props) {
@@ -20,10 +20,8 @@ class Modal extends Component {
       title: undefined,
       progress: undefined,
       leftIcon: undefined,
-      leftTo: undefined,
       leftClick: undefined,
       rightIcon: "times",
-      rightTo: undefined,
       rightClick: onCloseRequest || goBack,
       buttonTitle: undefined,
       buttonTo: undefined,
@@ -35,10 +33,8 @@ class Modal extends Component {
     this.setTitle = this.setTitle.bind(this);
     this.setProgress = this.setProgress.bind(this);
     this.setLeftIcon = this.setLeftIcon.bind(this);
-    this.setLeftTo = this.setLeftTo.bind(this);
     this.setLeftClick = this.setLeftClick.bind(this);
     this.setRightIcon = this.setRightIcon.bind(this);
-    this.setRightTo = this.setRightTo.bind(this);
     this.setRightCick = this.setRightCick.bind(this);
     this.setButtonTitle = this.setButtonTitle.bind(this);
     this.setButtonTo = this.setButtonTo.bind(this);
@@ -60,20 +56,12 @@ class Modal extends Component {
     this.setState({ leftIcon });
   }
 
-  setLeftTo(leftTo) {
-    this.setState({ leftTo });
-  }
-
   setLeftClick(leftClick) {
     this.setState({ leftClick });
   }
 
   setRightIcon(rightIcon) {
     this.setState({ rightIcon });
-  }
-
-  setRightTo(rightTo) {
-    this.setState({ rightTo });
   }
 
   setRightCick(rightClick) {
@@ -102,14 +90,11 @@ class Modal extends Component {
       setTitle,
       setProgress,
       setLeftIcon,
-      setLeftTo,
       setLeftClick,
       setRightIcon,
-      setRightTo,
       setRightCick,
       setComponent,
       setButtonTitle,
-      setButtonTo,
       setButtonClick,
       resetModal
     } = this;
@@ -120,13 +105,10 @@ class Modal extends Component {
       title,
       progress,
       leftIcon,
-      leftTo,
       leftClick,
       rightIcon,
-      rightTo,
       rightClick,
       buttonTitle,
-      buttonTo,
       buttonClick
     } = this.state;
 
@@ -134,14 +116,11 @@ class Modal extends Component {
       setTitle,
       setProgress,
       setLeftIcon,
-      setLeftTo,
       setLeftClick,
       setRightIcon,
-      setRightTo,
       setRightCick,
       setComponent,
       setButtonTitle,
-      setButtonTo,
       setButtonClick,
       ...others
     };
@@ -153,10 +132,8 @@ class Modal extends Component {
             title={title}
             progress={progress}
             leftIcon={leftIcon}
-            leftTo={leftTo}
             leftClick={leftClick}
             rightIcon={rightIcon}
-            rightTo={rightTo}
             rightClick={rightClick}
           />
           <ModalContent
@@ -167,9 +144,9 @@ class Modal extends Component {
             ref={modalContentRef}
           />
           {buttonTitle && (
-            <ModalButton
-              title={buttonTitle}
-              to={buttonTo}
+            <ModalButtonText
+              type="h4"
+              text={buttonTitle}
               onClick={buttonClick}
             />
           )}

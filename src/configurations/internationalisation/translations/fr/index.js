@@ -3,15 +3,6 @@ import glossary from "./fr-glossary";
 import validation from "./fr-validation";
 import signIn from "./fr-sign-in";
 import signUp from "./fr-sign-up";
-import createGroup from "./fr-create-group";
-import modules from "./fr-modules";
+import discovery from "./fr-discovery";
 
-export default {
-  common,
-  glossary,
-  validation,
-  signIn,
-  signUp,
-  createGroup,
-  modules
-};
+export default { common, glossary, validation, signIn, signUp, discovery };

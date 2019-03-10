@@ -4,6 +4,7 @@ import Container from "../../../../../container";
 const HeaderContainer = styled(Container)`
   position: relative;
   display: flex;
+  position: relative;
   flex-flow: row;
   align-items: center;
   height: 75px;

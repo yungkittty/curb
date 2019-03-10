@@ -30,8 +30,8 @@ class SignIn extends Component {
     this.validate = this.validate.bind(this);
 
     setTitle(t("signIn"));
-    setButtonTitle(t("login"));
-    setButtonClick(this.validate.bind(this));
+    setButtonTitle(t("signIn"));
+    setButtonClick(this.validate);
   }
 
   validate() {

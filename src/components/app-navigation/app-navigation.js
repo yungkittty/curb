@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
@@ -26,7 +27,11 @@ const AppNavigation = ({
       />
     ) : (
       <NavigationButtonImage
-        src={`${currentUserAvatarUrl}`}
+        src={`${process.env.REACT_APP_API_URL}${_.replace(
+          currentUserAvatarUrl,
+          "medium",
+          "small"
+        )}`}
         onClick={`/users/${currentUserId}`}
       />
     )}
