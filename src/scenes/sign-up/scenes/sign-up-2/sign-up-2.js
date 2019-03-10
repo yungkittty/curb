@@ -113,10 +113,10 @@ SignUp2.propTypes = {
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
-  name: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string.isRequired }).isRequired,
-  email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string.isRequired }).isRequired,
-  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string.isRequired }),
-  confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string.isRequired }),
+  name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
+  email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
+  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   t: PropTypes.func.isRequired,
 };
 

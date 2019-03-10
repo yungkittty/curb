@@ -74,9 +74,14 @@ const SceneSlide = WrappedComponent => {
     }
   }
 
+  _SceneSlide.defaultProps = {
+    scene: undefined,
+    sceneDirection: undefined
+  };
+
   _SceneSlide.propTypes = {
-    scene: PropTypes.func.isRequired,
-    sceneDirection: PropTypes.number.isRequired
+    scene: PropTypes.func,
+    sceneDirection: PropTypes.number
   };
 
   return _SceneSlide;

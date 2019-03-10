@@ -41,12 +41,20 @@ const AppModalHeader = ({
   </HeaderContainer>
 );
 
+AppModalHeader.defaultProps = {
+  text: undefined,
+  currentStep: undefined,
+  steps: undefined,
+  leftIcon: undefined,
+  leftOnClick: undefined,
+};
+
 AppModalHeader.propTypes = {
-  text: PropTypes.string.isRequired,
-  currentStep: PropTypes.number.isRequired,
-  steps: PropTypes.number.isRequired,
-  leftIcon: PropTypes.string.isRequired,
-  leftOnClick: PropTypes.func.isRequired,
+  text: PropTypes.string,
+  currentStep: PropTypes.number,
+  steps: PropTypes.number,
+  leftIcon: PropTypes.string,
+  leftOnClick: PropTypes.func,
   rightIcon: PropTypes.string.isRequired,
   rightOnClick: PropTypes.func.isRequired
 };

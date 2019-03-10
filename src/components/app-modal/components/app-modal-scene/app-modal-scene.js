@@ -19,15 +19,24 @@ const AppModalScene = ({
   </SceneContainer>
 );
 
+AppModalScene.defaultProps = {
+  forwardedRef: undefined,
+  sceneLeftKey: undefined,
+  sceneLeft: undefined,
+  sceneRightKey: undefined,
+  sceneRight: undefined,
+  sceneData: undefined
+};
+
 AppModalScene.propTypes = {
   // eslint-disable-next-line
-  forwardedRef: PropTypes.object.isRequired,
-  sceneLeftKey: PropTypes.string.isRequired,
-  sceneLeft: PropTypes.func.isRequired,
-  sceneRightKey: PropTypes.string.isRequired,
-  sceneRight: PropTypes.func.isRequired,
+  forwardedRef: PropTypes.object,
+  sceneLeftKey: PropTypes.string,
+  sceneLeft: PropTypes.func,
+  sceneRightKey: PropTypes.string,
+  sceneRight: PropTypes.func,
   // eslint-disable-next-line
-  sceneData: PropTypes.object.isRequired
+  sceneData: PropTypes.object
 };
 
 export default SceneSlide(
