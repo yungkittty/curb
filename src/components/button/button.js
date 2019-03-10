@@ -22,6 +22,10 @@ const Button = styled(({ children, onClick, ...others }) =>
   text-decoration: initial;
   background-color: initial;
   cursor: pointer;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
 `;
 
 Button.defaultProps = { onClick: undefined };

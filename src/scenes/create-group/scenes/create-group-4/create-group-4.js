@@ -41,7 +41,8 @@ class CreateGroup4 extends Component {
   }
 
   submit() {
-    if (!this.checkForm()) return;
+    const { isLoading } = this.state;
+    if (!this.checkForm() || isLoading) return;
 
     const {
       postGroup,
@@ -62,6 +63,19 @@ class CreateGroup4 extends Component {
     });
 
     this.setState({ isLoading: true });
+
+    const {
+      setAppModalHeaderLeftButton,
+      setAppModalHeaderRightButton
+    } = this.props;
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () => undefined
+    });
+    setAppModalHeaderRightButton({
+      headerRightIcon: "times",
+      headerRightOnClick: () => undefined
+    });
   }
 
   checkForm() {
@@ -121,6 +135,7 @@ CreateGroup4.defaultProps = {
 CreateGroup4.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
