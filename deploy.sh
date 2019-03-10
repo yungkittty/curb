@@ -1,8 +1,8 @@
 #!/bin/bash
 
+
 # Initializing variables
 export HEAD_BRANCH=$(echo $HEAD | tr '/' '-')
-
 
 # Install modules
 npm install
