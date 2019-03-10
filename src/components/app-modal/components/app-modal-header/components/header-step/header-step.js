@@ -4,7 +4,7 @@ import Container from "../../../../../container";
 const HeaderStep = styled(Container)`
   width: 10px;
   height: 10px;
-  margin: 0 9px;
+  margin: 0px 10px;
   border-radius: 5px;
   background-color: ${({ enabled, theme }) =>
     enabled ? theme.primaryColor : theme.secondaryColor};

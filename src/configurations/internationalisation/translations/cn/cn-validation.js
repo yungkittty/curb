@@ -1,11 +1,7 @@
 const cnValidation = {
   username: { missing: "" },
   email: { missing: "" },
-  password: { missing: "" },
-  groupName: { missing: "" },
-  discoverability: { missing: "" },
-  modules: { missing: "" },
-  theme: { missing: "" }
+  password: { missing: "" }
 };
 
 export default cnValidation;

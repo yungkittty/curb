@@ -8,7 +8,6 @@ const ScrollContainer = styled(Container)`
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
   width: 100%;
   height: 100%;
-  flex-shrink: 1;
   overflow: hidden;
 `;
 

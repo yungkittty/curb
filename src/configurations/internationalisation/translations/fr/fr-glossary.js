@@ -1,3 +1,3 @@
-const frGlossary = { public: "Public", private: "Privé" };
+const frGlossary = {};
 
 export default frGlossary;
