@@ -9,10 +9,10 @@ class AppContainer extends React.Component {
     super(props);
     const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
     const { currentHeight: statusBarHeight } = StatusBar;
-    // this.setContainerWithKeys = this.setContainerWithKeys.bind(this);
-    // this.setContainerWithoutKeys = this.setContainerWithoutKeys.bind(this);
-    // this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", this.setContainerWithKeys);
-    // this.keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", this.setContainerWithoutKeys);
+    /* this.setContainerWithKeys = this.setContainerWithKeys.bind(this);
+    this.setContainerWithoutKeys = this.setContainerWithoutKeys.bind(this);
+    this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", this.setContainerWithKeys);
+    this.keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", this.setContainerWithoutKeys); */
     this.state = {
       containerWidth: windowWidth,
       containerHeight: windowHeight,
