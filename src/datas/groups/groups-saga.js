@@ -1,7 +1,22 @@
-import { all, takeEvery, call, put } from "redux-saga/effects";
+import { all, takeLatest, takeEvery, select, call, put } from "redux-saga/effects";
+import { currentUserSelectors } from "../current-user";
+import appModalActions from "../app-modal/app-modal-actions";
 import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
 import groupsApi from "./groups-api";
+
+function* postGroupRequestSaga({ payload }) {
+  try {
+    const { history, ...others } = payload;
+    const token = yield select(currentUserSelectors.getCurrentUserToken);
+    const respond = yield call(groupsApi.postGroup, { payload: others, token });
+    yield put(groupsActions.postGroupSuccess(respond));
+    yield put(appModalActions.hideAppModal());
+    history.push(`/groups/${respond.data.id}`);
+  } catch (error) {
+    yield put(groupsActions.postGroupFailure(error));
+  }
+}
 
 function* getGroupRequestSaga(action) {
   try {
@@ -13,6 +28,7 @@ function* getGroupRequestSaga(action) {
 }
 
 const groupsSaga = all([
+  takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
   takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga)
 ]);
 

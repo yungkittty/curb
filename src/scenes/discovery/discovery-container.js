@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Discovery from "./discovery";
 import { discoveryActions, discoverySelectors } from "../../datas/discovery";
+import { appModalActions } from "../../datas/app-modal";
 
 class DiscoveryContainer extends React.Component {
   componentDidMount() {
@@ -23,7 +24,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getDiscovery: payload =>
-    dispatch(discoveryActions.getDiscoveryRequest(payload))
+    dispatch(discoveryActions.getDiscoveryRequest(payload)),
+  showAppModal: payload => dispatch(appModalActions.showAppModal(payload))
 });
 
 DiscoveryContainer.propTypes = { getDiscovery: PropTypes.func.isRequired };
