@@ -69,7 +69,7 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { t, password, confirmPassword,  } = this.props;
+    const { t, password, confirmPassword } = this.props;
     const { isLoading } = this.state;
     return isLoading ? (
       <Loader />
