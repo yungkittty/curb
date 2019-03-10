@@ -1,15 +1,22 @@
 import { connect } from "react-redux";
+// eslint-disable-next-line
 import SignUp1 from "./sign-up-1";
-import { currentUserSelectors } from "../../../../datas/current-user";
+import { appModalActions } from "../../../../datas/app-modal";
 
-const mapStateToProps = state => {
-  const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
-  return {
-    currentUserToken
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  setAppModalHeaderSteps: payload =>
+    dispatch(appModalActions.setAppModalHeaderSteps(payload)),
+  setAppModalHeaderLeftButton: payload =>
+    dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
+  setAppModalScene: payload =>
+    dispatch(appModalActions.setAppModalScene(payload)),
+  setAppModalSceneData: payload =>
+    dispatch(appModalActions.setAppModalSceneData(payload)),
+  setAppModalFooterButton: payload =>
+    dispatch(appModalActions.setAppModalFooterButton(payload))
+});
 
 export default connect(
-  mapStateToProps,
-  null
+  undefined,
+  mapDispatchToProps
 )(SignUp1);

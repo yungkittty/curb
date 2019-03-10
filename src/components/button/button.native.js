@@ -22,3 +22,7 @@ Button.propTypes = {
     PropTypes.string,
     PropTypes.object,
     PropTypes.func
+  ])
+};
+
+export default Button;

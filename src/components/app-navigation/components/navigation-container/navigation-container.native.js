@@ -10,7 +10,7 @@ class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      containerAnimated: new Animated.ValueXY({ x: -70, y: 0 }),
+      containerAnimated: new Animated.Value(-70),
       isContainerShowed: false
     };
     this.panResponder = PanResponder.create({
@@ -23,14 +23,14 @@ class NavigationContainer extends React.Component {
   moveContainerTo(event) {
     const { containerAnimated, isContainerShowed } = this.state;
     const { pageX } = event.nativeEvent;
-    containerAnimated.setValue({ x: pageX > 70 ? 0 : pageX - 70 });
+    containerAnimated.setValue(pageX > 70 ? 0 : pageX - 70);
     if (!isContainerShowed) this.setState({ isContainerShowed: true });
   }
 
   moveContainerToEnd(event) {
     const { containerAnimated } = this.state;
     const { pageX } = event.nativeEvent;
-    containerAnimated.setValue({ x: pageX < 35 ? -70 : 0 });
+    containerAnimated.setValue(pageX < 35 ? -70 : 0);
     this.setState({ isContainerShowed: pageX >= 35 });
   }
 
@@ -42,14 +42,14 @@ class NavigationContainer extends React.Component {
         {isContainerShowed ? (
           <ContainerOverlay
             style={{
-              opacity: containerAnimated.x.interpolate({
+              opacity: containerAnimated.interpolate({
                 inputRange: [-70, 0],
                 outputRange: [0, 0.25]
               })
             }}
           />
         ) : null}
-        <ContainerContainer style={containerAnimated.getLayout()}>
+        <ContainerContainer style={{ translateX: containerAnimated }}>
           <ContainerContentContainer>{children}</ContainerContentContainer>
           <ContainerZipper
             {...this.panResponder.panHandlers}

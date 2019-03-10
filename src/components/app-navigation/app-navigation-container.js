@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import AppNavigation from "./app-navigation";
+import { appModalActions } from "../../datas/app-modal";
 import { currentUserSelectors } from "../../datas/current-user";
 import { usersActions, usersSelectors } from "../../datas/users";
 
@@ -42,6 +43,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  showAppModal: payload => dispatch(appModalActions.showAppModal(payload)),
   getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload))
 });
 
