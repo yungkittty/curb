@@ -10,7 +10,7 @@ const ItemContainer = styled(Button)`
   height: 100px;
 
   background: ${({ backgroundColor, selected, theme }) =>
-    backgroundColor || (selected ? theme.pimaryVariantColor : "transparent")};
+    backgroundColor || (selected ? theme.primaryVariantColor : "transparent")};
 
   ${screenWidthsMedias.medium`
     height: 125px;
@@ -19,7 +19,7 @@ const ItemContainer = styled(Button)`
     
     &:hover {
       background: ${({ theme, backgroundColor, disabled }) =>
-        !disabled ? !backgroundColor && theme.pimaryVariantColor : null};
+        !disabled ? !backgroundColor && theme.primaryVariantColor : null};
     }
   `}
 `;

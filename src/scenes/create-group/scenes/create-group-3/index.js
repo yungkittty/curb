@@ -1,3 +1,4 @@
-import CreateGroup3 from "./create-group-3";
+// eslint-disable-next-line
+import CreateGroup3Container from "./create-group-3-container";
 
-export default CreateGroup3;
+export default CreateGroup3Container;

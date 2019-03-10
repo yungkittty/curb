@@ -1,99 +1,82 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-/* eslint-disable-next-line */
-import CreateGroup1 from "../create-group-1";
-/* eslint-disable-next-line */
-import CreateGroup3 from "../create-group-3";
-import CreateGroup2Container from "./components/create-group-2-container";
-import CreateGroup2Title from "./components/create-group-2-title";
+import CreateGroupContainer from "../../components/create-group-container";
+import CreateGroupTitle from "../../components/create-group-title";
 import CreateGroup2Discover from "./components/create-group-2-discover";
 import CreateGroup2Error from "./components/create-group-2-error";
+/* eslint-disable */
+import CreateGroup1 from "../create-group-1";
+import CreateGroup3 from "../create-group-3";
+/* eslint-enable */
 
 class CreateGroup2 extends Component {
   constructor(props) {
     super(props);
     const {
       t,
-      data: { discoverability = { value: undefined, error: undefined } },
-      setProgress,
-      setComponent,
-      setLeftIcon,
-      setLeftClick,
-      setButtonTitle,
-      setButtonClick
+      setAppModalHeaderSteps,
+      setAppModalHeaderLeftButton,
+      setAppModalScene,
+      setAppModalFooterButton
     } = this.props;
 
-    this.state = {
-      discoverability
-    };
-
+    this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setProgress({ progress: 2, total: 4 });
-    setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(CreateGroup1, -1));
-    setButtonTitle(t("common:next"));
-    setButtonClick(this.goToNext.bind(this));
+    setAppModalHeaderSteps({ progress: 2, total: 4 });
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () =>
+        setAppModalScene({ scene: CreateGroup1, sceneDirection: -1 })
+    });
+    setAppModalFooterButton({
+      footerText: t("common:next"),
+      footerOnClick: this.goToNext
+    });
   }
 
   goToNext() {
-    const { setComponent } = this.props;
-
-    if (this.checkForm()) setComponent(CreateGroup3, 1);
+    const { setAppModalScene } = this.props;
+    if (this.checkForm())
+      setAppModalScene({ scene: CreateGroup3, sceneDirection: 1 });
   }
 
   checkForm() {
     const {
       discoverability: { value }
-    } = this.state;
-
+    } = this.props;
     return this.checkInput("discoverability", value);
   }
 
   checkInput(id, value) {
-    const { setData } = this.props;
-
     const error = value === undefined ? "missing" : undefined;
-
-    this.setState(prev => {
-      const obj = {
-        [id]: {
-          ...prev[id],
-          value,
-          error
-        }
-      };
-      setData(obj);
-      return obj;
-    });
-
+    const { setAppModalSceneData, [id]: Y } = this.props;
+    setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
 
   handleChange(clickValue) {
     const {
       discoverability: { value }
-    } = this.state;
-
+    } = this.props;
     const newValue = clickValue === value ? undefined : clickValue;
-
     this.checkInput("discoverability", newValue);
   }
 
   render() {
-    const { t } = this.props;
     const {
+      t,
       discoverability: { value, error }
-    } = this.state;
+    } = this.props;
 
     return (
-      <CreateGroup2Container>
-        <CreateGroup2Title>
-          {t("createGroup:discoverability")}
-        </CreateGroup2Title>
+      <CreateGroupContainer>
+        <CreateGroupTitle type="h2" weight={700}>
+          {t("discoverability")}
+        </CreateGroupTitle>
         {error && (
           <CreateGroup2Error>
             {t(`validation:discoverability.${error}`)}
@@ -103,21 +86,26 @@ class CreateGroup2 extends Component {
           onClick={this.handleChange}
           discoverability={value}
         />
-      </CreateGroup2Container>
+      </CreateGroupContainer>
     );
   }
 }
 
-CreateGroup2.propTypes = {
-  t: PropTypes.func.isRequired,
-  data: PropTypes.shape({ discoverability: PropTypes.object }).isRequired,
-  setData: PropTypes.func.isRequired,
-  setProgress: PropTypes.func.isRequired,
-  setLeftIcon: PropTypes.func.isRequired,
-  setLeftClick: PropTypes.func.isRequired,
-  setComponent: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+CreateGroup2.defaultProps = {
+  discoverability: { value: undefined, error: undefined }
 };
 
-export default withNamespaces()(CreateGroup2);
+CreateGroup2.propTypes = {
+  setAppModalHeaderSteps: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
+  setAppModalSceneData: PropTypes.func.isRequired,
+  discoverability: PropTypes.shape({
+    value: PropTypes.string,
+    error: PropTypes.string
+  }),
+  t: PropTypes.func.isRequired
+};
+
+export default withNamespaces("createGroup")(CreateGroup2);

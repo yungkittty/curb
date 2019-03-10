@@ -1,17 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import IconContainer from "./components/icon-container";
 import Icon from "../../../../../../../../../../components/icon";
 
 const OptionIcon = ({ theme, icon, size, selected }) => (
-  <IconContainer>
-    <Icon
-      icon={icon}
-      size={size}
-      color={selected === false ? theme.pimaryColor : theme.fontVariantColor}
-    />
-  </IconContainer>
+  <Icon
+    icon={icon}
+    size={size}
+    color={selected === false ? theme.primaryColor : theme.fontVariantColor}
+  />
 );
 
 OptionIcon.defaultProps = {

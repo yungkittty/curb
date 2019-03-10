@@ -1,16 +1,7 @@
 import { connect } from "react-redux";
-/* eslint-disable-next-line */
-import CreateGroup4 from "./create-group-4";
-import { currentUserSelectors } from "../../../../datas/current-user";
+// eslint-disable-next-line
+import CreateGroup3 from "./create-group-3";
 import { appModalActions } from "../../../../datas/app-modal";
-import { groupsActions } from "../../../../datas/groups";
-
-const mapStateToProps = state => {
-  const currentUserId = currentUserSelectors.getCurrentUserId(state);
-  return {
-    currentUserId
-  };
-};
 
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderSteps: payload =>
@@ -22,11 +13,10 @@ const mapDispatchToProps = dispatch => ({
   setAppModalSceneData: payload =>
     dispatch(appModalActions.setAppModalSceneData(payload)),
   setAppModalFooterButton: payload =>
-    dispatch(appModalActions.setAppModalFooterButton(payload)),
-  postGroup: payload => dispatch(groupsActions.postGroupRequest(payload))
+    dispatch(appModalActions.setAppModalFooterButton(payload))
 });
 
 export default connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
-)(CreateGroup4);
+)(CreateGroup3);
