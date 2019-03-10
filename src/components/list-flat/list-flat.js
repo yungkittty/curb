@@ -13,8 +13,7 @@ class ListFlat extends React.Component {
 
   scrollToIndex({ animated = true, index: itemIndex, viewOffset = 0 }) {
     const { getItemLayout, data: itemsData, horizontal } = this.props;
-    const scrollToOffset =
-      getItemLayout(itemsData[itemIndex], itemIndex).offset + viewOffset;
+    const scrollToOffset = getItemLayout(itemsData[itemIndex], itemIndex).offset + viewOffset;
     this.containerScroll.current.scrollTo({
       left: +horizontal && scrollToOffset,
       top: !+horizontal && scrollToOffset,
@@ -25,9 +24,7 @@ class ListFlat extends React.Component {
   renderItem(itemData, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
     const itemParams = { item: itemData, index: itemIndex };
-    const itemProps = {
-      key: keyExtractor ? keyExtractor(itemData, itemIndex) : itemData.key
-    };
+    const itemProps = { key: keyExtractor ? keyExtractor(itemData, itemIndex) : itemData.key };
     return React.cloneElement(renderItem(itemParams), itemProps);
   }
 
@@ -77,10 +74,7 @@ ListFlat.defaultProps = {
 ListFlat.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  contentContainerStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]),
+  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool,

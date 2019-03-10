@@ -9,10 +9,8 @@ import ContainerZipper from "./components/container-zipper";
 class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      containerAnimated: new Animated.Value(-70),
-      isContainerShowed: false
-    };
+    this.state = { containerAnimated: new Animated.Value(-70),
+      isContainerShowed: false };
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: this.moveContainerTo.bind(this),
@@ -50,7 +48,9 @@ class NavigationContainer extends React.Component {
           />
         ) : null}
         <ContainerContainer style={{ translateX: containerAnimated }}>
-          <ContainerContentContainer>{children}</ContainerContentContainer>
+          <ContainerContentContainer>
+            {children}
+          </ContainerContentContainer>
           <ContainerZipper
             {...this.panResponder.panHandlers}
             hitSlop={{ top: 20, right: 20, bottom: 20 }}

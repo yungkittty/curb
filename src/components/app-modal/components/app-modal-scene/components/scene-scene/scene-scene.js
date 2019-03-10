@@ -8,6 +8,8 @@ const SceneScene = ({ scene, ...others }) => (
   </SceneContainer>
 );
 
-SceneScene.propTypes = { scene: PropTypes.func.isRequired };
+SceneScene.defaultProps = { scene: undefined };
+
+SceneScene.propTypes = { scene: PropTypes.func };
 
 export default SceneScene;

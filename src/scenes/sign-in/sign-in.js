@@ -22,7 +22,7 @@ class SignIn extends Component {
         value: "",
         error: undefined
       },
-      loading: false
+      isLoading: false
     };
 
     this.submit = this.submit.bind(this);
@@ -31,10 +31,7 @@ class SignIn extends Component {
     this.validate = this.validate.bind(this);
 
     setAppModalHeaderText({ headerText: t("signIn") });
-    setAppModalFooterButton({
-      footerText: t("signIn"),
-      footerOnClick: this.validate
-    });
+    setAppModalFooterButton({ footerText: t("signIn"), footerOnClick: this.validate });
   }
 
   validate() {
@@ -45,7 +42,7 @@ class SignIn extends Component {
     const { signIn } = this.props;
     const { email, password } = this.state;
     signIn({ email: email.value, password: password.value });
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
   }
 
   checkForm() {
@@ -74,8 +71,8 @@ class SignIn extends Component {
 
   render() {
     const { setAppModalScene, t } = this.props;
-    const { email, password, loading } = this.state;
-    return loading ? (
+    const { email, password, isLoading } = this.state;
+    return isLoading ? (
       <Loader />
     ) : (
       <SignInContainer>

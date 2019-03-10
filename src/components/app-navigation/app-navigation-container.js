@@ -43,8 +43,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  showAppModal: payload => dispatch(appModalActions.showAppModal(payload)),
-  getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload))
+  showAppModal: payload =>
+    dispatch(appModalActions.showAppModal(payload)),
+  getCurrentUser: payload =>
+    dispatch(usersActions.getUserRequest(payload))
 });
 
 AppNavigationContainer.propTypes = {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const SceneContainer = styled(Animated.View)`
   display: flex;
-  flex-grow: 1;
+  flex: 1;
   flex-direction: row;
   width: 200%;
   overflow: hidden;

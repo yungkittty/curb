@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 import { withNamespaces } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
 import CreateGroupTitle from "../../components/create-group-title";
 import CreateGroup4Themes from "./components/create-group-4-themes";
 import CreateGroup4Error from "./components/create-group-4-error";
+import Loader from "../../../../components/loader";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";
 
@@ -18,6 +20,8 @@ class CreateGroup4 extends Component {
       setAppModalScene,
       setAppModalFooterButton
     } = this.props;
+
+    this.state = { isLoading: false };
 
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
@@ -41,6 +45,7 @@ class CreateGroup4 extends Component {
 
     const {
       postGroup,
+      history,
       currentUserId,
       groupName,
       discoverability,
@@ -48,12 +53,15 @@ class CreateGroup4 extends Component {
       theme
     } = this.props;
     postGroup({
+      history,
       creatorId: currentUserId,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
       theme: theme.value
     });
+
+    this.setState({ isLoading: true });
   }
 
   checkForm() {
@@ -83,8 +91,11 @@ class CreateGroup4 extends Component {
       t,
       theme: { value, error }
     } = this.props;
+    const { isLoading } = this.state;
 
-    return (
+    return isLoading ? (
+      <Loader />
+    ) : (
       <CreateGroupContainer>
         <CreateGroupTitle type="h2" weight={700}>
           {t("theme")}
@@ -115,6 +126,8 @@ CreateGroup4.propTypes = {
   setAppModalSceneData: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
+  /* eslint-disable-next-line */
+  history: PropTypes.shape.object,
   groupName: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
@@ -134,4 +147,4 @@ CreateGroup4.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withNamespaces("createGroup")(CreateGroup4);
+export default withRouter(withNamespaces("createGroup")(CreateGroup4));
