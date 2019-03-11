@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import { ThemeProvider } from "styled-components";
-import AppContainer from "./app-container";
+import App from "./app";
 import configureStore from "./configurations/store";
 import configureI18n from "./configurations/internationalisation";
 import configureTheme from "./configurations/theme";
@@ -15,7 +15,7 @@ const Root = () => (
   <Provider store={store}>
     <I18nextProvider i18n={i18n}>
       <ThemeProvider theme={theme}>
-        <AppContainer />
+        <App />
       </ThemeProvider>
     </I18nextProvider>
   </Provider>
