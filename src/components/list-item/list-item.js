@@ -18,7 +18,7 @@ const ListItem = ({
   onClick
 }) => (
   <ItemContainer
-    backgroundColor={backgroundColor}
+    backgroundcolor={backgroundColor}
     selected={selected}
     disabled={disabled}
     onClick={onClick}

@@ -142,7 +142,7 @@ CreateGroup4.propTypes = {
   postGroup: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
   /* eslint-disable-next-line */
-  history: PropTypes.shape.object,
+  history: PropTypes.object.isRequired,
   groupName: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
