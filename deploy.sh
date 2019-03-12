@@ -27,10 +27,10 @@ chmod +x android/gradlew
 cd android && ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease && cd ..
 
 # Copy Android APK to web build
-cp "android/app/build/outputs/apk/release/app-release.apk" "build/static/${HEAD_BRANCH}.apk"
+cp "android/app/build/outputs/apk/release/app-release.apk" "build/static/curb-${HEAD_BRANCH}.apk"
 
 # Send APK to TestFairy
-chmod +x testfairy-uploader.sh && ./testfairy-uploader.sh "build/static/${HEAD_BRANCH}.apk" "$HEAD_BRANCH"
+chmod +x testfairy-uploader.sh && ./testfairy-uploader.sh "build/static/curb-${HEAD_BRANCH}.apk"
 
 # Deploy to Netlify
 NETLIFY_OUTPUT=$(netlify deploy $([[ $HEAD_BRANCH == "develop" ]] && echo "--prod"); echo x)

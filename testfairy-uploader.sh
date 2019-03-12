@@ -18,7 +18,7 @@ TESTERS_GROUPS=
 AUTO_UPDATE="on"
 
 # Use comment field to add release notes. Text will be included in the email sent to testers and in landing pages.
-COMMENT="$2"
+COMMENT=
 
 # locations of various tools
 CURL=curl
