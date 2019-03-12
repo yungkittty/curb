@@ -3,6 +3,8 @@
 # Print executed commands in the terminal
 set -xe
 
+echo $ANDROID_HOME
+
 # Initializing variables
 export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
 
