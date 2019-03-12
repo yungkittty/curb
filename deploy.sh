@@ -5,6 +5,7 @@ set -xe
 
 echo $ANDROID_HOME
 
+sudo apt-get install -y which
 which sdkmanager
 
 # Initializing variables
