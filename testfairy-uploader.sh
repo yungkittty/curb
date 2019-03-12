@@ -50,7 +50,7 @@ verify_settings() {
 	fi
 }
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
 	usage
 	exit 1
 fi
