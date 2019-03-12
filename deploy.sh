@@ -5,6 +5,8 @@ set -xe
 
 echo $ANDROID_HOME
 
+which sdkmanager
+
 # Initializing variables
 export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
 
