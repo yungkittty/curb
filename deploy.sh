@@ -3,10 +3,7 @@
 # Print executed commands in the terminal
 set -xe
 
-echo $ANDROID_HOME
-
-sudo apt-get update && sudo apt-get install -y which
-which sdkmanager
+whereis sdkmanager
 
 # Initializing variables
 export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
