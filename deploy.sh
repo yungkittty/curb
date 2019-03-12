@@ -24,7 +24,7 @@ react-native bundle                                                 \
 --bundle-output android/app/src/main/assets/index.android.bundle    \
 --assets-dest android/app/src/main/res/
 chmod +x android/gradlew
-cd android && ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease && cd ..
+cd android && ./gradlew -q assembleRelease && cd ..
 
 # Copy Android APK to web build
 cp "android/app/build/outputs/apk/release/app-release.apk" "build/static/curb-${HEAD_BRANCH}.apk"
