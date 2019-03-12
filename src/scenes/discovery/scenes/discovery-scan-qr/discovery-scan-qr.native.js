@@ -24,8 +24,8 @@ class DiscoveryScanQr extends React.Component {
     const { hideAppModal } = this.props;
     const { isFlashModeOn } = this.state;
     const { FlashMode } = RNCamera.Constants;
-    const windowWidth = windowDimensions.width;
-    const windowHeight = windowDimensions.height - 75;
+    const modalWidth = windowDimensions.width;
+    const modalHeight = windowDimensions.height - 75;
     return (
       <ScanQrCamera
         style={{ flex: 1 }}
@@ -34,18 +34,18 @@ class DiscoveryScanQr extends React.Component {
         captureAudio={false}
       >
         {() => (
-          <TouchableWithoutFeedback style={{ flex: 1 }} onClick={this.toggleFlashMode}>
+          <TouchableWithoutFeedback style={{ flex: 1 }} onPress={this.toggleFlashMode}>
             <Container
               style={{
                 position: "absolute",
-                left: -windowWidth / 2 + (windowWidth - 200) / 2,
-                top: -windowHeight / 2 + (windowHeight - 200) / 2,
-                right: -windowWidth / 2 + (windowWidth - 200) / 2,
-                bottom: -windowHeight / 2 + (windowHeight - 200) / 2,
-                borderLeftWidth: windowWidth / 2,
-                borderTopWidth: windowHeight / 2,
-                borderRightWidth: windowWidth / 2,
-                borderBottomWidth: windowHeight / 2,
+                left: -modalWidth / 2 + (modalWidth - 200) / 2,
+                top: -modalHeight / 2 + (modalHeight - 200) / 2,
+                right: -modalWidth / 2 + (modalWidth - 200) / 2,
+                bottom: -modalHeight / 2 + (modalHeight - 200) / 2,
+                borderLeftWidth: modalWidth / 2,
+                borderTopWidth: modalHeight / 2,
+                borderRightWidth: modalWidth / 2,
+                borderBottomWidth: modalHeight / 2,
                 borderColor: "rgba(0, 0, 0, 0.25)",
                 backgroundColor: "transparent"
               }}
