@@ -11,4 +11,3 @@ before_install:
   - npm install -g netlify-cli@next
 script:
   - bash deploy.sh
-  
