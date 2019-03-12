@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Print executed commands in the terminal
 set -xe
 
