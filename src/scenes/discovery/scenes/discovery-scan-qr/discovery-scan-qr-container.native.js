@@ -4,7 +4,9 @@ import { appModalActions } from "../../../../datas/app-modal";
 
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderText: payload =>
-    dispatch(appModalActions.setAppModalHeaderText(payload))
+    dispatch(appModalActions.setAppModalHeaderText(payload)),
+  hideAppModal: () =>
+    dispatch(appModalActions.hideAppModal())
 });
 
 export default connect(
