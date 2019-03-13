@@ -24,7 +24,7 @@ matrix:
           - $HOME/.android/build-cache
       before_install:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - nvm install node
+        - nvm install 10.10.0
         - npm install -g react-native-cli
         - npm install
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
@@ -36,10 +36,8 @@ matrix:
 
     - language: objective-c
       os: osx
-      sudo: required
-      node_js: "node"
       before_install:
-        - nvm install node
+        - nvm install 10.10.0
         - npm install -g react-native-cli
         - npm install
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
