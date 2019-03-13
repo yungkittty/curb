@@ -38,8 +38,6 @@ matrix:
     - language: objective-c
       os: osx
       sudo: required
-      xcode_project: ios/curb.xcodeproj
-      xcode_scheme: ios/Release
       node_js: "node"
       before_install:
         - nvm install node
@@ -49,8 +47,8 @@ matrix:
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
       script:
         - cd ios
-        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath ./curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="A1B2C3D4E5"
-        - xcodebuild -exportArchive -archivePath ./curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./curb.ipa
+        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="A1B2C3D4E5"
+        - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath curb.ipa
         - cd ..
         - bash testfairy-uploader.sh ios/curb.ipa
 #    - language: node_js
