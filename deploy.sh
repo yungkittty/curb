@@ -29,7 +29,7 @@ react-native bundle                                                 \
 react-native link
 
 chmod +x android/gradlew
-cd android && ./gradlew -q assembleRelease && cd ..
+cd android && ./gradlew assembleRelease && cd ..
 
 # Copy Android APK to web build
 cp "android/app/build/outputs/apk/release/app-release.apk" "build/static/curb-${HEAD_BRANCH}.apk"
