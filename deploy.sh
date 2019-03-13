@@ -33,8 +33,8 @@ cp "android/app/build/outputs/apk/release/app-release.apk" "build/static/curb-${
 chmod +x testfairy-uploader.sh && ./testfairy-uploader.sh "build/static/curb-${HEAD_BRANCH}.apk"
 
 # Deploy to Netlify
-NETLIFY_OUTPUT=$(netlify deploy $([[ "$HEAD_BRANCH" == "develop" ]] && echo "--prod"); echo x)
-if [[ "$HEAD_BRANCH" != "develop" ]]; then
+NETLIFY_OUTPUT=$(netlify deploy $([[ $HEAD_BRANCH == "develop" ]] && echo "--prod"); echo x)
+if [[ $HEAD_BRANCH != "develop" ]]; then
     DEPLOY_PREVIEW_URL="https://$( echo "${NETLIFY_OUTPUT%x}" | grep -o 'Live Draft Url:.*' | cut -f3- -d/ )"
 
     curl -q -H "Authorization: token ${GITHUB_TOKEN}" -X POST \
