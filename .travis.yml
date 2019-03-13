@@ -49,5 +49,5 @@ matrix:
         - react-native link
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
       script:
-        - cd ios && xcodebuild -project curb.xcodeproj -scheme Release -configuration "ConfigurationName" clean archive -archivePath ./ DEVELOPMENT_TEAM="A1B2C3D4E5" && cd ..
+        - cd ios && xcodebuild -project curb.xcodeproj -list
         - bash testfairy-uploader.sh ios/app-release.ipa
