@@ -72,7 +72,7 @@ DATE=`date`
 /bin/echo -n "Uploading ${APP_FILENAME} to TestFairy.. "
 JSON=$( "${CURL}" -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KEY} -F file="@${APP_FILENAME}" -F comment="${COMMENT}" -F testers-groups="${TESTERS_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy Command Line Uploader ${UPLOADER_VERSION}" )
 
-URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"build_url"\s*:\s*"\([^"]*\)".*/\1/p' )
+URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"app_url"\s*:\s*"\([^"]*\)".*/\1/p' )
 if [ -z "$URL" ]; then
 	echo "FAILED!"
 	echo
@@ -80,7 +80,4 @@ if [ -z "$URL" ]; then
 	exit 1
 fi
 
-echo "OK!"
-echo ${JSON}
-echo "Build was successfully uploaded to TestFairy and is available at:"
 echo ${URL}

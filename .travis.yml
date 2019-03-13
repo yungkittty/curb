@@ -32,7 +32,7 @@ matrix:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - cd ..
-        - bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk
+        - export ANDROID_URL=$(testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk)
 
     - language: objective-c
       os: osx
@@ -47,10 +47,12 @@ matrix:
         - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath curb.ipa
         - cd ..
         - bash testfairy-uploader.sh ios/curb.ipa
-#    - language: node_js
-#      cache: npm
-#      before_script:
-#        - npm install -g netlify-cli@next
-#      script:
-#        - npm run web-build
-#        - bash deploy-netlify.sh
+
+    - language: node_js
+      cache: npm
+      before_script:
+        - npm install -g netlify-cli@next
+      script:
+        - echo $ANDROID_URL
+        - npm run web-build
+        - bash deploy-netlify.sh
