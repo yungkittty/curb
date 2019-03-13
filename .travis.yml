@@ -1,13 +1,50 @@
 dist: trusty
-language: node_js
-node_js:
-  - "node"
 cache: npm
 before_install:
-  - wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && mkdir android-sdk && unzip -qq -d android-sdk sdk.zip && rm -rf sdk.zip
-  - yes | ./android-sdk/tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &>/dev/null
-  - export ANDROID_HOME=$PWD/android-sdk
+  #  - wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && mkdir android-sdk && unzip -qq -d android-sdk sdk.zip && rm -rf sdk.zip
+  #  - yes | ./android-sdk/tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &>/dev/null
+  #  - export ANDROID_HOME=$PWD/android-sdk
   - npm install -g react-native-cli
   - npm install -g netlify-cli@next
-script:
-  - bash deploy.sh
+  - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
+  - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+matrix:
+  include:
+    - language: node_js
+      script:
+        - npm run web-build
+        - bash deploy-netlify.sh
+
+    - language: android
+      jdk: oraclejdk8
+      android:
+        components:
+          - tools
+          - android-27
+          - build-tools-27.0.3
+      script:
+        - react-native link
+        - react-native bundle                                                 \
+          --platform android                                                  \
+          --dev false                                                         \
+          --entry-file index.js                                               \
+          --bundle-output android/app/src/main/assets/index.android.bundle    \
+          --assets-dest android/app/src/main/res/
+        - cd android
+        - ./gradlew assembleRelease -x bundleReleaseJsAndAssets
+
+    - language: objective-c
+      os: osx
+      osx_image: xcode8.3
+      sudo: required
+      xcode_project: ios/curb.xcodeproj
+      xcode_scheme: ios/Release
+      node_js: false
+      env:
+        - TEST='IOS RELEASE BUILD'
+      before_install:
+        - nvm install 9.10.0
+      script:
+        - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle
+        - cd ios
+        - xcodebuild -workspace ios/curb.xcodeproj -scheme Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c; exit ${PIPESTATUS[0]}
