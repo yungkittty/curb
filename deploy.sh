@@ -24,6 +24,8 @@ react-native bundle                                                 \
 --bundle-output android/app/src/main/assets/index.android.bundle    \
 --assets-dest android/app/src/main/res/
 
+ls -la android/app/src/main/res/
+
 chmod +x android/gradlew
 cd android && ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease && cd ..
 
