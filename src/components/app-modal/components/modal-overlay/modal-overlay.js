@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Container from "../../../container";
 import OverlayBlur from "./components/overlay-blur";
 
-const AppModalOverlay = styled(Container)`
+const ModalOverlay = styled(Container)`
   display: flex;
   position: absolute;
   top: 0px;
@@ -13,4 +13,4 @@ const AppModalOverlay = styled(Container)`
   background-color: rgba(0, 0, 0, 0.25);
 `;
 
-export default OverlayBlur(AppModalOverlay);
+export default OverlayBlur(ModalOverlay);

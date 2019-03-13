@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Container from "../../../../../container";
+import Container from "../../../../../../../container";
 
-const HeaderStep = styled(Container)`
+const MiddleStep = styled(Container)`
   width: 10px;
   height: 10px;
   margin: 0px 10px;
@@ -10,4 +10,4 @@ const HeaderStep = styled(Container)`
     enabled ? theme.primaryColor : theme.secondaryColor};
 `;
 
-export default HeaderStep;
+export default MiddleStep;

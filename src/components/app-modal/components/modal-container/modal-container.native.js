@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Container from "../../../container";
 import { windowQueries } from "../../../../configurations/window";
 
-const AppModalContainer = styled(Container)`
+const ModalContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -17,4 +17,4 @@ const AppModalContainer = styled(Container)`
   `};
 `;
 
-export default AppModalContainer;
+export default ModalContainer;

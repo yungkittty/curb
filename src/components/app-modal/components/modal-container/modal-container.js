@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Container from "../../../container";
 
-const AppModalContainer = styled(Container)`
+const ModalContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   width: 700px;
@@ -11,4 +11,4 @@ const AppModalContainer = styled(Container)`
   overflow: hidden;
 `;
 
-export default AppModalContainer;
+export default ModalContainer;
