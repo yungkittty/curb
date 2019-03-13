@@ -2,7 +2,7 @@ dist: trusty
 language: node_js
 node_js:
   - "node"
-before_install:
+before_script:
   - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 matrix:
