@@ -7,18 +7,15 @@ before_install:
   #  - wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && mkdir android-sdk && unzip -qq -d android-sdk sdk.zip && rm -rf sdk.zip
   #  - yes | ./android-sdk/tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27" &>/dev/null
   #  - export ANDROID_HOME=$PWD/android-sdk
+  - npm install -g netlify-cli@next
+  - npm install -g react-native-cli
   - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+script:
+  - npm run web-build
+  - bash deploy-netlify.sh
 matrix:
   include:
-    - language: node_js
-      before_install:
-        - npm install -g netlify-cli@next
-        - npm install -g react-native-cli
-      script:
-        - npm run web-build
-        - bash deploy-netlify.sh
-
     - language: android
       jdk: oraclejdk8
       node_js:
