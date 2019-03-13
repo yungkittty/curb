@@ -1,7 +1,4 @@
 dist: trusty
-language: node_js
-node_js:
-  - "node"
 before_script:
   - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
 matrix:
