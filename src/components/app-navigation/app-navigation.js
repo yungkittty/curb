@@ -9,7 +9,8 @@ import NavigationRule from "./components/navigation-rule";
 import ListFlat from "../list-flat";
 import NavigationListItem from "./components/navigation-list-item";
 import NavigationListFooter from "./components/navigation-list-footer";
-import SignIn from "../../scenes/sign-in";
+// import SignIn from "../../scenes/sign-in";
+import GroupQr from "../../scenes/group/scenes/group-x/scenes/group-qr";
 
 const AppNavigation = ({
   showAppModal,
@@ -25,7 +26,7 @@ const AppNavigation = ({
         icon="sign-in-alt"
         size="medium"
         color={theme.primaryColor}
-        onClick={() => showAppModal({ scene: SignIn })}
+        onClick={() => showAppModal({ scene: GroupQr })}
       />
     ) : (
       <NavigationButtonImage
