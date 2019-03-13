@@ -69,7 +69,6 @@ fi
 # temporary file paths
 DATE=`date`
 
-/bin/echo -n "Uploading ${APP_FILENAME} to TestFairy.. "
 JSON=$( "${CURL}" -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KEY} -F file="@${APP_FILENAME}" -F comment="${COMMENT}" -F testers-groups="${TESTERS_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy Command Line Uploader ${UPLOADER_VERSION}" )
 
 URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"app_url"\s*:\s*"\([^"]*\)".*/\1/p' )
