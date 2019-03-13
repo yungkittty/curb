@@ -13,7 +13,6 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 npm run web-build
 
 # Link RN
-npm install
 react-native link
 
 # Build mobile
@@ -22,9 +21,7 @@ react-native bundle                                                 \
 --dev false                                                         \
 --entry-file index.js                                               \
 --bundle-output android/app/src/main/assets/index.android.bundle    \
---assets-dest android/app/src/main/res/
-
-ls -la android/app/src/main/res/
+--assets-dest android/app/src/main/assets/
 
 chmod +x android/gradlew
 cd android && ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease && cd ..
