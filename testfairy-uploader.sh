@@ -5,7 +5,7 @@
 UPLOADER_VERSION=2.13
 
 # Should email testers about new version. Set to "off" to disable email notifications.
-NOTIFY="on"
+NOTIFY="off"
 
 # Tester Groups that will be notified in case NOTIFY equals "on".
 # When set to "all", all testers in the account will be notified.
