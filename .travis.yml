@@ -32,7 +32,7 @@ matrix:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - cd ..
-        - export ANDROID_URL=$(testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk)
+        - export ANDROID_URL=$(bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk)
 
     - language: objective-c
       os: osx
