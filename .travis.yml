@@ -12,6 +12,7 @@ matrix:
       android:
         components:
           - tools
+          - android-23
           - android-27
           - build-tools-27.0.3
       before_cache:
