@@ -16,17 +16,8 @@ matrix:
         - npm install -g netlify-cli@next
         - npm install -g react-native-cli
         - react-native link
-        - react-native bundle                                                 \
-          --platform android                                                  \
-          --dev false                                                         \
-          --entry-file index.js                                               \
-          --bundle-output android/app/src/main/assets/index.android.bundle    \
-          --assets-dest android/app/src/main/res/
-        - react-native bundle                                                 \
-          --platform ios                                                      \
-          --dev false                                                         \
-          --entry-file index.js                                               \
-          --bundle-output ios/main.jsbundle
+        - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+        - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle
       script:
         - npm run web-build
         - bash deploy-netlify.sh
