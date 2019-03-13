@@ -1,4 +1,7 @@
 dist: trusty
+language: node_js
+node_js:
+  - "node"
 cache: npm
 before_install:
   #  - wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && mkdir android-sdk && unzip -qq -d android-sdk sdk.zip && rm -rf sdk.zip
