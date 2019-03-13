@@ -4,7 +4,6 @@ node_js:
   - "node"
 before_script:
   - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
-  - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 matrix:
   include:
     - language: android
@@ -24,10 +23,10 @@ matrix:
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
       before_install:
+        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - nvm install node
         - npm install -g react-native-cli
         - npm install
-        - react-native link
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       script:
         - cd android
@@ -43,7 +42,6 @@ matrix:
         - nvm install node
         - npm install -g react-native-cli
         - npm install
-        - react-native link
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
       script:
         - cd ios
