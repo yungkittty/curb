@@ -30,7 +30,7 @@ matrix:
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       script:
         - cd android
-        - ./gradlew assembleRelease -x bundleReleaseJsAndAssets
+        - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - bash testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk
 
     - language: objective-c
@@ -50,4 +50,4 @@ matrix:
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
       script:
         - cd ios
-        - xcodebuild -workspace ios/curb.xcodeproj -scheme Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c; exit ${PIPESTATUS[0]}
+        - xcodebuild -project ios/curb.xcodeproj -scheme Release -configuration "ConfigurationName" clean archive -archivePath ios/ DEVELOPMENT_TEAM="A1B2C3D4E5"
