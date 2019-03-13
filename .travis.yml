@@ -20,6 +20,8 @@ matrix:
 
     - language: android
       jdk: oraclejdk8
+      node_js:
+        - "node"
       android:
         components:
           - tools
