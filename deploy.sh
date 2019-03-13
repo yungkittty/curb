@@ -13,6 +13,7 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 npm run web-build
 
 # Link RN
+npm install
 react-native link
 
 # Build mobile
