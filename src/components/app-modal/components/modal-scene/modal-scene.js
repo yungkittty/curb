@@ -4,7 +4,7 @@ import SceneContainer from "./components/scene-container";
 import SceneScene from "./components/scene-scene";
 import SceneSlide from "./components/scene-slide";
 
-const AppModalScene = ({
+const ModalScene = ({
   forwardedRef,
   sceneLeftKey,
   sceneLeft,
@@ -19,7 +19,7 @@ const AppModalScene = ({
   </SceneContainer>
 );
 
-AppModalScene.defaultProps = {
+ModalScene.defaultProps = {
   forwardedRef: undefined,
   sceneLeftKey: undefined,
   sceneLeft: undefined,
@@ -28,7 +28,7 @@ AppModalScene.defaultProps = {
   sceneData: undefined
 };
 
-AppModalScene.propTypes = {
+ModalScene.propTypes = {
   // eslint-disable-next-line
   forwardedRef: PropTypes.object,
   sceneLeftKey: PropTypes.string,
@@ -41,6 +41,6 @@ AppModalScene.propTypes = {
 
 export default SceneSlide(
   React.forwardRef((props, forwardedRef) => (
-    <AppModalScene {...props} forwardedRef={forwardedRef} />
+    <ModalScene {...props} forwardedRef={forwardedRef} />
   ))
 );

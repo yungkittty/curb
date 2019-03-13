@@ -2,7 +2,7 @@ import React from "react";
 import { Keyboard } from "react-native";
 import FooterButtonText from "./components/footer-button-text";
 
-class AppModalFooter extends React.Component {
+class ModalFooter extends React.Component {
   constructor(props) {
     super(props);
     this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow",
@@ -23,4 +23,4 @@ class AppModalFooter extends React.Component {
   }
 }
 
-export default AppModalFooter;
+export default ModalFooter;

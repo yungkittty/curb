@@ -1,12 +1,10 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import HeaderContainer from "./components/header-container";
 import HeaderButtonIcon from "./components/header-button-icon";
-import Text from "../../../text";
-import HeaderStep from "./components/header-step";
+import HeaderMiddle from "./components/header-middle";
 
-const AppModalHeader = ({
+const ModalHeader = ({
   text,
   currentStep,
   steps,
@@ -23,14 +21,7 @@ const AppModalHeader = ({
         onClick={leftOnClick}
       />
     ) : null}
-    {text ? (
-      <Text type="h3" weight={600}>
-        {text}
-      </Text>
-    ) : null}
-    {steps ? _.times(steps, index => (
-      <HeaderStep key={index} enabled={index >= currentStep} />
-    )) : null}
+    <HeaderMiddle text={text} currentStep={currentStep} steps={steps} />
     {rightIcon ? (
       <HeaderButtonIcon
         style={{ right: 0 }}
@@ -41,15 +32,15 @@ const AppModalHeader = ({
   </HeaderContainer>
 );
 
-AppModalHeader.defaultProps = {
+ModalHeader.defaultProps = {
   text: undefined,
   currentStep: undefined,
   steps: undefined,
   leftIcon: undefined,
-  leftOnClick: undefined,
+  leftOnClick: undefined
 };
 
-AppModalHeader.propTypes = {
+ModalHeader.propTypes = {
   text: PropTypes.string,
   currentStep: PropTypes.number,
   steps: PropTypes.number,
@@ -59,4 +50,4 @@ AppModalHeader.propTypes = {
   rightOnClick: PropTypes.func.isRequired
 };
 
-export default AppModalHeader;
+export default ModalHeader;
