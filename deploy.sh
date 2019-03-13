@@ -1,10 +1,7 @@
 #!/bin/bash
 
-
 # Print executed commands in the terminal
 set -xe
-
-whereis sdkmanager
 
 # Initializing variables
 export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
@@ -27,7 +24,7 @@ react-native bundle                                                 \
 --assets-dest android/app/src/main/res/
 
 chmod +x android/gradlew
-cd android && ./gradlew assembleRelease && cd ..
+cd android && ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease && cd ..
 
 # Copy Android APK to web build
 cp "android/app/build/outputs/apk/release/app-release.apk" "build/static/curb-${HEAD_BRANCH}.apk"
