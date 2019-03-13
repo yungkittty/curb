@@ -1,15 +1,15 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import Text from "../../../../../text";
+import MiddleTitle from "./components/middle-title";
 import MiddleStep from "./components/middle-step";
 
 const HeaderMiddle = ({ text, currentStep, steps }) => (
   <React.Fragment>
     {text ? (
-      <Text type="h3" weight={600}>
+      <MiddleTitle type="h3" weight={600}>
         {text}
-      </Text>
+      </MiddleTitle>
     ) : null}
     {steps ? _.times(steps, index => (
       <MiddleStep key={index} enabled={index >= currentStep} />
