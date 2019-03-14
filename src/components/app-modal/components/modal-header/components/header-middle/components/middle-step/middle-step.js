@@ -4,10 +4,10 @@ import Container from "../../../../../../../container";
 const MiddleStep = styled(Container)`
   width: 10px;
   height: 10px;
-  margin: 0px 10px;
+  margin: 0px 9px;
   border-radius: 5px;
   background-color: ${({ enabled, theme }) =>
-    enabled ? theme.primaryColor : theme.secondaryColor};
+    enabled ? theme.secondaryColor : theme.primaryColor};
 `;
 
 export default MiddleStep;
