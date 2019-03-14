@@ -5,14 +5,14 @@
 UPLOADER_VERSION=2.13
 
 # Should email testers about new version. Set to "off" to disable email notifications.
-NOTIFY="off"
+NOTIFY="on"
 
 # Tester Groups that will be notified in case NOTIFY equals "on".
 # When set to "all", all testers in the account will be notified.
 # In order to notify specific groups, create those groups in https://app.testfairy.com/testers/ 
 # In case of more than one group seperate by comma. Example "family,friends"
 # This param is mandatory in case NOTIFY is on.
-TESTERS_GROUPS=
+TESTERS_GROUPS="echo $([[ "$HEAD_BRANCH" == "develop" ]] && echo "develop" || echo "team")"
 
 # If AUTO_UPDATE is "on" users of older versions will be prompt to update to this build next time they run the app
 AUTO_UPDATE="on"
