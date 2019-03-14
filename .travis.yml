@@ -7,55 +7,53 @@ before_script:
 jobs:
   include:
     - stage: build mobile
-      - language: android
-        jdk: oraclejdk8
-        android:
-          components:
-            - tools
-            - android-23
-            - android-27
-            - build-tools-27.0.3
-        before_cache:
-          - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-          - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-        cache:
-          directories:
-            - $HOME/.gradle/caches/
-            - $HOME/.gradle/wrapper/
-            - $HOME/.android/build-cache
-        before_install:
-          - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-          - nvm install 10.10.0
-          - npm install -g react-native-cli
-          - npm install
-          - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
-        script:
-          - cd android
-          - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
-          - cd ..
-          - export ANDROID_URL=$(bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk)
-    
+      language: android
+      jdk: oraclejdk8
+      android:
+        components:
+          - tools
+          - android-23
+          - android-27
+          - build-tools-27.0.3
+      before_cache:
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+          - $HOME/.gradle/wrapper/
+          - $HOME/.android/build-cache
+      before_install:
+        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+        - nvm install 10.10.0
+        - npm install -g react-native-cli
+        - npm install
+        - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+      script:
+        - cd android
+        - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
+        - cd ..
+        - export ANDROID_URL=$(bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk)
     - stage: build mobile
-      - language: objective-c
-        os: osx
-        before_install:
-          - nvm install 10.10.0
-          - npm install -g react-native-cli
-          - npm install
-          - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
-        script:
-          - cd ios
-          - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="A1B2C3D4E5"
-          - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath curb.ipa
-          - cd ..
-          - bash testfairy-uploader.sh ios/curb.ipa
-
+      language: objective-c
+      os: osx
+      before_install:
+        - nvm install 10.10.0
+        - npm install -g react-native-cli
+        - npm install
+        - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
+      script:
+        - cd ios
+        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="A1B2C3D4E5"
+        - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath curb.ipa
+        - cd ..
+        - bash testfairy-uploader.sh ios/curb.ipa
     - stage: build web
-      - language: node_js
-        cache: npm
-        before_script:
-          - npm install -g netlify-cli@next
-        script:
-          - echo $ANDROID_URL
-          - npm run web-build
-          - bash deploy-netlify.sh
+      language: node_js
+      cache: npm
+      before_script:
+        - npm install -g netlify-cli@next
+      script:
+        - echo $ANDROID_URL
+        - npm run web-build
+        - bash deploy-netlify.sh
