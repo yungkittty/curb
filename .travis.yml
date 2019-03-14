@@ -34,8 +34,7 @@ jobs:
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - cd ..
         - export ANDROID_URL=$(bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk)
-    - stage: build mobile
-      language: objective-c
+    - language: objective-c
       os: osx
       before_install:
         - nvm install 10.10.0
