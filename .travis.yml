@@ -30,12 +30,10 @@ matrix:
         - react-native link
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       script:
-        - zip -q -x \*.git\* -x "/\node_modules/*" -x "/\build/*" -r curb.zip .
-        - curl -s -X POST -F file=@curb.zip -o android/curb.apk -m 780 51.38.49.133:8997
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - cd ..
-        - export ANDROID_URL=$(bash testfairy-uploader.sh android/curb.apk)
+        - export ANDROID_URL=$(bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk)
 
     - language: objective-c
       os: osx
