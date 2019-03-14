@@ -27,7 +27,6 @@ matrix:
         - nvm install 10.10.0
         - npm install -g react-native-cli
         - npm install
-        - react-native link
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       script:
         - cd android
