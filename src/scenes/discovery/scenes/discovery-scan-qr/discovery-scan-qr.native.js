@@ -31,7 +31,6 @@ class DiscoveryScanQr extends React.Component {
     const modalHeight = windowDimensions.height - 75;
     const modalWidthOffset = (modalWidth - 250) / 2;
     const modalHeightOffset = (modalHeight - 250) / 2;
-    const { primaryColor, secondaryColor } = theme;
     return (
       <ScanQrCamera
         style={{ flex: 1 }}
@@ -76,11 +75,12 @@ class DiscoveryScanQr extends React.Component {
               <Icon
                 icon="bolt"
                 size="medium"
-                color={isFlashModeOn ? primaryColor : secondaryColor}
+                color={theme.primaryColor}
                 style={{
                   position: "absolute",
                   left: modalWidth / 2 - 10,
-                  bottom: modalHeightOffset / 2 - 10
+                  bottom: modalHeightOffset / 2 - 10,
+                  opacity: isFlashModeOn ? 1 : 0.5
                 }}
               />
               <ScanQrCorner
