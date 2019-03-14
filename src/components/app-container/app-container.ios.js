@@ -4,10 +4,11 @@ import Container from "../container";
 import { windowDimensions } from "../../configurations/window";
 
 const AppContainer = styled(Container)`
-  width: ${windowDimensions.width};
-  height: ${windowDimensions.height};
+  width: 100%;
+  height: 100%;
   margin-top: ${Dimensions.get("window").height - windowDimensions.height};
   background-color: ${props => props.theme.backgroundColor};
+  overflow: hidden;
 `;
 
 export default AppContainer;
