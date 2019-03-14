@@ -1,7 +1,8 @@
 import _ from "lodash";
 import React from "react";
-import { Animated, Dimensions, Easing } from "react-native";
 import PropTypes from "prop-types";
+import { Animated, Easing } from "react-native";
+import { windowDimensions } from "../../../../../../configurations/window";
 
 const SceneSlide = WrappedComponent => {
   class _SceneSlide extends React.Component {
@@ -23,8 +24,8 @@ const SceneSlide = WrappedComponent => {
       const { scene, sceneDirection } = this.props;
       if (scene === prevScene) return;
       const { wrappedComponentAnimated } = this.state;
-      const { width: X } = Dimensions.get("window");
-      wrappedComponentAnimated.setValue(sceneDirection > 0 ? 0 : -X);
+      const { width: windowWidth } = windowDimensions;
+      wrappedComponentAnimated.setValue(sceneDirection > 0 ? 0 : -windowWidth);
       const { sceneAlt: prevSceneAlt } = this.state;
       const sceneAlt =
         sceneDirection === this.prevSceneDirection
@@ -40,7 +41,7 @@ const SceneSlide = WrappedComponent => {
       },
       () => setTimeout(() => {
         Animated.timing(wrappedComponentAnimated, {
-          toValue: sceneDirection > 0 ? -X : 0,
+          toValue: sceneDirection > 0 ? -windowWidth : 0,
           easing: Easing.inOut(Easing.quad),
           duration: 450,
           useNativeDriver: true
