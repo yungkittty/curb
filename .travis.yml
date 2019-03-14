@@ -26,8 +26,8 @@ jobs:
       before_install:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - nvm install 10.10.0
-        - npm install -g react-native-cli
         - npm install
+        - npm install -g react-native-cli
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       script:
         - cd android
@@ -38,8 +38,8 @@ jobs:
       os: osx
       before_install:
         - nvm install 10.10.0
-        - npm install -g react-native-cli
         - npm install
+        - npm install -g react-native-cli
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
       script:
         - cd ios
