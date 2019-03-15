@@ -15,11 +15,11 @@ import Group from "./scenes/group";
 import SignIn from "./scenes/sign-in";
 import SignUp from "./scenes/sign-up";
 
-const App = ({ currentUserToken }) =>
-  isMobile ? (
-    <AppDownload />
-  ) : (
-    <Router>
+const App = ({ currentUserToken }) => (
+  <Router>
+    {{ isMobile } ? (
+      <AppDownload />
+    ) : (
       <React.Fragment>
         <AppContainer>
           <AppNavigation />
@@ -44,8 +44,9 @@ const App = ({ currentUserToken }) =>
           }
         />
       </React.Fragment>
-    </Router>
-  );
+    )}
+  </Router>
+);
 
 App.propTypes = { currentUserToken: PropTypes.string.isRequired };
 

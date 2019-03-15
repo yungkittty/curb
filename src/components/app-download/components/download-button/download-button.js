@@ -7,18 +7,18 @@ import ButtonIcon from "./components/button-icon";
 import Text from "../../../text";
 
 const DownloadButton = ({ t, theme }) => (
-  <a
+  <ButtonContainer
     style={{ textDecoration: "initial" }}
-    href={`/static/curb-${process.env.HEAD_BRANCH}.apk`}
+    onClick={`/curb.apk`}
     download
   >
-    <ButtonContainer>
+    <React.Fragment>
       <ButtonIcon icon="cloud-download-alt" color={theme.backgroundColor} />
       <Text style={{ color: theme.backgroundColor }}>
         {t("downloadButton")}
       </Text>
-    </ButtonContainer>
-  </a>
+    </React.Fragment>
+  </ButtonContainer>
 );
 
 DownloadButton.propTypes = {
