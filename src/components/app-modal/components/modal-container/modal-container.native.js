@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Container from "../../../container";
-import { screenWidthsMedias } from "../../../../configurations/screen";
+import { windowQueries } from "../../../../configurations/window";
 
 const ModalContainer = styled(Container)`
   display: flex;
@@ -10,7 +10,7 @@ const ModalContainer = styled(Container)`
   background-color: ${props => props.theme.backgroundColor};
   overflow: hidden;
 
-  ${screenWidthsMedias.large`
+  ${windowQueries.large`
     width: 700px;
     height: 740px;
     border-radius: 25px;
