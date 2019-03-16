@@ -8,7 +8,7 @@ const DownloadContainer = styled(Container)`
   padding: 20px;
   align-items: center;
   justify-content: center;
-  flex-flow: column;
+  flex-direction: column;
 `;
 
 export default DownloadContainer;

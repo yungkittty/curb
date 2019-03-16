@@ -4,7 +4,7 @@ import validation from "./cn-validation";
 import signIn from "./cn-sign-in";
 import signUp from "./cn-sign-up";
 import discovery from "./cn-discovery";
-import downloadApp from "./cn-download-app";
+import appDownload from "./cn-app-download";
 
 export default {
   common,
@@ -13,5 +13,5 @@ export default {
   signIn,
   signUp,
   discovery,
-  downloadApp
+  appDownload
 };

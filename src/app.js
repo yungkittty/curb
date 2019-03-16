@@ -17,7 +17,7 @@ import SignUp from "./scenes/sign-up";
 
 const App = ({ currentUserToken }) => (
   <Router>
-    {{ isMobile } ? (
+    {isMobile ? (
       <AppDownload />
     ) : (
       <React.Fragment>
