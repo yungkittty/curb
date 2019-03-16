@@ -44,7 +44,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "metro-react-native-babel-preset": "^0.53.1",
+    "metro-react-native-babel-preset": "^0.49.2",
     "prettier": "^1.14.2",
     "redux-devtools-extension": "^2.13.8"
   }
