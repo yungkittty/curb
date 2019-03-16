@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Container from "../../../../../../components/container";
-import QrGroupHeader from "./components/qr-group-header";
-import QrQr from "./components/qr-qr";
+import QrCode from "react-qr-code";
+import Text from "../../../../../../components/text";
+import QrContainer from "./components/qr-container";
+import QrHeader from "./components/qr-group-header";
+import QrImage from "./components/qr-image";
 
 class GroupQr extends React.Component {
   constructor(props) {
@@ -12,24 +14,32 @@ class GroupQr extends React.Component {
   }
 
   render() {
-    // 507f1f77bcf86cd799439011?token=507f1f77bcf86cd799439011
-    const currentGroupId = "507f1f77bcf86cd799439011";
-    const currentGroupName = "Group";
-    const currentGroupAvatarUrl =
-      "https://image.noelshack.com/fichiers/2019/11/4/1552560029-trapeze-mob-detour-resize.png";
-    const isCurrentGroupPublic = true;
-    const currentGroupToken = "507f1f77bcf86cd799439011";
+    const {
+      currentGroupId,
+      currentGroupName,
+      currentGroupAvatarUrl,
+      currentGroupStatus,
+      currentGroupToken = ""
+    } = this.props;
+
     return (
-      <Container style={{ flex: 1, textAlign: "center" }}>
-        <QrGroupHeader src={currentGroupAvatarUrl} name={currentGroupName} />
-        <QrQr
+      <QrContainer>
+        <QrHeader>
+          <QrImage
+            src={`${process.env.REACT_APP_API_URL}${currentGroupAvatarUrl}`}
+          />
+          <Text type="h2" weight={700} style={{ textAlign: "center" }}>
+            {currentGroupName}
+          </Text>
+        </QrHeader>
+        <QrCode
           value={
             currentGroupId +
-            (isCurrentGroupPublic ? "" : `?token=${currentGroupToken}`)
+            (currentGroupStatus ? "" : `?token=${currentGroupToken}`)
           }
           size={240}
         />
-      </Container>
+      </QrContainer>
     );
   }
 }
@@ -39,5 +49,3 @@ GroupQr.propTypes = {
 };
 
 export default GroupQr;
-
-// langue : check discovery
