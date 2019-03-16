@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Container from "../../../../../../components/container";
+import QrGroupHeader from "./components/qr-group-header";
 import QrQr from "./components/qr-qr";
 
 class GroupQr extends React.Component {
@@ -12,14 +13,22 @@ class GroupQr extends React.Component {
 
   render() {
     // 507f1f77bcf86cd799439011?token=507f1f77bcf86cd799439011
-    const currentGroupId = "";
-    const currentGroupName = "";
-    const currentGroupAvatarUrl = "";
+    const currentGroupId = "507f1f77bcf86cd799439011";
+    const currentGroupName = "Group";
+    const currentGroupAvatarUrl =
+      "https://image.noelshack.com/fichiers/2019/11/4/1552560029-trapeze-mob-detour-resize.png";
     const isCurrentGroupPublic = true;
-    const currentGroupToken = "";
+    const currentGroupToken = "507f1f77bcf86cd799439011";
     return (
-      <Container style={{ flex: 1 }}>
-        <QrQr />
+      <Container style={{ flex: 1, textAlign: "center" }}>
+        <QrGroupHeader src={currentGroupAvatarUrl} name={currentGroupName} />
+        <QrQr
+          value={
+            currentGroupId +
+            (isCurrentGroupPublic ? "" : `?token=${currentGroupToken}`)
+          }
+          size={240}
+        />
       </Container>
     );
   }
@@ -32,6 +41,3 @@ GroupQr.propTypes = {
 export default GroupQr;
 
 // langue : check discovery
-
-// Recup id group + potentiellement token [idgroup]?token=[token]
-// recuperer nom de groupe et urlimage
