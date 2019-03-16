@@ -12,7 +12,11 @@ const HeaderMiddle = ({ text, currentStep, steps }) => (
       </MiddleTitle>
     ) : null}
     {steps ? _.times(steps, index => (
+<<<<<<< HEAD
       <MiddleStep key={index} enabled={index >= currentStep} />
+=======
+      <MiddleStep key={index} enabled={index < currentStep} />
+>>>>>>> d0558f038b1ad2409f7751c2a5eb2a97f11e5d16
     )) : null}
   </React.Fragment>
 );

@@ -1,11 +1,24 @@
+<<<<<<< HEAD
 import React from "react";
 import PropTypes from "prop-types";
 import { Dimensions, NativeModules/* , Keyboard */ } from "react-native";
 import { withTheme } from "styled-components";
+=======
+import { Dimensions } from "react-native";
+import styled from "styled-components";
+>>>>>>> d0558f038b1ad2409f7751c2a5eb2a97f11e5d16
 import Container from "../container";
+import { windowDimensions } from "../../configurations/window";
 
-const { StatusBarManager } = NativeModules;
+const AppContainer = styled(Container)`
+  width: 100%;
+  height: 100%;
+  margin-top: ${Dimensions.get("window").height - windowDimensions.height};
+  background-color: ${props => props.theme.backgroundColor};
+  overflow: hidden;
+`;
 
+<<<<<<< HEAD
 // https://stackoverflow.com/a/49718504
 
 class AppContainer extends React.Component {
@@ -67,3 +80,6 @@ AppContainer.propTypes = {
 };
 
 export default withTheme(AppContainer);
+=======
+export default AppContainer;
+>>>>>>> d0558f038b1ad2409f7751c2a5eb2a97f11e5d16

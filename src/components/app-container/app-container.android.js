@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import PropTypes from "prop-types";
 import { Dimensions, StatusBar/* , Keyboard */ } from "react-native";
@@ -19,6 +20,17 @@ class AppContainer extends React.Component {
       statusBarHeight
     };
   }
+=======
+import styled from "styled-components";
+import Container from "../container";
+
+const AppContainer = styled(Container)`
+  width: 100%;
+  height: 100%;
+  background-color: ${props => props.theme.backgroundColor};
+  overflow: hidden;
+`;
+>>>>>>> d0558f038b1ad2409f7751c2a5eb2a97f11e5d16
 
   /* componentWillUnmount() {
     this.keyboardDidShowListener.remove();
