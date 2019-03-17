@@ -35,7 +35,7 @@ jobs:
       osx_image: xcode10.1
       before_script:
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
-        - security unlock-keychain /Users/travis/Library/Keychains/login.keychain-db
+        - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
         - cd ios
         - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="9478G9T3JY"
