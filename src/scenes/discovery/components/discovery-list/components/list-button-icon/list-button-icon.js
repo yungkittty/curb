@@ -3,10 +3,7 @@ import ButtonIcon from "../../../../../../components/button-icon";
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33
 
-const ListButtonIcon = styled(ButtonIcon).attrs(props => ({
-  size: "small",
-  color: props.theme.secondaryVariantColor
-}))`
+const ListButtonIcon = styled(ButtonIcon).attrs(props => ({ size: "small", color: props.theme.secondaryVariantColor }))`
   position: absolute;
   top: 30px;
   z-index: 4;

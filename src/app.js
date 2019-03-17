@@ -1,47 +1,29 @@
 import React from "react";
-import PropTypes from "prop-types";
 import AppContainer from "./components/app-container";
 import AppNavigation from "./components/app-navigation";
+import AppModal from "./components/app-modal";
 import Router from "./components/router";
-import ModalSwitch from "./components/modal-switch";
-import ModalRoute from "./components/modal-route";
+import Switch from "./components/switch";
 import Route from "./components/route";
-import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
-import SignIn from "./scenes/sign-in";
-import SignUp from "./scenes/sign-up";
 
-const App = ({ currentUserToken }) => (
+const App = () => (
   <Router>
     <React.Fragment>
       <AppContainer>
         <AppNavigation />
-        <ModalSwitch>
+        <Switch>
           <Route exact path="/" component={Discovery} />
           <Route path="/users/:id" component={User} />
           <Route path="/groups/:id" component={Group} />
           <Route />
-        </ModalSwitch>
+        </Switch>
       </AppContainer>
-      <Route
-        path="/sign-(in|up)"
-        component={props =>
-          !currentUserToken ? (
-            <React.Fragment>
-              <ModalRoute {...props} path="/sign-in" component={SignIn} />
-              <ModalRoute {...props} path="/sign-up" component={SignUp} />
-            </React.Fragment>
-          ) : (
-            <Redirect to="/" />
-          )
-        }
-      />
+      <AppModal />
     </React.Fragment>
   </Router>
 );
-
-App.propTypes = { currentUserToken: PropTypes.string.isRequired };
 
 export default App;

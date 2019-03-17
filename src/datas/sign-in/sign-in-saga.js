@@ -1,5 +1,6 @@
 import { all, takeLatest, select, call, put } from "redux-saga/effects";
 import { currentUserSelectors } from "../current-user";
+import appModalActions from "../app-modal/app-modal-actions";
 import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
 import signInApi from "./sign-in-api";
@@ -8,6 +9,7 @@ function* signInRequestSaga(action) {
   try {
     const { data: payload } = yield call(signInApi.signIn, action.payload);
     yield put(signInActions.signInSuccess(payload));
+    yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signInActions.signInFailure(error));
   }
