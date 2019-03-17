@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import Loader from "../../components/loader";
 import SignInContainer from "./components/sign-in-container";
+// eslint-disable-next-line
 import SignInRedirect from "./components/sign-in-redirect";
 import SignInForm from "./components/sign-in-form";
 
@@ -10,7 +11,7 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
 
-    const { t, setTitle, setButtonTitle, setButtonClick } = props;
+    const { setAppModalHeaderText, setAppModalFooterButton, t } = props;
 
     this.state = {
       email: {
@@ -21,7 +22,7 @@ class SignIn extends Component {
         value: "",
         error: undefined
       },
-      loading: false
+      isLoading: false
     };
 
     this.submit = this.submit.bind(this);
@@ -29,9 +30,8 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setTitle(t("signIn"));
-    setButtonTitle(t("signIn"));
-    setButtonClick(this.validate);
+    setAppModalHeaderText({ headerText: t("signIn") });
+    setAppModalFooterButton({ footerText: t("signIn"), footerOnClick: this.validate });
   }
 
   validate() {
@@ -42,7 +42,7 @@ class SignIn extends Component {
     const { signIn } = this.props;
     const { email, password } = this.state;
     signIn({ email: email.value, password: password.value });
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
   }
 
   checkForm() {
@@ -70,8 +70,9 @@ class SignIn extends Component {
   }
 
   render() {
-    const { email, password, loading } = this.state;
-    return loading ? (
+    const { setAppModalScene, t } = this.props;
+    const { email, password, isLoading } = this.state;
+    return isLoading ? (
       <Loader />
     ) : (
       <SignInContainer>
@@ -80,18 +81,18 @@ class SignIn extends Component {
           password={password}
           onChange={this.handleChange}
         />
-        <SignInRedirect />
+        <SignInRedirect setAppModalScene={setAppModalScene} t={t} />
       </SignInContainer>
     );
   }
 }
 
 SignIn.propTypes = {
-  t: PropTypes.func.isRequired,
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired
 };
 
 export default withNamespaces("signIn")(SignIn);
