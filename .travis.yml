@@ -2,7 +2,6 @@ before_install:
   - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - nvm install 10.10.0
   - npm install
-  - npm install -g react-native-cli
 jobs:
   include:
     - stage: Build Web
@@ -30,6 +29,8 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
+      install:
+        - npm install -g react-native-cli
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
@@ -42,6 +43,8 @@ jobs:
       language: objective-c
       os: osx
       osx_image: xcode10.1
+      install:
+        - npm install -g react-native-cli
       before_script:
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
