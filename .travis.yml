@@ -11,7 +11,8 @@ cache:
     - $HOME/.android/build-cache
 before_install:
   - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
-  - wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && mkdir /lib/android-sdk && unzip -qq -d /lib/android-sdk sdk.zip && rm -rf sdk.zip && yes | /lib/android-sdk/tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27"
+  - ls /
+  - wget -q -O sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && mkdir /Library/android-sdk && unzip -qq -d /Library/android-sdk sdk.zip && rm -rf sdk.zip && yes | /lib/android-sdk/tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27"
   - export ANDROID_HOME=/lib/android-sdk
   - nvm install 10.10.0
   - npm install
