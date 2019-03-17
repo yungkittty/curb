@@ -46,7 +46,7 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
+        - eval "$(paste -s -d ' ' .env.production) react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets"
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
         - cd ios
