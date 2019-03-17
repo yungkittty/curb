@@ -5,7 +5,15 @@ before_install:
   - npm install -g react-native-cli
 jobs:
   include:
-    - stage: Build
+    - stage: Build Web
+      language: node_js
+      cache: npm
+      install:
+        - npm install -g netlify-cli@next
+      script:
+        - npm run web-build
+        - bash deploy-netlify.sh
+    - stage: Build Android
       language: android
       jdk: oraclejdk8
       android:
@@ -30,7 +38,8 @@ jobs:
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - cd ..
         - bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk
-    - language: objective-c
+    - stage: Build iOS
+      language: objective-c
       os: osx
       osx_image: xcode10.1
       before_script:
@@ -42,10 +51,3 @@ jobs:
         - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - cd ..
         - bash testfairy-uploader.sh ios/export/curb.ipa
-    - language: node_js
-      cache: npm
-      install:
-        - npm install -g netlify-cli@next
-      script:
-        - npm run web-build
-        - bash deploy-netlify.sh
