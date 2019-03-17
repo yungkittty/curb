@@ -1,7 +1,7 @@
 os: osx
 osx_image: xcode10.1
 language: android
-jdk: oraclejdk8
+jdk: oraclejdk9
 android:
   components:
     - tools
