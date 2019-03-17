@@ -1,5 +1,8 @@
 before_install:
   - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
+  - nvm install 10.10.0
+  - npm install
+  - npm install -g react-native-cli
 jobs:
   include:
     - stage: build mobile
@@ -21,9 +24,6 @@ jobs:
           - $HOME/.android/build-cache
       before_install:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - nvm install 10.10.0
-        - npm install
-        - npm install -g react-native-cli
         - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
       script:
         - cd android
@@ -34,9 +34,6 @@ jobs:
       os: osx
       osx_image: xcode10.1
       before_install:
-        - nvm install 10.10.0
-        - npm install
-        - npm install -g react-native-cli
         - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
       script:
         - cd ios
@@ -47,7 +44,7 @@ jobs:
     - stage: build web
       language: node_js
       cache: npm
-      before_script:
+      install:
         - npm install -g netlify-cli@next
       script:
         - npm run web-build
