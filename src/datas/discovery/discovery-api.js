@@ -2,7 +2,7 @@ import axios from "axios";
 
 const discoveryApi = {
   getDiscovery: ({ count }) =>
-    axios.get(`https://api.curb-app.com/groups?count=${count}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/groups?count=${count}`)
 };
 
 export default discoveryApi;

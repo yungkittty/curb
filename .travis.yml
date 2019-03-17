@@ -36,7 +36,7 @@ jobs:
         - eval "$(paste -s -d ' ' .env.production) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
       script:
         - cd android
-        - eval "$(paste -s -d ' ' ../.env.production) ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease"
+        - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - cd ..
         - bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk
     - stage: Build iOS
