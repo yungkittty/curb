@@ -33,10 +33,10 @@ jobs:
         - npm install -g react-native-cli
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - eval \"$(paste -s -d ' ' .env.production) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/\"
+        - eval "$(paste -s -d ' ' .env.production) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
       script:
         - cd android
-        - eval \"$(paste -s -d ' ' ../.env.production) ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease \"
+        - eval "$(paste -s -d ' ' ../.env.production) ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease"
         - cd ..
         - bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk
     - stage: Build iOS
