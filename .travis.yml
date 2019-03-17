@@ -5,7 +5,7 @@ before_install:
   - npm install -g react-native-cli
 jobs:
   include:
-    - stage: build mobile
+    - stage: Build mobile
       language: android
       jdk: oraclejdk8
       android:
