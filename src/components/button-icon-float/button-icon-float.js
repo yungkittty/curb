@@ -3,10 +3,7 @@ import ButtonIcon from "../button-icon";
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33
 
-const ButtonIconFloat = styled(ButtonIcon).attrs(props => ({
-  size: "medium",
-  color: props.theme.secondaryVariantColor
-}))`
+const ButtonIconFloat = styled(ButtonIcon).attrs(props => ({ size: "medium", color: props.theme.secondaryVariantColor }))`
   position: fixed;
   right: 30px;
   bottom: 30px;
