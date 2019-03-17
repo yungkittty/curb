@@ -5,7 +5,7 @@ before_install:
   - npm install -g react-native-cli
 jobs:
   include:
-    - stage: Build mobile
+    - stage: Build
       language: android
       jdk: oraclejdk8
       android:
@@ -38,12 +38,11 @@ jobs:
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
         - cd ios
-        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive DEVELOPMENT_TEAM="9478G9T3JY"
+        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - cd ..
         - bash testfairy-uploader.sh ios/export/curb.ipa
-    - stage: Build web
-      language: node_js
+    - language: node_js
       cache: npm
       install:
         - npm install -g netlify-cli@next
