@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
@@ -16,7 +16,7 @@ class SignUp2 extends Component {
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
       setAppModalScene,
-      setAppModalFooterButton,
+      setAppModalFooterButton
     } = this.props;
 
     this.finish = this.finish.bind(this);
@@ -27,13 +27,13 @@ class SignUp2 extends Component {
     setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 2 });
     setAppModalHeaderLeftButton({ headerLeftIcon: "arrow-left",
       headerLeftOnClick: () => setAppModalScene({ scene: SignUp1, sceneDirection: -1 }) });
-    setAppModalFooterButton({ footerText: t("common:finish"), footerOnClick: this.finish })
+    setAppModalFooterButton({ footerText: t("common:finish"), footerOnClick: this.finish });
 
     this.state = { isLoading: false };
   }
 
   finish() {
-    const { signUp, name, email, password } = this.props
+    const { signUp, name, email, password } = this.props;
     const { isLoading } = this.state;
     if (!isLoading && this.checkForm()) {
       signUp({ name: name.value, email: email.value, password: password.value });
@@ -117,7 +117,7 @@ SignUp2.propTypes = {
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
-export default withNamespaces("signUp")(SignUp2);
+export default withTranslation("signUp")(SignUp2);

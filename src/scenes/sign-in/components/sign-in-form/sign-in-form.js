@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import FormContainer from "./components/form-container";
 import Input from "../../../../components/input";
 
@@ -39,4 +39,4 @@ SignInForm.propTypes = {
   }).isRequired
 };
 
-export default withNamespaces()(SignInForm);
+export default withTranslation()(SignInForm);

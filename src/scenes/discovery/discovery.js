@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import DiscoveryHeader from "./components/discovery-header";
 import DiscoveryTitle from "./components/discovery-title";
 import DiscoverySubtitle from "./components/discovery-subtitle";
@@ -53,4 +53,4 @@ Discovery.propTypes = {
   discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
-export default withNamespaces("discovery")(Discovery);
+export default withTranslation("discovery")(Discovery);
