@@ -74,7 +74,7 @@ JSON=$( "${CURL}" -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KE
 URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"app_url"\s*:\s*"\([^"]*\)".*/\1/p' )
 if [ -z "$URL" ]; then
 	echo "FAILED!"
-	echo ${JSON}
+	echo
 	echo "Build uploaded, but no reply from server. Please contact support@testfairy.com"
 	exit 1
 fi
