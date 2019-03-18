@@ -1,11 +1,11 @@
-import { Dimensions, StatusBar } from "react-native";
 import styled from "styled-components";
 import Container from "../container";
 
 const AppContainer = styled(Container)`
-  width: ${Dimensions.get("window").width}
-  height: ${Dimensions.get("window").height - StatusBar.currentHeight}
-  backgroundColor: ${props => props.theme.backgroundColor}
+  width: 100%;
+  height: 100%;
+  background-color: ${props => props.theme.backgroundColor};
+  overflow: hidden;
 `;
 
 export default AppContainer;

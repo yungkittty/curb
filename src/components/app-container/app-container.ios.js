@@ -1,45 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Dimensions, NativeModules } from "react-native";
-import { withTheme } from "styled-components";
+import { Dimensions } from "react-native";
+import styled from "styled-components";
 import Container from "../container";
+import { windowDimensions } from "../../configurations/window";
 
-const { StatusBarManager } = NativeModules;
+const AppContainer = styled(Container)`
+  width: 100%;
+  height: 100%;
+  margin-top: ${Dimensions.get("window").height - windowDimensions.height};
+  background-color: ${props => props.theme.backgroundColor};
+  overflow: hidden;
+`;
 
-// https://stackoverflow.com/a/49718504
-
-class AppContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { statusBarHeight: 0 };
-  }
-
-  componentDidMount() {
-    StatusBarManager.getHeight(({ height: statusBarHeight }) =>
-      this.setState({ statusBarHeight })
-    );
-  }
-
-  render() {
-    const { theme: { backgroundColor }, ...others } = this.props;
-    const { statusBarHeight } = this.state;
-    return (
-      <Container
-        {...others}
-        style={{
-          width: Dimensions.get("window").width,
-          height: Dimensions.get("window").height - statusBarHeight,
-          marginTop: statusBarHeight,
-          backgroundColor
-        }}
-      />
-    );
-  }
-}
-
-AppContainer.propTypes = {
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired
-};
-
-export default withTheme(AppContainer);
+export default AppContainer;
