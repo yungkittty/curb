@@ -12,7 +12,7 @@ const AppDownload = ({ t }) => (
       {t("downloadText")}
     </DownloadText>
     <DownloadButton />
-    <DownloadBranch>{process.env.HEAD_BRANCH}</DownloadBranch>
+    <DownloadBranch>{process.env.CURB_VERSION}</DownloadBranch>
   </DownloadContainer>
 );
 
