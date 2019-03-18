@@ -12,7 +12,7 @@ NOTIFY="on"
 # In order to notify specific groups, create those groups in https://app.testfairy.com/testers/ 
 # In case of more than one group seperate by comma. Example "family,friends"
 # This param is mandatory in case NOTIFY is on.
-TESTERS_GROUPS="all"
+TESTERS_GROUPS="echo $([[ $HEAD_BRANCH == "develop" ]] && echo "develop" || echo "team")"
 
 # If AUTO_UPDATE is "on" users of older versions will be prompt to update to this build next time they run the app
 AUTO_UPDATE="on"
