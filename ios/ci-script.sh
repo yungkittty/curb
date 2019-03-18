@@ -5,9 +5,9 @@ openssl aes-256-cbc -k "$SECURITY_PASSWORD" -in ios_development.cer.enc -d -a -o
 openssl aes-256-cbc -k "$SECURITY_PASSWORD" -in 2020_Curb.mobileprovision.cer.enc -d -a -out 2020_Curb.mobileprovision.cer
 
 # Create keychain
-security create-keychain -p $CUSTOM_KEYCHAIN_PASSWORD ios-build.keychain
+security create-keychain -p "$CUSTOM_KEYCHAIN_PASSWORD" ios-build.keychain
 security default-keychain -s ios-build.keychain
-security unlock-keychain -p $CUSTOM_KEYCHAIN_PASSWORD ios-build.keychain
+security unlock-keychain -p "$CUSTOM_KEYCHAIN_PASSWORD" ios-build.keychain
 security set-keychain-settings -t 3600 -l ~/Library/Keychains/ios-build.keychain
 
 # Import Certificates to keychain
