@@ -50,6 +50,6 @@ jobs:
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
         - cd ios
-        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xarchive DEVELOPMENT_TEAM="9478G9T3JY"
+        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xarchive CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE="3b98a95c-d9ff-48d3-9e28-7ae777b3494b" DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - bash testfairy-uploader.sh export/curb.ipa
