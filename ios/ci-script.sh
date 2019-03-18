@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Decrypting
-openssl aes-256-cbc -k "$SECURITY_PASSWORD" -in certs/ios_development.cer.enc -d -a -out certs/ios_developent.cer
+openssl aes-256-cbc -k "$SECURITY_PASSWORD" -in certs/ios_development.cer.enc -d -a -out certs/ios_development.cer
 openssl aes-256-cbc -k "$SECURITY_PASSWORD" -in certs/2020_Curb.mobileprovision.enc -d -a -out certs/2020_Curb.mobileprovision
 
 # Create keychain
