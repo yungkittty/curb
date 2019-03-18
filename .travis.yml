@@ -47,7 +47,7 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets"
+        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
         - react-native run-ios --configuration Release
