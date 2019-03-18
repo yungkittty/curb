@@ -13,7 +13,7 @@ security set-keychain-settings -t 3600 -l ~/Library/Keychains/ios-build.keychain
 # Import Certificates to keychain
 security import certs/AppleWWDRCA.cer -k ios-build.keychain -A
 security import certs/ios_development.cer -k ios-build.keychain -A
-security set-key-partition-list -S apple-tool:,apple: -s -k $SECURITY_PASSWORD ios-build.keychain > /dev/null
+#security set-key-partition-list -S apple-tool:,apple: -s -k $SECURITY_PASSWORD ios-build.keychain > /dev/null
 
 # Import Provisioning Profile
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
