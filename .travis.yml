@@ -10,7 +10,7 @@ jobs:
       install:
         - npm install -g netlify-cli@next
       script:
-        - npm run web-build
+        - NODE_ENV=development npm run web-build
         - bash deploy-netlify.sh
     - stage: Build Android
       language: android
