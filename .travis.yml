@@ -1,11 +1,19 @@
 before_install:
-  - export HEAD_BRANCH=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
+  - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
+  - export CURB_ENV=$(paste -s -d ' ' $([[ $CURB_VERSION == "develop" ]] && echo ".env.production" || echo ".env.development"))
   - nvm install 10.10.0
   - npm install
-  - npm install -g react-native-cli
 jobs:
   include:
-    - stage: Build mobile
+    - stage: Build Web
+      language: node_js
+      cache: npm
+      install:
+        - npm install -g netlify-cli@next
+      script:
+        - eval "$CURB_ENV npm run web-build"
+        - bash deploy-netlify.sh
+    - stage: Build Android
       language: android
       jdk: oraclejdk8
       android:
@@ -22,31 +30,28 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
+      install:
+        - npm install -g react-native-cli
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+        - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
       script:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - cd ..
         - bash testfairy-uploader.sh android/app/build/outputs/apk/release/app-release.apk
-    - language: objective-c
+    - stage: Build iOS
+      language: objective-c
       os: osx
       osx_image: xcode10.1
+      install:
+        - npm install -g react-native-cli
       before_script:
-        - react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets
-        - security unlock-keychain /Users/travis/Library/Keychains/login.keychain-db
+        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
+        - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
         - cd ios
         - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - cd ..
         - bash testfairy-uploader.sh ios/export/curb.ipa
-    - stage: Build web
-      language: node_js
-      cache: npm
-      install:
-        - npm install -g netlify-cli@next
-      script:
-        - npm run web-build
-        - bash deploy-netlify.sh

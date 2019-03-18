@@ -12,7 +12,7 @@ NOTIFY="on"
 # In order to notify specific groups, create those groups in https://app.testfairy.com/testers/ 
 # In case of more than one group seperate by comma. Example "family,friends"
 # This param is mandatory in case NOTIFY is on.
-TESTERS_GROUPS="echo $([[ "$HEAD_BRANCH" == "develop" ]] && echo "develop" || echo "team")"
+TESTERS_GROUPS="echo $([[ $CURB_VERSION == "develop" ]] && echo "develop" || echo "team")"
 
 # If AUTO_UPDATE is "on" users of older versions will be prompt to update to this build next time they run the app
 AUTO_UPDATE="on"
@@ -74,7 +74,7 @@ JSON=$( "${CURL}" -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KE
 URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"app_url"\s*:\s*"\([^"]*\)".*/\1/p' )
 if [ -z "$URL" ]; then
 	echo "FAILED!"
-	echo ${JSON}
+	echo
 	echo "Build uploaded, but no reply from server. Please contact support@testfairy.com"
 	exit 1
 fi

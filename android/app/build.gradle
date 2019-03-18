@@ -103,7 +103,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName System.getenv("HEAD_BRANCH")
+        versionName System.getenv("CURB_VERSION")
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
