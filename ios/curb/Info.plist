@@ -53,7 +53,6 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>FontAwesome5_Brands.ttf</string>
 		<string>FontAwesome5_Solid.ttf</string>
 		<string>Montserrat-Black.ttf</string>
 		<string>Montserrat-BlackItalic.ttf</string>
