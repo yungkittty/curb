@@ -13,7 +13,7 @@ import Group from "./scenes/group";
 
 const App = () => (
   <Router>
-    {{ isMobile } ? (
+    {isMobile ? (
       <AppDownload />
     ) : (
       <React.Fragment>

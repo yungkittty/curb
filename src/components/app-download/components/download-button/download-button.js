@@ -27,4 +27,4 @@ DownloadButton.propTypes = {
   theme: PropTypes.object
 };
 
-export default withNamespaces("downloadApp")(withTheme(DownloadButton));
+export default withNamespaces("appDownload")(withTheme(DownloadButton));
