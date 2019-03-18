@@ -14,9 +14,6 @@ NOTIFY="on"
 # This param is mandatory in case NOTIFY is on.
 TESTERS_GROUPS="echo $([[ "$HEAD_BRANCH" == "develop" ]] && echo "develop" || echo "team")"
 
-echo "Testers:"
-echo $([[ "$HEAD_BRANCH" == "develop" ]] && echo "develop" || echo "team")
-
 # If AUTO_UPDATE is "on" users of older versions will be prompt to update to this build next time they run the app
 AUTO_UPDATE="on"
 
