@@ -50,7 +50,6 @@ jobs:
         - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
-        - react-native run-ios --configuration Release
         - cd ios
         - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xcarchive -allowProvisioningUpdates DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
