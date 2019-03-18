@@ -46,8 +46,8 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
+      # - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
       script:
         - cd ios
         - xcodebuild -project curb.xcodeproj -scheme curb -configuration Release clean archive -archivePath curb.xarchive CODE_SIGN_IDENTITY="iPhone Developer" PROVISIONING_PROFILE="3b98a95c-d9ff-48d3-9e28-7ae777b3494b" DEVELOPMENT_TEAM="9478G9T3JY"
