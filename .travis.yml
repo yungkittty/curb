@@ -1,6 +1,6 @@
 before_install:
   - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
-  - export CURB_ENV_FILE=$(paste -s -d ' ' $([[ $CURB_VERSION == "develop" ]] && echo ".env.production" || echo ".env.development"))
+  - export CURB_ENV=$(paste -s -d ' ' $([[ $CURB_VERSION == "develop" ]] && echo ".env.production" || echo ".env.development"))
   - nvm install 10.10.0
   - npm install
 jobs:
@@ -11,7 +11,7 @@ jobs:
       install:
         - npm install -g netlify-cli@next
       script:
-        - eval "$(echo $CURB_ENV_FILE) npm run web-build"
+        - eval "$CURB_ENV npm run web-build"
         - bash deploy-netlify.sh
     - stage: Build Android
       language: android
@@ -34,7 +34,7 @@ jobs:
         - npm install -g react-native-cli
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - eval "$(echo $CURB_ENV_FILE) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
+        - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
       script:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
@@ -47,7 +47,7 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - eval "$(echo $CURB_ENV_FILE) react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets"
+        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios/assets"
         - sudo security unlock-keychain -u /Users/travis/Library/Keychains/login.keychain-db
       script:
         - cd ios
