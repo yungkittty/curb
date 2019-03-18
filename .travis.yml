@@ -45,11 +45,11 @@ jobs:
       language: objective-c
       install:
         - npm install -g react-native-cli
-      before_script:
-        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
+      #      before_script:
+      #        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
       script:
         - cd ios
         - bash ci-script.sh
-        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Debug clean archive -archivePath curb.xarchive CODE_SIGN_STYLE="Manual" DEVELOPMENT_TEAM="9478G9T3JY" CODE_SIGN_IDENTITY="iPhone Developer" PROVISIONING_PROFILE_SPECIFIER="3b98a95c-d9ff-48d3-9e28-7ae777b3494b" PROVISIONING_SPECIFIER="3b98a95c-d9ff-48d3-9e28-7ae777b3494b" DEVELOPMENT_TEAM=""
+        - xcodebuild -project curb.xcodeproj -scheme curb -configuration Debug clean archive -archivePath curb.xarchive DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - bash ../testfairy-uploader.sh export/curb.ipa
