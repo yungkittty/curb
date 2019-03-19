@@ -37,10 +37,10 @@ jobs:
       script:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
-        - zip -q -r mapping.zip app/build/intermediates/symbols/release/R.txt
-        - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk mapping.zip
+        - zip -q -r symbols.zip app/build/intermediates/symbols/release/R.txt
+        - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk symbols.zip
       before_cache:
-        - rm -fr node_modules/*/android/build/*
+        - rm -fr node_modules/**/android/build/*
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
     - stage: Build iOS
@@ -60,9 +60,7 @@ jobs:
       script:
         - cd ios
         - bash install-certificates.sh
-        - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive DEVELOPMENT_TEAM="9478G9T3JY"
+        - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
-        - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM export/symbols_files.zip
-        - bash ../testfairy-uploader.sh export/curb.ipa export/symbols_files.zip
-      before_cache:
-        - rm -f node_modules/**/*.log
+        - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
+        - bash ../testfairy-uploader.sh export/curb.ipa symbols.zip
