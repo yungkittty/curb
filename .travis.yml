@@ -50,6 +50,6 @@ jobs:
       script:
         - cd ios
         - bash ci-script.sh
-        - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Debug clean  -archivePath curb.xarchive DEVELOPMENT_TEAM="9478G9T3JY"
+        - xctool archive -quiet -sdk iphoneos -project curb.xcodeproj -scheme curb -configuration Debug clean  -archivePath curb.xarchive PROFILE_NAME="2020_Curb" DEVELOPER_NAME="iPhone Developer: Jimmy DJABALI (F755AX7A93)" DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - bash ../testfairy-uploader.sh export/curb.ipa
