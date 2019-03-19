@@ -31,6 +31,7 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
+          - node_modules
       install:
         - npm install -g react-native-cli
       before_script:
@@ -47,8 +48,11 @@ jobs:
       cache:
         - npm
         - bundler
+        - ccache
       install:
         - npm install -g react-native-cli
+        - brew install ccache
+        - export PATH="/usr/local/opt/ccache/libexec:$PATH"
       before_script:
         - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
       script:
