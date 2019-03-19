@@ -19,4 +19,4 @@ security import certs/development-key.p12 -k ios-build.keychain -P "$DEV_KEY_PAS
 
 # Import Provisioning Profile
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-cp certs/2020_Curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+cp certs/curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
