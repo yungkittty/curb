@@ -26,7 +26,6 @@ jobs:
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
       cache:
-        npm: true
         directories:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
@@ -46,9 +45,9 @@ jobs:
       osx_image: xcode8.1
       language: objective-c
       cache:
-        - npm
-        - bundler
-        - ccache
+        directories:
+          - $HOME/.ccache
+          - node_modules
       install:
         - npm install -g react-native-cli
         - brew install ccache
@@ -57,7 +56,7 @@ jobs:
         - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
       script:
         - cd ios
-        - bash ci-script.sh
+        - bash install-certificates.sh
         - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - ditto -c -k --keepParent -rsrc "curb.xcarchive/dSYMs/curb.app.dSYM" export/symbols_files.zip
