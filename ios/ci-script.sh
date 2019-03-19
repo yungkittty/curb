@@ -1,9 +1,10 @@
 #!/bin/bash
 
+
 # Decrypting
-openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in certs/developer-cert.cer.enc -d -a -out certs/developer-cert.cer
-openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in certs/development-key.p12.enc -d -a -out certs/development-key.p12
-openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in certs/curb.mobileprovision.enc -d -a -out certs/curb.mobileprovision
+openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in certs/developer-cert.cer.enc -d -a
+openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in certs/development-key.p12.enc -d -a
+openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in certs/curb.mobileprovision.enc -d -a
 
 # Create keychain
 security create-keychain -p "$CUSTOM_KEYCHAIN_PASSWORD" ios-build.keychain
