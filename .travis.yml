@@ -1,4 +1,4 @@
-before_install:
+before_script:
   - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - export CURB_ENV=$(paste -s -d ' ' $([[ $CURB_VERSION == "develop" ]] && echo ".env.production" || echo ".env.development"))
   - nvm install 10.10.0
