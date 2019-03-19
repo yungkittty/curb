@@ -40,7 +40,8 @@ jobs:
       script:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
-        - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk app/build/intermediates/symbols/release/R.txt
+        - zip -q -r mapping.zip app/build/intermediates/symbols/release/R.txt
+        - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk mapping.zip
     - stage: Build iOS
       os: osx
       osx_image: xcode8.1
