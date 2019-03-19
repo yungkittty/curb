@@ -52,6 +52,6 @@ jobs:
         - bash ci-script.sh
         - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
-        - ls ~/Library/Developer/Xcode/DerivedData/curb-*/Build/Products/
-        - zip -r export/symbols.zip ~/Library/Developer/Xcode/DerivedData/curb-*/Build/Products/Release-iphonesimulator/curb.app.dSYM/*
+        - ls ~/Library/Developer/Xcode/DerivedData/curb-*/Build/Products/Release-iphoneos/curb.app.dSYM/
+        - zip -r export/symbols.zip ~/Library/Developer/Xcode/DerivedData/curb-*/Build/Products/Release-iphoneos/curb.app.dSYM/*
         - bash ../testfairy-uploader.sh export/curb.ipa export/symbols.zip
