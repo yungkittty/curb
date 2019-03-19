@@ -7,5 +7,9 @@
     <string>9478G9T3JY</string>
     <key>compileBitcode</key>
     <false/>
+    <key>uploadBitcode</key>
+    <true/>
+    <key>uploadSymbols</key>
+    <true/>
 </dict>
 </plist>
