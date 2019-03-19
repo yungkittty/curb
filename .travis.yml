@@ -1,4 +1,4 @@
-before_script:
+before_install:
   - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - export CURB_ENV=$(paste -s -d ' ' $([[ $CURB_VERSION == "develop" ]] && echo ".env.production" || echo ".env.development"))
   - nvm install 10.10.0
@@ -8,7 +8,7 @@ jobs:
     - stage: Build Web
       language: node_js
       cache: npm
-      before_script:
+      install:
         - npm install -g netlify-cli@next
       script:
         - eval "$CURB_ENV npm run web-build"
@@ -31,8 +31,9 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
-      before_script:
+      install:
         - npm install -g react-native-cli
+      before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
       script:
@@ -46,8 +47,9 @@ jobs:
       cache:
         - npm
         - bundler
-      before_script:
+      install:
         - npm install -g react-native-cli
+      before_script:
         - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
       script:
         - cd ios
