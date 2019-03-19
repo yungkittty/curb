@@ -28,10 +28,10 @@ jobs:
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
       cache:
         directories:
+          - node_modules
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
-          - node_modules
       install:
         - npm install -g react-native-cli
       before_script:
@@ -40,15 +40,15 @@ jobs:
       script:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
-        - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk
+        - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk app/build/intermediates/symbols/release/R.txt
     - stage: Build iOS
       os: osx
       osx_image: xcode8.1
       language: objective-c
       cache:
         directories:
-          - $HOME/.ccache
           - node_modules
+          - $HOME/.ccache
       install:
         - npm install -g react-native-cli
         - brew install ccache
@@ -60,5 +60,5 @@ jobs:
         - bash install-certificates.sh
         - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
-        - ditto -c -k --keepParent -rsrc "curb.xcarchive/dSYMs/curb.app.dSYM" export/symbols_files.zip
+        - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM export/symbols_files.zip
         - bash ../testfairy-uploader.sh export/curb.ipa export/symbols_files.zip
