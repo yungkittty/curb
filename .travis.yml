@@ -3,6 +3,7 @@ before_install:
   - export CURB_ENV=$(paste -s -d ' ' $([[ $CURB_VERSION == "develop" ]] && echo ".env.production" || echo ".env.development"))
   - nvm install 10.10.0
   - npm install
+
 jobs:
   include:
     - stage: Build Web
