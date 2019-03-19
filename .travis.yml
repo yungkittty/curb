@@ -41,7 +41,7 @@ jobs:
         - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk
     - stage: Build iOS
       os: osx
-      osx_image: xcode8.1
+      osx_image: xcode8.3
       language: objective-c
       install:
         - npm install -g react-native-cli
@@ -52,8 +52,5 @@ jobs:
         - bash ci-script.sh
         - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive DEVELOPMENT_TEAM="9478G9T3JY"
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
-        - ls curb.xcarchive/
-        - ls curb.xcarchive/dSYMs/
-        - ls curb.xcarchive/dSYMs/curb.app.dSYM/
         - ditto -c -k --keepParent -rsrc "curb.xcarchive/dSYMs/curb.app.dSYM" export/symbols_files.zip
         - bash ../testfairy-uploader.sh export/curb.ipa export/symbols_files.zip
