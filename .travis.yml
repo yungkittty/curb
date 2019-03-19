@@ -8,7 +8,7 @@ jobs:
     - stage: Build Web
       language: node_js
       cache: npm
-      install:
+      before_script:
         - npm install -g netlify-cli@next
       script:
         - eval "$CURB_ENV npm run web-build"
@@ -31,9 +31,8 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
-      install:
-        - npm install -g react-native-cli
       before_script:
+        - npm install -g react-native-cli
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
       script:
