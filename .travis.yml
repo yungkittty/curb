@@ -51,5 +51,5 @@ jobs:
         - cd ios
         - bash ci-script.sh
         - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xarchive DEVELOPMENT_TEAM="9478G9T3JY"
-        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
+        - xcodebuild -quiet -exportArchive -archivePath curb.xarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - bash ../testfairy-uploader.sh export/curb.ipa
