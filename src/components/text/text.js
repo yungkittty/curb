@@ -22,7 +22,10 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
   color: ${props => props.theme.fontColor};
 `;
 
-Text.defaultProps = { type: undefined, weight: 400 };
+Text.defaultProps = {
+  type: undefined,
+  weight: 400
+};
 
 Text.propTypes = {
   type: PropTypes.oneOf(["h1", "h2", "h3", "h4"]),
