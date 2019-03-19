@@ -32,6 +32,7 @@ jobs:
           - $HOME/.android/build-cache
       install:
         - npm install -g react-native-cli
+	- react-native link
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
@@ -45,6 +46,7 @@ jobs:
       language: objective-c
       install:
         - npm install -g react-native-cli
+	- react-native link
       before_script:
         - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
       script:
