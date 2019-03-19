@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import ButtonC from "../../../../../button-container";
 
-const ButtonContainer = styled(ButtonC)`
+const ButtonContainer = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
