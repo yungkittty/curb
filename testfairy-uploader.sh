@@ -25,11 +25,6 @@ CURL=curl
 
 SERVER_ENDPOINT=https://upload.testfairy.com
 
-usage() {
-	echo "Usage: testfairy-upload-ios.sh APP_FILENAME"
-	echo
-}
-	
 verify_tools() {
 
 	# Windows users: this script requires curl. If not installed please get from http://cygwin.com/
@@ -50,11 +45,6 @@ verify_settings() {
 	fi
 }
 
-if [ $# -ne 1 ]; then
-	usage
-	exit 1
-fi
-
 # before even going on, make sure all tools work
 verify_tools
 verify_settings
@@ -66,10 +56,12 @@ if [ ! -f "${APP_FILENAME}" ]; then
 	exit 2
 fi
 
+SYMBOLS_FILE=$2
+
 # temporary file paths
 DATE=`date`
 
-JSON=$( "${CURL}" -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KEY} -F file="@${APP_FILENAME}" -F comment="${COMMENT}" -F testers-groups="${TESTERS_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy Command Line Uploader ${UPLOADER_VERSION}" )
+JSON=$( "${CURL}" -s ${SERVER_ENDPOINT}/api/upload -F api_key=${TESTFAIRY_API_KEY} -F file="@${APP_FILENAME}" $([[ ! -f "${SYMBOLS_FILE}" ]] && echo "-F symbols_file="@${SYMBOLS_FILE}"") -F comment="${COMMENT}" -F testers-groups="${TESTERS_GROUPS}" -F auto-update="${AUTO_UPDATE}" -F notify="${NOTIFY}" -A "TestFairy Command Line Uploader ${UPLOADER_VERSION}" )
 
 URL=$( echo ${JSON} | sed 's/\\\//\//g' | sed -n 's/.*"app_url"\s*:\s*"\([^"]*\)".*/\1/p' )
 if [ -z "$URL" ]; then
