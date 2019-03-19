@@ -5,5 +5,7 @@
     <string>development</string>
     <key>teamID</key>
     <string>9478G9T3JY</string>
+    <key>compileBitcode</key>
+    <false/>
 </dict>
 </plist>
