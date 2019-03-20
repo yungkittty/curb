@@ -31,7 +31,7 @@ jobs:
           - $HOME/.android/build-cache
       install:
         - npm install -g react-native-cli
-        - ls $HOME
+        - ls $HOME/build
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
@@ -41,7 +41,7 @@ jobs:
         - zip -q -r symbols.zip app/build/intermediates/symbols/release/R.txt
         - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk symbols.zip
       before_cache:
-        - rm -fr $HOME/node_modules/**/android/build/*
+        - rm -fr $HOME/build/node_modules/**/android/build/*
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
     - stage: Build iOS
