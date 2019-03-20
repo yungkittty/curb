@@ -60,7 +60,7 @@ jobs:
       script:
         - cd ios
         - bash install-certificates.sh
-        - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive
-        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
+        - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive IgnoreFileSystemDeviceInodeChanges=1
+        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export IgnoreFileSystemDeviceInodeChanges=1
         - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
         - bash ../testfairy-uploader.sh export/curb.ipa symbols.zip
