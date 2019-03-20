@@ -51,6 +51,7 @@ jobs:
         directories:
           - node_modules
           - $HOME/.ccache
+          - ~/Library/Developer/Xcode/DerivedData/
       install:
         - npm install -g react-native-cli
         - brew install ccache
