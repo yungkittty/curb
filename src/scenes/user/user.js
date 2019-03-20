@@ -1,10 +1,10 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
 import DisplayImage from "./components/user-display/display-image";
-import DisplayUsername from "./components/user-display/display-username";
 import EditButton from "./components/user-edit/edit-button";
 import ImageContainer from "./components/user-image/components/image-container";
 import Input from "../../components/input";
@@ -12,46 +12,65 @@ import Input from "../../components/input";
 class User extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       username: {
-        value: "Antoine",
+        value: undefined,
         error: undefined
       },
-      avatar: "https://avatars2.githubusercontent.com/u/26574636",
+      avatar: undefined,
       editMode: false
     };
 
+    this.submit = this.submit.bind(this);
+    this.handleSwapMode = this.handleSwapMode.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  checkInput(id, value) {
-    const error = value.length === 0 ? "missing" : undefined;
-
-    this.setState(prev => {
-      const obj = {
-        [id]: {
-          ...prev[id],
-          value,
-          error
-        }
-      };
-      return obj;
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      username: { value: nextProps.username },
+      avatar: nextProps.currentUserAvatarUrl
     });
-
-    return error === undefined;
   }
 
-  validate() {
-    if (this.checkForm()) this.submit();
+  submit() {
+    const { patchCurrentUser } = this.props;
+    const { username, avatar, isLoading } = this.state;
+
+    if (this.checkForm()) patchCurrentUser({ name: username.value });
   }
 
   checkForm() {
     const { username } = this.state;
-
     const usernameCheck = this.checkInput("username", username.value);
-
     return usernameCheck;
+  }
+
+  // eslint-disable-next-line
+  checkInput(id, value) {
+    const { [id]: Y } = this.props;
+    const error =
+      // eslint-disable-next-line
+      id === "username"
+        ? value.length === 0
+          ? "missing"
+          : undefined
+        : undefined;
+
+    this.setState({ [id]: { ...Y, value, error } });
+    return error === undefined;
+  }
+
+  handleSwapMode() {
+    const { editMode } = this.state;
+
+    if (!editMode) this.setState({ editMode: true });
+    else if (editMode && this.checkForm()) {
+      this.submit();
+      this.setState({ editMode: false });
+    }
   }
 
   handleChange(event) {
@@ -67,38 +86,38 @@ class User extends Component {
     return (
       <UserContainer>
         <ImageContainer>
-          <DisplayImage src={avatar} editMode={editMode} />
+          <DisplayImage
+            src={`${process.env.REACT_APP_API_URL}${_.replace(
+              avatar,
+              "medium",
+              "large"
+            )}`}
+            editMode={editMode}
+          />
           {editMode && <EditButton avatar={avatar} icon="plus" size="large" />}
         </ImageContainer>
-        {editMode ? (
-          <Input
-            style={{ marginTop: 36 }}
-            fieldStyle={{
-              fontSize: 36,
-              fontWeight: "700",
-              textAlign: "center"
-            }}
-            fieldStyleNative={{
-              fontSize: 24,
-              fontWeight: "700",
-              textAlign: "center"
-            }}
-            id="username"
-            value={username.value}
-            onChange={this.handleChange}
-            error={username.error && t(`validation:username.${username.error}`)}
-          />
-        ) : (
-          <DisplayUsername type="h2" weight={700}>
-            {username.value}
-          </DisplayUsername>
-        )}
+        <Input
+          readOnly={!editMode}
+          style={{ marginTop: 24 }}
+          textStyle={{
+            fontSize: 36,
+            fontWeight: "700",
+            textAlign: "center"
+          }}
+          textStyleNative={{
+            fontSize: 24,
+            fontWeight: "700",
+            textAlign: "center"
+          }}
+          id="username"
+          value={username.value}
+          onChange={this.handleChange}
+          error={username.error && t(`validation:username.${username.error}`)}
+        />
         <ButtonIconFloat
           icon={editMode ? "check" : "pen"}
           size="medium"
-          onClick={() => {
-            this.setState({ editMode: !editMode });
-          }}
+          onClick={this.handleSwapMode}
         />
       </UserContainer>
     );

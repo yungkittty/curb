@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TextInput } from "react-native";
 
-const InputField = styled(({ type, onChange, id, fieldStyle, ...others }) => (
+const InputField = styled(({ type, onChange, id, ...others }) => (
   <TextInput
     {...others}
     secureTextEntry={type === "password"}
@@ -17,12 +17,12 @@ const InputField = styled(({ type, onChange, id, fieldStyle, ...others }) => (
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
     error ? theme.errorColor : theme.primaryColor};
-    ${({ fieldStyleNative }) =>
-      fieldStyleNative && `font-size: ${fieldStyleNative.fontSize}px;`}
-    ${({ fieldStyleNative }) =>
-      fieldStyleNative && `font-weight: ${fieldStyleNative.fontWeight};`}
-    ${({ fieldStyleNative }) =>
-      fieldStyleNative && `text-align:${fieldStyleNative.textAlign};`}
+    ${({ textStyleNative }) =>
+      textStyleNative && `font-size: ${textStyleNative.fontSize}px;`}
+    ${({ textStyleNative }) =>
+      textStyleNative && `font-weight: ${textStyleNative.fontWeight};`}
+    ${({ textStyleNative }) =>
+      textStyleNative && `text-align:${textStyleNative.textAlign};`}
 `;
 
 export default InputField;

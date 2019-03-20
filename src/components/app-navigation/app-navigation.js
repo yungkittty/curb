@@ -29,11 +29,7 @@ const AppNavigation = ({
       />
     ) : (
       <NavigationButtonImage
-        src={`${process.env.REACT_APP_API_URL}${_.replace(
-          currentUserAvatarUrl,
-          "medium",
-          "small"
-        )}`}
+        src={`${process.env.REACT_APP_API_URL}`}
         onClick={`/users/${currentUserId}`}
       />
     )}

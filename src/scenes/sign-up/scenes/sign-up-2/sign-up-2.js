@@ -16,7 +16,7 @@ class SignUp2 extends Component {
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
       setAppModalScene,
-      setAppModalFooterButton,
+      setAppModalFooterButton
     } = this.props;
 
     this.finish = this.finish.bind(this);
@@ -25,18 +25,28 @@ class SignUp2 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 2 });
-    setAppModalHeaderLeftButton({ headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () => setAppModalScene({ scene: SignUp1, sceneDirection: -1 }) });
-    setAppModalFooterButton({ footerText: t("common:finish"), footerOnClick: this.finish })
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () =>
+        setAppModalScene({ scene: SignUp1, sceneDirection: -1 })
+    });
+    setAppModalFooterButton({
+      footerText: t("common:finish"),
+      footerOnClick: this.finish
+    });
 
     this.state = { isLoading: false };
   }
 
   finish() {
-    const { signUp, name, email, password } = this.props
+    const { signUp, name, email, password } = this.props;
     const { isLoading } = this.state;
     if (!isLoading && this.checkForm()) {
-      signUp({ name: name.value, email: email.value, password: password.value });
+      signUp({
+        name: name.value,
+        email: email.value,
+        password: password.value
+      });
       this.setState({ isLoading: true });
     }
   }
@@ -44,7 +54,10 @@ class SignUp2 extends Component {
   checkForm() {
     const { password, confirmPassword } = this.props;
     const passwordCheck = this.checkInput("password", password.value);
-    const confirmPasswordCheck = this.checkInput("confirmPassword", confirmPassword.value);
+    const confirmPasswordCheck = this.checkInput(
+      "confirmPassword",
+      confirmPassword.value
+    );
     return passwordCheck && confirmPasswordCheck;
   }
 
@@ -94,7 +107,10 @@ class SignUp2 extends Component {
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
+          error={
+            confirmPassword.error &&
+            t(`validation:password.${confirmPassword.error}`)
+          }
         />
       </SignUpContainer>
     );
@@ -115,9 +131,15 @@ SignUp2.propTypes = {
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
-  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  t: PropTypes.func.isRequired,
+  password: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  confirmPassword: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  t: PropTypes.func.isRequired
 };
 
 export default withNamespaces("signUp")(SignUp2);
