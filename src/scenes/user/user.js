@@ -58,7 +58,7 @@ class User extends Component {
 
   // eslint-disable-next-line
   checkInput(id, value) {
-    const { [id]: Y } = this.props;
+    const { [id]: Y } = this.state;
     const error =
       // eslint-disable-next-line
       id === "username"
@@ -83,7 +83,6 @@ class User extends Component {
 
   handleChange(event) {
     const { id, value } = event.target;
-
     this.checkInput(id, value);
   }
 
@@ -126,7 +125,10 @@ class User extends Component {
 }
 
 User.propTypes = {
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  patchCurrentUser: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired
 };
 
 export default withNamespaces()(User);
