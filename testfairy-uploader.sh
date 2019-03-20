@@ -58,6 +58,11 @@ if [ ! -f "${APP_FILENAME}" ]; then
 fi
 
 SYMBOLS_FILE=$2
+if [ ! -f "${SYMBOLS_FILE}" ]; then
+	usage
+	echo "Can't find file: ${SYMBOLS_FILE}"
+	exit 2
+fi
 
 # temporary file paths
 DATE=`date`
