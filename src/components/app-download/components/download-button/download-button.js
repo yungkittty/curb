@@ -12,7 +12,11 @@ const DownloadButton = ({ t, theme }) => (
     href={`https://tsfr.io/curb-${isAndroid ? "android" : "ios"}`}
   >
     <React.Fragment>
-      <ButtonIcon icon="cloud-download-alt" color={theme.backgroundColor} />
+      <ButtonIcon
+        icon="cloud-download-alt"
+        color={theme.backgroundColor}
+        size="medium"
+      />
       <Text style={{ color: theme.backgroundColor }}>
         {t("downloadButton")}
       </Text>
