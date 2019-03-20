@@ -1,0 +1,7 @@
+const discoveryActionsTypes = {
+  GET_DISCOVERY_REQUEST: "GET_DISCOVERY_REQUEST",
+  GET_DISCOVERY_SUCCESS: "GET_DISCOVERY_SUCCESS",
+  GET_DISCOVERY_FAILURE: "GET_DISCOVERY_FAILURE"
+};
+
+export default discoveryActionsTypes;

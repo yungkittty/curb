@@ -1,3 +1,4 @@
-import SignIn from "./sign-in";
+// eslint-disable-next-line
+import SignInContainer from "./sign-in-container";
 
-export default SignIn;
+export default SignInContainer;

@@ -1,3 +1,3 @@
-import Discovery from "./discovery";
+import DiscoveryContainer from "./discovery-container";
 
-export default Discovery;
+export default DiscoveryContainer;

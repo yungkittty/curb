@@ -1,14 +1,19 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import NavigationLinkImage from "../navigation-link-image";
+import NavigationButtonImage from "../navigation-button-image";
 
 const NavigationListItem = ({
   currentUserGroupId,
   currentUserGroupAvatarUrl
 }) => (
-  <NavigationLinkImage
-    src={currentUserGroupAvatarUrl}
-    to={`/groups/${currentUserGroupId}`}
+  <NavigationButtonImage
+    src={`${process.env.REACT_APP_API_URL}${_.replace(
+      currentUserGroupAvatarUrl,
+      "medium",
+      "small"
+    )}`}
+    onClick={`/groups/${currentUserGroupId}`}
   />
 );
 

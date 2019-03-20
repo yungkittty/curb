@@ -1,30 +1,27 @@
 import React from "react";
 import AppContainer from "./components/app-container";
 import AppNavigation from "./components/app-navigation";
+import AppModal from "./components/app-modal";
 import Router from "./components/router";
-import ModalSwitch from "./components/modal-switch";
-import ModalRoute from "./components/modal-route";
+import Switch from "./components/switch";
 import Route from "./components/route";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
-import SignIn from "./scenes/sign-in";
-import SignUp from "./scenes/sign-up";
 
 const App = () => (
   <Router>
     <React.Fragment>
       <AppContainer>
         <AppNavigation />
-        <ModalSwitch>
+        <Switch>
           <Route exact path="/" component={Discovery} />
           <Route path="/users/:id" component={User} />
           <Route path="/groups/:id" component={Group} />
           <Route />
-        </ModalSwitch>
+        </Switch>
       </AppContainer>
-      <ModalRoute path="/sign-in" component={SignIn} />
-      <ModalRoute path="/sign-up" component={SignUp} />
+      <AppModal />
     </React.Fragment>
   </Router>
 );
