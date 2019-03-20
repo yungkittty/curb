@@ -8,6 +8,7 @@ import DisplayImage from "./components/user-display/display-image";
 import EditButton from "./components/user-edit/edit-button";
 import ImageContainer from "./components/user-image/components/image-container";
 import Input from "../../components/input";
+import toBase64 from "../../utils/toBase64";
 
 class User extends Component {
   constructor(props) {
@@ -29,15 +30,22 @@ class User extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    toBase64(
+      `${process.env.REACT_APP_API_URL}${_.replace(
+        nextProps.avatarUrl,
+        "medium",
+        "large"
+      )}`,
+      base64 => this.setState({ avatar: base64 })
+    );
     this.setState({
-      username: { value: nextProps.username },
-      avatar: nextProps.currentUserAvatarUrl
+      username: { value: nextProps.username }
     });
   }
 
   submit() {
     const { patchCurrentUser } = this.props;
-    const { username, avatar, isLoading } = this.state;
+    const { username, avatar } = this.state;
 
     if (this.checkForm()) patchCurrentUser({ name: username.value });
   }
@@ -86,14 +94,7 @@ class User extends Component {
     return (
       <UserContainer>
         <ImageContainer>
-          <DisplayImage
-            src={`${process.env.REACT_APP_API_URL}${_.replace(
-              avatar,
-              "medium",
-              "large"
-            )}`}
-            editMode={editMode}
-          />
+          <DisplayImage src={avatar} editMode={editMode} />
           {editMode && <EditButton avatar={avatar} icon="plus" size="large" />}
         </ImageContainer>
         <Input

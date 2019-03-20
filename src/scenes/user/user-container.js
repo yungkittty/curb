@@ -29,16 +29,12 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = state => {
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
-  const {
-    avatarUrl: currentUserAvatarUrl = "",
-    name: username,
-    groups: currentUserGroupsIds = []
-  } = usersSelectors.getUserById(state, currentUserId) || {};
+  const { avatarUrl = "", name: username = "" } =
+    usersSelectors.getUserById(state, currentUserId) || {};
   return {
-    username,
     currentUserId,
-    currentUserAvatarUrl,
-    currentUserGroupsIds
+    username,
+    avatarUrl
   };
 };
 
