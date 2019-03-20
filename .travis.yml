@@ -33,7 +33,7 @@ jobs:
         - npm install -g react-native-cli
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
+        - eval "$CURB_ENV npm run mobile-build-android:production"
       script:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
@@ -53,7 +53,7 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
+        - eval "$CURB_ENV npm run mobile-build-ios:production"
       script:
         - cd ios
         - bash install-certificates.sh
