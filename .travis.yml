@@ -39,6 +39,7 @@ jobs:
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
         - zip -q -r symbols.zip app/build/intermediates/symbols/release/R.txt
         - bash ../testfairy-uploader.sh app/build/outputs/apk/release/app-release.apk symbols.zip
+        - cd ..
       before_cache:
         - rm -fr node_modules/**/android/build/*
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -62,3 +63,6 @@ jobs:
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export IgnoreFileSystemDeviceInodeChanges=1
         - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
         - bash ../testfairy-uploader.sh export/curb.ipa symbols.zip
+        - cd ..
+      before_cache:
+        - rm -f node_modules/**/*.log
