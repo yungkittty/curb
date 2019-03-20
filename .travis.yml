@@ -31,7 +31,7 @@ jobs:
           - $HOME/.android/build-cache
       install:
         - npm install -g react-native-cli
-        - ls $HOME/build
+        - env
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - eval "$CURB_ENV react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
@@ -64,4 +64,4 @@ jobs:
         - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
         - bash ../testfairy-uploader.sh export/curb.ipa symbols.zip
       before_cache:
-        - rm -f $HOME/node_modules/**/*.log
+        - rm -f $HOME/build/node_modules/**/*.log
