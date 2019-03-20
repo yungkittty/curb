@@ -50,12 +50,9 @@ jobs:
       cache:
         directories:
           - node_modules
-          - $HOME/.ccache
           - ~/Library/Developer/Xcode/DerivedData/
       install:
         - npm install -g react-native-cli
-        - brew install ccache
-        - export PATH="/usr/local/opt/ccache/libexec:$PATH"
       before_script:
         - eval "$CURB_ENV react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/"
       script:
