@@ -7,7 +7,7 @@ const InputContainer = styled(Container)`
       case "modal":
         return 300;
       default:
-        return 380;
+        return 300;
     }
   }}px;
   position: relative;

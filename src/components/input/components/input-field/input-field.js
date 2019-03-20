@@ -9,6 +9,10 @@ const InputField = styled.input`
   border: 0;
   border-bottom: 1px solid
     ${({ theme, error }) => (error ? theme.errorColor : theme.primaryColor)};
+  color: ${({ theme }) => theme.fontColor};
+  ${({ fieldStyle }) => fieldStyle && `font-size: ${fieldStyle.fontSize}px;`}
+  ${({ fieldStyle }) => fieldStyle && `font-weight: ${fieldStyle.fontWeight};`}
+  ${({ fieldStyle }) => fieldStyle && `text-align:${fieldStyle.textAlign};`}
 `;
 
 export default InputField;

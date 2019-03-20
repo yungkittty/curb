@@ -15,7 +15,7 @@ const App = () => (
       <AppContainer>
         <AppNavigation />
         <Switch>
-          <Route exact path="/" component={Discovery} />
+          <Route exact path="/" component={User} />
           <Route path="/users/:id" component={User} />
           <Route path="/groups/:id" component={Group} />
           <Route />
