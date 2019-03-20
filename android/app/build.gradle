@@ -102,9 +102,19 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName System.getenv("CURB_VERSION")
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            if (project.hasProperty('CURB_RELEASE_STORE_FILE')) {
+                storeFile file(CURB_RELEASE_STORE_FILE)
+                storePassword CURB_RELEASE_STORE_PASSWORD
+                keyAlias CURB_RELEASE_KEY_ALIAS
+                keyPassword CURB_RELEASE_KEY_PASSWORD
+            }
         }
     }
     splits {
@@ -119,6 +129,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -139,6 +150,7 @@ android {
 dependencies {
     compile project(':react-native-camera')
     compile project(':react-native-vector-icons')
+    compile project(':react-native-testfairy')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
