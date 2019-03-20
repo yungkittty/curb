@@ -4,14 +4,5 @@ import validation from "./cn-validation";
 import signIn from "./cn-sign-in";
 import signUp from "./cn-sign-up";
 import discovery from "./cn-discovery";
-import appDownload from "./cn-app-download";
 
-export default {
-  common,
-  glossary,
-  validation,
-  signIn,
-  signUp,
-  discovery,
-  appDownload
-};
+export default { common, glossary, validation, signIn, signUp, discovery };

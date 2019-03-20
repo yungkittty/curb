@@ -4,14 +4,5 @@ import validation from "./fr-validation";
 import signIn from "./fr-sign-in";
 import signUp from "./fr-sign-up";
 import discovery from "./fr-discovery";
-import appDownload from "./fr-app-download";
 
-export default {
-  common,
-  glossary,
-  validation,
-  signIn,
-  signUp,
-  discovery,
-  appDownload
-};
+export default { common, glossary, validation, signIn, signUp, discovery };
