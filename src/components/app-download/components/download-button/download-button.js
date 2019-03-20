@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import { withNamespaces } from "react-i18next";
 import { isAndroid } from "react-device-detect";
 import ButtonContainer from "./components/button-container";
 import ButtonIcon from "./components/button-icon";
@@ -24,7 +23,7 @@ const DownloadButton = ({ t, theme }) => (
 DownloadButton.propTypes = {
   t: PropTypes.func.isRequired,
   /* eslint-disable-next-line */
-  theme: PropTypes.object
+  theme: PropTypes.object.isRequired
 };
 
-export default withNamespaces("appDownload")(withTheme(DownloadButton));
+export default withTheme(DownloadButton);

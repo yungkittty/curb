@@ -11,7 +11,7 @@ const AppDownload = ({ t }) => (
     <DownloadText type="h3" weight={700}>
       {t("downloadText")}
     </DownloadText>
-    <DownloadButton />
+    <DownloadButton t={t} />
     <DownloadBranch>{process.env.CURB_VERSION}</DownloadBranch>
   </DownloadContainer>
 );
