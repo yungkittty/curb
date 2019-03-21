@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
+import SelectImage from "../../components/select-image";
 import DisplayImage from "./components/user-display/display-image";
 import EditButton from "./components/user-edit/edit-button";
 import ImageContainer from "./components/user-image/components/image-container";
@@ -30,16 +31,9 @@ class User extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    toBase64(
-      `${process.env.REACT_APP_API_URL}${_.replace(
-        nextProps.avatarUrl,
-        "medium",
-        "large"
-      )}`,
-      base64 => this.setState({ avatar: base64 })
-    );
     this.setState({
-      username: { value: nextProps.username }
+      username: { value: nextProps.username },
+      avatar: nextProps.avatarUrl
     });
   }
 
@@ -56,16 +50,10 @@ class User extends Component {
     return usernameCheck;
   }
 
-  // eslint-disable-next-line
   checkInput(id, value) {
     const { [id]: Y } = this.state;
     const error =
-      // eslint-disable-next-line
-      id === "username"
-        ? value.length === 0
-          ? "missing"
-          : undefined
-        : undefined;
+      id === "username" && value.length === 0 ? "missing" : undefined;
 
     this.setState({ [id]: { ...Y, value, error } });
     return error === undefined;
@@ -92,6 +80,14 @@ class User extends Component {
 
     return (
       <UserContainer>
+        <SelectImage
+          readOnly={!editMode}
+          src={`${process.env.REACT_APP_API_URL}${_.replace(
+            avatar,
+            "medium",
+            "large"
+          )}`}
+        />
         <ImageContainer>
           <DisplayImage src={avatar} editMode={editMode} />
           {editMode && <EditButton avatar={avatar} icon="plus" size="large" />}

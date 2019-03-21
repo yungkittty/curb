@@ -6,8 +6,8 @@ const ImageContainer = styled(Container)`
   display: flex;
   border-radius: 170px;
   overflow: hidden;
-  width: 170px;
-  height: 170px;
+  width: 200px;
+  height: 200px;
   margin-top: 70px;
 `;
 
