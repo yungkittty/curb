@@ -4,7 +4,7 @@ import { Link } from "react-router-native";
 import { TouchableHighlight } from "react-native";
 
 const Button = ({ children, onClick, ...others }) =>
-  typeof onClick !== "string" && typeof onClick !== "object" ? (
+  typeof onClick === "function" ? (
     <TouchableHighlight {...others} onPress={onClick}>
       {React.Children.only(children)}
     </TouchableHighlight>

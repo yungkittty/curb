@@ -107,6 +107,16 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('CURB_RELEASE_STORE_FILE')) {
+                storeFile file(CURB_RELEASE_STORE_FILE)
+                storePassword System.getenv('CURB_RELEASE_STORE_PASSWORD')
+                keyAlias CURB_RELEASE_KEY_ALIAS
+                keyPassword System.getenv('CURB_RELEASE_KEY_PASSWORD')
+            }
+        }
+    }
     splits {
         abi {
             reset()
