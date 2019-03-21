@@ -11,9 +11,9 @@
     "mobile-build-android": "react-native run-android",
     "mobile-build-ios": "react-native run-ios",
     "mobile-eject": "react-native eject",
-    "web-start:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts start\"",
-    "web-start:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts start\"",
     "web-build": "react-scripts build",
+    "web-build:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts start\"",
+    "web-build:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts start\"",
     "web-eject": "react-scripts eject"
   },
   "dependencies": {
