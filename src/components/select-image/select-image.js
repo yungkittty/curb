@@ -21,7 +21,7 @@ const SelectImage = ({ theme, src, readOnly, onUpload }) => (
         <Icon
           icon="plus"
           size="medium"
-          color={theme.secondaryVariantColor}
+          color={theme.backgroundColor}
           style={{ position: "absolute" }}
         />
       )}
