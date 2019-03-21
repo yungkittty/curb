@@ -1,5 +1,6 @@
 before_install:
   - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
+  - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
   - nvm install 10.10.0
   - npm install
 
@@ -11,7 +12,7 @@ jobs:
       install:
         - npm install -g netlify-cli@next
       script:
-        - npm run web-build:$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
+        - npm run web-build:${CURB_BUILD}
         - bash deploy-netlify.sh
     - stage: Build Android
       language: android
@@ -32,7 +33,7 @@ jobs:
         - npm install -g react-native-cli
       before_script:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - npm run mobile-build-android:$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
+        - npm run mobile-build-android:${CURB_BUILD}
       script:
         - cd android
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
@@ -52,7 +53,7 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - npm run mobile-build-ios:$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
+        - npm run mobile-build-ios:${CURB_BUILD}
       script:
         - cd ios
         - bash install-certificates.sh
