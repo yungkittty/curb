@@ -5,13 +5,21 @@ import ImageContainer from "./components/image-container";
 import Icon from "../icon";
 import Image from "../image";
 
-const SelectImage = ({ theme, src, readOnly }) => (
-  <ImageContainer border={src && readOnly}>
+const SelectImage = ({ theme, src, readOnly, onUpload }) => (
+  <ImageContainer border={src} readOnly={readOnly}>
     <React.Fragment>
-      {src && <Image src={src} />}
+      {src && (
+        <Image
+          style={{
+            filter: `blur(${readOnly ? "0" : "2"}px)
+            brightness(${readOnly ? "100" : "80"}%)`
+          }}
+          src={src}
+        />
+      )}
       {!readOnly && (
         <Icon
-          icon="file-image"
+          icon="plus"
           size="medium"
           color={theme.secondaryVariantColor}
           style={{ position: "absolute" }}

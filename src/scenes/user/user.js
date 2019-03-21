@@ -5,9 +5,6 @@ import { withNamespaces } from "react-i18next";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
 import SelectImage from "../../components/select-image";
-import DisplayImage from "./components/user-display/display-image";
-import EditButton from "./components/user-edit/edit-button";
-import ImageContainer from "./components/user-image/components/image-container";
 import Input from "../../components/input";
 import toBase64 from "../../utils/toBase64";
 
@@ -87,11 +84,9 @@ class User extends Component {
             "medium",
             "large"
           )}`}
+          id="avatar"
+          onUpload={this.handleChange}
         />
-        <ImageContainer>
-          <DisplayImage src={avatar} editMode={editMode} />
-          {editMode && <EditButton avatar={avatar} icon="plus" size="large" />}
-        </ImageContainer>
         <Input
           readOnly={!editMode}
           style={{ marginTop: 24 }}
