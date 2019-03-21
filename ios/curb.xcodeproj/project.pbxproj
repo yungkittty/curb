@@ -379,7 +379,7 @@
 		00E356F21AD99517003FC87E /* CurbTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurbTests.m; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* curb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = curb.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Curb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Curb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Curb/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Curb/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -391,8 +391,8 @@
 		1F14B79F888242508E0CC55E /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		2536E15ED846407E88B3F147 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		298C79957E9749329A663B6F /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../src/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* curb-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "curb-tvOS.app"; path = "Curb-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* curb-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "curb-tvOSTests.xctest"; path = "Curb-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* Curb-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Curb-tvOS.app"; path = "Curb-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* Curb-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Curb-tvOSTests.xctest"; path = "Curb-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0D7926CEBF4B11A2DB821A /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6C4B81192143E6996C5350 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
@@ -412,7 +412,6 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8D4E38F5229C41E4BAF90151 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../src/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		8F8C732C223CE1F100DFE79A /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.jsbundle; path = curb/main.jsbundle; sourceTree = "<group>"; };
-		8FFABD82223FBD6D00E8F8FC /* curb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = curb.entitlements; path = Curb/curb.entitlements; sourceTree = "<group>"; };
 		90B3907C4DFD4554B39A4CDD /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../src/fonts/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
 		A32633C36BBC460D99915A3B /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../src/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		A88305865A4F4035ACE7D6A2 /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
@@ -565,7 +564,6 @@
 		13B07FAE1A68108700A75B9A /* Curb */ = {
 			isa = PBXGroup;
 			children = (
-				8FFABD82223FBD6D00E8F8FC /* curb.entitlements */,
 				8F8C732C223CE1F100DFE79A /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -676,10 +674,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* curb.app */,
+				13B07F961A680F5B00A75B9A /* Curb.app */,
 				00E356EE1AD99517003FC87E /* CurbTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* curb-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* curb-tvOSTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* Curb-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* Curb-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -792,7 +790,7 @@
 			);
 			name = Curb;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* curb.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Curb.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* Curb-tvOS */ = {
@@ -810,7 +808,7 @@
 			);
 			name = "Curb-tvOS";
 			productName = "Curb-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* curb-tvOS.app */;
+			productReference = 2D02E47B1E0B4A5D006451C7 /* Curb-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E48F1E0B4A5D006451C7 /* Curb-tvOSTests */ = {
@@ -828,7 +826,7 @@
 			);
 			name = "Curb-tvOSTests";
 			productName = "Curb-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* curb-tvOSTests.xctest */;
+			productReference = 2D02E4901E0B4A5D006451C7 /* Curb-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1420,7 +1418,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/curb.app/curb";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Curb.app/curb";
 			};
 			name = Debug;
 		};
@@ -1450,7 +1448,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/curb.app/curb";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Curb.app/curb";
 			};
 			name = Release;
 		};
@@ -1478,7 +1476,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
-				PRODUCT_NAME = curb;
+				PRODUCT_NAME = Curb;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1506,7 +1504,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
-				PRODUCT_NAME = curb;
+				PRODUCT_NAME = Curb;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1800,7 +1798,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "curb" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Curb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
