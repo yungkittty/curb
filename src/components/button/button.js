@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Button = styled(({ children, onClick, ...others }) =>
-  typeof onClick !== "string" && typeof onClick !== "object" ? (
+  // eslint-disable-next-line
+  typeof onClick === "function" ? (
     <button {...others} type="button" onClick={onClick}>
       {React.Children.only(children)}
     </button>
+  ) : typeof onClick === "string" && onClick.charAt(0) !== "/" ? (
+    <a {...others} href={onClick}>
+      {React.Children.only(children)}
+    </a>
   ) : (
     <Link {...others} to={onClick}>
       {React.Children.only(children)}
