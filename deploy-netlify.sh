@@ -5,7 +5,7 @@
 NETLIFY_OUTPUT=$(netlify deploy $([[ $CURB_VERSION == "develop" ]] && echo "--prod"); echo x)
 
 # If Branch Preview, post preview URL in Pull Request
-if [[ "$CURB_VERSION" != "develop" ]]; then
+if [[ "$CURB_BUILD" != "production" && "$CURB_VERSION" != "develop" ]]; then
     DEPLOY_PREVIEW_URL="https://$( echo "${NETLIFY_OUTPUT%x}" | grep -o 'Live Draft Url:.*' | cut -f3- -d/ )"
 
     curl -q -H "Authorization: token ${GITHUB_TOKEN}" -X POST \
