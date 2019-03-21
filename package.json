@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "mobile-start:development": "eval \"$(paste -s -d ' ' .env.development) react-native start --reset-cache\"",
-    "mobile-build-android:production": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
-    "mobile-build-ios:production": "react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/",
+    "mobile-build-android:development": "eval \"$(paste -s -d ' ' .env.development) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/\"",
+    "mobile-build-ios:development": "eval \"$(paste -s -d ' ' .env.development) react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/\"",
+    "mobile-build-android:production": "eval \"$(paste -s -d ' ' .env.production) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/\"",
+    "mobile-build-ios:production": "eval \"$(paste -s -d ' ' .env.production) react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/\"",
     "mobile-build-android": "react-native run-android",
     "mobile-build-ios": "react-native run-ios",
     "mobile-eject": "react-native eject",
-    "web-start": "react-scripts start",
+    "web-start:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts start\"",
+    "web-start:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts start\"",
     "web-build": "react-scripts build",
     "web-eject": "react-scripts eject"
   },
