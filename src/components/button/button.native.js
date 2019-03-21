@@ -4,14 +4,14 @@ import { Link } from "react-router-native";
 import { TouchableHighlight } from "react-native";
 
 const Button = ({ children, onClick, ...others }) =>
-  typeof onClick === "function" ? (
-    <TouchableHighlight {...others} onPress={onClick}>
-      {React.Children.only(children)}
-    </TouchableHighlight>
-  ) : (
+  typeof onClick === "string" || onClick === "object" ? (
     <Link {...others} to={onClick}>
       {React.Children.only(children)}
     </Link>
+  ) : (
+    <TouchableHighlight {...others} onPress={onClick}>
+      {React.Children.only(children)}
+    </TouchableHighlight>
   );
 
 Button.defaultProps = { onClick: undefined };
