@@ -5,6 +5,15 @@ import { usersSaga } from "../../datas/users";
 import { groupsSaga } from "../../datas/groups";
 import { discoverySaga } from "../../datas/discovery";
 
-function* rootSaga() { yield all([signInSaga, signUpSaga, usersSaga, groupsSaga, discoverySaga]); }
+function* rootSaga() {
+  yield all([
+    // eslint-disable-next-line
+    signInSaga,
+    signUpSaga,
+    usersSaga,
+    groupsSaga,
+    discoverySaga
+  ]);
+}
 
 export default rootSaga;
