@@ -1,4 +1,4 @@
-if: branch = develop OR head_branch = develop
+if: branch = develop
 before_install:
   - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
