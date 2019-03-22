@@ -21,8 +21,8 @@ jobs:
         components:
           - tools
           - android-23
-          - android-27
-          - build-tools-27.0.3
+          - android-28
+          - build-tools-28.0.3
       cache:
         directories:
           - $TRAVIS_BUILD_DIR/node_modules
