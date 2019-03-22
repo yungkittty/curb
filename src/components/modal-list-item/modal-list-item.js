@@ -5,7 +5,7 @@ import ItemIcon from "./components/item-icon";
 import ItemPreview from "./components/item-preview";
 import ItemSelection from "./components/item-selection";
 
-const ListItem = ({
+const ModalListItem = ({
   icon,
   title,
   titleColor,
@@ -44,7 +44,7 @@ const ListItem = ({
   </ItemContainer>
 );
 
-ListItem.defaultProps = {
+ModalListItem.defaultProps = {
   icon: undefined,
   title: undefined,
   titleColor: undefined,
@@ -57,7 +57,7 @@ ListItem.defaultProps = {
   onClick: undefined
 };
 
-ListItem.propTypes = {
+ModalListItem.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
   titleColor: PropTypes.string,
@@ -70,4 +70,4 @@ ListItem.propTypes = {
   onClick: PropTypes.func
 };
 
-export default ListItem;
+export default ModalListItem;

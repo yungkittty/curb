@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Container from "../../../../../container";
-import { screenWidthsMedias } from "../../../../../../configurations/screen";
 
 const SelectionContainer = styled(Container)`
   position: absolute;
@@ -13,11 +12,6 @@ const SelectionContainer = styled(Container)`
 
   opacity: ${({ selected, selectedColorAlternate }) =>
     selectedColorAlternate ? (selected ? "0.4" : "0.15") : "1"};
-
-  ${screenWidthsMedias.medium`
-    width: 94px;
-    height: 125px;
-  `};
 `;
 
 export default SelectionContainer;

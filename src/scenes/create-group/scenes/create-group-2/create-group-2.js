@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
 import CreateGroupTitle from "../../components/create-group-title";
+import CreateGroupError from "../../components/create-group-error";
 import CreateGroup2Discover from "./components/create-group-2-discover";
-import CreateGroup2Error from "./components/create-group-2-error";
 /* eslint-disable */
 import CreateGroup1 from "../create-group-1";
 import CreateGroup3 from "../create-group-3";
@@ -78,9 +78,9 @@ class CreateGroup2 extends Component {
           {t("discoverability")}
         </CreateGroupTitle>
         {error && (
-          <CreateGroup2Error>
+          <CreateGroupError>
             {t(`validation:discoverability.${error}`)}
-          </CreateGroup2Error>
+          </CreateGroupError>
         )}
         <CreateGroup2Discover
           onClick={this.handleChange}

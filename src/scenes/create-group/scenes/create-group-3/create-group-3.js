@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
 import CreateGroupTitle from "../../components/create-group-title";
+import CreateGroupError from "../../components/create-group-error";
 import CreateGroup3Modules from "./components/create-group-3-modules";
-import CreateGroup3Error from "./components/create-group-3-error";
 /* eslint-disable */
 import CreateGroup2 from "../create-group-2";
 import CreateGroup4 from "../create-group-4";
@@ -85,9 +85,9 @@ class CreateGroup3 extends Component {
           {t("modules")}
         </CreateGroupTitle>
         {error && (
-          <CreateGroup3Error>
+          <CreateGroupError>
             {t(`validation:modules.${error}`)}
-          </CreateGroup3Error>
+          </CreateGroupError>
         )}
         <CreateGroup3Modules onClick={this.handleChange} modules={value} />
       </CreateGroupContainer>

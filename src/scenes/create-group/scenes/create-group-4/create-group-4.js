@@ -4,8 +4,8 @@ import { withRouter } from "react-router";
 import { withNamespaces } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
 import CreateGroupTitle from "../../components/create-group-title";
+import CreateGroupError from "../../components/create-group-error";
 import CreateGroup4Themes from "./components/create-group-4-themes";
-import CreateGroup4Error from "./components/create-group-4-error";
 import Loader from "../../../../components/loader";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";
@@ -115,9 +115,7 @@ class CreateGroup4 extends Component {
           {t("theme")}
         </CreateGroupTitle>
         {error && (
-          <CreateGroup4Error>
-            {t(`validation:theme.${error}`)}
-          </CreateGroup4Error>
+          <CreateGroupError>{t(`validation:theme.${error}`)}</CreateGroupError>
         )}
         <CreateGroup4Themes onClick={this.handleChange} value={value} />
       </CreateGroupContainer>

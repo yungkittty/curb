@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Button from "../../../button";
-import { screenWidthsMedias } from "../../../../configurations/screen";
 
 const ItemContainer = styled(Button)`
   position: relative;
@@ -11,17 +10,6 @@ const ItemContainer = styled(Button)`
 
   background: ${({ backgroundcolor, selected, theme }) =>
     backgroundcolor || (selected ? theme.primaryVariantColor : "transparent")};
-
-  ${screenWidthsMedias.medium`
-    height: 125px;
-
-    ${({ disabled }) => disabled && "cursor: default;"}
-    
-    &:hover {
-      background: ${({ theme, backgroundcolor, disabled }) =>
-        !disabled ? !backgroundcolor && theme.primaryVariantColor : null};
-    }
-  `}
 `;
 
 export default ItemContainer;

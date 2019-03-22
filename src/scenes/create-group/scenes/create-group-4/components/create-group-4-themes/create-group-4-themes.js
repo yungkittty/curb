@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import ThemesContainer from "./components/themes-container";
 import ListFlat from "../../../../../../components/list-flat";
-import ListItem from "../../../../../../components/list-item";
+import ModalListItem from "../../../../../../components/modal-list-item";
 import themesData from "./create-group-4-themes-data";
 
 const CreateGroup4Themes = ({ t, onClick, value }) => (
@@ -13,7 +13,7 @@ const CreateGroup4Themes = ({ t, onClick, value }) => (
       extraData={{ value }}
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
-        <ListItem
+        <ModalListItem
           title={t(`themeList.${item.id}`)}
           titleColor="#ffffff"
           backgroundColor={item.backgroundColor}

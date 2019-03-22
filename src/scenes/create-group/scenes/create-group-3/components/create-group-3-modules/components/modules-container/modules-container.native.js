@@ -3,7 +3,7 @@ import Container from "../../../../../../../../components/container";
 
 const ModulesContainer = styled(Container)`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
 `;
 
