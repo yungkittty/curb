@@ -2,7 +2,7 @@
 
 
 # Deploy to Netlify
-NETLIFY_OUTPUT=$(netlify deploy $([[ $CURB_VERSION == "develop" ]] && echo "--prod"); echo x)
+NETLIFY_OUTPUT=$(netlify deploy $([[ "$CURB_VERSION" == "develop" ]] && echo "--prod"); echo x)
 
 # If Branch Preview, post preview URL in Pull Request
 if [[ "$CURB_BUILD" != "production" && "$CURB_VERSION" != "develop" ]]; then
