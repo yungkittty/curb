@@ -3,7 +3,6 @@ before_install:
   - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
   - nvm install 10.10.0
   - npm install
-
 jobs:
   include:
     - stage: Build Web
