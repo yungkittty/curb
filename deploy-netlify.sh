@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -xe
 
 # Deploy to Netlify
 NETLIFY_OUTPUT=$(netlify deploy $([[ $CURB_VERSION == "develop" ]] && echo "--prod"); echo x)
