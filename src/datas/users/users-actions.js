@@ -26,6 +26,19 @@ const usersActions = {
     type: usersActionsTypes.PATCH_USER_FAILURE,
     payload: error,
     error: true
+  }),
+  postUserAvatarRequest: payload => ({
+    type: usersActionsTypes.POST_USER_AVATAR_REQUEST,
+    payload
+  }),
+  postUserAvatarSuccess: payload => ({
+    type: usersActionsTypes.POST_USER_AVATAR_SUCCESS,
+    payload
+  }),
+  postUserAvatarError: error => ({
+    type: usersActionsTypes.POST_USER_AVATAR_FAILURE,
+    payload: error,
+    error: true
   })
 };
 

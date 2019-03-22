@@ -40,12 +40,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload)),
-  patchCurrentUser: payload => dispatch(usersActions.patchUserRequest(payload))
+  patchCurrentUser: payload => dispatch(usersActions.patchUserRequest(payload)),
+  postUserAvatar: payload =>
+    dispatch(usersActions.postUserAvatarRequest(payload))
 });
 
 UserContainer.propTypes = {
   currentUserId: PropTypes.string.isRequired,
-  currentUserToken: PropTypes.string.isRequired,
   getCurrentUser: PropTypes.func.isRequired
 };
 

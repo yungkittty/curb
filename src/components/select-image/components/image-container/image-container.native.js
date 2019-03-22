@@ -6,7 +6,8 @@ const ImageContainer = styled(ButtonContainer)`
   height: 140px;
   margin-bottom: 38px;
   border-radius: 70px;
-  border: ${({ border }) => (border ? "0" : "1")}px solid
+  overflow: hidden;
+  border: ${({ border }) => (border ? "1" : "0")}px solid
     ${props => props.theme.secondaryColor};
 `;
 

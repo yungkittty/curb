@@ -6,7 +6,6 @@ import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
 import SelectImage from "../../components/select-image";
 import Input from "../../components/input";
-import toBase64 from "../../utils/toBase64";
 
 class User extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class User extends Component {
         value: undefined,
         error: undefined
       },
-      avatar: undefined,
+      avatar: { value: { data: undefined } },
       editMode: false
     };
 
@@ -30,15 +29,31 @@ class User extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       username: { value: nextProps.username },
-      avatar: nextProps.avatarUrl
+      avatar: {
+        value: {
+          name: undefined,
+          data: `${process.env.REACT_APP_API_URL}${_.replace(
+            nextProps.avatarUrl,
+            "medium",
+            "large"
+          )}`
+        }
+      }
     });
   }
 
   submit() {
-    const { patchCurrentUser } = this.props;
+    const { patchCurrentUser, postUserAvatar } = this.props;
     const { username, avatar } = this.state;
 
-    if (this.checkForm()) patchCurrentUser({ name: username.value });
+    if (this.checkForm()) {
+      patchCurrentUser({ name: username.value });
+      if (avatar.value.file) {
+        const data = new FormData();
+        data.append("file", avatar.value.file);
+        postUserAvatar(data);
+      }
+    }
   }
 
   checkForm() {
@@ -79,13 +94,9 @@ class User extends Component {
       <UserContainer>
         <SelectImage
           readOnly={!editMode}
-          src={`${process.env.REACT_APP_API_URL}${_.replace(
-            avatar,
-            "medium",
-            "large"
-          )}`}
+          src={avatar.value.data}
           id="avatar"
-          onUpload={this.handleChange}
+          onSelect={this.handleChange}
         />
         <Input
           readOnly={!editMode}
@@ -116,8 +127,9 @@ class User extends Component {
 }
 
 User.propTypes = {
-  t: PropTypes.func.isRequired,
   patchCurrentUser: PropTypes.func.isRequired,
+  postUserAvatar: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired
 };

@@ -35,9 +35,28 @@ function* patchUsersRequestSaga(action) {
   }
 }
 
+function* postUsersAvatarRequestSaga(action) {
+  try {
+    const id = yield select(currentUserSelectors.getCurrentUserId);
+    const token = yield select(currentUserSelectors.getCurrentUserToken);
+    const respond = yield call(usersApi.postUserAvatar, {
+      payload: action.payload,
+      token,
+      id
+    });
+    yield put(usersActions.postUserAvatarSuccess(respond));
+  } catch (error) {
+    yield put(usersActions.postUserAvatarError(error));
+  }
+}
+
 const usersSaga = all([
   takeEvery(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga),
-  takeLatest(usersActionsTypes.PATCH_USER_REQUEST, patchUsersRequestSaga)
+  takeLatest(usersActionsTypes.PATCH_USER_REQUEST, patchUsersRequestSaga),
+  takeLatest(
+    usersActionsTypes.POST_USER_AVATAR_REQUEST,
+    postUsersAvatarRequestSaga
+  )
 ]);
 
 export default usersSaga;

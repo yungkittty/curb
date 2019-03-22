@@ -3,27 +3,38 @@ import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import ImageContainer from "./components/image-container";
 import Icon from "../icon";
-import Image from "../image";
+import ImagePreview from "./components/image-preview";
+import ImageInput from "./components/image-input";
 
-const SelectImage = ({ theme, src, readOnly, onUpload }) => (
-  <ImageContainer border={src} readOnly={readOnly}>
+const SelectImage = ({ theme, id, src, readOnly, onSelect }) => (
+  <ImageContainer border={!src} readOnly={readOnly}>
     <React.Fragment>
       {src && (
-        <Image
-          style={{
-            filter: `blur(${readOnly ? "0" : "2"}px)
-            brightness(${readOnly ? "100" : "80"}%)`
-          }}
+        <ImagePreview
+          style={{ position: "absolute" }}
           src={src}
+          readOnly={readOnly}
         />
       )}
       {!readOnly && (
-        <Icon
-          icon="plus"
-          size="medium"
-          color={theme.backgroundColor}
-          style={{ position: "absolute" }}
-        />
+        <React.Fragment>
+          <Icon
+            icon="plus"
+            size="medium"
+            color={theme.backgroundColor}
+            style={{ position: "absolute" }}
+          />
+          <ImageInput
+            onSelect={(data, file) => {
+              onSelect({
+                target: {
+                  id,
+                  value: { data, file }
+                }
+              });
+            }}
+          />
+        </React.Fragment>
       )}
     </React.Fragment>
   </ImageContainer>
@@ -37,8 +48,10 @@ SelectImage.defaultProps = {
 SelectImage.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   src: PropTypes.string,
-  readOnly: PropTypes.string
+  readOnly: PropTypes.bool,
+  onSelect: PropTypes.func.isRequired
 };
 
 export default withTheme(SelectImage);
