@@ -26,7 +26,7 @@ class CreateGroup2 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ progress: 2, total: 4 });
+    setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 4 });
     setAppModalHeaderLeftButton({
       headerLeftIcon: "arrow-left",
       headerLeftOnClick: () =>

@@ -1,14 +1,26 @@
 import React, { Fragment } from "react";
+import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 import OptionContainer from "./components/option-container";
-import OptionIcon from "./components/option-icon";
+import Icon from "../../../../../../../../components/icon";
 import OptionTitle from "./components/option-title";
 import OptionDescription from "./components/option-description";
 
-const DiscoverOption = ({ icon, title, description, selected, onClick }) => (
+const DiscoverOption = ({
+  theme,
+  icon,
+  title,
+  description,
+  selected,
+  onClick
+}) => (
   <OptionContainer selected={selected} onClick={onClick}>
     <Fragment>
-      <OptionIcon icon={icon} size="large" selected={selected} />
+      <Icon
+        icon={icon}
+        size="large"
+        color={selected === false ? theme.primaryColor : theme.fontVariantColor}
+      />
       <OptionTitle selected={selected}>{title}</OptionTitle>
       <OptionDescription selected={selected}>{description}</OptionDescription>
     </Fragment>
@@ -21,6 +33,8 @@ DiscoverOption.defaultProps = {
 };
 
 DiscoverOption.propTypes = {
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
   icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -28,4 +42,4 @@ DiscoverOption.propTypes = {
   onClick: PropTypes.func
 };
 
-export default DiscoverOption;
+export default withTheme(DiscoverOption);
