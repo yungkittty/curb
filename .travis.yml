@@ -1,4 +1,4 @@
-if: $CURB_VERSION == "features/fix-user-19"
+if: $TRAVIS_PULL_REQUEST_BRANCH == "features/fix-user-19"
 before_install:
   - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
