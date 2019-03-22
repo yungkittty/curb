@@ -54,10 +54,8 @@ class DiscoveryList extends React.Component {
   scrollToLeft() {
     const { current: containerScroll } = this.listFlat.current.containerScroll;
     this.scrollToOffset = Math.floor(containerScroll.clientWidth / 140);
-    this.scrollToCurrentIndex = Math.max(
-      this.scrollToCurrentIndex - this.scrollToOffset,
-      0
-    );
+    this.scrollToCurrentIndex =
+      Math.max(this.scrollToCurrentIndex - this.scrollToOffset, 0);
     const { current: listFlat } = this.listFlat;
     listFlat.scrollToIndex({ index: this.scrollToCurrentIndex });
   }
@@ -68,8 +66,7 @@ class DiscoveryList extends React.Component {
     const { data: itemsData } = this.props;
     this.scrollToCurrentIndex = Math.min(
       this.scrollToCurrentIndex + this.scrollToOffset,
-      itemsData.length - this.scrollToOffset
-    );
+      itemsData.length - this.scrollToOffset);
     const { current: listFlat } = this.listFlat;
     listFlat.scrollToIndex({ index: this.scrollToCurrentIndex });
   }
