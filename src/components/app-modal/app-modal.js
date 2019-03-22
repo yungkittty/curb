@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AppModalOverlay from "./components/app-modal-overlay";
-import AppModalContainer from "./components/app-modal-container";
-import AppModalHeader from "./components/app-modal-header";
-import AppModalScene from "./components/app-modal-scene";
-import AppModalFooter from "./components/app-modal-footer";
+import ModalOverlay from "./components/modal-overlay";
+import ModalContainer from "./components/modal-container";
+import ModalHeader from "./components/modal-header";
+import ModalScene from "./components/modal-scene";
+import ModalFooter from "./components/modal-footer";
 
 const AppModal = ({
   isAppModalShowed,
@@ -22,9 +22,9 @@ const AppModal = ({
   appModalFooterOnClick
 }) =>
   isAppModalShowed ? (
-    <AppModalOverlay>
-      <AppModalContainer>
-        <AppModalHeader
+    <ModalOverlay>
+      <ModalContainer>
+        <ModalHeader
           text={appModalHeaderText}
           currentStep={appModalHeaderCurrentStep}
           steps={appModalHeaderSteps}
@@ -33,20 +33,20 @@ const AppModal = ({
           rightIcon={appModalHeaderRightIcon}
           rightOnClick={appModalHeaderRightOnClick}
         />
-        <AppModalScene
+        <ModalScene
           scene={appModalScene}
           sceneDirection={appModalSceneDirection}
           sceneData={appModalSceneData}
         />
         {appModalFooterText ? (
-          <AppModalFooter
+          <ModalFooter
             type="h4"
             text={appModalFooterText}
             onClick={appModalFooterOnClick}
           />
         ) : null}
-      </AppModalContainer>
-    </AppModalOverlay>
+      </ModalContainer>
+    </ModalOverlay>
   ) : null;
 
 AppModal.defaultProps = {

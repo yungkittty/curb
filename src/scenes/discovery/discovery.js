@@ -9,9 +9,8 @@ import DiscoveryListSectionHeader from "./components/discovery-list-section-head
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
-import CreateGroup from "../create-group";
 
-const Discovery = ({ t, discoveryGroupsIds, showAppModal }) => (
+const Discovery = ({ t, discoveryGroupsIds }) => (
   <React.Fragment>
     <ListSection
       /* eslint-disable-next-line */
@@ -45,17 +44,13 @@ const Discovery = ({ t, discoveryGroupsIds, showAppModal }) => (
         />
       )}
     />
-    <ButtonIconFloat
-      icon="plus"
-      onClick={() => showAppModal({ scene: CreateGroup })}
-    />
+    <ButtonIconFloat icon="plus" onClick={() => undefined} />
   </React.Fragment>
 );
 
 Discovery.propTypes = {
   t: PropTypes.func.isRequired,
-  discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  showAppModal: PropTypes.func.isRequired
+  discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default withNamespaces("discovery")(Discovery);
