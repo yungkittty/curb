@@ -13,6 +13,7 @@ jobs:
         - npm install -g netlify-cli@next
       script:
         - npm run web-build:${CURB_BUILD}
+        - chmod +x deploy-netlify.sh
         - bash deploy-netlify.sh
     - stage: Build Android
       language: android
