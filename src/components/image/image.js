@@ -1,5 +1,3 @@
-import styled from "styled-components";
+const Image = "img";
 
-const Input = styled.img``;
-
-export default Input;
+export default Image;
