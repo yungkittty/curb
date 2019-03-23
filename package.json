@@ -5,9 +5,9 @@
   "scripts": {
     "mobile-start:development": "eval \"$(paste -s -d ' ' .env.development) react-native start --reset-cache\"",
     "mobile-build-android:development": "eval \"$(paste -s -d ' ' .env.development) react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/\"",
-    "mobile-build-ios:development": "eval \"$(paste -s -d ' ' .env.development) react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/\"",
+    "mobile-build-ios:development": "eval \"$(paste -s -d ' ' .env.development) react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/Curb/main.jsbundle --assets-dest ios/Curb/assets/\"",
     "mobile-build-android:production": "eval \"$(paste -s -d ' ' .env.production) react-native bundle --platform android --dev false --entry-file index.production.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/\"",
-    "mobile-build-ios:production": "eval \"$(paste -s -d ' ' .env.production) react-native bundle --platform ios --dev false --entry-file index.production.js --bundle-output ios/curb/main.jsbundle --assets-dest ios/curb/assets/\"",
+    "mobile-build-ios:production": "eval \"$(paste -s -d ' ' .env.production) react-native bundle --platform ios --dev false --entry-file index.production.js --bundle-output ios/Curb/main.jsbundle --assets-dest ios/Curb/assets/\"",
     "mobile-run-android": "react-native run-android",
     "mobile-run-ios": "react-native run-ios",
     "mobile-eject": "react-native eject",
