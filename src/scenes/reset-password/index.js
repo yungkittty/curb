@@ -1,3 +1,4 @@
-import ResetPasswordContainer from "./reset-password-container";
+// eslint-disable-next-line
+import ResetPassword1 from "./scenes/reset-password-1";
 
-export default ResetPasswordContainer;
+export default ResetPassword1;

@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 // eslint-disable-next-line
-import ForgotPassword from "./forgot-password";
-import { appModalActions } from "../../datas/app-modal";
-import { signInActions } from "../../datas/sign-in";
+import ResetPassword1 from "./reset-password-1";
+import { appModalActions } from "../../../../datas/app-modal";
+import { signInActions } from "../../../../datas/sign-in";
 
 const mapDispatchToProps = dispatch => ({
   signIn: payload => dispatch(signInActions.signInRequest(payload)),
@@ -12,6 +12,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload =>
     dispatch(appModalActions.setAppModalScene(payload)),
+  setAppModalSceneData: payload =>
+    dispatch(appModalActions.setAppModalSceneData(payload)),
   setAppModalFooterButton: payload =>
     dispatch(appModalActions.setAppModalFooterButton(payload))
 });
@@ -19,4 +21,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   undefined,
   mapDispatchToProps
-)(ForgotPassword);
+)(ResetPassword1);

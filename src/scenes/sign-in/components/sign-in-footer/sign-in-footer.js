@@ -6,7 +6,7 @@ import FooterButton from "./components/footer-button";
 import FooterBar from "./components/footer-bar";
 import Text from "../../../../components/text";
 // eslint-disable-next-line
-import ForgotPassword from "../../../forgot-password";
+import ResetPassword from "../../../reset-password";
 // eslint-disable-next-line
 import SignUp from "../../../sign-up";
 
@@ -14,7 +14,7 @@ const SignInFooter = ({ setAppModalScene, theme, t }) => (
   <FooterContainer>
     <FooterButton
       onClick={() =>
-        setAppModalScene({ scene: ForgotPassword, sceneDirection: 1 })
+        setAppModalScene({ scene: ResetPassword, sceneDirection: 1 })
       }
     >
       <Text style={{ color: theme.linkColor }}>{t("forgotPass")}</Text>
