@@ -6,10 +6,10 @@ const ImageContainer = styled(Container)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
-  margin-bottom: 42px;
-  border-radius: 100px;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 60px;
+  border-radius: 140px;
   overflow: hidden;
   border: ${({ border }) => (border ? "1" : "0")}px solid
     ${props => props.theme.secondaryColor};

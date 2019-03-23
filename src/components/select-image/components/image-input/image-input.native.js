@@ -9,8 +9,8 @@ const ImageInput = styled(Button).attrs(({ onSelect }) => ({
     ImagePicker.launchImageLibrary(
       {
         mediaTypes: "photo",
-        maxWidth: 320,
-        maxHeight: 320,
+        maxWidth: 1024,
+        maxHeight: 1024,
         noData: true,
         allowsEditing: true,
         storageOptions: {
@@ -34,11 +34,10 @@ const ImageInput = styled(Button).attrs(({ onSelect }) => ({
               isStatic: true
             };
           }
-
           onSelect(source.uri, {
             uri: source.uri,
-            type: "image/png",
-            name: "image.png"
+            type: response.type,
+            name: response.fileName
           });
         }
       }

@@ -8,7 +8,7 @@ const NavigationListItem = ({
   currentUserGroupAvatarUrl
 }) => (
   <NavigationButtonImage
-    src={`${process.env.REACT_APP_API_URL}${_.replace(
+    src={`https://api.curb-app.com${_.replace(
       currentUserGroupAvatarUrl,
       "medium",
       "small"

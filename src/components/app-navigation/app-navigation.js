@@ -29,7 +29,7 @@ const AppNavigation = ({
       />
     ) : (
       <NavigationButtonImage
-        src={`${process.env.REACT_APP_API_URL}${_.replace(
+        src={`https://api.curb-app.com${_.replace(
           currentUserAvatarUrl,
           "medium",
           "small"

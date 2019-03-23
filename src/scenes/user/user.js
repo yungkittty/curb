@@ -32,7 +32,7 @@ class User extends Component {
       avatar: {
         value: {
           name: undefined,
-          data: `${process.env.REACT_APP_API_URL}${_.replace(
+          data: `https://api.curb-app.com${_.replace(
             nextProps.avatarUrl,
             "medium",
             "large"
