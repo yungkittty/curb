@@ -1303,7 +1303,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.curb.eip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Curb.app/Curb";
 				LIBRARY_SEARCH_PATHS = (
@@ -1334,7 +1334,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.curb.eip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Curb.app/Curb";
 				LIBRARY_SEARCH_PATHS = (
@@ -1370,7 +1370,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.curb.eip";
 				PRODUCT_NAME = Curb;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1399,7 +1399,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier).eip";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.curb.eip";
 				PRODUCT_NAME = Curb;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
