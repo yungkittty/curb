@@ -12,9 +12,10 @@ jobs:
       cache: npm
       install:
         - npm install -g netlify-cli@next
+      before_script:
+        - npm run web-build:${CURB_BUILD} || travis_terminate 1
       script:
-        - npm run web-build:${CURB_BUILD}
-        - bash deploy-netlify.sh
+        - bash deploy-netlify.sh || travis_terminate 1
     - stage: Build Android
       language: android
       jdk: oraclejdk8
@@ -33,13 +34,13 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - npm run mobile-build-android:${CURB_BUILD}
+        - npm run mobile-build-android:${CURB_BUILD} || travis_terminate 1
       script:
         - cd android
-        - openssl aes-256-cbc -k "$CURB_STORE_ENCRYPT_PASSWORD" -in app/curb.keystore.enc -d -a -out app/curb.keystore
-        - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
-        - zip -q -r symbols.zip app/build/intermediates/symbols/release/R.txt
-        - bash ../deploy-testfairy.sh app/build/outputs/apk/release/app-release.apk symbols.zip
+        - openssl aes-256-cbc -k "$CURB_STORE_ENCRYPT_PASSWORD" -in app/curb.keystore.enc -d -a -out app/curb.keystore || travis_terminate 1
+        - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease || travis_terminate 1
+        - zip -q -r symbols.zip app/build/intermediates/symbols/release/R.txt || travis_terminate 1
+        - bash ../deploy-testfairy.sh app/build/outputs/apk/release/app-release.apk symbols.zip || travis_terminate 1
       before_cache:
         - rm -fr $TRAVIS_BUILD_DIR/node_modules/**/android/build/*
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -54,13 +55,13 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - npm run mobile-build-ios:${CURB_BUILD}
+        - npm run mobile-build-ios:${CURB_BUILD} || travis_terminate 1
       script:
         - cd ios
-        - bash install-certificates.sh
-        - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive
-        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
-        - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
-        - bash ../deploy-testfairy.sh export/curb.ipa symbols.zip
+        - bash install-certificates.sh || travis_terminate 1
+        - xcodebuild archive -quiet -project Curb.xcodeproj -scheme Curb -configuration Release clean -archivePath Curb.xcarchive || travis_terminate 1
+        - xcodebuild -quiet -exportArchive -archivePath Curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export || travis_terminate 1
+        - ditto -c -k --keepParent -rsrc Curb.xcarchive/dSYMs/Curb.app.dSYM symbols.zip || travis_terminate 1
+        - bash ../deploy-testfairy.sh export/Curb.ipa symbols.zip || travis_terminate 1
       before_cache:
         - rm -f $TRAVIS_BUILD_DIR/node_modules/**/*.log
