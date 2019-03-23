@@ -11,6 +11,7 @@ const ImageInput = styled(Button).attrs(({ onSelect }) => ({
         mediaTypes: "photo",
         maxWidth: 320,
         maxHeight: 320,
+        noData: true,
         allowsEditing: true,
         storageOptions: {
           skipBackup: true
@@ -34,7 +35,7 @@ const ImageInput = styled(Button).attrs(({ onSelect }) => ({
             };
           }
 
-          onSelect(`data:image/png;base64,${response.data}`, {
+          onSelect(source.uri, {
             uri: source.uri,
             type: "image/png",
             name: "image.png"
