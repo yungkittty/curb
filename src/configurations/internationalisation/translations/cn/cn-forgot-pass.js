@@ -1,6 +1,7 @@
 const cnForgotPass = {
   forgotPass: "",
   resetPass: "",
+  sendEmail: "",
   reset: ""
 };
 

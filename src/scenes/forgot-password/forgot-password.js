@@ -5,6 +5,7 @@ import Loader from "../../components/loader";
 import ForgotPasswordContainer from "./components/forgot-password-container";
 import ForgotPasswordForm from "./components/forgot-password-form";
 import inputRegex from "../../utils/input-regex";
+// eslint-disable-next-line
 import SignIn from "../sign-in";
 
 class ForgotPassword extends Component {
@@ -13,12 +14,10 @@ class ForgotPassword extends Component {
 
     const {
       t,
-      setLeftIcon,
-      setLeftClick,
-      setComponent,
-      setTitle,
-      setButtonTitle,
-      setButtonClick
+      setAppModalHeaderText,
+      setAppModalHeaderLeftButton,
+      setAppModalScene,
+      setAppModalFooterButton
     } = props;
 
     this.state = {
@@ -34,11 +33,16 @@ class ForgotPassword extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(SignIn, -1));
-    setTitle(t("forgotPass"));
-    setButtonTitle(t("resetPass"));
-    setButtonClick(this.validate);
+    setAppModalHeaderText({ headerText: t("resetPass") });
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () =>
+        setAppModalScene({ scene: SignIn, sceneDirection: -1 })
+    });
+    setAppModalFooterButton({
+      footerText: t("sendEmail"),
+      footerOnClick: this.validate
+    });
   }
 
   validate() {
@@ -93,9 +97,10 @@ class ForgotPassword extends Component {
 ForgotPassword.propTypes = {
   t: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired
 };
 
 export default withNamespaces("forgotPass")(ForgotPassword);

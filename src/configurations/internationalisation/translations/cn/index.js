@@ -5,6 +5,7 @@ import signIn from "./cn-sign-in";
 import signUp from "./cn-sign-up";
 import discovery from "./cn-discovery";
 import forgotPass from "./cn-forgot-pass";
+import appDownload from "./cn-app-download";
 
 export default {
   common,
@@ -13,5 +14,6 @@ export default {
   signIn,
   signUp,
   discovery,
-  forgotPass
+  forgotPass,
+  appDownload
 };
