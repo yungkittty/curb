@@ -18,6 +18,12 @@ const SelectImage = ({ theme, id, src, readOnly, onSelect }) => (
       )}
       {!readOnly && (
         <React.Fragment>
+          <Icon
+            icon="plus"
+            size="medium"
+            color={theme.backgroundColor}
+            style={{ position: "absolute" }}
+          />
           <ImageInput
             onSelect={(data, file) => {
               onSelect({
@@ -27,12 +33,6 @@ const SelectImage = ({ theme, id, src, readOnly, onSelect }) => (
                 }
               });
             }}
-          />
-          <Icon
-            icon="plus"
-            size="medium"
-            color={theme.backgroundColor}
-            style={{ position: "absolute" }}
           />
         </React.Fragment>
       )}

@@ -1,19 +1,25 @@
 import React from "react";
 import { Platform } from "react-native";
 import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
 import Button from "../../../button";
 
-const ImageInput = styled(Button).attrs(({ onSelect }) => ({
+const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
   onClick: () => {
-    ImagePicker.launchImageLibrary(
+    ImagePicker.showImagePicker(
       {
+        title: t("selectImage"),
+        takePhotoButtonTitle: t("takePhoto"),
+        chooseFromLibraryButtonTitle: t("chooseLibrary"),
+        cancelButtonTitle: t("cancel"),
         mediaTypes: "photo",
         maxWidth: 1024,
         maxHeight: 1024,
         noData: true,
         allowsEditing: true,
         storageOptions: {
+          cameraRoll: false,
           skipBackup: true
         }
       },
@@ -49,4 +55,4 @@ const ImageInput = styled(Button).attrs(({ onSelect }) => ({
   height: 100%;
 `;
 
-export default ImageInput;
+export default withNamespaces("common")(ImageInput);
