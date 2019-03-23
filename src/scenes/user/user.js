@@ -32,7 +32,7 @@ class User extends Component {
       avatar: {
         value: {
           name: undefined,
-          data: `https://api.curb-app.com${_.replace(
+          data: `${process.env.REACT_APP_API_URL}${_.replace(
             nextProps.avatarUrl,
             "medium",
             "large"
@@ -88,7 +88,7 @@ class User extends Component {
 
   render() {
     const { editMode, username, avatar } = this.state;
-    const { t } = this.props;
+    const { t, owner } = this.props;
 
     return (
       <UserContainer>
@@ -116,11 +116,13 @@ class User extends Component {
           onChange={this.handleChange}
           error={username.error && t(`validation:username.${username.error}`)}
         />
-        <ButtonIconFloat
-          icon={editMode ? "check" : "pen"}
-          size="medium"
-          onClick={this.handleSwapMode}
-        />
+        {owner && (
+          <ButtonIconFloat
+            icon={editMode ? "check" : "pen"}
+            size="medium"
+            onClick={this.handleSwapMode}
+          />
+        )}
       </UserContainer>
     );
   }
@@ -131,7 +133,8 @@ User.propTypes = {
   postUserAvatar: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string.isRequired
+  avatarUrl: PropTypes.string.isRequired,
+  owner: PropTypes.bool.isRequired
 };
 
 export default withNamespaces()(User);

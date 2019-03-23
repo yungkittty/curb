@@ -8,46 +8,46 @@ import { usersActions, usersSelectors } from "../../datas/users";
 
 class UserContainer extends React.Component {
   componentDidMount() {
-    const { currentUserId, currentUserToken, getCurrentUser } = this.props;
-    if (currentUserToken) {
-      getCurrentUser({ id: currentUserId });
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const { currentUserId, currentUserToken, getCurrentUser } = this.props;
-    if (currentUserToken && currentUserToken !== prevProps.currentUserToken) {
-      getCurrentUser({ id: currentUserId });
-    }
+    const {
+      getUser,
+      match: {
+        params: { id }
+      }
+    } = this.props;
+    getUser({ id });
   }
 
   render() {
-    const { getCurrentUser, ...others } = this.props;
+    const { getUser, ...others } = this.props;
     return <User {...others} />;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
+  const {
+    match: {
+      params: { id }
+    }
+  } = props;
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
   const { avatarUrl = "", name: username = "" } =
-    usersSelectors.getUserById(state, currentUserId) || {};
+    usersSelectors.getUserById(state, id) || {};
   return {
-    currentUserId,
+    owner: currentUserId === id,
     username,
     avatarUrl
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload)),
+  getUser: payload => dispatch(usersActions.getUserRequest(payload)),
   patchCurrentUser: payload => dispatch(usersActions.patchUserRequest(payload)),
   postUserAvatar: payload =>
     dispatch(usersActions.postUserAvatarRequest(payload))
 });
 
 UserContainer.propTypes = {
-  currentUserId: PropTypes.string.isRequired,
-  getCurrentUser: PropTypes.func.isRequired
+  getUser: PropTypes.func.isRequired
 };
 
 export default connect(
