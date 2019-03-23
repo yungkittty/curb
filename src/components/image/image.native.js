@@ -7,9 +7,7 @@ const Image = ({ src: uri, ...others }) => (
     {...others}
     source={{
       uri,
-      headers: {
-        Pragma: "no-cache"
-      }
+      cache: "reload"
     }}
   />
 );
