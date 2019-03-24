@@ -1,14 +1,15 @@
 import React from "react";
 import ContainerScroll from "../../../../components/container-scroll";
 
-const SignInContainer = props => (
+const ResetPasswordContainer = props => (
   <ContainerScroll
     {...props}
     contentContainerStyle={{
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+      position: "relative"
     }}
   />
 );
 
-export default SignInContainer;
+export default ResetPasswordContainer;

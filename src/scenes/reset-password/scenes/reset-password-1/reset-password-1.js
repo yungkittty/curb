@@ -5,10 +5,10 @@ import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
 import Input from "../../../../components/input";
 import inputRegex from "../../../../utils/input-regex";
-// eslint-disable-next-line
+/* eslint-disable */
 import SignIn from "../../../sign-in";
-// eslint-disable-next-line
 import ResetPassword2 from "../reset-password-2";
+/* eslint-enable */
 
 class ResetPassword1 extends Component {
   constructor(props) {
@@ -113,4 +113,4 @@ ResetPassword1.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired
 };
 
-export default withNamespaces("forgotPass")(ResetPassword1);
+export default withNamespaces("resetPassword")(ResetPassword1);

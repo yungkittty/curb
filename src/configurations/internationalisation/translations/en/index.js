@@ -4,7 +4,7 @@ import validation from "./en-validation";
 import signIn from "./en-sign-in";
 import signUp from "./en-sign-up";
 import discovery from "./en-discovery";
-import forgotPass from "./en-forgot-pass";
+import resetPassword from "./en-reset-password";
 import appDownload from "./en-app-download";
 
 export default {
@@ -14,6 +14,6 @@ export default {
   signIn,
   signUp,
   discovery,
-  forgotPass,
+  resetPassword,
   appDownload
 };

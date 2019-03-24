@@ -4,7 +4,8 @@ const frCommon = {
   password: "Mot de passe",
   confirmPassword: "Confirmer le mot de passe",
   next: "Suivant",
-  finish: "Terminer"
+  finish: "Terminer",
+  reset: "Réinitialiser"
 };
 
 export default frCommon;

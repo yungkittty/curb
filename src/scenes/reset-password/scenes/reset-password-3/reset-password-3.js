@@ -3,13 +3,11 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
-import InputCode from "../../../../components/input-code";
-/* eslint-disable */
-import ResetPassword1 from "../reset-password-1";
-import ResetPassword3 from "../reset-password-3";
-/* eslint-enable */
+import Input from "../../../../components/input";
+// eslint-disable-next-line
+import ResetPassword2 from "../reset-password-2";
 
-class ResetPassword2 extends Component {
+class ResetPassword3 extends Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +19,7 @@ class ResetPassword2 extends Component {
       t
     } = props;
 
-    this.state = { loading: false, focus: false };
+    this.state = { loading: false };
 
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
@@ -32,14 +30,12 @@ class ResetPassword2 extends Component {
     setAppModalHeaderLeftButton({
       headerLeftIcon: "arrow-left",
       headerLeftOnClick: () =>
-        setAppModalScene({ scene: ResetPassword1, sceneDirection: -1 })
+        setAppModalScene({ scene: ResetPassword2, sceneDirection: -1 })
     });
     setAppModalFooterButton({
-      footerText: t("validateCode"),
+      footerText: t("resetPass"),
       footerOnClick: this.validate
     });
-
-    setTimeout(() => this.setState({ focus: true }), 450);
   }
 
   validate() {
@@ -52,28 +48,38 @@ class ResetPassword2 extends Component {
     const { setAppModalFooterButton, t } = this.props;
 
     //    resetPass({ password: password.value });
-    this.setState({ loading: true });
     setAppModalFooterButton({
-      footerText: t("validateCode"),
+      footerText: t("resetPass"),
       footerOnClick: undefined
     });
-    //setAppModalScene({ scene: ResetPassword3, sceneDirection: 1 });
+    this.setState({ loading: true });
   }
 
   checkForm() {
-    const { code } = this.props;
+    const { password, confirmPassword } = this.state;
 
-    const codeCheck = this.checkInput("code", code.value);
+    const passwordCheck = this.checkInput("password", password.value);
+    const confirmPasswordCheck = this.checkInput(
+      "confirmPassword",
+      confirmPassword.value
+    );
 
-    return codeCheck;
+    return passwordCheck && confirmPasswordCheck;
   }
 
   checkInput(id, value) {
-    const { setAppModalSceneData, [id]: Y } = this.props;
+    const { setAppModalSceneData, password, [id]: Y } = this.props;
 
-    const error = value.length === 0 ? "missing" : undefined;
+    const error =
+      // eslint-disable-next-line
+      id === "password"
+        ? value.length === 0
+          ? "missing"
+          : undefined
+        : password.value !== value
+        ? "dontmatch"
+        : undefined;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
-    if (value.length === 6) this.validate();
     return error === undefined;
   }
 
@@ -83,36 +89,47 @@ class ResetPassword2 extends Component {
   }
 
   render() {
-    //    const { t } = this.props;
-    const { focus, loading } = this.state;
+    const { password, confirmPassword, t } = this.props;
+    const { loading } = this.state;
 
     return loading ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
-        {focus && (
-          <InputCode id="code" fields={6} onChange={this.handleChange} />
-        )}
-        {/* <Input
+        <Input
           size="modal"
-          id="code"
-          placeholder={t("code")}
+          id="password"
+          placeholder={t("common:password")}
           type="password"
-          value={code.value}
+          value={password.value}
           onChange={this.handleChange}
-          error={code.error && t(`validation:code.${code.error}`)}
-        /> */}
+          error={password.error && t(`validation:password.${password.error}`)}
+        />
+        <Input
+          size="modal"
+          id="confirmPassword"
+          placeholder={t("common:confirmPassword")}
+          type="password"
+          value={confirmPassword.value}
+          onChange={this.handleChange}
+          error={
+            confirmPassword.error &&
+            t(`validation:password.${confirmPassword.error}`)
+          }
+        />
       </ResetPasswordContainer>
     );
   }
 }
 
-ResetPassword2.defaultProps = {
-  code: { value: "" }
+ResetPassword3.defaultProps = {
+  password: { value: "" },
+  confirmPassword: { value: "" }
 };
 
-ResetPassword2.propTypes = {
-  code: PropTypes.shape({ value: PropTypes.string }),
+ResetPassword3.propTypes = {
+  password: PropTypes.shape({ value: PropTypes.string }),
+  confirmPassword: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
@@ -121,4 +138,4 @@ ResetPassword2.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired
 };
 
-export default withNamespaces("resetPassword")(ResetPassword2);
+export default withNamespaces("resetPassword")(ResetPassword3);

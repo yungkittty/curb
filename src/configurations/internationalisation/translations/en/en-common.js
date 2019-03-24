@@ -4,7 +4,8 @@ const enCommon = {
   password: "Password",
   confirmPassword: "Confirm password",
   next: "Next",
-  finish: "Finish"
+  finish: "Finish",
+  reset: "Reset"
 };
 
 export default enCommon;

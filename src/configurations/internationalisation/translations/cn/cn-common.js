@@ -4,7 +4,8 @@ const cnCommon = {
   password: "",
   confirmPassword: "",
   next: "",
-  finish: ""
+  finish: "",
+  reset: ""
 };
 
 export default cnCommon;

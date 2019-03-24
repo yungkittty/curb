@@ -4,7 +4,7 @@ import validation from "./cn-validation";
 import signIn from "./cn-sign-in";
 import signUp from "./cn-sign-up";
 import discovery from "./cn-discovery";
-import forgotPass from "./cn-forgot-pass";
+import resetPassword from "./cn-reset-password";
 import appDownload from "./cn-app-download";
 
 export default {
@@ -14,6 +14,6 @@ export default {
   signIn,
   signUp,
   discovery,
-  forgotPass,
+  resetPassword,
   appDownload
 };
