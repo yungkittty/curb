@@ -6,8 +6,8 @@ import { signInActions } from "../../../../datas/sign-in";
 
 const mapDispatchToProps = dispatch => ({
   signIn: payload => dispatch(signInActions.signInRequest(payload)),
-  setAppModalHeaderText: payload =>
-    dispatch(appModalActions.setAppModalHeaderText(payload)),
+  setAppModalHeaderSteps: payload =>
+    dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload =>
     dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload =>

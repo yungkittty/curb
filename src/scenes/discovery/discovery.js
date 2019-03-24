@@ -13,7 +13,7 @@ import InputCode from "../../components/input-code";
 
 const Discovery = ({ t, discoveryGroupsIds }) => (
   <React.Fragment>
-    <InputCode fields={6} onChange={e => console.log(e)} />
+    <InputCode id="disco" fields={6} onChange={e => console.log(e)} />
     <ListSection
       /* eslint-disable-next-line */
       sections={[{ data: [{}] }]}

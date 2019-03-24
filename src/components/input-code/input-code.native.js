@@ -1,30 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withTheme } from "styled-components";
 import CodeInput from "react-native-code-input";
 
-const InputCode = ({ id, fields, onChange }) => (
+const InputCode = ({ theme, id, fields, onChange }) => (
   <CodeInput
     codeLength={fields}
+    onFulfill={value => onChange({ target: { id, value } })}
     codeInputStyle={{
       width: 28,
-      height: 42,
+      height: 60,
       margin: 0,
       marginLeft: 12,
       marginRight: 12,
+      fontWeight: "600",
+      fontFamily: "Montserrat",
       fontSize: 22,
-      color: "#333"
+      color: theme.fontColor
     }}
-    activeColor="#e0e0e0"
-    inactiveColor="#e0e0e0"
+    activeColor={theme.fontColor}
+    inactiveColor={theme.primaryColor}
     borderType="underline"
-    onFulFill={value => onChange({ target: { id, value } })}
   />
 );
 
 InputCode.propTypes = {
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   fields: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired
 };
 
-export default InputCode;
+export default withTheme(InputCode);

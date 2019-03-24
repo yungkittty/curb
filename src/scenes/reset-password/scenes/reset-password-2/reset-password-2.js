@@ -14,21 +14,21 @@ class ResetPassword2 extends Component {
     super(props);
 
     const {
-      setAppModalHeaderText,
+      setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
       setAppModalScene,
       setAppModalFooterButton,
       t
     } = props;
 
-    this.state = { loading: false, focus: false };
+    this.state = { loading: false };
 
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setAppModalHeaderText({ headerText: t("resetPass") });
+    setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 3 });
     setAppModalHeaderLeftButton({
       headerLeftIcon: "arrow-left",
       headerLeftOnClick: () =>
@@ -38,8 +38,6 @@ class ResetPassword2 extends Component {
       footerText: t("validateCode"),
       footerOnClick: this.validate
     });
-
-    setTimeout(() => this.setState({ focus: true }), 450);
   }
 
   validate() {
@@ -57,14 +55,15 @@ class ResetPassword2 extends Component {
       footerText: t("validateCode"),
       footerOnClick: undefined
     });
-    //setAppModalScene({ scene: ResetPassword3, sceneDirection: 1 });
+
+    //  TODO:
+    //  Wait for reply from server
+    //  setAppModalScene({ scene: ResetPassword3, sceneDirection: 1 });
   }
 
   checkForm() {
     const { code } = this.props;
-
     const codeCheck = this.checkInput("code", code.value);
-
     return codeCheck;
   }
 
@@ -73,7 +72,7 @@ class ResetPassword2 extends Component {
 
     const error = value.length === 0 ? "missing" : undefined;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
-    if (value.length === 6) this.validate();
+    if (value.length === 6) this.submit();
     return error === undefined;
   }
 
@@ -83,25 +82,13 @@ class ResetPassword2 extends Component {
   }
 
   render() {
-    //    const { t } = this.props;
-    const { focus, loading } = this.state;
+    const { loading } = this.state;
 
     return loading ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
-        {focus && (
-          <InputCode id="code" fields={6} onChange={this.handleChange} />
-        )}
-        {/* <Input
-          size="modal"
-          id="code"
-          placeholder={t("code")}
-          type="password"
-          value={code.value}
-          onChange={this.handleChange}
-          error={code.error && t(`validation:code.${code.error}`)}
-        /> */}
+        <InputCode id="code" fields={6} onChange={this.handleChange} />
       </ResetPasswordContainer>
     );
   }
@@ -114,7 +101,7 @@ ResetPassword2.defaultProps = {
 ResetPassword2.propTypes = {
   code: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
-  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,

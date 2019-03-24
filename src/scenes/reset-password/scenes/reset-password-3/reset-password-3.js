@@ -12,7 +12,7 @@ class ResetPassword3 extends Component {
     super(props);
 
     const {
-      setAppModalHeaderText,
+      setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
       setAppModalScene,
       setAppModalFooterButton,
@@ -26,7 +26,7 @@ class ResetPassword3 extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setAppModalHeaderText({ headerText: t("resetPass") });
+    setAppModalHeaderSteps({ headerCurrentStep: 3, headerSteps: 3 });
     setAppModalHeaderLeftButton({
       headerLeftIcon: "arrow-left",
       headerLeftOnClick: () =>
@@ -131,7 +131,7 @@ ResetPassword3.propTypes = {
   password: PropTypes.shape({ value: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
-  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
