@@ -57,7 +57,7 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
 Discovery.propTypes = {
   t: PropTypes.func.isRequired,
   discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentUserId: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentUserId: PropTypes.string.isRequired,
   showAppModal: PropTypes.func.isRequired
 };
 
