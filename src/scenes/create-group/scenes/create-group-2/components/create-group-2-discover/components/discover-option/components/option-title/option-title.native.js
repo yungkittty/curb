@@ -6,7 +6,6 @@ const OptionTitle = styled(Text)`
   font-weight: 700;
   color: ${({ selected, theme }) =>
     selected === false ? theme.secondaryColor : theme.fontVariantColor};
-  margin: auto;
   margin-top: 16px;
 `;
 

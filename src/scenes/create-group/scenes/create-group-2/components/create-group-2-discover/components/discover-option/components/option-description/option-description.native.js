@@ -8,8 +8,7 @@ const OptionDescription = styled(Text)`
     selected === false ? theme.secondaryColor : theme.fontVariantColor};
   display: flex;
   text-align: center;
-  margin: auto;
-  margin-top: -16px;
+  margin-top: 16px;
   line-height: 22;
 `;
 
