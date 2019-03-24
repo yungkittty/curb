@@ -11,7 +11,7 @@ import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
 import CreateGroup from "../create-group";
 
-const Discovery = ({ t, discoveryGroupsIds, showAppModal }) => (
+const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
   <React.Fragment>
     <ListSection
       /* eslint-disable-next-line */
@@ -45,16 +45,19 @@ const Discovery = ({ t, discoveryGroupsIds, showAppModal }) => (
         />
       )}
     />
-    <ButtonIconFloat
-      icon="plus"
-      onClick={() => showAppModal({ scene: CreateGroup })}
-    />
+    {currentUserId && (
+      <ButtonIconFloat
+        icon="plus"
+        onClick={() => showAppModal({ scene: CreateGroup })}
+      />
+    )}
   </React.Fragment>
 );
 
 Discovery.propTypes = {
   t: PropTypes.func.isRequired,
   discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentUserId: PropTypes.arrayOf(PropTypes.string).isRequired,
   showAppModal: PropTypes.func.isRequired
 };
 
