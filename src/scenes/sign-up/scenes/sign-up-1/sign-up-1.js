@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
-import SelectImage from "./components/select-image";
+import SelectImage from "../../../../components/select-image";
 import Input from "../../../../components/input";
 import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable */
@@ -68,13 +68,20 @@ class SignUp1 extends Component {
   }
 
   render() {
-    const { t, name, email } = this.props;
+    const { t, avatar, name, email } = this.props;
     return (
       <SignUpContainer>
         <SignUpTitle type="h2" weight={700}>
           {t("createAccount")}
         </SignUpTitle>
-        <SelectImage />
+        <SelectImage
+          style={{ marginTop: 28 }}
+          id="avatar"
+          size="small"
+          readOnly={avatar.value.data && true}
+          src={avatar.value.data}
+          onSelect={this.handleChange}
+        />
         <Input
           size="modal"
           id="name"
@@ -97,6 +104,7 @@ class SignUp1 extends Component {
 }
 
 SignUp1.defaultProps = {
+  avatar: { value: { data: undefined }, error: undefined },
   name: { value: "", error: undefined },
   email: { value: "", error: undefined }
 };
@@ -107,6 +115,11 @@ SignUp1.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
+  avatar: PropTypes.shape({
+    // eslint-disable-next-line
+    value: PropTypes.object.isRequired,
+    error: PropTypes.string
+  }),
   name: PropTypes.shape({
     value: PropTypes.string.isRequired,
     error: PropTypes.string

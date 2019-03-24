@@ -49,9 +49,7 @@ class User extends Component {
     if (this.checkForm()) {
       patchCurrentUser({ name: username.value });
       if (avatar.value.file) {
-        const data = new FormData();
-        data.append("file", avatar.value.file);
-        postUserAvatar(data);
+        postUserAvatar({ avatar: avatar.value.file });
       }
     }
   }
@@ -93,14 +91,14 @@ class User extends Component {
     return (
       <UserContainer>
         <SelectImage
+          id="avatar"
           readOnly={!editMode}
           src={avatar.value.data}
-          id="avatar"
           onSelect={this.handleChange}
         />
         <Input
           readOnly={!editMode}
-          style={{ marginTop: 24 }}
+          style={{ marginTop: 84 }}
           textStyle={{
             fontSize: 36,
             fontWeight: "700",

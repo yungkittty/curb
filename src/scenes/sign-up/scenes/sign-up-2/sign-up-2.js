@@ -39,10 +39,11 @@ class SignUp2 extends Component {
   }
 
   finish() {
-    const { signUp, name, email, password } = this.props;
+    const { signUp, avatar, name, email, password } = this.props;
     const { isLoading } = this.state;
     if (!isLoading && this.checkForm()) {
       signUp({
+        avatar: avatar.value.file,
         name: name.value,
         email: email.value,
         password: password.value
@@ -118,6 +119,7 @@ class SignUp2 extends Component {
 }
 
 SignUp2.defaultProps = {
+  avatar: { value: { src: undefined } },
   password: { value: "", error: undefined },
   confirmPassword: { value: "", error: undefined }
 };
@@ -129,6 +131,8 @@ SignUp2.propTypes = {
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
+  // eslint-disable-next-line
+  avatar: PropTypes.shape({ value: { src: PropTypes.object } }),
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   password: PropTypes.shape({

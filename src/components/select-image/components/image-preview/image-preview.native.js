@@ -7,8 +7,8 @@ const ImagePreview = styled(Image).attrs(({ readOnly }) => ({
   blurRadius: readOnly ? 0 : Platform.OS === "android" ? 1 : 4,
   resizeMode: "cover"
 }))`
-  width: 180px;
-  height: 180px;
+  width: ${({ size }) => (size === "small" ? "150" : "180")}px;
+  height: ${({ size }) => (size === "small" ? "150" : "180")}px;
 `;
 
 export default ImagePreview;

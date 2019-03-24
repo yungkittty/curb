@@ -2,9 +2,8 @@ import styled from "styled-components";
 import ButtonContainer from "../../../button-container";
 
 const ImageContainer = styled(ButtonContainer)`
-  width: 180px;
-  height: 180px;
-  margin-bottom: 20px;
+  width: ${({ size }) => (size === "small" ? "150" : "180")}px;
+  height: ${({ size }) => (size === "small" ? "150" : "180")}px;
   border-radius: 90px;
   overflow: hidden;
   border: ${({ border }) => (border ? "1" : "0")}px solid
