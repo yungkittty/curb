@@ -45,7 +45,7 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
         />
       )}
     />
-    {currentUserId && (
+    {currentUserId !== "" && (
       <ButtonIconFloat
         icon="plus"
         onClick={() => showAppModal({ scene: CreateGroup })}
