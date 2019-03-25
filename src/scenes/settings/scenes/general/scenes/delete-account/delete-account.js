@@ -7,6 +7,7 @@ import General from "../../";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
 import ContentDescription from "./components/content-description";
+import Loader from "../../../../../../components/loader";
 
 class DeleteAccount extends Component {
   constructor(props) {
@@ -18,6 +19,8 @@ class DeleteAccount extends Component {
       setAppModalScene,
       setAppModalFooterButton
     } = this.props;
+
+    this.state = { loading: false };
 
     this.deleteAccount = this.deleteAccount.bind(this);
 
@@ -37,15 +40,16 @@ class DeleteAccount extends Component {
 
   deleteAccount() {
     const { deleteAccount } = this.props;
-
     deleteAccount();
+    this.setState({ loading: true });
   }
 
   render() {
-    const { currentUserToken, t } = this.props;
+    const { t } = this.props;
+    const { loading } = this.state;
 
-    return !currentUserToken ? (
-      <Redirect to="/" />
+    return loading ? (
+      <Loader />
     ) : (
       <ContentContainer>
         <ContentTitle>

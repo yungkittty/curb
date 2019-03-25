@@ -1,5 +1,6 @@
 import { all, takeLatest, select, call, put } from "redux-saga/effects";
 import { currentUserSelectors } from "../current-user";
+import appModalActions from "../app-modal/app-modal-actions";
 import signInActions from "../sign-in/sign-in-actions";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
@@ -21,6 +22,7 @@ function* deleteAccountRequestSaga() {
     const token = yield select(currentUserSelectors.getCurrentUserToken);
     yield call(signUpApi.deleteAccount, { id, token });
     yield put(signUpActions.deleteAccountSuccess());
+    yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signUpActions.deleteAccountFailure(error));
   }
