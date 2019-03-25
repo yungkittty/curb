@@ -4,12 +4,12 @@ import { withNamespaces } from "react-i18next";
 import FormContainer from "./components/form-container";
 import Input from "../../../../components/input";
 
-const SignInForm = ({ onChange, email, password, t } ) => (
+const SignInForm = ({ onChange, email, password, t }) => (
   <FormContainer>
-    <Input 
+    <Input
       size="modal"
-      id="email" 
-      placeholder={t("signIn:email")}   
+      id="email"
+      placeholder={t("signIn:email")}
       value={email.value}
       onChange={onChange}
       error={email.error && t(`validation:email.${email.error}`)}
@@ -17,7 +17,7 @@ const SignInForm = ({ onChange, email, password, t } ) => (
     <Input
       size="modal"
       id="password"
-      placeholder={t("signIn:password")}  
+      placeholder={t("signIn:password")}
       type="password"
       value={password.value}
       onChange={onChange}
@@ -36,7 +36,7 @@ SignInForm.propTypes = {
   password: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
-  }).isRequired,
+  }).isRequired
 };
 
 export default withNamespaces()(SignInForm);

@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router";
 import { withNamespaces } from "react-i18next";
+import Loader from "../../components/loader";
 import SignInContainer from "./components/sign-in-container";
+// eslint-disable-next-line
 import SignInRedirect from "./components/sign-in-redirect";
 import SignInForm from "./components/sign-in-form";
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    const { t, setTitle, setButtonTitle, setButtonClick } = this.props;
+
+    const { setAppModalHeaderText, setAppModalFooterButton, t } = props;
 
     this.state = {
       email: {
@@ -19,7 +21,8 @@ class SignIn extends Component {
       password: {
         value: "",
         error: undefined
-      }
+      },
+      isLoading: false
     };
 
     this.submit = this.submit.bind(this);
@@ -27,9 +30,11 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setTitle(t("signIn"));
-    setButtonTitle(t("login"));
-    setButtonClick(this.validate.bind(this));
+    setAppModalHeaderText({ headerText: t("signIn") });
+    setAppModalFooterButton({
+      footerText: t("signIn"),
+      footerOnClick: this.validate
+    });
   }
 
   validate() {
@@ -40,46 +45,38 @@ class SignIn extends Component {
     const { signIn } = this.props;
     const { email, password } = this.state;
     signIn({ email: email.value, password: password.value });
+    this.setState({ isLoading: true });
   }
 
   checkForm() {
     const { email, password } = this.state;
-
     const emailCheck = this.checkInput("email", email.value);
     const passwordCheck = this.checkInput("password", password.value);
-
     return emailCheck && passwordCheck;
   }
 
   checkInput(id, value) {
     const error = value.length === 0 ? "missing" : undefined;
-
-    this.setState(prev => {
-      const obj = {
-        [id]: {
-          ...prev[id],
-          value,
-          error
-        }
-      };
-      return obj;
-    });
-
+    this.setState(prevState => ({
+      [id]: {
+        ...prevState[id],
+        value,
+        error
+      }
+    }));
     return error === undefined;
   }
 
   handleChange(event) {
     const { id, value } = event.target;
-
     this.checkInput(id, value);
   }
 
   render() {
-    const { currentUserToken } = this.props;
-    const { email, password } = this.state;
-
-    return currentUserToken ? (
-      <Redirect to="/" />
+    const { setAppModalScene, t } = this.props;
+    const { email, password, isLoading } = this.state;
+    return isLoading ? (
+      <Loader />
     ) : (
       <SignInContainer>
         <SignInForm
@@ -87,23 +84,18 @@ class SignIn extends Component {
           password={password}
           onChange={this.handleChange}
         />
-        <SignInRedirect />
+        <SignInRedirect setAppModalScene={setAppModalScene} t={t} />
       </SignInContainer>
     );
   }
 }
 
-SignIn.defaultProps = {
-  currentUserToken: undefined
-};
-
 SignIn.propTypes = {
-  currentUserToken: PropTypes.string,
-  t: PropTypes.func.isRequired,
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired
 };
 
 export default withNamespaces("signIn")(SignIn);

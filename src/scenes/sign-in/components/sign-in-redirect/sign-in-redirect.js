@@ -1,21 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTheme } from "styled-components";
 import RedirectContainer from "./components/redirect-container";
 import Text from "../../../../components/text";
-import Link from "../../../../components/link";
+import ButtonText from "../../../../components/button-text";
+// eslint-disable-next-line
+import SignUp from "../../../sign-up";
 
-const SignInRedirect = ({ t }) => (
+const SignInRedirect = ({ setAppModalScene, t, theme }) => (
   <RedirectContainer>
     <Text>{t("redirectMsg")}</Text>
-    <Link to={{ pathname: "/sign-up", state: { isModal: true } }}>
-      <Text>{t("createAccount")}</Text>
-    </Link>
+    <ButtonText
+      text={t("createAccount")}
+      contentTextStyle={{ color: theme.linkColor }}
+      onClick={() => setAppModalScene({ scene: SignUp, sceneDirection: 1 })}
+    />
   </RedirectContainer>
 );
 
 SignInRedirect.propTypes = {
+  setAppModalScene: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired
 };
 
-export default withNamespaces("signIn")(SignInRedirect);
+export default withTheme(SignInRedirect);

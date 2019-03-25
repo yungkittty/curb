@@ -1,83 +1,55 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import { Redirect } from "react-router";
-/* eslint-disable-next-line */
-import SignUp1 from "../sign-up-1";
-import SignUp2Container from "./components/sign-up-2-container";
-import SignUp2Title from "./components/sign-up-2-title";
+import Loader from "../../../../components/loader";
+import SignUpContainer from "../../components/sign-up-container";
+import SignUpTitle from "../../components/sign-up-title";
 import Input from "../../../../components/input";
+// eslint-disable-next-line
+import SignUp1 from "../sign-up-1";
 
 class SignUp2 extends Component {
   constructor(props) {
     super(props);
     const {
       t,
-      data: {
-        password = {
-          value: "",
-          error: undefined
-        },
-        confirmPassword = {
-          value: "",
-          error: undefined
-        }
-      },
-      setProgress,
-      setComponent,
-      setLeftIcon,
-      setLeftClick,
-      setButtonTitle,
-      setButtonClick
+      setAppModalHeaderSteps,
+      setAppModalHeaderLeftButton,
+      setAppModalScene,
+      setAppModalFooterButton,
     } = this.props;
 
-    this.state = {
-      password,
-      confirmPassword
-    };
-
-    this.submit = this.submit.bind(this);
+    this.finish = this.finish.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.validate = this.validate.bind(this);
 
-    setProgress({ progress: 2, total: 2 });
-    setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(SignUp1, -1));
-    setButtonTitle(t("common:finish"));
-    setButtonClick(this.validate);
+    setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 2 });
+    setAppModalHeaderLeftButton({ headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () => setAppModalScene({ scene: SignUp1, sceneDirection: -1 }) });
+    setAppModalFooterButton({ footerText: t("common:finish"), footerOnClick: this.finish })
+
+    this.state = { isLoading: false };
   }
 
-  validate() {
-    if (this.checkForm()) this.submit();
-  }
-
-  submit() {
-    const {
-      data: { name, email, password },
-      signUp
-    } = this.props;
-
-    signUp({ name: name.value, email: email.value, password: password.value });
+  finish() {
+    const { signUp, name, email, password } = this.props
+    const { isLoading } = this.state;
+    if (!isLoading && this.checkForm()) {
+      signUp({ name: name.value, email: email.value, password: password.value });
+      this.setState({ isLoading: true });
+    }
   }
 
   checkForm() {
-    const { password, confirmPassword } = this.state;
-
+    const { password, confirmPassword } = this.props;
     const passwordCheck = this.checkInput("password", password.value);
-    const confirmPasswordCheck = this.checkInput(
-      "confirmPassword",
-      confirmPassword.value
-    );
-
+    const confirmPasswordCheck = this.checkInput("confirmPassword", confirmPassword.value);
     return passwordCheck && confirmPasswordCheck;
   }
 
   checkInput(id, value) {
-    const { password } = this.state;
-    const { setData } = this.props;
-
+    const { password, setAppModalSceneData, [id]: Y } = this.props;
     const error =
       // eslint-disable-next-line
       id === "password"
@@ -87,37 +59,25 @@ class SignUp2 extends Component {
         : password.value !== value
         ? "dontmatch"
         : undefined;
-
-    this.setState(prev => {
-      const obj = {
-        [id]: {
-          ...prev[id],
-          value,
-          error
-        }
-      };
-      setData(obj);
-      return obj;
-    });
-
+    setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
 
   handleChange(event) {
     const { id, value } = event.target;
-
     this.checkInput(id, value);
   }
 
   render() {
-    const { currentUserToken, t } = this.props;
-    const { password, confirmPassword } = this.state;
-
-    return currentUserToken ? (
-      <Redirect to="/" />
+    const { t, password, confirmPassword } = this.props;
+    const { isLoading } = this.state;
+    return isLoading ? (
+      <Loader />
     ) : (
-      <SignUp2Container>
-        <SignUp2Title>{t("choosePassword")}</SignUp2Title>
+      <SignUpContainer>
+        <SignUpTitle type="h2" weight={700}>
+          {t("choosePassword")}
+        </SignUpTitle>
         <Input
           size="modal"
           id="password"
@@ -134,35 +94,30 @@ class SignUp2 extends Component {
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={
-            confirmPassword.error &&
-            t(`validation:password.${confirmPassword.error}`)
-          }
+          error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
         />
-      </SignUp2Container>
+      </SignUpContainer>
     );
   }
 }
 
 SignUp2.defaultProps = {
-  currentUserToken: undefined
+  password: { value: "", error: undefined },
+  confirmPassword: { value: "", error: undefined }
 };
 
 SignUp2.propTypes = {
-  currentUserToken: PropTypes.string,
-  t: PropTypes.func.isRequired,
-  data: PropTypes.shape({
-    password: PropTypes.object,
-    confirmPassword: PropTypes.object
-  }).isRequired,
+  setAppModalHeaderSteps: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
-  setData: PropTypes.func.isRequired,
-  setProgress: PropTypes.func.isRequired,
-  setLeftIcon: PropTypes.func.isRequired,
-  setLeftClick: PropTypes.func.isRequired,
-  setComponent: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+  name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
+  email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
+  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces("signUp")(SignUp2);

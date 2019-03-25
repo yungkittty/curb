@@ -4,17 +4,18 @@ import { TextInput } from "react-native";
 
 const InputField = styled(({ type, onChange, id, ...others }) => (
   <TextInput
+    {...others}
     secureTextEntry={type === "password"}
     onChangeText={text => onChange({ target: { id, value: text } })}
-    {...others}
   />
 ))`
-  font-size: 18px;
+  width: 100%;
   padding: 18px;
+  font-family: "Montserrat";
+  font-size: 14px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
-    error ? theme.errorColor : theme.pimaryColor};
-  width: 100%;
+    error ? theme.errorColor : theme.primaryColor};
 `;
 
 export default InputField;
