@@ -8,18 +8,16 @@ const ContainerScroll = ({ contentContainerStyle, ...others }) => (
   <View style={{ flex: 1 }}>
     <ScrollView
       {...others}
-      contentContainerStyle={[contentContainerStyle, { flexGrow: 1 }]}
+      contentContainerStyle={[
+        contentContainerStyle,
+        { flexGrow: 1 }
+      ]}
     />
   </View>
 );
 
 ContainerScroll.defaultProps = { contentContainerStyle: undefined };
 
-ContainerScroll.propTypes = {
-  contentContainerStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ])
-};
+ContainerScroll.propTypes = { contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]) };
 
 export default ContainerScroll;

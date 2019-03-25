@@ -31,10 +31,7 @@ class SignIn extends Component {
     this.validate = this.validate.bind(this);
 
     setAppModalHeaderText({ headerText: t("signIn") });
-    setAppModalFooterButton({
-      footerText: t("signIn"),
-      footerOnClick: this.validate
-    });
+    setAppModalFooterButton({ footerText: t("signIn"), footerOnClick: this.validate });
   }
 
   validate() {

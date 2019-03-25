@@ -13,7 +13,11 @@ const ContainerScroll = ({
   showsVerticalScrollIndicator,
   horizontal
 }) => (
-  <ScrollContainer className={className} style={style} horizontal={horizontal}>
+  <ScrollContainer
+    className={className}
+    style={style}
+    horizontal={horizontal}
+  >
     <ScrollContainerContent
       ref={forwardedRef}
       style={contentContainerStyle}
@@ -42,10 +46,7 @@ ContainerScroll.propTypes = {
   children: PropTypes.node.isRequired,
   // eslint-disable-next-line
   forwardedRef: PropTypes.object,
-  contentContainerStyle: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]),
+  contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool

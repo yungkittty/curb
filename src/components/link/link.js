@@ -5,10 +5,7 @@ import { withTheme } from "styled-components";
 import Text from "../text";
 
 const Link = ({ style, theme, children, ...others }) => (
-  <ReactRouterDOMLink
-    {...others}
-    style={{ ...style, textDecoration: "initial" }}
-  >
+  <ReactRouterDOMLink {...others} style={{ ...style, textDecoration: "initial" }}>
     <Text style={{ color: theme.linkColor }}>{children}</Text>
   </ReactRouterDOMLink>
 );
