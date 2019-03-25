@@ -1,3 +1,4 @@
-import Language from "./language";
+// eslint-disable-next-line
+import LanguageContainer from "./language-container";
 
-export default Language;
+export default LanguageContainer;

@@ -1,16 +1,8 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
-import General from "./general";
-import { currentUserSelectors } from "../../../../datas/current-user";
-import { signInActions } from "../../../../datas/sign-in";
-import { appModalActions } from "../../../../datas/app-modal";
-
-const mapStateToProps = state => {
-  const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
-  return {
-    currentUserToken
-  };
-};
+import Language from "./language";
+import { signInActions } from "../../../../../../datas/sign-in";
+import { appModalActions } from "../../../../../../datas/app-modal";
 
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderText: payload =>
@@ -23,6 +15,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
-)(General);
+)(Language);

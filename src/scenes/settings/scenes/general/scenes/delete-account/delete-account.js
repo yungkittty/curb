@@ -13,21 +13,26 @@ class DeleteAccount extends Component {
     super(props);
     const {
       t,
-      setTitle,
-      setLeftClick,
-      setLeftIcon,
-      setComponent,
-      setButtonTitle,
-      setButtonClick
+      setAppModalHeaderText,
+      setAppModalHeaderLeftButton,
+      setAppModalScene,
+      setAppModalFooterButton
     } = this.props;
 
     this.deleteAccount = this.deleteAccount.bind(this);
 
-    setTitle(t("general.menu.deleteAccount.title"));
-    setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(General, -1));
-    setButtonTitle(t("general.menu.deleteAccount.buttonTitle"));
-    setButtonClick(this.deleteAccount);
+    setAppModalHeaderText({
+      headerText: t("general.menu.deleteAccount.title")
+    });
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () =>
+        setAppModalScene({ scene: General, sceneDirection: -1 })
+    });
+    setAppModalFooterButton({
+      footerText: t("general.menu.deleteAccount.buttonTitle"),
+      footerOnClick: this.deleteAccount
+    });
   }
 
   deleteAccount() {
@@ -68,12 +73,10 @@ DeleteAccount.propTypes = {
   currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setLeftClick: PropTypes.func.isRequired,
-  setLeftIcon: PropTypes.func.isRequired,
-  setComponent: PropTypes.func.isRequired,
-  setButtonTitle: PropTypes.func.isRequired,
-  setButtonClick: PropTypes.func.isRequired
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired
 };
 
 export default withNamespaces("settings")(DeleteAccount);

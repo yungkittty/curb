@@ -1,7 +1,7 @@
-/* eslint-disable-next-line */
+/* eslint-disable */
 import Language from "./scenes/language";
-/* eslint-disable-next-line */
 import DeleteAccount from "./scenes/delete-account";
+/* eslint-enable */
 
 const generalData = [
   {

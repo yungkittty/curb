@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces, withI18n } from "react-i18next";
 import ListFlat from "../../../../../../components/list-flat";
-import ListItem from "../../../../../../components/list-item";
+import ModalListItem from "../../../../../../components/modal-list-item";
 /* eslint-disable-next-line */
 import General from "../../";
 
@@ -16,17 +16,19 @@ class Language extends Component {
         store: { data },
         options: { fallbackLng }
       },
-      setTitle,
-      setLeftClick,
-      setLeftIcon,
-      setComponent
+      setAppModalHeaderText,
+      setAppModalHeaderLeftButton,
+      setAppModalScene
     } = this.props;
 
     this.state = { languages: Object.keys(data), key: lng || fallbackLng[0] };
 
-    setTitle(t("general.menu.language.title"));
-    setLeftIcon("arrow-left");
-    setLeftClick(() => setComponent(General, -1));
+    setAppModalHeaderText({ headerText: t("general.menu.language.title") });
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () =>
+        setAppModalScene({ scene: General, sceneDirection: -1 })
+    });
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -49,7 +51,7 @@ class Language extends Component {
         extraData={{ languages }}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <ListItem
+          <ModalListItem
             title={t(`general.menu.language.menu.${item}`)}
             selected={key === item}
             selectionType
@@ -71,10 +73,9 @@ Language.propTypes = {
   i18n: PropTypes.shape({
     changeLanguage: PropTypes.func.isRequired
   }).isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setLeftClick: PropTypes.func.isRequired,
-  setLeftIcon: PropTypes.func.isRequired,
-  setComponent: PropTypes.func.isRequired
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired
 };
 
 export default withI18n()(withNamespaces("settings")(Language));
