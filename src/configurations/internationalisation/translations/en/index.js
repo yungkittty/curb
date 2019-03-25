@@ -5,6 +5,7 @@ import signIn from "./en-sign-in";
 import signUp from "./en-sign-up";
 import discovery from "./en-discovery";
 import appDownload from "./en-app-download";
+import settings from "./en-settings";
 
 export default {
   common,
@@ -13,5 +14,6 @@ export default {
   signIn,
   signUp,
   discovery,
-  appDownload
+  appDownload,
+  settings
 };
