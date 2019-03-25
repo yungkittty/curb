@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router";
 import { withNamespaces } from "react-i18next";
-/* eslint-disable-next-line */
-import General from "../../";
+import Loader from "../../../../../../components/loader";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
 import ContentDescription from "./components/content-description";
-import Loader from "../../../../../../components/loader";
+/* eslint-disable-next-line */
+import General from "../../";
 
 class DeleteAccount extends Component {
   constructor(props) {
