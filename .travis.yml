@@ -1,17 +1,19 @@
 if: branch = develop OR type = pull_request
 
-env:
 if: branch = develop
-  - CURB_BUILD="production"
-  - CURB_VERSION="/${TRAVIS_BRANCH}"
+  env:
+    - CURB_BUILD="production"
+    - CURB_VERSION="/${TRAVIS_BRANCH}"
+
 if: type = pull_request
-  - CURB_BUILD="development"
-  - CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH} | tr '/' '-')
+  env:
+    - CURB_BUILD="development"
+    - CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH} | tr '/' '-')
 
 cache: npm
 
 before_install:
-  - nvm install
+  - nvm install node
   - npm install
 
 jobs:
