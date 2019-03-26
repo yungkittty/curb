@@ -1,14 +1,8 @@
 if: branch = develop OR type = pull_request
 
-if: branch = develop
-  env:
-    - CURB_BUILD="production"
-    - CURB_VERSION="/${TRAVIS_BRANCH}"
-
-if: type = pull_request
-  env:
-    - CURB_BUILD="development"
-    - CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH} | tr '/' '-')
+env:
+  - CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
+  - CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
 
 cache: npm
 
