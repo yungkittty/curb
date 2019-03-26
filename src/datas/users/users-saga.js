@@ -39,11 +39,16 @@ function* postUsersAvatarRequestSaga(action) {
   try {
     const id = yield select(currentUserSelectors.getCurrentUserId);
     const token = yield select(currentUserSelectors.getCurrentUserToken);
-    const respond = yield call(usersApi.postUserAvatar, {
-      payload: action.payload,
-      token,
-      id
-    });
+    const respond = yield call(
+      usersApi.postUserAvatar,
+      action.payload.id
+        ? action.payload
+        : {
+            payload: action.payload,
+            token,
+            id
+          }
+    );
     yield put(usersActions.postUserAvatarSuccess(respond));
   } catch (error) {
     yield put(usersActions.postUserAvatarError(error));
