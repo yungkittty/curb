@@ -59,9 +59,9 @@ jobs:
       script:
         - cd ios
         - bash install-certificates.sh || travis_terminate 1
-        - xcodebuild archive -quiet -project Curb.xcodeproj -scheme Curb -configuration Release clean -archivePath Curb.xcarchive || travis_terminate 1
-        - xcodebuild -quiet -exportArchive -archivePath Curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export || travis_terminate 1
-        - ditto -c -k --keepParent -rsrc Curb.xcarchive/dSYMs/Curb.app.dSYM symbols.zip || travis_terminate 1
-        - bash ../deploy-testfairy.sh export/Curb.ipa symbols.zip || travis_terminate 1
+        - xcodebuild archive -quiet -project curb.xcodeproj -scheme curb -configuration Release clean -archivePath curb.xcarchive || travis_terminate 1
+        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export || travis_terminate 1
+        - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip || travis_terminate 1
+        - bash ../deploy-testfairy.sh export/curb.ipa symbols.zip || travis_terminate 1
       before_cache:
         - rm -f $TRAVIS_BUILD_DIR/node_modules/**/*.log

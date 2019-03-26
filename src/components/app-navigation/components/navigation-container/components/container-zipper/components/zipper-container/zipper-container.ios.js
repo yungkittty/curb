@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Container from "../../../../../../../container";
 
-// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33
+// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 8
 
 const ZipperContainer = styled(Container)`
   display: flex;
@@ -16,9 +16,9 @@ const ZipperContainer = styled(Container)`
   height: 30px;
   border-top-end-radius: 5px;
   border-bottom-end-radius: 5px;
-  shadow-offset: 0px 4.8px; // 8
-  shadow-radius: 4.32px; // 8
-  shadow-color: rgba(0, 0, 0, 0.192); // 8
+  shadow-offset: 0px 4.8px;
+  shadow-radius: 4.32px;
+  shadow-color: rgba(0, 0, 0, 0.192);
   background-color: ${props => props.theme.primaryColor};
 `;
 
