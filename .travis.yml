@@ -15,7 +15,7 @@ jobs:
         - npm install -g netlify-cli@next
       script:
         - npm run web-build:${CURB_BUILD}
-        - bash deploy-netlify.sh
+        - bash .travis/deploy-netlify.sh
     - stage: Build Android
       language: android
       jdk: oraclejdk8
