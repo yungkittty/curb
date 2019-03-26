@@ -16,7 +16,6 @@ jobs:
       before_script:
         - npm run web-bundle:${CURB_BUILD}
       script:
-        - set -e
         - bash .travis/deploy-netlify.sh
     - stage: Build Android
       language: android
@@ -38,7 +37,6 @@ jobs:
       before_script:
         - npm run mobile-bundle-android:${CURB_BUILD}
       script:
-        - set -e
         - cd android
         - openssl aes-256-cbc -k "$CURB_STORE_ENCRYPT_PASSWORD" -in app/curb.keystore.enc -d -a -out app/curb.keystore
         - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
@@ -60,7 +58,6 @@ jobs:
       before_script:
         - npm run mobile-bundle-ios:${CURB_BUILD}
       script:
-        - set -e
         - cd ios
         - bash install-certificates.sh
         - xcodebuild archive -quiet -project Curb.xcodeproj -scheme Curb -configuration Release clean -archivePath curb.xcarchive
