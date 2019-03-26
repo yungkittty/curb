@@ -1,41 +1,36 @@
 if: branch = develop OR type = pull_request
 
-cache: npm
-
 before_install:
   - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
   - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
-  - nvm install node
+  - nvm install 10.10.0
   - npm install
 
 jobs:
   include:
-    - stage: Web
+    - stage: Build Web
       language: node_js
-      before_install:
-        - set -e
+      cache: npm
       install:
         - npm install -g netlify-cli@next
-      before_script:
-        - npm run web-build:${CURB_BUILD}
       script:
+        - npm run web-build:${CURB_BUILD}
         - bash deploy-netlify.sh
-
-    - stage: Android
+    - stage: Build Android
       language: android
+      jdk: oraclejdk8
       android:
         components:
           - tools
           - android-23
-          - android-28
-          - build-tools-28.0.3
+          - android-27
+          - build-tools-27.0.3
       cache:
         directories:
+          - $TRAVIS_BUILD_DIR/node_modules
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
-      before_install:
-        - set -e
       install:
         - npm install -g react-native-cli
       before_script:
@@ -47,14 +42,16 @@ jobs:
         - zip -q -r symbols.zip app/build/intermediates/symbols/release/R.txt
         - bash ../.travis/deploy-testfairy.sh app/build/outputs/apk/release/app-release.apk symbols.zip
       before_cache:
-        - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
-        - rm -rf $HOME/.gradle/caches/modules-2/modules-2.lock
-
-    - stage: iOS
+        - rm -fr $TRAVIS_BUILD_DIR/node_modules/**/android/build/*
+        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+    - stage: Build iOS
       os: osx
+      osx_image: xcode8.1
       language: objective-c
-      before_install:
-        - set -e      
+      cache:
+        directories:
+          - $TRAVIS_BUILD_DIR/node_modules
       install:
         - npm install -g react-native-cli
       before_script:
@@ -67,4 +64,4 @@ jobs:
         - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
         - bash ../.travis/deploy-testfairy.sh export/curb.ipa symbols.zip
       before_cache:
-        - rm -rf $TRAVIS_BUILD_DIR/node_modules/**/*.log
+        - rm -f $TRAVIS_BUILD_DIR/node_modules/**/*.log
