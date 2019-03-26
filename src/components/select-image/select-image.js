@@ -1,29 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import ImageContainer from "./components/image-container";
 import Icon from "../icon";
+import ImageContainer from "./components/image-container";
 import ImagePreview from "./components/image-preview";
+import ImageSelector from "./components/image-selector";
 import ImageInput from "./components/image-input";
 
 const SelectImage = ({ style, theme, id, size, src, readOnly, onSelect }) => (
   <ImageContainer style={style} size={size} border={!src} readOnly={readOnly}>
     <React.Fragment>
-      {src && (
-        <ImagePreview
-          style={{ position: "absolute" }}
-          size={size}
-          src={src}
-          readOnly={readOnly}
-        />
-      )}
+      <ImagePreview size={size} src={src} />
       {!readOnly && (
-        <React.Fragment>
+        <ImageSelector>
           <Icon
+            style={{ zIndex: 1 }}
             icon="plus"
-            size="medium"
-            color={theme.backgroundColor}
-            style={{ position: "absolute" }}
+            size="small"
+            color={theme.secondaryVariantColor}
           />
           <ImageInput
             onSelect={(data, file) => {
@@ -35,7 +29,7 @@ const SelectImage = ({ style, theme, id, size, src, readOnly, onSelect }) => (
               });
             }}
           />
-        </React.Fragment>
+        </ImageSelector>
       )}
     </React.Fragment>
   </ImageContainer>

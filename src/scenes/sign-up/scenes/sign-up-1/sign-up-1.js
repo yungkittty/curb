@@ -78,7 +78,7 @@ class SignUp1 extends Component {
           style={{ marginTop: 28 }}
           id="avatar"
           size="small"
-          readOnly={avatar.value.data && true}
+          readOnly={false}
           src={avatar.value.data}
           onSelect={this.handleChange}
         />

@@ -51,6 +51,7 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
   },
   children: <React.Fragment />
 }))`
+  position: absolute;
   width: 100%;
   height: 100%;
 `;

@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import ButtonContainer from "../../../button-container";
+import Container from "../../../container";
 
-const ImageContainer = styled(ButtonContainer)`
+const ImageContainer = styled(Container)`
   width: ${({ size }) => (size === "small" ? "150" : "180")}px;
-  height: ${({ size }) => (size === "small" ? "150" : "180")}px;
+  height: ${({ size }) => (size === "small" ? "170" : "200")}px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 90px;
-  overflow: hidden;
-  border: ${({ border }) => (border ? "1" : "0")}px solid
-    ${props => props.theme.secondaryColor};
 `;
 
 export default ImageContainer;

@@ -7,12 +7,8 @@ const ImageContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   width: ${({ size }) => (size === "small" ? "200" : "280")}px;
-  height: ${({ size }) => (size === "small" ? "200" : "280")}px;
+  height: ${({ size }) => (size === "small" ? "225" : "305")}px;
   border-radius: 140px;
-  overflow: hidden;
-  cursor: ${({ readOnly }) => (readOnly ? "unset" : "pointer")};
-  border: ${({ border }) => (border ? "1" : "0")}px solid
-    ${props => props.theme.secondaryColor};
 `;
 
 export default ImageContainer;
