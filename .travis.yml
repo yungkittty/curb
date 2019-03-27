@@ -48,7 +48,6 @@ jobs:
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
     - stage: Build iOS
       os: osx
-      osx_image: xcode8.1
       language: objective-c
       cache:
         directories:
@@ -60,7 +59,7 @@ jobs:
       script:
         - cd ios
         - bash install-certificates.sh
-        - xcodebuild archive -quiet -project Curb.xcodeproj -scheme Curb -configuration Release clean -archivePath curb.xcarchive
+        - xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive
         - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
         - bash ../.travis/deploy-testfairy.sh export/curb.ipa symbols.zip
