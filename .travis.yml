@@ -16,8 +16,9 @@ jobs:
       script:
         - cd ios
         - bash install-certificates.sh
+        - cd ..
         - node --version
         - npm --version
         - react-native run-ios --configuration Release
-        - ls -R ../ios
-        - ls -R ../node_modules/react-native/scripts
+        - ls -R ios
+        - ls -R node_modules/react-native/scripts
