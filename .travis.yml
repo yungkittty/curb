@@ -15,9 +15,9 @@ jobs:
       script:
         - cd ios
         - bash install-certificates.sh
-        - cd ..
         - node --version
         - npm --version
-        - react-native run-ios --configuration Release
+        - xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive -allowProvisioningUpdates
+        - cd ..
         - ls -R ios
         - ls -R node_modules/react-native/scripts
