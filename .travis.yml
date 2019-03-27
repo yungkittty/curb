@@ -5,6 +5,7 @@ before_install:
   - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
   - nvm install 10.10.0
   - npm install
+  - echo "$DEV_KEY_PASSWORD"
 
 jobs:
   include:
