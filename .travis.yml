@@ -15,7 +15,7 @@ jobs:
       install:
         - npm install -g react-native-cli
       script:
-        - bash install-certificates.sh
+        - bash ios/install-certificates.sh
         - react-native run-ios --configuration Release
         - ls -R ios
         - ls -R node_modules/react-native/scripts
