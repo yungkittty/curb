@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import SettingsContainer from "./components/settings-container";
 import ListFlat from "../../components/list-flat";
 import ModalListItem from "../../components/modal-list-item";
 /* eslint-disable-next-line */
@@ -19,23 +18,21 @@ class Settings extends Component {
     const { t, setAppModalScene } = this.props;
 
     return (
-      <SettingsContainer>
-        <ListFlat
-          showsVerticalScrollIndicator={false}
-          data={settingsData}
-          extraData={{ settingsData }}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <ModalListItem
-              title={t(`${item.id}.title`)}
-              description={t(`${item.id}.description`)}
-              onClick={() =>
-                setAppModalScene({ scene: item.scene, sceneDirection: 1 })
-              }
-            />
-          )}
-        />
-      </SettingsContainer>
+      <ListFlat
+        showsVerticalScrollIndicator={true}
+        data={settingsData}
+        extraData={{ settingsData }}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <ModalListItem
+            title={t(`${item.id}.title`)}
+            description={t(`${item.id}.description`)}
+            onClick={() =>
+              setAppModalScene({ scene: item.scene, sceneDirection: 1 })
+            }
+          />
+        )}
+      />
     );
   }
 }
