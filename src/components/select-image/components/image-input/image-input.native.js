@@ -5,6 +5,8 @@ import { withNamespaces } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
 import Button from "../../../button";
 
+// https://github.com/react-native-community/react-native-image-picker/
+
 const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
   onClick: () => {
     ImagePicker.showImagePicker(
