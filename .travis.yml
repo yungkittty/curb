@@ -1,52 +1,11 @@
 if: branch = develop OR type = pull_request
 
 before_install:
-  - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
-  - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
   - nvm install 10.10.0
   - npm install
-  - echo ${DEV_KEY_PASSWORD}
 
 jobs:
   include:
-    - stage: Build Web
-      language: node_js
-      cache: npm
-      install:
-        - npm install -g netlify-cli@next
-      before_script:
-        - npm run web-bundle:${CURB_BUILD}
-      script:
-        - bash .travis/deploy-netlify.sh
-    - stage: Build Android
-      language: android
-      jdk: oraclejdk8
-      android:
-        components:
-          - tools
-          - android-23
-          - android-28
-          - build-tools-28.0.3
-      cache:
-        directories:
-          - $TRAVIS_BUILD_DIR/node_modules
-          - $HOME/.gradle/caches/
-          - $HOME/.gradle/wrapper/
-          - $HOME/.android/build-cache
-      install:
-        - npm install -g react-native-cli
-      before_script:
-        - npm run mobile-bundle-android:${CURB_BUILD}
-      script:
-        - cd android
-        - openssl aes-256-cbc -k "$CURB_STORE_ENCRYPT_PASSWORD" -in app/curb.keystore.enc -d -a -out app/curb.keystore
-        - ./gradlew -q -x bundleReleaseJsAndAssets assembleRelease
-        - zip -q -r symbols.zip app/build/intermediates/symbols/release/R.txt
-        - bash ../.travis/deploy-testfairy.sh app/build/outputs/apk/release/app-release.apk symbols.zip
-      before_cache:
-        - rm -fr $TRAVIS_BUILD_DIR/node_modules/**/android/build/*
-        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
     - stage: Build iOS
       os: osx
       language: objective-c
@@ -55,14 +14,8 @@ jobs:
           - $TRAVIS_BUILD_DIR/node_modules
       install:
         - npm install -g react-native-cli
-      before_script:
-        - npm run mobile-bundle-ios:${CURB_BUILD}
       script:
-        - cd ios
-        - bash install-certificates.sh
-        - xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive -allowProvisioningUpdates
-        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
-        - ditto -c -k --keepParent -rsrc curb.xcarchive/dSYMs/curb.app.dSYM symbols.zip
-        - bash ../.travis/deploy-testfairy.sh export/curb.ipa symbols.zip
+        - react-native run-ios --configuration Release
+        - ls -R ios
       before_cache:
         - rm -f $TRAVIS_BUILD_DIR/node_modules/**/*.log
