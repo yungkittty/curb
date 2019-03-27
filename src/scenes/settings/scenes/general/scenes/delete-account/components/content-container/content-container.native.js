@@ -5,6 +5,7 @@ const ContentContainer = styled(Container)`
   display: flex;
   flex-flow: column;
   padding: 0px 24px;
+  justify-content: center;
 `;
 
 export default ContentContainer;

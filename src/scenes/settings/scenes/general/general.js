@@ -31,7 +31,6 @@ class General extends Component {
 
     return (
       <ListFlat
-        showsVerticalScrollIndicator={false}
         data={generalData}
         extraData={{ generalData }}
         keyExtractor={item => item.id}

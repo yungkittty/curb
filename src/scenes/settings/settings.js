@@ -19,7 +19,6 @@ class Settings extends Component {
 
     return (
       <ListFlat
-        showsVerticalScrollIndicator={true}
         data={settingsData}
         extraData={{ settingsData }}
         keyExtractor={item => item.id}

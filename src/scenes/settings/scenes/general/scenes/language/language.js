@@ -46,7 +46,6 @@ class Language extends Component {
 
     return (
       <ListFlat
-        showsVerticalScrollIndicator={false}
         data={languages}
         extraData={{ languages }}
         keyExtractor={item => item}
