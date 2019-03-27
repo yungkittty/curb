@@ -9,11 +9,9 @@ import DiscoveryListSectionHeader from "./components/discovery-list-section-head
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
-import InputCode from "../../components/input-code";
 
 const Discovery = ({ t, discoveryGroupsIds }) => (
   <React.Fragment>
-    <InputCode id="disco" fields={6} onChange={e => console.log(e)} />
     <ListSection
       /* eslint-disable-next-line */
       sections={[{ data: [{}] }]}
