@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
+import ResetPasswordTitle from "../../components/reset-password-title";
 import Input from "../../../../components/input";
 // eslint-disable-next-line
 import ResetPassword2 from "../reset-password-2";
@@ -45,18 +46,18 @@ class ResetPassword3 extends Component {
   }
 
   submit() {
-    const { setAppModalFooterButton, t } = this.props;
+    const { resetPass, email, code, password } = this.props;
 
-    //    resetPass({ password: password.value });
-    setAppModalFooterButton({
-      footerText: t("resetPass"),
-      footerOnClick: undefined
+    resetPass({
+      email: email.value,
+      code: code.value,
+      password: password.value
     });
     this.setState({ loading: true });
   }
 
   checkForm() {
-    const { password, confirmPassword } = this.state;
+    const { password, confirmPassword } = this.props;
 
     const passwordCheck = this.checkInput("password", password.value);
     const confirmPasswordCheck = this.checkInput(
@@ -96,6 +97,9 @@ class ResetPassword3 extends Component {
       <Loader />
     ) : (
       <ResetPasswordContainer>
+        <ResetPasswordTitle type="h2" weight={700}>
+          Choose your new password
+        </ResetPasswordTitle>
         <Input
           size="modal"
           id="password"
@@ -123,14 +127,19 @@ class ResetPassword3 extends Component {
 }
 
 ResetPassword3.defaultProps = {
+  email: { value: "" },
+  code: { value: "" },
   password: { value: "" },
   confirmPassword: { value: "" }
 };
 
 ResetPassword3.propTypes = {
+  email: PropTypes.shape({ value: PropTypes.string }),
+  code: PropTypes.shape({ value: PropTypes.string }),
   password: PropTypes.shape({ value: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
+  resetPass: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,

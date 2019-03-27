@@ -2,10 +2,12 @@ import { connect } from "react-redux";
 // eslint-disable-next-line
 import ResetPassword2 from "./reset-password-2";
 import { appModalActions } from "../../../../datas/app-modal";
-import { signInActions } from "../../../../datas/sign-in";
+// eslint-disable-next-line
+import { accountActions } from "../../../../datas/account";
 
 const mapDispatchToProps = dispatch => ({
-  signIn: payload => dispatch(signInActions.signInRequest(payload)),
+  validateCode: payload =>
+    dispatch(accountActions.validateCodeRequest(payload)),
   setAppModalHeaderSteps: payload =>
     dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload =>

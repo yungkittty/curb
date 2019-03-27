@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
+import ResetPasswordTitle from "../../components/reset-password-title";
 import InputCode from "../../../../components/input-code";
 /* eslint-disable */
 import ResetPassword1 from "../reset-password-1";
 import ResetPassword3 from "../reset-password-3";
+import Input from "../../../../components/input";
 /* eslint-enable */
 
 class ResetPassword2 extends Component {
@@ -24,7 +26,6 @@ class ResetPassword2 extends Component {
     this.state = { loading: false };
 
     this.submit = this.submit.bind(this);
-    this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
@@ -40,31 +41,17 @@ class ResetPassword2 extends Component {
     });
   }
 
-  validate() {
+  validate(value) {
     const { loading } = this.state;
 
-    if (!loading && this.checkForm()) this.submit();
+    if (!loading) this.submit(value);
   }
 
-  submit() {
-    const { setAppModalFooterButton, t } = this.props;
+  submit(code) {
+    const { validateCode, email } = this.props;
 
-    //    resetPass({ password: password.value });
+    validateCode({ code, email: email.value });
     this.setState({ loading: true });
-    setAppModalFooterButton({
-      footerText: t("validateCode"),
-      footerOnClick: undefined
-    });
-
-    //  TODO:
-    //  Wait for reply from server
-    //  setAppModalScene({ scene: ResetPassword3, sceneDirection: 1 });
-  }
-
-  checkForm() {
-    const { code } = this.props;
-    const codeCheck = this.checkInput("code", code.value);
-    return codeCheck;
   }
 
   checkInput(id, value) {
@@ -72,7 +59,7 @@ class ResetPassword2 extends Component {
 
     const error = value.length === 0 ? "missing" : undefined;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
-    if (value.length === 6) this.submit();
+    if (value.length === 10) this.validate(value);
     return error === undefined;
   }
 
@@ -88,19 +75,26 @@ class ResetPassword2 extends Component {
       <Loader />
     ) : (
       <ResetPasswordContainer>
-        <InputCode id="code" fields={6} onChange={this.handleChange} />
+        <ResetPasswordTitle type="h2" weight={700}>
+          Enter the code you just recevied by email
+        </ResetPasswordTitle>
+        <Input id="code" onChange={this.handleChange} />
+        {/* <InputCode id="code" fields={6} onChange={this.handleChange} /> */}
       </ResetPasswordContainer>
     );
   }
 }
 
 ResetPassword2.defaultProps = {
-  code: { value: "" }
+  code: { value: "" },
+  email: { value: "" }
 };
 
 ResetPassword2.propTypes = {
   code: PropTypes.shape({ value: PropTypes.string }),
+  email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
+  validateCode: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,

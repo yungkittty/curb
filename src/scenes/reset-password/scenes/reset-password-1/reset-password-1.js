@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
+import ResetPasswordTitle from "../../components/reset-password-title";
 import Input from "../../../../components/input";
 import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable */
 import SignIn from "../../../sign-in";
-import ResetPassword2 from "../reset-password-2";
 /* eslint-enable */
 
 class ResetPassword1 extends Component {
@@ -42,17 +42,16 @@ class ResetPassword1 extends Component {
   }
 
   validate() {
-    if (this.checkForm()) this.submit();
+    const { loading } = this.state;
+
+    if (!loading && this.checkForm()) this.submit();
   }
 
   submit() {
-    const { setAppModalScene } = this.props;
+    const { emailResetPass, email } = this.props;
 
-    //  resetMail({ email: email.value });
-    //    this.setState({ loading: true });
-    //    TODO: Wait the callback from server
-
-    setAppModalScene({ scene: ResetPassword2, sceneDirection: 1 });
+    emailResetPass({ email: email.value });
+    this.setState({ loading: true });
   }
 
   checkForm() {
@@ -85,6 +84,9 @@ class ResetPassword1 extends Component {
       <Loader />
     ) : (
       <ResetPasswordContainer>
+        <ResetPasswordTitle type="h2" weight={700}>
+          Enter your Email
+        </ResetPasswordTitle>
         <Input
           size="modal"
           id="email"
@@ -105,7 +107,7 @@ ResetPassword1.defaultProps = {
 ResetPassword1.propTypes = {
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
-  signIn: PropTypes.func.isRequired,
+  emailResetPass: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
