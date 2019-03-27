@@ -12,6 +12,7 @@ const InputContainer = styled(Container)`
   }}px;
   position: relative;
   margin-top: 38px;
+  ${({ readOnly }) => readOnly && "padding: 18px 18px 19px 18px;"}
 `;
 
 export default InputContainer;

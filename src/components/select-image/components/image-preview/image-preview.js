@@ -4,6 +4,7 @@ import Image from "../../../image";
 const ImagePreview = styled(Image)`
   position: absolute;
   top: 0px;
+  border-radius: 140px;
   overflow: hidden;
   width: ${({ size }) => (size === "small" ? "200" : "280")}px;
   height: ${({ size }) => (size === "small" ? "200" : "280")}px;

@@ -15,7 +15,7 @@ const Input = ({
   value,
   ...others
 }) => (
-  <InputContainer style={style} size={size}>
+  <InputContainer style={style} size={size} readOnly={readOnly}>
     {readOnly ? (
       <InputRead textStyle={textStyle} textStyleNative={textStyleNative}>
         {value}
