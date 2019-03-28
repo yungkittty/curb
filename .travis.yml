@@ -2,8 +2,8 @@ if: branch = develop OR type = pull_request
 language: node_js
 cache: npm
 before_install:
-  - CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
-  - CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
+  - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
+  - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
   - nvm install 8.3.0
   - nvm alias default 8.3.0
   - npm install
