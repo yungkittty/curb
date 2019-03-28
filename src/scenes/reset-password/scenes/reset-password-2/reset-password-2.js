@@ -5,11 +5,8 @@ import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
 import ResetPasswordTitle from "../../components/reset-password-title";
 import InputCode from "../../../../components/input-code";
-/* eslint-disable */
+// eslint-disable-next-line
 import ResetPassword1 from "../reset-password-1";
-import ResetPassword3 from "../reset-password-3";
-import Input from "../../../../components/input";
-/* eslint-enable */
 
 class ResetPassword2 extends Component {
   constructor(props) {
@@ -59,7 +56,7 @@ class ResetPassword2 extends Component {
 
     const error = value.length === 0 ? "missing" : undefined;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
-    if (value.length === 10) this.validate(value);
+    if (value.length === 6) this.validate(value);
     return error === undefined;
   }
 
@@ -78,8 +75,7 @@ class ResetPassword2 extends Component {
         <ResetPasswordTitle type="h2" weight={700}>
           Enter the code you just recevied by email
         </ResetPasswordTitle>
-        <Input id="code" onChange={this.handleChange} />
-        {/* <InputCode id="code" fields={6} onChange={this.handleChange} /> */}
+        <InputCode id="code" fields={6} onChange={this.handleChange} />
       </ResetPasswordContainer>
     );
   }

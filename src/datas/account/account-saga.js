@@ -1,4 +1,5 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
+import signInActions from "../sign-in/sign-in-actions";
 import appModalActions from "../app-modal/app-modal-actions";
 import accountActionsTypes from "./account-actions-types";
 import accountActions from "./account-actions";
@@ -40,8 +41,11 @@ function* validateCodeRequestSaga(action) {
 
 function* resetPassRequestSaga(action) {
   try {
+    const { email, password } = action.payload;
     yield call(accountApi.resetPass, action.payload);
     yield put(accountActions.resetPassSuccess());
+    yield put(signInActions.signInRequest({ email, password }));
+    yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(accountActions.resetPassFailure(error));
   }

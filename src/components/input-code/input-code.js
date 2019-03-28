@@ -5,19 +5,32 @@ import ReactCodeInput from "react-code-input";
 import inputRegex from "../../utils/input-regex";
 
 class InputCode extends Component {
-  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
+
+    this.state = { ctrlDown: false };
+
+    this.handleKey = this.handleKey.bind(this);
   }
 
   componentDidMount() {
     const { id } = this.props;
     const nodes = document.getElementsByClassName(id)[0].childNodes;
     for (let i = 0; i < nodes.length; i += 1) {
-      nodes[i].onkeydown = event =>
-        RegExp(inputRegex.number).test(Number(event.key)) &&
-        event.keyCode !== 32;
+      nodes[i].onkeydown = event => this.handleKey(true, event);
+      nodes[i].onkeyup = event => this.handleKey(false, event);
     }
+  }
+
+  handleKey(pressed, event) {
+    const { ctrlDown } = this.state;
+    if (event.keyCode === 17) this.setState({ ctrlDown: pressed });
+
+    return (
+      (RegExp(inputRegex.number).test(Number(event.key)) &&
+        event.keyCode !== 32) ||
+      (ctrlDown && event.keyCode === 86)
+    );
   }
 
   render() {
