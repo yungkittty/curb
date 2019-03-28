@@ -5,7 +5,7 @@ import { withNamespaces } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
 import Button from "../../../button";
 
-// https://github.com/react-native-community/react-native-image-picker/
+// https://github.com/react-native-community/react-native-image-picker/blob/master/docs/Reference.md
 
 const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
   onClick: () => {
@@ -23,6 +23,12 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
         storageOptions: {
           cameraRoll: false,
           skipBackup: true
+        },
+        permissionDenied: {
+          title: t("permissionDenied"),
+          text: t("askCameraText"),
+          reTryTitle: t("authorize"),
+          okTitle: t("cancel")
         }
       },
       response => {
