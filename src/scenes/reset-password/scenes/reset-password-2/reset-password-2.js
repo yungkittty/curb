@@ -15,9 +15,7 @@ class ResetPassword2 extends Component {
     const {
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton,
-      t
+      setAppModalScene
     } = props;
 
     this.state = { loading: false };
@@ -31,10 +29,6 @@ class ResetPassword2 extends Component {
       headerLeftIcon: "arrow-left",
       headerLeftOnClick: () =>
         setAppModalScene({ scene: ResetPassword1, sceneDirection: -1 })
-    });
-    setAppModalFooterButton({
-      footerText: t("validateCode"),
-      footerOnClick: this.validate
     });
   }
 

@@ -16,6 +16,7 @@ class InputCode extends Component {
   componentDidMount() {
     const { id } = this.props;
     const nodes = document.getElementsByClassName(id)[0].childNodes;
+    setTimeout(() => nodes[0].focus(), 450);
     for (let i = 0; i < nodes.length; i += 1) {
       nodes[i].onkeydown = event => this.handleKey(true, event);
       nodes[i].onkeyup = event => this.handleKey(false, event);
@@ -39,6 +40,7 @@ class InputCode extends Component {
     return (
       <ReactCodeInput
         fields={fields}
+        autoFocus={false}
         className={id}
         onChange={value =>
           onChange({

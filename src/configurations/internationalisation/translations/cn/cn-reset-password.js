@@ -2,7 +2,6 @@ const cnResetPassword = {
   forgotPass: "",
   resetPass: "",
   sendEmail: "",
-  validateCode: "",
   changePass: ""
 };
 
