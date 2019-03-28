@@ -4,10 +4,18 @@
     <dict>
         <key>method</key>
         <string>development</string>
+        <key>teamID</key>
+        <string>9478G9T3JY</string>
+        <key>compileBitcode</key>
+        <false/>
+        <key>uploadBitcode</key>
+        <true/>
+        <key>uploadSymbols</key>
+        <true/>
         <key>provisioningProfiles</key>
         <dict>
             <key>com.curb.eip</key>
-            <string>curb</string>
+            <string>Curb</string>
         </dict>
-    </dict>
+	</dict>
 </plist>
