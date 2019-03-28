@@ -1,27 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import CodeInput from "react-native-code-input";
+import CodeInput from "react-native-confirmation-code-field";
+import Container from "../container";
 
 const InputCode = ({ theme, id, fields, onChange }) => (
   <CodeInput
+    autoFocus
     codeLength={fields}
     onFulfill={value => onChange({ target: { id, value } })}
-    containerStyle={{ maxHeight: 60 }}
-    codeInputStyle={{
-      width: 28,
+    size={46}
+    containerProps={{ maxHeight: 46 }}
+    cellProps={{
+      style: {
+        color: theme.fontColor
+      },
+      width: 30,
       height: 60,
       margin: 0,
       marginLeft: 12,
       marginRight: 12,
       fontWeight: "600",
       fontFamily: "Montserrat",
-      fontSize: 22,
-      color: theme.fontColor
+      fontSize: 22
     }}
     activeColor={theme.fontColor}
     inactiveColor={theme.primaryColor}
-    borderType="underline"
+    variant="border-b"
   />
 );
 
