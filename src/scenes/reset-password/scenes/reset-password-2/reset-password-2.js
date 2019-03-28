@@ -60,6 +60,7 @@ class ResetPassword2 extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const { loading } = this.state;
 
     return loading ? (
@@ -67,7 +68,7 @@ class ResetPassword2 extends Component {
     ) : (
       <ResetPasswordContainer>
         <ResetPasswordTitle type="h2" weight={700}>
-          Enter the code you just recevied by email
+          {t("enterCode")}
         </ResetPasswordTitle>
         <InputCode id="code" fields={6} onChange={this.handleChange} />
       </ResetPasswordContainer>

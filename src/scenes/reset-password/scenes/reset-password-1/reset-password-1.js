@@ -85,7 +85,7 @@ class ResetPassword1 extends Component {
     ) : (
       <ResetPasswordContainer>
         <ResetPasswordTitle type="h2" weight={700}>
-          Enter your Email
+          {t("enterYourEmail")}
         </ResetPasswordTitle>
         <Input
           size="modal"

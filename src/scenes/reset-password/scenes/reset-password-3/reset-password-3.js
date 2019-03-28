@@ -98,7 +98,7 @@ class ResetPassword3 extends Component {
     ) : (
       <ResetPasswordContainer>
         <ResetPasswordTitle type="h2" weight={700}>
-          Choose your new password
+          {t("chooseNewPassword")}
         </ResetPasswordTitle>
         <Input
           size="modal"

@@ -1,8 +1,10 @@
 const cnResetPassword = {
   forgotPass: "",
-  resetPass: "",
+  enterYourEmail: "",
   sendEmail: "",
-  changePass: ""
+  enterCode: "",
+  chooseNewPassword: "",
+  resetPass: ""
 };
 
 export default cnResetPassword;

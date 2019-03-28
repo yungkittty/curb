@@ -1,8 +1,10 @@
 const enResetPassword = {
   forgotPass: "Forgotten password",
-  resetPass: "Reset my password",
+  enterYourEmail: "Enter your Email",
   sendEmail: "Send reset email",
-  changePass: "Change my password"
+  enterCode: "Enter the code you just received by email",
+  chooseNewPassword: "Choose your new password",
+  resetPass: "Reset my password"
 };
 
 export default enResetPassword;
