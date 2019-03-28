@@ -7,6 +7,7 @@ const InputCode = ({ theme, id, fields, onChange }) => (
   <CodeInput
     codeLength={fields}
     onFulfill={value => onChange({ target: { id, value } })}
+    containerStyle={{ maxHeight: 60 }}
     codeInputStyle={{
       width: 28,
       height: 60,
