@@ -10,7 +10,7 @@ const ModalOverlay = styled(Container)`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: ${props => props.theme.overlayColor};
   overflow: hidden;
 `;
 

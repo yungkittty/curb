@@ -1,19 +1,19 @@
-import { Dimensions } from "react-native";
 import styled from "styled-components";
+import { isIphoneX } from "react-native-device-detection";
 import Container from "../../../container";
 import OverlayBlur from "./components/overlay-blur";
-import { windowDimensions } from "../../../../configurations/window";
 
 const ModalOverlay = styled(Container)`
   display: flex;
   position: absolute;
   top: 0px;
+  flex: 1;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  margin-top: ${Dimensions.get("window").height - windowDimensions.height};
-  background-color: rgba(0, 0, 0, 0.25);
+  border-top-width: ${isIphoneX ? 30 : 20}px;
+  border-top-style: solid;
+  border-top-color: ${props => props.theme.secondaryColor};  
+  background-color: ${props => props.theme.overlayColor};
   overflow: hidden;
 `;
 

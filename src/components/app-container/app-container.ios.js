@@ -1,12 +1,13 @@
-import { Dimensions } from "react-native";
 import styled from "styled-components";
+import { isIphoneX } from "react-native-device-detection";
 import Container from "../container";
-import { windowDimensions } from "../../configurations/window";
 
 const AppContainer = styled(Container)`
-  width: 100%;
-  height: 100%;
-  margin-top: ${Dimensions.get("window").height - windowDimensions.height};
+  display: flex;
+  flex: 1;
+  border-top-width: ${isIphoneX ? 30 : 20}px;
+  border-top-style: solid;
+  border-top-color: ${props => props.theme.secondaryColor};  
   background-color: ${props => props.theme.backgroundColor};
   overflow: hidden;
 `;

@@ -1,13 +1,8 @@
-import { Dimensions, NativeModules } from "react-native";
+import { Dimensions } from "react-native";
+import { isIphoneX } from "react-native-device-detection";
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
-const windowDimensions = { width: windowWidth, height: windowHeight };
-
-// https://stackoverflow.com/a/49718504
-
-const { StatusBarManager } = NativeModules;
-
-StatusBarManager.getHeight(({ height: statusBarHeight }) => { windowDimensions.height -= statusBarHeight });
+const windowDimensions = { width: windowWidth, height: windowHeight - (isIphoneX ? 30 : 20) };
 
 export default windowDimensions;
