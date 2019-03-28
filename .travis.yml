@@ -18,5 +18,5 @@ jobs:
         - bash install-certificates.sh
         - xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive -allowProvisioningUpdates
         - ls -R
-        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportPath export
+        - xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath export
         - ls -R
