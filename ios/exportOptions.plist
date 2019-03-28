@@ -6,7 +6,7 @@
         <string>development</string>
         <key>provisioningProfiles</key>
         <dict>
-            <string>com.curb.eip</string>
+            <key>com.curb.eip</key>
             <string>curb</string>
         </dict>
     </dict>
