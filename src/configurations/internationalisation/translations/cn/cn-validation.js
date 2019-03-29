@@ -1,7 +1,7 @@
 const cnValidation = {
-  username: { missing: "" },
-  email: { missing: "" },
-  password: { missing: "" }
+  username: { missing: "", invalid: "" },
+  email: { missing: "", invalid: "" },
+  password: { missing: "", invalid: "", dontmatch: "" }
 };
 
 export default cnValidation;

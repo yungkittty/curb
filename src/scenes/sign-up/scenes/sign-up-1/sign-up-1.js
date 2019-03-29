@@ -28,9 +28,15 @@ class SignUp1 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ headerCurrentStep: 1, headerSteps: 2 });
-    setAppModalHeaderLeftButton({ headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () => setAppModalScene({ scene: SignIn, sceneDirection: -1 }) });
-    setAppModalFooterButton({ footerText: t("common:next"), footerOnClick: this.goToNext });
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () =>
+        setAppModalScene({ scene: SignIn, sceneDirection: -1 })
+    });
+    setAppModalFooterButton({
+      footerText: t("common:next"),
+      footerOnClick: this.goToNext
+    });
   }
 
   goToNext() {
@@ -49,6 +55,8 @@ class SignUp1 extends Component {
 
   checkInput(id, value) {
     let error = value.length === 0 ? "missing" : undefined;
+    if (error === undefined && id === "name")
+      error = !RegExp(inputRegex.username).test(value) ? "invalid" : undefined;
     if (error === undefined && id === "email")
       error = !RegExp(inputRegex.email).test(value) ? "invalid" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
@@ -93,7 +101,7 @@ class SignUp1 extends Component {
 SignUp1.defaultProps = {
   name: { value: "", error: undefined },
   email: { value: "", error: undefined }
-}
+};
 
 SignUp1.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
@@ -101,8 +109,14 @@ SignUp1.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  name: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  name: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  email: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
   t: PropTypes.func.isRequired
 };
 

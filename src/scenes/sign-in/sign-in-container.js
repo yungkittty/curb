@@ -11,6 +11,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(appModalActions.setAppModalFooterButton(payload)),
   setAppModalScene: payload =>
     dispatch(appModalActions.setAppModalScene(payload)),
+  setAppModalSceneData: payload =>
+    dispatch(appModalActions.setAppModalSceneData(payload)),
   signIn: payload => dispatch(signInActions.signInRequest(payload))
 });
 
