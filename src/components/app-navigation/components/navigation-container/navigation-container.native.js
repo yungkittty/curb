@@ -47,7 +47,7 @@ class NavigationContainer extends React.Component {
             }}
           />
         ) : null}
-        <ContainerContainer style={{ translateX: containerAnimated }}>
+        <ContainerContainer style={{ transform: [{ translateX: containerAnimated }] }}>
           <ContainerContentContainer>
             {children}
           </ContainerContentContainer>
