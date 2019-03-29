@@ -16,7 +16,7 @@ const ZipperContainer = styled(Container)`
   height: 30px;
   border-top-end-radius: 5px;
   border-bottom-end-radius: 5px;
-  shadow-offset: 0px 4.8px;
+  shadow-offset: 4.32px 4.8px;
   shadow-radius: 4.32px;
   shadow-color: rgba(0, 0, 0, 0.192);
   shadow-opacity: 1;
