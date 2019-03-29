@@ -7,7 +7,7 @@ const frCommon = {
   chooseLibrary: "Depuis la galerie",
   permissionDenied: "Permission non accordée",
   askCameraText:
-    "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application",
+    "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application à y accéder",
   authorize: "Autoriser"
 };
 

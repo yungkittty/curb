@@ -13,12 +13,7 @@ const SelectImage = ({ style, theme, id, size, src, readOnly, onSelect }) => (
       <ImagePreview size={size} src={src} />
       {!readOnly && (
         <ImageSelector>
-          <Icon
-            style={{ zIndex: 1 }}
-            icon="plus"
-            size="small"
-            color={theme.secondaryVariantColor}
-          />
+          <Icon icon="plus" size="small" color={theme.secondaryVariantColor} />
           <ImageInput
             onSelect={(data, file) => {
               onSelect({
