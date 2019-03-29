@@ -3,15 +3,22 @@ import styled from "styled-components";
 import Container from "../../../container";
 import Image from "../../../image";
 
-const ImagePreview = styled(({ children, className, src, ...others }) => (
-  // eslint-disable-next-line
-  <Container className={className}>
-    {src && <Image {...others} src={src} />}
-  </Container>
-))`
+const ImagePreview = styled(({ children, className, src, size, ...others }) => {
+  const S = size === "small" ? 200 : 320;
+  return (
+    // eslint-disable-next-line
+    <Container className={className}>
+      {src && (
+        <Image
+          {...others}
+          style={{ width: `${S}px`, height: `${S}px`, objectFit: "cover" }}
+          src={src}
+        />
+      )}
+    </Container>
+  );
+})`
   position: absolute;
-  display: flex;
-  align-items: center;
   top: 0px;
   border-radius: 140px;
   overflow: hidden;
