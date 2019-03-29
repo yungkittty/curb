@@ -18,6 +18,7 @@ const ContainerContentContainer = styled(Container)`
   shadow-offset: 0px 4.8px;
   shadow-radius: 4.32px;
   shadow-color: rgba(0, 0, 0, 0.192);
+  shadow-opacity: 1;
   background-color: ${props => props.theme.primaryColor};
 `;
 

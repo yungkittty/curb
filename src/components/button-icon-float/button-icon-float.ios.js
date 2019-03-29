@@ -14,6 +14,7 @@ const ButtonIconFloat = styled(ButtonIcon).attrs(props => ({ size: "medium", col
   shadow-offset: 0px 2.4px;
   shadow-radius: 2.16px;
   shadow-color: rgba(0, 0, 0, 0.186);
+  shadow-opacity: 1;
   background-color: ${props => props.theme.primaryColor};
 `;
 
