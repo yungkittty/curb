@@ -12,7 +12,7 @@ const ImageSelector = styled(Container)`
   background: ${({ theme }) => theme.primaryVariantColor};
   width: 50px;
   height: 50px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 6px -2px;
+  box-shadow: 0px 2.4px 2.16px 0px rgba(0, 0, 0, 0.186);
 `;
 
 export default ImageSelector;

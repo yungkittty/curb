@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Platform } from "react-native";
 import Container from "../../../container";
 
 const ImageSelector = styled(Container)`
@@ -12,7 +13,9 @@ const ImageSelector = styled(Container)`
   background: ${({ theme }) => theme.primaryVariantColor};
   width: 40px;
   height: 40px;
-  elevation: 4;
+  ${Platform.OS === "android"
+    ? "elevation: 4;"
+    : "shadow-offset: 0px 2.4px; shadow-radius: 2.16px; shadow-color: rgba(0, 0, 0, 0.186);"}
 `;
 
 export default ImageSelector;

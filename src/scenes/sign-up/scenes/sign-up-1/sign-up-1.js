@@ -75,7 +75,7 @@ class SignUp1 extends Component {
           {t("createAccount")}
         </SignUpTitle>
         <SelectImage
-          style={{ marginTop: 28 }}
+          style={{ marginTop: 28, marginBottom: -15 }}
           id="avatar"
           size="small"
           readOnly={false}
