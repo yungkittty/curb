@@ -20,7 +20,7 @@ const ImagePreview = styled(({ children, className, src, size, ...others }) => {
 })`
   position: absolute;
   top: 0px;
-  border-radius: 140px;
+  border-radius: 160px;
   overflow: hidden;
   width: ${({ size }) => (size === "small" ? "200" : "320")}px;
   height: ${({ size }) => (size === "small" ? "200" : "320")}px;
