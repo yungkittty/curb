@@ -98,7 +98,7 @@ class User extends Component {
         />
         <Input
           readOnly={!editMode}
-          style={{ marginTop: 84 }}
+          style={{ marginTop: 84, textAlign: "center" }}
           textStyle={{
             fontSize: 36,
             fontWeight: "700",

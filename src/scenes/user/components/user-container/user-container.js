@@ -1,16 +1,14 @@
-import styled from "styled-components";
-import Container from "../../../../components/container";
+import React from "react";
+import ContainerScroll from "../../../../components/container-scroll";
 
-const UserContainer = styled(Container)`
-  display: flex;
-  width: 100%;
-  padding-top: 50%;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-top: 140px;
-  flex: 1;
-`;
+const UserContainer = props => (
+  <ContainerScroll
+    {...props}
+    contentContainerStyle={{
+      alignItems: "center",
+      paddingTop: 120
+    }}
+  />
+);
 
 export default UserContainer;

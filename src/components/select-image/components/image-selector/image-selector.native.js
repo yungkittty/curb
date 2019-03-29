@@ -14,8 +14,8 @@ const ImageSelector = styled(Container)`
   width: 40px;
   height: 40px;
   ${Platform.OS === "android"
-    ? "elevation: 4;"
-    : "shadow-offset: 0px 2.4px; shadow-radius: 2.16px; shadow-color: rgba(0, 0, 0, 0.186);"}
+    ? "elevation: 6;"
+    : "shadow-offset: 0px 3.6px; shadow-radius: 3.24px; shadow-color: rgba(0, 0, 0, 0.189);"}
 `;
 
 export default ImageSelector;
