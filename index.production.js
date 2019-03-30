@@ -1,13 +1,10 @@
 import { AppRegistry } from "react-native";
-// import TestFairy from "react-native-testfairy";
+import TestFairy from "react-native-testfairy";
 // import Root from "./src/root";
 import { name as appName } from "./app.json";
 
-// TestFairy.begin(process.env.TESTFAIRY_SDK_KEY);
+TestFairy.begin(process.env.TESTFAIRY_SDK_KEY);
 
-const App = () => {
-  alert(process.env.REACT_APP_API_URL);
-  return null;
-};
+const Root = () => null;
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => Root);
