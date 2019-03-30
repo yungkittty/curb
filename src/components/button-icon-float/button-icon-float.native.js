@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import styled from "styled-components";
 import ButtonIcon from "../button-icon";
 
@@ -11,10 +12,14 @@ const ButtonIconFloat = styled(ButtonIcon).attrs(props => ({ size: "medium", col
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  shadow-offset: 0px 2.4px;
-  shadow-radius: 2.16px;
-  shadow-color: rgba(0, 0, 0, 0.186);
-  shadow-opacity: 1;
+  ${Platform.OS === "android" ? `
+    elevation: 4;
+  ` : `
+    shadow-offset: 0px 2.4px;
+    shadow-radius: 2.16px;
+    shadow-color: rgba(0, 0, 0, 0.186);
+    shadow-opacity: 1;
+  `}
   background-color: ${props => props.theme.primaryColor};
 `;
 

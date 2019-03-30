@@ -1,7 +1,9 @@
+import { Platform } from "react-native";
 import styled from "styled-components";
 import Container from "../../../../../../../container";
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 8
+// https://i.stack.imgur.com/jloe7.jpg
 
 const ZipperContainer = styled(Container)`
   display: flex;
@@ -16,10 +18,14 @@ const ZipperContainer = styled(Container)`
   height: 30px;
   border-top-end-radius: 5px;
   border-bottom-end-radius: 5px;
-  shadow-offset: 4.32px 4.8px;
-  shadow-radius: 4.32px;
-  shadow-color: rgba(0, 0, 0, 0.192);
-  shadow-opacity: 0.5;
+  ${Platform.OS === "android" ? `
+    elevation: 8;
+  ` : `
+    shadow-offset: 4.32px 4.8px;
+    shadow-radius: 4.32px;
+    shadow-color: rgba(0, 0, 0, 0.192);
+    shadow-opacity: 0.5;
+  `}
   background-color: ${props => props.theme.primaryColor};
 `;
 

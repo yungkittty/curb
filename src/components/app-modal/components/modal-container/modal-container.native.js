@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import styled from "styled-components";
 import { isIphoneX } from "react-native-device-detection";
 import Container from "../../../container";
@@ -8,7 +9,7 @@ const ModalContainer = styled(Container)`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding-top: ${isIphoneX ? 30 : 20}px;
+  ${Platform.OS === "ios" ? `padding-top: ${isIphoneX ? 30 : 20}px;` : ``}
   background-color: ${props => props.theme.backgroundColor};
   overflow: hidden;
 
