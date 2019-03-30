@@ -5,7 +5,9 @@ import { name as appName } from "./app.json";
 
 // TestFairy.begin(process.env.TESTFAIRY_SDK_KEY);
 
-AppRegistry.registerComponent(appName, () => () => {
+const App = () => {
   alert(process.env.REACT_APP_API_URL);
   return null;
-});
+};
+
+AppRegistry.registerComponent(appName, () => App);
