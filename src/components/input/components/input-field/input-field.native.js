@@ -10,7 +10,7 @@ const InputField = styled(({ type, onChange, id, ...others }) => (
   />
 ))`
   width: 100%;
-  padding: 18px;
+  padding: 16px;
   font-family: "Montserrat";
   font-size: 14px;
   border-bottom-width: 1px;

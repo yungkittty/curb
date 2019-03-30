@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import InputContainer from "./components/input-container";
+import InputPlaceholder from "./components/input-placeholder";
 import InputField from "./components/input-field";
 import InputError from "./components/input-error";
 
 const Input = ({ size, type, placeholder, value, onChange, id, error }) => (
   <InputContainer size={size}>
+    <InputPlaceholder upper={value !== ""}>{placeholder}</InputPlaceholder>
     <InputField
       type={type}
-      placeholder={placeholder}
       value={value}
       onChange={onChange}
       id={id}
