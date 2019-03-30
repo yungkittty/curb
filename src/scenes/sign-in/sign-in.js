@@ -6,7 +6,6 @@ import SignInContainer from "./components/sign-in-container";
 // eslint-disable-next-line
 import SignInRedirect from "./components/sign-in-redirect";
 import SignInForm from "./components/sign-in-form";
-import inputRegex from "../../utils/input-regex";
 
 class SignIn extends Component {
   constructor(props) {
