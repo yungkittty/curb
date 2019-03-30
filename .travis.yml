@@ -48,5 +48,6 @@ jobs:
         - npm run mobile-bundle-ios:${CURB_BUILD}
       script:
         - cd ios
+        - export SKIP_BUNDLING=1
         - bash ../.travis/build-ios.sh || travis_terminate 1
         - bash ../.travis/deploy-ios.sh || travis_terminate 1
