@@ -4,7 +4,7 @@ import Text from "../../../text";
 const InputPlaceholder = styled(Text)`
   position: absolute;
   pointer-events: none;
-  transition: 0.2s ease all;
+  transition: 200ms ease all;
   font-weight: 300;
   font-size: ${({ upper }) => (upper ? "12" : "18")}px;
   top: ${({ upper }) => (upper ? "-12" : "18")}px;

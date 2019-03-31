@@ -28,17 +28,17 @@ const PlaceholderMove = WrappedComponent => {
       Animated.timing(placeholderFontSize, {
         toValue: upper ? 12 : 16,
         easing: Easing.ease,
-        duration: 200
+        duration: 100
       }).start();
       Animated.timing(placeholderTop, {
         toValue: upper ? -10 : 20,
         easing: Easing.ease,
-        duration: 200
+        duration: 100
       }).start();
       Animated.timing(placeholderLeft, {
         toValue: upper ? 6 : 16,
         easing: Easing.ease,
-        duration: 200
+        duration: 100
       }).start();
     }
 
