@@ -1,9 +1,11 @@
 if: branch = develop OR type = pull_request
 language: node_js
 cache: npm
+env:
+  global:
+    - CURB_BUILD=$(bash .travis/curb-build.sh)
+    - CURB_VERSION=$(bash .travis/curb-version.sh)
 before_install:
-  - export CURB_VERSION=$(echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH} | tr '/' '-')
-  - export CURB_BUILD=$([[ $CURB_VERSION == "develop" ]] && echo "production" || echo "development")
   - nvm install 8.3.0
   - nvm alias default 8.3.0
   - npm install
@@ -13,7 +15,7 @@ jobs:
       install:
         - npm install -g netlify-cli@next
       before_script:
-        - npm run web-bundle:${CURB_BUILD}
+        - npm run web-bundle:${CURB_BUILD} || travis_terminate 1
       script:
         - bash .travis/deploy-web.sh || travis_terminate 1
     - stage: Android
@@ -33,7 +35,7 @@ jobs:
       install:
         - npm install -g react-native-cli
       before_script:
-        - npm run mobile-bundle-android:${CURB_BUILD}
+        - npm run mobile-bundle-android:${CURB_BUILD} || travis_terminate 1
       script:
         - cd android
         - bash ../.travis/build-android.sh || travis_terminate 1
@@ -42,12 +44,13 @@ jobs:
       os: osx
       osx_image: xcode9.4
       language: objective-c
+      env:
+        - SKIP_BUNDLING=1
       install:
         - npm install -g react-native-cli
       before_script:
-        - npm run mobile-bundle-ios:${CURB_BUILD}
+        - npm run mobile-bundle-ios:${CURB_BUILD} || travis_terminate 1
       script:
         - cd ios
-        - export SKIP_BUNDLING=1
         - bash ../.travis/build-ios.sh || travis_terminate 1
         - bash ../.travis/deploy-ios.sh || travis_terminate 1
