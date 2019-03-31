@@ -7,9 +7,9 @@ const PlaceholderMove = WrappedComponent => {
     constructor(props) {
       super(props);
       this.state = {
-        placeholderFontSize: new Animated.Value(16),
-        placeholderTop: new Animated.Value(20),
-        placeholderLeft: new Animated.Value(16)
+        placeholderFontSize: new Animated.Value(props.upper ? 12 : 16),
+        placeholderTop: new Animated.Value(props.upper ? -10 : 20),
+        placeholderLeft: new Animated.Value(props.upper ? 6 : 16)
       };
 
       this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
@@ -27,18 +27,18 @@ const PlaceholderMove = WrappedComponent => {
       } = this.state;
       Animated.timing(placeholderFontSize, {
         toValue: upper ? 12 : 16,
-        easing: Easing.ease,
-        duration: 100
+        easing: Easing.inOut(Easing.quad),
+        duration: 200
       }).start();
       Animated.timing(placeholderTop, {
         toValue: upper ? -10 : 20,
-        easing: Easing.ease,
-        duration: 100
+        easing: Easing.inOut(Easing.quad),
+        duration: 200
       }).start();
       Animated.timing(placeholderLeft, {
         toValue: upper ? 6 : 16,
-        easing: Easing.ease,
-        duration: 100
+        easing: Easing.inOut(Easing.quad),
+        duration: 200
       }).start();
     }
 
