@@ -1,4 +1,7 @@
 if: branch = develop OR type = pull_request
+language: node_js
+node_js:
+  - "8.3.0"
 cache: npm
 env:
   global:
@@ -11,7 +14,6 @@ before_install:
 jobs:
   include:
     - stage: Web
-      language: node_js
       install:
         - npm install -g netlify-cli@next
       before_script:

@@ -8,7 +8,7 @@ set -e
 zip -q -r curb-symbols.zip app/build/intermediates/symbols/release/R.txt
 
 # Rename .apk.
-rename "s/app/build/outputs/apk/release/" app-release.apk curb.apk
+rename "s/app-release.apk/curb.apk/" app/build/outputs/apk/release/
 
 # Upload .apk to TestFairy.
 bash ../.travis/deploy-mobile.sh app/build/outputs/apk/release/curb.apk curb-symbols.zip
