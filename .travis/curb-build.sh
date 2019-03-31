@@ -8,4 +8,4 @@ if [[ "${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}" == "develop" ]]; then
 
 fi
   
-echo "developement"
+echo "development"
