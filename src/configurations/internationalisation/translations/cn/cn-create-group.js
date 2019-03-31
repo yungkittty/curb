@@ -1,37 +1,37 @@
 const cnCreateGroup = {
-  createGroup: "Create group",
-  groupName: "Group name",
-  discoverability: "Discoverability",
+  createGroup: "",
+  groupName: "",
+  discoverability: "",
   discoverabilityOptions: {
-    public: "Your group will be visible by everyone through the discovery",
-    private: "Your group will only be accessible by invitation"
+    public: "",
+    private: ""
   },
-  modules: "Modules",
+  modules: "",
   modulesList: {
     text: {
-      title: "Post",
-      description: "Allows users to post textual content"
+      title: "",
+      description: ""
     },
     image: {
-      title: "Image",
-      description: "Allows users to post images"
+      title: "",
+      description: ""
     },
     video: {
-      title: "Video",
-      description: "Allows users to post videos"
+      title: "",
+      description: ""
     },
     localisation: {
-      title: "Localisation",
-      description: "Allows users to post localisation points"
+      title: "",
+      description: ""
     }
   },
-  theme: "Theme",
+  theme: "",
   themeList: {
-    blue: "Blue",
-    red: "Red",
-    green: "Green",
-    yellow: "Yellow",
-    magenta: "Magenta"
+    blue: "",
+    red: "",
+    green: "",
+    yellow: "",
+    magenta: ""
   }
 };
 
