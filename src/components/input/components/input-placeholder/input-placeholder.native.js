@@ -4,6 +4,7 @@ import PlaceholderMove from "./components/placeholder-move";
 
 const InputPlaceholder = styled(Text)`
   position: absolute;
+  width: 100%;
   font-weight: 300;
   color: ${({ theme }) => theme.secondaryColor};
 `;
