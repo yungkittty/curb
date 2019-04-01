@@ -21,7 +21,7 @@ const Discovery = ({ t, discoveryGroupsIds }) => (
           <DiscoveryTitle type="h1" weight={700}>
             {t("title")}
           </DiscoveryTitle>
-          <DiscoverySubtitle type="h3" weight={400}>
+          <DiscoverySubtitle type="h4">
             {t("subtitle")}
           </DiscoverySubtitle>
         </DiscoveryHeader>
