@@ -3,7 +3,6 @@ import Text from "../../../../../../../../components/text";
 
 const ContentDescritpion = styled(Text)`
   font-size: 18px;
-  font-weight: 400;
   line-height: 1.9;
   margin-bottom: 38px;
   padding: 0px 48px;

@@ -51,7 +51,7 @@ class DeleteAccount extends Component {
       <Loader />
     ) : (
       <ContentContainer>
-        <ContentTitle>
+        <ContentTitle weight={700}>
           {t("general.menu.deleteAccount.contentTitle")}
         </ContentTitle>
         <ContentDescription style={{ whiteSpace: "pre-wrap" }}>

@@ -16,10 +16,13 @@ const ItemPreview = ({
       titleColor={titleColor}
       titleCentered={titleCentered}
       disabled={disabled}
+      weight={700}
     >
       {title}
     </PreviewTitle>
-    <PreviewDescription disabled={disabled}>{description}</PreviewDescription>
+    <PreviewDescription disabled={disabled} weight={400}>
+      {description}
+    </PreviewDescription>
   </PreviewContainer>
 );
 
