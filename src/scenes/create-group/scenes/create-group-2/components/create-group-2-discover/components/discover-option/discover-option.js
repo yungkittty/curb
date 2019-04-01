@@ -21,8 +21,12 @@ const DiscoverOption = ({
         size="large"
         color={selected === false ? theme.primaryColor : theme.fontVariantColor}
       />
-      <OptionTitle selected={selected}>{title}</OptionTitle>
-      <OptionDescription selected={selected}>{description}</OptionDescription>
+      <OptionTitle selected={selected} weight={700}>
+        {title}
+      </OptionTitle>
+      <OptionDescription selected={selected} weight={400}>
+        {description}
+      </OptionDescription>
     </Fragment>
   </OptionContainer>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import DiscoverContainer from "./components/discover-container";
 import DiscoverOption from "./components/discover-option";
 
@@ -40,4 +40,4 @@ CreateGroup2Discover.propTypes = {
   discoverability: PropTypes.string
 };
 
-export default withNamespaces("createGroup")(CreateGroup2Discover);
+export default withTranslation("createGroup")(CreateGroup2Discover);

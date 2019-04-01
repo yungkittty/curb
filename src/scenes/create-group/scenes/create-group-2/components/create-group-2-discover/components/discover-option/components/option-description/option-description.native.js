@@ -3,7 +3,6 @@ import Text from "../../../../../../../../../../components/text";
 
 const OptionDescription = styled(Text)`
   font-size: 14px;
-  font-weight: 400;
   color: ${({ selected, theme }) =>
     selected === false ? theme.secondaryColor : theme.fontVariantColor};
   display: flex;

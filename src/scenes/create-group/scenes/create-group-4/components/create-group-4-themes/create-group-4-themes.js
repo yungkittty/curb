@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import ThemesContainer from "./components/themes-container";
 import ListFlat from "../../../../../../components/list-flat";
 import ModalListItem from "../../../../../../components/modal-list-item";
@@ -38,4 +38,4 @@ CreateGroup4Themes.propTypes = {
   value: PropTypes.string
 };
 
-export default withNamespaces("createGroup")(CreateGroup4Themes);
+export default withTranslation("createGroup")(CreateGroup4Themes);

@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import ModulesContainer from "./components/modules-container";
 import ListFlat from "../../../../../../components/list-flat";
 import ModalListItem from "../../../../../../components/modal-list-item";
@@ -39,4 +39,4 @@ CreateGroup3Modules.propTypes = {
   modules: PropTypes.array
 };
 
-export default withNamespaces("modules")(CreateGroup3Modules);
+export default withTranslation("modules")(CreateGroup3Modules);

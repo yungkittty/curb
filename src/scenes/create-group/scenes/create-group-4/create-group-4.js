@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
 import CreateGroupTitle from "../../components/create-group-title";
 import CreateGroupError from "../../components/create-group-error";
@@ -160,4 +160,4 @@ CreateGroup4.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withRouter(withNamespaces("createGroup")(CreateGroup4));
+export default withRouter(withTranslation("createGroup")(CreateGroup4));

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
 import CreateGroupTitle from "../../components/create-group-title";
 import SelectImage from "./components/select-image";
@@ -91,4 +91,4 @@ CreateGroup1.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withNamespaces("createGroup")(CreateGroup1);
+export default withTranslation("createGroup")(CreateGroup1);
