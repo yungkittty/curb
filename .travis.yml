@@ -34,6 +34,8 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
+      env:
+        - SKIP_BUNDLING=1
       install:
         - npm install -g react-native-cli
       before_script:
