@@ -2,44 +2,35 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Text = styled.Text`
-  ${props => {
+  font-family: ${props => {
+    switch (props.weight) {
+      case 800:
+        return "Montserrat-ExtraBold";
+      case 700:
+        return "Montserrat-Bold";
+      case 600:
+        return "Montserrat-SemiBold";
+      case 500:
+        return "Montserrat-Medium";
+      default:
+        return "Montserrat-Regular";
+    }
+  }};
+  font-size: ${props => {
     switch (props.type) {
       case "h1":
-        return `font-size: 36px;`;
+        return 36;
       case "h2":
-        return `font-size: 24px;`;
+        return 24;
       case "h3":
-        return `font-size: 20px;`;
+        return 20;
       case "h4":
-        return `font-size: 18px;`;
+        return 18;
       default:
-        return `font-size: 14px;`;
+        return 14;
     }
-  }}
-  ${props => {
-    switch (props.weight) {
-      case 100:
-        return `font-family: "Montserrat-Thin";`;
-      case 200:
-        return `font-family: "Montserrat-ExtraLight";`;
-      case 300:
-        return `font-family: "Montserrat-Light";`;
-      case 400:
-        return `font-family: "Montserrat-Regular";`;
-      case 500:
-        return `font-family: "Montserrat-Medium";`;
-      case 600:
-        return `font-family: "Montserrat-SemiBold";`;
-      case 700:
-        return `font-family: "Montserrat-Bold";`;
-      case 800:
-        return `font-family: "Montserrat-ExtraBold";`;
-      case 900:
-        return `font-family: "Montserrat-Black";`;
-      default:
-        return undefined;
-    }
-  }}
+  }}px;
+  font-weight: ${props => props.weight};
   color: ${props => props.theme.fontColor};
 `;
 
