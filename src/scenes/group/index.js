@@ -1,3 +1,3 @@
-import Group from "./group";
+import GroupContainer from "./group-container";
 
-export default Group;
+export default GroupContainer;

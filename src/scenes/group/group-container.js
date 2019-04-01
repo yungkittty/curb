@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-router";
+import { connect } from "react-redux";
 import Group from "./group";
 
 class GroupContainer extends React.Component {
