@@ -19,9 +19,6 @@ security import curb-apple.cer -k ios-build.keychain -A
 security import curb-developer.cer -k ios-build.keychain -A
 security import curb-development-key.cer.p12 -k ios-build.keychain -P "$DEV_KEY_PASSWORD" -A
 
-# ...
-security set-key-partition-list -S apple-tool:,apple: -s -k "$CUSTOM_KEYCHAIN_PASSWORD" ios-build.keychain > /dev/null
-
 # Copy mobile provision.
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
