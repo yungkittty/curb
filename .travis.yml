@@ -23,6 +23,8 @@ jobs:
     - stage: Android
       language: android
       jdk: oraclejdk8
+      env:
+        - SKIP_BUNDLING=1
       android:
         components:
           - tools
@@ -34,8 +36,6 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
-      env:
-        - SKIP_BUNDLING=1
       install:
         - npm install -g react-native-cli
       before_script:
