@@ -1,4 +1,3 @@
-// eslint-disable-next-line
-import ZipperContainer from "./zipper-container";
+import ZipperContainer from "./zipper-container.native";
 
 export default ZipperContainer;
