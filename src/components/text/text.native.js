@@ -19,13 +19,13 @@ const Text = styled.Text`
   font-size: ${props => {
     switch (props.type) {
       case "h1":
-        return 36;
+        return 36; // +8
       case "h2":
-        return 24;
+        return 28; // +8
       case "h3":
-        return 20;
+        return 20; // +4
       case "h4":
-        return 18;
+        return 16; // +2
       default:
         return 14;
     }

@@ -20,13 +20,13 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
   font-size: ${props => {
     switch (props.type) {
       case "h1":
-        return 48;
+        return 48; // +12
       case "h2":
-        return 36;
+        return 36; // +12
       case "h3":
-        return 24;
+        return 24; // +6
       case "h4":
-        return 18;
+        return 18; // +4
       default:
         return 14;
     }
