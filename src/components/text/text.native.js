@@ -30,7 +30,7 @@ const Text = styled.Text`
         return 14;
     }
   }}px;
-  font-weight: ${props => props.weight};
+  font-weight: normal;
   color: ${props => props.theme.fontColor};
 `;
 
