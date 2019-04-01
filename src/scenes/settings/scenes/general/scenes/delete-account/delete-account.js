@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import Loader from "../../../../../../components/loader";
 import ContentContainer from "./components/content-container";
 import ContentTitle from "./components/content-title";
@@ -71,4 +71,4 @@ DeleteAccount.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired
 };
 
-export default withNamespaces("settings")(DeleteAccount);
+export default withTranslation("settings")(DeleteAccount);

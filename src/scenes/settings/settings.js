@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import ListFlat from "../../components/list-flat";
 import ModalListItem from "../../components/modal-list-item";
 /* eslint-disable-next-line */
@@ -42,4 +42,4 @@ Settings.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default withNamespaces("settings")(Settings);
+export default withTranslation("settings")(Settings);

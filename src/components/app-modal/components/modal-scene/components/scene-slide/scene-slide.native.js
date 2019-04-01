@@ -63,7 +63,7 @@ const SceneSlide = WrappedComponent => {
           {...this.props}
           ref={this.wrappedComponent}
           style={{
-            translateX: wrappedComponentAnimated,
+            transform: [{ translateX: wrappedComponentAnimated }],
             flexDirection: !sceneAlt ? "row" : "row-reverse"
           }}
           sceneLeftKey={sceneLeftKey}

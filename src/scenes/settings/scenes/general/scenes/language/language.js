@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces, withI18n } from "react-i18next";
+import i18n from "i18next";
+import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../../../components/list-flat";
 import ModalListItem from "../../../../../../components/modal-list-item";
 /* eslint-disable-next-line */
@@ -9,6 +10,7 @@ import General from "../../";
 class Language extends Component {
   constructor(props) {
     super(props);
+    console.log(i18n);
     const {
       t,
       lng,
@@ -77,4 +79,4 @@ Language.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default withI18n()(withNamespaces("settings")(Language));
+export default withTranslation("settings")(Language);

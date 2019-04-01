@@ -3,22 +3,35 @@ import styled from "styled-components";
 
 const Text = styled.span.attrs(({ type }) => ({ as: type }))`
   margin: 0px;
-  font-family: "Montserrat";
-  ${props => {
-    switch (props.type) {
-      case "h1":
-        return `font-size: 48px;`;
-      case "h2":
-        return `font-size: 36px;`;
-      case "h3":
-        return `font-size: 24px;`;
-      case "h4":
-        return `font-size: 18px;`;
+  font-family: ${props => {
+    switch (props.weight) {
+      case 800:
+        return "Montserrat-ExtraBold";
+      case 700:
+        return "Montserrat-Bold";
+      case 600:
+        return "Montserrat-SemiBold";
+      case 500:
+        return "Montserrat-Medium";
       default:
-        return `font-size: 14px;`;
+        return "Montserrat-Regular";
     }
   }};
-  font-weight: ${props => props.weight};
+  font-size: ${props => {
+    switch (props.type) {
+      case "h1":
+        return 48; // +12
+      case "h2":
+        return 36; // +12
+      case "h3":
+        return 24; // +6
+      case "h4":
+        return 18; // +4
+      default:
+        return 14;
+    }
+  }}px;
+  font-weight: initial;
   color: ${props => props.theme.fontColor};
 `;
 

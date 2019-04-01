@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
+import DiscoveryContainer from "./components/discovery-container";
 import DiscoveryHeader from "./components/discovery-header";
 import DiscoveryTitle from "./components/discovery-title";
 import DiscoverySubtitle from "./components/discovery-subtitle";
-import ListSection from "../../components/list-section";
 import DiscoveryListSectionHeader from "./components/discovery-list-section-header";
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
@@ -12,7 +12,7 @@ import ButtonIconFloat from "../../components/button-icon-float";
 
 const Discovery = ({ t, discoveryGroupsIds }) => (
   <React.Fragment>
-    <ListSection
+    <DiscoveryContainer
       /* eslint-disable-next-line */
       sections={[{ data: [{}] }]}
       keyExtractor={(_, sectionIndex) => sectionIndex}
@@ -21,7 +21,7 @@ const Discovery = ({ t, discoveryGroupsIds }) => (
           <DiscoveryTitle type="h1" weight={700}>
             {t("title")}
           </DiscoveryTitle>
-          <DiscoverySubtitle type="h3" weight={400}>
+          <DiscoverySubtitle type="h4">
             {t("subtitle")}
           </DiscoverySubtitle>
         </DiscoveryHeader>
@@ -53,4 +53,4 @@ Discovery.propTypes = {
   discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
-export default withNamespaces("discovery")(Discovery);
+export default withTranslation("discovery")(Discovery);
