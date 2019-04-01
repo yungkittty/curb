@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PanResponder, Animated } from "react-native";
+import { PanResponder, Animated, Easing } from "react-native";
 import ContainerOverlay from "./components/container-overlay";
 import ContainerContainer from "./components/container-container";
 import ContainerContentContainer from "./components/container-content-container";
 import ContainerZipper from "./components/container-zipper";
 
+// https://github.com/facebook/react-native/issues/16250#issuecomment-335401902
+
 class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { containerAnimated: new Animated.ValueXY({ x: -70, y: 0 }),
+    this.state = { containerAnimated: new Animated.Value(-70),
       isContainerShowed: false };
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
@@ -21,15 +23,19 @@ class NavigationContainer extends React.Component {
   moveContainerTo(event) {
     const { containerAnimated, isContainerShowed } = this.state;
     const { pageX } = event.nativeEvent;
-    containerAnimated.setValue({ x: pageX > 70 ? 0 : pageX - 70 });
     if (!isContainerShowed) this.setState({ isContainerShowed: true });
+    containerAnimated.setValue(pageX > 70 ? 0 : pageX - 70);
   }
 
   moveContainerToEnd(event) {
     const { containerAnimated } = this.state;
     const { pageX } = event.nativeEvent;
-    containerAnimated.setValue({ x: pageX < 35 ? -70 : 0 });
     this.setState({ isContainerShowed: pageX >= 35 });
+    Animated.spring(containerAnimated, {
+      toValue: pageX < 35 ? -70 : 0,
+      easing: Easing.inOut(Easing.quad),
+      useNativeDriver: true
+    }).start();
   }
 
   render() {
@@ -40,14 +46,14 @@ class NavigationContainer extends React.Component {
         {isContainerShowed ? (
           <ContainerOverlay
             style={{
-              opacity: containerAnimated.x.interpolate({
+              opacity: containerAnimated.interpolate({
                 inputRange: [-70, 0],
                 outputRange: [0, 0.25]
               })
             }}
           />
         ) : null}
-        <ContainerContainer style={containerAnimated.getLayout()}>
+        <ContainerContainer style={{ transform: [{ translateX: containerAnimated }] }}>
           <ContainerContentContainer>
             {children}
           </ContainerContentContainer>
