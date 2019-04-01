@@ -1,16 +1,8 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
 import DeleteAccount from "./delete-account";
-import { currentUserSelectors } from "../../../../../../datas/current-user";
 import { signUpActions } from "../../../../../../datas/sign-up";
 import { appModalActions } from "../../../../../../datas/app-modal";
-
-const mapStateToProps = state => {
-  const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
-  return {
-    currentUserToken
-  };
-};
 
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderText: payload =>
@@ -26,6 +18,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(DeleteAccount);

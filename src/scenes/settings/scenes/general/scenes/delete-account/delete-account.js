@@ -54,26 +54,15 @@ class DeleteAccount extends Component {
         <ContentTitle>
           {t("general.menu.deleteAccount.contentTitle")}
         </ContentTitle>
-        <ContentDescription>
-          {t("general.menu.deleteAccount.contentDescription1")}
-        </ContentDescription>
-        <ContentDescription>
-          {t("general.menu.deleteAccount.contentDescription2")}
-        </ContentDescription>
-        <ContentDescription>
-          {t("general.menu.deleteAccount.contentDescription3")}
+        <ContentDescription style={{ whiteSpace: "pre-wrap" }}>
+          {t("general.menu.deleteAccount.contentDescription")}
         </ContentDescription>
       </ContentContainer>
     );
   }
 }
 
-DeleteAccount.defaultProps = {
-  currentUserToken: undefined
-};
-
 DeleteAccount.propTypes = {
-  currentUserToken: PropTypes.string,
   t: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
