@@ -68,7 +68,7 @@ class DiscoveryScanQr extends React.Component {
                   borderTopWidth: modalHeight / 2,
                   borderRightWidth: modalWidth / 2,
                   borderBottomWidth: modalHeight / 2,
-                  borderColor: "rgba(0, 0, 0, 0.25)",
+                  borderColor: theme.overlayColor,
                   backgroundColor: "transparent"
                 }}
               />
