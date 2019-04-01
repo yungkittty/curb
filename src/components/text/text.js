@@ -31,7 +31,7 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
         return 14;
     }
   }}px;
-  font-weight: normal;
+  font-weight: initial;
   color: ${props => props.theme.fontColor};
 `;
 
