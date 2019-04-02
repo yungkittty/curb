@@ -5,7 +5,7 @@ const InputError = styled(Text)`
   position: absolute;
   left: 0px;
   bottom: -22px;
-  font-size: 12px;
+  font-size: 14px;
   color: ${props => props.theme.errorColor};
 `;
 

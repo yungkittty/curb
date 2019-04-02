@@ -4,7 +4,7 @@ import { TextInput } from "react-native";
 
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.native.js
 
-const InputField = styled(({ type, onChange, id, ...others }) => (
+const Input = styled(({ type, onChange, id, ...others }) => (
   <TextInput
     {...others}
     secureTextEntry={type === "password"}
@@ -20,4 +20,4 @@ const InputField = styled(({ type, onChange, id, ...others }) => (
     error ? theme.errorColor : theme.primaryColor};
 `;
 
-export default InputField;
+export default Input;

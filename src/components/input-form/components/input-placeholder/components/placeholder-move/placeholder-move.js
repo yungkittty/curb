@@ -7,9 +7,9 @@ const PlaceholderMove = WrappedComponent => {
     constructor(props) {
       super(props);
       this.state = {
-        placeholderScale: new Animated.Value(props.upper ? 0.8 : 1),
-        placeholderTranslateY: new Animated.Value(props.upper ? -10 : 20),
-        placeholderTranslateX: new Animated.Value(props.upper ? -30 : 16)
+        placeholderFontSize: new Animated.Value(props.upper ? 12 : 16),
+        placeholderTop: new Animated.Value(props.upper ? -10 : 20),
+        placeholderLeft: new Animated.Value(props.upper ? 6 : 16)
       };
 
       this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
@@ -21,46 +21,41 @@ const PlaceholderMove = WrappedComponent => {
       const { upper } = this.props;
       if (upper === prevProps.upper) return;
       const {
-        placeholderScale,
-        placeholderTranslateY,
-        placeholderTranslateX
+        placeholderFontSize,
+        placeholderTop,
+        placeholderLeft
       } = this.state;
-      Animated.timing(placeholderScale, {
-        toValue: upper ? 0.8 : 1,
+      Animated.timing(placeholderFontSize, {
+        toValue: upper ? 12 : 16,
         easing: Easing.inOut(Easing.quad),
-        duration: 200,
-        useNativeDriver: true
+        duration: 200
       }).start();
-      Animated.timing(placeholderTranslateY, {
+      Animated.timing(placeholderTop, {
         toValue: upper ? -10 : 20,
         easing: Easing.inOut(Easing.quad),
-        duration: 200,
-        useNativeDriver: true
+        duration: 200
       }).start();
-      Animated.timing(placeholderTranslateX, {
-        toValue: upper ? -30 : 16,
+      Animated.timing(placeholderLeft, {
+        toValue: upper ? 6 : 16,
         easing: Easing.inOut(Easing.quad),
-        duration: 200,
-        useNativeDriver: true
+        duration: 200
       }).start();
     }
 
     render() {
       const { AnimatedWrappedComponent } = this;
       const {
-        placeholderScale,
-        placeholderTranslateY,
-        placeholderTranslateX
+        placeholderFontSize,
+        placeholderTop,
+        placeholderLeft
       } = this.state;
       return (
         <AnimatedWrappedComponent
           {...this.props}
           style={{
-            transform: [
-              { scale: placeholderScale },
-              { translateY: placeholderTranslateY },
-              { translateX: placeholderTranslateX }
-            ]
+            fontSize: placeholderFontSize,
+            top: placeholderTop,
+            left: placeholderLeft
           }}
         />
       );

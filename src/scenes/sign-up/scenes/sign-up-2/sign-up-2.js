@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
@@ -98,7 +98,7 @@ class SignUp2 extends Component {
         <SignUpTitle type="h2" weight={700}>
           {t("choosePassword")}
         </SignUpTitle>
-        <Input
+        <InputForm
           size="modal"
           id="createPassword"
           placeholder={t("password")}
@@ -110,7 +110,7 @@ class SignUp2 extends Component {
             t(`validation:password.${createPassword.error}`)
           }
         />
-        <Input
+        <InputForm
           size="modal"
           id="confirmPassword"
           placeholder={t("confirmPassword")}

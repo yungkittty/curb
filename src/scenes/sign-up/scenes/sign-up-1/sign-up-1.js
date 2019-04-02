@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
 import SelectImage from "./components/select-image";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable */
 import SignIn from "../../../sign-in";
@@ -77,7 +77,7 @@ class SignUp1 extends Component {
           {t("createAccount")}
         </SignUpTitle>
         <SelectImage />
-        <Input
+        <InputForm
           size="modal"
           id="name"
           placeholder={t("username")}
@@ -85,7 +85,7 @@ class SignUp1 extends Component {
           value={name.value}
           error={name.error && t(`validation:username.${name.error}`)}
         />
-        <Input
+        <InputForm
           size="modal"
           id="email"
           placeholder={t("mailAddress")}
