@@ -8,7 +8,7 @@ const groupsReducer = (state = initialState, action) => {
     case groupsActionsTypes.GET_GROUP_SUCCESS:
       return _.assign({}, state, {
         byId: _.assign({}, state.byId, { [action.payload.id]: action.payload }),
-        allIds: _.merge([], state.allIds, [action.payload.id])
+        allIds: _.union(state.allIds, [action.payload.id])
       });
     default:
       return state;
