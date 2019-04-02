@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
 import ResetPasswordTitle from "../../components/reset-password-title";
@@ -93,4 +93,4 @@ ResetPassword2.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired
 };
 
-export default withNamespaces("resetPassword")(ResetPassword2);
+export default withTranslation("resetPassword")(ResetPassword2);

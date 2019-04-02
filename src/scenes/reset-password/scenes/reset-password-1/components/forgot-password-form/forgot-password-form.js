@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import FormContainer from "./components/form-container";
 import Input from "../../../../components/input";
 
@@ -26,4 +26,4 @@ ForgotPasswordForm.propTypes = {
   }).isRequired
 };
 
-export default withNamespaces()(ForgotPasswordForm);
+export default withTranslation()(ForgotPasswordForm);
