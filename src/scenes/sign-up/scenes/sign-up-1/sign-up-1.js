@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
 import SelectImage from "./components/select-image";
@@ -118,4 +118,4 @@ SignUp1.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withNamespaces("signUp")(SignUp1);
+export default withTranslation("signUp")(SignUp1);

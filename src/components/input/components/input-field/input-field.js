@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+// https://github.com/yungkittty/curb/blob/develop/src/components/text/text.js
+
 const InputField = styled.input`
   box-sizing: border-box;
   width: 100%;
   padding: 18px;
-  font-family: "Montserrat";
+  font-family: "Montserrat-Regular";
   font-size: 18px;
   outline: none;
   border: 0;
