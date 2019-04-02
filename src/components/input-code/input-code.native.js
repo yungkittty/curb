@@ -19,8 +19,7 @@ const InputCode = ({ theme, id, fields, onChange }) => (
       margin: 0,
       marginLeft: 12,
       marginRight: 12,
-      fontWeight: "600",
-      fontFamily: "Montserrat",
+      fontFamily: "Montserrat-SemiBold",
       fontSize: 22
     }}
     activeColor={theme.fontColor}
