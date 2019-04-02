@@ -3,10 +3,12 @@ import signInActions from "../sign-in/sign-in-actions";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
 import signUpApi from "./sign-up-api";
+import usersApi from "../users/users-api";
 
 function* signUpRequestSaga(action) {
   try {
     yield call(signUpApi.signUp, action.payload);
+    yield call(usersApi.sendEmail, action.payload);
     yield put(signInActions.signInRequest(action.payload));
     yield put(signUpActions.signUpSuccess());
   } catch (error) {
