@@ -1,5 +1,8 @@
 const enValidation = {
-  username: { missing: "Missing username", invalid: "Incorrect format" },
+  username: {
+    missing: "Missing username",
+    invalid: "Must be 4 to 20 characters long. Authorized characters: . _ -"
+  },
   email: { missing: "Missing mail address", invalid: "Invalid mail address" },
   password: {
     missing: "Missing password",
