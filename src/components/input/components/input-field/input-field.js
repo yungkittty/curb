@@ -11,6 +11,10 @@ const InputField = styled.input`
   border: 0;
   border-bottom: 1px solid
     ${({ theme, error }) => (error ? theme.errorColor : theme.primaryColor)};
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
 export default InputField;
