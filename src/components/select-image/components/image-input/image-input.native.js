@@ -1,7 +1,7 @@
 import React from "react";
 import { Platform } from "react-native";
 import styled from "styled-components";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
 import Button from "../../../button";
 
@@ -64,4 +64,4 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
   height: 100%;
 `;
 
-export default withNamespaces("common")(ImageInput);
+export default withTranslation("common")(ImageInput);

@@ -1,9 +1,10 @@
 import React from "react";
+import { isMobile } from "react-device-detect";
 import PropTypes from "prop-types";
-import InputRead from "./components/input-read";
 import InputContainer from "./components/input-container";
 import InputField from "./components/input-field";
 import InputError from "./components/input-error";
+import Text from "../text";
 
 const Input = ({
   style,
@@ -17,14 +18,11 @@ const Input = ({
 }) => (
   <InputContainer style={style} size={size} readOnly={readOnly}>
     {readOnly ? (
-      <InputRead textStyle={textStyle} textStyleNative={textStyleNative}>
-        {value}
-      </InputRead>
+      <Text style={!isMobile ? textStyle : textStyleNative}>{value}</Text>
     ) : (
       <InputField
         error={error}
-        textStyle={textStyle}
-        textStyleNative={textStyleNative}
+        style={!isMobile ? textStyle : textStyleNative}
         value={value}
         {...others}
       />
@@ -36,14 +34,24 @@ const Input = ({
 Input.defaultProps = {
   style: undefined,
   size: undefined,
-  error: undefined
+  error: undefined,
+  readOnly: false,
+  textStyle: {},
+  textStyleNative: {},
+  value: ""
 };
 
 Input.propTypes = {
   // eslint-disable-next-line
   style: PropTypes.object,
   size: PropTypes.oneOf(["modal"]),
-  error: PropTypes.string
+  error: PropTypes.string,
+  readOnly: PropTypes.bool,
+  // eslint-disable-next-line
+  textStyle: PropTypes.object,
+  // eslint-disable-next-line
+  textStyleNative: PropTypes.object,
+  value: PropTypes.string
 };
 
 export default Input;

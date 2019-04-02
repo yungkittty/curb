@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
 import SelectImage from "../../components/select-image";
@@ -101,12 +101,12 @@ class User extends Component {
           style={{ marginTop: 84, textAlign: "center" }}
           textStyle={{
             fontSize: 36,
-            fontWeight: "700",
+            fontFamily: "Montserrat-Bold",
             textAlign: "center"
           }}
           textStyleNative={{
             fontSize: 24,
-            fontWeight: "700",
+            fontFamily: "Montserrat-Bold",
             textAlign: "center"
           }}
           id="username"
@@ -135,4 +135,4 @@ User.propTypes = {
   owner: PropTypes.bool.isRequired
 };
 
-export default withNamespaces()(User);
+export default withTranslation()(User);

@@ -12,9 +12,6 @@ const InputField = styled.input`
   border-bottom: 1px solid
     ${({ theme, error }) => (error ? theme.errorColor : theme.primaryColor)};
   color: ${({ theme }) => theme.fontColor};
-  ${({ textStyle }) => textStyle && `font-size: ${textStyle.fontSize}px;`}
-  ${({ textStyle }) => textStyle && `font-weight: ${textStyle.fontWeight};`}
-  ${({ textStyle }) => textStyle && `text-align:${textStyle.textAlign};`}
 `;
 
 export default InputField;
