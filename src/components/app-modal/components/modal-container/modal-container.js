@@ -7,6 +7,7 @@ const ModalContainer = styled(Container)`
   width: 700px;
   min-width: 700px;
   height: 740px;
+  min-height: 740px;
   border-radius: 25px;
   background-color: ${props => props.theme.backgroundColor};
   overflow: hidden;
