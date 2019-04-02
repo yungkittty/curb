@@ -2,22 +2,34 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Text = styled.Text`
-  font-family: "Montserrat";
-  ${props => {
+  font-family: ${props => {
+    switch (props.weight) {
+      case 800:
+        return "Montserrat-ExtraBold";
+      case 700:
+        return "Montserrat-Bold";
+      case 600:
+        return "Montserrat-SemiBold";
+      case 500:
+        return "Montserrat-Medium";
+      default:
+        return "Montserrat-Regular";
+    }
+  }};
+  font-size: ${props => {
     switch (props.type) {
       case "h1":
-        return `font-size: 36px;`;
+        return 36; // +8
       case "h2":
-        return `font-size: 24px;`;
+        return 28; // +8
       case "h3":
-        return `font-size: 20px;`;
+        return 20; // +4
       case "h4":
-        return `font-size: 18px;`;
+        return 16; // +2
       default:
-        return `font-size: 14px;`;
+        return 14;
     }
-  }}
-  font-weight: ${props => props.weight};
+  }}px;
   color: ${props => props.theme.fontColor};
 `;
 

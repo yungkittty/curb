@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import Loader from "../../components/loader";
 import SignInContainer from "./components/sign-in-container";
 // eslint-disable-next-line
@@ -95,4 +95,4 @@ SignIn.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withNamespaces("signIn")(SignIn);
+export default withTranslation("signIn")(SignIn);
