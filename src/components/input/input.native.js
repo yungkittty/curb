@@ -14,7 +14,7 @@ const Input = styled(({ type, onChange, id, ...others }) => (
   width: 100%;
   padding: 16px;
   font-family: "Montserrat-Regular";
-  font-size: 14px;
+  font-size: 16px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
     error ? theme.errorColor : theme.primaryColor};

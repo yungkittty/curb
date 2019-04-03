@@ -9,7 +9,7 @@ const PlaceholderMove = WrappedComponent => {
       this.state = {
         placeholderScale: new Animated.Value(props.upper ? 0.875 : 1),
         placeholderTranslateY: new Animated.Value(props.upper ? -10 : 20),
-        placeholderTranslateX: new Animated.Value(props.upper ? -30 : 16)
+        placeholderTranslateX: new Animated.Value(props.upper ? -18 : 16)
       };
 
       this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
