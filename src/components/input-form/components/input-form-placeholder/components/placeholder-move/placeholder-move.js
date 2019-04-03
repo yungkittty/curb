@@ -38,7 +38,7 @@ const PlaceholderMove = WrappedComponent => {
         useNativeDriver: true
       }).start();
       Animated.timing(placeholderTranslateX, {
-        toValue: upper ? -30 : 16,
+        toValue: upper ? -18 : 16,
         easing: Easing.inOut(Easing.quad),
         duration: 200,
         useNativeDriver: true

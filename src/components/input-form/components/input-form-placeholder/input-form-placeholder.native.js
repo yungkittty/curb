@@ -2,9 +2,10 @@ import styled from "styled-components";
 import PlaceholderMove from "./components/placeholder-move";
 import Text from "../../../text";
 
-const InputPlaceholder = styled(Text)`
+const InputFormPlaceholder = styled(Text)`
   position: absolute;
+  width: 100%;
   color: ${({ theme }) => theme.secondaryColor};
 `;
 
-export default PlaceholderMove(InputPlaceholder);
+export default PlaceholderMove(InputFormPlaceholder);

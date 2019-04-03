@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import Text from "../../../text";
 
-const InputError = styled(Text)`
+const InputFormError = styled(Text)`
+  white-space: pre;
   position: absolute;
   left: 0px;
-  top: 60px;
-  font-size: 11px;
+  top: 64px;
   color: ${props => props.theme.errorColor};
 `;
 
-export default InputError;
+export default InputFormError;

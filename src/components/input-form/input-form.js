@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import InputContainer from "./components/input-container";
-import InputPlaceholder from "./components/input-placeholder";
+import InputFormContainer from "./components/input-form-container";
+import InputFormPlaceholder from "./components/input-form-placeholder";
 import Input from "../input";
-import InputError from "./components/input-error";
+import InputFormError from "./components/input-form-error";
 
 class InputForm extends Component {
   constructor(props) {
@@ -16,10 +16,10 @@ class InputForm extends Component {
     const { size, type, placeholder, value, onChange, id, error } = this.props;
     const { focused } = this.state;
     return (
-      <InputContainer size={size}>
-        <InputPlaceholder weight={300} upper={value !== "" || focused}>
+      <InputFormContainer size={size}>
+        <InputFormPlaceholder weight={300} upper={value !== "" || focused}>
           {placeholder}
-        </InputPlaceholder>
+        </InputFormPlaceholder>
         <Input
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
@@ -29,8 +29,12 @@ class InputForm extends Component {
           id={id}
           error={error}
         />
-        {error && <InputError>{error}</InputError>}
-      </InputContainer>
+        {error && (
+          <InputFormError type="h5" weight={300}>
+            {error}
+          </InputFormError>
+        )}
+      </InputFormContainer>
     );
   }
 }
