@@ -42,6 +42,7 @@
 		43E9C1EC656C4103961E5DBC /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1C2B47F56D4EE2AC010E8D /* libRNVectorIcons.a */; };
 		49DBAAD782FC4BAFA43458E8 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0B6C37A7F4BAFACC18360 /* libRNCamera.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8F1607EC22549B8E00C4BCFC /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C18832ED45A44D24995DA7A5 /* Montserrat-Light.ttf */; };
 		A3D839700F03432D950623D2 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6CB94128E5343FB88DAB102 /* Montserrat-ExtraBold.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		E52139B60EC345A991D8CAE3 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 888BE31DD8474426A16E3DCE /* libRNVectorIcons-tvOS.a */; };
@@ -1261,11 +1262,12 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				21EA5E3671404BB3B9257684 /* Montserrat-Bold.ttf in Resources */,
 				A3D839700F03432D950623D2 /* Montserrat-ExtraBold.ttf in Resources */,
+				21EA5E3671404BB3B9257684 /* Montserrat-Bold.ttf in Resources */,
+				EE827BC63BC047BCBD58DBC9 /* Montserrat-SemiBold.ttf in Resources */,
 				EA3737DFD7354B0282E249C4 /* Montserrat-Medium.ttf in Resources */,
 				F565119B5D7F4258A2386C01 /* Montserrat-Regular.ttf in Resources */,
-				EE827BC63BC047BCBD58DBC9 /* Montserrat-SemiBold.ttf in Resources */,
+				8F1607EC22549B8E00C4BCFC /* Montserrat-Light.ttf in Resources */,
 				27AA7EC79F0343589E31115F /* FontAwesome5_Solid.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
