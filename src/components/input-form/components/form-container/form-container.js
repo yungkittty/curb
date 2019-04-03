@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Container from "../../../container";
 
-const InputFormContainer = styled(Container)`
+const FormContainer = styled(Container)`
   width: ${props => {
     switch (props.size) {
       case "modal":
@@ -14,4 +14,4 @@ const InputFormContainer = styled(Container)`
   margin-bottom: 52px;
 `;
 
-export default InputFormContainer;
+export default FormContainer;

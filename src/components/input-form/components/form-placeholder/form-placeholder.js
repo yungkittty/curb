@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../../../text";
 
-const InputFormPlaceholder = styled(Text)`
+const FormPlaceholder = styled(Text)`
   position: absolute;
   pointer-events: none;
   transition: 200ms ease all;
@@ -11,4 +11,4 @@ const InputFormPlaceholder = styled(Text)`
   color: ${({ theme }) => theme.secondaryColor};
 `;
 
-export default InputFormPlaceholder;
+export default FormPlaceholder;

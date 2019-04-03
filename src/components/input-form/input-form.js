@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import InputFormContainer from "./components/input-form-container";
-import InputFormPlaceholder from "./components/input-form-placeholder";
+import FormContainer from "./components/form-container";
+import FormPlaceholder from "./components/form-placeholder";
 import Input from "../input";
-import InputFormError from "./components/input-form-error";
+import FormError from "./components/form-error";
 
 class InputForm extends Component {
   constructor(props) {
@@ -16,10 +16,10 @@ class InputForm extends Component {
     const { size, type, placeholder, value, onChange, id, error } = this.props;
     const { focused } = this.state;
     return (
-      <InputFormContainer size={size}>
-        <InputFormPlaceholder weight={300} upper={value !== "" || focused}>
+      <FormContainer size={size}>
+        <FormPlaceholder weight={300} upper={value !== "" || focused}>
           {placeholder}
-        </InputFormPlaceholder>
+        </FormPlaceholder>
         <Input
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
@@ -30,11 +30,11 @@ class InputForm extends Component {
           error={error}
         />
         {error && (
-          <InputFormError type="h5" weight={300}>
+          <FormError type="h5" weight={300}>
             {error}
-          </InputFormError>
+          </FormError>
         )}
-      </InputFormContainer>
+      </FormContainer>
     );
   }
 }
