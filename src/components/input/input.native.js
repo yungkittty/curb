@@ -11,9 +11,8 @@ const Input = styled(({ type, onChange, id, ...others }) => (
     onChangeText={text => onChange({ target: { id, value: text } })}
   />
 ))`
-  width: 100%;
-  padding: 16px;
   font-family: "Montserrat-Regular";
+  padding: 16px;
   font-size: 16px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>

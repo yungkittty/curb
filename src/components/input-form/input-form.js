@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FormContainer from "./components/form-container";
 import FormPlaceholder from "./components/form-placeholder";
-import Input from "../input";
+import FormInput from "./components/form-input";
 import FormError from "./components/form-error";
 
 class InputForm extends Component {
@@ -20,7 +20,7 @@ class InputForm extends Component {
         <FormPlaceholder weight={300} upper={value !== "" || focused}>
           {placeholder}
         </FormPlaceholder>
-        <Input
+        <FormInput
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
           type={type}
@@ -42,14 +42,13 @@ class InputForm extends Component {
 InputForm.defaultProps = {
   size: undefined,
   type: undefined,
-  placeholder: undefined,
   error: undefined
 };
 
 InputForm.propTypes = {
   size: PropTypes.oneOf(["modal"]),
   type: PropTypes.string,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

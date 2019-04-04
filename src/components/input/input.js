@@ -4,9 +4,8 @@ import styled from "styled-components";
 
 const Input = styled.input`
   box-sizing: border-box;
-  width: 100%;
-  padding: 18px;
   font-family: "Montserrat-Regular";
+  padding: 18px;
   font-size: 18px;
   border: 0;
   border-bottom: 1px solid
