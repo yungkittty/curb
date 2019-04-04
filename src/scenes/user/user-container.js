@@ -47,6 +47,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 UserContainer.propTypes = {
+  match: PropTypes.shape({
+    params: { id: PropTypes.string.isRequired }.isRequired
+  }).isRequired,
   getUser: PropTypes.func.isRequired
 };
 

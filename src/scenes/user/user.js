@@ -26,8 +26,8 @@ class User extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
+  static getDerivedStateFromProps(nextProps) {
+    return {
       username: { value: nextProps.username },
       avatar: {
         value: {
@@ -39,7 +39,7 @@ class User extends Component {
           )}`
         }
       }
-    });
+    };
   }
 
   submit() {
