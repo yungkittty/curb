@@ -16,7 +16,7 @@ class User extends Component {
         value: undefined,
         error: undefined
       },
-      avatar: { value: { data: undefined } },
+      avatar: { value: { name: undefined, data: undefined } },
       editMode: false
     };
 
@@ -24,22 +24,6 @@ class User extends Component {
     this.handleSwapMode = this.handleSwapMode.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  static getDerivedStateFromProps(nextProps) {
-    return {
-      username: { value: nextProps.username },
-      avatar: {
-        value: {
-          name: undefined,
-          data: `${process.env.REACT_APP_API_URL}${_.replace(
-            nextProps.avatarUrl,
-            "medium",
-            "large"
-          )}`
-        }
-      }
-    };
   }
 
   submit() {
@@ -85,15 +69,31 @@ class User extends Component {
   }
 
   render() {
-    const { editMode, username, avatar } = this.state;
-    const { t, owner } = this.props;
+    const {
+      editMode,
+      username: usernameState,
+      avatar: avatarState
+    } = this.state;
+    const {
+      t,
+      owner,
+      username: usernameProps,
+      avatarUrl: avatarProps
+    } = this.props;
 
     return (
       <UserContainer>
         <SelectImage
           id="avatar"
           readOnly={!editMode}
-          src={avatar.value.data}
+          src={
+            avatarState.value.data ||
+            `${process.env.REACT_APP_API_URL}${_.replace(
+              avatarProps,
+              "medium",
+              "large"
+            )}`
+          }
           onSelect={this.handleChange}
         />
         <Input
@@ -110,9 +110,12 @@ class User extends Component {
             textAlign: "center"
           }}
           id="username"
-          value={username.value}
+          value={usernameState.value || usernameProps}
           onChange={this.handleChange}
-          error={username.error && t(`validation:username.${username.error}`)}
+          error={
+            usernameState.error &&
+            t(`validation:username.${usernameState.error}`)
+          }
         />
         {owner && (
           <ButtonIconFloat
