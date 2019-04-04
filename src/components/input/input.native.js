@@ -12,7 +12,7 @@ const Input = styled(({ type, onChange, id, ...others }) => (
   />
 ))`
   font-family: "Montserrat-Regular";
-  padding: ${Platform.OS === "android" ? "16" : "18"}px 16px;
+  padding: ${Platform.OS === "android" ? "16" : "17"}px 16px;
   font-size: 16px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
