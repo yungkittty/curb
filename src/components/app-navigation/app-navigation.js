@@ -16,6 +16,7 @@ const AppNavigation = ({
   currentUserId,
   currentUserAvatarUrl,
   currentUserGroupsIds,
+  signOut, // eslint-disable-line
   theme
 }) => (
   <NavigationContainer>
@@ -59,7 +60,7 @@ const AppNavigation = ({
       icon="cog"
       size="medium"
       color={theme.primaryColor}
-      onClick={() => undefined}
+      onClick={() => signOut()} // eslint-disable-line
     />
   </NavigationContainer>
 );

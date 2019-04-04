@@ -5,6 +5,7 @@ import AppNavigation from "./app-navigation";
 import { appModalActions } from "../../datas/app-modal";
 import { currentUserSelectors } from "../../datas/current-user";
 import { usersActions, usersSelectors } from "../../datas/users";
+import { signInActions } from "../../datas/sign-in"; // eslint-disable-line
 
 class AppNavigationContainer extends React.Component {
   componentDidMount() {
@@ -42,7 +43,8 @@ const mapDispatchToProps = dispatch => ({
   showAppModal: payload =>
     dispatch(appModalActions.showAppModal(payload)),
   getCurrentUser: payload =>
-    dispatch(usersActions.getUserRequest(payload))
+    dispatch(usersActions.getUserRequest(payload)),
+  signOut: () => dispatch(signInActions.signOutRequest()) // eslint-disable-line
 });
 
 AppNavigationContainer.propTypes = {

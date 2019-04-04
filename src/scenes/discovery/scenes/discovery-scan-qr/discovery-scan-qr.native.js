@@ -13,7 +13,7 @@ class DiscoveryScanQr extends React.Component {
   constructor(props) {
     super(props);
     const { setAppModalHeaderText } = props;
-    setAppModalHeaderText({ headerText: "QR Code" });
+    setAppModalHeaderText({ text: "QR Code" });
     this.toggleFlashMode = this.toggleFlashMode.bind(this);
     this.state = { isFlashModeOn: false };
   }

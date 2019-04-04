@@ -15,36 +15,43 @@ class SignUp2 extends Component {
       t,
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton,
+      setAppModalFooterButton
     } = this.props;
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.finish = this.finish.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 2 });
-    setAppModalHeaderLeftButton({ headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () => setAppModalScene({ scene: SignUp1, sceneDirection: -1 }) });
-    setAppModalFooterButton({ footerText: t("common:finish"), footerOnClick: this.finish })
+    setAppModalHeaderSteps({ currentStep: 2, steps: 2 });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.finish });
+  }
 
-    this.state = { isLoading: false };
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: SignUp1, direction: -1 });
   }
 
   finish() {
-    const { signUp, name, email, password } = this.props
-    const { isLoading } = this.state;
-    if (!isLoading && this.checkForm()) {
-      signUp({ name: name.value, email: email.value, password: password.value });
-      this.setState({ isLoading: true });
+    const { isSignUpFetching, signUp, name, email, password } = this.props;
+    if (!isSignUpFetching && this.checkForm()) {
+      signUp({
+        name: name.value,
+        email: email.value,
+        password: password.value
+      });
     }
   }
 
   checkForm() {
     const { password, confirmPassword } = this.props;
     const passwordCheck = this.checkInput("password", password.value);
-    const confirmPasswordCheck = this.checkInput("confirmPassword", confirmPassword.value);
+    const confirmPasswordCheck = this.checkInput(
+      "confirmPassword",
+      confirmPassword.value
+    );
     return passwordCheck && confirmPasswordCheck;
   }
 
@@ -69,9 +76,8 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { t, password, confirmPassword } = this.props;
-    const { isLoading } = this.state;
-    return isLoading ? (
+    const { isSignUpFetching, t, password, confirmPassword } = this.props;
+    return isSignUpFetching ? (
       <Loader />
     ) : (
       <SignUpContainer>
@@ -94,7 +100,10 @@ class SignUp2 extends Component {
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
+          error={
+            confirmPassword.error &&
+            t(`validation:password.${confirmPassword.error}`)
+          }
         />
       </SignUpContainer>
     );
@@ -112,12 +121,19 @@ SignUp2.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
+  isSignUpFetching: PropTypes.bool.isRequired,
   signUp: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
-  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  t: PropTypes.func.isRequired,
+  password: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  confirmPassword: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  })
 };
 
 export default withTranslation("signUp")(SignUp2);

@@ -2,7 +2,11 @@ import { connect } from "react-redux";
 // eslint-disable-next-line
 import SignIn from "./sign-in";
 import { appModalActions } from "../../datas/app-modal";
-import { signInActions } from "../../datas/sign-in";
+import { signInActions, signInSelectors } from "../../datas/sign-in";
+
+const mapStateToProps = state => ({
+  isSignInFetching: signInSelectors.isSignInFetching(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderText: payload =>
@@ -15,6 +19,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(SignIn);
