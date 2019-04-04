@@ -11,7 +11,6 @@ const FormContainer = styled(Container)`
     }
   }}px;
   position: relative;
-  border: 1px solid green;
   margin-bottom: 42px;
 `;
 
