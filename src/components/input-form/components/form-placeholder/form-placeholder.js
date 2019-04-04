@@ -8,7 +8,6 @@ const FormPlaceholder = styled(Text).attrs(({ upper }) => ({
   pointer-events: none;
   transition: 200ms ease all;
   width: 100%;
-  font-size: ${({ upper }) => (upper ? "12" : "18")}px;
   top: ${({ upper }) => (upper ? "-12" : "18")}px;
   left: ${({ upper }) => (upper ? "4" : "18")}px;
   color: ${({ theme }) => theme.secondaryColor};

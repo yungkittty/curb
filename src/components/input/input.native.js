@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { TextInput } from "react-native";
+import { Platform, TextInput } from "react-native";
 
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.native.js
 
@@ -12,8 +12,7 @@ const Input = styled(({ type, onChange, id, ...others }) => (
   />
 ))`
   font-family: "Montserrat-Regular";
-  padding: 16px;
-  padding-bottom: 10px;
+  padding: ${Platform.OS === "android" ? "16" : "18"}px 16px;
   font-size: 16px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
