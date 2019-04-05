@@ -1,8 +1,7 @@
 const frValidation = {
   username: {
     missing: "Nom d'utilisateur manquant",
-    invalid:
-      "Doit faire de 4 à 20 caractères.\nCaractères spéciaux autorisés: . _ -"
+    invalid: "Doit être compris entre 4 à 20 caractères."
   },
   email: {
     missing: "Adresse mail manquante",
