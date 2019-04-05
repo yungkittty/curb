@@ -11,12 +11,7 @@ import SignUp1 from "../sign-up-1";
 class SignUp2 extends Component {
   constructor(props) {
     super(props);
-    const {
-      t,
-      setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
-      setAppModalFooterButton
-    } = this.props;
+    const { t, setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
 
     this.goToPrev = this.goToPrev.bind(this);
     this.finish = this.finish.bind(this);
@@ -37,21 +32,14 @@ class SignUp2 extends Component {
   finish() {
     const { isSignUpFetching, signUp, name, email, password } = this.props;
     if (!isSignUpFetching && this.checkForm()) {
-      signUp({
-        name: name.value,
-        email: email.value,
-        password: password.value
-      });
+      signUp({ name: name.value, email: email.value, password: password.value });
     }
   }
 
   checkForm() {
     const { password, confirmPassword } = this.props;
     const passwordCheck = this.checkInput("password", password.value);
-    const confirmPasswordCheck = this.checkInput(
-      "confirmPassword",
-      confirmPassword.value
-    );
+    const confirmPasswordCheck = this.checkInput("confirmPassword", confirmPassword.value);
     return passwordCheck && confirmPasswordCheck;
   }
 
@@ -100,10 +88,7 @@ class SignUp2 extends Component {
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={
-            confirmPassword.error &&
-            t(`validation:password.${confirmPassword.error}`)
-          }
+          error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
         />
       </SignUpContainer>
     );
@@ -123,17 +108,11 @@ SignUp2.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   isSignUpFetching: PropTypes.bool.isRequired,
   signUp: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
-  password: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  }),
-  confirmPassword: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  })
+  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation("signUp")(SignUp2);

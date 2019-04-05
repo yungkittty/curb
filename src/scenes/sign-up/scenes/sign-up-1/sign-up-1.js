@@ -14,12 +14,7 @@ import SignUp2 from "../sign-up-2";
 class SignUp1 extends Component {
   constructor(props) {
     super(props);
-    const {
-      t,
-      setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
-      setAppModalFooterButton
-    } = this.props;
+    const { t, setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
 
     this.goToPrev = this.goToPrev.bind(this);
     this.goToNext = this.goToNext.bind(this);
@@ -105,15 +100,9 @@ SignUp1.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
-  name: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  }),
-  email: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  })
+  name: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation("signUp")(SignUp1);

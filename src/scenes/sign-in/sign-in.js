@@ -52,13 +52,7 @@ class SignIn extends Component {
 
   checkInput(id, value) {
     const error = value.length === 0 ? "missing" : undefined;
-    this.setState(prevState => ({
-      [id]: {
-        ...prevState[id],
-        value,
-        error
-      }
-    }));
+    this.setState(prevState => ({ [id]: { ...prevState[id], value, error } }));
     return error === undefined;
   }
 
@@ -74,11 +68,7 @@ class SignIn extends Component {
       <Loader />
     ) : (
       <SignInContainer>
-        <SignInForm
-          email={email}
-          password={password}
-          onChange={this.handleChange}
-        />
+        <SignInForm email={email} password={password} onChange={this.handleChange} />
         <SignInRedirect setAppModalScene={setAppModalScene} t={t} />
       </SignInContainer>
     );
