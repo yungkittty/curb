@@ -14,17 +14,10 @@ const InputField = styled(({ type, onChange, id, ...others }) => (
   width: 100%;
   padding: 18px;
   font-family: "Montserrat-Regular";
-  font-size: 14px;
-  color: ${({ theme }) => theme.fontColor};
+  font-size: 16px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme, error }) =>
     error ? theme.errorColor : theme.primaryColor};
-    ${({ textStyleNative }) =>
-      textStyleNative && `font-size: ${textStyleNative.fontSize}px;`}
-    ${({ textStyleNative }) =>
-      textStyleNative && `font-weight: ${textStyleNative.fontWeight};`}
-    ${({ textStyleNative }) =>
-      textStyleNative && `text-align:${textStyleNative.textAlign};`}
 `;
 
 export default InputField;

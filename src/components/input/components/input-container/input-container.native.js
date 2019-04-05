@@ -7,12 +7,11 @@ const InputContainer = styled(Container)`
       case "modal":
         return 300;
       default:
-        return 300;
+        return 380;
     }
   }}px;
   position: relative;
-  margin-top: 38px;
-  ${({ readOnly }) => readOnly && "padding: 18px 18px 19px 18px;"}
+  margin-bottom: 38px;
 `;
 
 export default InputContainer;

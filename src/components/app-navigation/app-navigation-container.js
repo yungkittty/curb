@@ -30,10 +30,8 @@ class AppNavigationContainer extends React.Component {
 const mapStateToProps = state => {
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
   const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
-  const {
-    avatarUrl: currentUserAvatarUrl = "",
-    groups: currentUserGroupsIds = []
-  } = usersSelectors.getUserById(state, currentUserId) || {};
+  const { avatarUrl: currentUserAvatarUrl = "", groups: currentUserGroupsIds = [] } =
+    usersSelectors.getUserById(state, currentUserId) || {};
   return {
     currentUserId,
     currentUserToken,
@@ -43,8 +41,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  showAppModal: payload => dispatch(appModalActions.showAppModal(payload)),
-  getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload))
+  showAppModal: payload =>
+    dispatch(appModalActions.showAppModal(payload)),
+  getCurrentUser: payload =>
+    dispatch(usersActions.getUserRequest(payload))
 });
 
 AppNavigationContainer.propTypes = {

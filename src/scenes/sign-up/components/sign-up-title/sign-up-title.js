@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Text from "../../../../components/text";
 
 const SignUpTitle = styled(Text)`
-  margin-bottom: 28px;
+  margin-bottom: 58px;
   text-align: center;
 `;
 

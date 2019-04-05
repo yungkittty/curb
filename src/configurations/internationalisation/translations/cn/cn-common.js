@@ -1,13 +1,3 @@
-const cnCommon = {
-  next: "",
-  finish: "",
-  cancel: "",
-  selectImage: "",
-  takePhoto: "",
-  chooseLibrary: "",
-  permissionDenied: "",
-  askCameraText: "",
-  authorize: ""
-};
+const cnCommon = {};
 
 export default cnCommon;
