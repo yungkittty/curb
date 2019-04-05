@@ -30,11 +30,18 @@ class User extends Component {
     const { patchCurrentUser, postUserAvatar } = this.props;
     const { username, avatar } = this.state;
 
-    if (username.value && this.checkInput("username", username.value))
-      patchCurrentUser({ name: username.value });
+    if (username.value) patchCurrentUser({ name: username.value });
     if (avatar.value.file) {
       postUserAvatar({ avatar: avatar.value.file });
     }
+  }
+
+  checkForm() {
+    const { username } = this.state;
+    const usernameCheck = username.value
+      ? this.checkInput("username", username.value)
+      : true;
+    return usernameCheck;
   }
 
   checkInput(id, value) {
@@ -50,7 +57,7 @@ class User extends Component {
     const { editMode } = this.state;
 
     if (!editMode) this.setState({ editMode: true });
-    else if (editMode) {
+    else if (editMode && this.checkForm()) {
       this.submit();
       this.setState({ editMode: false });
     }
@@ -73,6 +80,8 @@ class User extends Component {
       username: usernameProps,
       avatarUrl: avatarProps
     } = this.props;
+
+    console.log(usernameState.value);
 
     return (
       <UserContainer>
@@ -103,7 +112,11 @@ class User extends Component {
             textAlign: "center"
           }}
           id="username"
-          value={usernameState.value || usernameProps}
+          value={
+            usernameState.value !== undefined
+              ? usernameState.value
+              : usernameProps
+          }
           onChange={this.handleChange}
           error={
             usernameState.error &&
