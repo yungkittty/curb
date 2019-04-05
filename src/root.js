@@ -7,9 +7,9 @@ import configureStore from "./configurations/store";
 import configureAxios from "./configurations/axios";
 import configureTheme from "./configurations/theme";
 
-configureI18n();
 const store = configureStore();
 configureAxios(store);
+configureI18n(store);
 const theme = configureTheme();
 
 const Root = () => (

@@ -10,16 +10,13 @@ import { signInActions } from "../../datas/sign-in"; // eslint-disable-line
 class AppNavigationContainer extends React.Component {
   componentDidMount() {
     const { currentUserId, getCurrentUser } = this.props;
-    if (currentUserId) {
-      getCurrentUser({ id: currentUserId });
-    }
+    if (currentUserId) getCurrentUser({ id: currentUserId });
   }
 
   componentDidUpdate(prevProps) {
     const { currentUserId, getCurrentUser } = this.props;
-    if (currentUserId && currentUserId !== prevProps.currentUserId) {
+    if (currentUserId && currentUserId !== prevProps.currentUserId)
       getCurrentUser({ id: currentUserId });
-    }
   }
 
   render() {
@@ -40,11 +37,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  showAppModal: payload =>
-    dispatch(appModalActions.showAppModal(payload)),
-  getCurrentUser: payload =>
-    dispatch(usersActions.getUserRequest(payload)),
-  signOut: () => dispatch(signInActions.signOutRequest()) // eslint-disable-line
+  showAppModal: payload => dispatch(appModalActions.showAppModal(payload)),
+  getCurrentUser: payload => dispatch(usersActions.getUserRequest(payload))
 });
 
 AppNavigationContainer.propTypes = {

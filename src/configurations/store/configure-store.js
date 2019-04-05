@@ -11,11 +11,7 @@ import rootSaga from "./root-saga";
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
-  const {
-    middleware: offlineMiddleware,
-    enhanceReducer,
-    enhanceStore
-  } = createOffline(configureOffline());
+  const { middleware: offlineMiddleware, enhanceReducer, enhanceStore } = createOffline(configureOffline());
   const middlewares = [sagaMiddleware, offlineMiddleware];
   const store = createStore(
     enhanceReducer(rootReducer),
