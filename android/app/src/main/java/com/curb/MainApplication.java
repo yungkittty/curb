@@ -3,6 +3,7 @@ package com.curb;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.testfairy.react.TestFairyPackage;
 import org.reactnative.camera.RNCameraPackage;

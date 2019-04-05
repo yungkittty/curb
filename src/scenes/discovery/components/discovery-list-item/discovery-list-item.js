@@ -15,7 +15,9 @@ const DiscoveryListItem = ({
   <Container>
     <ListItemButtonContainer onClick={`/groups/${discoveryGroupId}`}>
       <React.Fragment>
-        <ListItemImage src={`${process.env.REACT_APP_API_URL}${discoveryGroupAvatarUrl}`} />
+        <ListItemImage
+          src={`${process.env.REACT_APP_API_URL}${discoveryGroupAvatarUrl}`}
+        />
         <ListItemTitle>{discoveryGroupName}</ListItemTitle>
       </React.Fragment>
     </ListItemButtonContainer>

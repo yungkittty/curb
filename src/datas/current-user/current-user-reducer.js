@@ -1,7 +1,11 @@
 import _ from "lodash";
 import signInActionsTypes from "../sign-in/sign-in-actions-types";
 
-const initialState = { id: "", token: "", refreshToken: "" };
+const initialState = {
+  id: "",
+  token: "",
+  refreshToken: ""
+};
 
 const currentUserReducer = (state = initialState, action) => {
   switch (action.type) {
