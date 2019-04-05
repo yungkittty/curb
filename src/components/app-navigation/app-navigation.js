@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
+import NavigationNativeRoute from "./components/navigation-native-route";
 import NavigationContainer from "./components/navigation-container";
 import NavigationButtonIcon from "./components/navigation-button-icon";
 import NavigationButtonImage from "./components/navigation-button-image";
@@ -75,4 +76,4 @@ AppNavigation.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default withTheme(AppNavigation);
+export default NavigationNativeRoute(withTheme(AppNavigation));
