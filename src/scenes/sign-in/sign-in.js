@@ -21,8 +21,7 @@ class SignIn extends Component {
       password: {
         value: "",
         error: undefined
-      },
-      isLoading: false
+      }
     };
 
     this.submit = this.submit.bind(this);
@@ -30,8 +29,8 @@ class SignIn extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setAppModalHeaderText({ headerText: t("signIn") });
-    setAppModalFooterButton({ footerText: t("signIn"), footerOnClick: this.validate });
+    setAppModalHeaderText({ text: t("signIn") });
+    setAppModalFooterButton({ text: t("signIn"), onClick: this.validate });
   }
 
   validate() {
@@ -42,7 +41,6 @@ class SignIn extends Component {
     const { signIn } = this.props;
     const { email, password } = this.state;
     signIn({ email: email.value, password: password.value });
-    this.setState({ isLoading: true });
   }
 
   checkForm() {
@@ -54,13 +52,7 @@ class SignIn extends Component {
 
   checkInput(id, value) {
     const error = value.length === 0 ? "missing" : undefined;
-    this.setState(prevState => ({
-      [id]: {
-        ...prevState[id],
-        value,
-        error
-      }
-    }));
+    this.setState(prevState => ({ [id]: { ...prevState[id], value, error } }));
     return error === undefined;
   }
 
@@ -70,17 +62,13 @@ class SignIn extends Component {
   }
 
   render() {
-    const { setAppModalScene, t } = this.props;
-    const { email, password, isLoading } = this.state;
-    return isLoading ? (
+    const { isSignInFetching, setAppModalScene, t } = this.props;
+    const { email, password } = this.state;
+    return isSignInFetching ? (
       <Loader />
     ) : (
       <SignInContainer>
-        <SignInForm
-          email={email}
-          password={password}
-          onChange={this.handleChange}
-        />
+        <SignInForm email={email} password={password} onChange={this.handleChange} />
         <SignInRedirect setAppModalScene={setAppModalScene} t={t} />
       </SignInContainer>
     );
@@ -91,6 +79,7 @@ SignIn.propTypes = {
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
+  isSignInFetching: PropTypes.bool.isRequired,
   signIn: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };

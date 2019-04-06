@@ -8,7 +8,7 @@ const usersReducer = (state = initialState, action) => {
     case usersActionsTypes.GET_USER_SUCCESS:
       return _.assign({}, state, {
         byId: _.assign({}, state.byId, { [action.payload.id]: action.payload }),
-        allIds: _.merge([], state.allIds, [action.payload.id])
+        allIds: _.union(state.allIds, [action.payload.id])
       });
     default:
       return state;
