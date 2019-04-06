@@ -1,3 +1,3 @@
-const offlineWhitelist = ["currentUser"];
+const offlineWhitelist = ["currentUser", "currentSettings"];
 
 export default offlineWhitelist;
