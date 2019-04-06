@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import { createOffline } from "@redux-offline/redux-offline";
-import { composeWithDevTools } from "redux-devtools-extension/developmentOnly"; // eslint-disable-line
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import createSagaMiddleware from "redux-saga";
 import configureOffline from "./configure-offline";
 import rootReducer from "./root-reducer";
