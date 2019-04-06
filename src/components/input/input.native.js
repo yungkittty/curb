@@ -14,9 +14,6 @@ const Input = styled(({ type, onChange, id, ...others }) => (
   font-family: "Montserrat-Regular";
   padding: 16px;
   font-size: 16px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${({ theme, error }) =>
-    error ? theme.errorColor : theme.primaryColor};
 `;
 
 export default Input;

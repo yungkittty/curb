@@ -8,9 +8,9 @@ class FormPlaceholder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      placeholderScale: new Animated.Value(props.upper ? 0.857142857 : 1),
-      placeholderTranslateY: new Animated.Value(props.upper ? -10 : 20),
-      placeholderTranslateX: new Animated.Value(props.upper ? -18 : 16)
+      placeholderScale: new Animated.Value(props.upper ? 0.75 : 1),
+      placeholderTranslateY: new Animated.Value(props.upper ? -18 : 20),
+      placeholderTranslateX: new Animated.Value(props.upper ? -46 : 16)
     };
 
     this.AnimatedWrappedComponent = Animated.createAnimatedComponent(Text);
@@ -26,20 +26,20 @@ class FormPlaceholder extends React.Component {
     } = this.state;
     Animated.parallel([
       Animated.timing(placeholderScale, {
-        toValue: upper ? 0.857142857 : 1,
-        duration: 150,
+        toValue: upper ? 0.75 : 1,
+        duration: 200,
         easing: Easing.inOut(Easing.quad),
         useNativeDriver: true
       }),
       Animated.timing(placeholderTranslateY, {
-        toValue: upper ? -10 : 20,
-        duration: 150,
+        toValue: upper ? -18 : 20,
+        duration: 200,
         easing: Easing.inOut(Easing.quad),
         useNativeDriver: true
       }),
       Animated.timing(placeholderTranslateX, {
-        toValue: upper ? -18 : 16,
-        duration: 150,
+        toValue: upper ? -46 : 16,
+        duration: 200,
         easing: Easing.inOut(Easing.quad),
         useNativeDriver: true
       })
@@ -57,6 +57,7 @@ class FormPlaceholder extends React.Component {
     return (
       <AnimatedWrappedComponent
         {...this.props}
+        type="h4"
         style={{
           position: "absolute",
           width: "100%",
@@ -73,6 +74,8 @@ class FormPlaceholder extends React.Component {
 }
 
 FormPlaceholder.propTypes = {
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
   upper: PropTypes.bool.isRequired
 };
 
