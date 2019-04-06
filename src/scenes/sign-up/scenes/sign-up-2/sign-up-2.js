@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import pwnedpasswords from "pwnedpasswords/index";
 import Loader from "../../../../components/loader";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
@@ -68,10 +69,9 @@ class SignUp2 extends Component {
   checkInput(id, value) {
     const { createPassword, setAppModalSceneData, [id]: Y } = this.props;
     const error =
-      // eslint-disable-next-line
+      /* eslint-disable */
       id === "createPassword"
-        ? // eslint-disable-next-line
-          value.length === 0
+        ? value.length === 0
           ? "missing"
           : !RegExp(inputRegex.password).test(value)
           ? "invalid"
@@ -79,7 +79,15 @@ class SignUp2 extends Component {
         : createPassword.value !== value
         ? "dontmatch"
         : undefined;
+    /* eslint-enable */
     setAppModalSceneData({ [id]: { ...Y, value, error } });
+    if (error === undefined)
+      pwnedpasswords(value, (err, count) => {
+        const { [id]: Z } = this.props;
+        setAppModalSceneData({
+          [id]: { ...Z, error: count > 10 ? "tooeasy" : undefined }
+        });
+      });
     return error === undefined;
   }
 
