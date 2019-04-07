@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import i18n from "i18next";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../../../components/list-flat";
 import ModalListItem from "../../../../../../components/modal-list-item";
 /* eslint-disable-next-line */
 import General from "../../";
+import languageData from "./language-data";
 
 class Language extends Component {
   constructor(props) {
     super(props);
-    console.log(i18n);
     const {
       t,
       lng,
@@ -36,14 +35,14 @@ class Language extends Component {
   }
 
   handleChange(key) {
-    const { i18n } = this.props;
+    const { i18n, setAppModalHeaderText, t } = this.props;
 
     this.setState({ key });
     i18n.changeLanguage(key);
+    setAppModalHeaderText({ headerText: t("general.menu.language.title") });
   }
 
   render() {
-    const { t } = this.props;
     const { languages, key } = this.state;
 
     return (
@@ -53,7 +52,7 @@ class Language extends Component {
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <ModalListItem
-            title={t(`general.menu.language.menu.${item}`)}
+            title={languageData[item]}
             selected={key === item}
             selectionType
             onClick={() => this.handleChange(item)}

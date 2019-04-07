@@ -6,12 +6,7 @@ const cnSettings = {
     menu: {
       language: {
         title: "",
-        description: "",
-        menu: {
-          en: "",
-          fr: "",
-          cn: ""
-        }
+        description: ""
       },
       logout: {
         title: "",

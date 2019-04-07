@@ -2,16 +2,11 @@ const frSettings = {
   settings: "Paramètres",
   general: {
     title: "Général",
-    description: "Language  ·  Déconnexion  ·  Supprimer mon compte",
+    description: "Langue  ·  Déconnexion  ·  Supprimer mon compte",
     menu: {
       language: {
-        title: "Language",
-        description: "Langue d'affichage de l'application",
-        menu: {
-          en: "Anglais",
-          fr: "Français",
-          cn: "Chinois"
-        }
+        title: "Langue",
+        description: "Langue d'affichage de l'application"
       },
       logout: {
         title: "Déconnexion",

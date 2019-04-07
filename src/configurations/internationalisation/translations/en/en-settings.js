@@ -6,12 +6,7 @@ const enSettings = {
     menu: {
       language: {
         title: "Language",
-        description: "Display language of the application",
-        menu: {
-          en: "English",
-          fr: "French",
-          cn: "Chinese"
-        }
+        description: "Display language of the application"
       },
       logout: {
         title: "Logout",
