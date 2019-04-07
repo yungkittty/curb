@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import pwnedpasswords from "pwnedpasswords";
 import Loader from "../../../../components/loader";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
+import forbiddenPasswords from "../../../../utils/forbidden-passwords";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
 
@@ -75,19 +75,14 @@ class SignUp2 extends Component {
           ? "missing"
           : !RegExp(inputRegex.password).test(value)
           ? "invalid"
+          : forbiddenPasswords.includes(value)
+          ? "tooeasy"
           : undefined
         : createPassword.value !== value
         ? "dontmatch"
         : undefined;
     /* eslint-enable */
     setAppModalSceneData({ [id]: { ...Y, value, error } });
-    if (error === undefined)
-      pwnedpasswords(value, (err, count) => {
-        const { [id]: Z } = this.props;
-        setAppModalSceneData({
-          [id]: { ...Z, error: count > 10 ? "tooeasy" : undefined }
-        });
-      });
     return error === undefined;
   }
 

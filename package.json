@@ -26,7 +26,6 @@
     "i18next": "^15.0.8",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
-    "pwnedpasswords": "1.0.4",
     "react": "^16.8.6",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
