@@ -12,8 +12,6 @@ function* getGroupRequestSaga(action) {
   }
 }
 
-const groupsSaga = all([
-  takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga)
-]);
+const groupsSaga = all([takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga)]);
 
 export default groupsSaga;

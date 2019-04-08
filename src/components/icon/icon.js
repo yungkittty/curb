@@ -11,28 +11,25 @@ library.add(fas);
 const Icon = ({ size, style, ...others }) => {
   const X = (() => {
     switch (size) {
+      case "extra-small":
+        return undefined;
       case "small":
-        return 20;
+        return 35;
       case "medium":
-        return 40;
+        return 60;
       case "large":
-        return 80;
+        return 200;
       default:
         return undefined;
     }
   })();
-  return (
-    <FontAwesomeIcon
-      {...others}
-      style={{ ...style, width: `${X}px`, height: `${X}px` }}
-    />
-  );
+  return <FontAwesomeIcon {...others} style={{ ...style, width: `${X}px`, height: `${X}px` }} />;
 };
 
 Icon.defaultProps = { style: undefined };
 
 Icon.propTypes = {
-  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
