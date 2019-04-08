@@ -12,13 +12,14 @@ class ModalContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { isAppModalShowed, render, style } = this.props;
+    const { isAppModalShowed, render, style, children } = this.props;
     const { children: stateChildren } = this.state;
 
     return (
       nextProps.isAppModalShowed !== isAppModalShowed ||
       nextProps.render !== render ||
       nextProps.style !== style ||
+      nextProps.children !== children ||
       nextState.children !== stateChildren
     );
   }
@@ -64,7 +65,6 @@ class ModalContainer extends Component {
 
 ModalContainer.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
-
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
