@@ -7,7 +7,7 @@ import { discoverySaga } from "../../datas/discovery";
 
 function* rootSaga() {
   yield all([
-    // eslint-disable-next-line
+    // eslint-disable-line
     signInSaga,
     signUpSaga,
     usersSaga,
