@@ -12,8 +12,6 @@ function* getUsersRequestSaga(action) {
   }
 }
 
-const usersSaga = all([
-  takeEvery(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)
-]);
+const usersSaga = all([takeEvery(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)]);
 
 export default usersSaga;
