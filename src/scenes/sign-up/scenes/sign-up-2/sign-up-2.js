@@ -6,7 +6,7 @@ import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
-import forbiddenPasswords from "../../../../utils/forbidden-passwords";
+import forbiddenPasswords from "./forbidden-passwords";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
 
