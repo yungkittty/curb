@@ -19,6 +19,10 @@ const SceneSlide = WrappedComponent => {
       };
     }
 
+    shouldComponentUpdate(nextProps) {
+      return nextProps.scene !== null;
+    }
+
     componentDidUpdate(prevProps) {
       const { scene: prevScene } = prevProps;
       const { scene, sceneDirection } = this.props;
@@ -33,20 +37,23 @@ const SceneSlide = WrappedComponent => {
           : prevSceneAlt;
       this.prevSceneDirection = sceneDirection;
       // eslint-disable-next-line
-      this.setState({
-        sceneAlt,
-        ...((sceneAlt ? -sceneDirection : sceneDirection) > 0
-          ? { sceneRightKey: _.uniqueId(), sceneRight: scene }
-          : { sceneLeftKey: _.uniqueId(), sceneLeft: scene })
-      },
-      () => setTimeout(() => {
-        Animated.timing(wrappedComponentAnimated, {
-          toValue: sceneDirection > 0 ? -windowWidth : 0,
-          easing: Easing.inOut(Easing.quad),
-          duration: 450,
-          useNativeDriver: true
-        }).start();
-      }));
+      this.setState(
+        {
+          sceneAlt,
+          ...((sceneAlt ? -sceneDirection : sceneDirection) > 0
+            ? { sceneRightKey: _.uniqueId(), sceneRight: scene }
+            : { sceneLeftKey: _.uniqueId(), sceneLeft: scene })
+        },
+        () =>
+          setTimeout(() => {
+            Animated.timing(wrappedComponentAnimated, {
+              toValue: sceneDirection > 0 ? -windowWidth : 0,
+              easing: Easing.inOut(Easing.quad),
+              duration: 450,
+              useNativeDriver: true
+            }).start();
+          })
+      );
     }
 
     render() {

@@ -20,34 +20,34 @@ const AppModal = ({
   appModalSceneData,
   appModalFooterText,
   appModalFooterOnClick
-}) =>
-  isAppModalShowed ? (
-    <ModalOverlay>
-      <ModalContainer>
-        <ModalHeader
-          text={appModalHeaderText}
-          currentStep={appModalHeaderCurrentStep}
-          steps={appModalHeaderSteps}
-          leftIcon={appModalHeaderLeftIcon}
-          leftOnClick={appModalHeaderLeftOnClick}
-          rightIcon={appModalHeaderRightIcon}
-          rightOnClick={appModalHeaderRightOnClick}
+}) => (
+  <React.Fragment>
+    <ModalOverlay isAppModalShowed={isAppModalShowed} />
+    <ModalContainer isAppModalShowed={isAppModalShowed}>
+      <ModalHeader
+        text={appModalHeaderText}
+        currentStep={appModalHeaderCurrentStep}
+        steps={appModalHeaderSteps}
+        leftIcon={appModalHeaderLeftIcon}
+        leftOnClick={appModalHeaderLeftOnClick}
+        rightIcon={appModalHeaderRightIcon}
+        rightOnClick={appModalHeaderRightOnClick}
+      />
+      <ModalScene
+        scene={appModalScene}
+        sceneDirection={appModalSceneDirection}
+        sceneData={appModalSceneData}
+      />
+      {appModalFooterText ? (
+        <ModalFooter
+          type="h4"
+          text={appModalFooterText}
+          onClick={appModalFooterOnClick}
         />
-        <ModalScene
-          scene={appModalScene}
-          sceneDirection={appModalSceneDirection}
-          sceneData={appModalSceneData}
-        />
-        {appModalFooterText ? (
-          <ModalFooter
-            type="h4"
-            text={appModalFooterText}
-            onClick={appModalFooterOnClick}
-          />
-        ) : null}
-      </ModalContainer>
-    </ModalOverlay>
-  ) : null;
+      ) : null}
+    </ModalContainer>
+  </React.Fragment>
+);
 
 AppModal.defaultProps = {
   appModalHeaderText: undefined,

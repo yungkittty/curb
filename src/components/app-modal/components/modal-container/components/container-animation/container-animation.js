@@ -1,36 +1,51 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const OverlayBlur = WrappedComponent => {
-  class _OverlayBlur extends React.Component {
+const ContainerAnimation = WrappedComponent => {
+  class _ContainerAnimation extends React.Component {
     constructor(props) {
       super(props);
 
       this.commonStyle = {
-        width: "100vw",
-        height: "100vh",
+        position: "absolute",
         top: 0,
-        transition: "opacity 0.5s ease-out"
+        left: 0,
+        right: 0,
+        bottom: 0,
+        margin: "auto",
+        flexDirection: "column",
+        width: 700,
+        height: 740,
+        borderRadius: 25,
+        transition: "all 0.5s ease-out"
       };
 
       this.hideStyle = {
         ...this.commonStyle,
-        opacity: 0
-      };
-      this.showStyle = {
-        ...this.commonStyle,
-        opacity: 1
+        opacity: 0,
+        transform: "translate3d(0, 40px, 0)"
       };
 
-      this.state = { render: false, style: this.hideStyle };
+      this.showStyle = {
+        ...this.commonStyle,
+        opacity: 1,
+        transform: "translate3d(0, 0, 0)"
+      };
+
+      this.state = {
+        render: false,
+        style: this.hideStyle
+      };
 
       this.onTransitionEnd = this.onTransitionEnd.bind(this);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+      const { isAppModalShowed, children } = this.props;
       const { render, style } = this.state;
       return (
-        nextProps !== this.props ||
+        nextProps.isAppModalShowed !== isAppModalShowed ||
+        nextProps.children !== children ||
         nextState.render !== render ||
         nextState.style !== style
       );
@@ -40,7 +55,6 @@ const OverlayBlur = WrappedComponent => {
       const { isAppModalShowed } = this.props;
 
       if (isAppModalShowed) {
-        document.getElementById("app-container").style.filter = "blur(3.5px)";
         // eslint-disable-next-line
         this.setState({ render: true });
         setTimeout(
@@ -48,10 +62,9 @@ const OverlayBlur = WrappedComponent => {
             this.setState({
               style: this.showStyle
             }),
-          20
+          80
         );
       } else {
-        document.getElementById("app-container").style.filter = "";
         // eslint-disable-next-line
         this.setState({ style: this.hideStyle });
       }
@@ -72,17 +85,21 @@ const OverlayBlur = WrappedComponent => {
       return (
         <WrappedComponent
           {...this.props}
-          render={render}
           onTransitionEnd={this.onTransitionEnd}
+          render={render}
           style={style}
         />
       );
     }
   }
 
-  _OverlayBlur.propTypes = { isAppModalShowed: PropTypes.bool.isRequired };
+  _ContainerAnimation.propTypes = {
+    isAppModalShowed: PropTypes.bool.isRequired,
+    // eslint-disable-next-line
+    children: PropTypes.arrayOf(PropTypes.node).isRequired
+  };
 
-  return _OverlayBlur;
+  return _ContainerAnimation;
 };
 
-export default OverlayBlur;
+export default ContainerAnimation;
