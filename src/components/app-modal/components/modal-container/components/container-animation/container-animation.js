@@ -17,19 +17,20 @@ const ContainerAnimation = WrappedComponent => {
         width: 700,
         height: 740,
         borderRadius: 25,
-        transition: "all 0.5s ease-out"
+        boxShadow: "0px 15px 35px 0px rgba(0, 0, 0, 0.25)",
+        transition: "all 0.3s ease-out"
       };
 
       this.hideStyle = {
         ...this.commonStyle,
         opacity: 0,
-        transform: "translate3d(0, 40px, 0)"
+        transform: "translate3d(0, 0, 0) scale(0.97)"
       };
 
       this.showStyle = {
         ...this.commonStyle,
         opacity: 1,
-        transform: "translate3d(0, 0, 0)"
+        transform: "translate3d(0, 0, 0) scale(1)"
       };
 
       this.state = {
@@ -62,7 +63,7 @@ const ContainerAnimation = WrappedComponent => {
             this.setState({
               style: this.showStyle
             }),
-          80
+          20
         );
       } else {
         // eslint-disable-next-line

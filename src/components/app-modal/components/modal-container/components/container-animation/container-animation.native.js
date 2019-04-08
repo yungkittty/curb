@@ -27,22 +27,23 @@ const ContainerAnimation = WrappedComponent => {
         render: false,
         animationRunning: false,
         opacity: new Animated.Value(0),
-        top: new Animated.Value(60)
+        top: new Animated.Value(40)
       };
 
-      this.animatedWrappedComponent = Animated.createAnimatedComponent(
+      this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
         WrappedComponent
       );
     }
 
     shouldComponentUpdate(nextProps, nextState) {
       const { isAppModalShowed, children } = this.props;
-      const { render, opacity } = this.state;
+      const { render, opacity, top } = this.state;
       return (
         nextProps.isAppModalShowed !== isAppModalShowed ||
         nextProps.children !== children ||
         nextState.render !== render ||
-        nextState.opacity !== opacity
+        nextState.opacity !== opacity ||
+        nextState.top !== top
       );
     }
 
@@ -59,15 +60,13 @@ const ContainerAnimation = WrappedComponent => {
       Animated.parallel([
         Animated.timing(opacity, {
           toValue: isAppModalShowed ? 1 : 0,
-          duration: 500,
-          ease: Easing.out(Easing.ease),
-          useNativeDriver: true
+          duration: 350,
+          ease: Easing.out(Easing.ease)
         }),
         Animated.timing(top, {
-          toValue: isAppModalShowed ? 0 : 60,
-          duration: 500,
-          ease: Easing.out(Easing.ease),
-          useNativeDriver: true
+          toValue: isAppModalShowed ? 0 : 40,
+          duration: 350,
+          ease: Easing.out(Easing.ease)
         })
       ]).start(() =>
         this.setState({
@@ -78,10 +77,11 @@ const ContainerAnimation = WrappedComponent => {
     }
 
     render() {
+      const { AnimatedWrappedComponent } = this;
       const { render, opacity, top } = this.state;
 
       return (
-        <this.animatedWrappedComponent
+        <AnimatedWrappedComponent
           {...this.props}
           render={render}
           style={{

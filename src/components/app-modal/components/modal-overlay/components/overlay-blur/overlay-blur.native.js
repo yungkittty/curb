@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated } from "react-native";
+import { Animated, Easing } from "react-native";
 import PropTypes from "prop-types";
 
 const OverlayBlur = WrappedComponent => {
@@ -17,7 +17,7 @@ const OverlayBlur = WrappedComponent => {
         opacity: new Animated.Value(0)
       };
 
-      this.animatedWrappedComponent = Animated.createAnimatedComponent(
+      this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
         WrappedComponent
       );
     }
@@ -39,14 +39,16 @@ const OverlayBlur = WrappedComponent => {
       if (isAppModalShowed) this.setState({ render: isAppModalShowed });
       Animated.timing(opacity, {
         toValue: isAppModalShowed ? 1 : 0,
-        duration: 500
+        duration: 500,
+        ease: Easing.out(Easing.ease)
       }).start(() => this.setState({ render: isAppModalShowed }));
     }
 
     render() {
+      const { AnimatedWrappedComponent } = this;
       const { render, opacity } = this.state;
       return (
-        <this.animatedWrappedComponent
+        <AnimatedWrappedComponent
           {...this.props}
           render={render}
           style={{
