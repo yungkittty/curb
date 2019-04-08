@@ -6,7 +6,7 @@ import { currentSettingsSelectors } from "../../datas/current-settings";
 
 const configureI18n = ({ getState }) => {
   const currentSettingsLanguage =
-    // eslint-disable-next-line
+    // eslint-disable-line
     currentSettingsSelectors.getCurrentSettingsLanguage(getState());
   return i18next
     .createInstance()
