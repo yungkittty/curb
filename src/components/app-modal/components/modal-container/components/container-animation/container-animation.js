@@ -17,7 +17,7 @@ const ContainerAnimation = WrappedComponent => {
         width: 700,
         height: 740,
         borderRadius: 25,
-        boxShadow: "0px 15px 35px 0px rgba(0, 0, 0, 0.2)",
+        boxShadow: "0px 10px 35px 0px rgba(0, 0, 0, 0.2)",
         transition: "all 0.3s ease-out"
       };
 
