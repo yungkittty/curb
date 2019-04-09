@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Text from "../../../../../text";
 
-const PreviewTitle = styled(Text)`
-  font-size: ${({ titleCentered }) => (titleCentered ? "18" : "14")}px;
+const PreviewTitle = styled(Text).attrs(({ titleCentered }) => ({
+  type: titleCentered ? "h4" : undefined
+}))`
   color: ${({ theme, titleColor, disabled }) =>
     !disabled ? titleColor || theme.fontColor : theme.secondaryVariantColor};
   margin-top: ${({ titleCentered }) => (titleCentered ? "12" : "-8")}px;

@@ -6,6 +6,8 @@ const PreviewContainer = styled(Container)`
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 4px;
+  display: flex;
+  flex-direction: column;
 
   ${({ titleCentered }) =>
     titleCentered

@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import Text from "../../../../components/text";
 
-const CreateGroupError = styled(Text)`
+const CreateGroupError = styled(Text).attrs(() => ({ type: "h4" }))`
   position: absolute;
-  font-size: 14px;
   color: ${({ theme }) => theme.errorColor};
   margin: auto;
-  margin-top: 44px;
+  margin-top: 48px;
 `;
 
 export default CreateGroupError;

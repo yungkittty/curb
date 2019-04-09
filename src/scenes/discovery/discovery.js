@@ -22,9 +22,7 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
           <DiscoveryTitle type="h1" weight={700}>
             {t("title")}
           </DiscoveryTitle>
-          <DiscoverySubtitle type="h4">
-            {t("subtitle")}
-          </DiscoverySubtitle>
+          <DiscoverySubtitle type="h4">{t("subtitle")}</DiscoverySubtitle>
         </DiscoveryHeader>
       )}
       renderSectionHeader={() => (
@@ -45,12 +43,10 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
         />
       )}
     />
-    {currentUserId !== "" && (
-      <ButtonIconFloat
-        icon="plus"
-        onClick={() => showAppModal({ scene: CreateGroup })}
-      />
-    )}
+    <ButtonIconFloat
+      icon="plus"
+      onClick={() => showAppModal({ scene: CreateGroup })}
+    />
   </React.Fragment>
 );
 

@@ -21,10 +21,10 @@ const DiscoverOption = ({
         size="large"
         color={selected === false ? theme.primaryColor : theme.fontVariantColor}
       />
-      <OptionTitle selected={selected} weight={700}>
+      <OptionTitle selected={selected} type="h3" weight={700}>
         {title}
       </OptionTitle>
-      <OptionDescription selected={selected} weight={400}>
+      <OptionDescription selected={selected} type="h4" weight={400}>
         {description}
       </OptionDescription>
     </Fragment>

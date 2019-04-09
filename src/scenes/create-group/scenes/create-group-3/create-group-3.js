@@ -3,7 +3,7 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
-import CreateGroupTitle from "../../components/create-group-title";
+import AppModalTitle from "../../../../components/app-modal-title";
 import CreateGroupError from "../../components/create-group-error";
 import CreateGroup3Modules from "./components/create-group-3-modules";
 /* eslint-disable */
@@ -81,9 +81,7 @@ class CreateGroup3 extends Component {
 
     return (
       <CreateGroupContainer>
-        <CreateGroupTitle type="h2" weight={700}>
-          {t("modules")}
-        </CreateGroupTitle>
+        <AppModalTitle>{t("modules")}</AppModalTitle>
         {error && (
           <CreateGroupError>
             {t(`validation:modules.${error}`)}

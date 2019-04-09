@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
-import CreateGroupTitle from "../../components/create-group-title";
+import AppModalTitle from "../../../../components/app-modal-title";
 import CreateGroupError from "../../components/create-group-error";
 import CreateGroup4Themes from "./components/create-group-4-themes";
 import Loader from "../../../../components/loader";
@@ -111,9 +111,7 @@ class CreateGroup4 extends Component {
       <Loader />
     ) : (
       <CreateGroupContainer>
-        <CreateGroupTitle type="h2" weight={700}>
-          {t("theme")}
-        </CreateGroupTitle>
+        <AppModalTitle>{t("theme")}</AppModalTitle>
         {error && (
           <CreateGroupError>{t(`validation:theme.${error}`)}</CreateGroupError>
         )}
