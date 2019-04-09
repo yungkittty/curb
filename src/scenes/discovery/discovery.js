@@ -11,11 +11,8 @@ import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
 import SignIn from "../sign-in";
 import CreateGroup from "../create-group";
-import modulesList from "../../utils/modules-list/modules-list";
 
 const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => {
-  console.log(modulesList);
-
   return (
     <React.Fragment>
       <DiscoveryContainer

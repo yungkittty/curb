@@ -84,7 +84,7 @@ class CreateGroup3 extends Component {
       <ListFlat
         data={modulesList}
         extraData={{ value }}
-        keyExtractor={item => Object.keys(item)[0]}
+        keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
             <AppModalTitle>{t("modules")}</AppModalTitle>
@@ -93,19 +93,16 @@ class CreateGroup3 extends Component {
             </CreateGroupError>
           </React.Fragment>
         )}
-        renderItem={({ item }) => {
-          const index = Object.keys(item)[0];
-          return (
-            <ModalListItem
-              icon={item[index].icon}
-              title={t(`modules:${index}.title`)}
-              description={t(`modules:${index}.description`)}
-              selected={_.includes(value, index)}
-              selectionType={false}
-              onClick={() => this.handleChange(index)}
-            />
-          );
-        }}
+        renderItem={item => (
+          <ModalListItem
+            icon={item.item.icon}
+            title={t(`modules:${item.index}.title`)}
+            description={t(`modules:${item.index}.description`)}
+            selected={_.includes(value, item.index)}
+            selectionType={false}
+            onClick={() => this.handleChange(item.index)}
+          />
+        )}
       />
     );
   }
