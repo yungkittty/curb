@@ -6,8 +6,7 @@ const CreateGroupContainer = props => (
     {...props}
     contentContainerStyle={{
       position: "relative",
-      alignItems: "center",
-      paddingTop: 15
+      alignItems: "center"
     }}
   />
 );

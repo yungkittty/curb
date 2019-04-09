@@ -6,10 +6,10 @@ import AppModalTitle from "../../../../components/app-modal-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
 import ModalListItem from "../../../../components/modal-list-item";
-import modulesData from "./create-group-3-modules-data";
 /* eslint-disable */
 import CreateGroup2 from "../create-group-2";
 import CreateGroup4 from "../create-group-4";
+import modulesList from "../../../../utils/modules-list/modules-list";
 /* eslint-enable */
 
 class CreateGroup3 extends Component {
@@ -82,9 +82,9 @@ class CreateGroup3 extends Component {
 
     return (
       <ListFlat
-        data={modulesData}
+        data={modulesList}
         extraData={{ value }}
-        keyExtractor={item => item.id}
+        keyExtractor={item => Object.keys(item)[0]}
         ListHeaderComponent={() => (
           <React.Fragment>
             <AppModalTitle>{t("modules")}</AppModalTitle>
@@ -93,16 +93,19 @@ class CreateGroup3 extends Component {
             </CreateGroupError>
           </React.Fragment>
         )}
-        renderItem={({ item }) => (
-          <ModalListItem
-            icon={item.icon}
-            title={t(`modules:${item.id}.title`)}
-            description={t(`modules:${item.id}.description`)}
-            selected={_.includes(value, item.id)}
-            selectionType={false}
-            onClick={() => this.handleChange(item.id)}
-          />
-        )}
+        renderItem={({ item }) => {
+          const index = Object.keys(item)[0];
+          return (
+            <ModalListItem
+              icon={item[index].icon}
+              title={t(`modules:${index}.title`)}
+              description={t(`modules:${index}.description`)}
+              selected={_.includes(value, index)}
+              selectionType={false}
+              onClick={() => this.handleChange(index)}
+            />
+          );
+        }}
       />
     );
   }
