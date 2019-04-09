@@ -74,9 +74,7 @@ class CreateGroup2 extends Component {
 
     return (
       <CreateGroupContainer>
-        <AppModalTitle style={{ marginBottom: 0 }}>
-          {t("discoverability")}
-        </AppModalTitle>
+        <AppModalTitle>{t("discoverability")}</AppModalTitle>
         <CreateGroupError>
           {error && t(`validation:discoverability.${error}`)}
         </CreateGroupError>

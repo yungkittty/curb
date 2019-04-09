@@ -117,9 +117,7 @@ class CreateGroup4 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalTitle style={{ marginBottom: 0 }}>
-              {t("theme")}
-            </AppModalTitle>
+            <AppModalTitle>{t("theme")}</AppModalTitle>
             <CreateGroupError>
               {error && t(`validation:theme.${error}`)}
             </CreateGroupError>
