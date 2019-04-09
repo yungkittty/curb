@@ -74,7 +74,7 @@ class DiscoveryScanQr extends React.Component {
               />
               <Icon
                 icon="bolt"
-                size="medium"
+                size="small"
                 color={theme.primaryColor}
                 style={{
                   position: "absolute",

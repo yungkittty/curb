@@ -7,7 +7,7 @@ import Icon from "../../../../../../components/icon";
 
 const SelectImage = ({ theme }) => (
   <ImageContainer>
-    <Icon icon="file-image" size="medium" color={theme.secondaryVariantColor} />
+    <Icon icon="file-image" size="small" color={theme.secondaryVariantColor} />
   </ImageContainer>
 );
 

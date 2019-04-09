@@ -9,7 +9,7 @@ const DiscoveryHeader = ({ theme, showAppModal, children }) => (
   <HeaderContainer>
     <HeaderButtonIcon
       icon="qrcode"
-      size="medium"
+      size="small"
       color={theme.primaryColor}
       onClick={() => showAppModal({ scene: DiscoveryScanQr })}
     />

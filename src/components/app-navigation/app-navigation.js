@@ -22,17 +22,13 @@ const AppNavigation = ({
     {!currentUserId ? (
       <NavigationButtonIcon
         icon="sign-in-alt"
-        size="medium"
+        size="small"
         color={theme.primaryColor}
         onClick={() => showAppModal({ scene: SignIn })}
       />
     ) : (
       <NavigationButtonImage
-        src={`${process.env.REACT_APP_API_URL}${_.replace(
-          currentUserAvatarUrl,
-          "medium",
-          "small"
-        )}`}
+        src={_.replace(currentUserAvatarUrl, "medium", "small")}
         onClick={`/users/${currentUserId}`}
       />
     )}
@@ -46,7 +42,7 @@ const AppNavigation = ({
       ListFooterComponent={() => (
         <NavigationListFooter
           icon="plus"
-          size="small"
+          size="extra-small"
           color={theme.secondaryVariantColor}
           onClick="/"
         />
@@ -55,12 +51,7 @@ const AppNavigation = ({
       showsVerticalScrollIndicator={false}
     />
     <NavigationRule style={{ paddingBottom: 10 }} />
-    <NavigationButtonIcon
-      icon="cog"
-      size="medium"
-      color={theme.primaryColor}
-      onClick={() => undefined}
-    />
+    <NavigationButtonIcon icon="cog" size="small" color={theme.primaryColor} onClick={() => undefined} />
   </NavigationContainer>
 );
 
