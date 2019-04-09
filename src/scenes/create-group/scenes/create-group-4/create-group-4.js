@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
-import CreateGroupContainer from "../../components/create-group-container";
 import AppModalTitle from "../../../../components/app-modal-title";
 import CreateGroupError from "../../components/create-group-error";
-import CreateGroup4Themes from "./components/create-group-4-themes";
+import ListFlat from "../../../../components/list-flat";
+import ModalListItem from "../../../../components/modal-list-item";
 import Loader from "../../../../components/loader";
+import themesData from "./create-group-4-themes-data";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";
 
@@ -110,13 +111,32 @@ class CreateGroup4 extends Component {
     return isLoading ? (
       <Loader />
     ) : (
-      <CreateGroupContainer>
-        <AppModalTitle>{t("theme")}</AppModalTitle>
-        {error && (
-          <CreateGroupError>{t(`validation:theme.${error}`)}</CreateGroupError>
+      <ListFlat
+        data={themesData}
+        extraData={{ value }}
+        keyExtractor={item => item.id}
+        ListHeaderComponent={() => (
+          <React.Fragment>
+            <AppModalTitle style={{ marginBottom: 0 }}>
+              {t("theme")}
+            </AppModalTitle>
+            <CreateGroupError>
+              {error && t(`validation:theme.${error}`)}
+            </CreateGroupError>
+          </React.Fragment>
         )}
-        <CreateGroup4Themes onClick={this.handleChange} value={value} />
-      </CreateGroupContainer>
+        renderItem={({ item }) => (
+          <ModalListItem
+            title={t(`themeList.${item.id}`)}
+            titleColor="#ffffff"
+            backgroundColor={item.backgroundColor}
+            selected={item.id === value}
+            selectionType
+            selectedColorAlternate
+            onClick={() => this.handleChange(item.id)}
+          />
+        )}
+      />
     );
   }
 }

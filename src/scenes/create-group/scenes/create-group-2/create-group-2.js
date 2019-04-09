@@ -74,12 +74,12 @@ class CreateGroup2 extends Component {
 
     return (
       <CreateGroupContainer>
-        <AppModalTitle>{t("discoverability")}</AppModalTitle>
-        {error && (
-          <CreateGroupError>
-            {t(`validation:discoverability.${error}`)}
-          </CreateGroupError>
-        )}
+        <AppModalTitle style={{ marginBottom: 0 }}>
+          {t("discoverability")}
+        </AppModalTitle>
+        <CreateGroupError>
+          {error && t(`validation:discoverability.${error}`)}
+        </CreateGroupError>
         <CreateGroup2Discover
           onClick={this.handleChange}
           discoverability={value}

@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import CreateGroupContainer from "../../components/create-group-container";
 import AppModalTitle from "../../../../components/app-modal-title";
 import CreateGroupError from "../../components/create-group-error";
-import CreateGroup3Modules from "./components/create-group-3-modules";
+import ListFlat from "../../../../components/list-flat";
+import ModalListItem from "../../../../components/modal-list-item";
+import modulesData from "./create-group-3-modules-data";
 /* eslint-disable */
 import CreateGroup2 from "../create-group-2";
 import CreateGroup4 from "../create-group-4";
@@ -80,15 +81,31 @@ class CreateGroup3 extends Component {
     } = this.props;
 
     return (
-      <CreateGroupContainer>
-        <AppModalTitle>{t("modules")}</AppModalTitle>
-        {error && (
-          <CreateGroupError>
-            {t(`validation:modules.${error}`)}
-          </CreateGroupError>
+      <ListFlat
+        data={modulesData}
+        extraData={{ value }}
+        keyExtractor={item => item.id}
+        ListHeaderComponent={() => (
+          <React.Fragment>
+            <AppModalTitle style={{ marginBottom: 0 }}>
+              {t("modules")}
+            </AppModalTitle>
+            <CreateGroupError>
+              {error && t(`validation:modules.${error}`)}
+            </CreateGroupError>
+          </React.Fragment>
         )}
-        <CreateGroup3Modules onClick={this.handleChange} modules={value} />
-      </CreateGroupContainer>
+        renderItem={({ item }) => (
+          <ModalListItem
+            icon={item.icon}
+            title={t(`modules:${item.id}.title`)}
+            description={t(`modules:${item.id}.description`)}
+            selected={_.includes(value, item.id)}
+            selectionType={false}
+            onClick={() => this.handleChange(item.id)}
+          />
+        )}
+      />
     );
   }
 }
