@@ -18,7 +18,10 @@ const ImageGroup = ({
   ...others
 }) => {
   const X = (() => {
-    const Xs = platformBools.isReact ? [undefined, 60, 100, 300] : [undefined, 50, 70, 200];
+    const Xs = platformBools.isReact
+      ? // eslint-disable-line
+        [undefined, 60, 100, 300]
+      : [undefined, 50, 70, 200];
     switch (size) {
       case "extra-small":
         return Xs[0];

@@ -18,13 +18,15 @@ class ImageUserContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, { userId }) => {
-  const { isFetching: isUserFetching = true, name: userName = "", avatarUrl: userAvatarUrl = "" } =
-    usersSelectors.getUserById(state, userId) || {};
+const mapStateToProps = (state, ownProps) => {
+  const {
+    isFetching: isUserFetching = ownProps.isUserFetching && true,
+    id: userId = ownProps.userId,
+    avatarUrl: userAvatarUrl = ownProps.userAvatarUrl || ""
+  } = usersSelectors.getUserById(state, ownProps.userId) || {};
   return {
     isUserFetching,
     userId,
-    userName,
     userAvatarUrl
   };
 };
@@ -33,8 +35,14 @@ const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(usersActions.getUserRequest(payload))
 });
 
+ImageUserContainer.defaultProps = {
+  isUserFetching: true,
+  userId: undefined
+};
+
 ImageUserContainer.propTypes = {
-  userId: PropTypes.string.isRequired,
+  isUserFetching: PropTypes.bool,
+  userId: PropTypes.string,
   getUser: PropTypes.func.isRequired
 };
 

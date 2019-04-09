@@ -17,25 +17,28 @@ class DiscoveryListItemContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const discoveryGroupId = ownProps.discoveryGroupId || "";
-  const { avatarUrl: discoveryGroupAvatarUrl = "", name: discoveryGroupName = "" } =
-    groupsSelectors.getGroupById(state, discoveryGroupId) || {};
+  const {
+    isFetching: isDiscoveryGroupFetching = true,
+    id: discoveryGroupId = ownProps.discoveryGroupId || "",
+    name: discoveryGroupName = "",
+    avatarUrl: discoveryGroupAvatarUrl = "",
+    theme: discoveryGroupTheme = ""
+  } = groupsSelectors.getGroupById(state, ownProps.discoveryGroupId) || {};
   return {
+    isDiscoveryGroupFetching,
     discoveryGroupId,
     discoveryGroupName,
-    discoveryGroupAvatarUrl
+    discoveryGroupAvatarUrl,
+    discoveryGroupTheme
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getDiscoveryGroup: payload =>
-    dispatch(groupsActions.getGroupRequest(payload))
+  getDiscoveryGroup: payload => dispatch(groupsActions.getGroupRequest(payload))
 });
 
 DiscoveryListItemContainer.propTypes = {
   discoveryGroupId: PropTypes.string.isRequired,
-  discoveryGroupName: PropTypes.string.isRequired,
-  discoveryGroupAvatarUrl: PropTypes.string.isRequired,
   getDiscoveryGroup: PropTypes.func.isRequired
 };
 

@@ -29,9 +29,13 @@ class AppNavigationContainer extends React.Component {
 
 const mapStateToProps = state => {
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
-  const { avatarUrl: currentUserAvatarUrl = "", groups: currentUserGroupsIds = [] } =
-    usersSelectors.getUserById(state, currentUserId) || {};
+  const {
+    isFetching: isCurrentUserFetching = true,
+    avatarUrl: currentUserAvatarUrl = "",
+    groups: currentUserGroupsIds = []
+  } = usersSelectors.getUserById(state, currentUserId) || {};
   return {
+    isCurrentUserFetching,
     currentUserId,
     currentUserAvatarUrl,
     currentUserGroupsIds

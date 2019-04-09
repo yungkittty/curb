@@ -34,6 +34,7 @@ Button.defaultProps = { onClick: undefined };
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.oneOfType([
+    // eslint-disable-line
     PropTypes.string,
     PropTypes.object,
     PropTypes.func

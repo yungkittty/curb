@@ -8,7 +8,9 @@ const GroupContainer = styled(Container)`
   align-items: center;
   ${props => `
     width: ${props.size}px;
+    min-width: ${props.size}px;
     height: ${props.size}px;
+    min-height: ${props.size}px;
     border-radius: ${props.size / 2}px;
     background-color ${
       props.isGroupFetching || props.groupAvatarUrl

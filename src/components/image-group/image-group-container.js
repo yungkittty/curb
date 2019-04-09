@@ -18,13 +18,14 @@ class ImageGroupContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, { groupId }) => {
+const mapStateToProps = (state, ownProps) => {
   const {
-    isFetching: isGroupFetching = true,
-    name: groupName = "",
-    avatarUrl: groupAvatarUrl = "",
-    theme: groupTheme = ""
-  } = groupsSelectors.getGroupById(state, groupId) || {};
+    isFetching: isGroupFetching = ownProps.isGroupFetching && true,
+    id: groupId = ownProps.groupId,
+    name: groupName = ownProps.groupName || "",
+    avatarUrl: groupAvatarUrl = ownProps.groupAvatarUrl || "",
+    theme: groupTheme = ownProps.groupTheme || ""
+  } = groupsSelectors.getGroupById(state, ownProps.groupId) || {};
   return {
     isGroupFetching,
     groupId,
@@ -38,8 +39,14 @@ const mapDispatchToProps = dispatch => ({
   getGroup: payload => dispatch(groupsActions.getGroupRequest(payload))
 });
 
+ImageGroupContainer.defaultProps = {
+  isGroupFetching: true,
+  groupId: undefined
+};
+
 ImageGroupContainer.propTypes = {
-  groupId: PropTypes.string.isRequired,
+  isGroupFetching: PropTypes.bool,
+  groupId: PropTypes.string,
   getGroup: PropTypes.func.isRequired
 };
 
