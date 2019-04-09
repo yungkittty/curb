@@ -18,6 +18,10 @@ const themesData = [
   {
     id: "magenta",
     backgroundColor: "#BB6BD9"
+  },
+  {
+    id: "black",
+    backgroundColor: "#4F4F4F"
   }
 ];
 

@@ -11,7 +11,7 @@ const SelectionContainer = styled(Container)`
   height: 125px;
 
   opacity: ${({ selected, selectedColorAlternate }) =>
-    selectedColorAlternate ? (selected ? "0.4" : "0.15") : "1"};
+    selectedColorAlternate ? (selected ? "0.45" : "0.15") : "1"};
 `;
 
 export default SelectionContainer;

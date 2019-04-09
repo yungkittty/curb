@@ -31,7 +31,8 @@ const cnCreateGroup = {
     red: "",
     green: "",
     yellow: "",
-    magenta: ""
+    magenta: "",
+    black: ""
   }
 };
 

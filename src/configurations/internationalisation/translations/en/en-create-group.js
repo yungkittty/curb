@@ -13,7 +13,8 @@ const enCreateGroup = {
     red: "Red",
     green: "Green",
     yellow: "Yellow",
-    magenta: "Magenta"
+    magenta: "Magenta",
+    black: "Black"
   }
 };
 

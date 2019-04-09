@@ -31,6 +31,8 @@ const Button = styled(({ children, onClick, ...others }) =>
   &::-moz-focus-inner {
     border: 0;
   }
+
+  ${({ disabled }) => (disabled ? "cursor: default;" : "")}
 `;
 
 Button.defaultProps = { onClick: undefined };

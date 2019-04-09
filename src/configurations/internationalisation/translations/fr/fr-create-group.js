@@ -13,7 +13,8 @@ const frCreateGroup = {
     red: "Rouge",
     green: "Vert",
     yellow: "Jaune",
-    magenta: "Magenta"
+    magenta: "Magenta",
+    black: "Noir"
   }
 };
 

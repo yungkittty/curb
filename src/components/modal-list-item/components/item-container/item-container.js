@@ -8,14 +8,16 @@ const ItemContainer = styled(Button)`
   width: 100%;
   height: 125px;
 
-  background: ${({ backgroundcolor, selected, theme }) =>
-    backgroundcolor || (selected ? theme.primaryVariantColor : "transparent")};
-
-  ${({ disabled }) => disabled && "cursor: default;"}
+  background: ${({ backgroundcolor }) => backgroundcolor || "transparent"};
 
   &:hover {
-    background: ${({ theme, backgroundcolor, disabled }) =>
-      !disabled ? !backgroundcolor && theme.primaryVariantColor : null};
+    ${({ theme, backgroundcolor, disabled }) =>
+      // eslint-disable-next-line no-nested-ternary
+      !disabled
+        ? backgroundcolor
+          ? `box-shadow: inset 0px 0px 0px 65px rgba(0, 0, 0, 0.06)`
+          : `background: ${theme.primaryVariantColor}`
+        : ""};
   }
 `;
 
