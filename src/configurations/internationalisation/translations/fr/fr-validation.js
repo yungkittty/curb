@@ -9,8 +9,7 @@ const frValidation = {
   },
   password: {
     missing: "Mot de passe manquant",
-    invalid:
-      "Doit inclure au moins 1 lettre, 1 chiffre, et faire de 6 à 64 caractères",
+    invalid: "Doit inclure faire de 6 à 64 caractères",
     tooeasy: "Votre mot de passe est trop facile à deviner",
     dontmatch: "Les mots de passe ne correspondent pas"
   }

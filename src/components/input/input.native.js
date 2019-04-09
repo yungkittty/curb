@@ -8,6 +8,7 @@ const Input = styled(({ type, onChange, id, ...others }) => (
   <TextInput
     {...others}
     secureTextEntry={type === "password"}
+    keyboardType={type === "email" ? "email-address" : undefined}
     onChangeText={text => onChange({ target: { id, value: text } })}
   />
 ))`

@@ -88,6 +88,7 @@ class SignUp1 extends Component {
         <InputForm
           size="modal"
           id="email"
+          type="email"
           placeholder={t("mailAddress")}
           onChange={this.handleChange}
           value={email.value}

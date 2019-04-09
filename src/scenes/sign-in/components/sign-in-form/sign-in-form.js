@@ -9,6 +9,7 @@ const SignInForm = ({ onChange, email, password, t }) => (
     <InputForm
       size="modal"
       id="email"
+      type="email"
       placeholder={t("signIn:email")}
       value={email.value}
       onChange={onChange}
