@@ -2,19 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import FormContainer from "./components/form-container";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
 
 const SignInForm = ({ onChange, email, password, t }) => (
   <FormContainer>
-    <Input
+    <InputForm
       size="modal"
       id="email"
+      type="email"
       placeholder={t("signIn:email")}
       value={email.value}
       onChange={onChange}
       error={email.error && t(`validation:email.${email.error}`)}
     />
-    <Input
+    <InputForm
       size="modal"
       id="password"
       placeholder={t("signIn:password")}
