@@ -4,7 +4,9 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
+import inputRegex from "../../../../utils/input-regex";
+import forbiddenPasswords from "./utils/forbidden-passwords";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
 
@@ -30,30 +32,35 @@ class SignUp2 extends Component {
   }
 
   finish() {
-    const { isSignUpFetching, signUp, name, email, password } = this.props;
+    const { isSignUpFetching, signUp, name, email, createPassword } = this.props;
     if (!isSignUpFetching && this.checkForm()) {
-      signUp({ name: name.value, email: email.value, password: password.value });
+      signUp({ name: name.value, email: email.value, password: createPassword.value });
     }
   }
 
   checkForm() {
-    const { password, confirmPassword } = this.props;
-    const passwordCheck = this.checkInput("password", password.value);
+    const { createPassword, confirmPassword } = this.props;
+    const createPasswordCheck = this.checkInput("createPassword", createPassword.value);
     const confirmPasswordCheck = this.checkInput("confirmPassword", confirmPassword.value);
-    return passwordCheck && confirmPasswordCheck;
+    return createPasswordCheck && confirmPasswordCheck;
   }
 
   checkInput(id, value) {
-    const { password, setAppModalSceneData, [id]: Y } = this.props;
+    const { createPassword, setAppModalSceneData, [id]: Y } = this.props;
     const error =
-      // eslint-disable-next-line
-      id === "password"
+      /* eslint-disable */
+      id === "createPassword"
         ? value.length === 0
           ? "missing"
+          : !RegExp(inputRegex.password).test(value)
+          ? "invalid"
+          : forbiddenPasswords.includes(value)
+          ? "tooeasy"
           : undefined
-        : password.value !== value
+        : createPassword.value !== value
         ? "dontmatch"
         : undefined;
+    /* eslint-enable */
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
@@ -64,7 +71,7 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { isSignUpFetching, t, password, confirmPassword } = this.props;
+    const { isSignUpFetching, t, createPassword, confirmPassword } = this.props;
     return isSignUpFetching ? (
       <Loader />
     ) : (
@@ -72,16 +79,16 @@ class SignUp2 extends Component {
         <SignUpTitle type="h2" weight={700}>
           {t("choosePassword")}
         </SignUpTitle>
-        <Input
+        <InputForm
           size="modal"
-          id="password"
+          id="createPassword"
           placeholder={t("password")}
           type="password"
-          value={password.value}
+          value={createPassword.value}
           onChange={this.handleChange}
-          error={password.error && t(`validation:password.${password.error}`)}
+          error={createPassword.error && t(`validation:password.${createPassword.error}`)}
         />
-        <Input
+        <InputForm
           size="modal"
           id="confirmPassword"
           placeholder={t("confirmPassword")}
@@ -96,7 +103,7 @@ class SignUp2 extends Component {
 }
 
 SignUp2.defaultProps = {
-  password: { value: "", error: undefined },
+  createPassword: { value: "", error: undefined },
   confirmPassword: { value: "", error: undefined }
 };
 
@@ -110,7 +117,7 @@ SignUp2.propTypes = {
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
-  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  createPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };

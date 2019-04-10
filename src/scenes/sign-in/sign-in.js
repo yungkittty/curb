@@ -13,17 +13,6 @@ class SignIn extends Component {
 
     const { setAppModalHeaderText, setAppModalFooterButton, t } = props;
 
-    this.state = {
-      email: {
-        value: "",
-        error: undefined
-      },
-      password: {
-        value: "",
-        error: undefined
-      }
-    };
-
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -38,13 +27,12 @@ class SignIn extends Component {
   }
 
   submit() {
-    const { signIn } = this.props;
-    const { email, password } = this.state;
+    const { signIn, email, password } = this.props;
     signIn({ email: email.value, password: password.value });
   }
 
   checkForm() {
-    const { email, password } = this.state;
+    const { email, password } = this.props;
     const emailCheck = this.checkInput("email", email.value);
     const passwordCheck = this.checkInput("password", password.value);
     return emailCheck && passwordCheck;
@@ -52,7 +40,8 @@ class SignIn extends Component {
 
   checkInput(id, value) {
     const error = value.length === 0 ? "missing" : undefined;
-    this.setState(prevState => ({ [id]: { ...prevState[id], value, error } }));
+    const { setAppModalSceneData, [id]: Y } = this.props;
+    setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
 
@@ -62,8 +51,7 @@ class SignIn extends Component {
   }
 
   render() {
-    const { isSignInFetching, setAppModalScene, t } = this.props;
-    const { email, password } = this.state;
+    const { isSignInFetching, setAppModalScene, email, password, t } = this.props;
     return isSignInFetching ? (
       <Loader />
     ) : (
@@ -75,12 +63,20 @@ class SignIn extends Component {
   }
 }
 
+SignIn.defaultProps = {
+  email: { value: "", error: undefined },
+  password: { value: "", error: undefined }
+};
+
 SignIn.propTypes = {
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   isSignInFetching: PropTypes.bool.isRequired,
+  setAppModalSceneData: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
+  email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
