@@ -52,7 +52,7 @@ const OverlayBlur = WrappedComponent => {
       Animated.timing(backgroundColor, {
         toValue: state ? 1 : 0,
         duration: 500,
-        ease: Easing.ease
+        ease: Easing.out(Easing.exp)
       }).start(() => {
         this.setState({ animationRunning: false });
         if (!state) appModalUnmount();
