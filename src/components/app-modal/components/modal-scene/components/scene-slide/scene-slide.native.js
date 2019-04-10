@@ -42,7 +42,7 @@ const SceneSlide = WrappedComponent => {
       () => setTimeout(() => {
         Animated.timing(wrappedComponentAnimated, {
           toValue: sceneDirection > 0 ? -windowWidth : 0,
-          easing: Easing.inOut(Easing.exp),
+          easing: Easing.out(Easing.exp),
           duration: 800,
           useNativeDriver: true
         }).start();
