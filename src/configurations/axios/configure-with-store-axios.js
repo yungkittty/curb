@@ -4,7 +4,7 @@ import { signInActions } from "../../datas/sign-in";
 
 // https://github.com/yungkittty/curb-api/tree/documentation-api-13
 
-const configureAxios = ({ dispatch }) => {
+const configureWithStoreAxios = ({ dispatch }) => {
   axios.defaults.baseURL = process.env.REACT_APP_API_URL;
   axios.interceptors.response.use(
     response => response,
@@ -20,4 +20,4 @@ const configureAxios = ({ dispatch }) => {
   );
 };
 
-export default configureAxios;
+export default configureWithStoreAxios;

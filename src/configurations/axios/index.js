@@ -1,3 +1,3 @@
-import configureAxios from "./configure-axios";
+import configureWithStoreAxios from "./configure-with-store-axios";
 
-export default configureAxios;
+export default configureWithStoreAxios;

@@ -4,20 +4,18 @@ import i18nextLanguageDetector from "./i18next-language-detector";
 import translations from "./translations";
 import { currentSettingsSelectors } from "../../datas/current-settings";
 
-const configureI18n = ({ getState }) => {
-  const currentSettingsLanguage =
-    // eslint-disable-line
-    currentSettingsSelectors.getCurrentSettingsLanguage(getState());
+const configureWithStoreI18n = ({ getState }) => {
+  const lng = currentSettingsSelectors.getCurrentSettingsLanguage(getState()) || "";
   return i18next
     .createInstance()
     .use(i18nextInit)
     .use(i18nextLanguageDetector)
     .init({
       resources: translations,
-      ...(currentSettingsLanguage ? { lng: currentSettingsLanguage } : {}),
+      lng,
       fallbackLng: "en",
       interpolation: { escapeValue: false }
     });
 };
 
-export default configureI18n;
+export default configureWithStoreI18n;
