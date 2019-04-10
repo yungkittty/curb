@@ -8,45 +8,12 @@ class ModalContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { children: undefined };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    const { isAppModalShowed, render, style, children } = this.props;
-    const { children: stateChildren } = this.state;
-
-    return (
-      nextProps.isAppModalShowed !== isAppModalShowed ||
-      nextProps.render !== render ||
-      nextProps.style !== style ||
-      nextProps.children !== children ||
-      nextState.children !== stateChildren
-    );
-  }
-
-  componentDidUpdate(prevProps) {
-    const { isAppModalShowed, render } = this.props;
-    const { children } = this.state;
-
-    if (!isAppModalShowed && render && children === undefined) {
-      // eslint-disable-next-line
-      this.setState({ children: prevProps.children });
-      setTimeout(() => this.setState({ children: undefined }), 500);
-    }
+    this.state = {};
   }
 
   render() {
-    const {
-      children,
-      theme,
-      style,
-      render,
-      isAppModalShowed,
-      ...others
-    } = this.props;
-    const { children: stateChildren } = this.state;
-
-    return render ? (
+    const { theme, style, children, ...others } = this.props;
+    return (
       <Container
         style={{
           display: "flex",
@@ -57,20 +24,18 @@ class ModalContainer extends Component {
         }}
         {...others}
       >
-        {isAppModalShowed ? children : stateChildren}
+        {children}
       </Container>
-    ) : null;
+    );
   }
 }
 
 ModalContainer.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
   style: PropTypes.object.isRequired,
-  render: PropTypes.bool.isRequired,
-  isAppModalShowed: PropTypes.bool.isRequired
+  children: PropTypes.arrayOf(PropTypes.node).isRequired
 };
 
 export default withTheme(ContainerAnimation(ModalContainer));

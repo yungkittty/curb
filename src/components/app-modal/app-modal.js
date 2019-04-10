@@ -19,35 +19,39 @@ const AppModal = ({
   appModalSceneDirection,
   appModalSceneData,
   appModalFooterText,
-  appModalFooterOnClick
-}) => (
-  <React.Fragment>
-    <ModalOverlay isAppModalShowed={isAppModalShowed} />
-    <ModalContainer isAppModalShowed={isAppModalShowed}>
-      <ModalHeader
-        text={appModalHeaderText}
-        currentStep={appModalHeaderCurrentStep}
-        steps={appModalHeaderSteps}
-        leftIcon={appModalHeaderLeftIcon}
-        leftOnClick={appModalHeaderLeftOnClick}
-        rightIcon={appModalHeaderRightIcon}
-        rightOnClick={appModalHeaderRightOnClick}
-      />
-      <ModalScene
-        scene={appModalScene}
-        sceneDirection={appModalSceneDirection}
-        sceneData={appModalSceneData}
-      />
-      {appModalFooterText ? (
-        <ModalFooter
-          type="h4"
-          text={appModalFooterText}
-          onClick={appModalFooterOnClick}
+  appModalFooterOnClick,
+  appModalUnmount
+}) =>
+  appModalScene !== null ? (
+    <ModalOverlay
+      isAppModalShowed={isAppModalShowed}
+      appModalUnmount={appModalUnmount}
+    >
+      <ModalContainer isAppModalShowed={isAppModalShowed}>
+        <ModalHeader
+          text={appModalHeaderText}
+          currentStep={appModalHeaderCurrentStep}
+          steps={appModalHeaderSteps}
+          leftIcon={appModalHeaderLeftIcon}
+          leftOnClick={appModalHeaderLeftOnClick}
+          rightIcon={appModalHeaderRightIcon}
+          rightOnClick={appModalHeaderRightOnClick}
         />
-      ) : null}
-    </ModalContainer>
-  </React.Fragment>
-);
+        <ModalScene
+          scene={appModalScene}
+          sceneDirection={appModalSceneDirection}
+          sceneData={appModalSceneData}
+        />
+        {appModalFooterText ? (
+          <ModalFooter
+            type="h4"
+            text={appModalFooterText}
+            onClick={appModalFooterOnClick}
+          />
+        ) : null}
+      </ModalContainer>
+    </ModalOverlay>
+  ) : null;
 
 AppModal.defaultProps = {
   appModalHeaderText: undefined,
@@ -59,7 +63,8 @@ AppModal.defaultProps = {
   appModalSceneDirection: undefined,
   appModalSceneData: undefined,
   appModalFooterText: undefined,
-  appModalFooterOnClick: undefined
+  appModalFooterOnClick: undefined,
+  appModalUnmount: undefined
 };
 
 AppModal.propTypes = {
@@ -76,7 +81,8 @@ AppModal.propTypes = {
   // eslint-disable-next-line
   appModalSceneData: PropTypes.object,
   appModalFooterText: PropTypes.string,
-  appModalFooterOnClick: PropTypes.func
+  appModalFooterOnClick: PropTypes.func,
+  appModalUnmount: PropTypes.func
 };
 
 export default AppModal;

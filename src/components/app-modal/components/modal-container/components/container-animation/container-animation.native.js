@@ -19,71 +19,60 @@ const ContainerAnimation = WrappedComponent => {
         height: windowDimensions.width > windowBreakpoints.large ? 740 : "100%",
         borderRadius:
           windowDimensions.width > windowBreakpoints.large ? 25 : undefined,
-        // eslint-disable-next-line no-nested-ternary
+        // eslint-disable-next-line
         paddingTop: Platform.OS === "ios" ? (isIphoneX ? 30 : 20) : undefined
       };
 
       this.state = {
-        render: false,
         animationRunning: false,
-        opacity: new Animated.Value(0),
-        top: new Animated.Value(40)
+        top: new Animated.Value(windowDimensions.height)
       };
 
       this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
         WrappedComponent
       );
+
+      this.startAnimation = this.startAnimation.bind(this);
+    }
+
+    componentDidMount() {
+      const { isAppModalShowed } = this.props;
+      this.startAnimation(isAppModalShowed);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-      const { isAppModalShowed, children } = this.props;
-      const { render, opacity, top } = this.state;
-      return (
-        nextProps.isAppModalShowed !== isAppModalShowed ||
-        nextProps.children !== children ||
-        nextState.render !== render ||
-        nextState.opacity !== opacity ||
-        nextState.top !== top
-      );
+      const { children } = this.props;
+      const { top } = this.state;
+      return children !== nextProps.children || top !== nextState.top;
     }
 
     componentDidUpdate() {
-      const { animationRunning, opacity, top } = this.state;
       const { isAppModalShowed } = this.props;
+      this.startAnimation(isAppModalShowed);
+    }
 
-      // eslint-disable-next-line
-      if (isAppModalShowed) this.setState({ render: true });
-
+    startAnimation(state) {
+      const { animationRunning, top } = this.state;
       if (animationRunning) return;
-      // eslint-disable-next-line
       this.setState({ animationRunning: true });
-      Animated.parallel([
-        Animated.timing(opacity, {
-          toValue: isAppModalShowed ? 1 : 0,
-          duration: 350,
-          ease: Easing.out(Easing.ease)
-        }),
-        Animated.timing(top, {
-          toValue: isAppModalShowed ? 0 : 40,
-          duration: 350,
-          ease: Easing.out(Easing.ease)
-        })
-      ]).start(() =>
+      Animated.timing(top, {
+        toValue: state ? 0 : windowDimensions.height,
+        duration: 500,
+        easing: Easing.out(Easing.exp),
+        useNativeDriver: true
+      }).start(() =>
         this.setState({
-          animationRunning: false,
-          render: isAppModalShowed
+          animationRunning: false
         })
       );
     }
 
     render() {
       const { AnimatedWrappedComponent } = this;
-      const { render, opacity, top } = this.state;
-
+      const { opacity, top } = this.state;
       return (
         <AnimatedWrappedComponent
           {...this.props}
-          render={render}
           style={{
             ...this.commonStyle,
             opacity,
@@ -96,7 +85,6 @@ const ContainerAnimation = WrappedComponent => {
 
   _ContainerAnimation.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    // eslint-disable-next-line
     children: PropTypes.arrayOf(PropTypes.node).isRequired
   };
 

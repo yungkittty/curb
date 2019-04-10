@@ -36,6 +36,8 @@ const appModalReducer = (state = initialState, action) => {
     case appModalActionsTypes.SET_APP_MODAL_FOOTER_BUTTON:
       return _.assign({}, state, { footerText: action.payload.footerText, footerOnClick: action.payload.footerOnClick });
     case appModalActionsTypes.HIDE_APP_MODAL:
+      return _.assign({}, state, { isShowed: false });
+    case appModalActionsTypes.UNMOUNT_APP_MODAL:
       return _.assign({}, initialState);
     default:
       return state;

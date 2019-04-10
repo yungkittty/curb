@@ -33,8 +33,12 @@ const appModalActions = {
     type: appModalActionsTypes.SET_APP_MODAL_FOOTER_BUTTON,
     payload
   }),
-  hideAppModal: () => ({
+  hideAppModal: payload => ({
     type: appModalActionsTypes.HIDE_APP_MODAL,
+    payload
+  }),
+  unmountAppModal: () => ({
+    type: appModalActionsTypes.UNMOUNT_APP_MODAL,
     payload: undefined
   })
 };

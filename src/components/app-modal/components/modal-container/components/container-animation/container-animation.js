@@ -24,79 +24,54 @@ const ContainerAnimation = WrappedComponent => {
       this.hideStyle = {
         ...this.commonStyle,
         opacity: 0,
-        transform: "translate3d(0, 0, 0) scale(0.97)"
+        transform: "scale(0.97)"
       };
 
       this.showStyle = {
         ...this.commonStyle,
         opacity: 1,
-        transform: "translate3d(0, 0, 0) scale(1)"
+        transform: "scale(1)"
       };
 
       this.state = {
-        render: false,
         style: this.hideStyle
       };
 
-      this.onTransitionEnd = this.onTransitionEnd.bind(this);
+      this.startAnimation = this.startAnimation.bind(this);
+    }
+
+    componentDidMount() {
+      const { isAppModalShowed } = this.props;
+      this.startAnimation(isAppModalShowed);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-      const { isAppModalShowed, children } = this.props;
-      const { render, style } = this.state;
-      return (
-        nextProps.isAppModalShowed !== isAppModalShowed ||
-        nextProps.children !== children ||
-        nextState.render !== render ||
-        nextState.style !== style
-      );
+      const { children } = this.props;
+      const { style } = this.state;
+      return children !== nextProps.children || style !== nextState.style;
     }
 
     componentDidUpdate() {
       const { isAppModalShowed } = this.props;
-
-      if (isAppModalShowed) {
-        // eslint-disable-next-line
-        this.setState({ render: true });
-        setTimeout(
-          () =>
-            this.setState({
-              style: this.showStyle
-            }),
-          20
-        );
-      } else {
-        // eslint-disable-next-line
-        this.setState({ style: this.hideStyle });
-      }
+      this.startAnimation(isAppModalShowed);
     }
 
-    onTransitionEnd() {
-      const { isAppModalShowed } = this.props;
-      if (!isAppModalShowed) {
+    startAnimation(state) {
+      setTimeout(() =>
         this.setState({
-          render: false
-        });
-      }
+          style: state ? this.showStyle : this.hideStyle
+        })
+      );
     }
 
     render() {
-      const { render, style } = this.state;
-
-      return (
-        <WrappedComponent
-          {...this.props}
-          onTransitionEnd={this.onTransitionEnd}
-          render={render}
-          style={style}
-        />
-      );
+      const { style } = this.state;
+      return <WrappedComponent {...this.props} style={style} />;
     }
   }
 
   _ContainerAnimation.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    // eslint-disable-next-line
     children: PropTypes.arrayOf(PropTypes.node).isRequired
   };
 

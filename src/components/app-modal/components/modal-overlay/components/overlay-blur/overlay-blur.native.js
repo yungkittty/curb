@@ -13,54 +13,78 @@ const OverlayBlur = WrappedComponent => {
       };
 
       this.state = {
-        render: false,
-        opacity: new Animated.Value(0)
+        animationRunning: false,
+        backgroundColor: new Animated.Value(0)
       };
 
       this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
         WrappedComponent
       );
+
+      this.startAnimation = this.startAnimation.bind(this);
+    }
+
+    componentDidMount() {
+      const { isAppModalShowed } = this.props;
+      this.startAnimation(isAppModalShowed);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-      const { render, opacity } = this.state;
+      const { isAppModalShowed, children } = this.props;
+      const { backgroundColor } = this.state;
       return (
-        nextProps !== this.props ||
-        nextState.render !== render ||
-        nextState.opacity !== opacity
+        isAppModalShowed !== nextProps.isAppModalShowed ||
+        children !== nextProps.children ||
+        backgroundColor !== nextState.backgroundColor
       );
     }
 
     componentDidUpdate() {
-      const { opacity } = this.state;
       const { isAppModalShowed } = this.props;
+      this.startAnimation(isAppModalShowed);
+    }
 
-      // eslint-disable-next-line
-      if (isAppModalShowed) this.setState({ render: isAppModalShowed });
-      Animated.timing(opacity, {
-        toValue: isAppModalShowed ? 1 : 0,
+    startAnimation(state) {
+      const { appModalUnmount } = this.props;
+      const { animationRunning, backgroundColor } = this.state;
+      if (animationRunning) return;
+      this.setState({ animationRunning: true });
+      Animated.timing(backgroundColor, {
+        toValue: state ? 1 : 0,
         duration: 500,
-        ease: Easing.out(Easing.ease)
-      }).start(() => this.setState({ render: isAppModalShowed }));
+        ease: Easing.ease
+      }).start(() => {
+        this.setState({ animationRunning: false });
+        if (!state) appModalUnmount();
+      });
     }
 
     render() {
       const { AnimatedWrappedComponent } = this;
-      const { render, opacity } = this.state;
+      const { theme } = this.props;
+      const { backgroundColor } = this.state;
       return (
         <AnimatedWrappedComponent
           {...this.props}
-          render={render}
           style={{
             ...this.commonStyle,
-            opacity
+            backgroundColor: backgroundColor.interpolate({
+              inputRange: [0, 1],
+              outputRange: ["rgba(0, 0, 0, 0)", theme.overlayColor]
+            })
           }}
         />
       );
     }
   }
 
-  _OverlayBlur.propTypes = { isAppModalShowed: PropTypes.bool.isRequired };
+  _OverlayBlur.propTypes = {
+    isAppModalShowed: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
+    appModalUnmount: PropTypes.func.isRequired,
+    // eslint-disable-next-line
+    theme: PropTypes.object.isRequired
+  };
 
   return _OverlayBlur;
 };

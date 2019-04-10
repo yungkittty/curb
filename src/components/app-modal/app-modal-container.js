@@ -15,17 +15,18 @@ const mapStateToProps = state => ({
   appModalSceneDirection: appModalSelectors.getAppModalSceneDirection(state),
   appModalSceneData: appModalSelectors.getAppModalSceneData(state),
   appModalFooterText: appModalSelectors.getAppModalFooterText(state),
-  appModalFooterOnClick: appModalSelectors.getAppModalFooterOnClick(state),
+  appModalFooterOnClick: appModalSelectors.getAppModalFooterOnClick(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal())
+  appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal()),
+  appModalUnmount: () => dispatch(appModalActions.unmountAppModal())
 });
 
 const mergeProps = (stateProps, dispatchProps) => ({
   ...stateProps,
   ...(!stateProps.appModalHeaderRightOnClick ? dispatchProps : {})
-})
+});
 
 export default connect(
   mapStateToProps,

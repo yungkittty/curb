@@ -15,64 +15,60 @@ const OverlayBlur = WrappedComponent => {
 
       this.hideStyle = {
         ...this.commonStyle,
-        opacity: 0
+        backgroundColor: "rgba(0, 0, 0, 0)"
       };
       this.showStyle = {
         ...this.commonStyle,
-        opacity: 1
+        backgroundColor: props.theme.overlayColor
       };
 
-      this.state = { render: false, style: this.hideStyle };
+      this.state = { style: this.hideStyle };
 
       this.onTransitionEnd = this.onTransitionEnd.bind(this);
+      this.startAnimation = this.startAnimation.bind(this);
+    }
+
+    componentDidMount() {
+      const { isAppModalShowed } = this.props;
+      this.startAnimation(isAppModalShowed);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-      const { render, style } = this.state;
+      const { isAppModalShowed, children } = this.props;
+      const { style } = this.state;
       return (
-        nextProps !== this.props ||
-        nextState.render !== render ||
-        nextState.style !== style
+        isAppModalShowed !== nextProps.isAppModalShowed ||
+        children !== nextProps.children ||
+        style !== nextState.style
       );
     }
 
     componentDidUpdate() {
       const { isAppModalShowed } = this.props;
-
-      if (isAppModalShowed) {
-        document.getElementById("app-container").style.filter = "blur(3.5px)";
-        // eslint-disable-next-line
-        this.setState({ render: true });
-        setTimeout(
-          () =>
-            this.setState({
-              style: this.showStyle
-            }),
-          20
-        );
-      } else {
-        document.getElementById("app-container").style.filter = "";
-        // eslint-disable-next-line
-        this.setState({ style: this.hideStyle });
-      }
+      this.startAnimation(isAppModalShowed);
     }
 
     onTransitionEnd() {
-      const { isAppModalShowed } = this.props;
-      if (!isAppModalShowed) {
+      const { isAppModalShowed, appModalUnmount } = this.props;
+      if (!isAppModalShowed) appModalUnmount();
+    }
+
+    startAnimation(state) {
+      document.getElementById("app-container").style.filter = `blur(${
+        state ? 3.5 : 0
+      }px)`;
+      setTimeout(() =>
         this.setState({
-          render: false
-        });
-      }
+          style: state ? this.showStyle : this.hideStyle
+        })
+      );
     }
 
     render() {
-      const { render, style } = this.state;
-
+      const { style } = this.state;
       return (
         <WrappedComponent
           {...this.props}
-          render={render}
           onTransitionEnd={this.onTransitionEnd}
           style={style}
         />
@@ -80,7 +76,13 @@ const OverlayBlur = WrappedComponent => {
     }
   }
 
-  _OverlayBlur.propTypes = { isAppModalShowed: PropTypes.bool.isRequired };
+  _OverlayBlur.propTypes = {
+    isAppModalShowed: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
+    appModalUnmount: PropTypes.func.isRequired,
+    // eslint-disable-next-line
+    theme: PropTypes.object.isRequired
+  };
 
   return _OverlayBlur;
 };

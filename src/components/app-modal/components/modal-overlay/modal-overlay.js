@@ -7,22 +7,20 @@ import Container from "../../../container";
 // eslint-disable-next-line
 class ModalOverlay extends Component {
   render() {
-    const { theme, style, render, ...others } = this.props;
-
-    return render ? (
+    const { style, ...others } = this.props;
+    return (
       <Container
         style={{
           display: "flex",
           position: "absolute",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: theme.overlayColor,
           overflow: "hidden",
           ...style
         }}
         {...others}
       />
-    ) : null;
+    );
   }
 }
 
@@ -30,8 +28,7 @@ ModalOverlay.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
-  style: PropTypes.object.isRequired,
-  render: PropTypes.bool.isRequired
+  style: PropTypes.object.isRequired
 };
 
 export default withTheme(OverlayBlur(ModalOverlay));
