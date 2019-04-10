@@ -10,7 +10,7 @@ const OverlayBlur = WrappedComponent => {
         width: "100vw",
         height: "100vh",
         top: 0,
-        transition: "all 0.3s ease-out"
+        transition: "all 0.35s ease-out"
       };
 
       this.hideStyle = {
