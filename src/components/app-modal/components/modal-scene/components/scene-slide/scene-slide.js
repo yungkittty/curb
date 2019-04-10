@@ -44,7 +44,7 @@ const SceneSlide = WrappedComponent => {
         },
         () =>
           setTimeout(() => {
-            style.transition = "all 0.45s ease-in-out";
+            style.transition = "all 0.9s cubic-bezier(0.19, 1, 0.22, 1)";
             style.transform = `translateX(${
               sceneDirection > 0 ? "-50" : "0"
             }%)`;
