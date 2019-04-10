@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-set -e
+set -xe
 
 # Decodes certificates and mobile provision.
 openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in curb-developer.cer.enc -d -a -out curb-developer.cer
