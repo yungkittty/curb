@@ -10,6 +10,13 @@ const groupsReducer = (state = initialState, action) => {
         byId: _.assign({}, state.byId, { [action.payload.id]: action.payload }),
         allIds: _.merge([], state.allIds, [action.payload.id])
       });
+    case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
+      console.log(action.payload.id);
+      return _.assign({}, state, {
+        byId: _.assign({}, state.byId, {
+          [action.payload.id]: _.assign({ token: [action.payload.token] })
+        })
+      });
     default:
       return state;
   }
