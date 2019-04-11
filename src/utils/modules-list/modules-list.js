@@ -1,8 +1,8 @@
-const modulesList = {
-  text: { id: "text", icon: "align-left" },
-  image: { id: "image", icon: "image" },
-  video: { id: "video", icon: "video" },
-  localisation: { id: "localisation", icon: "map-marker-alt" }
-};
+const modulesList = [
+  { id: "text", icon: "align-left" },
+  { id: "image", icon: "image" },
+  { id: "video", icon: "video" },
+  { id: "localisation", icon: "map-marker-alt" }
+];
 
 export default modulesList;

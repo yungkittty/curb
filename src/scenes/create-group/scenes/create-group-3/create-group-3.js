@@ -93,14 +93,14 @@ class CreateGroup3 extends Component {
             </CreateGroupError>
           </React.Fragment>
         )}
-        renderItem={item => (
+        renderItem={({ item }) => (
           <ModalListItem
-            icon={item.item.icon}
-            title={t(`modules:${item.index}.title`)}
-            description={t(`modules:${item.index}.description`)}
-            selected={_.includes(value, item.index)}
+            icon={item.icon}
+            title={t(`modules:${item.id}.title`)}
+            description={t(`modules:${item.id}.description`)}
+            selected={_.includes(value, item.id)}
             selectionType={false}
-            onClick={() => this.handleChange(item.index)}
+            onClick={() => this.handleChange(item.id)}
           />
         )}
       />

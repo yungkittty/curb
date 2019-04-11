@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import CreateGroupContainer from "../../components/create-group-container";
 import AppModalTitle from "../../../../components/app-modal-title";
 import SelectImage from "./components/select-image";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
 /* eslint-disable-next-line */
 import CreateGroup2 from "../create-group-2";
 
@@ -60,7 +60,7 @@ class CreateGroup1 extends Component {
       <CreateGroupContainer>
         <AppModalTitle>{t("createGroup")}</AppModalTitle>
         <SelectImage />
-        <Input
+        <InputForm
           size="modal"
           id="groupName"
           placeholder={t("groupName")}
