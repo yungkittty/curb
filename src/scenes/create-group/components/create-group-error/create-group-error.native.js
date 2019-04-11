@@ -7,7 +7,7 @@ const CreateGroupError = styled(Text).attrs(() => ({
 }))`
   position: absolute;
   align-self: center;
-  margin-top: 40px;
+  margin-top: 62px;
   color: ${({ theme }) => theme.errorColor};
 `;
 

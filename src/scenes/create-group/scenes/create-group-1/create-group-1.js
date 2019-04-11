@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import CreateGroupContainer from "../../components/create-group-container";
+import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import AppModalTitle from "../../../../components/app-modal-title";
 import SelectImage from "./components/select-image";
 import InputForm from "../../../../components/input-form";
@@ -57,7 +57,7 @@ class CreateGroup1 extends Component {
     } = this.props;
 
     return (
-      <CreateGroupContainer>
+      <AppModalSceneContainer>
         <AppModalTitle>{t("createGroup")}</AppModalTitle>
         <SelectImage />
         <InputForm
@@ -68,7 +68,7 @@ class CreateGroup1 extends Component {
           value={value}
           error={error && t(`validation:groupName.${error}`)}
         />
-      </CreateGroupContainer>
+      </AppModalSceneContainer>
     );
   }
 }

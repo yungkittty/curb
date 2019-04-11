@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../components/loader";
-import SignInContainer from "./components/sign-in-container";
+import AppModalSceneContainer from "../../components/app-modal-scene-container";
 // eslint-disable-next-line
 import SignInRedirect from "./components/sign-in-redirect";
 import SignInForm from "./components/sign-in-form";
@@ -62,14 +62,14 @@ class SignIn extends Component {
     return isLoading ? (
       <Loader />
     ) : (
-      <SignInContainer>
+      <AppModalSceneContainer>
         <SignInForm
           email={email}
           password={password}
           onChange={this.handleChange}
         />
         <SignInRedirect setAppModalScene={setAppModalScene} t={t} />
-      </SignInContainer>
+      </AppModalSceneContainer>
     );
   }
 }

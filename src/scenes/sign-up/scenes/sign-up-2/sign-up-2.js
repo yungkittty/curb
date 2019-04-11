@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
-import SignUpContainer from "../../components/sign-up-container";
-import SignUpTitle from "../../components/sign-up-title";
+import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
+import AppModalTitle from "../../../../components/app-modal-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 import forbiddenPasswords from "./utils/forbidden-passwords";
@@ -97,10 +97,8 @@ class SignUp2 extends Component {
     return isLoading ? (
       <Loader />
     ) : (
-      <SignUpContainer>
-        <SignUpTitle type="h2" weight={700}>
-          {t("choosePassword")}
-        </SignUpTitle>
+      <AppModalSceneContainer>
+        <AppModalTitle>{t("choosePassword")}</AppModalTitle>
         <InputForm
           size="modal"
           id="createPassword"
@@ -125,7 +123,7 @@ class SignUp2 extends Component {
             t(`validation:password.${confirmPassword.error}`)
           }
         />
-      </SignUpContainer>
+      </AppModalSceneContainer>
     );
   }
 }

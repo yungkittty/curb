@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import CreateGroupContainer from "../../components/create-group-container";
+import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import AppModalTitle from "../../../../components/app-modal-title";
 import CreateGroupError from "../../components/create-group-error";
 import CreateGroup2Discover from "./components/create-group-2-discover";
@@ -73,7 +73,7 @@ class CreateGroup2 extends Component {
     } = this.props;
 
     return (
-      <CreateGroupContainer>
+      <AppModalSceneContainer>
         <AppModalTitle>{t("discoverability")}</AppModalTitle>
         <CreateGroupError>
           {error && t(`validation:discoverability.${error}`)}
@@ -82,7 +82,7 @@ class CreateGroup2 extends Component {
           onClick={this.handleChange}
           discoverability={value}
         />
-      </CreateGroupContainer>
+      </AppModalSceneContainer>
     );
   }
 }

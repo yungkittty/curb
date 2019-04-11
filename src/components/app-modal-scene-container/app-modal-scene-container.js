@@ -1,7 +1,7 @@
 import React from "react";
-import ContainerScroll from "../../../../components/container-scroll";
+import ContainerScroll from "../container-scroll";
 
-const CreateGroupContainer = props => (
+const AppModalSceneContainer = props => (
   <ContainerScroll
     {...props}
     contentContainerStyle={{
@@ -11,4 +11,4 @@ const CreateGroupContainer = props => (
   />
 );
 
-export default CreateGroupContainer;
+export default AppModalSceneContainer;
