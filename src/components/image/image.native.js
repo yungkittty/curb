@@ -1,14 +1,13 @@
 import React from "react";
-import { Image as ReactNativeImage } from "react-native";
+import { Image } from "react-native";
 import PropTypes from "prop-types";
 
-const Image = ({ src: uri, ...others }) => (
-  <ReactNativeImage {...others} source={{ uri }} />
-);
+// eslint-disable-next-line
+const _Image = ({ src: uri, ...others }) => <Image {...others} source={{ uri }} />;
 
-Image.propTypes = {
+_Image.propTypes = {
   // eslint-disable-next-line
   src: PropTypes.any.isRequired
 };
 
-export default Image;
+export default _Image;
