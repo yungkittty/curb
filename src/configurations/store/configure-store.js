@@ -1,24 +1,22 @@
 import { createStore, applyMiddleware } from "redux";
-import { createOffline } from "@redux-offline/redux-offline";
+import { persistStore, persistReducer } from "redux-persist";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import createSagaMiddleware from "redux-saga";
-import configureOffline from "./configure-offline";
+import configurePersist from "./configure-persist";
 import rootReducer from "./root-reducer";
 import rootSaga from "./root-saga";
 
 // https://medium.com/@zalmoxis/using-redux-devtools-in-production-4c5b56c5600f
-// https://github.com/redux-offline/redux-offline/blob/develop/docs/recipes/redux-saga.md
+// https://github.com/rt2zz/redux-persist#basic-usage
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
-  const { middleware: offlineMiddleware, enhanceReducer, enhanceStore } = createOffline(configureOffline());
-  const middlewares = [sagaMiddleware, offlineMiddleware];
-  const store = createStore(
-    enhanceReducer(rootReducer),
-    composeWithDevTools(enhanceStore, applyMiddleware(...middlewares))
-  );
+  const middlewares = [sagaMiddleware];
+  const persistedReducer = persistReducer(configurePersist(), rootReducer);
+  const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+  const persistedStore = persistStore(store);
   sagaMiddleware.run(rootSaga);
-  return store;
+  return { store, persistor: persistedStore };
 };
 
 export default configureStore;
