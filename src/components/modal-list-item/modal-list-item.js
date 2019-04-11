@@ -1,4 +1,5 @@
 import React from "react";
+import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 import ItemContainer from "./components/item-container";
 import ItemIcon from "./components/item-icon";
@@ -6,10 +7,12 @@ import ItemPreview from "./components/item-preview";
 import ItemSelection from "./components/item-selection";
 
 const ModalListItem = ({
+  theme,
   icon,
   title,
   titleColor,
   backgroundColor,
+  normalHoverColor,
   description,
   selected,
   selectedColorAlternate,
@@ -19,6 +22,7 @@ const ModalListItem = ({
 }) => (
   <ItemContainer
     backgroundcolor={backgroundColor}
+    hoverColor={!normalHoverColor ? theme.primaryVariantColor : undefined}
     selected={selected}
     disabled={disabled}
     onClick={onClick}
@@ -49,6 +53,7 @@ ModalListItem.defaultProps = {
   title: undefined,
   titleColor: undefined,
   backgroundColor: undefined,
+  normalHoverColor: undefined,
   description: undefined,
   selected: undefined,
   selectedColorAlternate: undefined,
@@ -58,10 +63,13 @@ ModalListItem.defaultProps = {
 };
 
 ModalListItem.propTypes = {
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
   icon: PropTypes.string,
   title: PropTypes.string,
   titleColor: PropTypes.string,
   backgroundColor: PropTypes.string,
+  normalHoverColor: PropTypes.string,
   description: PropTypes.string,
   selected: PropTypes.bool,
   selectedColorAlternate: PropTypes.bool,
@@ -70,4 +78,4 @@ ModalListItem.propTypes = {
   onClick: PropTypes.func
 };
 
-export default ModalListItem;
+export default withTheme(ModalListItem);

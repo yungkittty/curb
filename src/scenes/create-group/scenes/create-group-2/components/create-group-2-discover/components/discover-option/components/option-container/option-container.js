@@ -7,10 +7,6 @@ const OptionContainer = styled(Button)`
 
   background: ${({ selected, theme }) =>
     selected ? theme.primaryVariantColor : "transparent"};
-
-  &:hover {
-    background: ${({ theme }) => theme.primaryVariantColor};
-  }
 `;
 
 export default OptionContainer;

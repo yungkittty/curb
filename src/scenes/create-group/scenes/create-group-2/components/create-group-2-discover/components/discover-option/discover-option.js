@@ -14,7 +14,11 @@ const DiscoverOption = ({
   selected,
   onClick
 }) => (
-  <OptionContainer selected={selected} onClick={onClick}>
+  <OptionContainer
+    hoverColor={theme.primaryVariantColor}
+    selected={selected}
+    onClick={onClick}
+  >
     <Fragment>
       <Icon
         icon={icon}

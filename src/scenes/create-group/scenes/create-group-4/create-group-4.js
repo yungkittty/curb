@@ -129,6 +129,7 @@ class CreateGroup4 extends Component {
             titleColor="#ffffff"
             backgroundColor={item.backgroundColor}
             selected={item.id === value}
+            normalHoverColor
             selectionType
             selectedColorAlternate
             onClick={() => this.handleChange(item.id)}

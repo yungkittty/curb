@@ -28,6 +28,14 @@ const Button = styled(({ children, onClick, ...others }) =>
   background-color: initial;
   cursor: pointer;
 
+  transition: all 0.1s ease;
+  &:hover {
+    ${({ hoverColor }) =>
+      hoverColor
+        ? `background-color: ${hoverColor};`
+        : "filter: brightness(1.05);"}
+  }
+
   &::-moz-focus-inner {
     border: 0;
   }
