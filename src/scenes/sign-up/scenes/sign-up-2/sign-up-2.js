@@ -4,7 +4,9 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import SignUpContainer from "../../components/sign-up-container";
 import SignUpTitle from "../../components/sign-up-title";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
+import inputRegex from "../../../../utils/input-regex";
+import forbiddenPasswords from "./utils/forbidden-passwords";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
 
@@ -16,7 +18,7 @@ class SignUp2 extends Component {
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
       setAppModalScene,
-      setAppModalFooterButton,
+      setAppModalFooterButton
     } = this.props;
 
     this.finish = this.finish.bind(this);
@@ -25,40 +27,61 @@ class SignUp2 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 2 });
-    setAppModalHeaderLeftButton({ headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () => setAppModalScene({ scene: SignUp1, sceneDirection: -1 }) });
-    setAppModalFooterButton({ footerText: t("common:finish"), footerOnClick: this.finish })
+    setAppModalHeaderLeftButton({
+      headerLeftIcon: "arrow-left",
+      headerLeftOnClick: () =>
+        setAppModalScene({ scene: SignUp1, sceneDirection: -1 })
+    });
+    setAppModalFooterButton({
+      footerText: t("common:finish"),
+      footerOnClick: this.finish
+    });
 
     this.state = { isLoading: false };
   }
 
   finish() {
-    const { signUp, name, email, password } = this.props
+    const { signUp, name, email, createPassword } = this.props;
     const { isLoading } = this.state;
     if (!isLoading && this.checkForm()) {
-      signUp({ name: name.value, email: email.value, password: password.value });
+      signUp({
+        name: name.value,
+        email: email.value,
+        password: createPassword.value
+      });
       this.setState({ isLoading: true });
     }
   }
 
   checkForm() {
-    const { password, confirmPassword } = this.props;
-    const passwordCheck = this.checkInput("password", password.value);
-    const confirmPasswordCheck = this.checkInput("confirmPassword", confirmPassword.value);
-    return passwordCheck && confirmPasswordCheck;
+    const { createPassword, confirmPassword } = this.props;
+    const createPasswordCheck = this.checkInput(
+      "createPassword",
+      createPassword.value
+    );
+    const confirmPasswordCheck = this.checkInput(
+      "confirmPassword",
+      confirmPassword.value
+    );
+    return createPasswordCheck && confirmPasswordCheck;
   }
 
   checkInput(id, value) {
-    const { password, setAppModalSceneData, [id]: Y } = this.props;
+    const { createPassword, setAppModalSceneData, [id]: Y } = this.props;
     const error =
-      // eslint-disable-next-line
-      id === "password"
+      /* eslint-disable */
+      id === "createPassword"
         ? value.length === 0
           ? "missing"
+          : !RegExp(inputRegex.password).test(value)
+          ? "invalid"
+          : forbiddenPasswords.includes(value)
+          ? "tooeasy"
           : undefined
-        : password.value !== value
+        : createPassword.value !== value
         ? "dontmatch"
         : undefined;
+    /* eslint-enable */
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
@@ -69,7 +92,7 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { t, password, confirmPassword } = this.props;
+    const { t, createPassword, confirmPassword } = this.props;
     const { isLoading } = this.state;
     return isLoading ? (
       <Loader />
@@ -78,23 +101,29 @@ class SignUp2 extends Component {
         <SignUpTitle type="h2" weight={700}>
           {t("choosePassword")}
         </SignUpTitle>
-        <Input
+        <InputForm
           size="modal"
-          id="password"
+          id="createPassword"
           placeholder={t("password")}
           type="password"
-          value={password.value}
+          value={createPassword.value}
           onChange={this.handleChange}
-          error={password.error && t(`validation:password.${password.error}`)}
+          error={
+            createPassword.error &&
+            t(`validation:password.${createPassword.error}`)
+          }
         />
-        <Input
+        <InputForm
           size="modal"
           id="confirmPassword"
           placeholder={t("confirmPassword")}
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
+          error={
+            confirmPassword.error &&
+            t(`validation:password.${confirmPassword.error}`)
+          }
         />
       </SignUpContainer>
     );
@@ -102,7 +131,7 @@ class SignUp2 extends Component {
 }
 
 SignUp2.defaultProps = {
-  password: { value: "", error: undefined },
+  createPassword: { value: "", error: undefined },
   confirmPassword: { value: "", error: undefined }
 };
 
@@ -115,9 +144,15 @@ SignUp2.propTypes = {
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
-  password: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  t: PropTypes.func.isRequired,
+  createPassword: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  confirmPassword: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  t: PropTypes.func.isRequired
 };
 
 export default withTranslation("signUp")(SignUp2);

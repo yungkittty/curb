@@ -13,17 +13,7 @@ class SignIn extends Component {
 
     const { setAppModalHeaderText, setAppModalFooterButton, t } = props;
 
-    this.state = {
-      email: {
-        value: "",
-        error: undefined
-      },
-      password: {
-        value: "",
-        error: undefined
-      },
-      isLoading: false
-    };
+    this.state = { isLoading: false };
 
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
@@ -31,7 +21,10 @@ class SignIn extends Component {
     this.validate = this.validate.bind(this);
 
     setAppModalHeaderText({ headerText: t("signIn") });
-    setAppModalFooterButton({ footerText: t("signIn"), footerOnClick: this.validate });
+    setAppModalFooterButton({
+      footerText: t("signIn"),
+      footerOnClick: this.validate
+    });
   }
 
   validate() {
@@ -39,14 +32,13 @@ class SignIn extends Component {
   }
 
   submit() {
-    const { signIn } = this.props;
-    const { email, password } = this.state;
+    const { signIn, email, password } = this.props;
     signIn({ email: email.value, password: password.value });
     this.setState({ isLoading: true });
   }
 
   checkForm() {
-    const { email, password } = this.state;
+    const { email, password } = this.props;
     const emailCheck = this.checkInput("email", email.value);
     const passwordCheck = this.checkInput("password", password.value);
     return emailCheck && passwordCheck;
@@ -54,13 +46,8 @@ class SignIn extends Component {
 
   checkInput(id, value) {
     const error = value.length === 0 ? "missing" : undefined;
-    this.setState(prevState => ({
-      [id]: {
-        ...prevState[id],
-        value,
-        error
-      }
-    }));
+    const { setAppModalSceneData, [id]: Y } = this.props;
+    setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
 
@@ -70,8 +57,8 @@ class SignIn extends Component {
   }
 
   render() {
-    const { setAppModalScene, t } = this.props;
-    const { email, password, isLoading } = this.state;
+    const { setAppModalScene, email, password, t } = this.props;
+    const { isLoading } = this.state;
     return isLoading ? (
       <Loader />
     ) : (
@@ -87,10 +74,24 @@ class SignIn extends Component {
   }
 }
 
+SignIn.defaultProps = {
+  email: { value: "", error: undefined },
+  password: { value: "", error: undefined }
+};
+
 SignIn.propTypes = {
+  email: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  password: PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
+  setAppModalSceneData: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };
