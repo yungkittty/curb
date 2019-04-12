@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
-import ModalListItem from "../../../../components/modal-list-item";
+import AppModalListItem from "../../../../components/app-modal-list-item";
 import Loader from "../../../../components/loader";
 import themesData from "./create-group-4-themes-data";
 /* eslint-disable-next-line */
@@ -29,31 +29,19 @@ class CreateGroup4 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 4, headerSteps: 4 });
+    setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: CreateGroup3, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
     });
-    setAppModalFooterButton({
-      footerText: t("common:next"),
-      footerOnClick: this.submit
-    });
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
   }
 
   submit() {
     const { isLoading } = this.state;
     if (!this.checkForm() || isLoading) return;
 
-    const {
-      postGroup,
-      history,
-      currentUserId,
-      groupName,
-      discoverability,
-      modules,
-      theme
-    } = this.props;
+    const { postGroup, history, currentUserId, groupName, discoverability, modules, theme } = this.props;
     postGroup({
       history,
       creatorId: currentUserId,
@@ -65,18 +53,9 @@ class CreateGroup4 extends Component {
 
     this.setState({ isLoading: true });
 
-    const {
-      setAppModalHeaderLeftButton,
-      setAppModalHeaderRightButton
-    } = this.props;
-    setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () => undefined
-    });
-    setAppModalHeaderRightButton({
-      headerRightIcon: "times",
-      headerRightOnClick: () => undefined
-    });
+    const { setAppModalHeaderLeftButton, setAppModalHeaderRightButton } = this.props;
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: () => undefined });
+    setAppModalHeaderRightButton({ icon: "times", onClick: () => undefined });
   }
 
   checkForm() {
@@ -117,14 +96,12 @@ class CreateGroup4 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalTitle>{t("theme")}</AppModalTitle>
-            <CreateGroupError>
-              {error && t(`validation:theme.${error}`)}
-            </CreateGroupError>
+            <AppModalSceneTitle>{t("theme")}</AppModalSceneTitle>
+            <CreateGroupError>{error && t(`validation:theme.${error}`)}</CreateGroupError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
-          <ModalListItem
+          <AppModalListItem
             title={t(`themeList.${item.id}`)}
             titleColor="#ffffff"
             backgroundColor={item.backgroundColor}

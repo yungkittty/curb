@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import CreateGroup2Discover from "./components/create-group-2-discover";
 /* eslint-disable */
@@ -26,22 +26,17 @@ class CreateGroup2 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 4 });
+    setAppModalHeaderSteps({ currentStep: 2, steps: 4 });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: CreateGroup1, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: CreateGroup1, direction: -1 })
     });
-    setAppModalFooterButton({
-      footerText: t("common:next"),
-      footerOnClick: this.goToNext
-    });
+    setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
   goToNext() {
     const { setAppModalScene } = this.props;
-    if (this.checkForm())
-      setAppModalScene({ scene: CreateGroup3, sceneDirection: 1 });
+    if (this.checkForm()) setAppModalScene({ scene: CreateGroup3, direction: 1 });
   }
 
   checkForm() {
@@ -74,14 +69,9 @@ class CreateGroup2 extends Component {
 
     return (
       <AppModalSceneContainer>
-        <AppModalTitle>{t("discoverability")}</AppModalTitle>
-        <CreateGroupError>
-          {error && t(`validation:discoverability.${error}`)}
-        </CreateGroupError>
-        <CreateGroup2Discover
-          onClick={this.handleChange}
-          discoverability={value}
-        />
+        <AppModalSceneTitle>{t("discoverability")}</AppModalSceneTitle>
+        <CreateGroupError>{error && t(`validation:discoverability.${error}`)}</CreateGroupError>
+        <CreateGroup2Discover onClick={this.handleChange} discoverability={value} />
       </AppModalSceneContainer>
     );
   }

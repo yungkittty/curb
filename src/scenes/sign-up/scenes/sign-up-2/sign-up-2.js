@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 import forbiddenPasswords from "./utils/forbidden-passwords";
@@ -76,7 +76,7 @@ class SignUp2 extends Component {
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <AppModalTitle>{t("choosePassword")}</AppModalTitle>
+        <AppModalSceneTitle>{t("choosePassword")}</AppModalSceneTitle>
         <InputForm
           size="modal"
           id="createPassword"

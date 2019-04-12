@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import SelectImage from "./components/select-image";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
@@ -66,7 +66,7 @@ class SignUp1 extends Component {
     const { t, name, email } = this.props;
     return (
       <AppModalSceneContainer>
-        <AppModalTitle>{t("createAccount")}</AppModalTitle>
+        <AppModalSceneTitle>{t("createAccount")}</AppModalSceneTitle>
         <SelectImage />
         <InputForm
           size="modal"

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
-import ModalListItem from "../../../../components/modal-list-item";
+import AppModalListItem from "../../../../components/app-modal-list-item";
 /* eslint-disable */
 import CreateGroup2 from "../create-group-2";
 import CreateGroup4 from "../create-group-4";
@@ -32,22 +32,17 @@ class CreateGroup3 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 3, headerSteps: 4 });
+    setAppModalHeaderSteps({ currentStep: 3, steps: 4 });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: CreateGroup2, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: CreateGroup2, direction: -1 })
     });
-    setAppModalFooterButton({
-      footerText: t("common:next"),
-      footerOnClick: this.goToNext
-    });
+    setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
   goToNext() {
     const { setAppModalScene } = this.props;
-    if (this.checkForm())
-      setAppModalScene({ scene: CreateGroup4, sceneDirection: 1 });
+    if (this.checkForm()) setAppModalScene({ scene: CreateGroup4, direction: 1 });
   }
 
   checkForm() {
@@ -87,14 +82,12 @@ class CreateGroup3 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalTitle>{t("modules")}</AppModalTitle>
-            <CreateGroupError>
-              {error && t(`validation:modules.${error}`)}
-            </CreateGroupError>
+            <AppModalSceneTitle>{t("modules")}</AppModalSceneTitle>
+            <CreateGroupError>{error && t(`validation:modules.${error}`)}</CreateGroupError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
-          <ModalListItem
+          <AppModalListItem
             icon={item.icon}
             title={t(`modules:${item.id}.title`)}
             description={t(`modules:${item.id}.description`)}

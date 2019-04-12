@@ -7,10 +7,8 @@ const ScrollContainerContent = styled(Container)`
   display: flex;
   flex: 1;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
-  width: ${props =>
-    !props.showsVerticalScrollIndicator ? "calc(100% + 30px)" : "100%"};
-  height: ${props =>
-    !props.showsHorizontalScrollIndicator ? "calc(100% + 30px)" : "100%"};
+  width: ${props => (!props.showsVerticalScrollIndicator ? "calc(100% + 30px)" : "100%")};
+  height: ${props => (!props.showsHorizontalScrollIndicator ? "calc(100% + 30px)" : "100%")};
   overflow-y: ${props => (!props.horizontal ? "auto" : "hidden")};
   overflow-x: ${props => (props.horizontal ? "auto" : "hidden")};
 `;
