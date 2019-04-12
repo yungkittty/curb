@@ -1,9 +1,6 @@
 #!/bin/bash
 
-echo "TRAVIS_COMMIT_MESSAGE:"
-echo $TRAVIS_COMMIT_MESSAGE
-echo "TRAVIS_COMMIT_RANGE:"
-echo $TRAVIS_COMMIT_RANGE
+
 # Deploy to Netlify
 NETLIFY_OUTPUT=$(netlify deploy $([[ $CURB_VERSION == "develop" ]] && echo "--prod"); echo x)
 
