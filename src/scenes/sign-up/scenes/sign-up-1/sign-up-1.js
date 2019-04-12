@@ -14,35 +14,28 @@ import SignUp2 from "../sign-up-2";
 class SignUp1 extends Component {
   constructor(props) {
     super(props);
-    const {
-      t,
-      setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton
-    } = this.props;
+    const { t, setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 1, headerSteps: 2 });
-    setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: SignIn, sceneDirection: -1 })
-    });
-    setAppModalFooterButton({
-      footerText: t("common:next"),
-      footerOnClick: this.goToNext
-    });
+    setAppModalHeaderSteps({ currentStep: 1, steps: 2 });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: SignIn, direction: -1 });
   }
 
   goToNext() {
     const { setAppModalScene } = this.props;
     if (this.checkForm()) {
-      setAppModalScene({ scene: SignUp2, sceneDirection: 1 });
+      setAppModalScene({ scene: SignUp2, direction: 1 });
     }
   }
 
@@ -108,14 +101,8 @@ SignUp1.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  name: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  }),
-  email: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  }),
+  name: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

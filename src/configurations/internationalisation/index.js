@@ -1,3 +1,3 @@
-import configureI18n from "./configure-i18n";
+import configureWithStoreI18n from "./configure-with-store-i18n";
 
-export default configureI18n;
+export default configureWithStoreI18n;

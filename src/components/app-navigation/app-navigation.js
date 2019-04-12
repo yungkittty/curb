@@ -14,13 +14,12 @@ import SignIn from "../../scenes/sign-in";
 const AppNavigation = ({
   showAppModal,
   currentUserId,
-  currentUserToken,
   currentUserAvatarUrl,
   currentUserGroupsIds,
   theme
 }) => (
   <NavigationContainer>
-    {!currentUserToken ? (
+    {!currentUserId ? (
       <NavigationButtonIcon
         icon="sign-in-alt"
         size="medium"
@@ -68,7 +67,6 @@ const AppNavigation = ({
 AppNavigation.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  currentUserToken: PropTypes.string.isRequired,
   currentUserAvatarUrl: PropTypes.string.isRequired,
   currentUserGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   // eslint-disable-next-line
