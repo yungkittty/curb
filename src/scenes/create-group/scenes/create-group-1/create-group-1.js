@@ -5,6 +5,7 @@ import AppModalSceneContainer from "../../../../components/app-modal-scene-conta
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import SelectImage from "./components/select-image";
 import InputForm from "../../../../components/input-form";
+import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable-next-line */
 import CreateGroup2 from "../create-group-2";
 
@@ -35,7 +36,8 @@ class CreateGroup1 extends Component {
   }
 
   checkInput(id, value) {
-    const error = value.length === 0 ? "missing" : undefined;
+    let error = value.length === 0 ? "missing" : undefined;
+    if (error === undefined) error = !RegExp(inputRegex.groupName).test(value) ? "invalid" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;

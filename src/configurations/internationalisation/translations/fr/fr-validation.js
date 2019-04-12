@@ -1,7 +1,7 @@
 const frValidation = {
   username: {
     missing: "Nom d'utilisateur manquant",
-    invalid: "Doit être compris entre 4 à 30 caractères."
+    invalid: "Doit être compris entre 4 à 30 caractères"
   },
   email: {
     missing: "Adresse mail manquante",
@@ -14,7 +14,8 @@ const frValidation = {
     dontmatch: "Les mots de passe ne correspondent pas"
   },
   groupName: {
-    missing: "Nom du groupe manquant"
+    missing: "Nom du groupe manquant",
+    invalid: "Doit être compris entre 4 à 30 caractères"
   },
   discoverability: {
     missing: "Vous devez choisir une option"

@@ -1,7 +1,7 @@
 const enValidation = {
   username: {
     missing: "Missing username",
-    invalid: "Must be 4 to 30 characters long."
+    invalid: "Must be 4 to 30 characters long"
   },
   email: { missing: "Missing mail address", invalid: "Invalid mail address" },
   password: {
@@ -11,7 +11,8 @@ const enValidation = {
     dontmatch: "Passwords don't match"
   },
   groupName: {
-    missing: "Missing group name"
+    missing: "Missing group name",
+    invalid: "Must be 4 to 30 characters long"
   },
   discoverability: {
     missing: "You must choose an option"
