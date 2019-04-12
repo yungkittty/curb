@@ -79,6 +79,7 @@ class CreateGroup3 extends Component {
     return (
       <ListFlat
         ref={this.listFlat}
+        contentContainerStyle={{ position: "relative" }}
         data={modulesList}
         extraData={{ value }}
         keyExtractor={item => item.id}

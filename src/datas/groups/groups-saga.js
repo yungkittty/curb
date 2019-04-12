@@ -1,5 +1,4 @@
-import { all, takeLatest, takeEvery, select, call, put } from "redux-saga/effects";
-import { currentUserSelectors } from "../current-user";
+import { all, takeLatest, takeEvery, call, put } from "redux-saga/effects";
 import appModalActions from "../app-modal/app-modal-actions";
 import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
@@ -8,8 +7,7 @@ import groupsApi from "./groups-api";
 function* postGroupRequestSaga({ payload }) {
   try {
     const { history, ...others } = payload;
-    const token = yield select(currentUserSelectors.getCurrentUserToken);
-    const respond = yield call(groupsApi.postGroup, { payload: others, token });
+    const respond = yield call(groupsApi.postGroup, { payload: others });
     yield put(groupsActions.postGroupSuccess(respond));
     yield put(appModalActions.hideAppModal());
     history.push(`/groups/${respond.data.id}`);

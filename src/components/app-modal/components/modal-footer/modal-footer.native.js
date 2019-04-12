@@ -21,7 +21,7 @@ class ModalFooter extends React.Component {
 
   render() {
     const { isButtonShowed } = this.state;
-    return isButtonShowed ? <FooterButtonText type="h3" {...this.props} /> : null;
+    return isButtonShowed ? <FooterButtonText type="h4" {...this.props} /> : null;
   }
 }
 

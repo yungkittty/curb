@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Container from "../../../container";
 
 const ScrollContainerContent = styled(Container)`
-  position: relative;
   display: flex;
   flex: 1;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
@@ -46,14 +47,14 @@ class CreateGroup4 extends Component {
       return;
     }
 
-    const { postGroup, history, currentUserId, groupName, discoverability, modules, theme } = this.props;
+    const { postGroup, history, currentUserId, groupName, discoverability, modules, groupTheme } = this.props;
     postGroup({
       history,
       creatorId: currentUserId,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
-      theme: theme.value
+      theme: groupTheme.value
     });
 
     this.setState({ isLoading: true });
@@ -65,9 +66,9 @@ class CreateGroup4 extends Component {
 
   checkForm() {
     const {
-      theme: { value }
+      groupTheme: { value }
     } = this.props;
-    return this.checkInput("theme", value);
+    return this.checkInput("groupTheme", value);
   }
 
   checkInput(id, value) {
@@ -79,16 +80,17 @@ class CreateGroup4 extends Component {
 
   handleChange(clickValue) {
     const {
-      theme: { value }
+      groupTheme: { value }
     } = this.props;
     const newValue = clickValue === value ? "" : clickValue;
-    this.checkInput("theme", newValue);
+    this.checkInput("groupTheme", newValue);
   }
 
   render() {
     const {
       t,
-      theme: { value, error }
+      theme,
+      groupTheme: { value, error }
     } = this.props;
     const { isLoading } = this.state;
 
@@ -97,7 +99,7 @@ class CreateGroup4 extends Component {
     ) : (
       <ListFlat
         ref={this.listFlat}
-        scrollToOffset={{ offset: 0 }}
+        contentContainerStyle={{ position: "relative" }}
         data={themesData}
         extraData={{ value }}
         keyExtractor={item => item.id}
@@ -111,7 +113,7 @@ class CreateGroup4 extends Component {
           <AppModalListItem
             title={t(`themeList.${item.id}`)}
             titleColor="#ffffff"
-            backgroundColor={item.backgroundColor}
+            backgroundColor={theme[item.themeColor]}
             selected={item.id === value}
             normalHoverColor
             selectionType
@@ -128,7 +130,7 @@ CreateGroup4.defaultProps = {
   groupName: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
-  theme: { value: "", error: undefined }
+  groupTheme: { value: "", error: undefined }
 };
 
 CreateGroup4.propTypes = {
@@ -140,7 +142,9 @@ CreateGroup4.propTypes = {
   setAppModalSceneData: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  /* eslint-disable-next-line */
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
+  // eslint-disable-next-line
   history: PropTypes.object.isRequired,
   groupName: PropTypes.shape({
     value: PropTypes.string,
@@ -154,11 +158,11 @@ CreateGroup4.propTypes = {
     value: PropTypes.arrayOf(PropTypes.string),
     error: PropTypes.string
   }),
-  theme: PropTypes.shape({
+  groupTheme: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),
   t: PropTypes.func.isRequired
 };
 
-export default withRouter(withTranslation("createGroup")(CreateGroup4));
+export default withTheme(withRouter(withTranslation("createGroup")(CreateGroup4)));

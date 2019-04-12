@@ -6,12 +6,15 @@ const PreviewContainer = styled(Container)`
   margin-left: 4px;
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
   flex: 1;
 
   ${({ titleCentered }) =>
     titleCentered
-      ? "position: absolute; margin-left: 0px; align-items: center; justify-content: center; width: 100%; height: 100%;"
+      ? ` margin-left: 0px;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;`
       : ""};
 `;
 

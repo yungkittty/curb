@@ -28,7 +28,7 @@ const AppModalListItem = ({
     onClick={onClick}
   >
     <React.Fragment>
-      <ItemIcon icon={icon} disabled={disabled} />
+      {icon && <ItemIcon icon={icon} disabled={disabled} />}
       <ItemPreview
         title={title}
         titleColor={titleColor}
