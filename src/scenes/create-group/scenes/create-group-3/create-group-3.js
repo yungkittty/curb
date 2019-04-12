@@ -23,9 +23,7 @@ class CreateGroup3 extends Component {
       setAppModalFooterButton
     } = this.props;
 
-    this.checkForm = this.checkForm.bind(this);
-    this.checkInput = this.checkInput.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.listFlat = React.createRef();
 
     this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
@@ -42,7 +40,10 @@ class CreateGroup3 extends Component {
 
   goToNext() {
     const { setAppModalScene } = this.props;
-    if (this.checkForm()) setAppModalScene({ scene: CreateGroup4, direction: 1 });
+    if (!this.checkForm()) {
+      const { current: listFlat } = this.listFlat;
+      listFlat.scrollToOffset({ offset: 0 });
+    } else setAppModalScene({ scene: CreateGroup4, direction: 1 });
   }
 
   checkForm() {
@@ -77,6 +78,7 @@ class CreateGroup3 extends Component {
 
     return (
       <ListFlat
+        ref={this.listFlat}
         data={modulesList}
         extraData={{ value }}
         keyExtractor={item => item.id}

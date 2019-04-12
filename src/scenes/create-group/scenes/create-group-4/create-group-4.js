@@ -24,6 +24,8 @@ class CreateGroup4 extends Component {
 
     this.state = { isLoading: false };
 
+    this.listFlat = React.createRef();
+
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
@@ -38,8 +40,11 @@ class CreateGroup4 extends Component {
   }
 
   submit() {
-    const { isLoading } = this.state;
-    if (!this.checkForm() || isLoading) return;
+    if (!this.checkForm()) {
+      const { current: listFlat } = this.listFlat;
+      listFlat.scrollToOffset({ offset: 0 });
+      return;
+    }
 
     const { postGroup, history, currentUserId, groupName, discoverability, modules, theme } = this.props;
     postGroup({
@@ -66,7 +71,7 @@ class CreateGroup4 extends Component {
   }
 
   checkInput(id, value) {
-    const error = value === undefined ? "missing" : undefined;
+    const error = value.length === 0 ? "missing" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
@@ -76,7 +81,7 @@ class CreateGroup4 extends Component {
     const {
       theme: { value }
     } = this.props;
-    const newValue = clickValue === value ? undefined : clickValue;
+    const newValue = clickValue === value ? "" : clickValue;
     this.checkInput("theme", newValue);
   }
 
@@ -91,6 +96,8 @@ class CreateGroup4 extends Component {
       <Loader />
     ) : (
       <ListFlat
+        ref={this.listFlat}
+        scrollToOffset={{ offset: 0 }}
         data={themesData}
         extraData={{ value }}
         keyExtractor={item => item.id}
