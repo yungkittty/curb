@@ -1,14 +1,14 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
-import signInActions from "../sign-in/sign-in-actions";
+import appModalActions from "../app-modal/app-modal-actions";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
 import signUpApi from "./sign-up-api";
 
 function* signUpRequestSaga(action) {
   try {
-    yield call(signUpApi.signUp, action.payload);
-    yield put(signInActions.signInRequest(action.payload));
-    yield put(signUpActions.signUpSuccess());
+    const { data: payload } = yield call(signUpApi.signUp, action.payload);
+    yield put(signUpActions.signUpSuccess(payload));
+    yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signUpActions.signUpFailure(error));
   }

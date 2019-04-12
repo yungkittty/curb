@@ -18,19 +18,19 @@ const ContainerAnimation = WrappedComponent => {
         height: 740,
         borderRadius: 25,
         boxShadow: "0px 10px 35px 0px rgba(0, 0, 0, 0.2)",
-        transition: "all 0.3s ease-out"
+        transition: "all 0.25s ease-out"
       };
 
       this.hideStyle = {
         ...this.commonStyle,
         opacity: 0,
-        transform: "scale(0.97)"
+        transform: "translateY(-15px)"
       };
 
       this.showStyle = {
         ...this.commonStyle,
         opacity: 1,
-        transform: "scale(1)"
+        transform: "translateY(0px)"
       };
 
       this.state = {
@@ -57,10 +57,12 @@ const ContainerAnimation = WrappedComponent => {
     }
 
     startAnimation(state) {
-      setTimeout(() =>
-        this.setState({
-          style: state ? this.showStyle : this.hideStyle
-        })
+      setTimeout(
+        () =>
+          this.setState({
+            style: state ? this.showStyle : this.hideStyle
+          }),
+        80
       );
     }
 

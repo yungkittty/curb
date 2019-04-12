@@ -2,10 +2,7 @@ import React from "react";
 import { Animated, Easing, Platform } from "react-native";
 import { isIphoneX } from "react-native-device-detection";
 import PropTypes from "prop-types";
-import {
-  windowBreakpoints,
-  windowDimensions
-} from "../../../../../../configurations/window";
+import { windowBreakpoints, windowDimensions } from "../../../../../../configurations/window";
 
 const ContainerAnimation = WrappedComponent => {
   class _ContainerAnimation extends React.Component {
@@ -17,8 +14,7 @@ const ContainerAnimation = WrappedComponent => {
         flexDirection: "column",
         width: windowDimensions.width > windowBreakpoints.large ? 700 : "100%",
         height: windowDimensions.width > windowBreakpoints.large ? 740 : "100%",
-        borderRadius:
-          windowDimensions.width > windowBreakpoints.large ? 25 : undefined,
+        borderRadius: windowDimensions.width > windowBreakpoints.large ? 25 : undefined,
         // eslint-disable-next-line
         paddingTop: Platform.OS === "ios" ? (isIphoneX ? 30 : 20) : undefined
       };
@@ -26,11 +22,9 @@ const ContainerAnimation = WrappedComponent => {
       this.state = {
         animationRunning: false,
         top: new Animated.Value(windowDimensions.renderHeight)
-        };
+      };
 
-      this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
-        WrappedComponent
-      );
+      this.AnimatedWrappedComponent = Animated.createAnimatedComponent(WrappedComponent);
 
       this.startAnimation = this.startAnimation.bind(this);
     }

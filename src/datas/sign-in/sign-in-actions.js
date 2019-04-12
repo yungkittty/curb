@@ -14,9 +14,9 @@ const signInActions = {
     payload: error,
     error: true
   }),
-  signOutRequest: payload => ({
+  signOutRequest: () => ({
     type: signInActionsTypes.SIGN_OUT_REQUEST,
-    payload
+    payload: undefined
   }),
   signOutSuccess: () => ({
     type: signInActionsTypes.SIGN_OUT_SUCCESS,
