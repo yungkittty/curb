@@ -57,12 +57,10 @@ const ContainerAnimation = WrappedComponent => {
     }
 
     startAnimation(state) {
-      setTimeout(
-        () =>
-          this.setState({
-            style: state ? this.showStyle : this.hideStyle
-          }),
-        80
+      setTimeout(() =>
+        this.setState({
+          style: state ? this.showStyle : this.hideStyle
+        })
       );
     }
 
