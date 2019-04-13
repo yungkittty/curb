@@ -47,10 +47,9 @@ class CreateGroup4 extends Component {
       return;
     }
 
-    const { postGroup, history, currentUserId, groupName, discoverability, modules, groupTheme } = this.props;
+    const { postGroup, history, groupName, discoverability, modules, groupTheme } = this.props;
     postGroup({
       history,
-      creatorId: currentUserId,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
@@ -141,7 +140,6 @@ CreateGroup4.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
-  currentUserId: PropTypes.string.isRequired,
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
