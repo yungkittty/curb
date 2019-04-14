@@ -40,9 +40,11 @@ class DeleteAccount extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, isSignUpFetching } = this.props;
 
-    return (
+    return isSignUpFetching ? (
+      <Loader />
+    ) : (
       <ContentContainer>
         <AppModalSceneTitle>{t("general.menu.deleteAccount.contentTitle")}</AppModalSceneTitle>
         <ContentDescription type="h4">
@@ -55,6 +57,7 @@ class DeleteAccount extends Component {
 
 DeleteAccount.propTypes = {
   t: PropTypes.func.isRequired,
+  isSignUpFetching: PropTypes.bool.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
