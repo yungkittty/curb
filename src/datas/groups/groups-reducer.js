@@ -1,25 +1,53 @@
 import _ from "lodash";
+import { combineReducers } from "redux";
 import groupsActionsTypes from "./groups-actions-types";
 
-const initialState = { byId: {}, allIds: [] };
-
-const groupsReducer = (state = initialState, action) => {
+const byId = (state = {}, action) => {
   switch (action.type) {
+    case groupsActionsTypes.GET_GROUP_REQUEST:
+    case groupsActionsTypes.GET_GROUP_TOKEN_REQUEST:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          isFetching: true
+        }
+      };
     case groupsActionsTypes.GET_GROUP_SUCCESS:
-      return _.assign({}, state, {
-        byId: _.assign({}, state.byId, { [action.payload.id]: action.payload }),
-        allIds: _.merge([], state.allIds, [action.payload.id])
-      });
-    case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
-      console.log(action.payload.id);
-      return _.assign({}, state, {
-        byId: _.assign({}, state.byId, {
-          [action.payload.id]: _.assign({ token: [action.payload.token] })
-        })
-      });
+    case groupsActionsTypes.GET_GROUP_TOKEN_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          ...action.payload,
+          isFetching: false,
+          errorCode: ""
+        }
+      };
+    case groupsActionsTypes.GET_GROUP_FAILURE:
+    case groupsActionsTypes.GET_GROUP_TOKEN_FAILURE:
+      return {
+        ...state,
+        [action.payload.config.data.id]: {
+          ...state[action.payload.config.data.id],
+          isFetching: false,
+          errorCode: action.payload.response.data.code
+        }
+      };
     default:
       return state;
   }
 };
+
+const allIds = (state = [], action) => {
+  switch (action.type) {
+    case groupsActionsTypes.GET_GROUP_REQUEST:
+      return _.union(state, [action.payload.id]);
+    default:
+      return state;
+  }
+};
+
+const groupsReducer = combineReducers({ byId, allIds });
 
 export default groupsReducer;

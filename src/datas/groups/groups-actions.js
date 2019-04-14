@@ -15,15 +15,15 @@ const groupsActions = {
     error: true
   }),
   getGroupInviteTokenRequest: payload => ({
-    type: groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST,
+    type: groupsActionsTypes.GET_GROUP_TOKEN_REQUEST,
     payload
   }),
   getGroupInviteTokenSuccess: payload => ({
-    type: groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS,
+    type: groupsActionsTypes.GET_GROUP_TOKEN_SUCCESS,
     payload
   }),
   getGroupInviteTokenFailure: error => ({
-    type: groupsActionsTypes.GET_GROUP_INVITE_TOKEN_FAILURE,
+    type: groupsActionsTypes.GET_GROUP_TOKEN_FAILURE,
     payload: error,
     error: true
   })

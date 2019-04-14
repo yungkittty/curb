@@ -1,21 +1,22 @@
-import { createStore, compose, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import createSagaMiddleware from "redux-saga";
+import configurePersist from "./configure-persist";
 import rootReducer from "./root-reducer";
 import rootSaga from "./root-saga";
 
 // https://medium.com/@zalmoxis/using-redux-devtools-in-production-4c5b56c5600f
+// https://github.com/rt2zz/redux-persist#basic-usage
 
 const configureStore = () => {
-  const composeEnhancers =
-    // eslint-disable-next-line
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(sagaMiddleware))
-  );
+  const middlewares = [sagaMiddleware];
+  const persistedReducer = persistReducer(configurePersist(), rootReducer);
+  const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+  const persistedStore = persistStore(store);
   sagaMiddleware.run(rootSaga);
-  return store;
+  return { store, persistor: persistedStore };
 };
 
 export default configureStore;

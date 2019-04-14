@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import QrCode from "react-qr-code";
-import Text from "../../../../../../components/text";
 import QrContainer from "./components/qr-container";
 import QrHeader from "./components/qr-group-header";
+import QrTitle from "./components/qr-title";
 import QrImage from "./components/qr-image";
 
 class GroupQr extends React.Component {
   constructor(props) {
     super(props);
     const { setAppModalHeaderText } = props;
-    setAppModalHeaderText({ headerText: "QR Code" });
+    setAppModalHeaderText({ text: "QR Code" });
   }
 
   render() {
@@ -25,18 +25,13 @@ class GroupQr extends React.Component {
     return (
       <QrContainer>
         <QrHeader>
-          <QrImage
-            src={`${process.env.REACT_APP_API_URL}${currentGroupAvatarUrl}`}
-          />
-          <Text type="h2" weight={700} style={{ textAlign: "center" }}>
+          <QrImage src={`${process.env.REACT_APP_API_URL}${currentGroupAvatarUrl}`} />
+          <QrTitle type="h2" weight={700}>
             {currentGroupName}
-          </Text>
+          </QrTitle>
         </QrHeader>
         <QrCode
-          value={
-            currentGroupId +
-            (currentGroupStatus ? "" : `?token=${currentGroupToken}`)
-          }
+          value={currentGroupId + (currentGroupStatus ? "" : `?token=${currentGroupToken}`)}
           size={240}
         />
       </QrContainer>

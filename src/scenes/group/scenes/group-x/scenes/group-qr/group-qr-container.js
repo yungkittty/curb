@@ -25,21 +25,21 @@ const mapStateToProps = (state, ownProps) => {
   const {
     name: currentGroupName,
     avatarUrl: currentGroupAvatarUrl,
-    status: currentGroupStatus
+    status: currentGroupStatus,
+    token: currentGrouptoken
   } = groupsSelectors.getGroupById(state, currentGroupId);
   return {
     currentGroupId,
     currentGroupName,
     currentGroupAvatarUrl,
-    currentGroupStatus
+    currentGroupStatus,
+    currentGrouptoken
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  setAppModalHeaderText: payload =>
-    dispatch(appModalActions.setAppModalHeaderText(payload)),
-  getGroupInviteToken: payload =>
-    dispatch(groupsActions.getGroupInviteTokenRequest(payload))
+  setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
+  getGroupInviteToken: payload => dispatch(groupsActions.getGroupInviteTokenRequest(payload))
 });
 
 GroupQrContainer.propTypes = {

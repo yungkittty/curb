@@ -13,7 +13,7 @@ const SignInRedirect = ({ setAppModalScene, t, theme }) => (
     <ButtonText
       text={t("createAccount")}
       contentTextStyle={{ color: theme.linkColor }}
-      onClick={() => setAppModalScene({ scene: SignUp, sceneDirection: 1 })}
+      onClick={() => setAppModalScene({ scene: SignUp, direction: 1 })}
     />
   </RedirectContainer>
 );
