@@ -24,13 +24,12 @@ const CreateGroup2Discover = ({ t, onClick, discoverability }) => (
 );
 
 CreateGroup2Discover.defaultProps = {
-  onClick: undefined,
   discoverability: undefined
 };
 
 CreateGroup2Discover.propTypes = {
   t: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   discoverability: PropTypes.string
 };
 

@@ -2,7 +2,11 @@ import { connect } from "react-redux";
 /* eslint-disable-next-line */
 import CreateGroup4 from "./create-group-4";
 import { appModalActions } from "../../../../datas/app-modal";
-import { groupsActions } from "../../../../datas/groups";
+import { groupsSelectors, groupsActions } from "../../../../datas/groups";
+
+const mapStateToProps = state => ({
+  isCreateGroupFetching: groupsSelectors.isCreateGroupFetching(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
@@ -15,6 +19,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CreateGroup4);
