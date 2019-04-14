@@ -23,8 +23,6 @@ class CreateGroup4 extends Component {
       setAppModalFooterButton
     } = this.props;
 
-    this.state = { isLoading: false };
-
     this.listFlat = React.createRef();
 
     this.submit = this.submit.bind(this);
@@ -55,8 +53,6 @@ class CreateGroup4 extends Component {
       mediaTypes: modules.value,
       theme: groupTheme.value
     });
-
-    this.setState({ isLoading: true });
 
     const { setAppModalHeaderLeftButton, setAppModalHeaderRightButton } = this.props;
     setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: () => undefined });
@@ -89,11 +85,11 @@ class CreateGroup4 extends Component {
     const {
       t,
       theme,
+      isCreateGroupFetching,
       groupTheme: { value, error }
     } = this.props;
-    const { isLoading } = this.state;
 
-    return isLoading ? (
+    return isCreateGroupFetching ? (
       <Loader />
     ) : (
       <ListFlat
@@ -139,6 +135,7 @@ CreateGroup4.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  isCreateGroupFetching: PropTypes.bool.isRequired,
   postGroup: PropTypes.func.isRequired,
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,

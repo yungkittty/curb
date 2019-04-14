@@ -2,6 +2,19 @@ import _ from "lodash";
 import { combineReducers } from "redux";
 import groupsActionsTypes from "./groups-actions-types";
 
+const postFetching = (state = { isFetching: false, errorCode: "" }, action) => {
+  switch (action.type) {
+    case groupsActionsTypes.POST_GROUP_REQUEST:
+      return { ...state, isFetching: true };
+    case groupsActionsTypes.POST_GROUP_SUCCESS:
+      return { ...state, isFetching: true, errorCode: "" };
+    case groupsActionsTypes.POST_GROUP_FAILURE:
+      return { ...state, isFetching: true, errorCode: action.payload.response.data.code };
+    default:
+      return state;
+  }
+};
+
 const byId = (state = {}, action) => {
   switch (action.type) {
     case groupsActionsTypes.GET_GROUP_REQUEST:
@@ -23,14 +36,16 @@ const byId = (state = {}, action) => {
         }
       };
     case groupsActionsTypes.GET_GROUP_FAILURE:
-      return {
-        ...state,
-        [action.payload.config.data.id]: {
-          ...state[action.payload.config.data.id],
-          isFetching: true,
-          errorCode: action.payload.response.data.code
-        }
-      };
+      return action.payload.response.status !== 403
+        ? {
+            ...state,
+            [action.payload.config.data.id]: {
+              ...state[action.payload.config.data.id],
+              isFetching: true,
+              errorCode: action.payload.response.data.code
+            }
+          }
+        : state;
     default:
       return state;
   }
@@ -45,6 +60,6 @@ const allIds = (state = [], action) => {
   }
 };
 
-const groupsReducer = combineReducers({ byId, allIds });
+const groupsReducer = combineReducers({ postFetching, byId, allIds });
 
 export default groupsReducer;
