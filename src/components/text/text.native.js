@@ -12,6 +12,8 @@ const Text = styled.Text`
         return "Montserrat-SemiBold";
       case 500:
         return "Montserrat-Medium";
+      case 300:
+        return "Montserrat-Light";
       default:
         return "Montserrat-Regular";
     }
@@ -26,6 +28,8 @@ const Text = styled.Text`
         return 20; // +4
       case "h4":
         return 16; // +2
+      case "h5":
+        return 12; // -2
       default:
         return 14;
     }
@@ -36,8 +40,8 @@ const Text = styled.Text`
 Text.defaultProps = { type: undefined, weight: 400 };
 
 Text.propTypes = {
-  type: PropTypes.oneOf(["h1", "h2", "h3", "h4"]),
-  weight: PropTypes.oneOf([400, 500, 600, 700, 800])
+  type: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5"]),
+  weight: PropTypes.oneOf([300, 400, 500, 600, 700, 800])
 };
 
 export default Text;

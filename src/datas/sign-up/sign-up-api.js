@@ -1,12 +1,8 @@
 import axios from "axios";
 
 const signUpApi = {
-  signUp: payload =>
-    axios.post(`${process.env.REACT_APP_API_URL}/accounts/sign-up`, payload),
-  deleteAccount: ({ id, token }) =>
-    axios.delete(`${process.env.REACT_APP_API_URL}/accounts/${id}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
+  signUp: payload => axios.post("/accounts/sign-up", payload, { withCredentials: true }),
+  deleteAccount: ({ id }) => axios.delete(`/accounts/${id}`, { withCredentials: true })
 };
 
 export default signUpApi;

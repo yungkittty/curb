@@ -1,18 +1,50 @@
 import _ from "lodash";
+import { combineReducers } from "redux";
 import usersActionsTypes from "./users-actions-types";
 
-const initialState = { byId: {}, allIds: [] };
-
-const usersReducer = (state = initialState, action) => {
+const byId = (state = {}, action) => {
   switch (action.type) {
+    case usersActionsTypes.GET_USER_REQUEST:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          isFetching: true
+        }
+      };
     case usersActionsTypes.GET_USER_SUCCESS:
-      return _.assign({}, state, {
-        byId: _.assign({}, state.byId, { [action.payload.id]: action.payload }),
-        allIds: _.merge([], state.allIds, [action.payload.id])
-      });
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          ...action.payload,
+          isFetching: false,
+          errorCode: ""
+        }
+      };
+    case usersActionsTypes.GET_USER_FAILURE:
+      return {
+        ...state,
+        [action.payload.config.data.id]: {
+          ...state[action.payload.config.data.id],
+          isFetching: true,
+          errorCode: action.payload.response.data.code
+        }
+      };
     default:
       return state;
   }
 };
+
+const allIds = (state = [], action) => {
+  switch (action.type) {
+    case usersActionsTypes.GET_USER_REQUEST:
+      return _.union(state, [action.payload.id]);
+    default:
+      return state;
+  }
+};
+
+const usersReducer = combineReducers({ byId, allIds });
 
 export default usersReducer;
