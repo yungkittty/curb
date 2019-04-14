@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../../../components/list-flat";
-import ModalListItem from "../../../../../../components/modal-list-item";
+import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 /* eslint-disable-next-line */
 import General from "../../";
 import languageData from "./language-data";
@@ -12,9 +12,9 @@ class Language extends Component {
     super(props);
     const {
       t,
-      lng,
       i18n: {
         store: { data },
+        language,
         options: { fallbackLng }
       },
       setAppModalHeaderText,
@@ -22,24 +22,24 @@ class Language extends Component {
       setAppModalScene
     } = this.props;
 
-    this.state = { languages: Object.keys(data), key: lng || fallbackLng[0] };
+    this.state = { languages: Object.keys(data), key: language.substring(0, 2) || fallbackLng[0] };
 
-    setAppModalHeaderText({ headerText: t("general.menu.language.title") });
+    setAppModalHeaderText({ text: t("general.menu.language.title") });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: General, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: General, direction: -1 })
     });
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(key) {
-    const { i18n, setAppModalHeaderText, t } = this.props;
+    const { i18n, setCurrentSettingsLanguage, setAppModalHeaderText, t } = this.props;
 
     this.setState({ key });
     i18n.changeLanguage(key);
-    setAppModalHeaderText({ headerText: t("general.menu.language.title") });
+    setCurrentSettingsLanguage({ language: key });
+    setAppModalHeaderText({ text: t("general.menu.language.title") });
   }
 
   render() {
@@ -51,7 +51,7 @@ class Language extends Component {
         extraData={{ languages }}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <ModalListItem
+          <AppModalSceneListItem
             title={languageData[item]}
             selected={key === item}
             selectionType
@@ -63,15 +63,13 @@ class Language extends Component {
   }
 }
 
-Language.defaultProps = {
-  lng: undefined
-};
-
 Language.propTypes = {
   t: PropTypes.func.isRequired,
-  lng: PropTypes.string,
+  setCurrentSettingsLanguage: PropTypes.func.isRequired,
   i18n: PropTypes.shape({
-    changeLanguage: PropTypes.func.isRequired
+    store: PropTypes.shape({ data: PropTypes.object.isRequired }).isRequired,
+    language: PropTypes.string.isRequired,
+    options: PropTypes.shape({ fallbackLng: PropTypes.arrayOf(PropTypes.string) }).isRequired
   }).isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,

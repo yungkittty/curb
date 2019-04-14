@@ -2,10 +2,9 @@ import styled from "styled-components";
 import Text from "../../../../../../../../components/text";
 
 const ContentDescritpion = styled(Text)`
-  font-size: 18px;
+  white-space: pre-wrap;
   line-height: 1.9;
-  margin-bottom: 38px;
-  padding: 0px 48px;
+  padding: 0px 100px;
 `;
 
 export default ContentDescritpion;

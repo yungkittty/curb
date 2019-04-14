@@ -1,20 +1,17 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
 import Language from "./language";
-import { signInActions } from "../../../../../../datas/sign-in";
 import { appModalActions } from "../../../../../../datas/app-modal";
+import { currentSettingsActions } from "../../../../../../datas/current-settings";
 
 const mapDispatchToProps = dispatch => ({
-  setAppModalHeaderText: payload =>
-    dispatch(appModalActions.setAppModalHeaderText(payload)),
-  setAppModalHeaderLeftButton: payload =>
-    dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
-  setAppModalScene: payload =>
-    dispatch(appModalActions.setAppModalScene(payload)),
-  signOut: payload => dispatch(signInActions.signOutRequest(payload))
+  setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
+  setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
+  setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
+  setCurrentSettingsLanguage: payload => dispatch(currentSettingsActions.setCurrentSettingsLanguage(payload))
 });
 
 export default connect(
-  null,
+  undefined,
   mapDispatchToProps
 )(Language);

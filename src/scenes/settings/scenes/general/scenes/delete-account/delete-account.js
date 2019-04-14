@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../../../components/loader";
 import ContentContainer from "./components/content-container";
-import ContentTitle from "./components/content-title";
+import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import ContentDescription from "./components/content-description";
 /* eslint-disable-next-line */
 import General from "../../";
@@ -19,42 +19,33 @@ class DeleteAccount extends Component {
       setAppModalFooterButton
     } = this.props;
 
-    this.state = { loading: false };
-
     this.deleteAccount = this.deleteAccount.bind(this);
 
     setAppModalHeaderText({
-      headerText: t("general.menu.deleteAccount.title")
+      text: t("general.menu.deleteAccount.title")
     });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: General, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: General, direction: -1 })
     });
     setAppModalFooterButton({
-      footerText: t("general.menu.deleteAccount.buttonTitle"),
-      footerOnClick: this.deleteAccount
+      text: t("general.menu.deleteAccount.buttonTitle"),
+      onClick: this.deleteAccount
     });
   }
 
   deleteAccount() {
     const { deleteAccount } = this.props;
     deleteAccount();
-    this.setState({ loading: true });
   }
 
   render() {
     const { t } = this.props;
-    const { loading } = this.state;
 
-    return loading ? (
-      <Loader />
-    ) : (
+    return (
       <ContentContainer>
-        <ContentTitle weight={700}>
-          {t("general.menu.deleteAccount.contentTitle")}
-        </ContentTitle>
-        <ContentDescription style={{ whiteSpace: "pre-wrap" }}>
+        <AppModalSceneTitle>{t("general.menu.deleteAccount.contentTitle")}</AppModalSceneTitle>
+        <ContentDescription type="h4">
           {t("general.menu.deleteAccount.contentDescription")}
         </ContentDescription>
       </ContentContainer>

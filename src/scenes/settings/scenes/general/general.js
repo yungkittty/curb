@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../components/list-flat";
-import ModalListItem from "../../../../components/modal-list-item";
+import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 /* eslint-disable */
 import Settings from "../../";
 import generalData from "./general-data";
@@ -11,23 +11,17 @@ import generalData from "./general-data";
 class General extends Component {
   constructor(props) {
     super(props);
-    const {
-      t,
-      setAppModalHeaderText,
-      setAppModalHeaderLeftButton,
-      setAppModalScene
-    } = this.props;
+    const { t, setAppModalHeaderText, setAppModalHeaderLeftButton, setAppModalScene } = this.props;
 
-    setAppModalHeaderText({ headerText: t("general.title") });
+    setAppModalHeaderText({ text: t("general.title") });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: Settings, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: Settings, direction: -1 })
     });
   }
 
   render() {
-    const { t, setAppModalScene, currentUserToken, signOut } = this.props;
+    const { t, setAppModalScene, currentUserId, signOut } = this.props;
 
     return (
       <ListFlat
@@ -35,16 +29,12 @@ class General extends Component {
         extraData={{ generalData }}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <ModalListItem
+          <AppModalSceneListItem
             icon={item.icon}
             title={t(`general.menu.${item.id}.title`)}
             description={t(`general.menu.${item.id}.description`)}
-            disabled={item.needSignedInUser && !currentUserToken}
-            onClick={() =>
-              item.scene
-                ? setAppModalScene({ scene: item.scene, sceneDirection: 1 })
-                : signOut()
-            }
+            disabled={item.needSignedInUser && !currentUserId}
+            onClick={() => (item.scene ? setAppModalScene({ scene: item.scene, direction: 1 }) : signOut())}
           />
         )}
       />
@@ -55,7 +45,7 @@ class General extends Component {
 General.propTypes = {
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
-  currentUserToken: PropTypes.string.isRequired,
+  currentUserId: PropTypes.string.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired

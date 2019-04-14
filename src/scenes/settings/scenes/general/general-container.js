@@ -5,20 +5,14 @@ import { currentUserSelectors } from "../../../../datas/current-user";
 import { signInActions } from "../../../../datas/sign-in";
 import { appModalActions } from "../../../../datas/app-modal";
 
-const mapStateToProps = state => {
-  const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
-  return {
-    currentUserToken
-  };
-};
+const mapStateToProps = state => ({
+  currentUserId: currentUserSelectors.getCurrentUserId(state)
+});
 
 const mapDispatchToProps = dispatch => ({
-  setAppModalHeaderText: payload =>
-    dispatch(appModalActions.setAppModalHeaderText(payload)),
-  setAppModalHeaderLeftButton: payload =>
-    dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
-  setAppModalScene: payload =>
-    dispatch(appModalActions.setAppModalScene(payload)),
+  setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
+  setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
+  setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
   signOut: payload => dispatch(signInActions.signOutRequest(payload))
 });
 

@@ -1,11 +1,6 @@
 import styled from "styled-components";
-import Container from "../../../../../../../../components/container";
+import AppModalSceneContainer from "../../../../../../../../components/app-modal-scene-container";
 
-const ContentContainer = styled(Container)`
-  display: flex;
-  flex-flow: column;
-  padding: 0px 24px;
-  justify-content: center;
-`;
+const ContentContainer = styled(AppModalSceneContainer)``;
 
 export default ContentContainer;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../components/list-flat";
-import ModalListItem from "../../components/modal-list-item";
+import AppModalSceneListItem from "../../components/app-modal-scene-list-item";
 /* eslint-disable-next-line */
 import settingsData from "./settings-data";
 
@@ -11,7 +11,7 @@ class Settings extends Component {
     super(props);
     const { t, setAppModalHeaderText } = this.props;
 
-    setAppModalHeaderText({ headerText: t("settings") });
+    setAppModalHeaderText({ text: t("settings") });
   }
 
   render() {
@@ -23,12 +23,10 @@ class Settings extends Component {
         extraData={{ settingsData }}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <ModalListItem
+          <AppModalSceneListItem
             title={t(`${item.id}.title`)}
             description={t(`${item.id}.description`)}
-            onClick={() =>
-              setAppModalScene({ scene: item.scene, sceneDirection: 1 })
-            }
+            onClick={() => setAppModalScene({ scene: item.scene, direction: 1 })}
           />
         )}
       />
