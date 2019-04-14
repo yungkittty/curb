@@ -23,7 +23,6 @@ const byId = (state = {}, action) => {
         }
       };
     case usersActionsTypes.GET_USER_FAILURE:
-      return state;
       return {
         ...state,
         [action.payload.config.data.id]: {
