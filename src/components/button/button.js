@@ -29,11 +29,10 @@ const Button = styled(({ children, onClick, hoverColor, ...others }) =>
   cursor: pointer;
 
   transition: all 0.1s ease;
-  ${({ disabled }) =>
+  ${({ disabled, hoverColor }) =>
     !disabled
       ? ` &:hover {
-          ${({ hoverColor }) =>
-            hoverColor ? `background-color: ${hoverColor};` : "filter: brightness(1.05);"}
+          ${hoverColor ? `background-color: ${hoverColor};` : "filter: brightness(1.05);"}
           }`
       : ""}
 
