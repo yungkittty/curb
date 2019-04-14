@@ -12,7 +12,7 @@ const initialState = {
   headerRightOnClick: null,
   scene: null,
   sceneDirection: 0,
-  sceneData: {},
+  sceneData: { didMount: false },
   footerText: "",
   footerOnClick: null
 };
@@ -61,6 +61,10 @@ const appModalReducer = (state = initialState, action) => {
       });
     case appModalActionsTypes.HIDE_APP_MODAL:
       return _.assign({}, state, { isShowed: false });
+    case appModalActionsTypes.DID_MOUNT_APP_MODAL:
+      return _.assign({}, state, {
+        sceneData: _.assign({}, { ...state.sceneData, didMount: true })
+      });
     case appModalActionsTypes.UNMOUNT_APP_MODAL:
       return _.assign({}, initialState);
     default:

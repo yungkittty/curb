@@ -54,9 +54,7 @@ const OverlayBlur = WrappedComponent => {
     }
 
     startAnimation(state) {
-      document.getElementById("app-container").style.filter = `blur(${
-        state ? 3.5 : 0
-      }px)`;
+      document.getElementById("app-container").style.filter = `blur(${state ? 3.5 : 0}px)`;
       setTimeout(() =>
         this.setState({
           style: state ? this.showStyle : this.hideStyle
@@ -66,13 +64,7 @@ const OverlayBlur = WrappedComponent => {
 
     render() {
       const { style } = this.state;
-      return (
-        <WrappedComponent
-          {...this.props}
-          onTransitionEnd={this.onTransitionEnd}
-          style={style}
-        />
-      );
+      return <WrappedComponent {...this.props} onTransitionEnd={this.onTransitionEnd} style={style} />;
     }
   }
 

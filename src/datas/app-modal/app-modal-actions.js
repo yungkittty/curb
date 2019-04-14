@@ -37,6 +37,10 @@ const appModalActions = {
     type: appModalActionsTypes.HIDE_APP_MODAL,
     payload
   }),
+  didMountAppModal: () => ({
+    type: appModalActionsTypes.DID_MOUNT_APP_MODAL,
+    payload: undefined
+  }),
   unmountAppModal: () => ({
     type: appModalActionsTypes.UNMOUNT_APP_MODAL,
     payload: undefined

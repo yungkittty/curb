@@ -20,14 +20,12 @@ const AppModal = ({
   appModalSceneData,
   appModalFooterText,
   appModalFooterOnClick,
+  appModalDidMount,
   appModalUnmount
 }) =>
   appModalScene !== null ? (
-    <ModalOverlay
-      isAppModalShowed={isAppModalShowed}
-      appModalUnmount={appModalUnmount}
-    >
-      <ModalContainer isAppModalShowed={isAppModalShowed}>
+    <ModalOverlay isAppModalShowed={isAppModalShowed} appModalUnmount={appModalUnmount}>
+      <ModalContainer isAppModalShowed={isAppModalShowed} appModalDidMount={appModalDidMount}>
         <ModalHeader
           text={appModalHeaderText}
           currentStep={appModalHeaderCurrentStep}
@@ -43,11 +41,7 @@ const AppModal = ({
           sceneData={appModalSceneData}
         />
         {appModalFooterText ? (
-          <ModalFooter
-            type="h4"
-            text={appModalFooterText}
-            onClick={appModalFooterOnClick}
-          />
+          <ModalFooter type="h4" text={appModalFooterText} onClick={appModalFooterOnClick} />
         ) : null}
       </ModalContainer>
     </ModalOverlay>
@@ -63,8 +57,7 @@ AppModal.defaultProps = {
   appModalSceneDirection: undefined,
   appModalSceneData: undefined,
   appModalFooterText: undefined,
-  appModalFooterOnClick: undefined,
-  appModalUnmount: undefined
+  appModalFooterOnClick: undefined
 };
 
 AppModal.propTypes = {
@@ -82,7 +75,8 @@ AppModal.propTypes = {
   appModalSceneData: PropTypes.object,
   appModalFooterText: PropTypes.string,
   appModalFooterOnClick: PropTypes.func,
-  appModalUnmount: PropTypes.func
+  appModalDidMount: PropTypes.func.isRequired,
+  appModalUnmount: PropTypes.func.isRequired
 };
 
 export default AppModal;
