@@ -29,10 +29,7 @@ const SceneSlide = WrappedComponent => {
       style.transition = "";
       style.transform = `translateX(${sceneDirection > 0 ? "0" : "-50"}%)`;
       const { sceneAlt: prevSceneAlt } = this.state;
-      const sceneAlt =
-        sceneDirection === this.prevSceneDirection
-          ? !prevSceneAlt
-          : prevSceneAlt;
+      const sceneAlt = sceneDirection === this.prevSceneDirection ? !prevSceneAlt : prevSceneAlt;
       this.prevSceneDirection = sceneDirection;
       // eslint-disable-next-line
       this.setState(
@@ -44,22 +41,14 @@ const SceneSlide = WrappedComponent => {
         },
         () =>
           setTimeout(() => {
-            style.transition = "all 0.9s cubic-bezier(0.19, 1, 0.22, 1)";
-            style.transform = `translateX(${
-              sceneDirection > 0 ? "-50" : "0"
-            }%)`;
+            style.transition = "all 0.45s ease-in-out";
+            style.transform = `translateX(${sceneDirection > 0 ? "-50" : "0"}%)`;
           })
       );
     }
 
     render() {
-      const {
-        sceneAlt,
-        sceneLeftKey,
-        sceneLeft,
-        sceneRightKey,
-        sceneRight
-      } = this.state;
+      const { sceneAlt, sceneLeftKey, sceneLeft, sceneRightKey, sceneRight } = this.state;
       return (
         <WrappedComponent
           {...this.props}

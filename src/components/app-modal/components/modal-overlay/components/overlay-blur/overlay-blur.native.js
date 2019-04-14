@@ -17,9 +17,7 @@ const OverlayBlur = WrappedComponent => {
         backgroundColor: new Animated.Value(0)
       };
 
-      this.AnimatedWrappedComponent = Animated.createAnimatedComponent(
-        WrappedComponent
-      );
+      this.AnimatedWrappedComponent = Animated.createAnimatedComponent(WrappedComponent);
 
       this.startAnimation = this.startAnimation.bind(this);
     }
