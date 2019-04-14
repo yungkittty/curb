@@ -37,7 +37,11 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.currentuserId]: {
           ...state[action.payload.currentuserId],
-          groups: [...state[action.payload.currentuserId].groups, action.payload.id]
+          groups: [
+            // eslint-disable-line
+            ...state[action.payload.currentuserId].groups,
+            action.payload.id
+          ]
         }
       };
     default:

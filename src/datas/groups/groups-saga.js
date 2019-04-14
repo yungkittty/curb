@@ -9,8 +9,8 @@ function* postGroupRequestSaga(action) {
   try {
     const { history, ...others } = action.payload;
     const { data: payload } = yield call(groupsApi.postGroup, others);
-    const id = yield select(currentUserSelectors.getCurrentUserId);
-    yield put(groupsActions.postGroupSuccess({ ...payload, currentuserId: id }));
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
+    yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
     yield put(appModalActions.hideAppModal());
     history.push(`/groups/${payload.id}`);
   } catch (error) {

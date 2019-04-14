@@ -5,7 +5,7 @@ import { withTranslation } from "react-i18next";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
-import AppModalListItem from "../../../../components/app-modal-list-item";
+import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 /* eslint-disable */
 import CreateGroup2 from "../create-group-2";
 import CreateGroup4 from "../create-group-4";
@@ -90,7 +90,7 @@ class CreateGroup3 extends Component {
           </React.Fragment>
         )}
         renderItem={({ item }) => (
-          <AppModalListItem
+          <AppModalSceneListItem
             icon={item.icon}
             title={t(`modules:${item.id}.title`)}
             description={t(`modules:${item.id}.description`)}

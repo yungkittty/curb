@@ -6,7 +6,7 @@ import ItemIcon from "./components/item-icon";
 import ItemPreview from "./components/item-preview";
 import ItemSelection from "./components/item-selection";
 
-const AppModalListItem = ({
+const AppModalSceneListItem = ({
   theme,
   icon,
   title,
@@ -48,7 +48,7 @@ const AppModalListItem = ({
   </ItemContainer>
 );
 
-AppModalListItem.defaultProps = {
+AppModalSceneListItem.defaultProps = {
   icon: undefined,
   titleColor: undefined,
   backgroundColor: undefined,
@@ -61,7 +61,7 @@ AppModalListItem.defaultProps = {
   onClick: () => undefined
 };
 
-AppModalListItem.propTypes = {
+AppModalSceneListItem.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
   icon: PropTypes.string,
@@ -77,4 +77,4 @@ AppModalListItem.propTypes = {
   onClick: PropTypes.func
 };
 
-export default withTheme(AppModalListItem);
+export default withTheme(AppModalSceneListItem);

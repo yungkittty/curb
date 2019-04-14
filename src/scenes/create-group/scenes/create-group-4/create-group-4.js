@@ -6,7 +6,7 @@ import { withTranslation } from "react-i18next";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
-import AppModalListItem from "../../../../components/app-modal-list-item";
+import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 import Loader from "../../../../components/loader";
 import themesData from "./create-group-4-themes-data";
 /* eslint-disable-next-line */
@@ -109,7 +109,7 @@ class CreateGroup4 extends Component {
           </React.Fragment>
         )}
         renderItem={({ item }) => (
-          <AppModalListItem
+          <AppModalSceneListItem
             title={t(`themeList.${item.id}`)}
             titleColor="#ffffff"
             backgroundColor={theme[item.themeColor]}
