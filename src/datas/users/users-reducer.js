@@ -35,11 +35,11 @@ const byId = (state = {}, action) => {
     case groupsActionsTypes.POST_GROUP_SUCCESS:
       return {
         ...state,
-        [action.payload.currentuserId]: {
-          ...state[action.payload.currentuserId],
+        [action.payload.currentUserId]: {
+          ...state[action.payload.currentUserId],
           groups: [
             // eslint-disable-line
-            ...state[action.payload.currentuserId].groups,
+            ...state[action.payload.currentUserId].groups,
             action.payload.id
           ]
         }

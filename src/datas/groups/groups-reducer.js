@@ -7,9 +7,9 @@ const postFetching = (state = { isFetching: false, errorCode: "" }, action) => {
     case groupsActionsTypes.POST_GROUP_REQUEST:
       return { ...state, isFetching: true };
     case groupsActionsTypes.POST_GROUP_SUCCESS:
-      return { ...state, isFetching: true, errorCode: "" };
+      return { ...state, isFetching: false, errorCode: "" };
     case groupsActionsTypes.POST_GROUP_FAILURE:
-      return { ...state, isFetching: true, errorCode: action.payload.response.data.code };
+      return { ...state, isFetching: false, errorCode: "" };
     default:
       return state;
   }
@@ -36,16 +36,14 @@ const byId = (state = {}, action) => {
         }
       };
     case groupsActionsTypes.GET_GROUP_FAILURE:
-      return action.payload.response.status !== 403
-        ? {
-            ...state,
-            [action.payload.config.data.id]: {
-              ...state[action.payload.config.data.id],
-              isFetching: true,
-              errorCode: action.payload.response.data.code
-            }
-          }
-        : state;
+      return {
+        ...state,
+        [action.payload.config.data.id]: {
+          ...state[action.payload.config.data.id],
+          isFetching: true,
+          errorCode: action.payload.response.data.code
+        }
+      };
     default:
       return state;
   }

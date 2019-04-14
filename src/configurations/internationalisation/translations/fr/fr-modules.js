@@ -11,10 +11,9 @@ const frModules = {
     title: "Vidéo",
     description: "Permet aux utilisateurs de publier du contenu vidéo"
   },
-  localisation: {
+  location: {
     title: "Localisation",
-    description:
-      "Permet aux utilisateurs de publier une localisation géographique"
+    description: "Permet aux utilisateurs de publier une localisation géographique"
   }
 };
 
