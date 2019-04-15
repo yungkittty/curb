@@ -1,5 +1,5 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
-import signInActions from "../sign-in/sign-in-actions";
+import appModalActions from "../app-modal/app-modal-actions";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
 import signUpApi from "./sign-up-api";
@@ -7,17 +7,15 @@ import usersApi from "../users/users-api";
 
 function* signUpRequestSaga(action) {
   try {
-    yield call(signUpApi.signUp, action.payload);
+    const { data: payload } = yield call(signUpApi.signUp, action.payload);
     yield call(usersApi.sendEmail, action.payload);
-    yield put(signInActions.signInRequest(action.payload));
-    yield put(signUpActions.signUpSuccess());
+    yield put(signUpActions.signUpSuccess(payload));
+    yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signUpActions.signUpFailure(error));
   }
 }
 
-const signUpSaga = all([
-  takeLatest(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)
-]);
+const signUpSaga = all([takeLatest(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)]);
 
 export default signUpSaga;
