@@ -26,11 +26,28 @@ class SignUp2 extends Component {
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.finish });
   }
 
-  componentDidUpdate() {
-    const { isSignUpFetching, t, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
-    if (isSignUpFetching) return;
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
-    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
+  componentDidUpdate(prevProps) {
+    const {
+      isSignUpFetching,
+      t,
+      hideAppModal,
+      setAppModalHeaderLeftButton,
+      setAppModalHeaderRightButton,
+      setAppModalFooterButton
+    } = this.props;
+    if (prevProps.isSignUpFetching === isSignUpFetching) return;
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: !isSignUpFetching ? this.goToPrev : () => undefined
+    });
+    setAppModalHeaderRightButton({
+      icon: "times",
+      onClick: !isSignUpFetching ? hideAppModal : () => undefined
+    });
+    setAppModalFooterButton({
+      text: t("common:finish"),
+      onClick: !isSignUpFetching ? this.finish : () => undefined
+    });
   }
 
   goToPrev() {
@@ -115,10 +132,12 @@ SignUp2.defaultProps = {
 SignUp2.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   isSignUpFetching: PropTypes.bool.isRequired,
+  hideAppModal: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,

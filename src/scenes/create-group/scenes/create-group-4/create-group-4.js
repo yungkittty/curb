@@ -38,20 +38,31 @@ class CreateGroup4 extends Component {
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const {
       isCreateGroupFetching,
       t,
+      hideAppModal,
       setAppModalHeaderLeftButton,
+      setAppModalHeaderRightButton,
       setAppModalScene,
       setAppModalFooterButton
     } = this.props;
-    if (isCreateGroupFetching) return;
+    if (prevProps.isCreateGroupFetching === isCreateGroupFetching) return;
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
+      onClick: !isCreateGroupFetching
+        ? () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
+        : () => undefined
     });
-    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
+    setAppModalHeaderRightButton({
+      icon: "times",
+      onClick: !isCreateGroupFetching ? hideAppModal : () => undefined
+    });
+    setAppModalFooterButton({
+      text: t("common:finish"),
+      onClick: !isCreateGroupFetching ? this.submit : () => undefined
+    });
   }
 
   submit() {
@@ -69,10 +80,6 @@ class CreateGroup4 extends Component {
       mediaTypes: modules.value,
       theme: groupTheme.value
     });
-
-    const { setAppModalHeaderLeftButton, setAppModalHeaderRightButton } = this.props;
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: () => undefined });
-    setAppModalHeaderRightButton({ icon: "times", onClick: () => undefined });
   }
 
   checkForm() {
@@ -152,6 +159,7 @@ CreateGroup4.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   isCreateGroupFetching: PropTypes.bool.isRequired,
+  hideAppModal: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
