@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../../../components/loader";
-import ContentContainer from "./components/content-container";
+import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import ContentDescription from "./components/content-description";
 // eslint-disable-next-line
@@ -45,12 +45,12 @@ class DeleteAccount extends Component {
     return isSignUpFetching ? (
       <Loader />
     ) : (
-      <ContentContainer>
+      <AppModalSceneContainer>
         <AppModalSceneTitle>{t("general.menu.deleteAccount.contentTitle")}</AppModalSceneTitle>
         <ContentDescription type="h4">
           {t("general.menu.deleteAccount.contentDescription")}
         </ContentDescription>
-      </ContentContainer>
+      </AppModalSceneContainer>
     );
   }
 }
