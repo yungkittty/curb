@@ -12,17 +12,11 @@ import SignUp from "../../../sign-up";
 
 const SignInFooter = ({ setAppModalScene, theme, t }) => (
   <FooterContainer>
-    <FooterButton
-      onClick={() =>
-        setAppModalScene({ scene: ResetPassword, sceneDirection: 1 })
-      }
-    >
+    <FooterButton onClick={() => setAppModalScene({ scene: ResetPassword, direction: 1 })}>
       <Text style={{ color: theme.linkColor }}>{t("forgotPass")}</Text>
     </FooterButton>
     <FooterBar />
-    <FooterButton
-      onClick={() => setAppModalScene({ scene: SignUp, sceneDirection: 1 })}
-    >
+    <FooterButton onClick={() => setAppModalScene({ scene: SignUp, direction: 1 })}>
       <Text style={{ color: theme.linkColor }}>{t("signUp")}</Text>
     </FooterButton>
   </FooterContainer>

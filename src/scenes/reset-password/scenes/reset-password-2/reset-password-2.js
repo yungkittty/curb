@@ -12,11 +12,7 @@ class ResetPassword2 extends Component {
   constructor(props) {
     super(props);
 
-    const {
-      setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
-      setAppModalScene
-    } = props;
+    const { setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalScene } = props;
 
     this.state = { loading: false };
 
@@ -24,11 +20,10 @@ class ResetPassword2 extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 2, headerSteps: 3 });
+    setAppModalHeaderSteps({ currentStep: 2, steps: 3 });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: ResetPassword1, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: ResetPassword1, direction: -1 })
     });
   }
 

@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
 import ResetPasswordTitle from "../../components/reset-password-title";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
 // eslint-disable-next-line
 import ResetPassword2 from "../reset-password-2";
 
@@ -27,15 +27,14 @@ class ResetPassword3 extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 3, headerSteps: 3 });
+    setAppModalHeaderSteps({ currentStep: 3, steps: 3 });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: ResetPassword2, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: ResetPassword2, sceneDirection: -1 })
     });
     setAppModalFooterButton({
-      footerText: t("resetPass"),
-      footerOnClick: this.validate
+      text: t("resetPass"),
+      onClick: this.validate
     });
   }
 
@@ -60,10 +59,7 @@ class ResetPassword3 extends Component {
     const { password, confirmPassword } = this.props;
 
     const passwordCheck = this.checkInput("password", password.value);
-    const confirmPasswordCheck = this.checkInput(
-      "confirmPassword",
-      confirmPassword.value
-    );
+    const confirmPasswordCheck = this.checkInput("confirmPassword", confirmPassword.value);
 
     return passwordCheck && confirmPasswordCheck;
   }
@@ -100,7 +96,7 @@ class ResetPassword3 extends Component {
         <ResetPasswordTitle type="h2" weight={700}>
           {t("chooseNewPassword")}
         </ResetPasswordTitle>
-        <Input
+        <InputForm
           size="modal"
           id="password"
           placeholder={t("common:password")}
@@ -109,17 +105,14 @@ class ResetPassword3 extends Component {
           onChange={this.handleChange}
           error={password.error && t(`validation:password.${password.error}`)}
         />
-        <Input
+        <InputForm
           size="modal"
           id="confirmPassword"
           placeholder={t("common:confirmPassword")}
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
-          error={
-            confirmPassword.error &&
-            t(`validation:password.${confirmPassword.error}`)
-          }
+          error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
         />
       </ResetPasswordContainer>
     );

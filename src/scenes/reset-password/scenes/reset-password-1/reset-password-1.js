@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
 import ResetPasswordTitle from "../../components/reset-password-title";
-import Input from "../../../../components/input";
+import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable */
 import SignIn from "../../../sign-in";
@@ -29,15 +29,14 @@ class ResetPassword1 extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 1, headerSteps: 3 });
+    setAppModalHeaderSteps({ currentStep: 1, steps: 3 });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: SignIn, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: SignIn, direction: -1 })
     });
     setAppModalFooterButton({
-      footerText: t("sendEmail"),
-      footerOnClick: this.validate
+      text: t("sendEmail"),
+      onClick: this.validate
     });
   }
 
@@ -87,7 +86,7 @@ class ResetPassword1 extends Component {
         <ResetPasswordTitle type="h2" weight={700}>
           {t("enterYourEmail")}
         </ResetPasswordTitle>
-        <Input
+        <InputForm
           size="modal"
           id="email"
           placeholder={t("common:email")}

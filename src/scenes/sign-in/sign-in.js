@@ -72,7 +72,7 @@ class SignIn extends Component {
     ) : (
       <AppModalSceneContainer>
         <SignInForm email={email} password={password} onChange={this.handleChange} />
-        <SignInRedirect setAppModalScene={setAppModalScene} t={t} />
+        <SignInFooter setAppModalScene={setAppModalScene} t={t} />
       </AppModalSceneContainer>
     );
   }
