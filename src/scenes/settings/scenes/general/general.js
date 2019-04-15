@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 /* eslint-disable */
-import Settings from "../../";
+import Settings from "../../../settings";
 import generalData from "./general-data";
 /* eslint-enable */
 

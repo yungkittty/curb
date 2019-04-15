@@ -5,8 +5,8 @@ import Loader from "../../../../../../components/loader";
 import ContentContainer from "./components/content-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import ContentDescription from "./components/content-description";
-/* eslint-disable-next-line */
-import General from "../../";
+// eslint-disable-next-line
+import General from "../../../general";
 
 class DeleteAccount extends Component {
   constructor(props) {

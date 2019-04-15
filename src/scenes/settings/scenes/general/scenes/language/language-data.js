@@ -1,3 +1,3 @@
-const languageData = { cn: "中文", en: "English", fr: "Français" };
+const languageData = { en: "English", fr: "Français" };
 
 export default languageData;

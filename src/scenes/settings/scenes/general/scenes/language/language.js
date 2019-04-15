@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
-/* eslint-disable-next-line */
-import General from "../../";
+// eslint-disable-next-line
+import General from "../../../general";
 import languageData from "./language-data";
 
 class Language extends Component {
