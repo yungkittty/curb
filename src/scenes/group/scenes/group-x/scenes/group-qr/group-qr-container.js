@@ -8,8 +8,9 @@ import { groupsActions, groupsSelectors } from "../../../../../../datas/groups";
 
 class GroupQrContainer extends React.Component {
   componentDidMount() {
-    const { getGroupInviteToken, currentGroupId } = this.props;
-    getGroupInviteToken({ id: currentGroupId });
+    const { currentGroupStatus, getGroupInviteToken, currentGroupId } = this.props;
+    // eslint-disable-next-line
+    currentGroupStatus === "private" && getGroupInviteToken({ id: currentGroupId });
   }
 
   render() {
@@ -43,6 +44,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 GroupQrContainer.propTypes = {
+  currentGroupStatus: PropTypes.string.isRequired,
   currentGroupId: PropTypes.string.isRequired,
   getGroupInviteToken: PropTypes.func.isRequired
 };
