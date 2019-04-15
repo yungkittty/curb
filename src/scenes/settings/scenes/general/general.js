@@ -26,7 +26,6 @@ class General extends Component {
     return (
       <ListFlat
         data={generalData}
-        extraData={{ generalData }}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <AppModalSceneListItem

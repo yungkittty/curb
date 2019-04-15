@@ -20,7 +20,6 @@ class Settings extends Component {
     return (
       <ListFlat
         data={settingsData}
-        extraData={{ settingsData }}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <AppModalSceneListItem

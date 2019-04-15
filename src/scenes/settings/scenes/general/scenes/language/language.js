@@ -13,7 +13,6 @@ class Language extends Component {
     const {
       t,
       i18n: {
-        store: { data },
         language,
         options: { fallbackLng }
       },
@@ -22,7 +21,7 @@ class Language extends Component {
       setAppModalScene
     } = this.props;
 
-    this.state = { languages: Object.keys(data), key: language.substring(0, 2) || fallbackLng[0] };
+    this.state = { key: language.substring(0, 2) || fallbackLng[0] };
 
     setAppModalHeaderText({ text: t("general.menu.language.title") });
     setAppModalHeaderLeftButton({
@@ -43,12 +42,16 @@ class Language extends Component {
   }
 
   render() {
-    const { languages, key } = this.state;
+    const { key } = this.state;
+    const {
+      i18n: {
+        store: { data }
+      }
+    } = this.props;
 
     return (
       <ListFlat
-        data={languages}
-        extraData={{ languages }}
+        data={Object.keys(data)}
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <AppModalSceneListItem
