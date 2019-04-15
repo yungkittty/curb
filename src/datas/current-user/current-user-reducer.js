@@ -10,7 +10,6 @@ const currentUserReducer = (state = initialState, action) => {
     case signInActionsTypes.SIGN_IN_SUCCESS:
       return _.assign({}, state, action.payload);
     case signInActionsTypes.SIGN_OUT_SUCCESS:
-      return _.assign({}, state, initialState);
     case signUpActionsTypes.DELETE_ACCOUNT_SUCCESS:
       return _.assign({}, state, initialState);
     default:
