@@ -39,11 +39,7 @@ const AppModal = ({
           sceneData={appModalSceneData}
         />
         {appModalFooterText ? (
-          <ModalFooter
-            type="h4"
-            text={appModalFooterText}
-            onClick={appModalFooterOnClick}
-          />
+          <ModalFooter weight={500} text={appModalFooterText} onClick={appModalFooterOnClick} />
         ) : null}
       </ModalContainer>
     </ModalOverlay>
