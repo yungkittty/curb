@@ -20,7 +20,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal()),
-  appModalDidMount: () => dispatch(appModalActions.didMountAppModal()),
   appModalUnmount: () => dispatch(appModalActions.unmountAppModal())
 });
 

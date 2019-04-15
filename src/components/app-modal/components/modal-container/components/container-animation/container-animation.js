@@ -37,7 +37,6 @@ const ContainerAnimation = WrappedComponent => {
         style: this.hideStyle
       };
 
-      this.onTransitionEnd = this.onTransitionEnd.bind(this);
       this.startAnimation = this.startAnimation.bind(this);
     }
 
@@ -57,11 +56,6 @@ const ContainerAnimation = WrappedComponent => {
       this.startAnimation(isAppModalShowed);
     }
 
-    onTransitionEnd() {
-      const { isAppModalShowed, appModalDidMount } = this.props;
-      if (isAppModalShowed) appModalDidMount();
-    }
-
     startAnimation(state) {
       setTimeout(() =>
         this.setState({
@@ -72,14 +66,13 @@ const ContainerAnimation = WrappedComponent => {
 
     render() {
       const { style } = this.state;
-      return <WrappedComponent {...this.props} onTransitionEnd={this.onTransitionEnd} style={style} />;
+      return <WrappedComponent {...this.props} style={style} />;
     }
   }
 
   _ContainerAnimation.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
-    appModalDidMount: PropTypes.func.isRequired
+    children: PropTypes.arrayOf(PropTypes.node).isRequired
   };
 
   return _ContainerAnimation;

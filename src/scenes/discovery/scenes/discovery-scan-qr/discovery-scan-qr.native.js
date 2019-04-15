@@ -24,16 +24,14 @@ class DiscoveryScanQr extends React.Component {
   }
 
   render() {
-    const { didMount, hideAppModal, theme } = this.props;
+    const { hideAppModal, theme } = this.props;
     const { isFlashModeOn } = this.state;
     const { FlashMode } = RNCamera.Constants;
     const modalWidth = windowDimensions.width;
     const modalHeight = windowDimensions.height - 75;
     const modalWidthOffset = (modalWidth - 250) / 2;
     const modalHeightOffset = (modalHeight - 250) / 2;
-    return !didMount ? (
-      <Container style={{ flex: 1, backgroundColor: "black" }} />
-    ) : (
+    return (
       <ScanQrCamera
         style={{ flex: 1 }}
         flashMode={isFlashModeOn ? FlashMode.torch : FlashMode.on}
@@ -110,7 +108,6 @@ class DiscoveryScanQr extends React.Component {
 }
 
 DiscoveryScanQr.propTypes = {
-  didMount: PropTypes.bool.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   // eslint-disable-next-line

@@ -47,7 +47,6 @@ const ContainerAnimation = WrappedComponent => {
 
     startAnimation(state) {
       const { animationRunning, top } = this.state;
-      const { appModalDidMount } = this.props;
       if (animationRunning) return;
       this.setState({ animationRunning: true });
       Animated.timing(top, {
@@ -55,10 +54,11 @@ const ContainerAnimation = WrappedComponent => {
         duration: 500,
         easing: Easing.out(Easing.exp),
         useNativeDriver: true
-      }).start(() => {
-        this.setState({ animationRunning: false });
-        if (state) appModalDidMount();
-      });
+      }).start(() =>
+        this.setState({
+          animationRunning: false
+        })
+      );
     }
 
     render() {
@@ -79,8 +79,7 @@ const ContainerAnimation = WrappedComponent => {
 
   _ContainerAnimation.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
-    appModalDidMount: PropTypes.func.isRequired
+    children: PropTypes.arrayOf(PropTypes.node).isRequired
   };
 
   return _ContainerAnimation;
