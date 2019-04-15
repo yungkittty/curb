@@ -8,7 +8,7 @@ const frSettings = {
         title: "Langue",
         description: "Langue d'affichage de l'application"
       },
-      logout: {
+      signOut: {
         title: "Déconnexion",
         description: "Déconnecte votre compte de cet appareil"
       },

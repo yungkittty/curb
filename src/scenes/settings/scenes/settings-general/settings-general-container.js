@@ -2,11 +2,12 @@ import { connect } from "react-redux";
 /* eslint-disable-next-line */
 import SettingsGeneral from "./settings-general";
 import { currentUserSelectors } from "../../../../datas/current-user";
-import { signInActions } from "../../../../datas/sign-in";
+import { signInActions, signInSelectors } from "../../../../datas/sign-in";
 import { appModalActions } from "../../../../datas/app-modal";
 
 const mapStateToProps = state => ({
-  currentUserId: currentUserSelectors.getCurrentUserId(state) || ""
+  currentUserId: currentUserSelectors.getCurrentUserId(state) || "",
+  isSignOutFetching: signInSelectors.isSignInFetching(state) || false
 });
 
 const mapDispatchToProps = dispatch => ({

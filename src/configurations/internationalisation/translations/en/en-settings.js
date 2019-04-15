@@ -2,14 +2,14 @@ const enSettings = {
   settings: "Settings",
   general: {
     title: "General",
-    description: "Language  ·  Logout  ·  Delete account",
+    description: "Language  ·  Sign out  ·  Delete account",
     menu: {
       language: {
         title: "Language",
         description: "Display language of the application"
       },
-      logout: {
-        title: "Logout",
+      signOut: {
+        title: "Sign out",
         description: "Disconnect your account from this device"
       },
       deleteAccount: {

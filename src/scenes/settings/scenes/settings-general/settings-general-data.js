@@ -10,7 +10,7 @@ const settingsGeneralData = [
     scene: GeneralLanguage
   },
   {
-    id: "logout",
+    id: "signOut",
     icon: "sign-out-alt",
     needSignedInUser: true
   },

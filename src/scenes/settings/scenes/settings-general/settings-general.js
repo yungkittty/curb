@@ -6,6 +6,7 @@ import AppModalSceneListItem from "../../../../components/app-modal-scene-list-i
 /* eslint-disable */
 import Settings from "../../../settings";
 import settingsGeneralData from "./settings-general-data";
+import Loader from "../../../../components/loader";
 /* eslint-enable */
 
 class SettingsGeneral extends Component {
@@ -21,9 +22,11 @@ class SettingsGeneral extends Component {
   }
 
   render() {
-    const { t, setAppModalScene, currentUserId, signOut } = this.props;
+    const { isSignOutFetching, t, setAppModalScene, currentUserId, signOut } = this.props;
 
-    return (
+    return isSignOutFetching ? (
+      <Loader />
+    ) : (
       <ListFlat
         data={settingsGeneralData}
         keyExtractor={item => item.id}
@@ -42,6 +45,7 @@ class SettingsGeneral extends Component {
 }
 
 SettingsGeneral.propTypes = {
+  isSignOutFetching: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
