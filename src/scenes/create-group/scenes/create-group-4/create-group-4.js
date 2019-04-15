@@ -38,6 +38,22 @@ class CreateGroup4 extends Component {
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
   }
 
+  componentDidUpdate() {
+    const {
+      isCreateGroupFetching,
+      t,
+      setAppModalHeaderLeftButton,
+      setAppModalScene,
+      setAppModalFooterButton
+    } = this.props;
+    if (isCreateGroupFetching) return;
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
+    });
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
+  }
+
   submit() {
     if (!this.checkForm()) {
       const { current: listFlat } = this.listFlat;

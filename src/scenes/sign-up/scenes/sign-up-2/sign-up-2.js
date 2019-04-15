@@ -26,6 +26,13 @@ class SignUp2 extends Component {
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.finish });
   }
 
+  componentDidUpdate() {
+    const { isSignUpFetching, t, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
+    if (isSignUpFetching) return;
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
+  }
+
   goToPrev() {
     const { setAppModalScene } = this.props;
     setAppModalScene({ scene: SignUp1, direction: -1 });
