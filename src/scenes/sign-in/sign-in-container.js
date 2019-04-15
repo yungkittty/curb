@@ -14,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
   setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
   setAppModalSceneData: payload => dispatch(appModalActions.setAppModalSceneData(payload)),
+  hideAppModal: () => dispatch(appModalActions.hideAppModal()),
   signIn: payload => dispatch(signInActions.signInRequest(payload))
 });
 
