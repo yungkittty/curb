@@ -30,7 +30,7 @@ ItemPreview.propTypes = {
   titleCentered: PropTypes.bool,
   description: PropTypes.string,
   disabled: PropTypes.bool,
-  noIcon: PropTypes.bool
+  noIcon: PropTypes.bool.isRequired
 };
 
 export default ItemPreview;
