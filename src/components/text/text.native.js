@@ -23,13 +23,15 @@ const Text = styled.Text`
       case "h1":
         return 36; // +8
       case "h2":
-        return 28; // +8
+        return 24; // +8
       case "h3":
-        return 20; // +4
+        return 18; // +4
       case "h4":
-        return 16; // +2
+        return 14; // +2
       case "h5":
         return 12; // -2
+      case "h6":
+        return 10; // -2
       default:
         return 14;
     }

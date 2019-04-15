@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Input = styled.input`
   box-sizing: border-box;
+  box-shadow: none;
   font-family: "Montserrat-Regular";
   padding: 18px;
   font-size: 18px;
