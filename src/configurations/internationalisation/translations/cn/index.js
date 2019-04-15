@@ -6,6 +6,8 @@ import signUp from "./cn-sign-up";
 import discovery from "./cn-discovery";
 import resetPassword from "./cn-reset-password";
 import appDownload from "./cn-app-download";
+import createGroup from "./cn-create-group";
+import modules from "./cn-modules";
 
 export default {
   common,
@@ -15,5 +17,7 @@ export default {
   signUp,
   discovery,
   resetPassword,
-  appDownload
+  appDownload,
+  createGroup,
+  modules
 };

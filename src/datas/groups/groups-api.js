@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const groupsApi = {
-  getGroup: ({ id }) =>
-    axios.get(`${process.env.REACT_APP_API_URL}/groups/${id}`)
+  postGroup: payload => axios.post(`/groups`, payload, { withCredentials: true }),
+  getGroup: ({ id }) => axios.get(`/groups/${id}`, { withCredentials: true })
 };
 
 export default groupsApi;
