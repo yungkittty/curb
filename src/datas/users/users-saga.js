@@ -1,11 +1,4 @@
-import {
-  all,
-  takeEvery,
-  takeLatest,
-  call,
-  put,
-  select
-} from "redux-saga/effects";
+import { all, takeEvery, takeLatest, call, put, select } from "redux-saga/effects";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
@@ -22,12 +15,10 @@ function* getUsersRequestSaga(action) {
 
 function* patchUsersRequestSaga(action) {
   try {
-    const id = yield select(currentUserSelectors.getCurrentUserId);
-    const token = yield select(currentUserSelectors.getCurrentUserToken);
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     const respond = yield call(usersApi.patchUser, {
-      payload: action.payload,
-      token,
-      id
+      id: currentUserId,
+      payload: action.payload
     });
     yield put(usersActions.patchUserSuccess(respond));
   } catch (error) {
@@ -37,16 +28,14 @@ function* patchUsersRequestSaga(action) {
 
 function* postUsersAvatarRequestSaga(action) {
   try {
-    const id = yield select(currentUserSelectors.getCurrentUserId);
-    const token = yield select(currentUserSelectors.getCurrentUserToken);
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     const respond = yield call(
       usersApi.postUserAvatar,
       action.payload.id
         ? action.payload
         : {
-            payload: action.payload,
-            token,
-            id
+            id: currentUserId,
+            payload: action.payload
           }
     );
     yield put(usersActions.postUserAvatarSuccess(respond));
@@ -58,10 +47,7 @@ function* postUsersAvatarRequestSaga(action) {
 const usersSaga = all([
   takeEvery(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga),
   takeLatest(usersActionsTypes.PATCH_USER_REQUEST, patchUsersRequestSaga),
-  takeLatest(
-    usersActionsTypes.POST_USER_AVATAR_REQUEST,
-    postUsersAvatarRequestSaga
-  )
+  takeLatest(usersActionsTypes.POST_USER_AVATAR_REQUEST, postUsersAvatarRequestSaga)
 ]);
 
 export default usersSaga;

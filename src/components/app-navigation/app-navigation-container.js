@@ -8,15 +8,15 @@ import { usersActions, usersSelectors } from "../../datas/users";
 
 class AppNavigationContainer extends React.Component {
   componentDidMount() {
-    const { currentUserId, currentUserToken, getCurrentUser } = this.props;
-    if (currentUserToken) {
+    const { currentUserId, getCurrentUser } = this.props;
+    if (currentUserId) {
       getCurrentUser({ id: currentUserId });
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { currentUserId, currentUserToken, getCurrentUser } = this.props;
-    if (currentUserToken && currentUserToken !== prevProps.currentUserToken) {
+    const { currentUserId, getCurrentUser } = this.props;
+    if (currentUserId && currentUserId !== prevProps.currentUserId) {
       getCurrentUser({ id: currentUserId });
     }
   }
@@ -29,14 +29,10 @@ class AppNavigationContainer extends React.Component {
 
 const mapStateToProps = state => {
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
-  const currentUserToken = currentUserSelectors.getCurrentUserToken(state);
-  const {
-    avatarUrl: currentUserAvatarUrl = "",
-    groups: currentUserGroupsIds = []
-  } = usersSelectors.getUserById(state, currentUserId) || {};
+  const { avatarUrl: currentUserAvatarUrl = "", groups: currentUserGroupsIds = [] } =
+    usersSelectors.getUserById(state, currentUserId) || {};
   return {
     currentUserId,
-    currentUserToken,
     currentUserAvatarUrl,
     currentUserGroupsIds
   };
@@ -49,7 +45,6 @@ const mapDispatchToProps = dispatch => ({
 
 AppNavigationContainer.propTypes = {
   currentUserId: PropTypes.string.isRequired,
-  currentUserToken: PropTypes.string.isRequired,
   getCurrentUser: PropTypes.func.isRequired
 };
 

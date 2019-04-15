@@ -5,9 +5,9 @@ const signUpActions = {
     type: signUpActionsTypes.SIGN_UP_REQUEST,
     payload
   }),
-  signUpSuccess: () => ({
+  signUpSuccess: payload => ({
     type: signUpActionsTypes.SIGN_UP_SUCCESS,
-    payload: undefined
+    payload
   }),
   signUpFailure: error => ({
     type: signUpActionsTypes.SIGN_UP_FAILURE,

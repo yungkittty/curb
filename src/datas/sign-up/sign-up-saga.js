@@ -5,17 +5,14 @@ import usersActions from "../users/users-actions";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
 import signUpApi from "./sign-up-api";
-import { signInApi } from "../sign-in";
 
 function* signUpRequestSaga(action) {
   try {
-    yield call(signUpApi.signUp, action.payload);
+    const { data: payload } = yield call(signUpApi.signUp, action.payload);
     if (action.payload.avatar) {
-      const { data: payload } = yield call(signInApi.signIn, action.payload);
       yield put(
         usersActions.postUserAvatarRequest({
           id: payload.id,
-          token: payload.token,
           payload: action.payload
         })
       );
@@ -29,8 +26,6 @@ function* signUpRequestSaga(action) {
   }
 }
 
-const signUpSaga = all([
-  takeEvery(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)
-]);
+const signUpSaga = all([takeEvery(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)]);
 
 export default signUpSaga;
