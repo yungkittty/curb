@@ -6,7 +6,7 @@ import { signInActions } from "../../../../datas/sign-in";
 import { appModalActions } from "../../../../datas/app-modal";
 
 const mapStateToProps = state => ({
-  currentUserId: currentUserSelectors.getCurrentUserId(state)
+  currentUserId: currentUserSelectors.getCurrentUserId(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
