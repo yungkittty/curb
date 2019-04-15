@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-/* eslint-disable-next-line */
-import DeleteAccount from "./delete-account";
+// eslint-disable-next-line
+import GeneralDeleteAccount from "./general-delete-account";
 import { signUpSelectors, signUpActions } from "../../../../../../datas/sign-up";
 import { appModalActions } from "../../../../../../datas/app-modal";
 
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DeleteAccount);
+)(GeneralDeleteAccount);

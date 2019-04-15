@@ -1,9 +1,10 @@
-import General from "./scenes/general";
+// eslint-disable-next-line
+import SettingsGeneral from "./scenes/settings-general";
 
 const settingsData = [
   {
     id: "general",
-    scene: General
+    scene: SettingsGeneral
   }
 ];
 

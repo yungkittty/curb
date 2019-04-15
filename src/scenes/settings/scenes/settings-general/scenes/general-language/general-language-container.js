@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
-import Language from "./language";
+import GeneralLanguage from "./general-language";
 import { appModalActions } from "../../../../../../datas/app-modal";
 import { currentSettingsActions } from "../../../../../../datas/current-settings";
 
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   undefined,
   mapDispatchToProps
-)(Language);
+)(GeneralLanguage);

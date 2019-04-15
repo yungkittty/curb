@@ -1,13 +1,13 @@
 /* eslint-disable */
-import Language from "./scenes/language";
-import DeleteAccount from "./scenes/delete-account";
+import GeneralLanguage from "./scenes/general-language";
+import GeneralDeleteAccount from "./scenes/general-delete-account";
 /* eslint-enable */
 
-const generalData = [
+const settingsGeneralData = [
   {
     id: "language",
     icon: "language",
-    scene: Language
+    scene: GeneralLanguage
   },
   {
     id: "logout",
@@ -17,9 +17,9 @@ const generalData = [
   {
     id: "deleteAccount",
     icon: "trash-alt",
-    scene: DeleteAccount,
+    scene: GeneralDeleteAccount,
     needSignedInUser: true
   }
 ];
 
-export default generalData;
+export default settingsGeneralData;

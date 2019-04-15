@@ -6,9 +6,9 @@ import AppModalSceneContainer from "../../../../../../components/app-modal-scene
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import ContentDescription from "./components/content-description";
 // eslint-disable-next-line
-import General from "../../../general";
+import SettingsGeneral from "../../../settings-general";
 
-class DeleteAccount extends Component {
+class GeneralDeleteAccount extends Component {
   constructor(props) {
     super(props);
     const {
@@ -26,7 +26,7 @@ class DeleteAccount extends Component {
     });
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: General, direction: -1 })
+      onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 })
     });
     setAppModalFooterButton({
       text: t("general.menu.deleteAccount.buttonTitle"),
@@ -55,7 +55,7 @@ class DeleteAccount extends Component {
   }
 }
 
-DeleteAccount.propTypes = {
+GeneralDeleteAccount.propTypes = {
   t: PropTypes.func.isRequired,
   isSignUpFetching: PropTypes.bool.isRequired,
   deleteAccount: PropTypes.func.isRequired,
@@ -65,4 +65,4 @@ DeleteAccount.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired
 };
 
-export default withTranslation("settings")(DeleteAccount);
+export default withTranslation("settings")(GeneralDeleteAccount);

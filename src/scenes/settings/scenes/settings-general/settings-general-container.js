@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
-import General from "./general";
+import SettingsGeneral from "./settings-general";
 import { currentUserSelectors } from "../../../../datas/current-user";
 import { signInActions } from "../../../../datas/sign-in";
 import { appModalActions } from "../../../../datas/app-modal";
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(General);
+)(SettingsGeneral);

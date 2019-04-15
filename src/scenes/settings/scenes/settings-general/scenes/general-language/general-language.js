@@ -4,10 +4,10 @@ import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 // eslint-disable-next-line
-import General from "../../../general";
-import languageData from "./language-data";
+import SettingsGeneral from "../../../settings-general";
+import generalLanguageData from "./general-language-data";
 
-class Language extends Component {
+class GeneralLanguage extends Component {
   constructor(props) {
     super(props);
     const {
@@ -26,7 +26,7 @@ class Language extends Component {
     setAppModalHeaderText({ text: t("general.menu.language.title") });
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: General, direction: -1 })
+      onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 })
     });
 
     this.handleChange = this.handleChange.bind(this);
@@ -55,7 +55,7 @@ class Language extends Component {
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <AppModalSceneListItem
-            title={languageData[item]}
+            title={generalLanguageData[item]}
             selected={key === item}
             selectionType
             onClick={() => this.handleChange(item)}
@@ -66,7 +66,7 @@ class Language extends Component {
   }
 }
 
-Language.propTypes = {
+GeneralLanguage.propTypes = {
   t: PropTypes.func.isRequired,
   setCurrentSettingsLanguage: PropTypes.func.isRequired,
   i18n: PropTypes.shape({
@@ -79,4 +79,4 @@ Language.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default withTranslation("settings")(Language);
+export default withTranslation("settings")(GeneralLanguage);

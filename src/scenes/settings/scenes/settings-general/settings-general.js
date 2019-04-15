@@ -5,10 +5,10 @@ import ListFlat from "../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 /* eslint-disable */
 import Settings from "../../../settings";
-import generalData from "./general-data";
+import settingsGeneralData from "./settings-general-data";
 /* eslint-enable */
 
-class General extends Component {
+class SettingsGeneral extends Component {
   constructor(props) {
     super(props);
     const { t, setAppModalHeaderText, setAppModalHeaderLeftButton, setAppModalScene } = this.props;
@@ -25,7 +25,7 @@ class General extends Component {
 
     return (
       <ListFlat
-        data={generalData}
+        data={settingsGeneralData}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <AppModalSceneListItem
@@ -41,7 +41,7 @@ class General extends Component {
   }
 }
 
-General.propTypes = {
+SettingsGeneral.propTypes = {
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
@@ -50,4 +50,4 @@ General.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default withTranslation("settings")(General);
+export default withTranslation("settings")(SettingsGeneral);
