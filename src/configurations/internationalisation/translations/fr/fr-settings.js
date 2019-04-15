@@ -17,9 +17,10 @@ const frSettings = {
         description: "Supprime définitivement votre compte",
         buttonTitle: "Supprimer mon compte",
         contentTitle: "Voulez-vous vraiment supprimer votre compte ?",
-        contentDescription: `Cette action étant irréversible, tout votre contenu publié sera définitivement supprimé.\n\n
-          Si vous souhaitez rejoindre Curb à nouveau, vous aurez à créer un nouveau compte.\n\n
-          Si vous acceptez cela, vous pouvez cliquer sur le bouton ci-dessous :`
+        contentDescription:
+          "Cette action étant irréversible, tout votre contenu publié sera définitivement supprimé.\n\n" +
+          "Si vous souhaitez rejoindre Curb à nouveau, vous aurez à créer un nouveau compte.\n\n" +
+          "Si vous acceptez cela, vous pouvez cliquer sur le bouton ci-dessous :"
       }
     }
   }

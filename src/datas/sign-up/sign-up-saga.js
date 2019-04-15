@@ -17,8 +17,8 @@ function* signUpRequestSaga(action) {
 
 function* deleteAccountRequestSaga() {
   try {
-    const id = yield select(currentUserSelectors.getCurrentUserId);
-    yield call(signUpApi.deleteAccount, { id });
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
+    yield call(signUpApi.deleteAccount, { id: currentUserId });
     yield put(signUpActions.deleteAccountSuccess());
     yield put(appModalActions.hideAppModal());
   } catch (error) {
