@@ -14,8 +14,6 @@ class ResetPassword2 extends Component {
 
     const { setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalScene } = props;
 
-    this.state = { loading: false };
-
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this);
@@ -27,17 +25,10 @@ class ResetPassword2 extends Component {
     });
   }
 
-  validate(value) {
-    const { loading } = this.state;
-
-    if (!loading) this.submit(value);
-  }
-
   submit(code) {
     const { validateCode, email } = this.props;
 
     validateCode({ code, email: email.value });
-    this.setState({ loading: true });
   }
 
   checkInput(id, value) {
@@ -45,7 +36,7 @@ class ResetPassword2 extends Component {
 
     const error = value.length === 0 ? "missing" : undefined;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
-    if (value.length === 6) this.validate(value);
+    if (value.length === 6) this.submit(value);
     return error === undefined;
   }
 
@@ -55,10 +46,9 @@ class ResetPassword2 extends Component {
   }
 
   render() {
-    const { t } = this.props;
-    const { loading } = this.state;
+    const { isAccountFetching, t } = this.props;
 
-    return loading ? (
+    return isAccountFetching ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
@@ -77,6 +67,7 @@ ResetPassword2.defaultProps = {
 };
 
 ResetPassword2.propTypes = {
+  isAccountFetching: PropTypes.bool.isRequired,
   code: PropTypes.shape({ value: PropTypes.string }),
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,

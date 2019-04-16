@@ -16,7 +16,7 @@ function* emailResetPassRequestSaga(action) {
     yield put(
       appModalActions.setAppModalScene({
         scene: ResetPassword2,
-        sceneDirection: 1
+        direction: 1
       })
     );
   } catch (error) {
@@ -31,7 +31,7 @@ function* validateCodeRequestSaga(action) {
     yield put(
       appModalActions.setAppModalScene({
         scene: ResetPassword3,
-        sceneDirection: 1
+        direction: 1
       })
     );
   } catch (error) {
@@ -52,14 +52,8 @@ function* resetPassRequestSaga(action) {
 }
 
 const accountSaga = all([
-  takeLatest(
-    accountActionsTypes.EMAIL_RESETPASS_REQUEST,
-    emailResetPassRequestSaga
-  ),
-  takeLatest(
-    accountActionsTypes.VALIDATE_CODE_REQUEST,
-    validateCodeRequestSaga
-  ),
+  takeLatest(accountActionsTypes.EMAIL_RESETPASS_REQUEST, emailResetPassRequestSaga),
+  takeLatest(accountActionsTypes.VALIDATE_CODE_REQUEST, validateCodeRequestSaga),
   takeLatest(accountActionsTypes.RESET_PASS_REQUEST, resetPassRequestSaga)
 ]);
 

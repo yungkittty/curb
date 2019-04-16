@@ -20,8 +20,6 @@ class ResetPassword3 extends Component {
       t
     } = props;
 
-    this.state = { loading: false };
-
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -39,9 +37,7 @@ class ResetPassword3 extends Component {
   }
 
   validate() {
-    const { loading } = this.state;
-
-    if (!loading && this.checkForm()) this.submit();
+    if (this.checkForm()) this.submit();
   }
 
   submit() {
@@ -52,7 +48,6 @@ class ResetPassword3 extends Component {
       code: code.value,
       password: password.value
     });
-    this.setState({ loading: true });
   }
 
   checkForm() {
@@ -65,17 +60,22 @@ class ResetPassword3 extends Component {
   }
 
   checkInput(id, value) {
-    const { setAppModalSceneData, password, [id]: Y } = this.props;
+    const { password, setAppModalSceneData, [id]: Y } = this.props;
 
     const error =
-      // eslint-disable-next-line
+      /* eslint-disable */
       id === "password"
         ? value.length === 0
           ? "missing"
+          : !RegExp(inputRegex.password).test(value)
+          ? "invalid"
+          : forbiddenPasswords.includes(value)
+          ? "tooeasy"
           : undefined
         : password.value !== value
         ? "dontmatch"
         : undefined;
+    /* eslint-enable */
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
@@ -86,10 +86,9 @@ class ResetPassword3 extends Component {
   }
 
   render() {
-    const { password, confirmPassword, t } = this.props;
-    const { loading } = this.state;
+    const { isAccountFetching, password, confirmPassword, t } = this.props;
 
-    return loading ? (
+    return isAccountFetching ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
@@ -127,6 +126,7 @@ ResetPassword3.defaultProps = {
 };
 
 ResetPassword3.propTypes = {
+  isAccountFetching: PropTypes.bool.isRequired,
   email: PropTypes.shape({ value: PropTypes.string }),
   code: PropTypes.shape({ value: PropTypes.string }),
   password: PropTypes.shape({ value: PropTypes.string }),

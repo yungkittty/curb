@@ -6,9 +6,8 @@ import ResetPasswordContainer from "../../components/reset-password-container";
 import ResetPasswordTitle from "../../components/reset-password-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
-/* eslint-disable */
+// eslint-disable-next-line
 import SignIn from "../../../sign-in";
-/* eslint-enable */
 
 class ResetPassword1 extends Component {
   constructor(props) {
@@ -21,8 +20,6 @@ class ResetPassword1 extends Component {
       setAppModalFooterButton,
       t
     } = props;
-
-    this.state = { loading: false };
 
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
@@ -41,16 +38,12 @@ class ResetPassword1 extends Component {
   }
 
   validate() {
-    const { loading } = this.state;
-
-    if (!loading && this.checkForm()) this.submit();
+    if (this.checkForm()) this.submit();
   }
 
   submit() {
     const { emailResetPass, email } = this.props;
-
     emailResetPass({ email: email.value });
-    this.setState({ loading: true });
   }
 
   checkForm() {
@@ -76,10 +69,9 @@ class ResetPassword1 extends Component {
   }
 
   render() {
-    const { email, t } = this.props;
-    const { loading } = this.state;
+    const { isAccountFetching, email, t } = this.props;
 
-    return loading ? (
+    return isAccountFetching ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
@@ -104,6 +96,7 @@ ResetPassword1.defaultProps = {
 };
 
 ResetPassword1.propTypes = {
+  isAccountFetching: PropTypes.bool.isRequired,
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
   emailResetPass: PropTypes.func.isRequired,

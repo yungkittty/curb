@@ -104,7 +104,7 @@ class SignUp2 extends Component {
         <InputForm
           size="modal"
           id="createPassword"
-          placeholder={t("password")}
+          placeholder={t("common:password")}
           type="password"
           value={createPassword.value}
           onChange={this.handleChange}
