@@ -5,6 +5,9 @@ import signIn from "./fr-sign-in";
 import signUp from "./fr-sign-up";
 import discovery from "./fr-discovery";
 import appDownload from "./fr-app-download";
+import settings from "./fr-settings";
+import createGroup from "./fr-create-group";
+import modules from "./fr-modules";
 
 export default {
   common,
@@ -13,5 +16,8 @@ export default {
   signIn,
   signUp,
   discovery,
-  appDownload
+  appDownload,
+  settings,
+  createGroup,
+  modules
 };

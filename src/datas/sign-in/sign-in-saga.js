@@ -19,6 +19,7 @@ function* signOutRequestSaga() {
   try {
     yield call(signInApi.signOut);
     yield put(signInActions.signOutSuccess());
+    yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signInActions.signOutFailure(error));
   }

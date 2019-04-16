@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
-import SignUpContainer from "../../components/sign-up-container";
-import SignUpTitle from "../../components/sign-up-title";
+import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 import forbiddenPasswords from "./utils/forbidden-passwords";
@@ -24,6 +24,30 @@ class SignUp2 extends Component {
     setAppModalHeaderSteps({ currentStep: 2, steps: 2 });
     setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.finish });
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      isSignUpFetching,
+      t,
+      hideAppModal,
+      setAppModalHeaderLeftButton,
+      setAppModalHeaderRightButton,
+      setAppModalFooterButton
+    } = this.props;
+    if (prevProps.isSignUpFetching === isSignUpFetching) return;
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: !isSignUpFetching ? this.goToPrev : () => undefined
+    });
+    setAppModalHeaderRightButton({
+      icon: "times",
+      onClick: !isSignUpFetching ? hideAppModal : () => undefined
+    });
+    setAppModalFooterButton({
+      text: t("common:finish"),
+      onClick: !isSignUpFetching ? this.finish : () => undefined
+    });
   }
 
   goToPrev() {
@@ -75,10 +99,8 @@ class SignUp2 extends Component {
     return isSignUpFetching ? (
       <Loader />
     ) : (
-      <SignUpContainer>
-        <SignUpTitle type="h2" weight={700}>
-          {t("choosePassword")}
-        </SignUpTitle>
+      <AppModalSceneContainer>
+        <AppModalSceneTitle>{t("choosePassword")}</AppModalSceneTitle>
         <InputForm
           size="modal"
           id="createPassword"
@@ -97,7 +119,7 @@ class SignUp2 extends Component {
           onChange={this.handleChange}
           error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
         />
-      </SignUpContainer>
+      </AppModalSceneContainer>
     );
   }
 }
@@ -110,10 +132,12 @@ SignUp2.defaultProps = {
 SignUp2.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   isSignUpFetching: PropTypes.bool.isRequired,
+  hideAppModal: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,

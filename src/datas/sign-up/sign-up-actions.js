@@ -13,6 +13,19 @@ const signUpActions = {
     type: signUpActionsTypes.SIGN_UP_FAILURE,
     payload: error,
     error: true
+  }),
+  deleteAccountRequest: payload => ({
+    type: signUpActionsTypes.DELETE_ACCOUNT_REQUEST,
+    payload
+  }),
+  deleteAccountSuccess: () => ({
+    type: signUpActionsTypes.DELETE_ACCOUNT_SUCCESS,
+    payload: undefined
+  }),
+  deleteAccountFailure: error => ({
+    type: signUpActionsTypes.DELETE_ACCOUNT_FAILURE,
+    payload: error,
+    error: true
   })
 };
 

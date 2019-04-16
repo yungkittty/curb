@@ -9,6 +9,7 @@ import NavigationRule from "./components/navigation-rule";
 import ListFlat from "../list-flat";
 import NavigationListFooter from "./components/navigation-list-footer";
 import SignIn from "../../scenes/sign-in";
+import Settings from "../../scenes/settings";
 
 const AppNavigation = ({
   showAppModal,
@@ -67,7 +68,7 @@ const AppNavigation = ({
       icon="cog"
       size="small"
       color={theme.primaryColor}
-      onClick={() => undefined}
+      onClick={() => showAppModal({ scene: Settings })}
     />
   </NavigationContainer>
 );

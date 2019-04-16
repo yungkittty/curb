@@ -9,8 +9,10 @@ import DiscoveryListSectionHeader from "./components/discovery-list-section-head
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
+import SignIn from "../sign-in";
+import CreateGroup from "../create-group";
 
-const Discovery = ({ t, discoveryGroupsIds }) => (
+const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
   <React.Fragment>
     <DiscoveryContainer
       /* eslint-disable-next-line */
@@ -45,13 +47,18 @@ const Discovery = ({ t, discoveryGroupsIds }) => (
         />
       )}
     />
-    <ButtonIconFloat icon="plus" onClick={() => undefined} />
+    <ButtonIconFloat
+      icon="plus"
+      onClick={() => showAppModal({ scene: currentUserId ? CreateGroup : SignIn })}
+    />
   </React.Fragment>
 );
 
 Discovery.propTypes = {
   t: PropTypes.func.isRequired,
-  discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired
+  discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  showAppModal: PropTypes.func.isRequired
 };
 
 export default withTranslation("discovery")(Discovery);
