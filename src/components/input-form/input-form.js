@@ -13,10 +13,10 @@ class InputForm extends Component {
   }
 
   render() {
-    const { size, type, placeholder, value, onChange, id, error } = this.props;
+    const { style, size, type, placeholder, value, onChange, id, error } = this.props;
     const { focused } = this.state;
     return (
-      <FormContainer size={size}>
+      <FormContainer style={style} size={size}>
         <FormPlaceholder weight={300} upper={value !== "" || focused}>
           {placeholder}
         </FormPlaceholder>
@@ -40,12 +40,15 @@ class InputForm extends Component {
 }
 
 InputForm.defaultProps = {
+  style: undefined,
   size: undefined,
   type: undefined,
   error: undefined
 };
 
 InputForm.propTypes = {
+  // eslint-disable-next-line
+  style: PropTypes.object,
   size: PropTypes.oneOf(["modal"]),
   type: PropTypes.string,
   placeholder: PropTypes.string.isRequired,

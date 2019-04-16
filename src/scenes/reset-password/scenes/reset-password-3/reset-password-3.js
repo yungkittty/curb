@@ -114,6 +114,7 @@ class ResetPassword3 extends Component {
           {t("chooseNewPassword")}
         </AppModalSceneTitle>
         <InputForm
+          style={{ top: 30 }}
           size="modal"
           id="password"
           placeholder={t("common:password")}
@@ -123,6 +124,7 @@ class ResetPassword3 extends Component {
           error={password.error && t(`validation:password.${password.error}`)}
         />
         <InputForm
+          style={{ top: 30 }}
           size="modal"
           id="confirmPassword"
           placeholder={t("common:confirmPassword")}
