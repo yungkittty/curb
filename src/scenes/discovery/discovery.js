@@ -22,6 +22,7 @@ const Discovery = ({ t, discoveryGroupsIds }) => (
             {t("title")}
           </DiscoveryTitle>
           <DiscoverySubtitle type="h4">
+            {/* eslint-disable-line */}
             {t("subtitle")}
           </DiscoverySubtitle>
         </DiscoveryHeader>

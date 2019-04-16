@@ -6,8 +6,8 @@ import { usersActions, usersSelectors } from "../../datas/users";
 
 class ImageUserContainer extends React.Component {
   componentDidMount() {
-    const { userId, getUser } = this.props;
-    if (userId) {
+    const { hasBeenFetched, userId, getUser } = this.props;
+    if (!hasBeenFetched && userId) {
       getUser({ id: userId });
     }
   }
@@ -21,8 +21,8 @@ class ImageUserContainer extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const {
     isFetching: isUserFetching = ownProps.isUserFetching && true,
-    id: userId = ownProps.userId,
-    avatarUrl: userAvatarUrl = ownProps.userAvatarUrl || ""
+    id: userId = ownProps.userId || "",
+    avatarUrl: userAvatarUrl = ownProps.userAvatarUrl || "" // eslint-disable-line
   } = usersSelectors.getUserById(state, ownProps.userId) || {};
   return {
     isUserFetching,
@@ -35,14 +35,12 @@ const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(usersActions.getUserRequest(payload))
 });
 
-ImageUserContainer.defaultProps = {
-  isUserFetching: true,
-  userId: undefined
-};
+ImageUserContainer.defaultProps = { isUserFetching: true };
 
 ImageUserContainer.propTypes = {
+  hasBeenFetched: PropTypes.bool.isRequired,
   isUserFetching: PropTypes.bool,
-  userId: PropTypes.string,
+  userId: PropTypes.string.isRequired,
   getUser: PropTypes.func.isRequired
 };
 

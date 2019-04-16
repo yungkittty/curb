@@ -60,11 +60,16 @@ const ImageGroup = ({
             weight={700}
             style={{
               // eslint-disable-line
+              // user-pointer, user-select: none
               fontSize: X / 2,
               color: theme.backgroundColor
             }}
           >
-            {_.capitalize(groupName[0])}
+            {RegExp(
+              "^(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])$"
+            ).test(groupName.substr(0, 2))
+              ? groupName.substr(0, 2)
+              : _.capitalize(groupName[0])}
           </Text>
         )
       ) : null}

@@ -8,7 +8,8 @@ function* getUsersRequestSaga(action) {
     const { data: payload } = yield call(usersApi.getUser, action.payload);
     yield put(usersActions.getUserSuccess(payload));
   } catch (error) {
-    yield put(usersActions.getUserFailure(error));
+    const { code: errorCode = "" } = (error.response || {}).data;
+    yield put(usersActions.getUserFailure({ id: action.payload.id, errorCode }));
   }
 }
 

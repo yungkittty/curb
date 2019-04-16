@@ -5,11 +5,6 @@ import signUpReducer from "./sign-up-reducer";
 import signUpSaga from "./sign-up-saga";
 import signUpSelectors from "./sign-up-selectors";
 
-export {
-  signUpActionsTypes,
-  signUpActions,
-  signUpApi,
-  signUpReducer,
-  signUpSaga,
-  signUpSelectors
-};
+/** @todo merge with sign-in for account ? */
+
+export { signUpActionsTypes, signUpActions, signUpApi, signUpReducer, signUpSaga, signUpSelectors };

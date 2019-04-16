@@ -8,7 +8,8 @@ function* getGroupRequestSaga(action) {
     const { data: payload } = yield call(groupsApi.getGroup, action.payload);
     yield put(groupsActions.getGroupSuccess(payload));
   } catch (error) {
-    yield put(groupsActions.getGroupFailure(error));
+    const { code: errorCode = "" } = (error.response || {}).data;
+    yield put(groupsActions.getGroupFailure({ id: action.payload.id, errorCode }));
   }
 }
 

@@ -22,12 +22,14 @@ const DiscoveryListItem = ({
       <React.Fragment>
         <ImageGroup
           isGroupFetching={isDiscoveryGroupFetching}
+          groupId={discoveryGroupId}
           groupName={discoveryGroupName}
           groupAvatarUrl={discoveryGroupAvatarUrl}
           groupTheme={discoveryGroupTheme}
           size="medium"
           placeholderColor={theme.primaryVariantColor}
           style={{ marginBottom: platformBools.isReact ? 20 : 10 }}
+          hasBeenFetched
         />
         <ListItemTitle>{discoveryGroupName}</ListItemTitle>
       </React.Fragment>

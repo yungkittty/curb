@@ -6,8 +6,8 @@ import { groupsActions, groupsSelectors } from "../../datas/groups";
 
 class ImageGroupContainer extends React.Component {
   componentDidMount() {
-    const { groupId, getGroup } = this.props;
-    if (groupId) {
+    const { hasBeenFetched, groupId, getGroup } = this.props;
+    if (!hasBeenFetched && groupId) {
       getGroup({ id: groupId });
     }
   }
@@ -21,9 +21,9 @@ class ImageGroupContainer extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const {
     isFetching: isGroupFetching = ownProps.isGroupFetching && true,
-    id: groupId = ownProps.groupId,
+    id: groupId = ownProps.groupId || "",
     name: groupName = ownProps.groupName || "",
-    avatarUrl: groupAvatarUrl = ownProps.groupAvatarUrl || "",
+    _avatarUrl: groupAvatarUrl = ownProps._groupAvatarUrl || "", // eslint-disable-line
     theme: groupTheme = ownProps.groupTheme || ""
   } = groupsSelectors.getGroupById(state, ownProps.groupId) || {};
   return {
@@ -39,14 +39,12 @@ const mapDispatchToProps = dispatch => ({
   getGroup: payload => dispatch(groupsActions.getGroupRequest(payload))
 });
 
-ImageGroupContainer.defaultProps = {
-  isGroupFetching: true,
-  groupId: undefined
-};
+ImageGroupContainer.defaultProps = { isGroupFetching: true };
 
 ImageGroupContainer.propTypes = {
+  hasBeenFetched: PropTypes.bool.isRequired,
   isGroupFetching: PropTypes.bool,
-  groupId: PropTypes.string,
+  groupId: PropTypes.string.isRequired,
   getGroup: PropTypes.func.isRequired
 };
 

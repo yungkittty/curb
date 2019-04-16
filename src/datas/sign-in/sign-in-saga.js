@@ -10,7 +10,8 @@ function* signInRequestSaga(action) {
     yield put(signInActions.signInSuccess(payload));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    yield put(signInActions.signInFailure(error));
+    const { code: errorCode = "" } = (error.response || {}).data;
+    yield put(signInActions.signInFailure({ errorCode }));
   }
 }
 

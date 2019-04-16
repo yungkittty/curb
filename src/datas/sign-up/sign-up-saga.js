@@ -10,12 +10,11 @@ function* signUpRequestSaga(action) {
     yield put(signUpActions.signUpSuccess(payload));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    yield put(signUpActions.signUpFailure(error));
+    const { code: errorCode = "" } = (error.response || {}).data;
+    yield put(signUpActions.signUpFailure({ errorCode }));
   }
 }
 
-const signUpSaga = all([
-  takeLatest(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)
-]);
+const signUpSaga = all([takeLatest(signUpActionsTypes.SIGN_UP_REQUEST, signUpRequestSaga)]);
 
 export default signUpSaga;

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ButtonContainer from "../button-container";
+import GroupContainer from "./components/group-container";
 import ImageGroup from "../image-group";
 
 const ButtonImageGroup = ({
@@ -8,29 +8,45 @@ const ButtonImageGroup = ({
   className,
   style,
   contentImageStyle,
-  onClick,
   groupId,
+  size,
   ...others
 }) => (
-  <ButtonContainer className={className} style={style} onClick={onClick}>
-    <ImageGroup {...others} style={contentImageStyle} groupId={groupId} />
-  </ButtonContainer>
+  <GroupContainer
+    // eslint-disable-line
+    className={className}
+    style={style}
+    size={size}
+    onClick={`/groups/${groupId}`}
+  >
+    <ImageGroup
+      // eslint-disable-line
+      {...others}
+      style={contentImageStyle}
+      groupId={groupId}
+      size={size}
+    />
+  </GroupContainer>
 );
 
 ButtonImageGroup.defaultProps = {
   className: undefined,
   style: undefined,
-  contentImageStyle: undefined,
-  onClick: undefined,
-  groupId: undefined
+  contentImageStyle: undefined
 };
 
 ButtonImageGroup.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   contentImageStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
-  groupId: PropTypes.string
+  groupId: PropTypes.string.isRequired,
+  size: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large"
+  ]).isRequired
 };
 
 export default ButtonImageGroup;

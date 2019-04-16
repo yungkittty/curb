@@ -29,11 +29,12 @@ const AppNavigation = ({
     ) : (
       <ButtonImageUser
         isUserFetching={isCurrentUserFetching}
+        userId={currentUserId}
         userAvatarUrl={currentUserAvatarUrl}
         size="small"
         placeholderColor={theme.secondaryVariantColor}
-        onClick={`/users/${currentUserId}`}
         style={{ marginBottom: 10 }}
+        hasBeenFetched
       />
     )}
     <NavigationRule />
@@ -45,8 +46,8 @@ const AppNavigation = ({
           groupId={currentUserGroupId}
           size="small"
           placeholderColor={theme.secondaryVariantColor}
-          onClick={`/groups/${currentUserGroupId}`}
           style={{ marginBottom: 10 }}
+          hasBeenFetched={false}
         />
       )}
       ListFooterComponent={() => (

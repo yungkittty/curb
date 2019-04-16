@@ -49,6 +49,7 @@ const ImageUser = ({
             src={_.replace(userAvatarUrl, "medium", size)}
             style={{
               // eslint-disable-line
+              // user-pointer, user-select: none
               width: X,
               height: X
             }}

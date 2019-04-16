@@ -25,10 +25,10 @@ const byId = (state = {}, action) => {
     case usersActionsTypes.GET_USER_FAILURE:
       return {
         ...state,
-        [action.payload.config.data.id]: {
-          ...state[action.payload.config.data.id],
-          isFetching: true,
-          errorCode: action.payload.response.data.code
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          isFetching: false,
+          errorCode: action.payload.errorCode
         }
       };
     default:

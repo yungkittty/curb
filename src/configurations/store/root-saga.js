@@ -3,6 +3,7 @@ import { signInSaga } from "../../datas/sign-in";
 import { signUpSaga } from "../../datas/sign-up";
 import { usersSaga } from "../../datas/users";
 import { groupsSaga } from "../../datas/groups";
+import { mediasSaga } from "../../datas/medias";
 import { discoverySaga } from "../../datas/discovery";
 
 function* rootSaga() {
@@ -12,6 +13,7 @@ function* rootSaga() {
     signUpSaga,
     usersSaga,
     groupsSaga,
+    mediasSaga,
     discoverySaga
   ]);
 }

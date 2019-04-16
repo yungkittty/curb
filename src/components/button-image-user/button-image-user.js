@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ButtonContainer from "../button-container";
+import UserContainer from "./components/user-container";
 import ImageUser from "../image-user";
 
 const ButtonImageUser = ({
@@ -8,29 +8,45 @@ const ButtonImageUser = ({
   className,
   style,
   contentImageStyle,
-  onClick,
   userId,
+  size,
   ...others
 }) => (
-  <ButtonContainer className={className} style={style} onClick={onClick}>
-    <ImageUser {...others} style={contentImageStyle} userId={userId} />
-  </ButtonContainer>
+  <UserContainer
+    // eslint-disable-line
+    className={className}
+    style={style}
+    size={size}
+    onClick={`/users/${userId}`}
+  >
+    <ImageUser
+      // eslint-disable-line
+      {...others}
+      userId={userId}
+      style={contentImageStyle}
+      size={size}
+    />
+  </UserContainer>
 );
 
 ButtonImageUser.defaultProps = {
   className: undefined,
   style: undefined,
-  contentImageStyle: undefined,
-  onClick: undefined,
-  userId: undefined
+  contentImageStyle: undefined
 };
 
 ButtonImageUser.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   contentImageStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
-  userId: PropTypes.string
+  userId: PropTypes.string.isRequired,
+  size: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large"
+  ]).isRequired
 };
 
 export default ButtonImageUser;
