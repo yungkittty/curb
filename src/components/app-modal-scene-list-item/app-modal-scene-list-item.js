@@ -35,6 +35,7 @@ const AppModalSceneListItem = ({
         titleCentered={!icon && !description}
         description={description}
         disabled={disabled}
+        noIcon={icon === undefined}
       />
       {selectionType !== undefined && (
         <ItemSelection

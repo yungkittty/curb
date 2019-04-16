@@ -4,16 +4,12 @@ import PreviewContainer from "./components/preview-container";
 import PreviewTitle from "./components/preview-title";
 import PreviewDescription from "./components/preview-description";
 
-const ItemPreview = ({ title, titleColor, titleCentered, description, disabled }) => (
-  <PreviewContainer titleCentered={titleCentered}>
+const ItemPreview = ({ title, titleColor, titleCentered, description, disabled, noIcon }) => (
+  <PreviewContainer titleCentered={titleCentered} noIcon={noIcon}>
     <PreviewTitle titleColor={titleColor} titleCentered={titleCentered} disabled={disabled} weight={700}>
       {title}
     </PreviewTitle>
-    {!titleCentered && (
-      <PreviewDescription disabled={disabled} weight={400}>
-        {description}
-      </PreviewDescription>
-    )}
+    {!titleCentered && <PreviewDescription disabled={disabled}>{description}</PreviewDescription>}
   </PreviewContainer>
 );
 
@@ -29,7 +25,8 @@ ItemPreview.propTypes = {
   titleColor: PropTypes.string,
   titleCentered: PropTypes.bool,
   description: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  noIcon: PropTypes.bool.isRequired
 };
 
 export default ItemPreview;

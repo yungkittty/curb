@@ -35,7 +35,7 @@ class SignIn extends Component {
       onClick: !isSignInFetching ? hideAppModal : () => undefined
     });
     setAppModalFooterButton({
-      text: t("common:finish"),
+      text: t("signIn"),
       onClick: !isSignInFetching ? this.submit : () => undefined
     });
   }
