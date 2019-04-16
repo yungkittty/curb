@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
-import ResetPasswordContainer from "../../components/reset-password-container";
-import ResetPasswordTitle from "../../components/reset-password-title";
+import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 import forbiddenPasswords from "../../../../utils/forbidden-passwords";
@@ -109,10 +109,10 @@ class ResetPassword3 extends Component {
     return isAccountResetPassFetching ? (
       <Loader />
     ) : (
-      <ResetPasswordContainer>
-        <ResetPasswordTitle type="h2" weight={700}>
+      <AppModalSceneContainer verticalAlign>
+        <AppModalSceneTitle style={{ position: "absolute", top: 0 }}>
           {t("chooseNewPassword")}
-        </ResetPasswordTitle>
+        </AppModalSceneTitle>
         <InputForm
           size="modal"
           id="password"
@@ -131,7 +131,7 @@ class ResetPassword3 extends Component {
           onChange={this.handleChange}
           error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}
         />
-      </ResetPasswordContainer>
+      </AppModalSceneContainer>
     );
   }
 }

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
-import ResetPasswordContainer from "../../components/reset-password-container";
-import ResetPasswordTitle from "../../components/reset-password-title";
+import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 // eslint-disable-next-line
@@ -93,10 +93,10 @@ class ResetPassword1 extends Component {
     return isAccountRequestCodeFetching ? (
       <Loader />
     ) : (
-      <ResetPasswordContainer>
-        <ResetPasswordTitle type="h2" weight={700}>
+      <AppModalSceneContainer verticalAlign>
+        <AppModalSceneTitle style={{ position: "absolute", top: 0 }}>
           {t("enterYourEmail")}
-        </ResetPasswordTitle>
+        </AppModalSceneTitle>
         <InputForm
           size="modal"
           id="email"
@@ -112,7 +112,7 @@ class ResetPassword1 extends Component {
               : undefined
           }
         />
-      </ResetPasswordContainer>
+      </AppModalSceneContainer>
     );
   }
 }

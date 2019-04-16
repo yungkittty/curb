@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
-import ResetPasswordContainer from "../../components/reset-password-container";
-import ResetPasswordTitle from "../../components/reset-password-title";
+import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputCode from "../../../../components/input-code";
 // eslint-disable-next-line
 import ResetPassword1 from "../reset-password-1";
@@ -82,10 +82,8 @@ class ResetPassword2 extends Component {
     return isAccountValidateCodeFetching ? (
       <Loader />
     ) : (
-      <ResetPasswordContainer>
-        <ResetPasswordTitle type="h2" weight={700}>
-          {t("enterCode")}
-        </ResetPasswordTitle>
+      <AppModalSceneContainer verticalAlign>
+        <AppModalSceneTitle style={{ position: "absolute", top: 0 }}>{t("enterCode")}</AppModalSceneTitle>
         <InputCode
           id="code"
           fields={6}
@@ -97,7 +95,7 @@ class ResetPassword2 extends Component {
               : undefined
           }
         />
-      </ResetPasswordContainer>
+      </AppModalSceneContainer>
     );
   }
 }
