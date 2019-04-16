@@ -6,7 +6,7 @@ import AppModalSceneContainer from "../../../../components/app-modal-scene-conta
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
-import forbiddenPasswords from "./utils/forbidden-passwords";
+import forbiddenPasswords from "../../../../utils/forbidden-passwords";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
 

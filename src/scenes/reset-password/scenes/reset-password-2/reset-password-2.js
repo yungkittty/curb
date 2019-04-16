@@ -14,25 +14,55 @@ class ResetPassword2 extends Component {
 
     const { setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalScene } = props;
 
+    this.state = { showErrorCode: false };
+
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.validate = this.validate.bind(this);
+    this.focusFirstNode = this.focusFirstNode.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 2, steps: 3 });
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
       onClick: () => setAppModalScene({ scene: ResetPassword1, direction: -1 })
     });
+
+    this.inputCode = React.createRef();
+    setTimeout(() => this.focusFirstNode(), 450);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { isAccountValidateCodeFetching } = this.props;
+    return !nextProps.isAccountValidateCodeSuccess || !isAccountValidateCodeFetching;
+  }
+
+  componentDidUpdate(prevProps) {
+    const { showErrorCode } = this.state;
+    const { accountValidateCodeErrorCode, setAppModalButtonsEnabled } = this.props;
+    if (!showErrorCode && accountValidateCodeErrorCode && prevProps.isAccountValidateCodeFetching) {
+      // eslint-disable-next-line
+      this.setState({ showErrorCode: true });
+      setAppModalButtonsEnabled({ enabled: true });
+      this.focusFirstNode();
+    }
+  }
+
+  focusFirstNode() {
+    const { current: inputCode } = this.inputCode;
+    inputCode.focusFirstNode();
   }
 
   submit(code) {
-    const { validateCode, email } = this.props;
+    const { validateCode, email, setAppModalButtonsEnabled } = this.props;
 
     validateCode({ code, email: email.value });
+    setAppModalButtonsEnabled({ enabled: false });
   }
 
   checkInput(id, value) {
     const { setAppModalSceneData, [id]: Y } = this.props;
+    const { showErrorCode } = this.state;
+
+    if (showErrorCode) this.setState({ showErrorCode: false });
 
     const error = value.length === 0 ? "missing" : undefined;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
@@ -46,16 +76,27 @@ class ResetPassword2 extends Component {
   }
 
   render() {
-    const { isAccountFetching, t } = this.props;
+    const { isAccountValidateCodeFetching, accountValidateCodeErrorCode, t } = this.props;
+    const { showErrorCode } = this.state;
 
-    return isAccountFetching ? (
+    return isAccountValidateCodeFetching ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
         <ResetPasswordTitle type="h2" weight={700}>
           {t("enterCode")}
         </ResetPasswordTitle>
-        <InputCode id="code" fields={6} onChange={this.handleChange} />
+        <InputCode
+          id="code"
+          fields={6}
+          ref={this.inputCode}
+          onChange={this.handleChange}
+          error={
+            showErrorCode && accountValidateCodeErrorCode
+              ? t(`validation:resetPassCode.${accountValidateCodeErrorCode}`)
+              : undefined
+          }
+        />
       </ResetPasswordContainer>
     );
   }
@@ -67,7 +108,10 @@ ResetPassword2.defaultProps = {
 };
 
 ResetPassword2.propTypes = {
-  isAccountFetching: PropTypes.bool.isRequired,
+  isAccountValidateCodeFetching: PropTypes.bool.isRequired,
+  isAccountValidateCodeSuccess: PropTypes.bool.isRequired,
+  accountValidateCodeErrorCode: PropTypes.string.isRequired,
+  setAppModalButtonsEnabled: PropTypes.func.isRequired,
   code: PropTypes.shape({ value: PropTypes.string }),
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,

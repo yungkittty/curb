@@ -21,10 +21,11 @@ class ResetPassword1 extends Component {
       t
     } = props;
 
+    this.state = { showErrorCode: false };
+
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.validate = this.validate.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 1, steps: 3 });
     setAppModalHeaderLeftButton({
@@ -33,17 +34,31 @@ class ResetPassword1 extends Component {
     });
     setAppModalFooterButton({
       text: t("sendEmail"),
-      onClick: this.validate
+      onClick: this.submit
     });
   }
 
-  validate() {
-    if (this.checkForm()) this.submit();
+  shouldComponentUpdate(nextProps) {
+    const { isAccountRequestCodeFetching } = this.props;
+    return !nextProps.isAccountRequestCodeSuccess || !isAccountRequestCodeFetching;
+  }
+
+  componentDidUpdate(prevProps) {
+    const { showErrorCode } = this.state;
+    const { accountRequestCodeErrorCode, setAppModalButtonsEnabled } = this.props;
+    /* eslint-disable */
+    if (!showErrorCode && accountRequestCodeErrorCode && prevProps.isAccountRequestCodeFetching) {
+      // eslint-disable-next-line
+      this.setState({ showErrorCode: true });
+      setAppModalButtonsEnabled({ enabled: true });
+    }
   }
 
   submit() {
-    const { emailResetPass, email } = this.props;
-    emailResetPass({ email: email.value });
+    const { requestCode, email, setAppModalButtonsEnabled } = this.props;
+    if (!this.checkForm()) return;
+    requestCode({ email: email.value });
+    setAppModalButtonsEnabled({ enabled: false });
   }
 
   checkForm() {
@@ -55,6 +70,9 @@ class ResetPassword1 extends Component {
 
   checkInput(id, value) {
     const { setAppModalSceneData, [id]: Y } = this.props;
+    const { showErrorCode } = this.state;
+
+    if (showErrorCode) this.setState({ showErrorCode: false });
 
     let error = value.length === 0 ? "missing" : undefined;
     if (error === undefined && id === "email")
@@ -69,9 +87,10 @@ class ResetPassword1 extends Component {
   }
 
   render() {
-    const { isAccountFetching, email, t } = this.props;
+    const { isAccountRequestCodeFetching, accountRequestCodeErrorCode, email, t } = this.props;
+    const { showErrorCode } = this.state;
 
-    return isAccountFetching ? (
+    return isAccountRequestCodeFetching ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
@@ -84,7 +103,14 @@ class ResetPassword1 extends Component {
           placeholder={t("common:email")}
           value={email.value}
           onChange={this.handleChange}
-          error={email.error && t(`validation:email.${email.error}`)}
+          error={
+            // eslint-disable-next-line
+            email.error
+              ? t(`validation:email.${email.error}`)
+              : showErrorCode && accountRequestCodeErrorCode
+              ? t(`validation:email.${accountRequestCodeErrorCode}`)
+              : undefined
+          }
         />
       </ResetPasswordContainer>
     );
@@ -96,10 +122,13 @@ ResetPassword1.defaultProps = {
 };
 
 ResetPassword1.propTypes = {
-  isAccountFetching: PropTypes.bool.isRequired,
+  isAccountRequestCodeFetching: PropTypes.bool.isRequired,
+  isAccountRequestCodeSuccess: PropTypes.bool.isRequired,
+  accountRequestCodeErrorCode: PropTypes.string.isRequired,
+  setAppModalButtonsEnabled: PropTypes.func.isRequired,
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
-  emailResetPass: PropTypes.func.isRequired,
+  requestCode: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,

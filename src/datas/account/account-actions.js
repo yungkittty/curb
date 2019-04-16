@@ -1,16 +1,16 @@
 import accountActionsTypes from "./account-actions-types";
 
 const accountActions = {
-  emailResetPassRequest: payload => ({
-    type: accountActionsTypes.EMAIL_RESETPASS_REQUEST,
+  requestCodeRequest: payload => ({
+    type: accountActionsTypes.REQUEST_CODE_REQUEST,
     payload
   }),
-  emailResetPassSuccess: () => ({
-    type: accountActionsTypes.EMAIL_RESETPASS_SUCCESS,
+  requestCodeSuccess: () => ({
+    type: accountActionsTypes.REQUEST_CODE_SUCCESS,
     payload: undefined
   }),
-  emailResetPassFailure: error => ({
-    type: accountActionsTypes.EMAIL_RESETPASS_FAILURE,
+  requestCodeFailure: error => ({
+    type: accountActionsTypes.REQUEST_CODE_FAILURE,
     payload: error,
     error: true
   }),

@@ -3,6 +3,7 @@ import appModalActionsTypes from "./app-modal-actions-types";
 
 const initialState = {
   isShowed: false,
+  isButtonsEnabled: true,
   headerText: "",
   headerCurrentStep: 0,
   headerSteps: 0,
@@ -23,6 +24,10 @@ const appModalReducer = (state = initialState, action) => {
       return _.assign({}, initialState, {
         isShowed: true,
         scene: action.payload.scene
+      });
+    case appModalActionsTypes.SET_APP_MODAL_BUTTONS_ENABLED:
+      return _.assign({}, state, {
+        isButtonsEnabled: action.payload.enabled
       });
     case appModalActionsTypes.SET_APP_MODAL_HEADER_TEXT:
       return _.assign({}, state, {
@@ -46,6 +51,7 @@ const appModalReducer = (state = initialState, action) => {
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
       return _.assign({}, initialState, {
         isShowed: true,
+        isButtonsEnabled: true,
         scene: action.payload.scene,
         sceneDirection: action.payload.direction,
         sceneData: state.sceneData

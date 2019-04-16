@@ -6,11 +6,14 @@ import { accountActions, accountSelectors } from "../../../../datas/account";
 import { appModalActions } from "../../../../datas/app-modal";
 
 const mapStateToProps = state => ({
-  isAccountFetching: accountSelectors.isAccountFetching(state) || false
+  isAccountRequestCodeFetching: accountSelectors.isAccountRequestCodeFetching(state) || false,
+  isAccountRequestCodeSuccess: accountSelectors.isAccountRequestCodeSuccess(state) || false,
+  accountRequestCodeErrorCode: accountSelectors.getAccountRequestCodeErrorCode(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
-  emailResetPass: payload => dispatch(accountActions.emailResetPassRequest(payload)),
+  requestCode: payload => dispatch(accountActions.requestCodeRequest(payload)),
+  setAppModalButtonsEnabled: payload => dispatch(appModalActions.setAppModalButtonsEnabled(payload)),
   setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),

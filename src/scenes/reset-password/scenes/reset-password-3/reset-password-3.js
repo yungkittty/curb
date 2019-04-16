@@ -5,6 +5,8 @@ import Loader from "../../../../components/loader";
 import ResetPasswordContainer from "../../components/reset-password-container";
 import ResetPasswordTitle from "../../components/reset-password-title";
 import InputForm from "../../../../components/input-form";
+import inputRegex from "../../../../utils/input-regex";
+import forbiddenPasswords from "../../../../utils/forbidden-passwords";
 // eslint-disable-next-line
 import ResetPassword2 from "../reset-password-2";
 
@@ -20,10 +22,11 @@ class ResetPassword3 extends Component {
       t
     } = props;
 
+    this.state = { showErrorCode: false };
+
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.validate = this.validate.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 3, steps: 3 });
     setAppModalHeaderLeftButton({
@@ -32,22 +35,34 @@ class ResetPassword3 extends Component {
     });
     setAppModalFooterButton({
       text: t("resetPass"),
-      onClick: this.validate
+      onClick: this.submit
     });
   }
 
-  validate() {
-    if (this.checkForm()) this.submit();
+  shouldComponentUpdate(nextProps) {
+    const { isAccountResetPassFetching } = this.props;
+    return !nextProps.isAccountResetPassSuccess || !isAccountResetPassFetching;
+  }
+
+  componentDidUpdate(prevProps) {
+    const { showErrorCode } = this.state;
+    const { accountResetPassErrorCode, setAppModalButtonsEnabled } = this.props;
+    if (!showErrorCode && accountResetPassErrorCode && prevProps.isAccountResetPassFetching) {
+      // eslint-disable-next-line
+      this.setState({ showErrorCode: true });
+      setAppModalButtonsEnabled({ enabled: true });
+    }
   }
 
   submit() {
-    const { resetPass, email, code, password } = this.props;
-
+    const { resetPass, email, code, password, setAppModalButtonsEnabled } = this.props;
+    if (!this.checkForm()) return;
     resetPass({
       email: email.value,
       code: code.value,
       password: password.value
     });
+    setAppModalButtonsEnabled({ enabled: false });
   }
 
   checkForm() {
@@ -61,6 +76,9 @@ class ResetPassword3 extends Component {
 
   checkInput(id, value) {
     const { password, setAppModalSceneData, [id]: Y } = this.props;
+    const { showErrorCode } = this.state;
+
+    if (showErrorCode) this.setState({ showErrorCode: false });
 
     const error =
       /* eslint-disable */
@@ -86,9 +104,9 @@ class ResetPassword3 extends Component {
   }
 
   render() {
-    const { isAccountFetching, password, confirmPassword, t } = this.props;
+    const { isAccountResetPassFetching, password, confirmPassword, t } = this.props;
 
-    return isAccountFetching ? (
+    return isAccountResetPassFetching ? (
       <Loader />
     ) : (
       <ResetPasswordContainer>
@@ -126,7 +144,10 @@ ResetPassword3.defaultProps = {
 };
 
 ResetPassword3.propTypes = {
-  isAccountFetching: PropTypes.bool.isRequired,
+  isAccountResetPassFetching: PropTypes.bool.isRequired,
+  isAccountResetPassSuccess: PropTypes.bool.isRequired,
+  accountResetPassErrorCode: PropTypes.string.isRequired,
+  setAppModalButtonsEnabled: PropTypes.func.isRequired,
   email: PropTypes.shape({ value: PropTypes.string }),
   code: PropTypes.shape({ value: PropTypes.string }),
   password: PropTypes.shape({ value: PropTypes.string }),

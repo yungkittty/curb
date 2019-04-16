@@ -9,10 +9,10 @@ import ResetPassword2 from "../../scenes/reset-password/scenes/reset-password-2"
 import ResetPassword3 from "../../scenes/reset-password/scenes/reset-password-3";
 /* eslint-enable */
 
-function* emailResetPassRequestSaga(action) {
+function* requestCodeRequestSaga(action) {
   try {
-    yield call(accountApi.emailResetPass, action.payload);
-    yield put(accountActions.emailResetPassSuccess());
+    yield call(accountApi.requestCode, action.payload);
+    yield put(accountActions.requestCodeSuccess());
     yield put(
       appModalActions.setAppModalScene({
         scene: ResetPassword2,
@@ -20,7 +20,7 @@ function* emailResetPassRequestSaga(action) {
       })
     );
   } catch (error) {
-    yield put(accountActions.emailResetPassFailure(error));
+    yield put(accountActions.requestCodeFailure(error));
   }
 }
 
@@ -52,7 +52,7 @@ function* resetPassRequestSaga(action) {
 }
 
 const accountSaga = all([
-  takeLatest(accountActionsTypes.EMAIL_RESETPASS_REQUEST, emailResetPassRequestSaga),
+  takeLatest(accountActionsTypes.REQUEST_CODE_REQUEST, requestCodeRequestSaga),
   takeLatest(accountActionsTypes.VALIDATE_CODE_REQUEST, validateCodeRequestSaga),
   takeLatest(accountActionsTypes.RESET_PASS_REQUEST, resetPassRequestSaga)
 ]);

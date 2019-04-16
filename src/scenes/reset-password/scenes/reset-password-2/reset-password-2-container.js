@@ -6,11 +6,14 @@ import { accountActions, accountSelectors } from "../../../../datas/account";
 import { appModalActions } from "../../../../datas/app-modal";
 
 const mapStateToProps = state => ({
-  isAccountFetching: accountSelectors.isAccountFetching(state) || false
+  isAccountValidateCodeFetching: accountSelectors.isAccountValidateCodeFetching(state) || false,
+  isAccountValidateCodeSuccess: accountSelectors.isAccountValidateCodeSuccess(state) || false,
+  accountValidateCodeErrorCode: accountSelectors.getAccountValidateCodeErrorCode(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
   validateCode: payload => dispatch(accountActions.validateCodeRequest(payload)),
+  setAppModalButtonsEnabled: payload => dispatch(appModalActions.setAppModalButtonsEnabled(payload)),
   setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
