@@ -8,13 +8,16 @@ const PreviewContainer = styled(Container)`
   flex-direction: column;
   flex: 1;
 
-  ${({ titleCentered }) =>
+  ${({ titleCentered, noIcon }) =>
+    // eslint-disable-next-line
     titleCentered
       ? ` margin-left: 0px;
           align-items: center;
           justify-content: center;
           width: 100%;
           height: 100%;`
+      : noIcon
+      ? `margin-left: 24px;`
       : ""};
 `;
 
