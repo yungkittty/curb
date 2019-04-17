@@ -15,7 +15,7 @@ jobs:
   include:
     - stage: Web
       install:
-        - npm install -g netlify-cli@next
+        - npm install -g netlify-cli@2.11.7
       before_script:
         - npm run web-bundle:${CURB_BUILD} || travis_terminate 1
       script:
