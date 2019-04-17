@@ -38,7 +38,7 @@ function* postGroupRequestSaga(action) {
 
 function* postGroupAvatarRequestSaga(action) {
   try {
-    const respond = yield call(groupsApi.postGroupAvatar, { payload: action.payload });
+    const respond = yield call(groupsApi.postGroupAvatar, action.payload);
     yield put(groupsActions.postGroupAvatarSuccess(respond));
   } catch (error) {
     yield put(groupsActions.postGroupAvatarFailure(error));
