@@ -56,9 +56,10 @@ class SignUp2 extends Component {
   }
 
   finish() {
-    const { isSignUpFetching, signUp, name, email, createPassword } = this.props;
-    if (!isSignUpFetching && this.checkForm()) {
-      signUp({ name: name.value, email: email.value, password: createPassword.value });
+    const { isSignUpFetching, signUp, name, email, createPassword, avatar } = this.props;
+    if (!this.checkForm()) return;
+    if (!isSignUpFetching) {
+      signUp({ name: name.value, email: email.value, password: createPassword.value, avatar: avatar.value });
     }
   }
 

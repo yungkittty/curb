@@ -14,17 +14,7 @@ class InputForm extends Component {
   }
 
   render() {
-    const {
-      containerStyle,
-      textStyle,
-      placeholder,
-      readOnly,
-      size,
-      type,
-      error,
-      value,
-      ...others
-    } = this.props;
+    const { containerStyle, textStyle, placeholder, readOnly, size, error, value, ...others } = this.props;
     const { focused } = this.state;
 
     return (
@@ -63,7 +53,6 @@ InputForm.defaultProps = {
   textStyle: undefined,
   readOnly: false,
   size: undefined,
-  type: undefined,
   placeholder: undefined,
   error: undefined
 };
@@ -75,7 +64,6 @@ InputForm.propTypes = {
   textStyle: PropTypes.object,
   readOnly: PropTypes.bool,
   size: PropTypes.oneOf(["modal"]),
-  type: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
