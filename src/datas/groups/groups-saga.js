@@ -23,10 +23,10 @@ function* postGroupRequestSaga(action) {
       yield put(
         groupsActions.postGroupAvatarRequest({
           id: payload.id,
-          avatar: avatar.file
+          avatar
         })
       );
-      yield take("POST_GROUP_AVATAR_SUCCESS");
+      yield take(groupsActionsTypes.POST_GROUP_AVATAR_SUCCESS);
     }
     yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
     yield put(appModalActions.hideAppModal());

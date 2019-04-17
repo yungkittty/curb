@@ -1,7 +1,7 @@
 import { all, takeLatest, select, call, take, put } from "redux-saga/effects";
 import { currentUserSelectors } from "../current-user";
 import appModalActions from "../app-modal/app-modal-actions";
-import signInActions from "../sign-in/sign-in-actions";
+import usersActionsTypes from "../users/users-actions-types";
 import usersActions from "../users/users-actions";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
@@ -11,7 +11,6 @@ function* signUpRequestSaga(action) {
   try {
     const { name, email, password, avatar } = action.payload;
     const { data: payload } = yield call(signUpApi.signUp, { name, email, password });
-    yield put(signInActions.signInRequest({ email, password }));
     if (avatar) {
       yield put(
         usersActions.postUserAvatarRequest({
@@ -19,9 +18,9 @@ function* signUpRequestSaga(action) {
           avatar
         })
       );
-      yield take("POST_USER_AVATAR_SUCCESS");
+      yield take(usersActionsTypes.POST_USER_AVATAR_SUCCESS);
     }
-    yield put(signUpActions.signUpSuccess());
+    yield put(signUpActions.signUpSuccess(payload));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signUpActions.signUpFailure(error));

@@ -5,7 +5,7 @@ const groupsApi = {
   postGroupAvatar: ({ id, avatar }) => {
     const data = new FormData();
     data.append("file", avatar);
-    axios.post(`/contents/avatars/groups/${id}`, data, { withCredentials: true });
+    return axios.post(`/contents/avatars/groups/${id}`, data, { withCredentials: true });
   },
   getGroup: ({ id }) => axios.get(`/groups/${id}`, { withCredentials: true })
 };

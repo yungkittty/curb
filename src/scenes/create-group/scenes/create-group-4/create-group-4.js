@@ -72,7 +72,6 @@ class CreateGroup4 extends Component {
       return;
     }
 
-    console.log(this.props);
     const { postGroup, history, groupName, discoverability, modules, groupTheme, avatar } = this.props;
     postGroup({
       history,
@@ -80,7 +79,7 @@ class CreateGroup4 extends Component {
       status: discoverability.value,
       mediaTypes: modules.value,
       theme: groupTheme.value,
-      avatar: avatar.value
+      avatar: avatar.value.file
     });
   }
 
