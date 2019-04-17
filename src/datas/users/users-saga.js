@@ -16,10 +16,7 @@ function* getUsersRequestSaga(action) {
 function* patchUsersRequestSaga(action) {
   try {
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    const respond = yield call(usersApi.patchUser, {
-      id: currentUserId,
-      payload: action.payload
-    });
+    const respond = yield call(usersApi.patchUser, { id: currentUserId, payload: action.payload });
     yield put(usersActions.patchUserSuccess(respond));
   } catch (error) {
     yield put(usersActions.patchUserFailure(error));
@@ -29,15 +26,7 @@ function* patchUsersRequestSaga(action) {
 function* postUsersAvatarRequestSaga(action) {
   try {
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    const respond = yield call(
-      usersApi.postUserAvatar,
-      action.payload.id
-        ? action.payload
-        : {
-            id: currentUserId,
-            payload: action.payload
-          }
-    );
+    const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
     yield put(usersActions.postUserAvatarSuccess(respond));
   } catch (error) {
     yield put(usersActions.postUserAvatarError(error));

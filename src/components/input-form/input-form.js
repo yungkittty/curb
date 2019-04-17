@@ -4,6 +4,7 @@ import FormContainer from "./components/form-container";
 import FormPlaceholder from "./components/form-placeholder";
 import FormInput from "./components/form-input";
 import FormError from "./components/form-error";
+import Text from "../text";
 
 class InputForm extends Component {
   constructor(props) {
@@ -13,22 +14,40 @@ class InputForm extends Component {
   }
 
   render() {
-    const { size, type, placeholder, value, onChange, id, error } = this.props;
+    const {
+      containerStyle,
+      textStyle,
+      placeholder,
+      readOnly,
+      size,
+      type,
+      error,
+      value,
+      ...others
+    } = this.props;
     const { focused } = this.state;
+
     return (
-      <FormContainer size={size}>
-        <FormPlaceholder weight={300} upper={value !== "" || focused}>
-          {placeholder}
-        </FormPlaceholder>
-        <FormInput
-          onFocus={() => this.setState({ focused: true })}
-          onBlur={() => this.setState({ focused: false })}
-          type={type}
-          value={value}
-          onChange={onChange}
-          id={id}
-          error={error}
-        />
+      <FormContainer style={containerStyle} size={size} readOnly={readOnly}>
+        {readOnly ? (
+          <Text style={textStyle}>{value}</Text>
+        ) : (
+          <React.Fragment>
+            {placeholder && (
+              <FormPlaceholder weight={300} upper={value !== "" || focused}>
+                {placeholder}
+              </FormPlaceholder>
+            )}
+            <FormInput
+              onFocus={() => this.setState({ focused: true })}
+              onBlur={() => this.setState({ focused: false })}
+              style={textStyle}
+              value={value}
+              error={error}
+              {...others}
+            />
+          </React.Fragment>
+        )}
         {error && (
           <FormError type="h5" weight={300}>
             {error}
@@ -40,15 +59,24 @@ class InputForm extends Component {
 }
 
 InputForm.defaultProps = {
+  containerStyle: undefined,
+  textStyle: undefined,
+  readOnly: false,
   size: undefined,
   type: undefined,
+  placeholder: undefined,
   error: undefined
 };
 
 InputForm.propTypes = {
+  // eslint-disable-next-line
+  containerStyle: PropTypes.object,
+  // eslint-disable-next-line
+  textStyle: PropTypes.object,
+  readOnly: PropTypes.bool,
   size: PropTypes.oneOf(["modal"]),
   type: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

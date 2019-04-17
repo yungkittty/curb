@@ -13,6 +13,7 @@ const Input = styled(({ type, onChange, id, ...others }) => (
   />
 ))`
   font-family: "Montserrat-Regular";
+  color: ${({ theme }) => theme.fontColor}
   padding: 16px;
   font-size: 16px;
 `;

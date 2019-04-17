@@ -29,9 +29,8 @@ const mapStateToProps = (state, props) => {
       params: { id }
     }
   } = props;
+  const { avatarUrl = "", name: username = "" } = usersSelectors.getUserById(state, id) || {};
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
-  const { avatarUrl = "", name: username = "" } =
-    usersSelectors.getUserById(state, id) || {};
   return {
     owner: currentUserId === id,
     username,
@@ -42,8 +41,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(usersActions.getUserRequest(payload)),
   patchCurrentUser: payload => dispatch(usersActions.patchUserRequest(payload)),
-  postUserAvatar: payload =>
-    dispatch(usersActions.postUserAvatarRequest(payload))
+  postUserAvatar: payload => dispatch(usersActions.postUserAvatarRequest(payload))
 });
 
 UserContainer.propTypes = {

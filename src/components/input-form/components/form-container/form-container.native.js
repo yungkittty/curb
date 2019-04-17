@@ -12,6 +12,7 @@ const FormContainer = styled(Container)`
   }}px;
   position: relative;
   margin-bottom: 42px;
+  ${({ readOnly }) => readOnly && "padding: 18px 18px 19px 18px;"}
 `;
 
 export default FormContainer;
