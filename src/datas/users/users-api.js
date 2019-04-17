@@ -8,7 +8,7 @@ const usersApi = {
     }),
   postUserAvatar: ({ id, payload }) => {
     const data = new FormData();
-    data.append("file", payload.avatar.file || payload.avatar);
+    data.append("file", payload.avatar);
     axios.post(`/contents/avatars/users/${payload.id || id}`, data, { withCredentials: true });
   }
 };
