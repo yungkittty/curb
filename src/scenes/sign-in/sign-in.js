@@ -22,22 +22,9 @@ class SignIn extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      isSignInFetching,
-      t,
-      hideAppModal,
-      setAppModalHeaderRightButton,
-      setAppModalFooterButton
-    } = this.props;
+    const { isSignInFetching, setAppModalButtonsEnabled } = this.props;
     if (prevProps.isSignInFetching === isSignInFetching) return;
-    setAppModalHeaderRightButton({
-      icon: "times",
-      onClick: !isSignInFetching ? hideAppModal : () => undefined
-    });
-    setAppModalFooterButton({
-      text: t("signIn"),
-      onClick: !isSignInFetching ? this.submit : () => undefined
-    });
+    setAppModalButtonsEnabled({ enabled: !isSignInFetching });
   }
 
   submit() {
@@ -84,7 +71,7 @@ SignIn.defaultProps = {
 };
 
 SignIn.propTypes = {
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
+  setAppModalButtonsEnabled: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,

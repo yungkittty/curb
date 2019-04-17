@@ -34,6 +34,12 @@ class GeneralDeleteAccount extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    const { isSignUpFetching, setAppModalButtonsEnabled } = this.props;
+    if (prevProps.isSignUpFetching === isSignUpFetching) return;
+    setAppModalButtonsEnabled({ enabled: !isSignUpFetching });
+  }
+
   deleteAccount() {
     const { deleteAccount } = this.props;
     deleteAccount();
@@ -56,6 +62,7 @@ class GeneralDeleteAccount extends Component {
 }
 
 GeneralDeleteAccount.propTypes = {
+  setAppModalButtonsEnabled: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   isSignUpFetching: PropTypes.bool.isRequired,
   deleteAccount: PropTypes.func.isRequired,

@@ -27,27 +27,9 @@ class SignUp2 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      isSignUpFetching,
-      t,
-      hideAppModal,
-      setAppModalHeaderLeftButton,
-      setAppModalHeaderRightButton,
-      setAppModalFooterButton
-    } = this.props;
+    const { isSignUpFetching, setAppModalButtonsEnabled } = this.props;
     if (prevProps.isSignUpFetching === isSignUpFetching) return;
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: !isSignUpFetching ? this.goToPrev : () => undefined
-    });
-    setAppModalHeaderRightButton({
-      icon: "times",
-      onClick: !isSignUpFetching ? hideAppModal : () => undefined
-    });
-    setAppModalFooterButton({
-      text: t("common:finish"),
-      onClick: !isSignUpFetching ? this.finish : () => undefined
-    });
+    setAppModalButtonsEnabled({ enabled: !isSignUpFetching });
   }
 
   goToPrev() {
@@ -130,9 +112,9 @@ SignUp2.defaultProps = {
 };
 
 SignUp2.propTypes = {
+  setAppModalButtonsEnabled: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
