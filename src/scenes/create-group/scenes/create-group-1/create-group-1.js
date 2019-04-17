@@ -89,10 +89,7 @@ CreateGroup1.propTypes = {
     value: PropTypes.string,
     error: PropTypes.string
   }),
-  avatar: PropTypes.shape({
-    value: PropTypes.object.isRequired,
-    error: PropTypes.string
-  }),
+  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

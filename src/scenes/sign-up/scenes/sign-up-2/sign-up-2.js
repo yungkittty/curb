@@ -150,7 +150,7 @@ SignUp2.propTypes = {
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   createPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  avatar: PropTypes.shape({ value: { src: PropTypes.object } }),
+  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

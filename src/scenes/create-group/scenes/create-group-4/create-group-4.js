@@ -167,11 +167,7 @@ CreateGroup4.propTypes = {
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
   history: PropTypes.object.isRequired,
-  avatar: PropTypes.shape({
-    // eslint-disable-next-line
-    value: PropTypes.object.isRequired,
-    error: PropTypes.string
-  }),
+  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
   groupName: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
