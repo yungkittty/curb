@@ -100,6 +100,7 @@ class ResetPassword1 extends Component {
         <InputForm
           size="modal"
           id="email"
+          type="email"
           placeholder={t("common:email")}
           value={email.value}
           onChange={this.handleChange}
