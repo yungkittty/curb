@@ -80,6 +80,7 @@ class User extends Component {
           onSelect={this.handleChange}
         />
         <InputForm
+          id="username"
           readOnly={!editMode}
           containerStyle={{ marginTop: 64, textAlign: "center" }}
           textStyle={{
@@ -87,8 +88,7 @@ class User extends Component {
             fontFamily: "Montserrat-Bold",
             textAlign: "center"
           }}
-          id="username"
-          value={usernameState.value !== undefined ? usernameState.value : usernameProps}
+          value={usernameState.value || usernameProps}
           onChange={this.handleChange}
           error={usernameState.error && t(`validation:username.${usernameState.error}`)}
         />

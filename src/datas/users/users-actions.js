@@ -22,7 +22,7 @@ const usersActions = {
     type: usersActionsTypes.PATCH_USER_SUCCESS,
     payload
   }),
-  patchUserError: error => ({
+  patchUserFailure: error => ({
     type: usersActionsTypes.PATCH_USER_FAILURE,
     payload: error,
     error: true
@@ -35,7 +35,7 @@ const usersActions = {
     type: usersActionsTypes.POST_USER_AVATAR_SUCCESS,
     payload
   }),
-  postUserAvatarError: error => ({
+  postUserAvatarFailure: error => ({
     type: usersActionsTypes.POST_USER_AVATAR_FAILURE,
     payload: error,
     error: true

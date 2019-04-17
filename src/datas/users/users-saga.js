@@ -29,7 +29,7 @@ function* postUsersAvatarRequestSaga(action) {
     const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
     yield put(usersActions.postUserAvatarSuccess(respond));
   } catch (error) {
-    yield put(usersActions.postUserAvatarError(error));
+    yield put(usersActions.postUserAvatarFailure(error));
   }
 }
 

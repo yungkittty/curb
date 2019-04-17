@@ -9,10 +9,11 @@ const Input = styled(({ type, onChange, id, ...others }) => (
     {...others}
     secureTextEntry={type === "password"}
     keyboardType={type === "email" ? "email-address" : undefined}
-    onChangeText={text => onChange({ target: { id, value: text } })}
+    onChangeText={value => onChange({ target: { id, value } })}
   />
 ))`
   font-family: "Montserrat-Regular";
+  font-weight: normal;
   color: ${({ theme }) => theme.fontColor}
   padding: 16px;
   font-size: 16px;
