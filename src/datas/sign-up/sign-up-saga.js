@@ -16,7 +16,7 @@ function* signUpRequestSaga(action) {
       yield put(
         usersActions.postUserAvatarRequest({
           id: payload.id,
-          avatar: avatar.file
+          avatar
         })
       );
       yield take("POST_USER_AVATAR_SUCCESS");
