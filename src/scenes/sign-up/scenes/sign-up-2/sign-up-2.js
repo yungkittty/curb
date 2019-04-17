@@ -127,7 +127,8 @@ class SignUp2 extends Component {
 
 SignUp2.defaultProps = {
   createPassword: { value: "", error: undefined },
-  confirmPassword: { value: "", error: undefined }
+  confirmPassword: { value: "", error: undefined },
+  avatar: { value: { data: undefined }, error: undefined }
 };
 
 SignUp2.propTypes = {
@@ -140,12 +141,11 @@ SignUp2.propTypes = {
   isSignUpFetching: PropTypes.bool.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
-  // eslint-disable-next-line
-  avatar: PropTypes.shape({ value: { src: PropTypes.object } }),
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   createPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  avatar: PropTypes.shape({ value: { src: PropTypes.object } }),
   t: PropTypes.func.isRequired
 };
 

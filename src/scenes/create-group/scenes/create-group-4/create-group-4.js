@@ -72,13 +72,15 @@ class CreateGroup4 extends Component {
       return;
     }
 
-    const { postGroup, history, groupName, discoverability, modules, groupTheme } = this.props;
+    console.log(this.props);
+    const { postGroup, history, groupName, discoverability, modules, groupTheme, avatar } = this.props;
     postGroup({
       history,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
-      theme: groupTheme.value
+      theme: groupTheme.value,
+      avatar: avatar.value
     });
   }
 
@@ -145,6 +147,7 @@ class CreateGroup4 extends Component {
 }
 
 CreateGroup4.defaultProps = {
+  avatar: { value: { data: undefined }, error: undefined },
   groupName: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
@@ -165,6 +168,11 @@ CreateGroup4.propTypes = {
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
   history: PropTypes.object.isRequired,
+  avatar: PropTypes.shape({
+    // eslint-disable-next-line
+    value: PropTypes.object.isRequired,
+    error: PropTypes.string
+  }),
   groupName: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string

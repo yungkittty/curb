@@ -98,9 +98,9 @@ class SignUp1 extends Component {
 }
 
 SignUp1.defaultProps = {
-  avatar: { value: { data: undefined }, error: undefined },
   name: { value: "", error: undefined },
-  email: { value: "", error: undefined }
+  email: { value: "", error: undefined },
+  avatar: { value: { data: undefined }, error: undefined }
 };
 
 SignUp1.propTypes = {
@@ -109,17 +109,16 @@ SignUp1.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  avatar: PropTypes.shape({
-    // eslint-disable-next-line
-    value: PropTypes.object.isRequired,
-    error: PropTypes.string
-  }),
   name: PropTypes.shape({
     value: PropTypes.string.isRequired,
     error: PropTypes.string
   }),
   email: PropTypes.shape({
     value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  avatar: PropTypes.shape({
+    value: PropTypes.object.isRequired,
     error: PropTypes.string
   }),
   t: PropTypes.func.isRequired

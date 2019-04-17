@@ -14,6 +14,19 @@ const groupsActions = {
     payload: error,
     error: true
   }),
+  postGroupAvatarRequest: payload => ({
+    type: groupsActionsTypes.POST_GROUP_AVATAR_REQUEST,
+    payload
+  }),
+  postGroupAvatarSuccess: payload => ({
+    type: groupsActionsTypes.POST_GROUP_AVATAR_SUCCESS,
+    payload
+  }),
+  postGroupAvatarFailure: error => ({
+    type: groupsActionsTypes.POST_GROUP_AVATAR_FAILURE,
+    payload: error,
+    error: true
+  }),
   getGroupRequest: payload => ({
     type: groupsActionsTypes.GET_GROUP_REQUEST,
     payload
