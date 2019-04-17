@@ -32,9 +32,7 @@ class User extends Component {
     const { username, avatar } = this.state;
 
     if (username.value) patchCurrentUser({ name: username.value });
-    if (avatar.value.file) {
-      postUserAvatar({ avatar: avatar.value.file });
-    }
+    if (avatar.value.file) postUserAvatar({ avatar: avatar.value.file });
   }
 
   checkForm() {
