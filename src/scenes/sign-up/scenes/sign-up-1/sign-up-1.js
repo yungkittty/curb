@@ -100,7 +100,7 @@ class SignUp1 extends Component {
 SignUp1.defaultProps = {
   name: { value: "", error: undefined },
   email: { value: "", error: undefined },
-  avatar: { value: { data: undefined }, error: undefined }
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 SignUp1.propTypes = {
@@ -118,7 +118,7 @@ SignUp1.propTypes = {
     error: PropTypes.string
   }),
   avatar: PropTypes.shape({
-    value: PropTypes.object.isRequired,
+    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
     error: PropTypes.string
   }),
   t: PropTypes.func.isRequired

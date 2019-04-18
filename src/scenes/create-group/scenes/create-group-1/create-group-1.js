@@ -77,7 +77,7 @@ class CreateGroup1 extends Component {
 
 CreateGroup1.defaultProps = {
   groupName: { value: "", error: undefined },
-  avatar: { value: { data: undefined }, error: undefined }
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 CreateGroup1.propTypes = {

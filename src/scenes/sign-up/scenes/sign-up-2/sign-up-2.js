@@ -56,16 +56,14 @@ class SignUp2 extends Component {
   }
 
   finish() {
-    const { isSignUpFetching, signUp, name, email, createPassword, avatar } = this.props;
+    const { signUp, name, email, createPassword, avatar } = this.props;
     if (!this.checkForm()) return;
-    if (!isSignUpFetching) {
-      signUp({
-        name: name.value,
-        email: email.value,
-        password: createPassword.value,
-        avatar: avatar.value.file
-      });
-    }
+    signUp({
+      name: name.value,
+      email: email.value,
+      password: createPassword.value,
+      avatar: avatar.value.file
+    });
   }
 
   checkForm() {
@@ -133,7 +131,7 @@ class SignUp2 extends Component {
 SignUp2.defaultProps = {
   createPassword: { value: "", error: undefined },
   confirmPassword: { value: "", error: undefined },
-  avatar: { value: { data: undefined }, error: undefined }
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 SignUp2.propTypes = {
@@ -150,7 +148,10 @@ SignUp2.propTypes = {
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   createPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
+  avatar: PropTypes.shape({
+    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
+    error: PropTypes.string
+  }),
   t: PropTypes.func.isRequired
 };
 

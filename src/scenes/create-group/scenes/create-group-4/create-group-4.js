@@ -146,11 +146,11 @@ class CreateGroup4 extends Component {
 }
 
 CreateGroup4.defaultProps = {
-  avatar: { value: { data: undefined }, error: undefined },
   groupName: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
-  groupTheme: { value: "", error: undefined }
+  groupTheme: { value: "", error: undefined },
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 CreateGroup4.propTypes = {
@@ -167,7 +167,6 @@ CreateGroup4.propTypes = {
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
   history: PropTypes.object.isRequired,
-  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
   groupName: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
@@ -182,6 +181,10 @@ CreateGroup4.propTypes = {
   }),
   groupTheme: PropTypes.shape({
     value: PropTypes.string,
+    error: PropTypes.string
+  }),
+  avatar: PropTypes.shape({
+    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
     error: PropTypes.string
   }),
   t: PropTypes.func.isRequired
