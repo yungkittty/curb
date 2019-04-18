@@ -8,6 +8,7 @@ const AlertContainer = styled(Container)`
   position: absolute;
   right: 0px;
   top: 0px;
+  overflow: hidden;
   padding: 30px 30px 0px 0px;
   align-items: center;
   width: 500px;

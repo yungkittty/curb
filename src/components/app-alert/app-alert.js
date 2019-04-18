@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import AlertContainer from "./components/alert-container";
 import AlertMessage from "./components/alert-message";
-import AlertText from "./components/alert-text";
 
 class AppAlert extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class AppAlert extends Component {
   componentDidUpdate(prevProps) {
     const { appAlertList, appAlertPopAlert } = this.props;
     if (appAlertList.length > prevProps.appAlertList.length) {
-      setTimeout(() => appAlertPopAlert(), 20000);
+      setTimeout(() => appAlertPopAlert(), 40000);
     }
   }
 
@@ -25,9 +24,7 @@ class AppAlert extends Component {
     return appAlertList.length > 0 ? (
       <AlertContainer>
         {_.map(appAlertList, ({ type, message }, index) => (
-          <AlertMessage key={index} type={type}>
-            <AlertText>{message}</AlertText>
-          </AlertMessage>
+          <AlertMessage key={index} type={type} message={message} />
         ))}
       </AlertContainer>
     ) : null;

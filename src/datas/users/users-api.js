@@ -6,7 +6,10 @@ const usersApi = {
   postUserAvatar: ({ id, payload }) => {
     const data = new FormData();
     data.append("file", payload.avatar);
-    return axios.post(`/contents/avatars/users/${payload.id || id}`, data, { withCredentials: true });
+    return axios.post(`/contents/avatars/users/${payload.id || id}`, data, {
+      withCredentials: true,
+      headers: { "Content-Type": "multipart/form-data" }
+    });
   }
 };
 

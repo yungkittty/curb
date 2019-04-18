@@ -1,27 +1,14 @@
-import styled from "styled-components";
-import Container from "../../../container";
+import React from "react";
+import MessageAnimation from "./components/message-animation";
+import MessageContainer from "./components/message-container";
+import MessageText from "./components/message-text";
 
-const AlertMessage = styled(Container)`
-  display: flex;
-  width: 100%;
-  height: 64px;
-  border-radius: 32px;
-  box-shadow: 0px 6px 8px -2px rgba(51, 51, 51, 0.25);
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  background-color: ${({ type, theme }) => {
-    switch (type) {
-      case "success":
-        return theme.successColor;
-      case "error":
-        return theme.errorColor;
-      case "info":
-        return theme.infoColor;
-      default:
-        return theme.infoColor;
-    }
-  }};
-`;
+const AlertMessage = ({ type, message, forwardedRef }) => (
+  <MessageContainer type={type} ref={forwardedRef}>
+    <MessageText>{message}</MessageText>
+  </MessageContainer>
+);
 
-export default AlertMessage;
+export default MessageAnimation(
+  React.forwardRef((props, forwardedRef) => <AlertMessage {...props} forwardedRef={forwardedRef} />)
+);
