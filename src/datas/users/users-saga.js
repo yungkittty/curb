@@ -1,4 +1,5 @@
 import { all, takeEvery, takeLatest, call, put, select } from "redux-saga/effects";
+import TestFairy from "react-native-testfairy";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
@@ -29,6 +30,8 @@ function* postUsersAvatarRequestSaga(action) {
     const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
     yield put(usersActions.postUserAvatarSuccess(respond));
   } catch (error) {
+    TestFairy.log("error");
+    TestFairy.log(error);
     yield put(usersActions.postUserAvatarFailure(error));
   }
 }
