@@ -1,16 +1,8 @@
 import styled from "styled-components";
-import Container from "../../../container";
+import Text from "../../../text";
 
-const AlertText = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  width: 700px;
-  min-width: 700px;
-  height: 740px;
-  min-height: 740px;
-  border-radius: 25px;
-  background-color: ${props => props.theme.backgroundColor};
-  overflow: hidden;
+const AlertText = styled(Text).attrs(() => ({ type: undefined, weight: 600 }))`
+  color: ${({ theme }) => theme.backgroundColor};
 `;
 
 export default AlertText;

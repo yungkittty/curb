@@ -1,5 +1,4 @@
 import { all, takeEvery, takeLatest, call, put, select } from "redux-saga/effects";
-import TestFairy from "react-native-testfairy";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
@@ -28,14 +27,27 @@ function* patchUsersRequestSaga(action) {
 function* postUsersAvatarRequestSaga(action) {
   try {
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    yield put(appAlertActions.pushAppAlert({ type: "info", message: "Post avatar currently.." }));
+    yield put(appAlertActions.pushAppAlert({ type: "info", message: "Your avatar is uploading..." }));
+    yield put(
+      appAlertActions.pushAppAlert({ type: "info", message: "action.payload.id :" + action.payload.id })
+    );
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "info",
+        message: "action.payload.avatar.uri :" + action.payload.avatar.uri
+      })
+    );
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "info",
+        message: "action.payload.avatar.name :" + action.payload.avatar.name
+      })
+    );
     const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
-    yield put(appAlertActions.pushAppAlert({ type: "success", message: "Post avatar ok!" }));
+    yield put(appAlertActions.pushAppAlert({ type: "success", message: "Your avatar has been uploaded" }));
     yield put(usersActions.postUserAvatarSuccess(respond));
   } catch (error) {
     yield put(appAlertActions.pushAppAlert, { type: "error", message: "Post avatar error : " + error });
-    TestFairy.log("error");
-    TestFairy.log(error);
     yield put(usersActions.postUserAvatarFailure(error));
   }
 }

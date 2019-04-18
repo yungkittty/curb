@@ -6,7 +6,6 @@ const AlertMessage = styled(Container)`
   width: 100%;
   align-items: center;
   justify-content: center;
-  color: white;
   background-color: ${({ type, theme }) => {
     switch (type) {
       case "success":

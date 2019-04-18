@@ -15,7 +15,7 @@ class AppAlert extends Component {
   componentDidUpdate(prevProps) {
     const { appAlertList, appAlertPopAlert } = this.props;
     if (appAlertList.length > prevProps.appAlertList.length) {
-      setTimeout(() => appAlertPopAlert(), 10000);
+      setTimeout(() => appAlertPopAlert(), 20000);
     }
   }
 

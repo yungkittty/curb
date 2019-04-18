@@ -3,14 +3,14 @@ import Container from "../../../container";
 
 const AlertContainer = styled(Container)`
   display: flex;
-  flex-direction: column;
-  width: 700px;
-  min-width: 700px;
-  height: 740px;
-  min-height: 740px;
-  border-radius: 25px;
-  background-color: ${props => props.theme.backgroundColor};
-  overflow: hidden;
+  z-index: 8;
+  flex-flow: column;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 30px 30px 0px 0px;
+  align-items: center;
+  width: 500px;
 `;
 
 export default AlertContainer;
