@@ -4,6 +4,7 @@ import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
 import { currentUserSelectors } from "../current-user";
+import { appAlertActions } from "../app-alert";
 
 function* getUsersRequestSaga(action) {
   try {
@@ -27,9 +28,12 @@ function* patchUsersRequestSaga(action) {
 function* postUsersAvatarRequestSaga(action) {
   try {
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
+    yield put(appAlertActions.pushAppAlert({ type: "info", message: "Post avatar currently.." }));
     const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
+    yield put(appAlertActions.pushAppAlert({ type: "success", message: "Post avatar ok!" }));
     yield put(usersActions.postUserAvatarSuccess(respond));
   } catch (error) {
+    yield put(appAlertActions.pushAppAlert, { type: "error", message: "Post avatar error : " + error });
     TestFairy.log("error");
     TestFairy.log(error);
     yield put(usersActions.postUserAvatarFailure(error));
