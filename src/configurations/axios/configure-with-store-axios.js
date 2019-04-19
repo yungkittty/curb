@@ -5,7 +5,7 @@ import { signInActions } from "../../datas/sign-in";
 // https://github.com/yungkittty/curb-api/tree/documentation-api-13
 
 const configureWithStoreAxios = ({ dispatch }) => {
-  axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+  axios.defaults.baseURL = "https://api.redux.curb-app.com";
   axios.interceptors.response.use(
     response => response,
     error => {

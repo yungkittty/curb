@@ -28,26 +28,11 @@ function* postUsersAvatarRequestSaga(action) {
   try {
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     yield put(appAlertActions.pushAppAlert({ type: "info", message: "Your avatar is uploading..." }));
-    yield put(
-      appAlertActions.pushAppAlert({ type: "info", message: "action.payload.id :" + action.payload.id })
-    );
-    yield put(
-      appAlertActions.pushAppAlert({
-        type: "info",
-        message: "action.payload.avatar.uri :" + action.payload.avatar.uri
-      })
-    );
-    yield put(
-      appAlertActions.pushAppAlert({
-        type: "info",
-        message: "action.payload.avatar.name :" + action.payload.avatar.name
-      })
-    );
     const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
     yield put(appAlertActions.pushAppAlert({ type: "success", message: "Your avatar has been uploaded" }));
     yield put(usersActions.postUserAvatarSuccess(respond));
   } catch (error) {
-    yield put(appAlertActions.pushAppAlert, { type: "error", message: "Post avatar error : " + error });
+    yield put(appAlertActions.pushAppAlert, { type: "error", message: "Your avatar has failed to upload" });
     yield put(usersActions.postUserAvatarFailure(error));
   }
 }

@@ -3,11 +3,11 @@ import AppAlert from "./app-alert";
 import { appAlertActions, appAlertSelectors } from "../../datas/app-alert";
 
 const mapStateToProps = state => ({
-  appAlertList: appAlertSelectors.getAppAlertList(state)
+  appAlertList: appAlertSelectors.getAppAlertList(state) || []
 });
 
 const mapDispatchToProps = dispatch => ({
-  appAlertPopAlert: () => dispatch(appAlertActions.popAppAlert())
+  appAlertClearAlert: () => dispatch(appAlertActions.clearAppAlert())
 });
 
 export default connect(

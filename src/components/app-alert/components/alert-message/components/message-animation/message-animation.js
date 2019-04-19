@@ -1,30 +1,46 @@
-import _ from "lodash";
 import React from "react";
+import PropTypes from "prop-types";
 
 const MessageAnimation = WrappedComponent => {
   class _MessageAnimation extends React.Component {
     constructor(props) {
       super(props);
       this.wrappedComponent = React.createRef();
-      this.state = {};
     }
 
     componentDidMount() {
+      const { index } = this.props;
       const { style } = this.wrappedComponent.current;
+      style.top = `${30 + index * 80}px`;
+      style.right = `-500px`;
+      style.transition = "right 0.5s ease-out, top 0.2s ease-out";
       setTimeout(() => {
-        style.left = `0%`;
+        style.right = `30px`;
       }, 80);
+      setTimeout(() => {
+        style.right = `-510px`;
+      }, 3500);
     }
 
-    componentWillUnmount() {
+    shouldComponentUpdate(nextProps) {
+      const { index } = nextProps;
+      return !(index < 0);
+    }
+
+    componentDidUpdate() {
       const { style } = this.wrappedComponent.current;
-      style.left = `100%`;
+      const { index } = this.props;
+      style.top = `${30 + index * 80}px`;
     }
 
     render() {
       return <WrappedComponent {...this.props} ref={this.wrappedComponent} />;
     }
   }
+
+  _MessageAnimation.propTypes = {
+    index: PropTypes.number.isRequired
+  };
 
   return _MessageAnimation;
 };

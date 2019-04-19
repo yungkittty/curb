@@ -9,9 +9,8 @@ const appAlertReducer = (state = initialState, action) => {
   switch (action.type) {
     case appAlertActionsTypes.PUSH_APP_ALERT:
       return { ...state, list: [...state.list, action.payload] };
-    case appAlertActionsTypes.POP_APP_ALERT:
-      state.list.shift();
-      return { ...state, list: [...state.list] };
+    case appAlertActionsTypes.CLEAR_APP_ALERT:
+      return initialState;
     default:
       return state;
   }

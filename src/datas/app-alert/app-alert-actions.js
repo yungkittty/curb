@@ -5,8 +5,8 @@ const appAlertActions = {
     type: appAlertActionsTypes.PUSH_APP_ALERT,
     payload
   }),
-  popAppAlert: payload => ({
-    type: appAlertActionsTypes.POP_APP_ALERT,
+  clearAppAlert: payload => ({
+    type: appAlertActionsTypes.CLEAR_APP_ALERT,
     payload
   })
 };
