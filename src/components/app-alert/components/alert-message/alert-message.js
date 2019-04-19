@@ -4,17 +4,23 @@ import MessageAnimation from "./components/message-animation";
 import MessageContainer from "./components/message-container";
 import MessageText from "./components/message-text";
 
-const AlertMessage = ({ type, message, forwardedRef }) => (
-  <MessageContainer type={type} ref={forwardedRef}>
+const AlertMessage = ({ style, type, message, forwardedRef }) => (
+  <MessageContainer style={style} type={type} ref={forwardedRef}>
     <MessageText>{message}</MessageText>
   </MessageContainer>
 );
 
+AlertMessage.defaultProps = {
+  forwardedRef: undefined
+};
+
 AlertMessage.propTypes = {
+  // eslint-disable-next-line
+  style: PropTypes.object,
   type: PropTypes.oneOf(["success", "error", "info"]).isRequired,
   message: PropTypes.string.isRequired,
   // eslint-disable-next-line
-  forwardedRef: PropTypes.object.isRequired
+  forwardedRef: PropTypes.object
 };
 
 export default MessageAnimation(
