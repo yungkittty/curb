@@ -1,18 +1,21 @@
 import _ from "lodash";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import ButtonContainer from "../../../../../../components/button-container";
+import Container from "../../../../../../components/container";
 
-const HeaderContainer = styled(ButtonContainer)`
+const HeaderContainer = styled(Container)`
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 600px;
-  min-height: 600px;
-  margin-bottom: 50px;
+  height: 500px;
+  min-height: 500px;
+  margin-bottom: 40px;
   background-color: ${props => props.theme[`group${_.capitalize(props.groupTheme)}Color`]};
 `;
+
+HeaderContainer.propTypes = { groupTheme: PropTypes.string.isRequired };
 
 export default HeaderContainer;

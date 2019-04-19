@@ -1,5 +1,4 @@
-/* eslint-disable */
-
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
@@ -8,34 +7,41 @@ import GroupListHeader from "./components/group-list-header";
 import GroupListSectionHeader from "./components/group-list-section-header";
 import GroupListSectionItem from "./components/group-list-section-item";
 import ButtonIconFloat from "../../components/button-icon-float";
+import withCurrentUser from "../../hocs/with-current-user";
+import withGroup from "../../hocs/with-group";
 
 const Group = ({
+  userGroupsId,
   isGroupFetching,
   groupId,
   groupName,
-  isGroupPublic,
-  groupAvatarUrl,
-  groupMediaIds,
+  groupAvatar,
+  groupStatus,
   groupTheme,
+  groupMediasId,
   theme
 }) => (
   <React.Fragment>
     <GroupList
-      sections={[{ data: groupMediaIds }]}
-      keyExtractor={(groupMediaId, _) => groupMediaId}
+      sections={[{ data: groupMediasId }]}
+      keyExtractor={groupMediaId => groupMediaId}
       ListHeaderComponent={() => (
         <GroupListHeader
+          userGroupsId={userGroupsId}
           isGroupFetching={isGroupFetching}
           groupId={groupId}
           groupName={groupName}
-          groupAvatarUrl={groupAvatarUrl}
+          groupAvatar={groupAvatar}
+          groupStatus={groupStatus}
           groupTheme={groupTheme}
           theme={theme}
         />
       )}
       renderSectionHeader={() => (
         <GroupListSectionHeader
-          // eslint-disable-line
+          userGroupsId={userGroupsId}
+          groupId={groupId}
+          groupStatus={groupStatus}
           groupTheme={groupTheme}
           theme={theme}
         />
@@ -43,7 +49,8 @@ const Group = ({
       renderItem={({ item: groupMediaId }) => (
         <GroupListSectionItem
           // eslint-disable-line
-          groupMediaId={groupMediaId}
+          mediaId={groupMediaId}
+          theme={theme}
         />
       )}
     />
@@ -51,4 +58,21 @@ const Group = ({
   </React.Fragment>
 );
 
-export default withTheme(Group);
+Group.propTypes = {
+  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  isGroupFetching: PropTypes.bool.isRequired,
+  groupId: PropTypes.string.isRequired,
+  groupName: PropTypes.string.isRequired,
+  groupAvatar: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired,
+  groupTheme: PropTypes.string.isRequired,
+  groupMediasId: PropTypes.array.isRequired, // eslint-disable-line
+  theme: PropTypes.object.isRequired // eslint-disable-line
+};
+
+export default _.flow([
+  // eslint-disable-line
+  withCurrentUser,
+  withGroup,
+  withTheme
+])(Group);

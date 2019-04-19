@@ -6,11 +6,12 @@ import UserContainer from "./components/user-container";
 import Image from "../image";
 import Icon from "../icon";
 import { platformBools } from "../../configurations/platform";
+import withUser from "../../hocs/with-user";
 
 const ImageUser = ({
   // eslint-disable-line
   isUserFetching,
-  userAvatarUrl,
+  userAvatar,
   theme,
   size,
   placeholderColor,
@@ -38,15 +39,15 @@ const ImageUser = ({
     <UserContainer
       {...others}
       isUserFetching={isUserFetching}
-      userAvatarUrl={userAvatarUrl}
+      userAvatar={userAvatar}
       placeholderColor={placeholderColor}
       size={X}
     >
       {/* eslint-disable-next-line */}
       {!isUserFetching ? (
-        userAvatarUrl ? (
+        userAvatar ? (
           <Image
-            src={_.replace(userAvatarUrl, "medium", size)}
+            src={_.replace(userAvatar, "medium", size)}
             style={{
               // eslint-disable-line
               // user-pointer, user-select: none
@@ -64,10 +65,14 @@ const ImageUser = ({
 
 ImageUser.propTypes = {
   isUserFetching: PropTypes.bool.isRequired,
-  userAvatarUrl: PropTypes.string.isRequired,
+  userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
   placeholderColor: PropTypes.string.isRequired
 };
 
-export default withTheme(ImageUser);
+export default _.flow([
+  // eslint-disable-line
+  withUser,
+  withTheme
+])(ImageUser);

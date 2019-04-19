@@ -1,34 +1,37 @@
-/* eslint-disable */
-
 import React from "react";
 import PropTypes from "prop-types";
-import { withTheme } from "styled-components";
 import HeaderContainer from "./components/header-container";
-import HeaderButtonImageUser from "./components/header-button-image-user";
+import ButtonImageUser from "../../../../../../components/button-image-user";
 import HeaderInfos from "./components/header-infos";
 
 const ItemHeader = ({
-  isGroupMediaCreatorFetching,
-  groupMediaCreatorId,
-  groupMediaCreatorName,
-  groupMediaCreatorAvatarUrl,
-  groupMediaDateCreation,
+  // eslint-disable-line
+  isMediaFetching,
+  mediaCreatorId,
+  mediaDateCreation,
   theme
 }) => (
   <HeaderContainer>
-    <HeaderButtonImageUser
-      isUserFetching={isGroupMediaCreatorFetching}
-      userId={groupMediaCreatorId}
-      userAvatarUrl={groupMediaCreatorAvatarUrl}
+    <ButtonImageUser
+      // eslint-disable-line
+      userId={mediaCreatorId}
       size="small"
       placeholderColor={theme.primaryVariantColor}
-      hasBeenFetched
     />
     <HeaderInfos
-      groupMediaCreatorName={groupMediaCreatorName}
-      groupMediaDateCreation={groupMediaDateCreation}
+      // eslint-disable-line
+      userId={mediaCreatorId}
+      isMediaFetching={isMediaFetching}
+      mediaDateCreation={mediaDateCreation}
     />
   </HeaderContainer>
 );
 
-export default withTheme(ItemHeader);
+ItemHeader.propTypes = {
+  isMediaFetching: PropTypes.bool.isRequired,
+  mediaCreatorId: PropTypes.string.isRequired,
+  mediaDateCreation: PropTypes.string.isRequired,
+  theme: PropTypes.string.isRequired // eslint-disable-line
+};
+
+export default ItemHeader;

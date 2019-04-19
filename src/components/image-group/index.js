@@ -1,3 +1,3 @@
-import ImageGroupContainer from "./image-group-container";
+import ImageGroup from "./image-group";
 
-export default ImageGroupContainer;
+export default ImageGroup;

@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import GroupContainer from "./components/group-container";
 import Image from "../image";
-import Text from "../text";
+import GroupTitle from "./components/group-title";
 import { platformBools } from "../../configurations/platform";
+import withGroup from "../../hocs/with-group";
 
 const ImageGroup = ({
   isGroupFetching,
   groupName,
-  groupAvatarUrl,
+  groupAvatar,
   groupTheme,
   theme,
   size,
@@ -39,16 +40,16 @@ const ImageGroup = ({
     <GroupContainer
       {...others}
       isGroupFetching={isGroupFetching}
-      groupAvatarUrl={groupAvatarUrl}
+      groupAvatar={groupAvatar}
       groupTheme={groupTheme}
       placeholderColor={placeholderColor}
       size={X}
     >
       {/* eslint-disable-next-line */}
       {!isGroupFetching ? (
-        groupAvatarUrl ? (
+        groupAvatar ? (
           <Image
-            src={_.replace(groupAvatarUrl, "medium", size)}
+            src={_.replace(groupAvatar, "medium", size)}
             style={{
               // eslint-disable-line
               width: X,
@@ -56,21 +57,13 @@ const ImageGroup = ({
             }}
           />
         ) : (
-          <Text
-            weight={700}
-            style={{
-              // eslint-disable-line
-              // user-pointer, user-select: none
-              fontSize: X / 2,
-              color: theme.backgroundColor
-            }}
-          >
+          <GroupTitle weight={700} X={X}>
             {RegExp(
               "^(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])$"
             ).test(groupName.substr(0, 2))
               ? groupName.substr(0, 2)
               : _.capitalize(groupName[0])}
-          </Text>
+          </GroupTitle>
         )
       ) : null}
     </GroupContainer>
@@ -80,11 +73,15 @@ const ImageGroup = ({
 ImageGroup.propTypes = {
   isGroupFetching: PropTypes.bool.isRequired,
   groupName: PropTypes.string.isRequired,
-  groupAvatarUrl: PropTypes.string.isRequired,
+  groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
   placeholderColor: PropTypes.string.isRequired
 };
 
-export default withTheme(ImageGroup);
+export default _.flow([
+  // eslint-disable-line
+  withGroup,
+  withTheme
+])(ImageGroup);

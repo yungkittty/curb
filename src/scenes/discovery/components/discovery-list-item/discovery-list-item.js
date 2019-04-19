@@ -10,39 +10,32 @@ import { platformBools } from "../../../../configurations/platform";
 // https://stackoverflow.com/a/38997047
 
 const DiscoveryListItem = ({
-  isDiscoveryGroupFetching,
+  // eslint-disable-line
   discoveryGroupId,
   discoveryGroupName,
-  discoveryGroupAvatarUrl,
-  discoveryGroupTheme,
   theme
 }) => (
   <Container>
     <ListItemButtonContainer onClick={`/groups/${discoveryGroupId}`}>
       <React.Fragment>
         <ImageGroup
-          isGroupFetching={isDiscoveryGroupFetching}
           groupId={discoveryGroupId}
-          groupName={discoveryGroupName}
-          groupAvatarUrl={discoveryGroupAvatarUrl}
-          groupTheme={discoveryGroupTheme}
           size="medium"
           placeholderColor={theme.primaryVariantColor}
           style={{ marginBottom: platformBools.isReact ? 20 : 10 }}
-          hasBeenFetched
         />
-        <ListItemTitle>{discoveryGroupName}</ListItemTitle>
+        <ListItemTitle>
+          {/* eslint-disable-line */}
+          {discoveryGroupName}
+        </ListItemTitle>
       </React.Fragment>
     </ListItemButtonContainer>
   </Container>
 );
 
 DiscoveryListItem.propTypes = {
-  isDiscoveryGroupFetching: PropTypes.bool.isRequired,
   discoveryGroupId: PropTypes.string.isRequired,
   discoveryGroupName: PropTypes.string.isRequired,
-  discoveryGroupAvatarUrl: PropTypes.string.isRequired,
-  discoveryGroupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 

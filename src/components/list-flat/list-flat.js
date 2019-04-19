@@ -38,6 +38,20 @@ class ListFlat extends React.Component {
     return React.cloneElement(renderItem(itemParams), itemProps);
   }
 
+  // eslint-disable-next-line
+  renderLayout(renderLayout, layoutKey) {
+    const layoutProps = { key: layoutKey };
+    return renderLayout
+      ? React.cloneElement(
+          typeof renderLayout === "function"
+            ? // eslint-disable-line
+              renderLayout()
+            : renderLayout,
+          layoutProps
+        )
+      : null;
+  }
+
   render() {
     const {
       className,
@@ -47,8 +61,8 @@ class ListFlat extends React.Component {
       showsVerticalScrollIndicator,
       horizontal,
       data: itemsData,
-      ListHeaderComponent,
-      ListFooterComponent
+      ListHeaderComponent: listHeaderComponent,
+      ListFooterComponent: listFooterComponent
     } = this.props;
     return (
       <ContainerScroll
@@ -60,9 +74,9 @@ class ListFlat extends React.Component {
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         horizontal={horizontal}
       >
-        {ListHeaderComponent && <ListHeaderComponent />}
+        {this.renderLayout(listHeaderComponent, "header")}
         {_.map(itemsData, this.renderItem)}
-        {ListFooterComponent && <ListFooterComponent />}
+        {this.renderLayout(listFooterComponent, "footer")}
       </ContainerScroll>
     );
   }

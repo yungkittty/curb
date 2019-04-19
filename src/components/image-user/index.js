@@ -1,3 +1,3 @@
-import ImageUserContainer from "./image-user-container";
+import ImageUser from "./image-user";
 
-export default ImageUserContainer;
+export default ImageUser;

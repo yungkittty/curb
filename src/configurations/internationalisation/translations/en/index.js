@@ -7,6 +7,7 @@ import discovery from "./en-discovery";
 import appDownload from "./en-app-download";
 import settings from "./en-settings";
 import createGroup from "./en-create-group";
+import group from "./en-group";
 import modules from "./en-modules";
 
 export default {
@@ -19,5 +20,6 @@ export default {
   appDownload,
   settings,
   createGroup,
+  group,
   modules
 };

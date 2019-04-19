@@ -1,3 +1,3 @@
-import GroupListSectionItemContainer from "./group-list-section-item-container";
+import GroupListSectionItem from "./group-list-section-item";
 
-export default GroupListSectionItemContainer;
+export default GroupListSectionItem;

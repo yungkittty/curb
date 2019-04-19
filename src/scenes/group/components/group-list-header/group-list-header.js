@@ -1,38 +1,35 @@
-/* eslint-disable */
-
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import HeaderContainer from "./components/header-container";
-import HeaderIcon from "./components/header-icon";
-import HeaderImageGroup from "./components/header-image-group";
+import HeaderButtonIcon from "./components/header-button-icon";
+import ImageGroup from "../../../../components/image-group";
 import HeaderTitle from "./components/header-title";
 
 const GroupListHeader = ({
   // eslint-disable-line
-  isGroupFetching,
+  userGroupsId,
   groupId,
   groupName,
-  groupAvatarUrl,
+  groupStatus,
   groupTheme,
   theme
 }) => (
-  <HeaderContainer groupTheme={groupTheme} onClick={() => undefined}>
+  <HeaderContainer groupTheme={groupTheme}>
     <React.Fragment>
-      <HeaderIcon
+      {groupStatus === "public" || _.includes(userGroupsId, groupId) ? (
+        <HeaderButtonIcon
+          icon="info-circle"
+          size="small"
+          color={theme.backgroundColor}
+          onClick={() => undefined} // eslint-disable-next-line
+        />
+      ) : null}
+      <ImageGroup
         // eslint-disable-line
-        icon="info-circle"
-        size="small"
-        color={theme.backgroundColor}
-      />
-      <HeaderImageGroup
-        isGroupFetching={isGroupFetching}
         groupId={groupId}
-        groupName={groupName}
-        groupAvatarUrl={groupAvatarUrl}
-        groupTheme={groupTheme}
         size="large"
-        placeholderColor={theme.backgroundColor}
-        hasBeenFetched
+        placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}
       />
       <HeaderTitle type="h1" weight={700}>
         {/* eslint-disable-line */}
@@ -41,5 +38,14 @@ const GroupListHeader = ({
     </React.Fragment>
   </HeaderContainer>
 );
+
+GroupListHeader.propTypes = {
+  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  groupId: PropTypes.string.isRequired,
+  groupName: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired,
+  groupTheme: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired // eslint-disable-line
+};
 
 export default GroupListHeader;

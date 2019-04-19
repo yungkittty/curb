@@ -1,3 +1,3 @@
-import ItemHeaderContainer from "./item-header-container";
+import ItemHeader from "./item-header";
 
-export default ItemHeaderContainer;
+export default ItemHeader;

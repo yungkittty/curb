@@ -1,65 +1,53 @@
-/* eslint-disable */
-
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { withRouter, matchPath } from "react-router";
+import { withRouter } from "react-router";
+import { withTranslation } from "react-i18next";
 import HeaderContainer from "./components/header-container";
 import HeaderButtonIcon from "./components/header-button-icon";
-import Text from "../../../../components/text";
+import HeaderTitle from "./components/header-title";
 import HeaderButtonText from "./components/header-button-text";
 import HeaderRule from "./components/header-rule";
 
 class GroupListSectionHeader extends React.Component {
   constructor(props) {
     super(props);
-    console.log("MOUNT!");
-    console.log(props.currentUserGroups);
-    console.log(matchPath(props.location.pathname, { path: "/groups/:id" }).params.id);
-
-    this.state = {
-      isShowed: !_.includes(
-        props.currentUserGroups,
-        matchPath(props.location.pathname, { path: "/groups/:id" }).params.id
-      )
-    };
+    this.state = { isShowed: undefined, isInvited: undefined };
   }
 
-  componentDidUpdate(prevProps) {
-    const { location, currentUserGroups } = this.props;
-    if (location !== prevProps.location || currentUserGroups !== prevProps.currentUserGroups) {
-      console.log("PASS");
-      this.setState({
-        isShowed: !_.includes(
-          currentUserGroups,
-          matchPath(location.pathname, { path: "/groups/:id" }).params.id
-        )
-      });
-    }
+  /** @TODO QR should pass state is_invited! */
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { groupId, groupStatus, userGroupsId } = nextProps;
+    if (!groupId || !groupStatus || prevState.isShowed === false) return {};
+    const { isInvited, inviteToken } = nextProps.location.state || {};
+    const isGroupPublic = groupStatus === "public";
+    const isUserIn = _.includes(userGroupsId, groupId);
+    const isUserInvited = isInvited && (isGroupPublic || RegExp("^([a-f\\d]{24})$").test(inviteToken));
+    return { isShowed: !isUserIn && (isGroupPublic || isUserInvited), isInvited: isUserInvited };
   }
 
   render() {
-    const { isShowed } = this.state;
-    const { groupTheme, theme } = this.props;
+    const { isShowed, isInvited } = this.state;
+    const { groupTheme, theme, t } = this.props;
     return isShowed ? (
       <HeaderContainer>
         <HeaderButtonIcon
-          // eslint-disable-line
           icon="times"
           size="extra-small"
           color={theme.primaryColor}
           onClick={() => this.setState({ isShowed: false })}
         />
-        <Text type="h4">
+        <HeaderTitle>
           {/* eslint-disable-line */}
-          {"You have been invited to this group"}
-        </Text>
+          {isInvited ? t("headerTitle") : t("headerTitleBis")}
+        </HeaderTitle>
         <HeaderButtonText
-          // eslint-disable-line
-          text={"Join group"}
+          text={t("headerButtonText")}
           weight={700}
           contentTextStyle={{ color: theme.backgroundColor }}
           groupTheme={groupTheme}
+          onClick={() => undefined} // eslint-disable-line
         />
         <HeaderRule />
       </HeaderContainer>
@@ -67,4 +55,20 @@ class GroupListSectionHeader extends React.Component {
   }
 }
 
-export default withRouter(GroupListSectionHeader);
+GroupListSectionHeader.propTypes = {
+  /* eslint-disable */
+  location: PropTypes.object.isRequired,
+  userGroupsId: PropTypes.array.isRequired,
+  groupId: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired,
+  groupTheme: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired,
+  /* eslint-enable */
+  t: PropTypes.func.isRequired
+};
+
+export default _.flow([
+  // eslint-disable-line
+  withRouter,
+  withTranslation("group")
+])(GroupListSectionHeader);

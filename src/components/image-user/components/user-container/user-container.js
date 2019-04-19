@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Container from "../../../container";
 
@@ -12,7 +13,7 @@ const UserContainer = styled(Container)`
     min-height: ${props.size}px;
     border-radius: ${props.size / 2}px;
     background-color ${
-      props.isUserFetching || props.userAvatarUrl
+      props.isUserFetching || props.userAvatar
         ? // eslint-disable-line
           props.placeholderColor
         : props.theme.secondaryVariantColor
@@ -20,5 +21,12 @@ const UserContainer = styled(Container)`
   `}
   overflow: hidden;
 `;
+
+UserContainer.propTypes = {
+  isUserFetching: PropTypes.bool.isRequired,
+  userAvatar: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
+  placeholderColor: PropTypes.string.isRequired
+};
 
 export default UserContainer;

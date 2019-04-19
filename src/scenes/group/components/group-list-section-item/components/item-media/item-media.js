@@ -1,32 +1,41 @@
-/* eslint-disable */
-
 import React from "react";
 import PropTypes from "prop-types";
 import MediaContainer from "./components/media-container";
-import MediaImage from "./components/media-image";
 import MediaText from "./components/media-text";
-// import MediaLocation from "./components/media-location";
-import MediaVideo from "./components/media-video";
+
+const MediaImage = () => null;
+const MediaLocation = () => null;
+const MediaVideo = () => null;
+
+/** @todo placeholder not on point ! */
 
 const ItemMedia = ({
   // eslint-disable-line
-  isGroupMediaFetching,
-  groupMediaType,
-  groupMediaData
+  isMediaFetching,
+  mediaType,
+  mediaData
 }) => (
-  <MediaContainer>
+  <MediaContainer isMediaFetching={isMediaFetching}>
     {/* eslint-disable */}
-    {groupMediaType === "image" ? (
-      <MediaImage src={groupMediaData} />
-    ) : groupMediaType === "location" ? (
+    {isMediaFetching ? (
+      () => null
+    ) : mediaType === "image" ? (
+      <MediaImage />
+    ) : mediaType === "location" ? (
       <MediaLocation />
-    ) : groupMediaType === "text" ? (
-      <MediaText>{groupMediaData}</MediaText>
-    ) : groupMediaType === "video" ? (
-      <MediaVideo src={`${process.env.REACT_APP_API_URL}${groupMediaData}`} controls />
+    ) : mediaType === "text" ? (
+      <MediaText>{mediaData}</MediaText>
+    ) : mediaType === "video" ? (
+      <MediaVideo />
     ) : null}
     {/* eslint-enable */}
   </MediaContainer>
 );
+
+ItemMedia.propTypes = {
+  isMediaFetching: PropTypes.bool.isRequired,
+  mediaType: PropTypes.string.isRequired,
+  mediaData: PropTypes.string.isRequired
+};
 
 export default ItemMedia;

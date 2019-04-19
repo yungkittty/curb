@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
@@ -10,17 +11,18 @@ import ListFlat from "../list-flat";
 import NavigationListFooter from "./components/navigation-list-footer";
 import SignIn from "../../scenes/sign-in";
 import Settings from "../../scenes/settings";
+import withAppModal from "../../hocs/with-app-modal";
+import withCurrentUser from "../../hocs/with-current-user";
 
 const AppNavigation = ({
+  // eslint-disable-line
   showAppModal,
-  isCurrentUserFetching,
-  currentUserId,
-  currentUserAvatarUrl,
-  currentUserGroupsIds,
+  userId,
+  userGroupsId,
   theme
 }) => (
   <NavigationContainer>
-    {!currentUserId ? (
+    {!userId ? (
       <NavigationButtonIcon
         icon="sign-in-alt"
         size="small"
@@ -29,26 +31,22 @@ const AppNavigation = ({
       />
     ) : (
       <ButtonImageUser
-        isUserFetching={isCurrentUserFetching}
-        userId={currentUserId}
-        userAvatarUrl={currentUserAvatarUrl}
+        userId={userId}
         size="small"
         placeholderColor={theme.secondaryVariantColor}
         style={{ marginBottom: 10 }}
-        hasBeenFetched
       />
     )}
     <NavigationRule />
     <ListFlat
-      data={currentUserGroupsIds}
-      keyExtractor={currentUserGroupId => currentUserGroupId}
-      renderItem={({ item: currentUserGroupId }) => (
+      data={userGroupsId}
+      keyExtractor={userGroupId => userGroupId}
+      renderItem={({ item: userGroupId }) => (
         <ButtonImageGroup
-          groupId={currentUserGroupId}
+          groupId={userGroupId}
           size="small"
           placeholderColor={theme.secondaryVariantColor}
           style={{ marginBottom: 10 }}
-          hasBeenFetched={false}
         />
       )}
       ListFooterComponent={() => (
@@ -75,11 +73,14 @@ const AppNavigation = ({
 
 AppNavigation.propTypes = {
   showAppModal: PropTypes.func.isRequired,
-  isCurrentUserFetching: PropTypes.bool.isRequired,
-  currentUserId: PropTypes.string.isRequired,
-  currentUserAvatarUrl: PropTypes.string.isRequired,
-  currentUserGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  userId: PropTypes.string.isRequired,
+  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default withTheme(AppNavigation);
+export default _.flow([
+  // eslint-disable-line
+  withAppModal,
+  withCurrentUser,
+  withTheme
+])(AppNavigation);

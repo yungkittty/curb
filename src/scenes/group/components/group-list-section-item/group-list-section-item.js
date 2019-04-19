@@ -1,30 +1,41 @@
-/* eslint-disable */
-
 import React from "react";
+import PropTypes from "prop-types";
 import ItemContainer from "./components/item-container";
 import ItemHeader from "./components/item-header";
 import ItemMedia from "./components/item-media";
+import withMedia from "../../../../hocs/with-media";
 
 const GroupListSectionItem = ({
-  isGroupMediaFetching,
-  // groupMediaId,
-  groupMediaCreatorId,
-  groupMediaType,
-  groupMediaDateCreation,
-  groupMediaData
+  isMediaFetching,
+  mediaCreatorId,
+  mediaDateCreation,
+  mediaType,
+  mediaData,
+  theme
 }) => (
   <ItemContainer>
     <ItemHeader
-      isGroupMediaFetching={isGroupMediaFetching}
-      groupMediaCreatorId={groupMediaCreatorId}
-      groupMediaDateCreation={groupMediaDateCreation}
+      isMediaFetching={isMediaFetching}
+      mediaCreatorId={mediaCreatorId}
+      mediaDateCreation={mediaDateCreation}
+      theme={theme}
     />
     <ItemMedia
-      isGroupMediaFetching={isGroupMediaFetching}
-      groupMediaType={groupMediaType}
-      groupMediaData={groupMediaData}
+      // eslint-disable-line
+      isMediaFetching={isMediaFetching}
+      mediaType={mediaType}
+      mediaData={mediaData}
     />
   </ItemContainer>
 );
 
-export default GroupListSectionItem;
+GroupListSectionItem.propTypes = {
+  isMediaFetching: PropTypes.bool.isRequired,
+  mediaCreatorId: PropTypes.string.isRequired,
+  mediaDateCreation: PropTypes.string.isRequired,
+  mediaType: PropTypes.string.isRequired,
+  mediaData: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired // eslint-disable-line
+};
+
+export default withMedia(GroupListSectionItem);

@@ -18,13 +18,10 @@ class ListSection extends React.Component {
   }
 
   // eslint-disable-next-line
-  renderSectionLayout(renderSectionLayout, { data, ...sectionData }, sectionIndex) {
+  renderSectionLayout(renderSectionLayout, { data, ...sectionData }, sectionKey) {
     const sectionLayoutParams = { section: sectionData };
-    const sectionLayoutProps = { key: sectionIndex };
-    return React.cloneElement(
-      renderSectionLayout(sectionLayoutParams),
-      sectionLayoutProps
-    );
+    const sectionLayoutProps = { key: sectionKey };
+    return React.cloneElement(renderSectionLayout(sectionLayoutParams), sectionLayoutProps);
   }
 
   renderSection({ data: itemData, ...sectionData }, sectionIndex) {
@@ -32,20 +29,26 @@ class ListSection extends React.Component {
     return (
       <React.Fragment key={`${sectionIndex}:section`}>
         {renderSectionHeader &&
-          this.renderSectionLayout(
-            renderSectionHeader,
-            sectionData,
-            `${sectionIndex}:header`
-          )}
+          this.renderSectionLayout(renderSectionHeader, sectionData, `${sectionIndex}:section:header`)}
         {_.map(itemData, this.renderItem.bind(undefined, sectionData))}
         {renderSectionFooter &&
-          this.renderSectionLayout(
-            renderSectionFooter,
-            sectionData,
-            `${sectionIndex}:footer`
-          )}
+          this.renderSectionLayout(renderSectionFooter, sectionData, `${sectionIndex}:section:footer`)}
       </React.Fragment>
     );
+  }
+
+  // eslint-disable-next-line
+  renderLayout(renderLayout, layoutKey) {
+    const layoutProps = { key: layoutKey };
+    return renderLayout
+      ? React.cloneElement(
+          typeof renderLayout === "function"
+            ? // eslint-disable-line
+              renderLayout()
+            : renderLayout,
+          layoutProps
+        )
+      : null;
   }
 
   render() {
@@ -57,8 +60,8 @@ class ListSection extends React.Component {
       showsVerticalScrollIndicator,
       horizontal,
       sections: sectionsData,
-      ListHeaderComponent,
-      ListFooterComponent
+      ListHeaderComponent: listHeaderComponent,
+      ListFooterComponent: listFooterComponent
     } = this.props;
     return (
       <ContainerScroll
@@ -69,9 +72,9 @@ class ListSection extends React.Component {
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         horizontal={horizontal}
       >
-        {ListHeaderComponent && <ListHeaderComponent />}
+        {this.renderLayout(listHeaderComponent, "header")}
         {_.map(sectionsData, this.renderSection)}
-        {ListFooterComponent && <ListFooterComponent />}
+        {this.renderLayout(listFooterComponent, "footer")}
       </ContainerScroll>
     );
   }
