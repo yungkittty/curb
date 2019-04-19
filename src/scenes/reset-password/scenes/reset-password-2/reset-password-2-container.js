@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   validateCode: payload => dispatch(accountActions.validateCodeRequest(payload)),
-  setAppModalButtonsEnabled: payload => dispatch(appModalActions.setAppModalButtonsEnabled(payload)),
+  enableAppModalButtons: payload => dispatch(appModalActions.enableAppModalButtons(payload)),
   setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),

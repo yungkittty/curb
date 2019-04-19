@@ -7,7 +7,15 @@ import { discoverySaga } from "../../datas/discovery";
 import { accountSaga } from "../../datas/account";
 
 function* rootSaga() {
-  yield all([signInSaga, signUpSaga, usersSaga, groupsSaga, discoverySaga, accountSaga]);
+  yield all([
+    // eslint-disable-line
+    signInSaga,
+    signUpSaga,
+    usersSaga,
+    groupsSaga,
+    discoverySaga,
+    accountSaga
+  ]);
 }
 
 export default rootSaga;

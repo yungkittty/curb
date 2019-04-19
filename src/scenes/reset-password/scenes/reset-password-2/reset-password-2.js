@@ -37,11 +37,11 @@ class ResetPassword2 extends Component {
 
   componentDidUpdate(prevProps) {
     const { showErrorCode } = this.state;
-    const { accountValidateCodeErrorCode, setAppModalButtonsEnabled } = this.props;
+    const { accountValidateCodeErrorCode, enableAppModalButtons } = this.props;
     if (!showErrorCode && accountValidateCodeErrorCode && prevProps.isAccountValidateCodeFetching) {
       // eslint-disable-next-line
       this.setState({ showErrorCode: true });
-      setAppModalButtonsEnabled({ enabled: true });
+      enableAppModalButtons({ enabled: true });
       this.focusFirstNode();
     }
   }
@@ -52,10 +52,10 @@ class ResetPassword2 extends Component {
   }
 
   submit(code) {
-    const { validateCode, email, setAppModalButtonsEnabled } = this.props;
+    const { validateCode, email, enableAppModalButtons } = this.props;
 
     validateCode({ code, email: email.value });
-    setAppModalButtonsEnabled({ enabled: false });
+    enableAppModalButtons({ enabled: false });
   }
 
   checkInput(id, value) {
@@ -109,7 +109,7 @@ ResetPassword2.propTypes = {
   isAccountValidateCodeFetching: PropTypes.bool.isRequired,
   isAccountValidateCodeSuccess: PropTypes.bool.isRequired,
   accountValidateCodeErrorCode: PropTypes.string.isRequired,
-  setAppModalButtonsEnabled: PropTypes.func.isRequired,
+  enableAppModalButtons: PropTypes.func.isRequired,
   code: PropTypes.shape({ value: PropTypes.string }),
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,

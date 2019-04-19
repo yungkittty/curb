@@ -45,20 +45,20 @@ class ResetPassword1 extends Component {
 
   componentDidUpdate(prevProps) {
     const { showErrorCode } = this.state;
-    const { accountRequestCodeErrorCode, setAppModalButtonsEnabled } = this.props;
+    const { accountRequestCodeErrorCode, enableAppModalButtons } = this.props;
     /* eslint-disable */
     if (!showErrorCode && accountRequestCodeErrorCode && prevProps.isAccountRequestCodeFetching) {
       // eslint-disable-next-line
       this.setState({ showErrorCode: true });
-      setAppModalButtonsEnabled({ enabled: true });
+      enableAppModalButtons({ enabled: true });
     }
   }
 
   submit() {
-    const { requestCode, email, setAppModalButtonsEnabled } = this.props;
+    const { requestCode, email, enableAppModalButtons } = this.props;
     if (!this.checkForm()) return;
     requestCode({ email: email.value });
-    setAppModalButtonsEnabled({ enabled: false });
+    enableAppModalButtons({ enabled: false });
   }
 
   checkForm() {
@@ -126,7 +126,7 @@ ResetPassword1.propTypes = {
   isAccountRequestCodeFetching: PropTypes.bool.isRequired,
   isAccountRequestCodeSuccess: PropTypes.bool.isRequired,
   accountRequestCodeErrorCode: PropTypes.string.isRequired,
-  setAppModalButtonsEnabled: PropTypes.func.isRequired,
+  enableAppModalButtons: PropTypes.func.isRequired,
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
   requestCode: PropTypes.func.isRequired,

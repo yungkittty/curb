@@ -39,9 +39,9 @@ class CreateGroup4 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isCreateGroupFetching, setAppModalButtonsEnabled } = this.props;
+    const { isCreateGroupFetching, enableAppModalButtons } = this.props;
     if (prevProps.isCreateGroupFetching === isCreateGroupFetching) return;
-    setAppModalButtonsEnabled({ enabled: !isCreateGroupFetching });
+    enableAppModalButtons({ enabled: !isCreateGroupFetching });
   }
 
   submit() {
@@ -131,7 +131,7 @@ CreateGroup4.defaultProps = {
 };
 
 CreateGroup4.propTypes = {
-  setAppModalButtonsEnabled: PropTypes.func.isRequired,
+  enableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
