@@ -1,4 +1,3 @@
-import _ from "lodash";
 import appAlertActionsTypes from "./app-alert-actions-types";
 
 const initialState = {

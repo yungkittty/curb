@@ -9,8 +9,6 @@ import DiscoveryListSectionHeader from "./components/discovery-list-section-head
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
-import SignIn from "../sign-in";
-import CreateGroup from "../create-group";
 
 const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal, appAlertPushAlert }) => (
   <React.Fragment>
