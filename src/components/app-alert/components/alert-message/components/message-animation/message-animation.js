@@ -35,7 +35,6 @@ const MessageAnimation = WrappedComponent => {
     }
 
     closeMessage() {
-      const { index, setFirstIndex } = this.props;
       const { style } = this.wrappedComponent.current;
       style.right = `-500px`;
       setTimeout(() => {
