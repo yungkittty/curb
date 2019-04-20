@@ -1,15 +1,16 @@
 import React from "react";
 import { Animated, Easing } from "react-native";
+import PropTypes from "prop-types";
 
 const MessageAnimation = WrappedComponent => {
   class _MessageAnimation extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { elevation: new Animated.Value(4), top: new Animated.Value(-50) };
-      this.AnimatedWrappedComponent = Animated.createAnimatedComponent(WrappedComponent);
+      this.state = { top: new Animated.Value(-50) };
     }
 
     componentDidMount() {
+      const { persist } = this.props;
       const { top } = this.state;
       Animated.timing(top, {
         toValue: 0,
@@ -17,6 +18,7 @@ const MessageAnimation = WrappedComponent => {
         duration: 400,
         useNativeDriver: true
       }).start();
+      if (persist) return;
       setTimeout(
         () =>
           Animated.timing(top, {
@@ -30,29 +32,34 @@ const MessageAnimation = WrappedComponent => {
     }
 
     componentDidUpdate() {
-      const { elevation } = this.state;
-      const { index } = this.props;
-      if (index !== 0)
-        Animated.timing(elevation, {
-          toValue: 0,
-          easing: Easing.out(Easing.quad),
-          duration: 10,
-          useNativeDriver: true
-        }).start();
+      const { top } = this.state;
+      setTimeout(
+        () =>
+          Animated.timing(top, {
+            toValue: -50,
+            easing: Easing.out(Easing.quad),
+            duration: 400,
+            useNativeDriver: true
+          }).start(),
+        500
+      );
     }
 
     render() {
-      const { AnimatedWrappedComponent } = this;
-      const { elevation, top } = this.state;
+      const { top } = this.state;
       return (
-        <AnimatedWrappedComponent
+        <WrappedComponent
           {...this.props}
-          style={{ elevation, transform: [{ translateY: top }] }}
           ref={this.wrappedComponent}
+          style={{ transform: [{ translateY: top }] }}
         />
       );
     }
   }
+
+  _MessageAnimation.propTypes = {
+    index: PropTypes.number.isRequired
+  };
 
   return _MessageAnimation;
 };

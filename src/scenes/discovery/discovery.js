@@ -45,8 +45,16 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal, appAler
     <ButtonIconFloat
       icon="plus"
       onClick={() => {
-        appAlertPushAlert({ type: "info", message: "Your photo is uploading..." });
-        setTimeout(() => appAlertPushAlert({ type: "success", message: "Succesfully uploaded!" }), 1300);
+        appAlertPushAlert({
+          type: "info",
+          message: "Your photo is uploading...",
+          persistUntil: "UPLOAD_FINISHED"
+        });
+        setTimeout(
+          () =>
+            appAlertPushAlert({ type: "success", message: "Succesfully uploaded!", key: "UPLOAD_FINISHED" }),
+          6000
+        );
       }}
     />
   </React.Fragment>

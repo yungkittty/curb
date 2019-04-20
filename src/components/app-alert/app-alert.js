@@ -11,17 +11,15 @@ class AppAlert extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      appAlertList: { length },
-      appAlertClearAlert
-    } = this.props;
-    if (length > prevProps.appAlertList.length) {
+    const { appAlertList, appAlertClearAlert } = this.props;
+    const l = appAlertList.length;
+    if (l > prevProps.appAlertList.length && !appAlertList[l - 1].persistUntil) {
       setTimeout(() => {
         const { appAlertList: actualAppAlertList } = this.props;
-        if (actualAppAlertList.length === length) {
+        if (actualAppAlertList.length === l) {
           appAlertClearAlert();
           this.setState({ firstIndex: 0 });
-        } else this.setState({ firstIndex: length });
+        } else this.setState({ firstIndex: l });
       }, 4000);
     }
   }
@@ -31,9 +29,15 @@ class AppAlert extends Component {
     const { appAlertList } = this.props;
 
     return appAlertList.length > 0
-      ? _.map(appAlertList, ({ type, message }, index) => (
+      ? _.map(appAlertList, ({ type, message, persistUntil }, index) => (
           // eslint-disable-next-line
-          <AlertMessage key={index} index={index - firstIndex} type={type} message={message} />
+          <AlertMessage
+            key={index}
+            index={index - firstIndex}
+            persist={persistUntil && !_.find(appAlertList, { key: persistUntil })}
+            type={type}
+            message={message}
+          />
         ))
       : null;
   }
@@ -42,8 +46,10 @@ class AppAlert extends Component {
 AppAlert.propTypes = {
   appAlertList: PropTypes.arrayOf(
     PropTypes.shape({
-      type: PropTypes.oneOf(["success", "error", "info"]),
-      message: PropTypes.string.isRequired
+      type: PropTypes.oneOf(["success", "error", "info"]).isRequired,
+      message: PropTypes.string.isRequired,
+      persistUntil: PropTypes.string,
+      key: PropTypes.string
     })
   ).isRequired,
   appAlertClearAlert: PropTypes.func.isRequired

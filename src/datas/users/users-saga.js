@@ -27,7 +27,13 @@ function* patchUsersRequestSaga(action) {
 function* postUsersAvatarRequestSaga(action) {
   try {
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    yield put(appAlertActions.pushAppAlert({ type: "info", message: "Your avatar is uploading..." }));
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "info",
+        message: "Your avatar is uploading...",
+        persistUntilNext: true
+      })
+    );
     const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
     yield put(appAlertActions.pushAppAlert({ type: "success", message: "Your avatar has been uploaded" }));
     yield put(usersActions.postUserAvatarSuccess(respond));

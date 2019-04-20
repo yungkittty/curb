@@ -6,10 +6,11 @@ const MessageAnimation = WrappedComponent => {
     constructor(props) {
       super(props);
       this.wrappedComponent = React.createRef();
+      this.closeMessage = this.closeMessage.bind(this);
     }
 
     componentDidMount() {
-      const { index } = this.props;
+      const { persist, index } = this.props;
       const { style } = this.wrappedComponent.current;
       style.top = `${30 + index * 80}px`;
       style.right = `-500px`;
@@ -17,9 +18,8 @@ const MessageAnimation = WrappedComponent => {
       setTimeout(() => {
         style.right = `30px`;
       }, 80);
-      setTimeout(() => {
-        style.right = `-510px`;
-      }, 3500);
+      if (persist) return;
+      setTimeout(() => this.closeMessage(), 3500);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -27,10 +27,20 @@ const MessageAnimation = WrappedComponent => {
       return !(index < 0);
     }
 
-    componentDidUpdate() {
-      const { index } = this.props;
+    componentDidUpdate(prevProps) {
+      const { persist, index } = this.props;
       const { style } = this.wrappedComponent.current;
+      if (prevProps.persist !== persist) setTimeout(() => this.closeMessage(), 0);
       style.top = `${30 + index * 80}px`;
+    }
+
+    closeMessage() {
+      const { index, setFirstIndex } = this.props;
+      const { style } = this.wrappedComponent.current;
+      style.right = `-500px`;
+      setTimeout(() => {
+        style.display = "none";
+      }, 500);
     }
 
     render() {

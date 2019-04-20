@@ -4,7 +4,7 @@ import MessageAnimation from "./components/message-animation";
 import MessageContainer from "./components/message-container";
 import MessageText from "./components/message-text";
 
-const AlertMessage = ({ style, type, message, forwardedRef }) => (
+const AlertMessage = ({ forwardedRef, style, type, message }) => (
   <MessageContainer style={style} type={type} ref={forwardedRef}>
     <MessageText>{message}</MessageText>
   </MessageContainer>
