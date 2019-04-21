@@ -1,9 +1,8 @@
 import style from "styled-components";
 import Container from "../../../../../../../../components/container";
-import { windowDimensions } from "../../../../../../../../configurations/window";
 
 const QrHeader = style(Container)`
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
