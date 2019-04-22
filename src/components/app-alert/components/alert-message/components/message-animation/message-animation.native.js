@@ -1,12 +1,15 @@
 import React from "react";
-import { Animated, Easing } from "react-native";
+import { Platform, Animated, Easing } from "react-native";
+import { isIphoneX } from "react-native-device-detection";
 import PropTypes from "prop-types";
 
 const MessageAnimation = WrappedComponent => {
   class _MessageAnimation extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { top: new Animated.Value(-50) };
+      // eslint-disable-next-line
+      this.initialTop = -(Platform.OS === "ios" ? (isIphoneX ? 80 : 70) : 50);
+      this.state = { top: new Animated.Value(this.initialTop) };
       this.closeMessage = this.closeMessage.bind(this);
     }
 
@@ -31,7 +34,7 @@ const MessageAnimation = WrappedComponent => {
     closeMessage() {
       const { top } = this.state;
       Animated.timing(top, {
-        toValue: -50,
+        toValue: this.initialTop,
         easing: Easing.out(Easing.quad),
         duration: 500,
         useNativeDriver: true

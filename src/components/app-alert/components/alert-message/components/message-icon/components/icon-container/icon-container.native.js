@@ -5,6 +5,7 @@ const IconContainer = styled(Container)`
   position: absolute;
   display: flex;
   left: 0px;
+  bottom: 0px;
   width: 58px;
   height: 100%;
   justify-content: center;
