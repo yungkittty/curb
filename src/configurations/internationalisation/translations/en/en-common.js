@@ -1,7 +1,12 @@
 const enCommon = {
+  username: "Username",
+  email: "Mail address",
+  password: "Password",
+  confirmPassword: "Confirm password",
   next: "Next",
   finish: "Finish",
   cancel: "Cancel",
+  reset: "Reset",
   selectImage: "Select an image",
   takePhoto: "Take a photo",
   chooseLibrary: "Choose from Library",

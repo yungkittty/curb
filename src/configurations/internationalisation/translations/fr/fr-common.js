@@ -1,7 +1,12 @@
 const frCommon = {
+  username: "Nom d'utilisateur",
+  email: "Adresse mail",
+  password: "Mot de passe",
+  confirmPassword: "Confirmer le mot de passe",
   next: "Suivant",
   finish: "Terminer",
   cancel: "Annuler",
+  reset: "Réinitialiser",
   selectImage: "Choisir une imge",
   takePhoto: "Prendre une photo",
   chooseLibrary: "Depuis la galerie",

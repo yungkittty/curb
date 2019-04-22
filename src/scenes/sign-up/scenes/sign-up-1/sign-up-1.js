@@ -78,7 +78,7 @@ class SignUp1 extends Component {
         <InputForm
           size="modal"
           id="name"
-          placeholder={t("username")}
+          placeholder={t("common:username")}
           onChange={this.handleChange}
           value={name.value}
           error={name.error && t(`validation:username.${name.error}`)}
@@ -87,7 +87,7 @@ class SignUp1 extends Component {
           size="modal"
           id="email"
           type="email"
-          placeholder={t("mailAddress")}
+          placeholder={t("common:email")}
           onChange={this.handleChange}
           value={email.value}
           error={email.error && t(`validation:email.${email.error}`)}

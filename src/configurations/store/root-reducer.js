@@ -3,6 +3,7 @@ import { appModalReducer as appModal } from "../../datas/app-modal";
 import { appAlertReducer as appAlert } from "../../datas/app-alert";
 import { signInReducer as signIn } from "../../datas/sign-in";
 import { signUpReducer as signUp } from "../../datas/sign-up";
+import { accountReducer as account } from "../../datas/account";
 import { currentUserReducer as currentUser } from "../../datas/current-user";
 import { currentSettingsReducer as currentSettings } from "../../datas/current-settings";
 import { usersReducer as users } from "../../datas/users";
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   appAlert,
   signIn,
   signUp,
+  account,
   currentUser,
   currentSettings,
   users,
