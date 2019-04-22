@@ -22,7 +22,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isFetching: true
+          isGetting: true
         }
       };
     case groupsActionsTypes.GET_GROUP_SUCCESS:
@@ -31,7 +31,7 @@ const byId = (state = {}, action) => {
         [action.payload.id]: {
           ...state[action.payload.id],
           ...action.payload,
-          isFetching: false,
+          isGetting: false,
           errorCode: ""
         }
       };
@@ -40,7 +40,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isFetching: false,
+          isGetting: false,
           errorCode: action.payload.errorCode
         }
       };

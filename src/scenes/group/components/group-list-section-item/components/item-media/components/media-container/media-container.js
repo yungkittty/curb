@@ -8,7 +8,7 @@ const MediaContainer = styled(Container)`
   width: 100%;
   border-radius: 25px;
   overflow: hidden;
-  ${props => (props.isMediaFetching ? `background-color: ${props.theme.primaryVariantColor};` : "")};
+  ${props => (props.isGettingMedia ? `background-color: ${props.theme.primaryVariantColor};` : "")};
 `;
 
 export default MediaContainer;

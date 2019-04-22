@@ -14,7 +14,7 @@ const withMedia = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { mediaId, getMedia } = this.props;
-      if (mediaId !== prevProps.mediaId) {
+      if (mediaId && mediaId !== prevProps.mediaId) {
         getMedia({ id: mediaId });
       }
     }
@@ -27,7 +27,7 @@ const withMedia = WrappedComponent => {
 
   const mapStateToProps = (state, ownProps) => {
     const {
-      isFetching: isMediaFetching = true,
+      isGetting: isGettingMedia = false,
       id: mediaId = ownProps.mediaId || "",
       creatorId: mediaCreatorId = "",
       dateCreation: mediaDateCreation = "",
@@ -37,7 +37,7 @@ const withMedia = WrappedComponent => {
       errorCode: mediaErrorCode = ""
     } = mediasSelectors.getMediaById(state, ownProps.mediaId) || {};
     return {
-      isMediaFetching,
+      isGettingMedia,
       mediaId,
       mediaCreatorId,
       mediaDateCreation,

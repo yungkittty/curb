@@ -1,4 +1,5 @@
-import { all, takeLatest, takeEvery, select, call, put } from "redux-saga/effects";
+import { all, takeLatest, select, call, put } from "redux-saga/effects";
+import { takeNormalize } from "../../configurations/store/saga-effects";
 import appModalActions from "../app-modal/app-modal-actions";
 import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
@@ -30,7 +31,7 @@ function* getGroupRequestSaga(action) {
 
 const groupsSaga = all([
   takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
-  takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga)
+  takeNormalize(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga)
 ]);
 
 export default groupsSaga;

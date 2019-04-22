@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 import UserContainer from "./components/user-container";
 import ImageUser from "../image-user";
 
@@ -9,6 +10,8 @@ const ButtonImageUser = ({
   style,
   contentImageStyle,
   userId,
+  history,
+  onClick,
   size,
   ...others
 }) => (
@@ -17,7 +20,11 @@ const ButtonImageUser = ({
     className={className}
     style={style}
     size={size}
-    onClick={`/users/${userId}`}
+    onClick={() => {
+      // eslint-disable-next-line
+      onClick && onClick();
+      history.push(`/users/${userId}`);
+    }}
   >
     <ImageUser
       // eslint-disable-line
@@ -32,7 +39,8 @@ const ButtonImageUser = ({
 ButtonImageUser.defaultProps = {
   className: undefined,
   style: undefined,
-  contentImageStyle: undefined
+  contentImageStyle: undefined,
+  onClick: undefined
 };
 
 ButtonImageUser.propTypes = {
@@ -40,6 +48,8 @@ ButtonImageUser.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   contentImageStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   userId: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line
+  onClick: PropTypes.func,
   size: PropTypes.oneOf([
     // eslint-disable-line
     "extra-small",
@@ -49,4 +59,4 @@ ButtonImageUser.propTypes = {
   ]).isRequired
 };
 
-export default ButtonImageUser;
+export default withRouter(ButtonImageUser);

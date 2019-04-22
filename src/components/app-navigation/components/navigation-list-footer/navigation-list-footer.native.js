@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import NavigationButtonIcon from "../navigation-button-icon";
+import NavigationButton from "../navigation-button";
 
-const NavigationListFooter = styled(NavigationButtonIcon)`
+const NavigationListFooter = styled(NavigationButton)`
   border-width: 1px;
   border-style: solid;
   border-color: ${props => props.theme.secondaryVariantColor};

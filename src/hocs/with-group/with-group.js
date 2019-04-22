@@ -8,15 +8,13 @@ const withGroup = WrappedComponent => {
     componentDidMount() {
       const { groupId, getGroup } = this.props;
       if (groupId) {
-        console.log({ groupId });
         getGroup({ id: groupId });
       }
     }
 
     componentDidUpdate(prevProps) {
       const { groupId, getGroup } = this.props;
-      if (groupId !== prevProps.groupId) {
-        console.log({ groupId, other: prevProps.groupId });
+      if (groupId && groupId !== prevProps.groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -30,20 +28,20 @@ const withGroup = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const groupId = ownProps.groupId || ((ownProps.match || {}).params || {}).id || "";
     const {
-      isFetching: isGroupFetching = true,
+      isGetting: isGettingGroup = false,
       creatorId: groupCreatorId = "",
       dateCreation: groupDateCreation = "",
       name: groupName = "",
       avatarUrl: groupAvatar = "",
       status: groupStatus = "",
       theme: groupTheme = "",
-      users: groupUsersId = [],
+      users: groupUsersIds = [],
       mediaTypes: groupMediaTypes = [],
       medias: groupMediasId = [],
       errorCode: groupErrorCode = ""
     } = groupsSelectors.getGroupById(state, groupId) || {};
     return {
-      isGroupFetching,
+      isGettingGroup,
       groupId,
       groupCreatorId,
       groupDateCreation,
@@ -51,7 +49,7 @@ const withGroup = WrappedComponent => {
       groupAvatar,
       groupStatus,
       groupTheme,
-      groupUsersId,
+      groupUsersIds,
       groupMediaTypes,
       groupMediasId,
       groupErrorCode

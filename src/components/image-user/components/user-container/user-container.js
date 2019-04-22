@@ -13,17 +13,20 @@ const UserContainer = styled(Container)`
     min-height: ${props.size}px;
     border-radius: ${props.size / 2}px;
     background-color ${
-      props.isUserFetching || props.userAvatar
+      // eslint-disable-next-line
+      props.isGettingUser && !props.userAvatar
         ? // eslint-disable-line
           props.placeholderColor
-        : props.theme.secondaryVariantColor
+        : !props.userAvatar
+        ? props.theme.secondaryVariantColor
+        : "transparent"
     };
   `}
   overflow: hidden;
 `;
 
 UserContainer.propTypes = {
-  isUserFetching: PropTypes.bool.isRequired,
+  isGettingUser: PropTypes.bool.isRequired,
   userAvatar: PropTypes.string.isRequired,
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
   placeholderColor: PropTypes.string.isRequired

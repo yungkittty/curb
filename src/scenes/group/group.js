@@ -11,8 +11,8 @@ import withCurrentUser from "../../hocs/with-current-user";
 import withGroup from "../../hocs/with-group";
 
 const Group = ({
-  userGroupsId,
-  isGroupFetching,
+  userGroupsIds,
+  isGettingGroup,
   groupId,
   groupName,
   groupAvatar,
@@ -27,8 +27,8 @@ const Group = ({
       keyExtractor={groupMediaId => groupMediaId}
       ListHeaderComponent={() => (
         <GroupListHeader
-          userGroupsId={userGroupsId}
-          isGroupFetching={isGroupFetching}
+          userGroupsIds={userGroupsIds}
+          isGettingGroup={isGettingGroup}
           groupId={groupId}
           groupName={groupName}
           groupAvatar={groupAvatar}
@@ -39,7 +39,7 @@ const Group = ({
       )}
       renderSectionHeader={() => (
         <GroupListSectionHeader
-          userGroupsId={userGroupsId}
+          userGroupsIds={userGroupsIds}
           groupId={groupId}
           groupStatus={groupStatus}
           groupTheme={groupTheme}
@@ -59,8 +59,8 @@ const Group = ({
 );
 
 Group.propTypes = {
-  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
-  isGroupFetching: PropTypes.bool.isRequired,
+  userGroupsIds: PropTypes.array.isRequired, // eslint-disable-line
+  isGettingGroup: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,

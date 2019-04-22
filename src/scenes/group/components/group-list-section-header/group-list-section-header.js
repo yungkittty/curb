@@ -18,11 +18,11 @@ class GroupListSectionHeader extends React.Component {
   /** @TODO QR should pass state is_invited! */
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { groupId, groupStatus, userGroupsId } = nextProps;
+    const { groupId, groupStatus, userGroupsIds } = nextProps;
     if (!groupId || !groupStatus || prevState.isShowed === false) return {};
     const { isInvited, inviteToken } = nextProps.location.state || {};
     const isGroupPublic = groupStatus === "public";
-    const isUserIn = _.includes(userGroupsId, groupId);
+    const isUserIn = _.includes(userGroupsIds, groupId);
     const isUserInvited = isInvited && (isGroupPublic || RegExp("^([a-f\\d]{24})$").test(inviteToken));
     return { isShowed: !isUserIn && (isGroupPublic || isUserInvited), isInvited: isUserInvited };
   }
@@ -58,7 +58,7 @@ class GroupListSectionHeader extends React.Component {
 GroupListSectionHeader.propTypes = {
   /* eslint-disable */
   location: PropTypes.object.isRequired,
-  userGroupsId: PropTypes.array.isRequired,
+  userGroupsIds: PropTypes.array.isRequired,
   groupId: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,

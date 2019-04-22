@@ -11,13 +11,13 @@ const MediaVideo = () => null;
 
 const ItemMedia = ({
   // eslint-disable-line
-  isMediaFetching,
+  isGettingMedia,
   mediaType,
   mediaData
 }) => (
-  <MediaContainer isMediaFetching={isMediaFetching}>
+  <MediaContainer isGettingMedia={isGettingMedia}>
     {/* eslint-disable */}
-    {isMediaFetching ? (
+    {isGettingMedia ? (
       () => null
     ) : mediaType === "image" ? (
       <MediaImage />
@@ -33,7 +33,7 @@ const ItemMedia = ({
 );
 
 ItemMedia.propTypes = {
-  isMediaFetching: PropTypes.bool.isRequired,
+  isGettingMedia: PropTypes.bool.isRequired,
   mediaType: PropTypes.string.isRequired,
   mediaData: PropTypes.string.isRequired
 };

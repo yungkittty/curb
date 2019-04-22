@@ -8,7 +8,7 @@ import HeaderTitle from "./components/header-title";
 
 const GroupListHeader = ({
   // eslint-disable-line
-  userGroupsId,
+  userGroupsIds,
   groupId,
   groupName,
   groupStatus,
@@ -17,7 +17,7 @@ const GroupListHeader = ({
 }) => (
   <HeaderContainer groupTheme={groupTheme}>
     <React.Fragment>
-      {groupStatus === "public" || _.includes(userGroupsId, groupId) ? (
+      {groupStatus === "public" || _.includes(userGroupsIds, groupId) ? (
         <HeaderButtonIcon
           icon="info-circle"
           size="small"
@@ -40,7 +40,7 @@ const GroupListHeader = ({
 );
 
 GroupListHeader.propTypes = {
-  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  userGroupsIds: PropTypes.array.isRequired, // eslint-disable-line
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,

@@ -10,7 +10,7 @@ import withUser from "../../hocs/with-user";
 
 const ImageUser = ({
   // eslint-disable-line
-  isUserFetching,
+  isGettingUser,
   userAvatar,
   theme,
   size,
@@ -38,13 +38,13 @@ const ImageUser = ({
   return (
     <UserContainer
       {...others}
-      isUserFetching={isUserFetching}
+      isGettingUser={isGettingUser}
       userAvatar={userAvatar}
       placeholderColor={placeholderColor}
       size={X}
     >
       {/* eslint-disable-next-line */}
-      {!isUserFetching ? (
+      {!isGettingUser || userAvatar ? (
         userAvatar ? (
           <Image
             src={_.replace(userAvatar, "medium", size)}
@@ -64,7 +64,7 @@ const ImageUser = ({
 };
 
 ImageUser.propTypes = {
-  isUserFetching: PropTypes.bool.isRequired,
+  isGettingUser: PropTypes.bool.isRequired,
   userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,

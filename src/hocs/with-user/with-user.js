@@ -14,7 +14,7 @@ const withUser = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { userId, getUser } = this.props;
-      if (userId !== prevProps.userId) {
+      if (userId && userId !== prevProps.userId) {
         getUser({ id: userId });
       }
     }
@@ -28,20 +28,20 @@ const withUser = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const userId = ownProps.userId || ((ownProps.match || {}).params || {}).id || "";
     const {
-      isFetching: isUserFetching = true,
+      isGetting: isGettingUser = false,
       dateCreation: userDateCreation = "",
       name: userName = "",
       avatarUrl: userAvatar = "",
-      groups: userGroupsId = [],
+      groups: userGroupsIds = [],
       errorCode: userErrorCode = ""
     } = usersSelectors.getUserById(state, userId) || {};
     return {
-      isUserFetching,
+      isGettingUser,
       userId,
       userDateCreation,
       userName,
       userAvatar,
-      userGroupsId,
+      userGroupsIds,
       userErrorCode
     };
   };

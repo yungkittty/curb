@@ -14,17 +14,21 @@ const GroupContainer = styled(Container)`
     min-height: ${props.size}px;
     border-radius: ${props.size / 2}px;
     background-color: ${
-      props.isGroupFetching || props.groupAvatar
+      // eslint-disable-next-line
+      props.isGettingGroup && !props.groupAvatar && !props.groupName
         ? // eslint-disable-line
           props.placeholderColor
-        : props.theme[`group${_.capitalize(props.groupTheme)}VariantColor`]
+        : !props.groupAvatar
+        ? props.theme[`group${_.capitalize(props.groupTheme)}VariantColor`]
+        : "transparent"
     };
   `}
   overflow: hidden;
 `;
 
 GroupContainer.propTypes = {
-  isGroupFetching: PropTypes.bool.isRequired,
+  isGettingGroup: PropTypes.bool.isRequired,
+  groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,

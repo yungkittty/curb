@@ -6,7 +6,7 @@ import HeaderInfos from "./components/header-infos";
 
 const ItemHeader = ({
   // eslint-disable-line
-  isMediaFetching,
+  isGettingMedia,
   mediaCreatorId,
   mediaDateCreation,
   theme
@@ -21,14 +21,14 @@ const ItemHeader = ({
     <HeaderInfos
       // eslint-disable-line
       userId={mediaCreatorId}
-      isMediaFetching={isMediaFetching}
+      isGettingMedia={isGettingMedia}
       mediaDateCreation={mediaDateCreation}
     />
   </HeaderContainer>
 );
 
 ItemHeader.propTypes = {
-  isMediaFetching: PropTypes.bool.isRequired,
+  isGettingMedia: PropTypes.bool.isRequired,
   mediaCreatorId: PropTypes.string.isRequired,
   mediaDateCreation: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired // eslint-disable-line

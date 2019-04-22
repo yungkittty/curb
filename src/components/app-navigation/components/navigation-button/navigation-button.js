@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import ButtonIcon from "../../../button-icon";
+import Button from "../../../_button";
 
-const NavigationButtonIcon = styled(ButtonIcon)`
+const NavigationButton = styled(Button)`
   width: 60px;
   min-height: 60px;
   margin-bottom: 10px;
@@ -10,4 +10,4 @@ const NavigationButtonIcon = styled(ButtonIcon)`
   background-color: ${props => props.theme.secondaryVariantColor};
 `;
 
-export default NavigationButtonIcon;
+export default NavigationButton;

@@ -1,4 +1,5 @@
-import { all, takeEvery, call, put } from "redux-saga/effects";
+import { all, call, put } from "redux-saga/effects";
+import { takeNormalize } from "../../configurations/store/saga-effects";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
@@ -13,6 +14,6 @@ function* getUsersRequestSaga(action) {
   }
 }
 
-const usersSaga = all([takeEvery(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)]);
+const usersSaga = all([takeNormalize(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)]);
 
 export default usersSaga;
