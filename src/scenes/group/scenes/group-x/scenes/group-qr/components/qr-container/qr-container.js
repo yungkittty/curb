@@ -6,6 +6,8 @@ const QrContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  position: relative;
+  top: -40px;
 `;
 
 export default QrContainer;
