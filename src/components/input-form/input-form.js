@@ -16,7 +16,7 @@ class InputForm extends Component {
     const { size, type, placeholder, value, onChange, id, error, ...others } = this.props;
     const { focused } = this.state;
     return (
-      <FormContainer size={size} {...others}>
+      <FormContainer {...others} size={size}>
         <FormPlaceholder weight={300} upper={value !== "" || focused}>
           {placeholder}
         </FormPlaceholder>

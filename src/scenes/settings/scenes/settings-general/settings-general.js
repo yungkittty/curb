@@ -22,9 +22,10 @@ class SettingsGeneral extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignOutFetching, enableAppModalButtons } = this.props;
+    const { isSignOutFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isSignOutFetching === isSignOutFetching) return;
-    enableAppModalButtons({ enabled: !isSignOutFetching });
+    if (isSignOutFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   render() {
@@ -52,6 +53,7 @@ class SettingsGeneral extends Component {
 
 SettingsGeneral.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   isSignOutFetching: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,

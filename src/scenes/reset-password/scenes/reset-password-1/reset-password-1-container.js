@@ -6,14 +6,15 @@ import { accountActions, accountSelectors } from "../../../../datas/account";
 import { appModalActions } from "../../../../datas/app-modal";
 
 const mapStateToProps = state => ({
-  isAccountRequestCodeFetching: accountSelectors.isAccountRequestCodeFetching(state) || false,
-  isAccountRequestCodeSuccess: accountSelectors.isAccountRequestCodeSuccess(state) || false,
-  accountRequestCodeErrorCode: accountSelectors.getAccountRequestCodeErrorCode(state) || ""
+  isAccountFetching: accountSelectors.isAccountFetching(state) || false,
+  accountErrorCode: accountSelectors.getAccountErrorCode(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestCode: payload => dispatch(accountActions.requestCodeRequest(payload)),
-  enableAppModalButtons: payload => dispatch(appModalActions.enableAppModalButtons(payload)),
+  requestAccountResetPasswordCode: payload =>
+    dispatch(accountActions.requestAccountResetPasswordCodeRequest(payload)),
+  enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
+  disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
   setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),

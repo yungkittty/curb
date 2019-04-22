@@ -6,14 +6,15 @@ import { accountActions, accountSelectors } from "../../../../datas/account";
 import { appModalActions } from "../../../../datas/app-modal";
 
 const mapStateToProps = state => ({
-  isAccountValidateCodeFetching: accountSelectors.isAccountValidateCodeFetching(state) || false,
-  isAccountValidateCodeSuccess: accountSelectors.isAccountValidateCodeSuccess(state) || false,
-  accountValidateCodeErrorCode: accountSelectors.getAccountValidateCodeErrorCode(state) || ""
+  isAccountFetching: accountSelectors.isAccountFetching(state) || false,
+  accountErrorCode: accountSelectors.getAccountErrorCode(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
-  validateCode: payload => dispatch(accountActions.validateCodeRequest(payload)),
-  enableAppModalButtons: payload => dispatch(appModalActions.enableAppModalButtons(payload)),
+  validateAccountResetPasswordCode: payload =>
+    dispatch(accountActions.validateAccountResetPasswordCodeRequest(payload)),
+  enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
+  disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
   setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),

@@ -28,6 +28,7 @@ class InputCode extends Component {
     const { id } = this.props;
     const nodes = document.getElementsByClassName(id)[0].childNodes;
     for (let i = 0; i < nodes.length; i += 1) {
+      nodes[i].blur();
       nodes[i].onkeydown = undefined;
       nodes[i].onkeyup = undefined;
     }

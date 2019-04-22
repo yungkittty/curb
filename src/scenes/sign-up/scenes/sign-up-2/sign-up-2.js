@@ -27,9 +27,10 @@ class SignUp2 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignUpFetching, enableAppModalButtons } = this.props;
+    const { isSignUpFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isSignUpFetching === isSignUpFetching) return;
-    enableAppModalButtons({ enabled: !isSignUpFetching });
+    if (isSignUpFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   goToPrev() {
@@ -113,6 +114,7 @@ SignUp2.defaultProps = {
 
 SignUp2.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,

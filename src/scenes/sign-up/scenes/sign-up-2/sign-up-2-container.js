@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  enableAppModalButtons: payload => dispatch(appModalActions.enableAppModalButtons(payload)),
+  enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
+  disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
   setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),

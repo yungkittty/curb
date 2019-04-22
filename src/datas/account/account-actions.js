@@ -1,42 +1,42 @@
 import accountActionsTypes from "./account-actions-types";
 
 const accountActions = {
-  requestCodeRequest: payload => ({
-    type: accountActionsTypes.REQUEST_CODE_REQUEST,
+  requestAccountResetPasswordCodeRequest: payload => ({
+    type: accountActionsTypes.REQUEST_ACCOUNT_RESET_PASSWORD_CODE_REQUEST,
     payload
   }),
-  requestCodeSuccess: () => ({
-    type: accountActionsTypes.REQUEST_CODE_SUCCESS,
+  requestAccountResetPasswordCodeSuccess: () => ({
+    type: accountActionsTypes.REQUEST_ACCOUNT_RESET_PASSWORD_CODE_SUCCESS,
     payload: undefined
   }),
-  requestCodeFailure: error => ({
-    type: accountActionsTypes.REQUEST_CODE_FAILURE,
+  requestAccountResetPasswordCodeFailure: error => ({
+    type: accountActionsTypes.REQUEST_ACCOUNT_RESET_PASSWORD_CODE_FAILURE,
     payload: error,
     error: true
   }),
-  validateCodeRequest: payload => ({
-    type: accountActionsTypes.VALIDATE_CODE_REQUEST,
+  validateAccountResetPasswordCodeRequest: payload => ({
+    type: accountActionsTypes.VALIDATE_ACCOUNT_RESET_PASSWORD_CODE_REQUEST,
     payload
   }),
-  validateCodeSuccess: () => ({
-    type: accountActionsTypes.VALIDATE_CODE_SUCCESS,
+  validateAccountResetPasswordCodeSuccess: () => ({
+    type: accountActionsTypes.VALIDATE_ACCOUNT_RESET_PASSWORD_CODE_SUCCESS,
     payload: undefined
   }),
-  validateCodeFailure: error => ({
-    type: accountActionsTypes.VALIDATE_CODE_FAILURE,
+  validateAccountResetPasswordCodeFailure: error => ({
+    type: accountActionsTypes.VALIDATE_ACCOUNT_RESET_PASSWORD_CODE_FAILURE,
     payload: error,
     error: true
   }),
-  resetPassRequest: payload => ({
-    type: accountActionsTypes.RESET_PASS_REQUEST,
+  resetAccountPasswordRequest: payload => ({
+    type: accountActionsTypes.RESET_ACCOUNT_PASSWORD_REQUEST,
     payload
   }),
-  resetPassSuccess: () => ({
-    type: accountActionsTypes.RESET_PASS_SUCCESS,
+  resetAccountPasswordSuccess: () => ({
+    type: accountActionsTypes.RESET_ACCOUNT_PASSWORD_SUCCESS,
     payload: undefined
   }),
-  resetPassFailure: error => ({
-    type: accountActionsTypes.RESET_PASS_FAILURE,
+  resetAccountPasswordFailure: error => ({
+    type: accountActionsTypes.RESET_ACCOUNT_PASSWORD_FAILURE,
     payload: error,
     error: true
   })

@@ -22,9 +22,10 @@ class SignIn extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignInFetching, enableAppModalButtons } = this.props;
+    const { isSignInFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isSignInFetching === isSignInFetching) return;
-    enableAppModalButtons({ enabled: !isSignInFetching });
+    if (isSignInFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   submit() {
@@ -72,6 +73,7 @@ SignIn.defaultProps = {
 
 SignIn.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,

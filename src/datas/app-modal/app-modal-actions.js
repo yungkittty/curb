@@ -9,6 +9,10 @@ const appModalActions = {
     type: appModalActionsTypes.ENABLE_APP_MODAL_BUTTONS,
     payload
   }),
+  disableAppModalButtons: payload => ({
+    type: appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS,
+    payload
+  }),
   setAppModalHeaderText: payload => ({
     type: appModalActionsTypes.SET_APP_MODAL_HEADER_TEXT,
     payload

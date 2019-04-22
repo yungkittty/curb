@@ -26,9 +26,9 @@ const appModalReducer = (state = initialState, action) => {
         scene: action.payload.scene
       });
     case appModalActionsTypes.ENABLE_APP_MODAL_BUTTONS:
-      return _.assign({}, state, {
-        isButtonsEnabled: action.payload.enabled
-      });
+      return _.assign({}, state, { isButtonsEnabled: true });
+    case appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS:
+      return _.assign({}, state, { isButtonsEnabled: false });
     case appModalActionsTypes.SET_APP_MODAL_HEADER_TEXT:
       return _.assign({}, state, {
         headerText: action.payload.text

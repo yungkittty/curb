@@ -6,7 +6,7 @@ const enValidation = {
   email: {
     missing: "Missing mail address",
     invalid: "Invalid mail address",
-    ACCOUNTS_NOT_FOUND: "This email does not exists in the database"
+    ACCOUNTS_NOT_FOUND: "No account found with this mail address"
   },
   password: {
     missing: "Missing password",

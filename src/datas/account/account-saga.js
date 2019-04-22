@@ -9,10 +9,10 @@ import ResetPassword2 from "../../scenes/reset-password/scenes/reset-password-2"
 import ResetPassword3 from "../../scenes/reset-password/scenes/reset-password-3";
 /* eslint-enable */
 
-function* requestCodeRequestSaga(action) {
+function* requestAccountResetPasswordCodeRequestSaga(action) {
   try {
     yield call(accountApi.requestCode, action.payload);
-    yield put(accountActions.requestCodeSuccess());
+    yield put(accountActions.requestAccountResetPasswordCodeSuccess());
     yield put(
       appModalActions.setAppModalScene({
         scene: ResetPassword2,
@@ -20,14 +20,14 @@ function* requestCodeRequestSaga(action) {
       })
     );
   } catch (error) {
-    yield put(accountActions.requestCodeFailure(error));
+    yield put(accountActions.requestAccountResetPasswordCodeFailure(error));
   }
 }
 
-function* validateCodeRequestSaga(action) {
+function* validateAccountResetPasswordCodeRequestSaga(action) {
   try {
     yield call(accountApi.validateCode, action.payload);
-    yield put(accountActions.validateCodeSuccess());
+    yield put(accountActions.validateAccountResetPasswordCodeSuccess());
     yield put(
       appModalActions.setAppModalScene({
         scene: ResetPassword3,
@@ -35,26 +35,32 @@ function* validateCodeRequestSaga(action) {
       })
     );
   } catch (error) {
-    yield put(accountActions.validateCodeFailure(error));
+    yield put(accountActions.validateAccountResetPasswordCodeFailure(error));
   }
 }
 
-function* resetPassRequestSaga(action) {
+function* resetAccountPasswordRequestSaga(action) {
   try {
     const { email, password } = action.payload;
     yield call(accountApi.resetPass, action.payload);
-    yield put(accountActions.resetPassSuccess());
+    yield put(accountActions.resetAccountPasswordSuccess());
     yield put(signInActions.signInRequest({ email, password }));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    yield put(accountActions.resetPassFailure(error));
+    yield put(accountActions.resetAccountPasswordFailure(error));
   }
 }
 
 const accountSaga = all([
-  takeLatest(accountActionsTypes.REQUEST_CODE_REQUEST, requestCodeRequestSaga),
-  takeLatest(accountActionsTypes.VALIDATE_CODE_REQUEST, validateCodeRequestSaga),
-  takeLatest(accountActionsTypes.RESET_PASS_REQUEST, resetPassRequestSaga)
+  takeLatest(
+    accountActionsTypes.REQUEST_ACCOUNT_RESET_PASSWORD_CODE_REQUEST,
+    requestAccountResetPasswordCodeRequestSaga
+  ),
+  takeLatest(
+    accountActionsTypes.VALIDATE_ACCOUNT_RESET_PASSWORD_CODE_REQUEST,
+    validateAccountResetPasswordCodeRequestSaga
+  ),
+  takeLatest(accountActionsTypes.RESET_ACCOUNT_PASSWORD_REQUEST, resetAccountPasswordRequestSaga)
 ]);
 
 export default accountSaga;

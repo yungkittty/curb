@@ -6,7 +6,7 @@ const frValidation = {
   email: {
     missing: "Adresse mail manquante",
     invalid: "Adresse mail invalide",
-    ACCOUNTS_NOT_FOUND: "Cet email n'existe pas dans la base de données"
+    ACCOUNTS_NOT_FOUND: "Aucun compte trouvé avec cette adresse mail"
   },
   password: {
     missing: "Mot de passe manquant",

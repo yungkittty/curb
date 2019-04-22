@@ -14,7 +14,7 @@ class ResetPassword2 extends Component {
 
     const { setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalScene } = props;
 
-    this.state = { showErrorCode: false };
+    this.state = { isLoading: false, errorCode: undefined };
 
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -30,19 +30,13 @@ class ResetPassword2 extends Component {
     setTimeout(() => this.focusFirstNode(), 450);
   }
 
-  shouldComponentUpdate(nextProps) {
-    const { isAccountValidateCodeFetching } = this.props;
-    return !nextProps.isAccountValidateCodeSuccess || !isAccountValidateCodeFetching;
-  }
-
   componentDidUpdate(prevProps) {
-    const { showErrorCode } = this.state;
-    const { accountValidateCodeErrorCode, enableAppModalButtons } = this.props;
-    if (!showErrorCode && accountValidateCodeErrorCode && prevProps.isAccountValidateCodeFetching) {
+    const { code, isAccountFetching, accountErrorCode, enableAppModalButtons } = this.props;
+
+    if (code.value !== "" && prevProps.isAccountFetching && !isAccountFetching && accountErrorCode !== "") {
       // eslint-disable-next-line
-      this.setState({ showErrorCode: true });
-      enableAppModalButtons({ enabled: true });
-      this.focusFirstNode();
+      this.setState({ isLoading: false, errorCode: accountErrorCode }, () => this.focusFirstNode());
+      enableAppModalButtons();
     }
   }
 
@@ -52,17 +46,18 @@ class ResetPassword2 extends Component {
   }
 
   submit(code) {
-    const { validateCode, email, enableAppModalButtons } = this.props;
+    const { validateAccountResetPasswordCode, email, disableAppModalButtons } = this.props;
 
-    validateCode({ code, email: email.value });
-    enableAppModalButtons({ enabled: false });
+    validateAccountResetPasswordCode({ code, email: email.value });
+    disableAppModalButtons();
+    setTimeout(() => this.setState({ isLoading: true }));
   }
 
   checkInput(id, value) {
     const { setAppModalSceneData, [id]: Y } = this.props;
-    const { showErrorCode } = this.state;
+    const { errorCode } = this.state;
 
-    if (showErrorCode) this.setState({ showErrorCode: false });
+    if (errorCode) this.setState({ errorCode: undefined });
 
     const error = value.length === 0 ? "missing" : undefined;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
@@ -76,10 +71,10 @@ class ResetPassword2 extends Component {
   }
 
   render() {
-    const { isAccountValidateCodeFetching, accountValidateCodeErrorCode, t } = this.props;
-    const { showErrorCode } = this.state;
+    const { t } = this.props;
+    const { isLoading, errorCode } = this.state;
 
-    return isAccountValidateCodeFetching ? (
+    return isLoading ? (
       <Loader />
     ) : (
       <AppModalSceneContainer verticalAlign>
@@ -89,11 +84,7 @@ class ResetPassword2 extends Component {
           fields={6}
           ref={this.inputCode}
           onChange={this.handleChange}
-          error={
-            showErrorCode && accountValidateCodeErrorCode
-              ? t(`validation:resetPassCode.${accountValidateCodeErrorCode}`)
-              : undefined
-          }
+          error={errorCode ? t(`validation:resetPassCode.${errorCode}`) : undefined}
         />
       </AppModalSceneContainer>
     );
@@ -106,14 +97,14 @@ ResetPassword2.defaultProps = {
 };
 
 ResetPassword2.propTypes = {
-  isAccountValidateCodeFetching: PropTypes.bool.isRequired,
-  isAccountValidateCodeSuccess: PropTypes.bool.isRequired,
-  accountValidateCodeErrorCode: PropTypes.string.isRequired,
+  isAccountFetching: PropTypes.bool.isRequired,
+  accountErrorCode: PropTypes.string.isRequired,
   enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   code: PropTypes.shape({ value: PropTypes.string }),
   email: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired,
-  validateCode: PropTypes.func.isRequired,
+  validateAccountResetPasswordCode: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
