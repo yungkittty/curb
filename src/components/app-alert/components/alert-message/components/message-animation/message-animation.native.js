@@ -7,6 +7,7 @@ const MessageAnimation = WrappedComponent => {
     constructor(props) {
       super(props);
       this.state = { top: new Animated.Value(-50) };
+      this.closeMessage = this.closeMessage.bind(this);
     }
 
     componentDidMount() {
@@ -15,34 +16,26 @@ const MessageAnimation = WrappedComponent => {
       Animated.timing(top, {
         toValue: 0,
         easing: Easing.out(Easing.quad),
-        duration: 400,
+        duration: 500,
         useNativeDriver: true
       }).start();
       if (persist) return;
-      setTimeout(
-        () =>
-          Animated.timing(top, {
-            toValue: -50,
-            easing: Easing.out(Easing.quad),
-            duration: 400,
-            useNativeDriver: true
-          }).start(),
-        3500
-      );
+      setTimeout(() => this.closeMessage(), 3500);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+      const { persist } = this.props;
+      if (prevProps.persist !== persist) setTimeout(() => this.closeMessage(), 500);
+    }
+
+    closeMessage() {
       const { top } = this.state;
-      setTimeout(
-        () =>
-          Animated.timing(top, {
-            toValue: -50,
-            easing: Easing.out(Easing.quad),
-            duration: 400,
-            useNativeDriver: true
-          }).start(),
-        500
-      );
+      Animated.timing(top, {
+        toValue: -50,
+        easing: Easing.out(Easing.quad),
+        duration: 500,
+        useNativeDriver: true
+      }).start();
     }
 
     render() {
@@ -57,8 +50,13 @@ const MessageAnimation = WrappedComponent => {
     }
   }
 
+  _MessageAnimation.defaultProps = {
+    persist: false
+  };
+
   _MessageAnimation.propTypes = {
-    index: PropTypes.number.isRequired
+    index: PropTypes.number.isRequired,
+    persist: PropTypes.bool
   };
 
   return _MessageAnimation;

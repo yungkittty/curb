@@ -48,12 +48,17 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal, appAler
         appAlertPushAlert({
           type: "info",
           message: "Your photo is uploading...",
-          persistUntil: "UPLOAD_FINISHED"
+          persistUntilKey: "UPLOAD_AVATAR_FINISHED"
         });
         setTimeout(
           () =>
-            appAlertPushAlert({ type: "success", message: "Succesfully uploaded!", key: "UPLOAD_FINISHED" }),
-          6000
+            appAlertPushAlert({
+              type: "success",
+              message: "Succesfully uploaded!",
+              icon: "check",
+              key: "UPLOAD_AVATAR_FINISHED"
+            }),
+          5000
         );
       }}
     />

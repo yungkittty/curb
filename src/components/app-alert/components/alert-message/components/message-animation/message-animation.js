@@ -30,7 +30,7 @@ const MessageAnimation = WrappedComponent => {
     componentDidUpdate(prevProps) {
       const { persist, index } = this.props;
       const { style } = this.wrappedComponent.current;
-      if (prevProps.persist !== persist) setTimeout(() => this.closeMessage(), 0);
+      if (prevProps.persist !== persist) this.closeMessage();
       style.top = `${30 + index * 80}px`;
     }
 
@@ -47,8 +47,13 @@ const MessageAnimation = WrappedComponent => {
     }
   }
 
+  _MessageAnimation.defaultProps = {
+    persist: false
+  };
+
   _MessageAnimation.propTypes = {
-    index: PropTypes.number.isRequired
+    index: PropTypes.number.isRequired,
+    persist: PropTypes.bool
   };
 
   return _MessageAnimation;

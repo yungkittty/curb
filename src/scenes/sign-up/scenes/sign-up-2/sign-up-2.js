@@ -29,11 +29,13 @@ class SignUp2 extends Component {
   componentDidUpdate(prevProps) {
     const {
       isSignUpFetching,
+      signUpErrorCode,
       t,
       hideAppModal,
       setAppModalHeaderLeftButton,
       setAppModalHeaderRightButton,
-      setAppModalFooterButton
+      setAppModalFooterButton,
+      pushAppAlert
     } = this.props;
     if (prevProps.isSignUpFetching === isSignUpFetching) return;
     setAppModalHeaderLeftButton({
@@ -48,6 +50,12 @@ class SignUp2 extends Component {
       text: t("common:finish"),
       onClick: !isSignUpFetching ? this.finish : () => undefined
     });
+    if (prevProps.isSignUpFetching && !isSignUpFetching && signUpErrorCode === "")
+      pushAppAlert({
+        type: "success",
+        message: t("alerts:accountCreated"),
+        icon: "check"
+      });
   }
 
   goToPrev() {
@@ -143,6 +151,7 @@ SignUp2.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   isSignUpFetching: PropTypes.bool.isRequired,
   hideAppModal: PropTypes.func.isRequired,
+  pushAppAlert: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,

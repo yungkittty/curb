@@ -12,16 +12,30 @@ class AppAlert extends Component {
 
   componentDidUpdate(prevProps) {
     const { appAlertList, appAlertClearAlert } = this.props;
+    const { firstIndex } = this.state;
     const l = appAlertList.length;
-    if (l > prevProps.appAlertList.length && !appAlertList[l - 1].persistUntil) {
+
+    for (let i = 0; i < l; i += 1) {
+      const keyIndex = _.findIndex(appAlertList, { persistUntilKey: appAlertList[i].key });
+      if (appAlertList[i].key && keyIndex + 1 !== firstIndex)
+        setTimeout(() => {
+          this.setState({
+            firstIndex: keyIndex + 1
+          });
+          console.log("first index top : " + (keyIndex + 1));
+        }, 500);
+    }
+    if (l > prevProps.appAlertList.length && !appAlertList[l - 1].persistUntilKey)
       setTimeout(() => {
         const { appAlertList: actualAppAlertList } = this.props;
         if (actualAppAlertList.length === l) {
           appAlertClearAlert();
           this.setState({ firstIndex: 0 });
-        } else this.setState({ firstIndex: l });
+        } else {
+          console.log("first index bot : " + l);
+          this.setState({ firstIndex: l });
+        }
       }, 4000);
-    }
   }
 
   render() {
@@ -29,13 +43,14 @@ class AppAlert extends Component {
     const { appAlertList } = this.props;
 
     return appAlertList.length > 0
-      ? _.map(appAlertList, ({ type, message, persistUntil }, index) => (
+      ? _.map(appAlertList, ({ type, message, icon, persistUntilKey }, index) => (
           // eslint-disable-next-line
           <AlertMessage
             key={index}
             index={index - firstIndex}
-            persist={persistUntil && !_.find(appAlertList, { key: persistUntil })}
+            persist={persistUntilKey && !_.find(appAlertList, { key: persistUntilKey }, index)}
             type={type}
+            icon={icon || (persistUntilKey && "loader")}
             message={message}
           />
         ))
@@ -48,7 +63,7 @@ AppAlert.propTypes = {
     PropTypes.shape({
       type: PropTypes.oneOf(["success", "error", "info"]).isRequired,
       message: PropTypes.string.isRequired,
-      persistUntil: PropTypes.string,
+      persistUntilKey: PropTypes.string,
       key: PropTypes.string
     })
   ).isRequired,

@@ -1,8 +1,8 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { isMobile } from "react-device-detect";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import { platformBools } from "../../configurations/platform";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
 import SelectImage from "../../components/select-image";
@@ -27,12 +27,34 @@ class User extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { t, isMediasPosting, pushAppAlert } = this.props;
+    if (prevProps.isMediasPosting && !isMediasPosting) {
+      pushAppAlert({
+        type: "success",
+        message: t("alerts:uploadUserAvatarSuccess"),
+        icon: "check",
+        key: "POST_USER_AVATAR"
+      });
+    }
+    // Todo:
+    //
+    // Add the case of an error while upload
+  }
+
   submit() {
-    const { patchCurrentUser, postUserAvatar } = this.props;
+    const { t, patchCurrentUser, postMediaUserAvatar, pushAppAlert } = this.props;
     const { username, avatar } = this.state;
 
     if (username.value) patchCurrentUser({ name: username.value });
-    if (avatar.value.file) postUserAvatar({ avatar: avatar.value.file });
+    if (avatar.value.file) {
+      postMediaUserAvatar({ avatar: avatar.value.file });
+      pushAppAlert({
+        type: "info",
+        message: t("alerts:uploadUserAvatarRequest"),
+        persistUntilKey: "POST_USER_AVATAR"
+      });
+    }
   }
 
   checkForm() {
@@ -66,7 +88,7 @@ class User extends Component {
 
   render() {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, owner, username: usernameProps, avatarUrl: avatarProps } = this.props;
+    const { t, owner, username: usernameProps, avatarUrl: avatarProps, isMediasPosting } = this.props;
 
     return (
       <UserContainer>
@@ -84,7 +106,7 @@ class User extends Component {
           readOnly={!editMode}
           containerStyle={{ marginTop: 64, textAlign: "center" }}
           textStyle={{
-            fontSize: !isMobile ? 36 : 24,
+            fontSize: platformBools.isReact ? 36 : 28,
             fontFamily: "Montserrat-Bold",
             textAlign: "center"
           }}
@@ -93,7 +115,11 @@ class User extends Component {
           error={usernameState.error && t(`validation:username.${usernameState.error}`)}
         />
         {owner && (
-          <ButtonIconFloat icon={editMode ? "check" : "pen"} size="medium" onClick={this.handleSwapMode} />
+          <ButtonIconFloat
+            icon={editMode ? "check" : "pen"}
+            size="medium"
+            onClick={!isMediasPosting ? this.handleSwapMode : undefined}
+          />
         )}
       </UserContainer>
     );
@@ -101,8 +127,10 @@ class User extends Component {
 }
 
 User.propTypes = {
+  pushAppAlert: PropTypes.func.isRequired,
+  isMediasPosting: PropTypes.bool.isRequired,
   patchCurrentUser: PropTypes.func.isRequired,
-  postUserAvatar: PropTypes.func.isRequired,
+  postMediaUserAvatar: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,

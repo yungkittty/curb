@@ -3,7 +3,6 @@ import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
 import { currentUserSelectors } from "../current-user";
-import { appAlertActions } from "../app-alert";
 
 function* getUsersRequestSaga(action) {
   try {
@@ -24,29 +23,9 @@ function* patchUsersRequestSaga(action) {
   }
 }
 
-function* postUsersAvatarRequestSaga(action) {
-  try {
-    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    yield put(
-      appAlertActions.pushAppAlert({
-        type: "info",
-        message: "Your avatar is uploading...",
-        persistUntilNext: true
-      })
-    );
-    const respond = yield call(usersApi.postUserAvatar, { id: currentUserId, payload: action.payload });
-    yield put(appAlertActions.pushAppAlert({ type: "success", message: "Your avatar has been uploaded" }));
-    yield put(usersActions.postUserAvatarSuccess(respond));
-  } catch (error) {
-    yield put(appAlertActions.pushAppAlert, { type: "error", message: "Your avatar has failed to upload" });
-    yield put(usersActions.postUserAvatarFailure(error));
-  }
-}
-
 const usersSaga = all([
   takeEvery(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga),
-  takeLatest(usersActionsTypes.PATCH_USER_REQUEST, patchUsersRequestSaga),
-  takeLatest(usersActionsTypes.POST_USER_AVATAR_REQUEST, postUsersAvatarRequestSaga)
+  takeLatest(usersActionsTypes.PATCH_USER_REQUEST, patchUsersRequestSaga)
 ]);
 
 export default usersSaga;

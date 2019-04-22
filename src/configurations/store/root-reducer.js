@@ -8,6 +8,7 @@ import { currentSettingsReducer as currentSettings } from "../../datas/current-s
 import { usersReducer as users } from "../../datas/users";
 import { groupsReducer as groups } from "../../datas/groups";
 import { discoveryReducer as discovery } from "../../datas/discovery";
+import { mediasReducer as medias } from "../../datas/medias";
 
 const rootReducer = combineReducers({
   appModal,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   currentSettings,
   users,
   groups,
-  discovery
+  discovery,
+  medias
 });
 
 export default rootReducer;
