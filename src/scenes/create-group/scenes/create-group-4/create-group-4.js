@@ -39,30 +39,10 @@ class CreateGroup4 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      isCreateGroupFetching,
-      t,
-      hideAppModal,
-      setAppModalHeaderLeftButton,
-      setAppModalHeaderRightButton,
-      setAppModalScene,
-      setAppModalFooterButton
-    } = this.props;
+    const { isCreateGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isCreateGroupFetching === isCreateGroupFetching) return;
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: !isCreateGroupFetching
-        ? () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
-        : () => undefined
-    });
-    setAppModalHeaderRightButton({
-      icon: "times",
-      onClick: !isCreateGroupFetching ? hideAppModal : () => undefined
-    });
-    setAppModalFooterButton({
-      text: t("common:finish"),
-      onClick: !isCreateGroupFetching ? this.submit : () => undefined
-    });
+    if (isCreateGroupFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   submit() {
@@ -152,9 +132,10 @@ CreateGroup4.defaultProps = {
 };
 
 CreateGroup4.propTypes = {
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,

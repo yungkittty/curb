@@ -1,10 +1,6 @@
 const enSignUp = {
   createAccount: "Create account",
-  choosePassword: "Choose your password",
-  username: "Username",
-  mailAddress: "Mail address",
-  password: "Password",
-  confirmPassword: "Confirm password"
+  choosePassword: "Choose your password"
 };
 
 export default enSignUp;
