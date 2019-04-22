@@ -27,23 +27,10 @@ class SignUp2 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      t,
-      isSignUpFetching,
-      signUpErrorCode,
-      enableAppModalButtons,
-      disableAppModalButtons,
-      pushAppAlert
-    } = this.props;
+    const { isSignUpFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isSignUpFetching === isSignUpFetching) return;
     if (isSignUpFetching) disableAppModalButtons();
     else enableAppModalButtons();
-    if (prevProps.isSignUpFetching && !isSignUpFetching && signUpErrorCode === "")
-      pushAppAlert({
-        type: "success",
-        message: t("alerts:accountCreated"),
-        icon: "check"
-      });
   }
 
   goToPrev() {
