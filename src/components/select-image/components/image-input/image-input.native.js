@@ -21,8 +21,9 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
         noData: true,
         allowsEditing: true,
         storageOptions: {
-          cameraRoll: false,
-          skipBackup: true
+          cameraRoll: true,
+          skipBackup: true,
+          waitUntilSaved: true
         },
         permissionDenied: {
           title: t("permissionDenied"),
@@ -51,7 +52,7 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
           onSelect(source.uri, {
             uri: source.uri,
             type: response.type,
-            name: response.fileName
+            name: "image.jpg"
           });
         }
       }
