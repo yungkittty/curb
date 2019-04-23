@@ -8,7 +8,8 @@ const mediasApi = {
     data.append("file", payload.avatar);
     TestFairy.log(id);
     TestFairy.log(payload);
-    return axios.post(`/contents/avatars/users/${payload.id || id}`, data, {
+    const body = Object.setPrototypeOf(data, null);
+    return axios.post(`/contents/avatars/users/${payload.id || id}`, body, {
       withCredentials: true,
       headers: {
         Accept: "application/json",
