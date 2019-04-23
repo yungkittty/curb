@@ -51,7 +51,7 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
           onSelect(source.uri, {
             uri: source.uri,
             type: response.type,
-            name: "image.jpg"
+            name: response.fileName
           });
         }
       }
