@@ -1,4 +1,5 @@
 import { all, takeEvery, takeLatest, select, call, put } from "redux-saga/effects";
+import TestFairy from "react-native-testfairy";
 import mediasActionsTypes from "./medias-actions-types";
 import mediasActions from "./medias-actions";
 import mediasApi from "./medias-api";
@@ -20,6 +21,7 @@ function* postMediaUserAvatarRequestSaga(action) {
     const respond = yield call(mediasApi.postMediaUserAvatar, { id: currentUserId, payload: action.payload });
     yield put(mediasActions.postMediaUserAvatarSuccess(respond));
   } catch (error) {
+    TestFairy.log(error);
     yield put(mediasActions.postMediaUserAvatarFailure(error));
   }
 }
