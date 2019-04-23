@@ -36,9 +36,6 @@ const ImagePreview = styled(({ children, style, src, progress, ...others }) => (
     )}
   </Container>
 ))`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
   top: 0px;
   border-radius: 100px;

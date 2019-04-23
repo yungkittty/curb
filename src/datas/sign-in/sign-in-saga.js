@@ -17,7 +17,7 @@ function* signInRequestSaga(action) {
 
 function* signOutRequestSaga() {
   try {
-    const respond = yield call(signInApi.signOut);
+    yield call(signInApi.signOut);
     //    TestFairy.log(respond);
     yield put(signInActions.signOutSuccess());
     yield put(appModalActions.hideAppModal());
