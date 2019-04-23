@@ -29,15 +29,17 @@ class User extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { avatar } = this.state;
     const { t, isMediasPosting, mediasPostingErrorCode, pushAppAlert } = this.props;
     if (prevProps.isMediasPosting && !isMediasPosting) {
-      if (mediasPostingErrorCode === "")
+      if (mediasPostingErrorCode === "") {
         pushAppAlert({
           type: "success",
           message: t("alerts:uploadUserAvatarSuccess"),
           icon: "check"
         });
-      else {
+        this.setState({ avatar: { ...avatar, progress: undefined } });
+      } else {
         pushAppAlert({
           type: "error",
           message: mediasPostingErrorCode,
@@ -50,8 +52,7 @@ class User extends Component {
 
   onUploadProgress(progress) {
     const { avatar } = this.state;
-    console.log(progress);
-    this.setState({ avatar: { ...avatar, progress: progress !== 1 ? progress : undefined } });
+    this.setState({ avatar: { ...avatar, progress } });
   }
 
   submit() {
@@ -103,30 +104,32 @@ class User extends Component {
     const { t, owner, username: usernameProps, avatarUrl: avatarProps, isMediasPosting } = this.props;
 
     return (
-      <UserContainer>
-        <SelectImage
-          id="avatar"
-          readOnly={!editMode}
-          progress={avatarState.progress && avatarState.progress}
-          src={
-            avatarState.value.data ||
-            `${process.env.REACT_APP_API_URL}${_.replace(avatarProps, "medium", "large")}`
-          }
-          onSelect={this.handleChange}
-        />
-        <InputForm
-          id="username"
-          readOnly={!editMode}
-          containerStyle={{ marginTop: 64, textAlign: "center" }}
-          textStyle={{
-            fontSize: platformBools.isReact ? 36 : 32,
-            fontFamily: "Montserrat-Bold",
-            textAlign: "center"
-          }}
-          value={usernameState.value || usernameProps}
-          onChange={this.handleChange}
-          error={usernameState.error && t(`validation:username.${usernameState.error}`)}
-        />
+      <React.Fragment>
+        <UserContainer>
+          <SelectImage
+            id="avatar"
+            readOnly={!editMode}
+            progress={avatarState.progress && avatarState.progress}
+            src={
+              avatarState.value.data ||
+              `${process.env.REACT_APP_API_URL}${_.replace(avatarProps, "medium", "large")}`
+            }
+            onSelect={this.handleChange}
+          />
+          <InputForm
+            id="username"
+            readOnly={!editMode}
+            containerStyle={{ marginTop: 64, textAlign: "center" }}
+            textStyle={{
+              fontSize: platformBools.isReact ? 36 : 32,
+              fontFamily: "Montserrat-Bold",
+              textAlign: "center"
+            }}
+            value={usernameState.value || usernameProps}
+            onChange={this.handleChange}
+            error={usernameState.error && t(`validation:username.${usernameState.error}`)}
+          />
+        </UserContainer>
         {owner && (
           <ButtonIconFloat
             icon={editMode ? "check" : "pen"}
@@ -134,7 +137,7 @@ class User extends Component {
             onClick={!isMediasPosting ? this.handleSwapMode : undefined}
           />
         )}
-      </UserContainer>
+      </React.Fragment>
     );
   }
 }
