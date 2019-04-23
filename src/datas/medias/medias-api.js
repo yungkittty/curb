@@ -9,7 +9,7 @@ const mediasApi = {
       withCredentials: true,
       headers: {
         Accept: "application/json",
-        "content-type": "multipart/form-data"
+        "Content-Type": "multipart/form-data"
       }
     });
   }
