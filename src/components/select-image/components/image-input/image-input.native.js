@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import styled from "styled-components";
 import { withTranslation } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
+import TestFairy from "react-native-testfairy";
 import Button from "../../../button";
 
 // https://github.com/react-native-community/react-native-image-picker/blob/master/docs/Reference.md
@@ -48,10 +49,11 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
               isStatic: true
             };
           }
+          TestFairy.log(response);
           onSelect(source.uri, {
             uri: source.uri,
             type: response.type,
-            name: response.fileName
+            name: "image.jpg"
           });
         }
       }
