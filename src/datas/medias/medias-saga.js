@@ -19,6 +19,7 @@ function* postMediaUserAvatarRequestSaga(action) {
   try {
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     const respond = yield call(mediasApi.postMediaUserAvatar, { id: currentUserId, payload: action.payload });
+    TestFairy.log(respond);
     yield put(mediasActions.postMediaUserAvatarSuccess(respond));
   } catch (error) {
     TestFairy.log(error);

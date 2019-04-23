@@ -8,7 +8,7 @@ const MessageAnimation = WrappedComponent => {
     constructor(props) {
       super(props);
       // eslint-disable-next-line
-      this.initialTop = -(Platform.OS === "ios" ? (isIphoneX ? 80 : 70) : 50);
+      this.initialTop = -(Platform.OS === "ios" ? (isIphoneX ? 80 : 70) : 60);
       this.state = { top: new Animated.Value(this.initialTop) };
       this.closeMessage = this.closeMessage.bind(this);
     }
