@@ -22,7 +22,6 @@ class AppAlert extends Component {
           this.setState({
             firstIndex: keyIndex + 1
           });
-          console.log("first index top : " + (keyIndex + 1));
         }, 500);
     }
     if (l > prevProps.appAlertList.length && !appAlertList[l - 1].persistUntilKey)
@@ -32,7 +31,6 @@ class AppAlert extends Component {
           appAlertClearAlert();
           this.setState({ firstIndex: 0 });
         } else {
-          console.log("first index bot : " + l);
           this.setState({ firstIndex: l });
         }
       }, 4000);

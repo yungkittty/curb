@@ -1,5 +1,5 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
-import TestFairy from "react-native-testfairy";
+// import TestFairy from "react-native-testfairy";
 import appModalActions from "../app-modal/app-modal-actions";
 import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
@@ -18,11 +18,11 @@ function* signInRequestSaga(action) {
 function* signOutRequestSaga() {
   try {
     const respond = yield call(signInApi.signOut);
-    TestFairy.log(respond);
+    //    TestFairy.log(respond);
     yield put(signInActions.signOutSuccess());
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    TestFairy.log(error);
+    //    TestFairy.log(error);
     yield put(signInActions.signOutFailure(error));
   }
 }

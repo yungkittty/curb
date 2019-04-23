@@ -7,10 +7,10 @@ import ImagePreview from "./components/image-preview";
 import ImageSelector from "./components/image-selector";
 import ImageInput from "./components/image-input";
 
-const SelectImage = ({ style, theme, id, size, src, readOnly, onSelect }) => (
+const SelectImage = ({ style, theme, id, size, src, readOnly, progress, onSelect }) => (
   <ImageContainer style={style} size={size} border={!src} readOnly={readOnly}>
     <React.Fragment>
-      <ImagePreview size={size} src={src} />
+      <ImagePreview size={size} src={src} progress={progress} />
       {!readOnly && (
         <ImageSelector>
           <Icon icon="plus" size="small" color={theme.secondaryVariantColor} />
@@ -33,7 +33,8 @@ const SelectImage = ({ style, theme, id, size, src, readOnly, onSelect }) => (
 SelectImage.defaultProps = {
   size: undefined,
   src: undefined,
-  readOnly: undefined
+  readOnly: undefined,
+  progress: undefined
 };
 
 SelectImage.propTypes = {
@@ -45,6 +46,7 @@ SelectImage.propTypes = {
   id: PropTypes.string.isRequired,
   src: PropTypes.string,
   readOnly: PropTypes.bool,
+  progress: PropTypes.number,
   onSelect: PropTypes.func.isRequired
 };
 

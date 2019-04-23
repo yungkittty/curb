@@ -18,9 +18,10 @@ class User extends Component {
         value: undefined,
         error: undefined
       },
-      avatar: { value: { name: undefined, data: undefined } }
+      avatar: { value: { name: undefined, data: undefined }, progress: undefined }
     };
 
+    this.onUploadProgress = this.onUploadProgress.bind(this);
     this.submit = this.submit.bind(this);
     this.handleSwapMode = this.handleSwapMode.bind(this);
     this.checkInput = this.checkInput.bind(this);
@@ -30,22 +31,27 @@ class User extends Component {
   componentDidUpdate(prevProps) {
     const { t, isMediasPosting, mediasPostingErrorCode, pushAppAlert } = this.props;
     if (prevProps.isMediasPosting && !isMediasPosting) {
-      console.log(mediasPostingErrorCode);
       if (mediasPostingErrorCode === "")
         pushAppAlert({
           type: "success",
           message: t("alerts:uploadUserAvatarSuccess"),
-          icon: "check",
-          key: "POST_USER_AVATAR"
+          icon: "check"
         });
-      else
+      else {
         pushAppAlert({
           type: "error",
-          message: t("alerts:uploadUserAvatarFailure"),
-          icon: "times",
-          key: "POST_USER_AVATAR"
+          message: mediasPostingErrorCode,
+          icon: "times"
         });
+        this.setState({ avatar: { value: { name: undefined, data: undefined }, progress: undefined } });
+      }
     }
+  }
+
+  onUploadProgress(progress) {
+    const { avatar } = this.state;
+    console.log(progress);
+    this.setState({ avatar: { ...avatar, progress: progress !== 1 ? progress : undefined } });
   }
 
   submit() {
@@ -54,11 +60,11 @@ class User extends Component {
 
     if (username.value) patchCurrentUser({ name: username.value });
     if (avatar.value.file) {
-      postMediaUserAvatar({ avatar: avatar.value.file });
+      postMediaUserAvatar({ avatar: avatar.value.file, onUploadProgress: this.onUploadProgress });
       pushAppAlert({
         type: "info",
         message: t("alerts:uploadUserAvatarRequest"),
-        persistUntilKey: "POST_USER_AVATAR"
+        icon: "cloud-upload-alt"
       });
     }
   }
@@ -101,6 +107,7 @@ class User extends Component {
         <SelectImage
           id="avatar"
           readOnly={!editMode}
+          progress={avatarState.progress && avatarState.progress}
           src={
             avatarState.value.data ||
             `${process.env.REACT_APP_API_URL}${_.replace(avatarProps, "medium", "large")}`
