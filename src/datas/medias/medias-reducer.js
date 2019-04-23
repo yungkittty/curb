@@ -14,6 +14,17 @@ const isPosting = (state = false, action) => {
   }
 };
 
+const errorCode = (state = "", action) => {
+  switch (action.type) {
+    case mediasActionsTypes.POST_MEDIA_USER_AVATAR_SUCCESS:
+      return "";
+    case mediasActionsTypes.POST_MEDIA_USER_AVATAR_FAILURE:
+      return action.payload.message;
+    default:
+      return state;
+  }
+};
+
 const byId = (state = {}, action) => {
   switch (action.type) {
     case mediasActionsTypes.GET_MEDIA_REQUEST:
@@ -57,6 +68,6 @@ const allIds = (state = [], action) => {
   }
 };
 
-const mediasReducer = combineReducers({ isPosting, byId, allIds });
+const mediasReducer = combineReducers({ isPosting, errorCode, byId, allIds });
 
 export default mediasReducer;

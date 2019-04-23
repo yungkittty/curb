@@ -28,18 +28,24 @@ class User extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { t, isMediasPosting, pushAppAlert } = this.props;
+    const { t, isMediasPosting, mediasPostingErrorCode, pushAppAlert } = this.props;
     if (prevProps.isMediasPosting && !isMediasPosting) {
-      pushAppAlert({
-        type: "success",
-        message: t("alerts:uploadUserAvatarSuccess"),
-        icon: "check",
-        key: "POST_USER_AVATAR"
-      });
+      console.log(mediasPostingErrorCode);
+      if (mediasPostingErrorCode === "")
+        pushAppAlert({
+          type: "success",
+          message: t("alerts:uploadUserAvatarSuccess"),
+          icon: "check",
+          key: "POST_USER_AVATAR"
+        });
+      else
+        pushAppAlert({
+          type: "error",
+          message: t("alerts:uploadUserAvatarFailure"),
+          icon: "times",
+          key: "POST_USER_AVATAR"
+        });
     }
-    // Todo:
-    //
-    // Add the case of an error while upload
   }
 
   submit() {

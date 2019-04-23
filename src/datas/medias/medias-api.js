@@ -7,7 +7,10 @@ const mediasApi = {
     data.append("file", payload.avatar);
     return axios.post(`/contents/avatars/users/${payload.id || id}`, data, {
       withCredentials: true,
-      headers: { "Content-Type": "multipart/form-data" }
+      headers: {
+        Accept: "application/json",
+        "content-type": "multipart/form-data"
+      }
     });
   }
 };

@@ -34,11 +34,13 @@ const mapStateToProps = (state, props) => {
   const { avatarUrl = "", name: username = "" } = usersSelectors.getUserById(state, id) || {};
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
   const isMediasPosting = mediasSelectors.isMediasPosting(state) || false;
+  const mediasPostingErrorCode = mediasSelectors.getMediasPostingErrorCode(state) || "";
   return {
     owner: currentUserId === id,
     username,
     avatarUrl,
-    isMediasPosting
+    isMediasPosting,
+    mediasPostingErrorCode
   };
 };
 
@@ -46,7 +48,7 @@ const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(usersActions.getUserRequest(payload)),
   pushAppAlert: payload => dispatch(appAlertActions.pushAppAlert(payload)),
   patchCurrentUser: payload => dispatch(usersActions.patchUserRequest(payload)),
-  postMediaUserAvatar: payload => dispatch(mediasActions.postMediaUserAvatarRequest(payload))
+  postMediaUserAvatar: payload => dispatch(mediasActions.postMediaUserAvatarRequest(payload)) || ""
 });
 
 UserContainer.propTypes = {
