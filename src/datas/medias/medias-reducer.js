@@ -19,7 +19,6 @@ const errorCode = (state = "", action) => {
     case mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS:
       return "";
     case mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE:
-      console.log(action);
       return action.payload.message;
     default:
       return state;

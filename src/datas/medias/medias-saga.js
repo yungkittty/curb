@@ -21,7 +21,9 @@ function* postMediaAvatarRequestSaga(action) {
     const respond = yield call(mediasApi.postMediaAvatar, action.payload);
     yield put(mediasActions.postMediaAvatarSuccess(respond));
     yield put(
-      target === "users" ? usersActions.getUserRequest({ id }) : groupsActions.getGroupRequest({ id })
+      target === "users"
+        ? usersActions.getUserRequest({ id, reload: true })
+        : groupsActions.getGroupRequest({ id, reload: true })
     );
   } catch (error) {
     yield put(mediasActions.postMediaAvatarFailure(error));

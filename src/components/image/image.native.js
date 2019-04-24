@@ -3,7 +3,7 @@ import { Image } from "react-native";
 import PropTypes from "prop-types";
 
 // eslint-disable-next-line
-const _Image = ({ src: uri, ...others }) => <Image {...others} source={{ uri, cache: "reload" }} />;
+const _Image = ({ src: uri, ...others }) => <Image {...others} source={{ uri }} />;
 
 _Image.propTypes = {
   // eslint-disable-next-line
