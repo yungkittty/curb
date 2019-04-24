@@ -12,9 +12,6 @@ const ImageInput = styled.input.attrs(({ onSelect }) => ({
     reader.readAsDataURL(file);
   }
 }))`
-  position: absolute;
-  height: 100%;
-  width: 100%;
   opacity: 0;
   cursor: pointer;
   filter: alpha(opacity=0);

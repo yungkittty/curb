@@ -15,6 +15,7 @@ const SelectImage = ({ style, theme, id, size, src, readOnly, progress, onSelect
         <ImageSelector>
           <Icon icon="plus" size="small" color={theme.secondaryVariantColor} />
           <ImageInput
+            style={{ position: "absolute", width: "100%", height: "100%" }}
             onSelect={(data, file) => {
               onSelect({
                 target: {

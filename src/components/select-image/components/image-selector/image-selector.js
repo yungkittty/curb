@@ -10,8 +10,8 @@ const ImageSelector = styled(Container)`
   overflow: hidden;
   border-radius: 25px;
   background: ${({ theme }) => theme.primaryVariantColor};
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   box-shadow: 0px 3.6px 3.24px 0px rgba(0, 0, 0, 0.189);
 `;
 

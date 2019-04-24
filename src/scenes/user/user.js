@@ -29,8 +29,10 @@ class User extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { avatar } = this.state;
-    const { t, isMediasPosting, mediasPostingErrorCode, pushAppAlert } = this.props;
+    const { editMode, avatar } = this.state;
+    const { t, owner, isMediasPosting, mediasPostingErrorCode, pushAppAlert } = this.props;
+    // eslint-disable-next-line
+    if (!owner && editMode) this.setState({ editMode: false });
     if (prevProps.isMediasPosting && !isMediasPosting) {
       if (mediasPostingErrorCode === "") {
         pushAppAlert({
