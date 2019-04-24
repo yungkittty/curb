@@ -37,7 +37,7 @@ class User extends Component {
       if (mediasPostingErrorCode === "") {
         pushAppAlert({
           type: "success",
-          message: t("alerts:uploadUserAvatarSuccess"),
+          message: t("alerts:patchUserSuccess"),
           icon: "check"
         });
         // eslint-disable-next-line
@@ -45,7 +45,7 @@ class User extends Component {
       } else {
         pushAppAlert({
           type: "error",
-          message: mediasPostingErrorCode,
+          message: t("alerts:patchUserFailure"),
           icon: "times"
         });
         // eslint-disable-next-line
@@ -60,7 +60,7 @@ class User extends Component {
   }
 
   submit() {
-    const { t, userId, patchUser, postMediaAvatar, pushAppAlert } = this.props;
+    const { userId, patchUser, postMediaAvatar } = this.props;
     const { username, avatar } = this.state;
     let payload = {};
 
@@ -74,11 +74,7 @@ class User extends Component {
         avatar: avatar.value.file,
         onUploadProgress: this.onUploadProgress
       });
-      pushAppAlert({
-        type: "info",
-        message: t("alerts:uploadUserAvatarRequest"),
-        icon: "cloud-upload-alt"
-      });
+      this.onUploadProgress(0.01);
     }
   }
 

@@ -1,7 +1,6 @@
 const enAlerts = {
-  uploadUserAvatarRequest: "Uploading...",
-  uploadUserAvatarSuccess: "Your avatar has been uploaded",
-  uploadUserAvatarFailure: "An error occured while uploading",
+  patchUserSuccess: "Your profile has been updated",
+  patchUserFailure: "An error has occured",
   accountCreated: "Your account have been created"
 };
 
