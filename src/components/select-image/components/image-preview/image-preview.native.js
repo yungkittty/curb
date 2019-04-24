@@ -1,38 +1,38 @@
 import React from "react";
 import styled from "styled-components";
 import Container from "../../../container";
-import { ImageBackground } from "react-native";
+import Image from "../../../image";
 import Text from "../../../text";
 
 const ImagePreview = styled(({ children, style, src, progress, ...others }) => (
   // eslint-disable-next-line
   <Container style={style}>
     {src && (
-      <ImageBackground
+      <Image
         {...others}
         style={{
           width: style[0].width,
           height: style[0].height
         }}
-        source={{ uri: src }}
+        src={src}
         resizeMode="cover"
+      />
+    )}
+    {progress && (
+      <Container
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "rgba(0, 0, 0, .35)"
+        }}
       >
-        {progress && (
-          <Container
-            style={{
-              flex: 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 0, 0, .35)"
-            }}
-          >
-            <Text type="h1" weight={700} style={{ color: "white" }}>
-              {`${parseInt(progress * 100, 10)} %`}
-            </Text>
-          </Container>
-        )}
-      </ImageBackground>
+        <Text type="h1" weight={700} style={{ color: "white" }}>
+          {`${parseInt(progress * 100, 10)} %`}
+        </Text>
+      </Container>
     )}
   </Container>
 ))`

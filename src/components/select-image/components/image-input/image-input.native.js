@@ -21,7 +21,7 @@ const ImageInput = styled(Button).attrs(({ t, onSelect }) => ({
         noData: true,
         allowsEditing: true,
         storageOptions: {
-          cameraRoll: true,
+          cameraRoll: false,
           skipBackup: true
         },
         permissionDenied: {

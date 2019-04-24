@@ -11,13 +11,13 @@ const ImagePreview = styled(({ children, className, src, size, progress, ...othe
       {src && (
         <Image
           {...others}
+          src={src}
           style={{
             width: `${S}px`,
             height: `${S}px`,
             objectFit: "cover",
             filter: progress && "brightness(0.65)"
           }}
-          src={src}
         />
       )}
       {progress && (

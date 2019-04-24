@@ -130,12 +130,8 @@ class User extends Component {
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
         </UserContainer>
-        {owner && (
-          <ButtonIconFloat
-            icon={editMode ? "check" : "pen"}
-            size="medium"
-            onClick={!isMediasPosting ? this.handleSwapMode : undefined}
-          />
+        {owner && !isMediasPosting && (
+          <ButtonIconFloat icon={editMode ? "check" : "pen"} size="medium" onClick={this.handleSwapMode} />
         )}
       </React.Fragment>
     );
