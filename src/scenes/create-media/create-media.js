@@ -5,6 +5,12 @@ import { withTranslation } from "react-i18next";
 import ListFlat from "../../components/list-flat";
 import ModalListItem from "../../components/modal-list-item";
 import modulesList from "../../utils/modules-list/modules-list";
+/* eslint-disable */
+//  import CreateMediaText from "./scenes/create-media-text";
+//  import CreateMediaImage from "./scenes/create-media-image";
+//  import CreateMediaVideo from "./scenes/create-media-video";
+//  import CreateMediaLocation from "./scenes/create-media-location";
+/* eslint-enable */
 
 class CreateMedia extends Component {
   constructor(props) {
@@ -21,13 +27,13 @@ class CreateMedia extends Component {
     const scene = () => {
       switch (moduleId) {
         //    case "text":
-        //      return PostText;
+        //      return CreateMediaText;
         //    case "image":
-        //      return PostImage;
+        //      return CreateMediaImage;
         //    case "video":
-        //      return PostVideo;
+        //      return CreateMediaVideo;
         //    case "location":
-        //      return PostLocation;
+        //      return CreateMediaLocation;
         default:
           return undefined;
       }
