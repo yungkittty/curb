@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ButtonIconFloat from "../../components/button-icon-float";
-import Post from "../post";
+import CreateMedia from "../create-media";
 
 const Group = ({ showAppModal, setAppModalSceneData, groupId, groupMediaTypes }) => (
   <ButtonIconFloat
     icon="plus"
     onClick={() => {
-      showAppModal({ scene: Post });
+      showAppModal({ scene: CreateMedia });
       setAppModalSceneData({ groupId, groupMediaTypes });
     }}
   />
