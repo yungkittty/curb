@@ -2,6 +2,8 @@ import { all, takeEvery, takeLatest, call, put } from "redux-saga/effects";
 import mediasActionsTypes from "./medias-actions-types";
 import mediasActions from "./medias-actions";
 import mediasApi from "./medias-api";
+import usersActions from "../users/users-actions";
+import groupsActions from "../groups/groups-actions";
 
 function* getMediaRequestSaga(action) {
   try {
@@ -15,8 +17,12 @@ function* getMediaRequestSaga(action) {
 
 function* postMediaAvatarRequestSaga(action) {
   try {
+    const { target, id } = action.paylaod;
     const respond = yield call(mediasApi.postMediaAvatar, action.payload);
     yield put(mediasActions.postMediaAvatarSuccess(respond));
+    yield put(
+      target === "user" ? usersActions.getUserRequest({ id }) : groupsActions.getGroupRequest({ id })
+    );
   } catch (error) {
     yield put(mediasActions.postMediaAvatarFailure(error));
   }

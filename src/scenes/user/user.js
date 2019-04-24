@@ -41,7 +41,7 @@ class User extends Component {
           icon: "check"
         });
         // eslint-disable-next-line
-        this.setState({ avatar: { ...avatar, progress: undefined } });
+        this.setState({ avatar: { value: { name: undefined, data: undefined }, progress: undefined } });
       } else {
         pushAppAlert({
           type: "error",
