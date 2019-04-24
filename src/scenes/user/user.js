@@ -130,7 +130,7 @@ class User extends Component {
             containerStyle={{ marginTop: 64, textAlign: "center" }}
             textStyle={{
               fontSize: platformBools.isReact ? 36 : 32,
-              fontFamily: "Montserrat-Bold",
+              fontFamily: "Montserrat-SemiBold",
               textAlign: "center"
             }}
             value={usernameState.value || usernameProps}
