@@ -62,11 +62,11 @@ class User extends Component {
   submit() {
     const { userId, patchUser, postMediaAvatar } = this.props;
     const { username, avatar } = this.state;
-    let payload = {};
+    let payload = null;
 
     if (username.value) payload = { ...payload, name: username.value };
 
-    if (payload !== {}) patchUser({ id: userId, payload });
+    if (payload) patchUser({ id: userId, payload });
     if (avatar.value.file) {
       postMediaAvatar({
         target: "users",
@@ -130,7 +130,7 @@ class User extends Component {
             containerStyle={{ marginTop: 64, textAlign: "center" }}
             textStyle={{
               fontSize: platformBools.isReact ? 36 : 32,
-              fontFamily: "Montserrat-SemiBold",
+              fontFamily: "Montserrat-Bold",
               textAlign: "center"
             }}
             value={usernameState.value || usernameProps}
