@@ -1,0 +1,68 @@
+import _ from "lodash";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
+import ListFlat from "../../components/list-flat";
+import ModalListItem from "../../components/modal-list-item";
+import modulesList from "../../utils/modules-list/modules-list";
+
+class CreateMedia extends Component {
+  constructor(props) {
+    super(props);
+    const { setAppModalHeaderText } = this.props;
+
+    setAppModalHeaderText({ text: "Post content" });
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(moduleId) {
+    const { setAppModalScene } = this.props;
+    const scene = () => {
+      switch (moduleId) {
+        //    case "text":
+        //      return PostText;
+        //    case "image":
+        //      return PostImage;
+        //    case "video":
+        //      return PostVideo;
+        //    case "location":
+        //      return PostLocation;
+        default:
+          return undefined;
+      }
+    };
+    setAppModalScene({ scene, direction: 1 });
+  }
+
+  render() {
+    const { t, groupMediaTypes } = this.props;
+
+    return (
+      <ListFlat
+        data={modulesList}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) =>
+          _.includes(groupMediaTypes, item.id) ? (
+            <ModalListItem
+              icon={item.icon}
+              title={t(`modules:${item.id}.title`)}
+              onClick={() => this.handleChange(item.id)}
+            />
+          ) : (
+            <React.Fragment />
+          )
+        }
+      />
+    );
+  }
+}
+
+CreateMedia.propTypes = {
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  t: PropTypes.func.isRequired
+};
+
+export default withTranslation()(CreateMedia);

@@ -1,3 +1,3 @@
-import Post from "./scenes/post-select";
+import CreateMediaContainer from "./create-media-container";
 
-export default Post;
+export default CreateMediaContainer;
