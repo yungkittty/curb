@@ -9,8 +9,10 @@ import DiscoveryListSectionHeader from "./components/discovery-list-section-head
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
+import SignIn from "../sign-in";
+import CreateGroup from "../create-group";
 
-const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal, appAlertPushAlert }) => (
+const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
   <React.Fragment>
     <DiscoveryContainer
       /* eslint-disable-next-line */
@@ -44,23 +46,7 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal, appAler
     />
     <ButtonIconFloat
       icon="plus"
-      onClick={() => {
-        appAlertPushAlert({
-          type: "info",
-          message: "Your photo is uploading...",
-          persistUntilKey: "UPLOAD_AVATAR_FINISHED"
-        });
-        setTimeout(
-          () =>
-            appAlertPushAlert({
-              type: "success",
-              message: "Succesfully uploaded!",
-              icon: "check",
-              key: "UPLOAD_AVATAR_FINISHED"
-            }),
-          5000
-        );
-      }}
+      onClick={() => showAppModal({ scene: currentUserId ? CreateGroup : SignIn })}
     />
   </React.Fragment>
 );

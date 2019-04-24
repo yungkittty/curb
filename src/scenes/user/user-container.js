@@ -37,6 +37,7 @@ const mapStateToProps = (state, props) => {
   const mediasPostingErrorCode = mediasSelectors.getMediasPostingErrorCode(state) || "";
   return {
     owner: currentUserId === id,
+    userId: id,
     username,
     avatarUrl,
     isMediasPosting,
@@ -47,8 +48,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(usersActions.getUserRequest(payload)),
   pushAppAlert: payload => dispatch(appAlertActions.pushAppAlert(payload)),
-  patchCurrentUser: payload => dispatch(usersActions.patchUserRequest(payload)),
-  postMediaUserAvatar: payload => dispatch(mediasActions.postMediaUserAvatarRequest(payload)) || ""
+  patchUser: payload => dispatch(usersActions.patchUserRequest(payload)),
+  postMediaAvatar: payload => dispatch(mediasActions.postMediaAvatarRequest(payload)) || ""
 });
 
 UserContainer.propTypes = {

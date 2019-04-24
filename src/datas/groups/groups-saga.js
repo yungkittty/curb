@@ -1,5 +1,7 @@
 import { all, takeLatest, takeEvery, select, take, call, put } from "redux-saga/effects";
 import appModalActions from "../app-modal/app-modal-actions";
+import mediasActions from "../medias/medias-actions";
+import mediasActionsTypes from "../medias/medias-actions-types";
 import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
 import groupsApi from "./groups-api";
@@ -18,16 +20,17 @@ function* postGroupRequestSaga(action) {
   try {
     const { history, avatar, ...others } = action.payload;
     const { data: payload } = yield call(groupsApi.postGroup, others);
-    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     if (avatar) {
       yield put(
-        groupsActions.postGroupAvatarRequest({
+        mediasActions.postMediaAvatarRequest({
+          target: "groups",
           id: payload.id,
           avatar
         })
       );
-      yield take(groupsActionsTypes.POST_GROUP_AVATAR_SUCCESS);
+      yield take(mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS);
     }
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
     yield put(appModalActions.hideAppModal());
     history.push(`/groups/${payload.id}`);
@@ -36,19 +39,9 @@ function* postGroupRequestSaga(action) {
   }
 }
 
-function* postGroupAvatarRequestSaga(action) {
-  try {
-    const respond = yield call(groupsApi.postGroupAvatar, action.payload);
-    yield put(groupsActions.postGroupAvatarSuccess(respond));
-  } catch (error) {
-    yield put(groupsActions.postGroupAvatarFailure(error));
-  }
-}
-
 const groupsSaga = all([
   takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
-  takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
-  takeLatest(groupsActionsTypes.POST_GROUP_AVATAR_REQUEST, postGroupAvatarRequestSaga)
+  takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga)
 ]);
 
 export default groupsSaga;

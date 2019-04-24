@@ -1,8 +1,7 @@
-import { all, takeEvery, takeLatest, call, put, select } from "redux-saga/effects";
+import { all, takeEvery, takeLatest, call, put } from "redux-saga/effects";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
-import { currentUserSelectors } from "../current-user";
 
 function* getUsersRequestSaga(action) {
   try {
@@ -15,8 +14,7 @@ function* getUsersRequestSaga(action) {
 
 function* patchUsersRequestSaga(action) {
   try {
-    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    const respond = yield call(usersApi.patchUser, { id: currentUserId, payload: action.payload });
+    const respond = yield call(usersApi.patchUser, action.payload);
     yield put(usersActions.patchUserSuccess(respond));
   } catch (error) {
     yield put(usersActions.patchUserFailure(error));

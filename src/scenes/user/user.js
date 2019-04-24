@@ -38,6 +38,7 @@ class User extends Component {
           message: t("alerts:uploadUserAvatarSuccess"),
           icon: "check"
         });
+        // eslint-disable-next-line
         this.setState({ avatar: { ...avatar, progress: undefined } });
       } else {
         pushAppAlert({
@@ -45,6 +46,7 @@ class User extends Component {
           message: mediasPostingErrorCode,
           icon: "times"
         });
+        // eslint-disable-next-line
         this.setState({ avatar: { value: { name: undefined, data: undefined }, progress: undefined } });
       }
     }
@@ -56,12 +58,20 @@ class User extends Component {
   }
 
   submit() {
-    const { t, patchCurrentUser, postMediaUserAvatar, pushAppAlert } = this.props;
+    const { t, userId, patchUser, postMediaAvatar, pushAppAlert } = this.props;
     const { username, avatar } = this.state;
+    let payload = {};
 
-    if (username.value) patchCurrentUser({ name: username.value });
+    if (username.value) payload = { ...payload, name: username.value };
+
+    if (payload !== {}) patchUser({ id: userId, payload });
     if (avatar.value.file) {
-      postMediaUserAvatar({ avatar: avatar.value.file, onUploadProgress: this.onUploadProgress });
+      postMediaAvatar({
+        target: "users",
+        id: userId,
+        avatar: avatar.value.file,
+        onUploadProgress: this.onUploadProgress
+      });
       pushAppAlert({
         type: "info",
         message: t("alerts:uploadUserAvatarRequest"),
@@ -141,8 +151,10 @@ class User extends Component {
 User.propTypes = {
   pushAppAlert: PropTypes.func.isRequired,
   isMediasPosting: PropTypes.bool.isRequired,
-  patchCurrentUser: PropTypes.func.isRequired,
-  postMediaUserAvatar: PropTypes.func.isRequired,
+  mediasPostingErrorCode: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  patchUser: PropTypes.func.isRequired,
+  postMediaAvatar: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,

@@ -7,11 +7,7 @@ import ListItemTitle from "./components/list-item-title";
 
 // https://stackoverflow.com/a/38997047
 
-const DiscoveryListItem = ({
-  discoveryGroupId,
-  discoveryGroupName,
-  discoveryGroupAvatarUrl
-}) => (
+const DiscoveryListItem = ({ discoveryGroupId, discoveryGroupName, discoveryGroupAvatarUrl }) => (
   <Container>
     <ListItemButtonContainer onClick={`/groups/${discoveryGroupId}`}>
       <React.Fragment>

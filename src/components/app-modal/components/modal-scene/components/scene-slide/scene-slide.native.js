@@ -58,7 +58,6 @@ const SceneSlide = WrappedComponent => {
         sceneRightKey,
         sceneRight
       } = this.state;
-      console.log(this.wrappedComponent);
       return (
         <WrappedComponent
           {...this.props}

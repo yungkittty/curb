@@ -1,9 +1,7 @@
-import { all, takeEvery, takeLatest, select, call, put } from "redux-saga/effects";
-// import TestFairy from "react-native-testfairy";
+import { all, takeEvery, takeLatest, call, put } from "redux-saga/effects";
 import mediasActionsTypes from "./medias-actions-types";
 import mediasActions from "./medias-actions";
 import mediasApi from "./medias-api";
-import { currentUserSelectors } from "../current-user";
 
 function* getMediaRequestSaga(action) {
   try {
@@ -15,21 +13,18 @@ function* getMediaRequestSaga(action) {
   }
 }
 
-function* postMediaUserAvatarRequestSaga(action) {
+function* postMediaAvatarRequestSaga(action) {
   try {
-    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    const respond = yield call(mediasApi.postMediaUserAvatar, { id: currentUserId, payload: action.payload });
-    // TestFairy.log(respond);
-    yield put(mediasActions.postMediaUserAvatarSuccess(respond));
+    const respond = yield call(mediasApi.postMediaAvatar, action.payload);
+    yield put(mediasActions.postMediaAvatarSuccess(respond));
   } catch (error) {
-    //TestFairy.log(error);
-    yield put(mediasActions.postMediaUserAvatarFailure(error));
+    yield put(mediasActions.postMediaAvatarFailure(error));
   }
 }
 
 const mediasSaga = all([
   takeEvery(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_USER_AVATAR_REQUEST, postMediaUserAvatarRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST, postMediaAvatarRequestSaga)
 ]);
 
 export default mediasSaga;

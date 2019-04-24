@@ -4,10 +4,10 @@ import mediasActionsTypes from "./medias-actions-types";
 
 const isPosting = (state = false, action) => {
   switch (action.type) {
-    case mediasActionsTypes.POST_MEDIA_USER_AVATAR_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST:
       return true;
-    case mediasActionsTypes.POST_MEDIA_USER_AVATAR_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_USER_AVATAR_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE:
       return false;
     default:
       return state;
@@ -16,9 +16,10 @@ const isPosting = (state = false, action) => {
 
 const errorCode = (state = "", action) => {
   switch (action.type) {
-    case mediasActionsTypes.POST_MEDIA_USER_AVATAR_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS:
       return "";
-    case mediasActionsTypes.POST_MEDIA_USER_AVATAR_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE:
+      console.log(action);
       return action.payload.message;
     default:
       return state;

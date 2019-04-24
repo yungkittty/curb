@@ -14,16 +14,16 @@ const mediasActions = {
     payload: error,
     error: true
   }),
-  postMediaUserAvatarRequest: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_USER_AVATAR_REQUEST,
+  postMediaAvatarRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST,
     payload
   }),
-  postMediaUserAvatarSuccess: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_USER_AVATAR_SUCCESS,
+  postMediaAvatarSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS,
     payload
   }),
-  postMediaUserAvatarFailure: error => ({
-    type: mediasActionsTypes.POST_MEDIA_USER_AVATAR_FAILURE,
+  postMediaAvatarFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE,
     payload: error,
     error: true
   })
