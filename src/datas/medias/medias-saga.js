@@ -17,7 +17,7 @@ function* getMediaRequestSaga(action) {
 
 function* postMediaAvatarRequestSaga(action) {
   try {
-    const { target, id } = action.paylaod;
+    const { target, id } = action.payload;
     const respond = yield call(mediasApi.postMediaAvatar, action.payload);
     yield put(mediasActions.postMediaAvatarSuccess(respond));
     yield put(
