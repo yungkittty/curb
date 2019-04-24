@@ -1,27 +1,27 @@
 const themesData = [
   {
     id: "blue",
-    backgroundColor: "#56CCF2"
+    themeColor: "groupBlueColor"
   },
   {
     id: "red",
-    backgroundColor: "#EB5757"
+    themeColor: "groupRedColor"
   },
   {
     id: "green",
-    backgroundColor: "#6FCF97"
+    themeColor: "groupGreenColor"
   },
   {
     id: "yellow",
-    backgroundColor: "#F2C94C"
+    themeColor: "groupYellowColor"
   },
   {
-    id: "magenta",
-    backgroundColor: "#BB6BD9"
+    id: "violet",
+    themeColor: "groupVioletColor"
   },
   {
     id: "black",
-    backgroundColor: "#4F4F4F"
+    themeColor: "groupBlackColor"
   }
 ];
 

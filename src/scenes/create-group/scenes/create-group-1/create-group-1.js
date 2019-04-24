@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import SelectImage from "./components/select-image";
 import InputForm from "../../../../components/input-form";
+import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable-next-line */
 import CreateGroup2 from "../create-group-2";
 
@@ -18,17 +19,13 @@ class CreateGroup1 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 1, headerSteps: 4 });
-    setAppModalFooterButton({
-      footerText: t("common:next"),
-      footerOnClick: this.goToNext
-    });
+    setAppModalHeaderSteps({ currentStep: 1, steps: 4 });
+    setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
   goToNext() {
     const { setAppModalScene } = this.props;
-    if (this.checkForm())
-      setAppModalScene({ scene: CreateGroup2, sceneDirection: 1 });
+    if (this.checkForm()) setAppModalScene({ scene: CreateGroup2, direction: 1 });
   }
 
   checkForm() {
@@ -39,7 +36,8 @@ class CreateGroup1 extends Component {
   }
 
   checkInput(id, value) {
-    const error = value.length === 0 ? "missing" : undefined;
+    let error = value.length === 0 ? "missing" : undefined;
+    if (error === undefined) error = !RegExp(inputRegex.groupName).test(value) ? "invalid" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
@@ -58,7 +56,7 @@ class CreateGroup1 extends Component {
 
     return (
       <AppModalSceneContainer>
-        <AppModalTitle>{t("createGroup")}</AppModalTitle>
+        <AppModalSceneTitle>{t("createGroup")}</AppModalSceneTitle>
         <SelectImage />
         <InputForm
           size="modal"

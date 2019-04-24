@@ -10,17 +10,17 @@ import ListFlat from "../list-flat";
 import NavigationListItem from "./components/navigation-list-item";
 import NavigationListFooter from "./components/navigation-list-footer";
 import SignIn from "../../scenes/sign-in";
+import Settings from "../../scenes/settings";
 
 const AppNavigation = ({
   showAppModal,
   currentUserId,
-  currentUserToken,
   currentUserAvatarUrl,
   currentUserGroupsIds,
   theme
 }) => (
   <NavigationContainer>
-    {!currentUserToken ? (
+    {!currentUserId ? (
       <NavigationButtonIcon
         icon="sign-in-alt"
         size="medium"
@@ -60,7 +60,7 @@ const AppNavigation = ({
       icon="cog"
       size="medium"
       color={theme.primaryColor}
-      onClick={() => undefined}
+      onClick={() => showAppModal({ scene: Settings })}
     />
   </NavigationContainer>
 );
@@ -68,7 +68,6 @@ const AppNavigation = ({
 AppNavigation.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  currentUserToken: PropTypes.string.isRequired,
   currentUserAvatarUrl: PropTypes.string.isRequired,
   currentUserGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   // eslint-disable-next-line

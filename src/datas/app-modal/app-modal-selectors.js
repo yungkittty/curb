@@ -2,6 +2,8 @@ const appModalSelectors = {};
 
 appModalSelectors.isAppModalShowed = state => state.appModal.isShowed;
 
+appModalSelectors.isAppModalButtonsEnabled = state => state.appModal.isButtonsEnabled;
+
 appModalSelectors.getAppModalHeaderText = state => state.appModal.headerText;
 
 appModalSelectors.getAppModalHeaderCurrentStep = state => state.appModal.headerCurrentStep;

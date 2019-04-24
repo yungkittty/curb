@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import SelectImage from "./components/select-image";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
@@ -14,35 +14,28 @@ import SignUp2 from "../sign-up-2";
 class SignUp1 extends Component {
   constructor(props) {
     super(props);
-    const {
-      t,
-      setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton
-    } = this.props;
+    const { t, setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 1, headerSteps: 2 });
-    setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: SignIn, sceneDirection: -1 })
-    });
-    setAppModalFooterButton({
-      footerText: t("common:next"),
-      footerOnClick: this.goToNext
-    });
+    setAppModalHeaderSteps({ currentStep: 1, steps: 2 });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: SignIn, direction: -1 });
   }
 
   goToNext() {
     const { setAppModalScene } = this.props;
     if (this.checkForm()) {
-      setAppModalScene({ scene: SignUp2, sceneDirection: 1 });
+      setAppModalScene({ scene: SignUp2, direction: 1 });
     }
   }
 
@@ -73,12 +66,12 @@ class SignUp1 extends Component {
     const { t, name, email } = this.props;
     return (
       <AppModalSceneContainer>
-        <AppModalTitle>{t("createAccount")}</AppModalTitle>
+        <AppModalSceneTitle>{t("createAccount")}</AppModalSceneTitle>
         <SelectImage />
         <InputForm
           size="modal"
           id="name"
-          placeholder={t("username")}
+          placeholder={t("common:username")}
           onChange={this.handleChange}
           value={name.value}
           error={name.error && t(`validation:username.${name.error}`)}
@@ -87,7 +80,7 @@ class SignUp1 extends Component {
           size="modal"
           id="email"
           type="email"
-          placeholder={t("mailAddress")}
+          placeholder={t("common:email")}
           onChange={this.handleChange}
           value={email.value}
           error={email.error && t(`validation:email.${email.error}`)}

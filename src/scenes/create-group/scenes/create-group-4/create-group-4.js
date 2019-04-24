@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
-import AppModalTitle from "../../../../components/app-modal-title";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
-import ModalListItem from "../../../../components/modal-list-item";
+import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 import Loader from "../../../../components/loader";
 import themesData from "./create-group-4-themes-data";
 /* eslint-disable-next-line */
@@ -22,72 +23,54 @@ class CreateGroup4 extends Component {
       setAppModalFooterButton
     } = this.props;
 
-    this.state = { isLoading: false };
+    this.listFlat = React.createRef();
 
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ headerCurrentStep: 4, headerSteps: 4 });
+    setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
     setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () =>
-        setAppModalScene({ scene: CreateGroup3, sceneDirection: -1 })
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
     });
-    setAppModalFooterButton({
-      footerText: t("common:next"),
-      footerOnClick: this.submit
-    });
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isCreateGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
+    if (prevProps.isCreateGroupFetching === isCreateGroupFetching) return;
+    if (isCreateGroupFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   submit() {
-    const { isLoading } = this.state;
-    if (!this.checkForm() || isLoading) return;
+    if (!this.checkForm()) {
+      const { current: listFlat } = this.listFlat;
+      listFlat.scrollToOffset({ offset: 0 });
+      return;
+    }
 
-    const {
-      postGroup,
-      history,
-      currentUserId,
-      groupName,
-      discoverability,
-      modules,
-      theme
-    } = this.props;
+    const { postGroup, history, groupName, discoverability, modules, groupTheme } = this.props;
     postGroup({
       history,
-      creatorId: currentUserId,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
-      theme: theme.value
-    });
-
-    this.setState({ isLoading: true });
-
-    const {
-      setAppModalHeaderLeftButton,
-      setAppModalHeaderRightButton
-    } = this.props;
-    setAppModalHeaderLeftButton({
-      headerLeftIcon: "arrow-left",
-      headerLeftOnClick: () => undefined
-    });
-    setAppModalHeaderRightButton({
-      headerRightIcon: "times",
-      headerRightOnClick: () => undefined
+      theme: groupTheme.value
     });
   }
 
   checkForm() {
     const {
-      theme: { value }
+      groupTheme: { value }
     } = this.props;
-    return this.checkInput("theme", value);
+    return this.checkInput("groupTheme", value);
   }
 
   checkInput(id, value) {
-    const error = value === undefined ? "missing" : undefined;
+    const error = value.length === 0 ? "missing" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
@@ -95,39 +78,40 @@ class CreateGroup4 extends Component {
 
   handleChange(clickValue) {
     const {
-      theme: { value }
+      groupTheme: { value }
     } = this.props;
-    const newValue = clickValue === value ? undefined : clickValue;
-    this.checkInput("theme", newValue);
+    const newValue = clickValue === value ? "" : clickValue;
+    this.checkInput("groupTheme", newValue);
   }
 
   render() {
     const {
       t,
-      theme: { value, error }
+      theme,
+      isCreateGroupFetching,
+      groupTheme: { value, error }
     } = this.props;
-    const { isLoading } = this.state;
 
-    return isLoading ? (
+    return isCreateGroupFetching ? (
       <Loader />
     ) : (
       <ListFlat
+        ref={this.listFlat}
+        contentContainerStyle={{ position: "relative" }}
         data={themesData}
         extraData={{ value }}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalTitle>{t("theme")}</AppModalTitle>
-            <CreateGroupError>
-              {error && t(`validation:theme.${error}`)}
-            </CreateGroupError>
+            <AppModalSceneTitle>{t("theme")}</AppModalSceneTitle>
+            <CreateGroupError>{error && t(`validation:theme.${error}`)}</CreateGroupError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
-          <ModalListItem
+          <AppModalSceneListItem
             title={t(`themeList.${item.id}`)}
             titleColor="#ffffff"
-            backgroundColor={item.backgroundColor}
+            backgroundColor={theme[item.themeColor]}
             selected={item.id === value}
             normalHoverColor
             selectionType
@@ -144,19 +128,23 @@ CreateGroup4.defaultProps = {
   groupName: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
-  theme: { value: "", error: undefined }
+  groupTheme: { value: "", error: undefined }
 };
 
 CreateGroup4.propTypes = {
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  isCreateGroupFetching: PropTypes.bool.isRequired,
+  hideAppModal: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
-  currentUserId: PropTypes.string.isRequired,
-  /* eslint-disable-next-line */
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
+  // eslint-disable-next-line
   history: PropTypes.object.isRequired,
   groupName: PropTypes.shape({
     value: PropTypes.string,
@@ -170,11 +158,11 @@ CreateGroup4.propTypes = {
     value: PropTypes.arrayOf(PropTypes.string),
     error: PropTypes.string
   }),
-  theme: PropTypes.shape({
+  groupTheme: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),
   t: PropTypes.func.isRequired
 };
 
-export default withRouter(withTranslation("createGroup")(CreateGroup4));
+export default withTheme(withRouter(withTranslation("createGroup")(CreateGroup4)));

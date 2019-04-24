@@ -8,6 +8,7 @@ class ListFlat extends React.Component {
     super(props);
     this.containerScroll = React.createRef();
     this.scrollToIndex = this.scrollToIndex.bind(this);
+    this.scrollToOffset = this.scrollToOffset.bind(this);
     this.renderItem = this.renderItem.bind(this);
   }
 
@@ -17,6 +18,15 @@ class ListFlat extends React.Component {
     this.containerScroll.current.scrollTo({
       left: +horizontal && scrollToOffset,
       top: !+horizontal && scrollToOffset,
+      behavior: animated ? "smooth" : "auto"
+    });
+  }
+
+  scrollToOffset({ animated = true, offset: offsetIndex }) {
+    const { horizontal } = this.props;
+    this.containerScroll.current.scrollTo({
+      left: +horizontal && offsetIndex,
+      top: !+horizontal && offsetIndex,
       behavior: animated ? "smooth" : "auto"
     });
   }

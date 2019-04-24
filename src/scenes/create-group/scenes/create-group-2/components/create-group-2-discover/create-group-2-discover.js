@@ -10,33 +10,26 @@ const CreateGroup2Discover = ({ t, onClick, discoverability }) => (
       icon="globe"
       title={t("glossary:public")}
       description={t("discoverabilityOptions.public")}
-      selected={
-        discoverability === undefined ? undefined : discoverability === "public"
-      }
+      selected={discoverability === undefined ? undefined : discoverability === "public"}
       onClick={() => onClick("public")}
     />
     <DiscoverOption
       icon="users"
       title={t("glossary:private")}
       description={t("discoverabilityOptions.private")}
-      selected={
-        discoverability === undefined
-          ? undefined
-          : discoverability === "private"
-      }
+      selected={discoverability === undefined ? undefined : discoverability === "private"}
       onClick={() => onClick("private")}
     />
   </DiscoverContainer>
 );
 
 CreateGroup2Discover.defaultProps = {
-  onClick: undefined,
   discoverability: undefined
 };
 
 CreateGroup2Discover.propTypes = {
   t: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   discoverability: PropTypes.string
 };
 

@@ -1,11 +1,12 @@
 const frValidation = {
   username: {
     missing: "Nom d'utilisateur manquant",
-    invalid: "Doit être compris entre 4 à 30 caractères."
+    invalid: "Doit être compris entre 4 à 30 caractères"
   },
   email: {
     missing: "Adresse mail manquante",
-    invalid: "Adresse mail invalide"
+    invalid: "Adresse mail invalide",
+    ACCOUNTS_NOT_FOUND: "Aucun compte trouvé avec cette adresse mail"
   },
   password: {
     missing: "Mot de passe manquant",
@@ -13,8 +14,10 @@ const frValidation = {
     tooeasy: "Votre mot de passe est trop facile à deviner",
     dontmatch: "Les mots de passe ne correspondent pas"
   },
+  resetPassCode: { ACCOUNTS_CODE_DIFFERENT: "Le code de validation est invalide" },
   groupName: {
-    missing: "Nom du groupe manquant"
+    missing: "Nom du groupe manquant",
+    invalid: "Doit être compris entre 4 à 30 caractères"
   },
   discoverability: {
     missing: "Vous devez choisir une option"

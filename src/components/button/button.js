@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = styled(({ children, onClick, ...others }) =>
+const Button = styled(({ children, onClick, hoverColor, ...others }) =>
   // eslint-disable-next-line
   typeof onClick === "string" && onClick.charAt(0) !== "/" ? (
     <a {...others} href={onClick}>
@@ -29,12 +29,12 @@ const Button = styled(({ children, onClick, ...others }) =>
   cursor: pointer;
 
   transition: all 0.1s ease;
-  &:hover {
-    ${({ hoverColor }) =>
-      hoverColor
-        ? `background-color: ${hoverColor};`
-        : "filter: brightness(1.05);"}
-  }
+  ${({ disabled, hoverColor }) =>
+    !disabled
+      ? ` &:hover {
+          ${hoverColor ? `background-color: ${hoverColor};` : "filter: brightness(1.05);"}
+          }`
+      : ""}
 
   &::-moz-focus-inner {
     border: 0;
@@ -47,11 +47,7 @@ Button.defaultProps = { onClick: undefined };
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.func
-  ])
+  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func])
 };
 
 export default Button;

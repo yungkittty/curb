@@ -21,12 +21,11 @@ class DiscoveryContainer extends React.Component {
 const mapStateToProps = state => ({
   /* eslint-disable-next-line */
   discoveryGroupsIds: discoverySelectors.getDiscoveryGroupsIds(state) || [],
-  currentUserId: currentUserSelectors.getCurrentUserId(state)
+  currentUserId: currentUserSelectors.getCurrentUserId(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
-  getDiscovery: payload =>
-    dispatch(discoveryActions.getDiscoveryRequest(payload)),
+  getDiscovery: payload => dispatch(discoveryActions.getDiscoveryRequest(payload)),
   showAppModal: payload => dispatch(appModalActions.showAppModal(payload))
 });
 

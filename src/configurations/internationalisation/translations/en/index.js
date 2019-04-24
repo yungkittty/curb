@@ -4,7 +4,9 @@ import validation from "./en-validation";
 import signIn from "./en-sign-in";
 import signUp from "./en-sign-up";
 import discovery from "./en-discovery";
+import resetPassword from "./en-reset-password";
 import appDownload from "./en-app-download";
+import settings from "./en-settings";
 import createGroup from "./en-create-group";
 import modules from "./en-modules";
 
@@ -15,7 +17,9 @@ export default {
   signIn,
   signUp,
   discovery,
+  resetPassword,
   appDownload,
+  settings,
   createGroup,
   modules
 };

@@ -1,5 +1,4 @@
-import { all, takeLatest, select, call, put } from "redux-saga/effects";
-import { currentUserSelectors } from "../current-user";
+import { all, takeLatest, call, put } from "redux-saga/effects";
 import appModalActions from "../app-modal/app-modal-actions";
 import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
@@ -17,9 +16,9 @@ function* signInRequestSaga(action) {
 
 function* signOutRequestSaga() {
   try {
-    const token = yield select(currentUserSelectors.getCurrentUserToken);
-    yield call(signInApi.signOut, token);
+    yield call(signInApi.signOut);
     yield put(signInActions.signOutSuccess());
+    yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signInActions.signOutFailure(error));
   }
