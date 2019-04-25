@@ -45,7 +45,7 @@ const ImageInput = ({ t, onSelect, ...others }) => (
             onSelect(uri, {
               uri,
               type: response.type,
-              name: response.fileName.toLowerCase()
+              name: "image.jpg"
             });
           }
         }
