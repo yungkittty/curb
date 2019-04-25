@@ -40,17 +40,15 @@ class User extends Component {
           message: t("alerts:patchUserSuccess"),
           icon: "check"
         });
-        // eslint-disable-next-line
-        this.setState({ avatar: { value: { name: undefined, data: undefined }, progress: undefined } });
       } else {
         pushAppAlert({
           type: "error",
           message: t("alerts:patchUserFailure"),
           icon: "times"
         });
-        // eslint-disable-next-line
-        this.setState({ avatar: { value: { name: undefined, data: undefined }, progress: undefined } });
       }
+      // eslint-disable-next-line
+      this.setState({ avatar: { value: { name: undefined, data: undefined }, progress: undefined } });
     }
   }
 

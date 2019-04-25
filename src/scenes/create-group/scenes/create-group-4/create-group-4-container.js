@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import CreateGroup4 from "./create-group-4";
 import { appModalActions } from "../../../../datas/app-modal";
 import { groupsSelectors, groupsActions } from "../../../../datas/groups";
+import { appAlertActions } from "../../../../datas/app-alert";
 
 const mapStateToProps = state => ({
-  isCreateGroupFetching: groupsSelectors.isCreateGroupFetching(state) || false
+  isCreateGroupFetching: groupsSelectors.isCreateGroupFetching(state) || false,
+  createGroupErrorCode: groupsSelectors.getCreateGroupErrorCode(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -17,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
   setAppModalSceneData: payload => dispatch(appModalActions.setAppModalSceneData(payload)),
   setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
   hideAppModal: () => dispatch(appModalActions.hideAppModal()),
+  appAlertPushAlert: payload => dispatch(appAlertActions.pushAppAlert(payload)),
   postGroup: payload => dispatch(groupsActions.postGroupRequest(payload))
 });
 

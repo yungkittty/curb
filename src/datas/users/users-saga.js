@@ -5,9 +5,7 @@ import usersApi from "./users-api";
 
 function* getUsersRequestSaga(action) {
   try {
-    const { reload, id } = action.payload;
-    const { data: payload } = yield call(usersApi.getUser, { id });
-    if (reload) payload.avatarUrl += `?u=${Date.now()}`;
+    const { data: payload } = yield call(usersApi.getUser, action.payload);
     yield put(usersActions.getUserSuccess(payload));
   } catch (error) {
     yield put(usersActions.getUserFailure(error));
