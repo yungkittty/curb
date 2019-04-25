@@ -9,8 +9,8 @@ const QrContainer = styled(Container)`
   width: 100%;
   height: 100%;
   padding-bottom: 40px;
-  padding-right: 40px;
-  padding-left: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
 `;
 
 export default QrContainer;

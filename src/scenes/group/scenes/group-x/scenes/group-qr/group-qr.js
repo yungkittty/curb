@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import QrCode from "react-qr-code";
 import { platformBools } from "../../../../../../configurations/platform";
-import Container from "../../../../../../components/container";
 import QrContainer from "./components/qr-container";
 import QrHeader from "./components/qr-group-header";
 import QrTitle from "./components/qr-title";
@@ -25,32 +24,18 @@ class GroupQr extends React.Component {
     } = this.props;
 
     return (
-      <Container
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
-          paddingLeft: 30,
-          paddingRight: 30
-        }}
-      >
-        <QrContainer>
-          <QrHeader>
-            <QrImage src={`${process.env.REACT_APP_API_URL}${currentGroupAvatarUrl}`} />
-            <QrTitle type="h2" weight={700}>
-              {currentGroupName}
-            </QrTitle>
-          </QrHeader>
-          <QrCode
-            value={`${currentGroupId}${
-              currentGroupStatus === "private" ? `?token=${currentGroupToken}` : ""
-            }`}
-            size={platformBools.isReact ? 240 : 200}
-          />
-        </QrContainer>
-      </Container>
+      <QrContainer>
+        <QrHeader>
+          <QrImage src={`${process.env.REACT_APP_API_URL}${currentGroupAvatarUrl}`} />
+          <QrTitle type="h2" weight={700}>
+            {currentGroupName}
+          </QrTitle>
+        </QrHeader>
+        <QrCode
+          value={`${currentGroupId}${currentGroupStatus === "private" ? `?token=${currentGroupToken}` : ""}`}
+          size={platformBools.isReact ? 240 : 200}
+        />
+      </QrContainer>
     );
   }
 }

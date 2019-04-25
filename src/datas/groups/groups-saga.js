@@ -39,7 +39,7 @@ function* getGroupInviteTokenRequestSaga(action) {
 const groupsSaga = all([
   takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
   takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
-  takeLatest(groupsActionsTypes.GET_GROUP_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)
+  takeLatest(groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)
 ]);
 
 export default groupsSaga;
