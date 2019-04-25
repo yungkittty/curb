@@ -4,7 +4,7 @@ import Container from "../../../container";
 import Image from "../../../image";
 import Text from "../../../text";
 
-const ImagePreview = styled(({ children, className, src, size, progress, ...others }) => {
+const ImagePreview = styled(({ children, className, src, size, loadingProgress, ...others }) => {
   const S = size === "small" ? 200 : 320;
   return (
     <Container className={className}>
@@ -16,13 +16,13 @@ const ImagePreview = styled(({ children, className, src, size, progress, ...othe
             width: `${S}px`,
             height: `${S}px`,
             objectFit: "cover",
-            filter: progress && "brightness(0.65)"
+            filter: loadingProgress && "brightness(0.65)"
           }}
         />
       )}
-      {progress && (
+      {loadingProgress && (
         <Text type="h1" weight={700} style={{ position: "absolute", color: "white" }}>
-          {`${parseInt(progress * 100, 10)} %`}
+          {`${parseInt(loadingProgress * 100, 10)} %`}
         </Text>
       )}
     </Container>

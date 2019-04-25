@@ -13,7 +13,7 @@ class User extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.initialState = {
       editMode: false,
       username: {
         value: undefined,
@@ -21,6 +21,8 @@ class User extends Component {
       },
       avatar: { value: { data: undefined }, progress: undefined }
     };
+
+    this.state = this.initialState;
 
     this.onUploadProgress = this.onUploadProgress.bind(this);
     this.submit = this.submit.bind(this);
@@ -57,7 +59,7 @@ class User extends Component {
         });
       }
       // eslint-disable-next-line
-      this.setState({ avatar: { value: { data: undefined }, progress: undefined } });
+      this.setState(this.initialState);
     }
   }
 
@@ -127,11 +129,12 @@ class User extends Component {
             userId={userId}
             editMode={editMode}
             localAvatar={avatarState.value.data}
-            progress={avatarState.progress && avatarState.progress}
+            loadingProgress={avatarState.loadingProgress && avatarState.loadingProgress}
             onSelect={this.handleChange}
           />
           <InputForm
             id="username"
+            size="userScene"
             readOnly={!editMode}
             containerStyle={{ marginTop: 64, textAlign: "center" }}
             textStyle={{

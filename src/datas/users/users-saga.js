@@ -16,6 +16,7 @@ function* patchUsersRequestSaga(action) {
   try {
     const respond = yield call(usersApi.patchUser, action.payload);
     yield put(usersActions.patchUserSuccess(respond));
+    yield put(usersActions.getUserRequest({ id: action.payload.id }));
   } catch (error) {
     yield put(usersActions.patchUserFailure(error));
   }

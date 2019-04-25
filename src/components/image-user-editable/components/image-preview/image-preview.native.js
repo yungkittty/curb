@@ -4,7 +4,7 @@ import Container from "../../../container";
 import Image from "../../../image";
 import Text from "../../../text";
 
-const ImagePreview = styled(({ children, style, src, progress, ...others }) => (
+const ImagePreview = styled(({ children, style, src, loadingProgress, ...others }) => (
   // eslint-disable-next-line
   <Container style={style}>
     {src && (
@@ -18,7 +18,7 @@ const ImagePreview = styled(({ children, style, src, progress, ...others }) => (
         resizeMode="cover"
       />
     )}
-    {progress && (
+    {loadingProgress && (
       <Container
         style={{
           position: "absolute",
@@ -30,7 +30,7 @@ const ImagePreview = styled(({ children, style, src, progress, ...others }) => (
         }}
       >
         <Text type="h1" weight={700} style={{ color: "white" }}>
-          {`${parseInt(progress * 100, 10)} %`}
+          {`${parseInt(loadingProgress * 100, 10)} %`}
         </Text>
       </Container>
     )}

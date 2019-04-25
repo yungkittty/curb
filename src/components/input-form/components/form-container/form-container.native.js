@@ -5,6 +5,7 @@ const FormContainer = styled(Container)`
   width: ${props => {
     switch (props.size) {
       case "modal":
+      case "userScene":
         return 300;
       default:
         return 300;

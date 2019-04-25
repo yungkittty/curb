@@ -8,12 +8,22 @@ import ImageUser from "../image-user";
 import ImageSelector from "./components/image-selector";
 import ImageInput from "./components/image-input";
 
-const ImageUserEditable = ({ style, theme, id, size, userId, editMode, localAvatar, progress, onSelect }) => (
+const ImageUserEditable = ({
+  style,
+  theme,
+  id,
+  size,
+  userId,
+  editMode,
+  localAvatar,
+  loadingProgress,
+  onSelect
+}) => (
   <ImageContainer style={style} size={size} border={!localAvatar} editMode={editMode}>
     {!localAvatar && userId ? (
       <ImageUser size={size} userId={userId} />
     ) : (
-      <ImagePreview size={size} src={localAvatar} progress={progress} />
+      <ImagePreview size={size} src={localAvatar} loadingProgress={loadingProgress} />
     )}
     {editMode && (
       <ImageSelector>
@@ -37,7 +47,7 @@ const ImageUserEditable = ({ style, theme, id, size, userId, editMode, localAvat
 ImageUserEditable.defaultProps = {
   localAvatar: undefined,
   editMode: false,
-  progress: undefined
+  loadingProgress: undefined
 };
 
 ImageUserEditable.propTypes = {
@@ -50,7 +60,7 @@ ImageUserEditable.propTypes = {
   id: PropTypes.string.isRequired,
   localAvatar: PropTypes.string,
   editMode: PropTypes.bool,
-  progress: PropTypes.number,
+  loadingProgress: PropTypes.number,
   onSelect: PropTypes.func.isRequired
 };
 
