@@ -10,10 +10,10 @@ import ImageInput from "./components/image-input";
 
 const ImageUserEditable = ({ style, theme, id, size, userId, editMode, localAvatar, progress, onSelect }) => (
   <ImageContainer style={style} size={size} border={!localAvatar} editMode={editMode}>
-    {localAvatar ? (
-      <ImagePreview size={size} src={localAvatar} progress={progress} />
-    ) : (
+    {!localAvatar && userId ? (
       <ImageUser size={size} userId={userId} />
+    ) : (
+      <ImagePreview size={size} src={localAvatar} progress={progress} />
     )}
     {editMode && (
       <ImageSelector>

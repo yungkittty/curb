@@ -7,7 +7,7 @@ const ImageContainer = styled(Container)`
   justify-content: center;
   flex-shrink: 0;
   width: ${({ size }) => (size === "small" ? "200" : "320")}px;
-  height: ${({ size }) => (size === "small" ? "225" : "340")}px;
+  height: ${({ size }) => (size === "small" ? "220" : "340")}px;
 `;
 
 export default ImageContainer;

@@ -8,7 +8,7 @@ const ImageSelector = styled(Container)`
   position: absolute;
   bottom: 0;
   overflow: hidden;
-  border-radius: 25px;
+  border-radius: 20px;
   background: ${({ theme }) => theme.primaryVariantColor};
   width: 40px;
   height: 40px;

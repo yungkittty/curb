@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TestFairy from "react-native-testfairy";
 import { Platform } from "react-native";
 import { withTranslation } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
@@ -35,7 +34,6 @@ const ImageInput = ({ t, onSelect, ...others }) => (
           }
         },
         response => {
-          TestFairy.log(response);
           if (response.didCancel) {
             console.log("User cancelled image picker");
           } else if (response.error) {
@@ -44,11 +42,10 @@ const ImageInput = ({ t, onSelect, ...others }) => (
             console.log("User tapped custom button: ", response.customButton);
           } else {
             const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
-            TestFairy.log(uri);
             onSelect(uri, {
               uri,
               type: response.type,
-              name: "image.jpg"
+              name: response.fileName.toLowerCase()
             });
           }
         }

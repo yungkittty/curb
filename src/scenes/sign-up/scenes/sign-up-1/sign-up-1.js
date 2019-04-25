@@ -87,6 +87,7 @@ class SignUp1 extends Component {
           size="modal"
           id="email"
           type="email"
+          autoCapitalize="none"
           placeholder={t("common:email")}
           onChange={this.handleChange}
           value={email.value}
