@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 // eslint-disable-next-line
 import User from "./user";
 import { currentUserSelectors } from "../../datas/current-user";
-import { usersActions } from "../../datas/users";
+import { usersActions, usersSelectors } from "../../datas/users";
 import { mediasActions, mediasSelectors } from "../../datas/medias";
 import { appAlertActions } from "../../datas/app-alert";
 
@@ -13,11 +13,15 @@ const mapStateToProps = (state, props) => {
     }
   } = props;
   const currentUserId = currentUserSelectors.getCurrentUserId(state);
+  const isUserPatching = usersSelectors.isUserPatching(state) || false;
+  const userPatchingErrorCode = usersSelectors.getUserPatchingErrorCode(state) || "";
   const isMediasPosting = mediasSelectors.isMediasPosting(state) || false;
   const mediasPostingErrorCode = mediasSelectors.getMediasPostingErrorCode(state) || "";
   return {
     owner: currentUserId === id,
     userId: id,
+    isUserPatching,
+    userPatchingErrorCode,
     isMediasPosting,
     mediasPostingErrorCode
   };

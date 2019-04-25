@@ -12,8 +12,7 @@ const Input = styled(({ type, onChange, id, ...others }) => (
     onChangeText={value => onChange({ target: { id, value } })}
   />
 ))`
-  font-family: "Montserrat-Regular";
-  font-weight: normal;
+  font-family: Montserrat-Regular;
   color: ${({ theme }) => theme.fontColor}
   padding: 16px;
   font-size: 16px;

@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import TestFairy from "react-native-testfairy";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withUser from "../../hocs/with-user";
@@ -20,7 +19,7 @@ class User extends Component {
         value: undefined,
         error: undefined
       },
-      avatar: { value: { name: undefined, data: undefined }, progress: undefined }
+      avatar: { value: { data: undefined }, progress: undefined }
     };
 
     this.onUploadProgress = this.onUploadProgress.bind(this);
@@ -32,11 +31,19 @@ class User extends Component {
 
   componentDidUpdate(prevProps) {
     const { editMode } = this.state;
-    const { t, owner, isMediasPosting, mediasPostingErrorCode, pushAppAlert } = this.props;
+    const {
+      t,
+      owner,
+      isUserPatching,
+      userPatchingErrorCode,
+      isMediasPosting,
+      mediasPostingErrorCode,
+      pushAppAlert
+    } = this.props;
     // eslint-disable-next-line
     if (!owner && editMode) this.setState({ editMode: false });
-    if (prevProps.isMediasPosting && !isMediasPosting) {
-      if (mediasPostingErrorCode === "") {
+    if ((prevProps.isUserPatching || prevProps.isMediasPosting) && (!isUserPatching && !isMediasPosting)) {
+      if (userPatchingErrorCode === "" && mediasPostingErrorCode === "") {
         pushAppAlert({
           type: "success",
           message: t("alerts:patchUserSuccess"),
@@ -50,7 +57,7 @@ class User extends Component {
         });
       }
       // eslint-disable-next-line
-      this.setState({ avatar: { value: { name: undefined, data: undefined }, progress: undefined } });
+      this.setState({ avatar: { value: { data: undefined }, progress: undefined } });
     }
   }
 
@@ -111,8 +118,6 @@ class User extends Component {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
     const { t, owner, userId, userName: usernameProps, isMediasPosting } = this.props;
 
-    TestFairy.log(avatarState);
-
     return (
       <React.Fragment>
         <UserContainer>
@@ -134,7 +139,7 @@ class User extends Component {
               fontFamily: "Montserrat-Bold",
               textAlign: "center"
             }}
-            value={usernameState.value || usernameProps}
+            value={usernameState.value !== undefined ? usernameState.value : usernameProps}
             onChange={this.handleChange}
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
@@ -151,6 +156,8 @@ User.propTypes = {
   pushAppAlert: PropTypes.func.isRequired,
   isMediasPosting: PropTypes.bool.isRequired,
   mediasPostingErrorCode: PropTypes.string.isRequired,
+  isUserPatching: PropTypes.bool.isRequired,
+  userPatchingErrorCode: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
   patchUser: PropTypes.func.isRequired,
   postMediaAvatar: PropTypes.func.isRequired,

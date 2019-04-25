@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Input = styled.input`
   font-family: "Montserrat-Regular";
+  font-weight: initial;
   color: ${({ theme }) => theme.fontColor}
   box-sizing: border-box;
   box-shadow: none;
