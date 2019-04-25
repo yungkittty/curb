@@ -4,6 +4,7 @@ import { signUpSaga } from "../../datas/sign-up";
 import { usersSaga } from "../../datas/users";
 import { groupsSaga } from "../../datas/groups";
 import { discoverySaga } from "../../datas/discovery";
+import { accountSaga } from "../../datas/account";
 
 function* rootSaga() {
   yield all([
@@ -12,7 +13,8 @@ function* rootSaga() {
     signUpSaga,
     usersSaga,
     groupsSaga,
-    discoverySaga
+    discoverySaga,
+    accountSaga
   ]);
 }
 
