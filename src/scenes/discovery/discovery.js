@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -11,13 +12,15 @@ import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonIconFloat from "../../components/button-icon-float";
 import SignIn from "../sign-in";
 import CreateGroup from "../create-group";
+import withAppModal from "../../hocs/with-app-modal";
+import withCurrentUser from "../../hocs/with-current-user";
 
-const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
+const Discovery = ({ showAppModal, userId, discoveryGroupsId, t }) => (
   <React.Fragment>
     <DiscoveryContainer
       /* eslint-disable-next-line */
       sections={[{ data: [{}] }]}
-      keyExtractor={(_, sectionIndex) => sectionIndex}
+      keyExtractor={(sectionData, sectionIndex) => sectionIndex}
       ListHeaderComponent={() => (
         <DiscoveryHeader>
           <DiscoveryTitle type="h1" weight={700}>
@@ -37,10 +40,11 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
       )}
       renderItem={() => (
         <DiscoveryList
-          data={discoveryGroupsIds}
+          data={discoveryGroupsId}
           keyExtractor={discoveryGroupId => discoveryGroupId}
           renderItem={({ item: discoveryGroupId }) => (
-            <DiscoveryListItem discoveryGroupId={discoveryGroupId} />
+            // eslint-disable-line
+            <DiscoveryListItem groupId={discoveryGroupId} />
           )}
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -49,16 +53,25 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
     />
     <ButtonIconFloat
       icon="plus"
-      onClick={() => showAppModal({ scene: currentUserId ? CreateGroup : SignIn })}
+      onClick={() =>
+        showAppModal({
+          scene: userId ? CreateGroup : SignIn
+        })
+      }
     />
   </React.Fragment>
 );
 
 Discovery.propTypes = {
-  t: PropTypes.func.isRequired,
-  discoveryGroupsIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentUserId: PropTypes.string.isRequired,
-  showAppModal: PropTypes.func.isRequired
+  showAppModal: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+  discoveryGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  t: PropTypes.func.isRequired
 };
 
-export default withTranslation("discovery")(Discovery);
+export default _.flow([
+  // eslint-disable-line
+  withAppModal,
+  withCurrentUser,
+  withTranslation("discovery")
+])(Discovery);

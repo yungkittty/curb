@@ -28,20 +28,20 @@ const withUser = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const userId = ownProps.userId || ((ownProps.match || {}).params || {}).id || "";
     const {
-      isGetting: isGettingUser = false,
+      isFetching: isFetchingUser = false,
       dateCreation: userDateCreation = "",
       name: userName = "",
       avatarUrl: userAvatar = "",
-      groups: userGroupsIds = [],
+      groups: userGroupsId = [],
       errorCode: userErrorCode = ""
     } = usersSelectors.getUserById(state, userId) || {};
     return {
-      isGettingUser,
+      isFetchingUser,
       userId,
       userDateCreation,
       userName,
       userAvatar,
-      userGroupsIds,
+      userGroupsId,
       userErrorCode
     };
   };

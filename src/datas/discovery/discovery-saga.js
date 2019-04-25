@@ -8,15 +8,14 @@ function* getDiscoveryRequestSaga(action) {
     const { data: payload } = yield call(discoveryApi.getDiscovery, action.payload);
     yield put(discoveryActions.getDiscoverySuccess(payload));
   } catch (error) {
-    yield put(discoveryActions.getDiscoveryFailure(error));
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    yield put(discoveryActions.getDiscoveryFailure({ errorCode }));
   }
 }
 
 const discoverySaga = all([
-  takeEvery(
-    discoveryActionsTypes.GET_DISCOVERY_REQUEST,
-    getDiscoveryRequestSaga
-  )
+  // eslint-disable-line
+  takeEvery(discoveryActionsTypes.GET_DISCOVERY_REQUEST, getDiscoveryRequestSaga)
 ]);
 
 export default discoverySaga;

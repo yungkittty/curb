@@ -62,9 +62,7 @@ class NavigationContainer extends React.Component {
                 outputRange: [0, 0.25]
               })
             }}
-          >
-            <React.Fragment />
-          </ContainerOverlay>
+          />
         ) : null}
         <ContainerContainer style={{ transform: [{ translateX: containerAnimated }] }}>
           <ContainerContentContainer>

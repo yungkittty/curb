@@ -26,18 +26,18 @@ const withMedia = WrappedComponent => {
   }
 
   const mapStateToProps = (state, ownProps) => {
+    const mediaId = ownProps.mediaId; // eslint-disable-line
     const {
-      isGetting: isGettingMedia = false,
-      id: mediaId = ownProps.mediaId || "",
+      isFetching: isFetchingMedia = false,
       creatorId: mediaCreatorId = "",
       dateCreation: mediaDateCreation = "",
       type: mediaType = "",
       data: mediaData = "",
       groupId: mediaGroupId = "",
       errorCode: mediaErrorCode = ""
-    } = mediasSelectors.getMediaById(state, ownProps.mediaId) || {};
+    } = mediasSelectors.getMediaById(state, mediaId) || {};
     return {
-      isGettingMedia,
+      isFetchingMedia,
       mediaId,
       mediaCreatorId,
       mediaDateCreation,

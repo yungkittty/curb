@@ -1,9 +1,10 @@
 import _ from "lodash";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import ButtonText from "../../../../../../components/button-text";
+import Button from "../../../../../../components/button";
+import Text from "../../../../../../components/text";
 
-const HeaderButtonText = styled(ButtonText)`
+const HeaderButtonText = styled(Button).attrs(() => ({ component: Text }))`
   width: 250px;
   height: 50px;
   border-radius: 15px;

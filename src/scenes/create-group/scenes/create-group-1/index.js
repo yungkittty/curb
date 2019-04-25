@@ -1,4 +1,4 @@
 /* eslint-disable-next-line */
-import CreateGroup1Container from "./create-group-1-container";
+import CreateGroup1 from "./create-group-1";
 
-export default CreateGroup1Container;
+export default CreateGroup1;

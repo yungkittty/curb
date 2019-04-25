@@ -14,7 +14,7 @@ const UserContainer = styled(Container)`
     border-radius: ${props.size / 2}px;
     background-color ${
       // eslint-disable-next-line
-      props.isGettingUser && !props.userAvatar
+      props.isFetchingUser && !props.userAvatar
         ? // eslint-disable-line
           props.placeholderColor
         : !props.userAvatar
@@ -26,7 +26,7 @@ const UserContainer = styled(Container)`
 `;
 
 UserContainer.propTypes = {
-  isGettingUser: PropTypes.bool.isRequired,
+  isFetchingUser: PropTypes.bool.isRequired,
   userAvatar: PropTypes.string.isRequired,
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
   placeholderColor: PropTypes.string.isRequired

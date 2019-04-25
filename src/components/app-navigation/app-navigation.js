@@ -19,7 +19,7 @@ const AppNavigation = ({
   // eslint-disable-line
   showAppModal,
   userId,
-  userGroupsIds,
+  userGroupsId,
   theme
 }) => (
   <NavigationContainer>
@@ -42,7 +42,7 @@ const AppNavigation = ({
     )}
     <NavigationRule />
     <ListFlat
-      data={userGroupsIds}
+      data={userGroupsId}
       keyExtractor={userGroupId => userGroupId}
       renderItem={({ item: userGroupId }) => (
         <NavigationButton
@@ -80,7 +80,7 @@ const AppNavigation = ({
 AppNavigation.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
-  userGroupsIds: PropTypes.array.isRequired, // eslint-disable-line
+  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 

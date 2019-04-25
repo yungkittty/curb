@@ -1,14 +1,16 @@
+import _ from "lodash";
 import React, { Component } from "react";
-import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
+import { withTheme } from "styled-components";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 import Loader from "../../../../components/loader";
 import themesData from "./create-group-4-themes-data";
+import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable-next-line */
 import CreateGroup3 from "../create-group-3";
 
@@ -16,53 +18,36 @@ class CreateGroup4 extends Component {
   constructor(props) {
     super(props);
     const {
-      t,
+      // eslint-disble-line
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton
+      setAppModalFooterButton,
+      t
     } = this.props;
 
     this.listFlat = React.createRef();
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
-    });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      isCreateGroupFetching,
-      t,
-      hideAppModal,
-      setAppModalHeaderLeftButton,
-      setAppModalHeaderRightButton,
-      setAppModalScene,
-      setAppModalFooterButton
-    } = this.props;
-    if (prevProps.isCreateGroupFetching === isCreateGroupFetching) return;
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: !isCreateGroupFetching
-        ? () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
-        : () => undefined
-    });
-    setAppModalHeaderRightButton({
-      icon: "times",
-      onClick: !isCreateGroupFetching ? hideAppModal : () => undefined
-    });
-    setAppModalFooterButton({
-      text: t("common:finish"),
-      onClick: !isCreateGroupFetching ? this.submit : () => undefined
-    });
+    const { isFetchingGroups, enableAppModalButtons, disableAppModalButtons } = this.props;
+    if (prevProps.isFetchingGroups === isFetchingGroups) return;
+    if (isFetchingGroups) disableAppModalButtons();
+    else enableAppModalButtons();
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: CreateGroup3, direction: -1 });
   }
 
   submit() {
@@ -108,11 +93,11 @@ class CreateGroup4 extends Component {
     const {
       t,
       theme,
-      isCreateGroupFetching,
+      isFetchingGroups,
       groupTheme: { value, error }
     } = this.props;
 
-    return isCreateGroupFetching ? (
+    return isFetchingGroups ? (
       <Loader />
     ) : (
       <ListFlat
@@ -152,13 +137,14 @@ CreateGroup4.defaultProps = {
 };
 
 CreateGroup4.propTypes = {
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  isCreateGroupFetching: PropTypes.bool.isRequired,
+  isFetchingGroups: PropTypes.bool.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
   // eslint-disable-next-line
@@ -184,4 +170,10 @@ CreateGroup4.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTheme(withRouter(withTranslation("createGroup")(CreateGroup4)));
+export default _.flow([
+  // eslint-disable-line
+  withAppModal,
+  withRouter,
+  withTranslation("createGroup"),
+  withTheme
+])(CreateGroup4);

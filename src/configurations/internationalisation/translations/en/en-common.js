@@ -11,8 +11,13 @@ const enCommon = {
   month_plural: "{{count}} months",
   year: "{{count}} year",
   year_plural: "{{count}} years",
+  username: "Username",
+  email: "Mail address",
+  password: "Password",
+  confirmPassword: "Confirm password",
   next: "Next",
-  finish: "Finish"
+  finish: "Finish",
+  reset: "Reset"
 };
 
 export default enCommon;

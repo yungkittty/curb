@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { appNavigationActions, appNavigationSelectors } from "../../datas/app-navigation";
 
 const withAppNavigation = WrappedComponent => {
-  // eslint-disable-next-line
   const mapStateToProps = state => ({
     isAppNavigationShowed: appNavigationSelectors.isAppNavigationShowed(state)
   });

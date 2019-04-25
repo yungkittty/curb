@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -5,6 +6,7 @@ import AppModalSceneContainer from "../../../../components/app-modal-scene-conta
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import CreateGroup2Discover from "./components/create-group-2-discover";
+import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable */
 import CreateGroup1 from "../create-group-1";
 import CreateGroup3 from "../create-group-3";
@@ -14,24 +16,27 @@ class CreateGroup2 extends Component {
   constructor(props) {
     super(props);
     const {
-      t,
+      // eslint-disable-line
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton
+      setAppModalFooterButton,
+      t
     } = this.props;
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 2, steps: 4 });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: CreateGroup1, direction: -1 })
-    });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: CreateGroup1, direction: -1 });
   }
 
   goToNext() {
@@ -94,4 +99,8 @@ CreateGroup2.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("createGroup")(CreateGroup2);
+export default _.flow([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("createGroup")
+])(CreateGroup2);

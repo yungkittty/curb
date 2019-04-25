@@ -28,20 +28,20 @@ const withGroup = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const groupId = ownProps.groupId || ((ownProps.match || {}).params || {}).id || "";
     const {
-      isGetting: isGettingGroup = false,
+      isFetching: isFetchingGroup = false,
       creatorId: groupCreatorId = "",
       dateCreation: groupDateCreation = "",
       name: groupName = "",
       avatarUrl: groupAvatar = "",
       status: groupStatus = "",
       theme: groupTheme = "",
-      users: groupUsersIds = [],
+      users: groupUsersId = [],
       mediaTypes: groupMediaTypes = [],
       medias: groupMediasId = [],
       errorCode: groupErrorCode = ""
     } = groupsSelectors.getGroupById(state, groupId) || {};
     return {
-      isGettingGroup,
+      isFetchingGroup,
       groupId,
       groupCreatorId,
       groupDateCreation,
@@ -49,7 +49,7 @@ const withGroup = WrappedComponent => {
       groupAvatar,
       groupStatus,
       groupTheme,
-      groupUsersIds,
+      groupUsersId,
       groupMediaTypes,
       groupMediasId,
       groupErrorCode

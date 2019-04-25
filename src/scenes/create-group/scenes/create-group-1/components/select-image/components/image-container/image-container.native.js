@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import Button from "../../../../../../../../components/button";
+import ButtonContainer from "../../../../../../../../components/button-container";
 
-const ImageContainer = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const ImageContainer = styled(ButtonContainer)`
   width: 140px;
   height: 140px;
   border-radius: 70px;

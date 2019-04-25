@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../../_button";
+import Button from "../../../button";
 
 const NavigationButton = styled(Button)`
   width: 60px;

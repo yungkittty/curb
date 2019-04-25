@@ -8,6 +8,7 @@ import ModalFooter from "./components/modal-footer";
 
 const AppModal = ({
   isAppModalShowed,
+  isAppModalButtonsEnabled,
   appModalHeaderText,
   appModalHeaderCurrentStep,
   appModalHeaderSteps,
@@ -29,9 +30,9 @@ const AppModal = ({
           currentStep={appModalHeaderCurrentStep}
           steps={appModalHeaderSteps}
           leftIcon={appModalHeaderLeftIcon}
-          leftOnClick={appModalHeaderLeftOnClick}
+          leftOnClick={isAppModalButtonsEnabled && appModalHeaderLeftOnClick}
           rightIcon={appModalHeaderRightIcon}
-          rightOnClick={appModalHeaderRightOnClick}
+          rightOnClick={isAppModalButtonsEnabled && appModalHeaderRightOnClick}
         />
         <ModalScene
           scene={appModalScene}
@@ -39,7 +40,9 @@ const AppModal = ({
           sceneData={appModalSceneData}
         />
         {appModalFooterText ? (
-          <ModalFooter weight={500} text={appModalFooterText} onClick={appModalFooterOnClick} />
+          <ModalFooter weight={500} onClick={isAppModalButtonsEnabled && appModalFooterOnClick}>
+            {appModalFooterText}
+          </ModalFooter>
         ) : null}
       </ModalContainer>
     </ModalOverlay>
@@ -60,6 +63,7 @@ AppModal.defaultProps = {
 
 AppModal.propTypes = {
   isAppModalShowed: PropTypes.bool.isRequired,
+  isAppModalButtonsEnabled: PropTypes.bool.isRequired,
   appModalHeaderText: PropTypes.string,
   appModalHeaderCurrentStep: PropTypes.number,
   appModalHeaderSteps: PropTypes.number,

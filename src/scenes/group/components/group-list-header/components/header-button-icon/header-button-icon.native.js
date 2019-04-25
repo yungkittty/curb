@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import ButtonIcon from "../../../../../../components/button-icon";
+import Button from "../../../../../../components/button";
+import Icon from "../../../../../../components/icon";
 
-const HeaderButtonIcon = styled(ButtonIcon)`
+const HeaderButtonIcon = styled(Button).attrs(() => ({ component: Icon }))`
   position: absolute;
   top: 20px;
   right: 20px;

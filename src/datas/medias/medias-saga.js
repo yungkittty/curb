@@ -9,11 +9,14 @@ function* getMediaRequestSaga(action) {
     const { data: payload } = yield call(mediasApi.getMedia, action.payload);
     yield put(mediasActions.getMediaSuccess(payload));
   } catch (error) {
-    const { code: errorCode = "" } = (error.response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
     yield put(mediasActions.getMediaFailure({ id: action.payload.id, errorCode }));
   }
 }
 
-const mediasSaga = all([takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga)]);
+const mediasSaga = all([
+  // eslint-disable-line
+  takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga)
+]);
 
 export default mediasSaga;

@@ -1,21 +1,34 @@
+import { combineReducers } from "redux";
 import signUpActionsTypes from "./sign-up-actions-types";
 
-const initialState = { isFetching: false, errorCode: "" };
-
-const signUpReducer = (state = initialState, action) => {
+const isFetching = (state = false, action) => {
   switch (action.type) {
     case signUpActionsTypes.SIGN_UP_REQUEST:
-    case signUpActionsTypes.DELETE_ACCOUNT_REQUEST:
-      return { ...state, isFetching: true };
+      return true;
     case signUpActionsTypes.SIGN_UP_SUCCESS:
-    case signUpActionsTypes.DELETE_ACCOUNT_SUCCESS:
-      return { ...state, isFetching: false, errorCode: "" };
     case signUpActionsTypes.SIGN_UP_FAILURE:
-    case signUpActionsTypes.DELETE_ACCOUNT_FAILURE:
-      return { ...state, isFetching: false, errorCode: action.payload.errorCode };
+      return false;
     default:
       return state;
   }
 };
+
+const errorCode = (state = "", action) => {
+  switch (action.type) {
+    case signUpActionsTypes.SIGN_UP_REQUEST:
+    case signUpActionsTypes.SIGN_UP_SUCCESS:
+      return "";
+    case signUpActionsTypes.SIGN_UP_FAILURE:
+      return action.payload.errorCode;
+    default:
+      return state;
+  }
+};
+
+const signUpReducer = combineReducers({
+  // eslint-disable-line
+  isFetching,
+  errorCode
+});
 
 export default signUpReducer;

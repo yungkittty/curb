@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../../../../../../../../components/button";
+import ButtonContainer from "../../../../../../../../components/button-container";
 
-const ImageContainer = styled(Button)`
+const ImageContainer = styled(ButtonContainer)`
   position: relative;
   width: 200px;
   height: 200px;

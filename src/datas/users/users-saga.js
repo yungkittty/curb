@@ -9,11 +9,14 @@ function* getUsersRequestSaga(action) {
     const { data: payload } = yield call(usersApi.getUser, action.payload);
     yield put(usersActions.getUserSuccess(payload));
   } catch (error) {
-    const { code: errorCode = "" } = (error.response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
     yield put(usersActions.getUserFailure({ id: action.payload.id, errorCode }));
   }
 }
 
-const usersSaga = all([takeNormalize(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)]);
+const usersSaga = all([
+  // eslint-disable-line
+  takeNormalize(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga)
+]);
 
 export default usersSaga;

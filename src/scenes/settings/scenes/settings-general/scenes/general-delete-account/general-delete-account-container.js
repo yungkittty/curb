@@ -1,19 +1,14 @@
 import { connect } from "react-redux";
 // eslint-disable-next-line
 import GeneralDeleteAccount from "./general-delete-account";
-import { signUpSelectors, signUpActions } from "../../../../../../datas/sign-up";
-import { appModalActions } from "../../../../../../datas/app-modal";
+import { accountActions, accountSelectors } from "../../../../../../datas/account";
 
 const mapStateToProps = state => ({
-  isSignUpFetching: signUpSelectors.isSignUpFetching(state) || false
+  isFetchingAccount: accountSelectors.isFetchingAccount(state) || false
 });
 
 const mapDispatchToProps = dispatch => ({
-  setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
-  setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
-  setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
-  setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
-  deleteAccount: payload => dispatch(signUpActions.deleteAccountRequest(payload))
+  deleteAccount: payload => dispatch(accountActions.deleteAccountRequest(payload))
 });
 
 export default connect(

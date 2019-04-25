@@ -1,3 +1,3 @@
-import SettingsContainer from "./settings-container";
+import Settings from "./settings"; // eslint-disable-line
 
-export default SettingsContainer;
+export default Settings;

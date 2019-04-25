@@ -9,7 +9,7 @@ import { platformBools } from "../../configurations/platform";
 import withGroup from "../../hocs/with-group";
 
 const ImageGroup = ({
-  isGettingGroup,
+  isFetchingGroup,
   groupName,
   groupAvatar,
   groupTheme,
@@ -39,7 +39,7 @@ const ImageGroup = ({
   return (
     <GroupContainer
       {...others}
-      isGettingGroup={isGettingGroup}
+      isFetchingGroup={isFetchingGroup}
       groupName={groupName}
       groupAvatar={groupAvatar}
       groupTheme={groupTheme}
@@ -47,7 +47,7 @@ const ImageGroup = ({
       size={X}
     >
       {/* eslint-disable-next-line */}
-      {!isGettingGroup || groupAvatar || groupName ? (
+      {!isFetchingGroup || groupAvatar || groupName ? (
         groupAvatar ? (
           <Image
             src={_.replace(groupAvatar, "medium", size)}
@@ -72,7 +72,7 @@ const ImageGroup = ({
 };
 
 ImageGroup.propTypes = {
-  isGettingGroup: PropTypes.bool.isRequired,
+  isFetchingGroup: PropTypes.bool.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,

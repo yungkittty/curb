@@ -1,3 +1,3 @@
-import DiscoveryScanQrContainer from "./discovery-scan-qr-container.native";
+import DiscoveryScanQr from "./discovery-scan-qr.native";
 
-export default DiscoveryScanQrContainer;
+export default DiscoveryScanQr;

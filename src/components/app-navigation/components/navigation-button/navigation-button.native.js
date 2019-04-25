@@ -3,7 +3,7 @@ import React from "react";
 // import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import styled from "styled-components";
-import Button from "../../../_button";
+import Button from "../../../button";
 import withAppNavigation from "../../../../hocs/with-app-navigation";
 
 const NavigationButton = styled(

@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import ButtonIcon from "../../../../../button-icon";
+import Button from "../../../../../button";
+import Icon from "../../../../../icon";
 
-const HeaderButtonIcon = styled(ButtonIcon).attrs(props => ({
+const HeaderButtonIcon = styled(Button).attrs(props => ({
+  component: Icon,
   size: "extra-small",
   color: props.theme.fontColor
 }))`

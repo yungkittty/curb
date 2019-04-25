@@ -1,11 +1,12 @@
-import React, { Component } from "react";
 import _ from "lodash";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
+import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable */
 import CreateGroup2 from "../create-group-2";
 import CreateGroup4 from "../create-group-4";
@@ -16,26 +17,29 @@ class CreateGroup3 extends Component {
   constructor(props) {
     super(props);
     const {
-      t,
+      // eslint-disable-line
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton
+      setAppModalFooterButton,
+      t
     } = this.props;
 
     this.listFlat = React.createRef();
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 3, steps: 4 });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: CreateGroup2, direction: -1 })
-    });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: CreateGroup2, direction: -1 });
   }
 
   goToNext() {
@@ -121,4 +125,8 @@ CreateGroup3.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("createGroup")(CreateGroup3);
+export default _.flow([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("createGroup")
+])(CreateGroup3);

@@ -1,58 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import ButtonContainer from "../button-container";
 
-const Button = styled(({ children, onClick, hoverColor, ...others }) =>
-  // eslint-disable-next-line
-  typeof onClick === "string" && onClick.charAt(0) !== "/" ? (
-    <a {...others} href={onClick}>
-      {React.Children.only(children)}
-    </a>
-  ) : typeof onClick === "string" || onClick === "object" ? (
-    <Link {...others} to={onClick}>
-      {React.Children.only(children)}
-    </Link>
-  ) : (
-    <button {...others} type="button" onClick={onClick}>
-      {React.Children.only(children)}
-    </button>
-  )
-)`
-  padding: 0px;
-  border-width: initial;
-  border-style: initial;
-  border-color: initial;
-  outline: initial;
-  text-decoration: initial;
-  background-color: initial;
-  cursor: pointer;
+// eslint-disable-next-line
+const Button = ({
+  // eslint-disable-line
+  className,
+  style,
+  contentStyle,
+  onClick,
+  component,
+  render,
+  ...others
+}) => (
+  <ButtonContainer className={className} style={style} onClick={onClick}>
+    {/* eslint-disable-next-line */}
+    {component ? (
+      React.createElement(component, { ...others, style: contentStyle })
+    ) : render ? (
+      render({ ...others, style: contentStyle })
+    ) : (
+      <React.Fragment />
+    )}
+  </ButtonContainer>
+);
 
-  transition: all 0.1s ease;
-  ${({ disabled, hoverColor }) =>
-    !disabled
-      ? ` &:hover {
-          ${hoverColor ? `background-color: ${hoverColor};` : "filter: brightness(1.05);"}
-          }`
-      : ""}
+Button.defaultProps = { component: undefined, render: undefined };
 
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  ${({ disabled }) => (disabled ? "cursor: default;" : "")}
-`;
-
-Button.defaultProps = { onClick: undefined };
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.oneOfType([
-    // eslint-disable-line
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.func
-  ])
-};
+Button.propTypes = { component: PropTypes.func, render: PropTypes.func };
 
 export default Button;

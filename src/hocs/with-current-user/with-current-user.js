@@ -8,7 +8,11 @@ const withCurrentUser = WrappedComponent => {
     userId: currentUserSelectors.getCurrentUserId(state) || ""
   });
 
-  return _.flow([withUser, connect(mapStateToProps)])(WrappedComponent);
+  return _.flow([
+    // eslint-disable-line
+    withUser,
+    connect(mapStateToProps)
+  ])(WrappedComponent);
 };
 
 export default withCurrentUser;

@@ -1,15 +1,18 @@
-import _ from "lodash";
+import { combineReducers } from "redux";
 import currentSettingsActionsTypes from "./current-settings-actions-types";
 
-const initialState = { language: "" };
-
-const currentSettings = (state = initialState, action) => {
+const language = (state = "", action) => {
   switch (action.type) {
     case currentSettingsActionsTypes.SET_CURRENT_SETTINGS_LANGUAGE:
-      return _.assign({}, state, action.payload);
+      return { ...state, language: action.payload.language };
     default:
       return state;
   }
 };
 
-export default currentSettings;
+const currentSettingsReducer = combineReducers({
+  // eslint-disable-line
+  language
+});
+
+export default currentSettingsReducer;

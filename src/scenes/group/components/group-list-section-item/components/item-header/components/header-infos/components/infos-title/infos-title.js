@@ -5,14 +5,14 @@ import Text from "../../../../../../../../../../components/text";
 
 const InfosTitle = styled(Text)`
   ${props =>
-    props.isGettingUser
+    props.isFetchingUser
       ? `
         width: 80px;
         height: 14px;
       `
       : ""}
   border-radius: 5px;
-  ${props => (props.isGettingUser ? `background-color: ${props.theme.primaryVariantColor};` : "")};
+  ${props => (props.isFetchingUser ? `background-color: ${props.theme.primaryVariantColor};` : "")};
 `;
 
 export default InfosTitle;

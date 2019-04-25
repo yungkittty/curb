@@ -10,7 +10,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isGetting: true
+          isFetching: true
         }
       };
     case usersActionsTypes.GET_USER_SUCCESS:
@@ -19,7 +19,7 @@ const byId = (state = {}, action) => {
         [action.payload.id]: {
           ...state[action.payload.id],
           ...action.payload,
-          isGetting: false,
+          isFetching: false,
           errorCode: ""
         }
       };
@@ -28,7 +28,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isGetting: false,
+          isFetching: false,
           errorCode: action.payload.errorCode
         }
       };
@@ -58,6 +58,10 @@ const allIds = (state = [], action) => {
   }
 };
 
-const usersReducer = combineReducers({ byId, allIds });
+const usersReducer = combineReducers({
+  // eslint-disable-line
+  byId,
+  allIds
+});
 
 export default usersReducer;

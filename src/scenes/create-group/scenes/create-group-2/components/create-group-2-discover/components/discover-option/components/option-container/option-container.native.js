@@ -1,15 +1,10 @@
 import styled from "styled-components";
-import Button from "../../../../../../../../../../components/button";
+import ButtonContainer from "../../../../../../../../../../components/button-container";
 
-const OptionContainer = styled(Button)`
+const OptionContainer = styled(ButtonContainer)`
   padding: 18px 30px;
   flex: 1;
-  align-items: center;
-  justify-content: center;
-
-  background: ${({ selected, theme }) =>
-    selected ? theme.primaryVariantColor : "transparent"};
-  }
+  background: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
 `;
 
 export default OptionContainer;

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import Text from "../../../../../../../../components/text";
 
-const MediaText = styled(Text)``;
+const MediaText = Text;
 
 export default MediaText;

@@ -2,6 +2,18 @@ import _ from "lodash";
 import { combineReducers } from "redux";
 import mediasActionsTypes from "./medias-actions-types";
 
+const isFetching = (state = false, action) => {
+  switch (action.type) {
+    case mediasActionsTypes.GET_MEDIA_REQUEST:
+      return true;
+    case mediasActionsTypes.GET_MEDIA_SUCCESS:
+    case mediasActionsTypes.GET_MEDIA_FAILURE:
+      return false;
+    default:
+      return state;
+  }
+};
+
 const byId = (state = {}, action) => {
   switch (action.type) {
     case mediasActionsTypes.GET_MEDIA_REQUEST:
@@ -9,7 +21,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isGetting: true
+          isFetching: true
         }
       };
     case mediasActionsTypes.GET_MEDIA_SUCCESS:
@@ -18,7 +30,7 @@ const byId = (state = {}, action) => {
         [action.payload.id]: {
           ...state[action.payload.id],
           ...action.payload,
-          isGetting: false,
+          isFetching: false,
           errorCode: ""
         }
       };
@@ -27,7 +39,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isGetting: false,
+          isFetching: false,
           errorCode: action.payload.errorCode
         }
       };
@@ -45,6 +57,24 @@ const allIds = (state = [], action) => {
   }
 };
 
-const mediasReducer = combineReducers({ byId, allIds });
+const errorCode = (state = "", action) => {
+  switch (action.type) {
+    case mediasActionsTypes.GET_MEDIA_REQUEST:
+    case mediasActionsTypes.GET_MEDIA_SUCCESS:
+      return "";
+    case mediasActionsTypes.GET_MEDIA_FAILURE:
+      return action.payload.errorCode;
+    default:
+      return state;
+  }
+};
+
+const mediasReducer = combineReducers({
+  // eslint-disable-line
+  isFetching,
+  byId,
+  allIds,
+  errorCode
+});
 
 export default mediasReducer;

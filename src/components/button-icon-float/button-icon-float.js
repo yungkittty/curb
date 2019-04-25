@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import ButtonIcon from "../button-icon";
+import Button from "../button";
+import Icon from "../icon";
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 4
 
-const ButtonIconFloat = styled(ButtonIcon).attrs(props => ({
+const ButtonIconFloat = styled(Button).attrs(props => ({
+  component: Icon,
   size: "small",
   color: props.theme.secondaryVariantColor
 }))`

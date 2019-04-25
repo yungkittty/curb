@@ -1,21 +1,13 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
 import CreateGroup4 from "./create-group-4";
-import { appModalActions } from "../../../../datas/app-modal";
-import { groupsSelectors, groupsActions } from "../../../../datas/groups";
+import { groupsActions, groupsSelectors } from "../../../../datas/groups";
 
 const mapStateToProps = state => ({
-  isCreateGroupFetching: groupsSelectors.isCreateGroupFetching(state) || false
+  isFetchingGroups: groupsSelectors.isFetchingGroups(state) || false
 });
 
 const mapDispatchToProps = dispatch => ({
-  setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
-  setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
-  setAppModalHeaderRightButton: payload => dispatch(appModalActions.setAppModalHeaderRightButton(payload)),
-  setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
-  setAppModalSceneData: payload => dispatch(appModalActions.setAppModalSceneData(payload)),
-  setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
-  hideAppModal: () => dispatch(appModalActions.hideAppModal()),
   postGroup: payload => dispatch(groupsActions.postGroupRequest(payload))
 });
 

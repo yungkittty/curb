@@ -15,7 +15,7 @@ const GroupContainer = styled(Container)`
     border-radius: ${props.size / 2}px;
     background-color: ${
       // eslint-disable-next-line
-      props.isGettingGroup && !props.groupAvatar && !props.groupName
+      props.isFetchingGroup && !props.groupAvatar && !props.groupName
         ? // eslint-disable-line
           props.placeholderColor
         : !props.groupAvatar
@@ -27,7 +27,7 @@ const GroupContainer = styled(Container)`
 `;
 
 GroupContainer.propTypes = {
-  isGettingGroup: PropTypes.bool.isRequired,
+  isFetchingGroup: PropTypes.bool.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,

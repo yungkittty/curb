@@ -2,14 +2,13 @@ import _ from "lodash";
 import { combineReducers } from "redux";
 import groupsActionsTypes from "./groups-actions-types";
 
-const postFetching = (state = { isFetching: false, errorCode: "" }, action) => {
+const isFetching = (state = false, action) => {
   switch (action.type) {
     case groupsActionsTypes.POST_GROUP_REQUEST:
-      return { ...state, isFetching: true };
+      return true;
     case groupsActionsTypes.POST_GROUP_SUCCESS:
-      return { ...state, isFetching: false, errorCode: "" };
     case groupsActionsTypes.POST_GROUP_FAILURE:
-      return { ...state, isFetching: false, errorCode: "" };
+      return false;
     default:
       return state;
   }
@@ -22,7 +21,8 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isGetting: true
+          isFetching: true,
+          errorCode: ""
         }
       };
     case groupsActionsTypes.GET_GROUP_SUCCESS:
@@ -31,7 +31,7 @@ const byId = (state = {}, action) => {
         [action.payload.id]: {
           ...state[action.payload.id],
           ...action.payload,
-          isGetting: false,
+          isFetching: false,
           errorCode: ""
         }
       };
@@ -40,7 +40,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          isGetting: false,
+          isFetching: false,
           errorCode: action.payload.errorCode
         }
       };
@@ -58,6 +58,24 @@ const allIds = (state = [], action) => {
   }
 };
 
-const groupsReducer = combineReducers({ postFetching, byId, allIds });
+const errorCode = (state = "", action) => {
+  switch (action.type) {
+    case groupsActionsTypes.POST_GROUP_REQUEST:
+    case groupsActionsTypes.POST_GROUP_SUCCESS:
+      return "";
+    case groupsActionsTypes.POST_GROUP_FAILURE:
+      return action.payload.errorCode;
+    default:
+      return state;
+  }
+};
+
+const groupsReducer = combineReducers({
+  // eslint-disable-line
+  isFetching,
+  byId,
+  allIds,
+  errorCode
+});
 
 export default groupsReducer;

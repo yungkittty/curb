@@ -5,6 +5,10 @@ const appModalActions = {
     type: appModalActionsTypes.SHOW_APP_MODAL,
     payload
   }),
+  enableAppModalButtons: () => ({
+    type: appModalActionsTypes.ENABLE_APP_MODAL_BUTTONS,
+    payload: undefined
+  }),
   setAppModalHeaderText: payload => ({
     type: appModalActionsTypes.SET_APP_MODAL_HEADER_TEXT,
     payload
@@ -32,6 +36,10 @@ const appModalActions = {
   setAppModalFooterButton: payload => ({
     type: appModalActionsTypes.SET_APP_MODAL_FOOTER_BUTTON,
     payload
+  }),
+  disableAppModalButtons: () => ({
+    type: appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS,
+    payload: undefined
   }),
   hideAppModal: () => ({
     type: appModalActionsTypes.HIDE_APP_MODAL,

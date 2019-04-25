@@ -1,16 +1,20 @@
+import { combineReducers } from "redux";
 import appNavigationActionsTypes from "./app-navigation-actions-types";
 
-const initialState = { isShowed: false };
-
-const appNavigationReducer = (state = initialState, action) => {
+const isShowed = (state = false, action) => {
   switch (action.type) {
     case appNavigationActionsTypes.SHOW_APP_NAVIGATION:
-      return { ...state, isShowed: true };
+      return true;
     case appNavigationActionsTypes.HIDE_APP_NAVIGATION:
-      return { ...state, isShowed: false };
+      return false;
     default:
       return state;
   }
 };
+
+const appNavigationReducer = combineReducers({
+  // eslint-disable-line
+  isShowed
+});
 
 export default appNavigationReducer;

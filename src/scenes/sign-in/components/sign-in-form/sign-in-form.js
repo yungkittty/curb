@@ -10,7 +10,7 @@ const SignInForm = ({ onChange, email, password, t }) => (
       size="modal"
       id="email"
       type="email"
-      placeholder={t("signIn:email")}
+      placeholder={t("email")}
       value={email.value}
       onChange={onChange}
       error={email.error && t(`validation:email.${email.error}`)}
@@ -18,7 +18,7 @@ const SignInForm = ({ onChange, email, password, t }) => (
     <InputForm
       size="modal"
       id="password"
-      placeholder={t("signIn:password")}
+      placeholder={t("password")}
       type="password"
       value={password.value}
       onChange={onChange}
@@ -40,4 +40,4 @@ SignInForm.propTypes = {
   }).isRequired
 };
 
-export default withTranslation()(SignInForm);
+export default withTranslation("common")(SignInForm);

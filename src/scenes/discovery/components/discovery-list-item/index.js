@@ -1,3 +1,3 @@
-import DiscoveryListItemContainer from "./discovery-list-item-container";
+import DiscoveryListItem from "./discovery-list-item";
 
-export default DiscoveryListItemContainer;
+export default DiscoveryListItem;

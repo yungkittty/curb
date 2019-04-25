@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -6,6 +7,7 @@ import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import SelectImage from "./components/select-image";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
+import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable-next-line */
 import CreateGroup2 from "../create-group-2";
 
@@ -87,4 +89,8 @@ CreateGroup1.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("createGroup")(CreateGroup1);
+export default _.flow([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("createGroup")
+])(CreateGroup1);
