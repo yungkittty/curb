@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import TestFairy from "react-native-testfairy";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withUser from "../../hocs/with-user";
@@ -109,6 +110,8 @@ class User extends Component {
   render() {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
     const { t, owner, userId, userName: usernameProps, isMediasPosting } = this.props;
+
+    TestFairy.log(avatarState);
 
     return (
       <React.Fragment>
