@@ -2,10 +2,11 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import withUser from "../../hocs/with-user";
 import { platformBools } from "../../configurations/platform";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
-import SelectImage from "../../components/select-image";
+import ImageUserEditable from "../../components/image-user-editable";
 import InputForm from "../../components/input-form";
 
 class User extends Component {
@@ -107,19 +108,18 @@ class User extends Component {
 
   render() {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, owner, username: usernameProps, avatarUrl: avatarProps, isMediasPosting } = this.props;
+    const { t, owner, userId, userName: usernameProps, isMediasPosting } = this.props;
 
     return (
       <React.Fragment>
         <UserContainer>
-          <SelectImage
+          <ImageUserEditable
             id="avatar"
-            readOnly={!editMode}
+            size="large"
+            userId={userId}
+            editMode={editMode}
+            localAvatar={avatarState.value.data}
             progress={avatarState.progress && avatarState.progress}
-            src={
-              avatarState.value.data ||
-              `${process.env.REACT_APP_API_URL}${_.replace(avatarProps, "medium", "large")}`
-            }
             onSelect={this.handleChange}
           />
           <InputForm
@@ -152,9 +152,12 @@ User.propTypes = {
   patchUser: PropTypes.func.isRequired,
   postMediaAvatar: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   owner: PropTypes.bool.isRequired
 };
 
-export default withTranslation()(User);
+export default _.flow([
+  // eslint-disable-line
+  withUser,
+  withTranslation()
+])(User);
