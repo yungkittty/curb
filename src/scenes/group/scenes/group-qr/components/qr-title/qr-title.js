@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Text from "../../../../../../../../components/text";
+import Text from "../../../../../../components/text";
 
 const QrTitle = styled(Text)`
   text-align: center;

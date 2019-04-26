@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Container from "../../../../../../../../components/container";
+import Container from "../../../../../../components/container";
 
 const QrHeader = styled(Container)`
   max-width: 100%;

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, matchPath } from "react-router";
 import GroupQr from "./group-qr";
-import { appModalActions } from "../../../../../../datas/app-modal";
-import { groupsActions, groupsSelectors } from "../../../../../../datas/groups";
+import { appModalActions } from "../../../../datas/app-modal";
+import { groupsActions, groupsSelectors } from "../../../../datas/groups";
 
 class GroupQrContainer extends React.Component {
   componentDidMount() {

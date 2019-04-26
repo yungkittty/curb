@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import QrCode from "react-qr-code";
-import { platformBools } from "../../../../../../configurations/platform";
+import { platformBools } from "../../../../configurations/platform";
 import QrContainer from "./components/qr-container";
 import QrHeader from "./components/qr-group-header";
 import QrTitle from "./components/qr-title";

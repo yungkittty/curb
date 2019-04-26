@@ -1,5 +1,5 @@
 import style from "styled-components";
-import Image from "../../../../../../../../components/image";
+import Image from "../../../../../../components/image";
 
 const QrImage = style(Image)`
   width: 100px;
