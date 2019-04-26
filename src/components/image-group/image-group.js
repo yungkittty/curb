@@ -2,16 +2,17 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import UserContainer from "./components/user-container";
+import GroupContainer from "./components/group-container";
 import Image from "../image";
-import Icon from "../icon";
+import GroupTitle from "./components/group-title";
 import { platformBools } from "../../configurations/platform";
-import withUser from "../../hocs/with-user";
+import withGroup from "../../hocs/with-group";
 
-const ImageUser = ({
-  // eslint-disable-line
-  isFetchingUser,
-  userAvatar,
+const ImageGroup = ({
+  isFetchingGroup,
+  groupName,
+  groupAvatar,
+  groupTheme,
   theme,
   size,
   placeholderColor,
@@ -36,36 +37,45 @@ const ImageUser = ({
     }
   })();
   return (
-    <UserContainer
+    <GroupContainer
       {...others}
-      isFetchingUser={isFetchingUser}
-      userAvatar={userAvatar}
-      placeholderColor={placeholderColor || theme.primaryColor}
+      isFetchingGroup={isFetchingGroup}
+      groupName={groupName}
+      groupAvatar={groupAvatar}
+      groupTheme={groupTheme}
+      placeholderColor={placeholderColor}
       size={X}
     >
       {/* eslint-disable-next-line */}
-      {!isFetchingUser || userAvatar ? (
-        userAvatar ? (
+      {!isFetchingGroup || groupAvatar || groupName ? (
+        groupAvatar ? (
           <Image
-            src={_.replace(userAvatar, "medium", size)}
+            src={_.replace(groupAvatar, "medium", size)}
             style={{
               // eslint-disable-line
-              // user-pointer, user-select: none
               width: X,
               height: X
             }}
           />
         ) : (
-          <Icon icon="user" size={size} color={theme.primaryColor} />
+          <GroupTitle weight={700} X={X}>
+            {RegExp(
+              "^(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])$"
+            ).test(groupName.substr(0, 2))
+              ? groupName.substr(0, 2)
+              : _.capitalize(groupName[0])}
+          </GroupTitle>
         )
       ) : null}
-    </UserContainer>
+    </GroupContainer>
   );
 };
 
-ImageUser.propTypes = {
-  isFetchingUser: PropTypes.bool.isRequired,
-  userAvatar: PropTypes.string.isRequired,
+ImageGroup.propTypes = {
+  isFetchingGroup: PropTypes.bool.isRequired,
+  groupName: PropTypes.string.isRequired,
+  groupAvatar: PropTypes.string.isRequired,
+  groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
   placeholderColor: PropTypes.string.isRequired
@@ -73,6 +83,6 @@ ImageUser.propTypes = {
 
 export default _.flow([
   // eslint-disable-line
-  withUser,
+  withGroup,
   withTheme
-])(ImageUser);
+])(ImageGroup);

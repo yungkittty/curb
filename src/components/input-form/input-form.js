@@ -63,7 +63,7 @@ InputForm.propTypes = {
   // eslint-disable-next-line
   textStyle: PropTypes.object,
   readOnly: PropTypes.bool,
-  size: PropTypes.oneOf(["modal", "userScene"]),
+  size: PropTypes.oneOf(["modal", "large"]),
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,

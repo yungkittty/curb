@@ -6,7 +6,7 @@ import withUser from "../../hocs/with-user";
 import { platformBools } from "../../configurations/platform";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
-import ImageUserEditable from "../../components/image-user-editable";
+import ImageAvatarEditable from "../../components/image-avatar-editable";
 import InputForm from "../../components/input-form";
 
 class User extends Component {
@@ -19,7 +19,7 @@ class User extends Component {
         value: undefined,
         error: undefined
       },
-      avatar: { value: { data: undefined }, progress: undefined }
+      avatar: { value: { data: undefined }, loadingProgress: undefined }
     };
 
     this.state = this.initialState;
@@ -63,9 +63,9 @@ class User extends Component {
     }
   }
 
-  onUploadProgress(progress) {
+  onUploadProgress(loadingProgress) {
     const { avatar } = this.state;
-    this.setState({ avatar: { ...avatar, progress } });
+    this.setState({ avatar: { ...avatar, loadingProgress } });
   }
 
   submit() {
@@ -118,23 +118,24 @@ class User extends Component {
 
   render() {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, owner, userId, userName: usernameProps, isMediasPosting } = this.props;
+    const { t, owner, userName: usernameProps, userId, isMediasPosting } = this.props;
 
     return (
       <React.Fragment>
         <UserContainer>
-          <ImageUserEditable
+          <ImageAvatarEditable
             id="avatar"
             size="large"
+            type="image"
             userId={userId}
             editMode={editMode}
-            localAvatar={avatarState.value.data}
+            data={avatarState.value.data}
             loadingProgress={avatarState.loadingProgress && avatarState.loadingProgress}
             onSelect={this.handleChange}
           />
           <InputForm
             id="username"
-            size="userScene"
+            size="large"
             readOnly={!editMode}
             containerStyle={{ marginTop: 64, textAlign: "center" }}
             textStyle={{

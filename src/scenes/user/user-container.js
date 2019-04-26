@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-// eslint-disable-next-line
 import User from "./user";
 import { currentUserSelectors } from "../../datas/current-user";
 import { usersActions, usersSelectors } from "../../datas/users";

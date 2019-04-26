@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import SelectImage from "../../../../components/select-image";
+import ImageAvatarEditable from "../../../../components/image-avatar-editable";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable-next-line */
@@ -53,16 +53,17 @@ class CreateGroup1 extends Component {
 
     return (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("createGroup")}</AppModalSceneTitle>
-        <SelectImage
-          style={{ marginTop: -20, marginBottom: 20 }}
+        <AppModalSceneTitle style={{ marginBottom: 40 }}>{t("createGroup")}</AppModalSceneTitle>
+        <ImageAvatarEditable
+          editMode
           id="avatar"
-          size="small"
-          readOnly={false}
-          src={avatar.value.data}
+          size="medium"
+          type="image"
+          data={avatar.value.data}
           onSelect={this.handleChange}
         />
         <InputForm
+          containerStyle={{ marginTop: 60 }}
           size="modal"
           id="groupName"
           placeholder={t("groupName")}

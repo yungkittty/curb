@@ -17,7 +17,7 @@ class _Image extends React.Component {
       <FastImage
         {...others}
         source={{
-          uri: src[0] === "/" ? `${process.env.REACT_APP_API_URL}${src}` : src,
+          uri: src[0] === "/" ? `https://api.redux.curb-app.com${src}` : src,
           cache: "web"
         }}
         onLoadStart={() => this.setState({ isShowed: false })}
