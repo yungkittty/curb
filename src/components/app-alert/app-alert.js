@@ -42,8 +42,7 @@ AppAlert.propTypes = {
     PropTypes.shape({
       type: PropTypes.oneOf(["success", "error", "info"]).isRequired,
       message: PropTypes.string.isRequired,
-      persistUntilKey: PropTypes.string,
-      key: PropTypes.string
+      icon: PropTypes.string
     })
   ).isRequired,
   appAlertClearAlert: PropTypes.func.isRequired

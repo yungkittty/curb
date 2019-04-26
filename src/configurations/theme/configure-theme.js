@@ -14,7 +14,7 @@ const configureTheme = () => ({
   linkColor: "#2d9cdb",
   successColor: "#6fcf97",
   errorColor: "#eb5757",
-  infoColor: "#F2C94C",
+  infoColor: "#f2c94c",
   overlayColor: "rgba(0, 0, 0, 0.25)",
   backgroundColor: "#ffffff"
 });

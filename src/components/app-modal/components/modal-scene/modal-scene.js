@@ -12,14 +12,12 @@ const ModalScene = ({
   sceneRight,
   sceneData,
   ...others
-}) => {
-  return (
-    <SceneContainer {...others} ref={forwardedRef}>
-      <SceneScene {...sceneData} key={sceneLeftKey} scene={sceneLeft} />
-      <SceneScene {...sceneData} key={sceneRightKey} scene={sceneRight} />
-    </SceneContainer>
-  );
-};
+}) => (
+  <SceneContainer {...others} ref={forwardedRef}>
+    <SceneScene {...sceneData} key={sceneLeftKey} scene={sceneLeft} />
+    <SceneScene {...sceneData} key={sceneRightKey} scene={sceneRight} />
+  </SceneContainer>
+);
 
 ModalScene.defaultProps = {
   forwardedRef: undefined,
@@ -42,5 +40,7 @@ ModalScene.propTypes = {
 };
 
 export default SceneSlide(
-  React.forwardRef((props, forwardedRef) => <ModalScene {...props} forwardedRef={forwardedRef} />)
+  React.forwardRef((props, forwardedRef) => (
+    <ModalScene {...props} forwardedRef={forwardedRef} />
+  ))
 );

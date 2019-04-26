@@ -4,22 +4,15 @@ import { withTheme } from "styled-components";
 import LoaderContainer from "./components/loader-container";
 import LoaderIcon from "./components/loader-icon";
 
-const Loader = ({ theme, size, color }) => (
+const Loader = ({ theme }) => (
   <LoaderContainer>
-    <LoaderIcon icon="spinner" size={size} color={color || theme.secondaryColor} />
+    <LoaderIcon icon="spinner" size="medium" color={theme.secondaryColor} />
   </LoaderContainer>
 );
 
-Loader.defaultProps = {
-  size: "medium",
-  color: undefined
-};
-
 Loader.propTypes = {
   /* eslint-disable-next-line */
-  theme: PropTypes.object.isRequired,
-  size: PropTypes.string,
-  color: PropTypes.string
+  theme: PropTypes.object.isRequired
 };
 
 export default withTheme(Loader);
