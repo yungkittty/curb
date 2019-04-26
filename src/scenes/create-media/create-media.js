@@ -9,8 +9,8 @@ import modulesList from "../../utils/modules-list/modules-list";
 //  import CreateMediaText from "./scenes/create-media-text";
 //  import CreateMediaImage from "./scenes/create-media-image";
 //  import CreateMediaVideo from "./scenes/create-media-video";
-import CreateMediaLocation from "./scenes/create-media-location";
 /* eslint-enable */
+import CreateMediaLocation from "./scenes/create-media-location";
 
 class CreateMedia extends Component {
   constructor(props) {
