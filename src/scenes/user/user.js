@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import { withTheme } from "styled-components";
 import withUser from "../../hocs/with-user";
 import { platformBools } from "../../configurations/platform";
 import UserContainer from "./components/user-container";
@@ -118,7 +119,7 @@ class User extends Component {
 
   render() {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, owner, userName: usernameProps, userId, isMediasPosting } = this.props;
+    const { t, theme, owner, userName: usernameProps, userId, isMediasPosting } = this.props;
 
     return (
       <React.Fragment>
@@ -126,7 +127,7 @@ class User extends Component {
           <ImageAvatarEditable
             id="avatar"
             size="large"
-            type="image"
+            placeholderColor={theme.primaryColor}
             userId={userId}
             editMode={editMode}
             data={avatarState.value.data}
@@ -157,6 +158,8 @@ class User extends Component {
 }
 
 User.propTypes = {
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
   pushAppAlert: PropTypes.func.isRequired,
   isMediasPosting: PropTypes.bool.isRequired,
   mediasPostingErrorCode: PropTypes.string.isRequired,
@@ -172,6 +175,7 @@ User.propTypes = {
 
 export default _.flow([
   // eslint-disable-line
+  withTheme,
   withUser,
   withTranslation()
 ])(User);

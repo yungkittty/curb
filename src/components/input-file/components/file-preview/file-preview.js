@@ -1,12 +1,26 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 import Container from "../../../container";
 import PreviewImage from "./components/preview-image";
+import Icon from "../../../icon";
 import Text from "../../../text";
 
-const FilePreview = styled(({ className, style, data, type, loadingProgress, ...others }) => (
+const FilePreview = styled(({ className, style, theme, data, type, loadingProgress, ...others }) => (
   <Container className={className} style={style}>
-    {data && type === "image" ? <PreviewImage data={data} {...others} /> : undefined}
+    {/* eslint-disable-next-line */}
+    {data ? (
+      type === "image" ? (
+        <PreviewImage data={data} {...others} />
+      ) : (
+        undefined
+      )
+    ) : (
+      <Icon
+        color={theme.secondaryVariantColor}
+        icon={type === "image" ? "file-image" : undefined}
+        size="medium"
+      />
+    )}
     {loadingProgress && (
       <Container
         style={{
@@ -28,10 +42,13 @@ const FilePreview = styled(({ className, style, data, type, loadingProgress, ...
     )}
   </Container>
 ))`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   border-width: ${({ data }) => (data ? "0" : "1")}px;
   border-color: ${({ theme }) => theme.secondaryColor};
   border-style: solid;
 `;
 
-export default FilePreview;
+export default withTheme(FilePreview);

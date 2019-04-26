@@ -5,7 +5,7 @@ import { platformBools } from "../../configurations/platform";
 import ImageUser from "../image-user";
 import ImageGroup from "../image-group";
 
-const ImageAvatarEditable = ({ size, style, userId, groupId, ...others }) => {
+const ImageAvatarEditable = ({ size, style, userId, groupId, placeholderColor, ...others }) => {
   const X = (() => {
     const Xs = platformBools.isReact
       ? // eslint-disable-line
@@ -27,27 +27,34 @@ const ImageAvatarEditable = ({ size, style, userId, groupId, ...others }) => {
   return (
     <InputFile
       {...others}
+      type="image"
       style={{ ...style, borderRadius: X / 2, width: X, height: X }}
       PlaceholderComponent={
         // eslint-disable-next-line
         userId
-          ? () => <ImageUser size={size} userId={userId} />
+          ? () => <ImageUser size={size} userId={userId} placeholderColor={placeholderColor} />
           : groupId
-          ? () => <ImageGroup size={size} groupId={groupId} />
+          ? () => <ImageGroup size={size} groupId={groupId} placeholderColor={placeholderColor} />
           : undefined
       }
     />
   );
 };
 
-ImageAvatarEditable.defaultProps = { style: undefined, userId: undefined, groupId: undefined };
+ImageAvatarEditable.defaultProps = {
+  style: undefined,
+  userId: undefined,
+  groupId: undefined,
+  placeholderColor: undefined
+};
 
 ImageAvatarEditable.propTypes = {
   // eslint-disable-next-line
   style: PropTypes.object,
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
   userId: PropTypes.string,
   groupId: PropTypes.string,
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired
+  placeholderColor: PropTypes.string
 };
 
 export default ImageAvatarEditable;

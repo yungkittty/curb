@@ -58,7 +58,6 @@ class CreateGroup1 extends Component {
           editMode
           id="avatar"
           size="medium"
-          type="image"
           data={avatar.value.data}
           onSelect={this.handleChange}
         />

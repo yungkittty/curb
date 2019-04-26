@@ -40,7 +40,7 @@ const ImageUser = ({
       {...others}
       isFetchingUser={isFetchingUser}
       userAvatar={userAvatar}
-      placeholderColor={placeholderColor || theme.primaryColor}
+      placeholderColor={placeholderColor}
       size={X}
     >
       {/* eslint-disable-next-line */}
