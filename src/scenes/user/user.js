@@ -8,7 +8,7 @@ import { platformBools } from "../../configurations/platform";
 import UserContainer from "./components/user-container";
 import ButtonIconFloat from "../../components/button-icon-float";
 import ImageAvatarEditable from "../../components/image-avatar-editable";
-import InputForm from "../../components/input-form";
+import UserNameForm from "./components/user-name-form";
 
 class User extends Component {
   constructor(props) {
@@ -131,10 +131,10 @@ class User extends Component {
             userId={userId}
             editMode={editMode}
             data={avatarState.value.data}
-            loadingProgress={avatarState.loadingProgress && avatarState.loadingProgress}
+            loadingProgress={avatarState.loadingProgress}
             onSelect={this.handleChange}
           />
-          <InputForm
+          <UserNameForm
             id="username"
             size="large"
             readOnly={!editMode}
