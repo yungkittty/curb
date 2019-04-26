@@ -12,19 +12,9 @@ class AppAlert extends Component {
 
   componentDidUpdate(prevProps) {
     const { appAlertList, appAlertClearAlert } = this.props;
-    const { firstIndex } = this.state;
     const l = appAlertList.length;
 
-    for (let i = 0; i < l; i += 1) {
-      const keyIndex = _.findIndex(appAlertList, { persistUntilKey: appAlertList[i].key });
-      if (appAlertList[i].key && keyIndex + 1 !== firstIndex)
-        setTimeout(() => {
-          this.setState({
-            firstIndex: keyIndex + 1
-          });
-        }, 500);
-    }
-    if (l > prevProps.appAlertList.length && !appAlertList[l - 1].persistUntilKey)
+    if (l > prevProps.appAlertList.length)
       setTimeout(() => {
         const { appAlertList: actualAppAlertList } = this.props;
         if (actualAppAlertList.length === l) {
@@ -39,18 +29,9 @@ class AppAlert extends Component {
   render() {
     const { firstIndex } = this.state;
     const { appAlertList } = this.props;
-
     return appAlertList.length > 0
-      ? _.map(appAlertList, ({ type, message, icon, persistUntilKey }, index) => (
-          // eslint-disable-next-line
-          <AlertMessage
-            key={index}
-            index={index - firstIndex}
-            persist={persistUntilKey && !_.find(appAlertList, { key: persistUntilKey }, index)}
-            type={type}
-            icon={icon || (persistUntilKey && "loader")}
-            message={message}
-          />
+      ? _.map(appAlertList, (props, index) => (
+        <AlertMessage key={index} index={index - firstIndex} {...props} />
         ))
       : null;
   }

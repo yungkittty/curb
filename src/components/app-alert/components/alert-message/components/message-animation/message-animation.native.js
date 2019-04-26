@@ -14,7 +14,6 @@ const MessageAnimation = WrappedComponent => {
     }
 
     componentDidMount() {
-      const { persist } = this.props;
       const { top } = this.state;
       Animated.timing(top, {
         toValue: 0,
@@ -22,13 +21,12 @@ const MessageAnimation = WrappedComponent => {
         duration: 500,
         useNativeDriver: true
       }).start();
-      if (persist) return;
       setTimeout(() => this.closeMessage(), 3500);
     }
 
     componentDidUpdate(prevProps) {
-      const { persist } = this.props;
-      if (prevProps.persist !== persist) setTimeout(() => this.closeMessage(), 500);
+      const { index } = this.props;
+      if (prevProps.index === index) setTimeout(() => this.closeMessage(), 500);
     }
 
     closeMessage() {
@@ -53,13 +51,8 @@ const MessageAnimation = WrappedComponent => {
     }
   }
 
-  _MessageAnimation.defaultProps = {
-    persist: false
-  };
-
   _MessageAnimation.propTypes = {
-    index: PropTypes.number.isRequired,
-    persist: PropTypes.bool
+    index: PropTypes.number.isRequired
   };
 
   return _MessageAnimation;

@@ -1,25 +1,19 @@
 import React from "react";
+import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
-import Loader from "../../../../../loader";
 import IconContainer from "./components/icon-container";
 import Icon from "../../../../../icon";
 
-const MessageIcon = ({ icon }) => (
+const MessageIcon = ({ theme, icon }) => (
   <IconContainer>
-    {icon === "loader" ? (
-      <Loader size="small" color="white" />
-    ) : (
-      <Icon icon={icon} color="white" size="small" />
-    )}
+    <Icon icon={icon} color={theme.backgroundColor} size="small" />
   </IconContainer>
 );
 
-MessageIcon.defaultProps = {
-  icon: undefined
-};
-
 MessageIcon.propTypes = {
-  icon: PropTypes.string
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
+  icon: PropTypes.string.isRequired
 };
 
-export default MessageIcon;
+export default withTheme(MessageIcon);
