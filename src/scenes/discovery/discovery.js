@@ -12,7 +12,7 @@ import ButtonIconFloat from "../../components/button-icon-float";
 import SignIn from "../sign-in";
 import CreateGroup from "../create-group";
 
-const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal, appAlertPushAlert }) => (
+const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal }) => (
   <React.Fragment>
     <DiscoveryContainer
       /* eslint-disable-next-line */
@@ -46,7 +46,7 @@ const Discovery = ({ t, discoveryGroupsIds, currentUserId, showAppModal, appAler
     />
     <ButtonIconFloat
       icon="plus"
-      onClick={() => appAlertPushAlert({ type: "success", message: "Alert test" })}
+      onClick={() => showAppModal({ scene: currentUserId ? CreateGroup : SignIn })}
     />
   </React.Fragment>
 );

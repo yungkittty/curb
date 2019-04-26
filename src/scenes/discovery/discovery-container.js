@@ -5,7 +5,6 @@ import Discovery from "./discovery";
 import { discoveryActions, discoverySelectors } from "../../datas/discovery";
 import { appModalActions } from "../../datas/app-modal";
 import currentUserSelectors from "../../datas/current-user/current-user-selectors";
-import { appAlertActions } from "../../datas/app-alert";
 
 class DiscoveryContainer extends React.Component {
   componentDidMount() {
@@ -27,8 +26,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getDiscovery: payload => dispatch(discoveryActions.getDiscoveryRequest(payload)),
-  showAppModal: payload => dispatch(appModalActions.showAppModal(payload)),
-  appAlertPushAlert: payload => dispatch(appAlertActions.pushAppAlert(payload))
+  showAppModal: payload => dispatch(appModalActions.showAppModal(payload))
 });
 
 DiscoveryContainer.propTypes = { getDiscovery: PropTypes.func.isRequired };
