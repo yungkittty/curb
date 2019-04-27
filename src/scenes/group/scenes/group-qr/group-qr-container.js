@@ -27,14 +27,14 @@ const mapStateToProps = (state, ownProps) => {
     name: currentGroupName,
     avatarUrl: currentGroupAvatarUrl,
     status: currentGroupStatus,
-    token: currentGrouptoken
+    inviteToken: currentGroupInvitetoken
   } = groupsSelectors.getGroupById(state, currentGroupId);
   return {
     currentGroupId,
     currentGroupName,
     currentGroupAvatarUrl,
     currentGroupStatus,
-    currentGrouptoken
+    currentGroupInvitetoken
   };
 };
 

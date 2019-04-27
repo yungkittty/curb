@@ -20,7 +20,7 @@ class GroupQr extends React.Component {
       currentGroupName,
       currentGroupAvatarUrl,
       currentGroupStatus,
-      currentGroupToken
+      currentGroupInviteToken
     } = this.props;
 
     return (
@@ -32,7 +32,9 @@ class GroupQr extends React.Component {
           </QrTitle>
         </QrHeader>
         <QrCode
-          value={`${currentGroupId}${currentGroupStatus === "private" ? `?token=${currentGroupToken}` : ""}`}
+          value={`${currentGroupId}${
+            currentGroupStatus === "private" ? `?token=${currentGroupInviteToken}` : ""
+          }`}
           size={platformBools.isReact ? 240 : 200}
         />
       </QrContainer>
@@ -40,14 +42,12 @@ class GroupQr extends React.Component {
   }
 }
 
-GroupQr.defaultProps = { currentGroupToken: "" };
-
 GroupQr.propTypes = {
   currentGroupId: PropTypes.string.isRequired,
   currentGroupName: PropTypes.string.isRequired,
   currentGroupAvatarUrl: PropTypes.string.isRequired,
   currentGroupStatus: PropTypes.string.isRequired,
-  currentGroupToken: PropTypes.string,
+  currentGroupInviteToken: PropTypes.string.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired
 };
 

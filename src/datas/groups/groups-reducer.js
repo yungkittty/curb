@@ -18,7 +18,7 @@ const postFetching = (state = { isFetching: false, errorCode: "" }, action) => {
 const byId = (state = {}, action) => {
   switch (action.type) {
     case groupsActionsTypes.GET_GROUP_REQUEST:
-    case groupsActionsTypes.GET_GROUP_INIVTE_TOKEN_REQUEST:
+    case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST:
       return {
         ...state,
         [action.payload.id]: {
