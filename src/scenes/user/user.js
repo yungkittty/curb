@@ -33,7 +33,7 @@ class User extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { avatar, editMode } = this.state;
+    const { username: usernameState, avatar, editMode } = this.state;
     const {
       t,
       owner,
@@ -41,7 +41,8 @@ class User extends Component {
       userPatchingErrorCode,
       isMediasPosting,
       mediasPostingErrorCode,
-      pushAppAlert
+      pushAppAlert,
+      userName: usernameProps
     } = this.props;
     const { username: initialUsername, avatar: initialAvatar } = this.initialState;
     // eslint-disable-next-line
@@ -66,15 +67,13 @@ class User extends Component {
         this.setState({ avatar: { ...avatar, loadingProgress: undefined }, editMode: true });
       }
     if (prevProps.isUserPatching && !isUserPatching)
-      if (userPatchingErrorCode === "") {
+      if (userPatchingErrorCode === "")
         pushAppAlert({
           type: "success",
           message: t("alerts:patchUserSuccess"),
           icon: "check"
         });
-        // eslint-disable-next-line
-        this.setState({ username: initialUsername });
-      } else {
+      else {
         pushAppAlert({
           type: "error",
           message: t(`alerts:${userPatchingErrorCode}`),
@@ -83,6 +82,9 @@ class User extends Component {
         // eslint-disable-next-line
         this.setState({ editMode: true });
       }
+
+    // eslint-disable-next-line
+    if (usernameState.value === usernameProps) this.setState({ username: initialUsername });
   }
 
   onUploadProgress(loadingProgress) {
