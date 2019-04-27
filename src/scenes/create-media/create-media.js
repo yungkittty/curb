@@ -7,7 +7,7 @@ import ModalListItem from "../../components/modal-list-item";
 import modulesList from "../../utils/modules-list/modules-list";
 /* eslint-disable */
 //  import CreateMediaText from "./scenes/create-media-text";
-//  import CreateMediaImage from "./scenes/create-media-image";
+import CreateMediaImage from "./scenes/create-media-image";
 //  import CreateMediaVideo from "./scenes/create-media-video";
 //  import CreateMediaLocation from "./scenes/create-media-location";
 /* eslint-enable */
@@ -28,8 +28,8 @@ class CreateMedia extends Component {
       switch (moduleId) {
         //    case "text":
         //      return CreateMediaText;
-        //    case "image":
-        //      return CreateMediaImage;
+        case "image":
+          return CreateMediaImage;
         //    case "video":
         //      return CreateMediaVideo;
         //    case "location":
