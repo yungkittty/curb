@@ -51,14 +51,7 @@ const Discovery = ({ showAppModal, userId, discoveryGroupsId, t }) => (
         />
       )}
     />
-    <ButtonIconFloat
-      icon="plus"
-      onClick={() =>
-        showAppModal({
-          scene: userId ? CreateGroup : SignIn
-        })
-      }
-    />
+    <ButtonIconFloat icon="plus" onClick={() => showAppModal({ scene: userId ? CreateGroup : SignIn })} />
   </React.Fragment>
 );
 

@@ -26,6 +26,8 @@ const CircleContainer = ({
         return innerDiameters[2];
       case "large":
         return innerDiameters[3];
+      case "extra-large":
+        return innerDiameters[4];
       default:
         return undefined;
     }

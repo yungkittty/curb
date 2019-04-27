@@ -23,7 +23,6 @@ const ButtonContainer = styled(({ onClick, ...others }) =>
   border-style: initial;
   border-color: initial;
   text-decoration: initial;
-  user-select: none;
   cursor: ${props =>
     !props.disabled
       ? // eslint-disable-line
