@@ -6,7 +6,7 @@ import ListFlat from "../../components/list-flat";
 import ModalListItem from "../../components/modal-list-item";
 import modulesList from "../../utils/modules-list/modules-list";
 /* eslint-disable */
-//  import CreateMediaText from "./scenes/create-media-text";
+import CreateMediaText from "./scenes/create-media-text";
 //  import CreateMediaImage from "./scenes/create-media-image";
 //  import CreateMediaVideo from "./scenes/create-media-video";
 //  import CreateMediaLocation from "./scenes/create-media-location";
@@ -26,8 +26,8 @@ class CreateMedia extends Component {
     const { setAppModalScene } = this.props;
     const scene = () => {
       switch (moduleId) {
-        //    case "text":
-        //      return CreateMediaText;
+        case "text":
+          return CreateMediaText;
         //    case "image":
         //      return CreateMediaImage;
         //    case "video":
