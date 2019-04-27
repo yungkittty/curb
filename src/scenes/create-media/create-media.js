@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../components/list-flat";
-import ModalListItem from "../../components/modal-list-item";
+import AppModalSceneListItem from "../../components/app-modal-scene-list-item";
 import modulesList from "../../utils/modules-list/modules-list";
 /* eslint-disable */
 //  import CreateMediaText from "./scenes/create-media-text";
@@ -50,7 +50,7 @@ class CreateMedia extends Component {
         keyExtractor={item => item.id}
         renderItem={({ item }) =>
           _.includes(groupMediaTypes, item.id) ? (
-            <ModalListItem
+            <AppModalSceneListItem
               icon={item.icon}
               title={t(`modules:${item.id}.title`)}
               onClick={() => this.handleChange(item.id)}
