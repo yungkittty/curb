@@ -33,7 +33,7 @@ class User extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { editMode } = this.state;
+    const { avatar, editMode } = this.state;
     const {
       t,
       owner,
@@ -43,25 +43,46 @@ class User extends Component {
       mediasPostingErrorCode,
       pushAppAlert
     } = this.props;
+    const { username: initialUsername, avatar: initialAvatar } = this.initialState;
     // eslint-disable-next-line
     if (!owner && editMode) this.setState({ editMode: false });
-    if ((prevProps.isUserPatching || prevProps.isMediasPosting) && (!isUserPatching && !isMediasPosting)) {
-      if (userPatchingErrorCode === "" && mediasPostingErrorCode === "") {
+
+    if (prevProps.isMediasPosting && !isMediasPosting)
+      if (mediasPostingErrorCode === "") {
+        pushAppAlert({
+          type: "success",
+          message: t("alerts:postAvatarSuccess"),
+          icon: "check"
+        });
+        // eslint-disable-next-line
+        this.setState({ avatar: initialAvatar });
+      } else {
+        pushAppAlert({
+          type: "error",
+          message: t("alerts:postAvatarFailure"),
+          icon: "times"
+        });
+        // eslint-disable-next-line
+        this.setState({ avatar: { ...avatar, loadingProgress: undefined }, editMode: true });
+      }
+    if (prevProps.isUserPatching && !isUserPatching)
+      if (userPatchingErrorCode === "") {
         pushAppAlert({
           type: "success",
           message: t("alerts:patchUserSuccess"),
           icon: "check"
         });
+        // eslint-disable-next-line
+        this.setState({ username: initialUsername });
       } else {
         pushAppAlert({
           type: "error",
-          message: t("alerts:patchUserFailure"),
+          message: t(`alerts:${userPatchingErrorCode}`),
           icon: "times"
         });
+        // eslint-disable-next-line
+        this.setState({ editMode: true });
       }
-      // eslint-disable-next-line
-      this.setState(this.initialState);
-    }
   }
 
   onUploadProgress(loadingProgress) {
@@ -119,7 +140,7 @@ class User extends Component {
 
   render() {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, theme, owner, userName: usernameProps, userId, isMediasPosting } = this.props;
+    const { t, theme, owner, userName: usernameProps, userId, isMediasPosting, isUserPatching } = this.props;
 
     return (
       <React.Fragment>
@@ -149,7 +170,7 @@ class User extends Component {
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
         </UserContainer>
-        {owner && !isMediasPosting && (
+        {owner && !isMediasPosting && !isUserPatching && (
           <ButtonIconFloat icon={editMode ? "check" : "pen"} size="medium" onClick={this.handleSwapMode} />
         )}
       </React.Fragment>

@@ -2,6 +2,7 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Container from "../../../container";
+import { platformBools } from "../../../../configurations/platform";
 
 const GroupContainer = styled(Container)`
   display: flex;
@@ -31,7 +32,7 @@ GroupContainer.propTypes = {
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
+  size: PropTypes.oneOf(platformBools.isReact ? [60, 100, 200, 320] : [50, 70, 160, 200]).isRequired,
   placeholderColor: PropTypes.string.isRequired
 };
 

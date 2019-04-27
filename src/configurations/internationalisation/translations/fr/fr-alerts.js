@@ -1,6 +1,8 @@
 const frAlerts = {
   patchUserSuccess: "Votre profil a bien été mis à jour",
-  patchUserFailure: "Une erreur est survenue",
+  USERS_DUPLICATE_NAME: "Ce nom d'utilisateur est déjà pris",
+  postAvatarSuccess: "Votre avatar a bien été mis à jour",
+  postAvatarFailure: "Une erreur est survenue sur votre avatar",
   accountCreated: "Votre compte a bien été créé",
   groupCreated: "Votre groupe a bien été créé",
   signOutSuccess: "Vous avez été déconnecté",

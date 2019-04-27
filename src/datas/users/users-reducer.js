@@ -21,7 +21,7 @@ const patchingUser = (state = initialState, action) => {
     case usersActionsTypes.PATCH_USER_FAILURE:
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         errorCode: action.payload.response.data.code
       };
     default:
