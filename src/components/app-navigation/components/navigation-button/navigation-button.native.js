@@ -1,42 +1,51 @@
 import _ from "lodash";
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-import styled from "styled-components";
+import Circle from "../../../circle";
 import Button from "../../../button";
 import withAppNavigation from "../../../../hocs/with-app-navigation";
 
-const NavigationButton = styled(
-  _.flow([
-    // eslint-disable-line
-    withAppNavigation,
-    withRouter
-  ])(({ hideAppNavigation, onClick, history, ...others }) => (
-    <Button
-      {...others}
-      onClick={() => {
-        hideAppNavigation();
-        // console.log({ history });
-        // eslint-disable-next-line
-        onClick && typeof onClick === "string" ? history.push(onClick) : onClick();
-      }}
-    />
-  ))
-)`
-  width: 50px;
-  min-height: 50px;
-  margin-bottom: 10px;
-  border-radius: 25px;
-  overflow: hidden;
-  background-color: ${props => props.theme.secondaryVariantColor};
-`;
-/* 
-NavigationButton.defaultProps = { onClick: undefined };
+const NavigationButton = ({
+  // eslint-disable-line
+  style,
+  hideAppNavigation,
+  history,
+  onClick,
+  ...others
+}) => (
+  <Circle
+    {...others}
+    as={Button}
+    diameter="small"
+    style={[...(_.isArray(style) ? style : [style]), { marginBottom: 10 }]}
+    onClick={() => {
+      hideAppNavigation();
+      // eslint-disable-next-line
+      onClick && _.includes(["string", "object"], typeof onClick) ? history.push(onClick) : onClick();
+    }}
+  />
+);
+
+NavigationButton.defaultProps = {
+  style: [],
+  onClick: undefined
+};
 
 NavigationButton.propTypes = {
+  style: PropTypes.oneOf([PropTypes.object, PropTypes.array]),
   hideAppNavigation: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired, // eslint-disable-line
-  onClick: PropTypes.oneOf([PropTypes.string, PropTypes.func])
-}; */
+  history: PropTypes.object.isRequired, // eslint-disable-line
+  onClick: PropTypes.oneOfType([
+    // eslint-disable-line
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.func
+  ])
+};
 
-export default NavigationButton;
+export default _.flow([
+  // eslint-disable-line
+  withAppNavigation,
+  withRouter
+])(NavigationButton);

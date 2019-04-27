@@ -2,11 +2,11 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import GroupContainer from "./components/group-container";
+import CircleContainer from "../circle-container";
 import Image from "../image";
-import GroupTitle from "./components/group-title";
-import { platformBools } from "../../configurations/platform";
+import Text from "../text";
 import withGroup from "../../hocs/with-group";
+import emojiRegex from "./utils/emoji-regex";
 
 const ImageGroup = ({
   isFetchingGroup,
@@ -14,62 +14,45 @@ const ImageGroup = ({
   groupAvatar,
   groupTheme,
   theme,
+  theme: { backgroundColor },
   size,
   placeholderColor,
   ...others
-}) => {
-  const X = (() => {
-    const Xs = platformBools.isReact
-      ? // eslint-disable-line
-        [undefined, 60, 100, 300]
-      : [undefined, 50, 70, 200];
-    switch (size) {
-      case "extra-small":
-        return Xs[0];
-      case "small":
-        return Xs[1];
-      case "medium":
-        return Xs[2];
-      case "large":
-        return Xs[3];
-      default:
-        return undefined;
+}) => (
+  <CircleContainer
+    {...others}
+    diameter={size}
+    backgroundColor={
+      (isFetchingGroup && !groupName) || groupAvatar
+        ? placeholderColor
+        : theme[`group${_.capitalize(groupTheme)}VariantColor`]
     }
-  })();
-  return (
-    <GroupContainer
-      {...others}
-      isFetchingGroup={isFetchingGroup}
-      groupName={groupName}
-      groupAvatar={groupAvatar}
-      groupTheme={groupTheme}
-      placeholderColor={placeholderColor}
-      size={X}
-    >
-      {/* eslint-disable-next-line */}
-      {!isFetchingGroup || groupAvatar || groupName ? (
-        groupAvatar ? (
-          <Image
-            src={_.replace(groupAvatar, "medium", size)}
-            style={{
-              // eslint-disable-line
-              width: X,
-              height: X
-            }}
-          />
-        ) : (
-          <GroupTitle weight={700} X={X}>
-            {RegExp(
-              "^(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])$"
-            ).test(groupName.substr(0, 2))
-              ? groupName.substr(0, 2)
-              : _.capitalize(groupName[0])}
-          </GroupTitle>
-        )
-      ) : null}
-    </GroupContainer>
-  );
-};
+  >
+    {innerDiameter =>
+      // eslint-disable-next-line
+      groupAvatar ? (
+        <Image
+          // eslint-disable-line
+          src={groupAvatar}
+          style={{
+            width: innerDiameter,
+            height: innerDiameter
+          }}
+        />
+      ) : groupName ? (
+        <Text
+          weight={700}
+          style={{
+            fontSize: innerDiameter / 2,
+            color: backgroundColor
+          }}
+        >
+          {(RegExp(emojiRegex).exec(groupName.substr(0, 2)) || [])[0] || _.capitalize(groupName[0])}
+        </Text>
+      ) : null
+    }
+  </CircleContainer>
+);
 
 ImageGroup.propTypes = {
   isFetchingGroup: PropTypes.bool.isRequired,

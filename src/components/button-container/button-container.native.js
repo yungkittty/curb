@@ -12,8 +12,8 @@ const ButtonContainer = styled(({ onClick, ...others }) =>
   )
 )`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 ButtonContainer.defaultProps = {

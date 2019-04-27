@@ -13,7 +13,7 @@ function* postAccountRecoveryEmailRequestSaga(action) {
     yield put(accountRecoveryActions.postAccountRecoveryEmailSuccess());
     yield put(appModalActions.setAppModalScene({ scene: ResetPassword2, direction: 1 }));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(accountRecoveryActions.postAccountRecoveryEmailFailure({ errorCode }));
   }
 }
@@ -24,7 +24,7 @@ function* postAccountRecoveryPasswordCodeRequestSaga(action) {
     yield put(accountRecoveryActions.postAccountRecoveryPasswordCodeSuccess());
     yield put(appModalActions.setAppModalScene({ scene: ResetPassword3, direction: 1 }));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(accountRecoveryActions.postAccountRecoveryPasswordCodeFailure({ errorCode }));
   }
 }
@@ -37,7 +37,7 @@ function* postAccountRecoveryPasswordRequestSaga(action) {
     yield put(signInActions.signInRequest({ email, password }));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(accountRecoveryActions.postAccountRecoveryPasswordFailure({ errorCode }));
   }
 }

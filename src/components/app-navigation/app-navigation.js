@@ -29,6 +29,7 @@ const AppNavigation = ({
         icon="sign-in-alt"
         size="small"
         color={theme.primaryColor}
+        backgroundColor={theme.secondaryVariantColor}
         onClick={() => showAppModal({ scene: SignIn })}
       />
     ) : (
@@ -50,7 +51,6 @@ const AppNavigation = ({
           groupId={userGroupId}
           size="small"
           placeholderColor={theme.secondaryVariantColor}
-          style={{ marginBottom: 10 }}
           onClick={`/groups/${userGroupId}`}
         />
       )}
@@ -72,6 +72,7 @@ const AppNavigation = ({
       icon="cog"
       size="small"
       color={theme.primaryColor}
+      backgroundColor={theme.secondaryVariantColor}
       onClick={() => showAppModal({ scene: Settings })}
     />
   </NavigationContainer>

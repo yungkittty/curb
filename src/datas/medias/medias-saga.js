@@ -9,7 +9,7 @@ function* getMediaRequestSaga(action) {
     const { data: payload } = yield call(mediasApi.getMedia, action.payload);
     yield put(mediasActions.getMediaSuccess(payload));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.getMediaFailure({ id: action.payload.id, errorCode }));
   }
 }

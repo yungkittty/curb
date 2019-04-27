@@ -12,7 +12,7 @@ function* deleteAccountRequestSaga() {
     yield put(accountActions.deleteAccountSuccess());
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(accountActions.deleteAccountFailure({ errorCode }));
   }
 }

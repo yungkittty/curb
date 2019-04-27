@@ -24,13 +24,11 @@ class NavigationContainer extends React.Component {
     const { isAppNavigationShowed } = this.props;
     if (isAppNavigationShowed !== prevProps.isAppNavigationShowed) {
       const { containerAnimated } = this.state;
-      // eslint-disable-next-line
-      this.setState({ isContainerShowed: isAppNavigationShowed });
       Animated.spring(containerAnimated, {
         toValue: !isAppNavigationShowed ? -70 : 0,
         easing: Easing.inOut(Easing.quad),
         useNativeDriver: true
-      }).start();
+      }).start(() => this.setState({ isContainerShowed: isAppNavigationShowed }));
     }
   }
 
@@ -55,7 +53,8 @@ class NavigationContainer extends React.Component {
       <React.Fragment>
         {isContainerShowed ? (
           <ContainerOverlay
-            onPress={() => hideAppNavigation()}
+            onPressIn={() => hideAppNavigation()}
+            activeOpacity={0.26}
             style={{
               opacity: containerAnimated.interpolate({
                 inputRange: [-70, 0],

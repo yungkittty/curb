@@ -15,7 +15,7 @@ function* postGroupRequestSaga(action) {
     yield put(appModalActions.hideAppModal());
     history.push(`/groups/${payload.id}`);
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(groupsActions.postGroupFailure({ errorCode }));
   }
 }
@@ -25,7 +25,7 @@ function* getGroupRequestSaga(action) {
     const { data: payload } = yield call(groupsApi.getGroup, action.payload);
     yield put(groupsActions.getGroupSuccess(payload));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(groupsActions.getGroupFailure({ id: action.payload.id, errorCode }));
   }
 }

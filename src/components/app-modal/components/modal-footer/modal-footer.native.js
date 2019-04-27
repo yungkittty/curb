@@ -5,12 +5,12 @@ import FooterButtonText from "./components/footer-button-text";
 class ModalFooter extends React.Component {
   constructor(props) {
     super(props);
-    this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () =>
-      this.setState({ isButtonShowed: false })
-    );
-    this.keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () =>
-      this.setState({ isButtonShowed: true })
-    );
+    this.keyboardDidShowListener =
+      // eslint-disable-line
+      Keyboard.addListener("keyboardDidShow", () => this.setState({ isButtonShowed: false }));
+    this.keyboardDidHideListener =
+      // eslint-disable-line
+      Keyboard.addListener("keyboardDidHide", () => this.setState({ isButtonShowed: true }));
     this.state = { isButtonShowed: true };
   }
 

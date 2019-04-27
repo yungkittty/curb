@@ -10,7 +10,7 @@ function* signUpRequestSaga(action) {
     yield put(signUpActions.signUpSuccess(payload));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data;
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(signUpActions.signUpFailure({ errorCode }));
   }
 }

@@ -2,69 +2,55 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import UserContainer from "./components/user-container";
+import CircleContainer from "../circle-container";
 import Image from "../image";
 import Icon from "../icon";
-import { platformBools } from "../../configurations/platform";
 import withUser from "../../hocs/with-user";
 
 const ImageUser = ({
-  // eslint-disable-line
   isFetchingUser,
+  userName,
   userAvatar,
-  theme,
+  theme: { secondaryVariantColor, primaryColor },
   size,
   placeholderColor,
   ...others
-}) => {
-  const X = (() => {
-    const Xs = platformBools.isReact
-      ? // eslint-disable-line
-        [undefined, 60, 100, 300]
-      : [undefined, 50, 70, 200];
-    switch (size) {
-      case "extra-small":
-        return Xs[0];
-      case "small":
-        return Xs[1];
-      case "medium":
-        return Xs[2];
-      case "large":
-        return Xs[3];
-      default:
-        return undefined;
+}) => (
+  <CircleContainer
+    {...others}
+    diameter={size}
+    backgroundColor={
+      (isFetchingUser && !userName) || userAvatar // eslint-disable-line
+        ? placeholderColor
+        : secondaryVariantColor
     }
-  })();
-  return (
-    <UserContainer
-      {...others}
-      isFetchingUser={isFetchingUser}
-      userAvatar={userAvatar}
-      placeholderColor={placeholderColor}
-      size={X}
-    >
-      {/* eslint-disable-next-line */}
-      {!isFetchingUser || userAvatar ? (
-        userAvatar ? (
-          <Image
-            src={_.replace(userAvatar, "medium", size)}
-            style={{
-              // eslint-disable-line
-              // user-pointer, user-select: none
-              width: X,
-              height: X
-            }}
-          />
-        ) : (
-          <Icon icon="user" size={size} color={theme.primaryColor} />
-        )
-      ) : null}
-    </UserContainer>
-  );
-};
+  >
+    {innerDiameter =>
+      // eslint-disable-next-line
+      userAvatar ? (
+        <Image
+          // eslint-disable-line
+          src={userAvatar}
+          style={{
+            width: innerDiameter,
+            height: innerDiameter
+          }}
+        />
+      ) : userName ? (
+        <Icon
+          // eslint-disable-line
+          icon="user"
+          size={size}
+          color={primaryColor}
+        />
+      ) : null
+    }
+  </CircleContainer>
+);
 
 ImageUser.propTypes = {
   isFetchingUser: PropTypes.bool.isRequired,
+  userName: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,

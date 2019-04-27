@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-// eslint-disable-next-line
 const ButtonContainer = styled(({ onClick, ...others }) =>
   // eslint-disable-next-line
   typeof onClick === "string" && onClick[0] !== "/" ? (
@@ -16,16 +15,16 @@ const ButtonContainer = styled(({ onClick, ...others }) =>
   )
 )`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding: 0px;
   outline: initial;
   border-width: initial;
   border-style: initial;
   border-color: initial;
   text-decoration: initial;
+  user-select: none;
   cursor: ${props =>
-    // eslint-disable-line
     !props.disabled
       ? // eslint-disable-line
         "pointer"
