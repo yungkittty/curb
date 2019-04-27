@@ -20,11 +20,11 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
           mediaTypes: "photo",
           maxWidth: 1024,
           maxHeight: 1024,
+          quality: 1,
           noData: true,
           allowsEditing: true,
           storageOptions: {
-            cameraRoll: true,
-            waitUntilSaved: true,
+            cameraRoll: false,
             skipBackup: true
           },
           permissionDenied: {
