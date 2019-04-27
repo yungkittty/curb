@@ -23,10 +23,6 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
           quality: 1,
           noData: true,
           allowsEditing: true,
-          storageOptions: {
-            cameraRoll: false,
-            skipBackup: true
-          },
           permissionDenied: {
             title: t("permissionDenied"),
             text: t("askCameraText"),
@@ -46,7 +42,7 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
             onSelect(uri, {
               uri,
               type: response.type,
-              name: response.fileName.toLowerCase()
+              name: "image.jpg"
             });
           }
         }
