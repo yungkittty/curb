@@ -167,6 +167,7 @@ class User extends Component {
               fontFamily: "Montserrat-Bold",
               textAlign: "center"
             }}
+            placeholder={usernameProps === ""}
             value={usernameState.value !== undefined ? usernameState.value : usernameProps}
             onChange={this.handleChange}
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}

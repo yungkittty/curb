@@ -4,8 +4,8 @@ import FormContainer from "./components/form-container";
 import InputForm from "../../../../components/input-form";
 import Text from "../../../../components/text";
 
-const UserNameForm = ({ containerStyle, textStyle, readOnly, value, ...others }) => (
-  <FormContainer style={containerStyle} readOnly={readOnly}>
+const UserNameForm = ({ containerStyle, textStyle, readOnly, placeholder, value, ...others }) => (
+  <FormContainer style={containerStyle} readOnly={readOnly} placeholder={placeholder} textStyle={textStyle}>
     {readOnly ? (
       <Text style={textStyle}>{value}</Text>
     ) : (
@@ -14,18 +14,13 @@ const UserNameForm = ({ containerStyle, textStyle, readOnly, value, ...others })
   </FormContainer>
 );
 
-UserNameForm.defaultProps = {
-  containerStyle: undefined,
-  textStyle: undefined,
-  readOnly: false
-};
-
 UserNameForm.propTypes = {
   // eslint-disable-next-line
-  containerStyle: PropTypes.object,
+  containerStyle: PropTypes.object.isRequired,
   // eslint-disable-next-line
-  textStyle: PropTypes.object,
-  readOnly: PropTypes.bool,
+  textStyle: PropTypes.object.isRequired,
+  readOnly: PropTypes.bool.isRequired,
+  placeholder: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired
 };
 
