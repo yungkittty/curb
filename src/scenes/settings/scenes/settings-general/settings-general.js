@@ -22,10 +22,31 @@ class SettingsGeneral extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignOutFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
+    const {
+      t,
+      isSignOutFetching,
+      signOutErrorCode,
+      enableAppModalButtons,
+      disableAppModalButtons,
+      pushAppAlert
+    } = this.props;
     if (prevProps.isSignOutFetching === isSignOutFetching) return;
     if (isSignOutFetching) disableAppModalButtons();
     else enableAppModalButtons();
+    if (prevProps.isSignOutFetching && !isSignOutFetching) {
+      if (signOutErrorCode === "")
+        pushAppAlert({
+          type: "success",
+          message: t("alerts:signOutSuccess"),
+          icon: "check"
+        });
+      else
+        pushAppAlert({
+          type: "error",
+          message: signOutErrorCode,
+          icon: "times"
+        });
+    }
   }
 
   render() {
@@ -55,12 +76,14 @@ SettingsGeneral.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   isSignOutFetching: PropTypes.bool.isRequired,
+  signOutErrorCode: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalScene: PropTypes.func.isRequired
+  setAppModalScene: PropTypes.func.isRequired,
+  pushAppAlert: PropTypes.func.isRequired
 };
 
 export default withTranslation("settings")(SettingsGeneral);
