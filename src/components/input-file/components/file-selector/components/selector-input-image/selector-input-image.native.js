@@ -22,10 +22,6 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
           maxHeight: 1024,
           noData: true,
           allowsEditing: true,
-          storageOptions: {
-            cameraRoll: false,
-            skipBackup: true
-          },
           permissionDenied: {
             title: t("permissionDenied"),
             text: t("askCameraText"),
