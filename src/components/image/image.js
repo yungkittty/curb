@@ -9,12 +9,11 @@ class Image extends React.Component {
 
   render() {
     const { isShowed } = this.state;
-    const { style, src, ...others } = this.props;
+    const { style, ...others } = this.props;
     return (
       <img
         {...others}
         alt=""
-        src={src[0] === "/" ? `${process.env.REACT_APP_API_URL}${src}` : src}
         onLoadStart={() => this.setState({ isShowed: false })}
         onLoad={() => this.setState({ isShowed: true })}
         style={{ ...style, opacity: +isShowed }}
@@ -26,8 +25,6 @@ class Image extends React.Component {
 Image.defaultProps = { style: undefined };
 
 Image.propTypes = {
-  // eslint-disable-next-line
-  src: PropTypes.string.isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 

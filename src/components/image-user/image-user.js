@@ -47,7 +47,7 @@ const ImageUser = ({
       {!isFetchingUser || userAvatar ? (
         userAvatar ? (
           <Image
-            src={_.replace(userAvatar, "medium", size)}
+            src={`${process.env.REACT_APP_API_URL}${_.replace(userAvatar, "medium", size)}`}
             style={{
               // eslint-disable-line
               // user-pointer, user-select: none

@@ -90,7 +90,7 @@ class User extends Component {
 
   checkForm() {
     const { username } = this.state;
-    const usernameCheck = username.value ? this.checkInput("username", username.value) : true;
+    const usernameCheck = username.value !== undefined ? this.checkInput("username", username.value) : true;
     return usernameCheck;
   }
 

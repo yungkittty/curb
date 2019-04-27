@@ -43,7 +43,7 @@ class SettingsGeneral extends Component {
       else
         pushAppAlert({
           type: "error",
-          message: signOutErrorCode,
+          message: t("alerts:signOutFailure"),
           icon: "times"
         });
     }

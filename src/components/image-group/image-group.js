@@ -50,7 +50,7 @@ const ImageGroup = ({
       {!isFetchingGroup || groupAvatar || groupName ? (
         groupAvatar ? (
           <Image
-            src={_.replace(groupAvatar, "medium", size)}
+            src={`${process.env.REACT_APP_API_URL}${_.replace(groupAvatar, "medium", size)}`}
             style={{
               // eslint-disable-line
               width: X,
