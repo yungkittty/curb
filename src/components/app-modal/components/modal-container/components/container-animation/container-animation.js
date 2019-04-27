@@ -37,12 +37,14 @@ const ContainerAnimation = WrappedComponent => {
         style: this.hideStyle
       };
 
+      this.closeAppModal = this.closeAppModal.bind(this);
       this.startAnimation = this.startAnimation.bind(this);
     }
 
     componentDidMount() {
       const { isAppModalShowed } = this.props;
       this.startAnimation(isAppModalShowed);
+      document.addEventListener("keydown", this.closeAppModal);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -56,11 +58,22 @@ const ContainerAnimation = WrappedComponent => {
       this.startAnimation(isAppModalShowed);
     }
 
+    componentWillUnmount() {
+      document.removeEventListener("keydown", this.closeAppModal);
+    }
+
+    closeAppModal({ keyCode }) {
+      const { hideAppModal } = this.props;
+      if (keyCode === 27) hideAppModal();
+    }
+
     startAnimation(state) {
-      setTimeout(() =>
-        this.setState({
-          style: state ? this.showStyle : this.hideStyle
-        })
+      this.timeout = setTimeout(
+        () =>
+          this.setState({
+            style: state ? this.showStyle : this.hideStyle
+          }),
+        50
       );
     }
 
@@ -72,7 +85,8 @@ const ContainerAnimation = WrappedComponent => {
 
   _ContainerAnimation.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    children: PropTypes.arrayOf(PropTypes.node).isRequired
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    hideAppModal: PropTypes.func.isRequired
   };
 
   return _ContainerAnimation;

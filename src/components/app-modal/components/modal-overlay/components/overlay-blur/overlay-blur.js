@@ -34,13 +34,9 @@ const OverlayBlur = WrappedComponent => {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-      const { isAppModalShowed, children } = this.props;
+      const { children } = this.props;
       const { style } = this.state;
-      return (
-        isAppModalShowed !== nextProps.isAppModalShowed ||
-        children !== nextProps.children ||
-        style !== nextState.style
-      );
+      return children !== nextProps.children || style !== nextState.style;
     }
 
     componentDidUpdate() {
@@ -50,29 +46,23 @@ const OverlayBlur = WrappedComponent => {
 
     onTransitionEnd() {
       const { isAppModalShowed, appModalUnmount } = this.props;
-      if (!isAppModalShowed) appModalUnmount();
+      if (!isAppModalShowed) setTimeout(() => appModalUnmount());
     }
 
     startAnimation(state) {
-      document.getElementById("app-container").style.filter = `blur(${
-        state ? 3.5 : 0
-      }px)`;
-      setTimeout(() =>
-        this.setState({
-          style: state ? this.showStyle : this.hideStyle
-        })
+      document.getElementById("app-container").style.filter = `blur(${state ? 3.5 : 0}px)`;
+      setTimeout(
+        () =>
+          this.setState({
+            style: state ? this.showStyle : this.hideStyle
+          }),
+        50
       );
     }
 
     render() {
       const { style } = this.state;
-      return (
-        <WrappedComponent
-          {...this.props}
-          onTransitionEnd={this.onTransitionEnd}
-          style={style}
-        />
-      );
+      return <WrappedComponent {...this.props} onTransitionEnd={this.onTransitionEnd} style={style} />;
     }
   }
 

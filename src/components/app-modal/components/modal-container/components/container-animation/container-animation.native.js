@@ -34,12 +34,6 @@ const ContainerAnimation = WrappedComponent => {
       this.startAnimation(isAppModalShowed);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      const { children } = this.props;
-      const { top } = this.state;
-      return children !== nextProps.children || top !== nextState.top;
-    }
-
     componentDidUpdate() {
       const { isAppModalShowed } = this.props;
       this.startAnimation(isAppModalShowed);

@@ -21,14 +21,12 @@ const AppModal = ({
   appModalSceneData,
   appModalFooterText,
   appModalFooterOnClick,
-  appModalUnmount
+  appModalUnmount,
+  hideAppModal
 }) =>
   appModalScene !== null ? (
-    <ModalOverlay
-      isAppModalShowed={isAppModalShowed}
-      appModalUnmount={appModalUnmount}
-    >
-      <ModalContainer isAppModalShowed={isAppModalShowed}>
+    <ModalOverlay isAppModalShowed={isAppModalShowed} appModalUnmount={appModalUnmount}>
+      <ModalContainer hideAppModal={hideAppModal} isAppModalShowed={isAppModalShowed}>
         <ModalHeader
           text={appModalHeaderText}
           currentStep={appModalHeaderCurrentStep}
@@ -64,8 +62,7 @@ AppModal.defaultProps = {
   appModalSceneDirection: undefined,
   appModalSceneData: undefined,
   appModalFooterText: undefined,
-  appModalFooterOnClick: undefined,
-  appModalUnmount: undefined
+  appModalFooterOnClick: undefined
 };
 
 AppModal.propTypes = {
@@ -84,7 +81,8 @@ AppModal.propTypes = {
   appModalSceneData: PropTypes.object,
   appModalFooterText: PropTypes.string,
   appModalFooterOnClick: PropTypes.func,
-  appModalUnmount: PropTypes.func
+  appModalUnmount: PropTypes.func.isRequired,
+  hideAppModal: PropTypes.func.isRequired
 };
 
 export default AppModal;

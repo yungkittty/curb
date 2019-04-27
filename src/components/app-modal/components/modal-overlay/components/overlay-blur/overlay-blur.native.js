@@ -27,16 +27,6 @@ const OverlayBlur = WrappedComponent => {
       this.startAnimation(isAppModalShowed);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      const { isAppModalShowed, children } = this.props;
-      const { backgroundColor } = this.state;
-      return (
-        isAppModalShowed !== nextProps.isAppModalShowed ||
-        children !== nextProps.children ||
-        backgroundColor !== nextState.backgroundColor
-      );
-    }
-
     componentDidUpdate() {
       const { isAppModalShowed } = this.props;
       this.startAnimation(isAppModalShowed);
