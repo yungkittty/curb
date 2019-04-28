@@ -41,7 +41,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          ...action.payload.token,
+          inviteToken: action.payload.token,
           isFetching: false,
           errorCode: ""
         }

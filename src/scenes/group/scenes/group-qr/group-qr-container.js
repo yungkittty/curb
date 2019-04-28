@@ -20,21 +20,19 @@ class GroupQrContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { pathname } = ownProps.location;
-  const { id: currentGroupId } = matchPath(pathname, {
-    path: "/groups/:id"
-  }).params;
+  const { id: currentGroupId } = matchPath(pathname, { path: "/groups/:id" }).params;
   const {
-    name: currentGroupName,
-    avatarUrl: currentGroupAvatarUrl,
-    status: currentGroupStatus,
-    inviteToken: currentGroupInvitetoken
+    name: currentGroupName = "",
+    avatarUrl: currentGroupAvatarUrl = "",
+    status: currentGroupStatus = "",
+    inviteToken: currentGroupInviteToken = ""
   } = groupsSelectors.getGroupById(state, currentGroupId);
   return {
     currentGroupId,
     currentGroupName,
     currentGroupAvatarUrl,
     currentGroupStatus,
-    currentGroupInvitetoken
+    currentGroupInviteToken
   };
 };
 
