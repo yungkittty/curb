@@ -2,8 +2,8 @@ import React from "react";
 import styled, { withTheme } from "styled-components";
 import Container from "../../../container";
 import PreviewImage from "./components/preview-image";
+import PreviewLoadingText from "./components/preview-loading-text";
 import Icon from "../../../icon";
-import Text from "../../../text";
 
 const FilePreview = styled(({ className, style, theme, data, type, loadingProgress, ...others }) => (
   <Container className={className} style={style}>
@@ -35,9 +35,7 @@ const FilePreview = styled(({ className, style, theme, data, type, loadingProgre
           backgroundColor: "rgba(0, 0, 0, .35)"
         }}
       >
-        <Text type="h1" weight={700} style={{ color: "white" }}>
-          {`${parseInt(loadingProgress * 100, 10)} %`}
-        </Text>
+        <PreviewLoadingText>{`${parseInt(loadingProgress * 100, 10)} %`}</PreviewLoadingText>
       </Container>
     )}
   </Container>
