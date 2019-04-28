@@ -11,10 +11,9 @@ import withGroup from "../../../../hocs/with-group";
 
 // https://stackoverflow.com/a/38997047
 
-/** @TODO Placeholder ! */
-
 const DiscoveryListItem = ({
   // eslint-disable-line
+  isFetchingGroup,
   groupId,
   groupName,
   theme
@@ -24,11 +23,11 @@ const DiscoveryListItem = ({
       <React.Fragment>
         <ImageGroup
           groupId={groupId}
-          size="medium"
+          size="large"
           placeholderColor={theme.primaryVariantColor}
           style={{ marginBottom: platformBools.isReact ? 20 : 10 }}
         />
-        <ListItemTitle>
+        <ListItemTitle isFetchingGroup={isFetchingGroup} groupName={groupName}>
           {/* eslint-disable-line */}
           {groupName}
         </ListItemTitle>
@@ -38,6 +37,7 @@ const DiscoveryListItem = ({
 );
 
 DiscoveryListItem.propTypes = {
+  isFetchingGroup: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired // eslint-disable-line

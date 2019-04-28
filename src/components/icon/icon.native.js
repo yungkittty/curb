@@ -22,13 +22,7 @@ const Icon = ({ size, icon, ...others }) => {
 
 Icon.propTypes = {
   icon: PropTypes.string.isRequired,
-  size: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large"
-  ]).isRequired
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired
 };
 
 export default Icon;

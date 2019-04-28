@@ -30,13 +30,7 @@ Icon.defaultProps = { style: undefined };
 
 Icon.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  size: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large"
-  ]).isRequired
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired
 };
 
 export default Icon;
