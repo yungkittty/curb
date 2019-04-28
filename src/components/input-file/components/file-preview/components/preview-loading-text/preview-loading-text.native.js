@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../../../../../text";
 
-const PreviewLoadingText = styled(Text).attrs(() => ({ type: "h1", weight: 700 }))`
+const PreviewLoadingText = styled(Text)`
   color: white;
 `;
 

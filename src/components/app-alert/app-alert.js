@@ -29,11 +29,9 @@ class AppAlert extends Component {
   render() {
     const { firstIndex } = this.state;
     const { appAlertList } = this.props;
-    return appAlertList.length > 0
-      ? _.map(appAlertList, (props, index) => (
-        <AlertMessage key={index} index={index - firstIndex} {...props} />
-        ))
-      : null;
+    return _.map(appAlertList, (props, index) => (
+      <AlertMessage key={index} index={index - firstIndex} {...props} />
+    ));
   }
 }
 

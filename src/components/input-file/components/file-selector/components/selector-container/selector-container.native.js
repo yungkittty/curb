@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Platform } from "react-native";
 import Container from "../../../../../container";
 
+// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 4
+
 const SelectorContainer = styled(Container)`
   display: flex;
   align-items: center;

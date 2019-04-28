@@ -35,7 +35,9 @@ const FilePreview = styled(({ className, style, theme, data, type, loadingProgre
           backgroundColor: "rgba(0, 0, 0, .35)"
         }}
       >
-        <PreviewLoadingText>{`${parseInt(loadingProgress * 100, 10)} %`}</PreviewLoadingText>
+        <PreviewLoadingText type="h1" weight={700}>
+          {`${parseInt(loadingProgress * 100, 10)} %`}
+        </PreviewLoadingText>
       </Container>
     )}
   </Container>

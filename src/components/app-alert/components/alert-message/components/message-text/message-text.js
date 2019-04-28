@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../../../../../text";
 
-const MessageText = styled(Text).attrs(() => ({ type: undefined, weight: 600 }))`
+const MessageText = styled(Text)`
   color: ${({ theme }) => theme.backgroundColor};
 `;
 

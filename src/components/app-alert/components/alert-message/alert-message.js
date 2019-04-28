@@ -8,7 +8,7 @@ import MessageText from "./components/message-text";
 const AlertMessage = ({ forwardedRef, style, type, message, icon }) => (
   <MessageContainer style={style} type={type} ref={forwardedRef}>
     {icon && <MessageIcon icon={icon} />}
-    <MessageText>{message}</MessageText>
+    <MessageText weight={600}>{message}</MessageText>
   </MessageContainer>
 );
 
@@ -27,6 +27,4 @@ AlertMessage.propTypes = {
   forwardedRef: PropTypes.object
 };
 
-export default MessageAnimation(
-  React.forwardRef((props, forwardedRef) => <AlertMessage {...props} forwardedRef={forwardedRef} />)
-);
+export default MessageAnimation(AlertMessage);
