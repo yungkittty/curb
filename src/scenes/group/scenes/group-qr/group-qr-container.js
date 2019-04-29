@@ -25,14 +25,16 @@ const mapStateToProps = (state, ownProps) => {
     name: currentGroupName = "",
     avatarUrl: currentGroupAvatarUrl = "",
     status: currentGroupStatus = "",
-    inviteToken: currentGroupInviteToken = ""
+    inviteToken: currentGroupInviteToken = "",
+    isFetching
   } = groupsSelectors.getGroupById(state, currentGroupId);
   return {
     currentGroupId,
     currentGroupName,
     currentGroupAvatarUrl,
     currentGroupStatus,
-    currentGroupInviteToken
+    currentGroupInviteToken,
+    isFetching
   };
 };
 
@@ -44,7 +46,8 @@ const mapDispatchToProps = dispatch => ({
 GroupQrContainer.propTypes = {
   currentGroupStatus: PropTypes.string.isRequired,
   currentGroupId: PropTypes.string.isRequired,
-  getGroupInviteToken: PropTypes.func.isRequired
+  getGroupInviteToken: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired
 };
 
 export default withRouter(
