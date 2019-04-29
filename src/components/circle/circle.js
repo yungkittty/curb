@@ -12,6 +12,7 @@ const Circle = ({
   children,
   contentStyle,
   component,
+  component: Component,
   ...others
 }) => (
   <CircleContainer
@@ -22,9 +23,13 @@ const Circle = ({
     backgroundColor={backgroundColor}
     onClick={onClick}
   >
-    {component // eslint-disable-line
-      ? React.createElement(component, { ...others, style: contentStyle }, children)
-      : children}
+    {component ? (
+      <Component {...others} style={contentStyle}>
+        {children}
+      </Component>
+    ) : (
+      children
+    )}
   </CircleContainer>
 );
 

@@ -11,6 +11,7 @@ const Button = ({
   children,
   contentStyle,
   component,
+  component: Component,
   ...others
 }) => (
   <ButtonContainer
@@ -20,9 +21,13 @@ const Button = ({
     style={style}
     onClick={onClick}
   >
-    {component // eslint-disable-line
-      ? React.createElement(component, { ...others, style: contentStyle }, children)
-      : children}
+    {component ? (
+      <Component {...others} style={contentStyle}>
+        {children}
+      </Component>
+    ) : (
+      children
+    )}
   </ButtonContainer>
 );
 
