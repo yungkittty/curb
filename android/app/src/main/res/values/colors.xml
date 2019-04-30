@@ -1,0 +1,5 @@
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="status_bar_color">#000000</color>
+    <color name="font_color">#333333</color>
+</resources>
