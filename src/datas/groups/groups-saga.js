@@ -6,6 +6,7 @@ import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
 import groupsApi from "./groups-api";
 import { currentUserSelectors } from "../current-user";
+import appAlertActions from "../app-alert/app-alert-actions";
 
 function* getGroupRequestSaga(action) {
   try {
@@ -28,10 +29,23 @@ function* postGroupRequestSaga(action) {
           avatar
         })
       );
-      yield take(mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS);
+      const { type } = yield take([
+        mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS,
+        mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE
+      ]);
+      if (type === mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE) {
+        throw new Error();
+      }
     }
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "success",
+        message: "groupCreated",
+        icon: "check"
+      })
+    );
     yield put(appModalActions.hideAppModal());
     history.push(`/groups/${payload.id}`);
   } catch (error) {

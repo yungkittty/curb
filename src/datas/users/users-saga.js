@@ -2,6 +2,7 @@ import { all, takeEvery, takeLatest, call, put } from "redux-saga/effects";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
+import appAlertActions from "../app-alert/app-alert-actions";
 
 function* getUsersRequestSaga(action) {
   try {
@@ -13,12 +14,27 @@ function* getUsersRequestSaga(action) {
 }
 
 function* patchUsersRequestSaga(action) {
+  const { id, payload } = action.payload;
   try {
-    const respond = yield call(usersApi.patchUser, action.payload);
+    const respond = yield call(usersApi.patchUser, { id, payload });
     yield put(usersActions.patchUserSuccess(respond));
-    yield put(usersActions.getUserRequest({ id: action.payload.id }));
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "success",
+        message: "patchUser.userSuccess",
+        icon: "check"
+      })
+    );
+    yield put(usersActions.getUserRequest({ id }));
   } catch (error) {
     yield put(usersActions.patchUserFailure(error));
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "error",
+        message: `patchUser.${error.response.data.code}`,
+        icon: "times"
+      })
+    );
   }
 }
 

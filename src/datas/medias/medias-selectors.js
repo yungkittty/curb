@@ -1,9 +1,9 @@
 const mediasSelectors = {};
 
-mediasSelectors.isMediasPosting = state => state.medias.isPosting;
-
-mediasSelectors.getMediasPostingErrorCode = state => state.medias.errorCode;
+mediasSelectors.isFetchingMedias = state => state.medias.isFetching;
 
 mediasSelectors.getMediaById = (state, id) => state.medias.byId[id];
+
+mediasSelectors.getMediasErrorCode = state => state.medias.errorCode;
 
 export default mediasSelectors;

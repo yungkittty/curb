@@ -31,13 +31,7 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
           }
         },
         response => {
-          if (response.didCancel) {
-            console.log("User cancelled image picker");
-          } else if (response.error) {
-            console.log("ImagePicker Error: ", response.error);
-          } else if (response.customButton) {
-            console.log("User tapped custom button: ", response.customButton);
-          } else {
+          if (!response.didCancel && !response.error && !response.customButton) {
             const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
             onSelect(uri, {
               uri,

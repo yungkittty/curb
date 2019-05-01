@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "../../../../../image";
 
-const PreviewImage = ({ imageFit, data, ...others }) => (
+const PreviewImage = ({ objectFit, data, ...others }) => (
   <Image
     {...others}
     src={data}
-    resizeMode={imageFit}
+    resizeMode={objectFit}
     style={{
       width: "100%",
       height: "100%"
@@ -15,12 +15,12 @@ const PreviewImage = ({ imageFit, data, ...others }) => (
 );
 
 PreviewImage.defaultProps = {
-  imageFit: "cover"
+  objectFit: "cover"
 };
 
 PreviewImage.propTypes = {
   data: PropTypes.string.isRequired,
-  imageFit: PropTypes.oneOf(["cover", "contain"])
+  objectFit: PropTypes.oneOf(["cover"])
 };
 
 export default PreviewImage;

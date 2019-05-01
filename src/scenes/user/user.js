@@ -35,61 +35,34 @@ class User extends Component {
   componentDidUpdate(prevProps) {
     const { username: usernameState, avatar, editMode } = this.state;
     const {
-      t,
       owner,
       isUserPatching,
       userPatchingErrorCode,
-      isMediasPosting,
-      mediasPostingErrorCode,
-      pushAppAlert,
+      isFetchingMedias,
+      mediasErrorCode,
       userName: usernameProps
     } = this.props;
     const { username: initialUsername, avatar: initialAvatar } = this.initialState;
     // eslint-disable-next-line
     if (!owner && editMode) this.setState({ editMode: false });
 
-    if (prevProps.isMediasPosting && !isMediasPosting)
-      if (mediasPostingErrorCode === "") {
-        pushAppAlert({
-          type: "success",
-          message: t("alerts:postAvatarSuccess"),
-          icon: "check"
-        });
-        // eslint-disable-next-line
-        this.setState({ avatar: initialAvatar });
-      } else {
-        pushAppAlert({
-          type: "error",
-          message: t("alerts:postAvatarFailure"),
-          icon: "times"
-        });
-        // eslint-disable-next-line
-        this.setState({ avatar: { ...avatar, loadingProgress: undefined }, editMode: true });
-      }
+    if (prevProps.isFetchingMedias && !isFetchingMedias)
+      // eslint-disable-next-line
+      this.setState({
+        avatar: mediasErrorCode === "" ? initialAvatar : { ...avatar, loadingProgress: undefined },
+        editMode: mediasErrorCode !== ""
+      });
     if (prevProps.isUserPatching && !isUserPatching)
-      if (userPatchingErrorCode === "")
-        pushAppAlert({
-          type: "success",
-          message: t("alerts:patchUserSuccess"),
-          icon: "check"
-        });
-      else {
-        pushAppAlert({
-          type: "error",
-          message: t(`alerts:${userPatchingErrorCode}`),
-          icon: "times"
-        });
-        // eslint-disable-next-line
-        this.setState({ editMode: true });
-      }
+      // eslint-disable-next-line
+      this.setState({ editMode: userPatchingErrorCode !== "" });
 
     // eslint-disable-next-line
     if (usernameState.value === usernameProps) this.setState({ username: initialUsername });
   }
 
-  onUploadProgress(loadingProgress) {
+  onUploadProgress({ loaded, total }) {
     const { avatar } = this.state;
-    this.setState({ avatar: { ...avatar, loadingProgress } });
+    this.setState({ avatar: { ...avatar, loadingProgress: loaded / total } });
   }
 
   submit() {
@@ -105,9 +78,14 @@ class User extends Component {
         target: "users",
         id: userId,
         avatar: avatar.value.file,
-        onUploadProgress: this.onUploadProgress
+        onUploadProgress: this.onUploadProgress,
+        onSuccessAlert: {
+          type: "success",
+          message: "postAvatar.userSuccess",
+          icon: "check"
+        }
       });
-      this.onUploadProgress(0.01);
+      this.onUploadProgress({ loaded: 0.01, total: 100 });
     }
   }
 
@@ -142,14 +120,14 @@ class User extends Component {
 
   render() {
     const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, theme, owner, userName: usernameProps, userId, isMediasPosting, isUserPatching } = this.props;
+    const { t, theme, owner, userName: usernameProps, userId, isFetchingMedias, isUserPatching } = this.props;
 
     return (
       <React.Fragment>
         <UserContainer>
           <ImageAvatarEditable
             id="avatar"
-            size="large"
+            size="extra-large"
             placeholderColor={theme.primaryColor}
             userId={userId}
             editMode={editMode}
@@ -167,13 +145,13 @@ class User extends Component {
               fontFamily: "Montserrat-Bold",
               textAlign: "center"
             }}
-            placeholder={usernameProps === ""}
+            displayPlaceholder={usernameProps === ""}
             value={usernameState.value !== undefined ? usernameState.value : usernameProps}
             onChange={this.handleChange}
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
         </UserContainer>
-        {owner && !isMediasPosting && !isUserPatching && (
+        {owner && !isFetchingMedias && !isUserPatching && (
           <ButtonIconFloat icon={editMode ? "check" : "pen"} size="medium" onClick={this.handleSwapMode} />
         )}
       </React.Fragment>
@@ -184,9 +162,8 @@ class User extends Component {
 User.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
-  pushAppAlert: PropTypes.func.isRequired,
-  isMediasPosting: PropTypes.bool.isRequired,
-  mediasPostingErrorCode: PropTypes.string.isRequired,
+  isFetchingMedias: PropTypes.bool.isRequired,
+  mediasErrorCode: PropTypes.string.isRequired,
   isUserPatching: PropTypes.bool.isRequired,
   userPatchingErrorCode: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,

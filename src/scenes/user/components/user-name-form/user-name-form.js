@@ -4,8 +4,13 @@ import FormContainer from "./components/form-container";
 import InputForm from "../../../../components/input-form";
 import Text from "../../../../components/text";
 
-const UserNameForm = ({ containerStyle, textStyle, readOnly, placeholder, value, ...others }) => (
-  <FormContainer style={containerStyle} readOnly={readOnly} placeholder={placeholder} textStyle={textStyle}>
+const UserNameForm = ({ containerStyle, textStyle, readOnly, displayPlaceholder, value, ...others }) => (
+  <FormContainer
+    style={containerStyle}
+    readOnly={readOnly}
+    displayPlaceholder={displayPlaceholder}
+    textStyle={textStyle}
+  >
     {readOnly ? (
       <Text style={textStyle}>{value}</Text>
     ) : (
@@ -20,7 +25,7 @@ UserNameForm.propTypes = {
   // eslint-disable-next-line
   textStyle: PropTypes.object.isRequired,
   readOnly: PropTypes.bool.isRequired,
-  placeholder: PropTypes.bool.isRequired,
+  displayPlaceholder: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired
 };
 

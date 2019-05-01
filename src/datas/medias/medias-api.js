@@ -7,9 +7,7 @@ const mediasApi = {
     data.append("file", avatar);
     return axios.post(`/contents/avatars/${target}/${id}`, data, {
       withCredentials: true,
-      onUploadProgress: onUploadProgress
-        ? progress => onUploadProgress(progress.loaded / progress.total)
-        : undefined
+      onUploadProgress: onUploadProgress ? progress => onUploadProgress(progress) : undefined
     });
   }
 };

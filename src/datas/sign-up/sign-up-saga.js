@@ -6,6 +6,7 @@ import mediasActionsTypes from "../medias/medias-actions-types";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
 import signUpApi from "./sign-up-api";
+import appAlertActions from "../app-alert/app-alert-actions";
 
 function* signUpRequestSaga(action) {
   try {
@@ -19,9 +20,22 @@ function* signUpRequestSaga(action) {
           avatar
         })
       );
-      yield take(mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS);
+      const { type } = yield take([
+        mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS,
+        mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE
+      ]);
+      if (type === mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE) {
+        throw new Error();
+      }
     }
     yield put(signUpActions.signUpSuccess(payload));
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "success",
+        message: "accountCreated",
+        icon: "check"
+      })
+    );
     yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signUpActions.signUpFailure(error));

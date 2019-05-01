@@ -11,14 +11,14 @@ class AppAlert extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { appAlertList, appAlertClearAlert } = this.props;
+    const { appAlertList, clearAppAlert } = this.props;
     const l = appAlertList.length;
 
     if (l > prevProps.appAlertList.length)
       setTimeout(() => {
         const { appAlertList: actualAppAlertList } = this.props;
         if (actualAppAlertList.length === l) {
-          appAlertClearAlert();
+          clearAppAlert();
           this.setState({ firstIndex: 0 });
         } else {
           this.setState({ firstIndex: l });
@@ -43,7 +43,7 @@ AppAlert.propTypes = {
       icon: PropTypes.string
     })
   ).isRequired,
-  appAlertClearAlert: PropTypes.func.isRequired
+  clearAppAlert: PropTypes.func.isRequired
 };
 
 export default AppAlert;

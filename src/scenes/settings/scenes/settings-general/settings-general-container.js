@@ -4,7 +4,6 @@ import SettingsGeneral from "./settings-general";
 import { currentUserSelectors } from "../../../../datas/current-user";
 import { signInActions, signInSelectors } from "../../../../datas/sign-in";
 import { appModalActions } from "../../../../datas/app-modal";
-import { appAlertActions } from "../../../../datas/app-alert";
 
 const mapStateToProps = state => ({
   currentUserId: currentUserSelectors.getCurrentUserId(state) || "",
@@ -18,7 +17,6 @@ const mapDispatchToProps = dispatch => ({
   setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
-  pushAppAlert: payload => dispatch(appAlertActions.pushAppAlert(payload)),
   signOut: payload => dispatch(signInActions.signOutRequest(payload))
 });
 

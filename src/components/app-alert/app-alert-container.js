@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  appAlertClearAlert: () => dispatch(appAlertActions.clearAppAlert())
+  clearAppAlert: () => dispatch(appAlertActions.clearAppAlert())
 });
 
 export default connect(

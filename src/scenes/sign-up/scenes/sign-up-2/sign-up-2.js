@@ -27,23 +27,10 @@ class SignUp2 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      t,
-      isSignUpFetching,
-      signUpErrorCode,
-      enableAppModalButtons,
-      disableAppModalButtons,
-      appAlertPushAlert
-    } = this.props;
+    const { isSignUpFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isSignUpFetching === isSignUpFetching) return;
     if (isSignUpFetching) disableAppModalButtons();
     else enableAppModalButtons();
-    if (prevProps.isSignUpFetching && signUpErrorCode === "")
-      appAlertPushAlert({
-        type: "success",
-        message: t("alerts:accountCreated"),
-        icon: "check"
-      });
   }
 
   goToPrev() {
@@ -141,7 +128,6 @@ SignUp2.propTypes = {
   isSignUpFetching: PropTypes.bool.isRequired,
   signUpErrorCode: PropTypes.string.isRequired,
   hideAppModal: PropTypes.func.isRequired,
-  appAlertPushAlert: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,

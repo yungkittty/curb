@@ -10,12 +10,16 @@ const InputFile = ({
   editMode,
   data,
   onSelect,
+  PreviewComponent: previewComponent,
   PlaceholderComponent: placeholderComponent,
   ...others
 }) => (
   <FileContainer>
+    {/* eslint-disable-next-line */}
     {!data && placeholderComponent ? (
       placeholderComponent()
+    ) : previewComponent ? (
+      previewComponent()
     ) : (
       <FilePreview {...others} type={type} data={data} />
     )}
@@ -38,6 +42,7 @@ const InputFile = ({
 InputFile.defaultProps = {
   data: undefined,
   editMode: false,
+  PreviewComponent: null,
   PlaceholderComponent: null
 };
 
@@ -47,6 +52,7 @@ InputFile.propTypes = {
   data: PropTypes.string,
   editMode: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
+  PreviewComponent: PropTypes.func,
   PlaceholderComponent: PropTypes.func
 };
 

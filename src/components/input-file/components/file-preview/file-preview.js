@@ -1,19 +1,18 @@
 import React from "react";
-import styled, { withTheme } from "styled-components";
-import Container from "../../../container";
+import PropTypes from "prop-types";
+import { withTheme } from "styled-components";
+import PreviewContainer from "./components/preview-container";
 import PreviewImage from "./components/preview-image";
-import PreviewLoadingText from "./components/preview-loading-text";
+import PreviewProgress from "./components/preview-progress";
 import Icon from "../../../icon";
 
-const FilePreview = styled(({ className, style, theme, data, type, loadingProgress, ...others }) => (
-  <Container className={className} style={style}>
+const FilePreview = ({ style, theme, data, type, loadingProgress, ...others }) => (
+  <PreviewContainer style={style} haveData={data}>
     {/* eslint-disable-next-line */}
     {data ? (
       type === "image" ? (
         <PreviewImage data={data} {...others} />
-      ) : (
-        undefined
-      )
+      ) : null
     ) : (
       <Icon
         color={theme.secondaryVariantColor}
@@ -21,34 +20,25 @@ const FilePreview = styled(({ className, style, theme, data, type, loadingProgre
         size="medium"
       />
     )}
-    {loadingProgress && (
-      <Container
-        style={{
-          borderRadius: style && style.borderRadius,
-          position: "absolute",
-          top: 0,
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "rgba(0, 0, 0, .35)"
-        }}
-      >
-        <PreviewLoadingText type="h1" weight={700}>
-          {`${parseInt(loadingProgress * 100, 10)} %`}
-        </PreviewLoadingText>
-      </Container>
-    )}
-  </Container>
-))`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-width: ${({ data }) => (data ? "0" : "1")}px;
-  border-color: ${({ theme }) => theme.secondaryColor};
-  border-style: solid;
-`;
+    {loadingProgress && <PreviewProgress style={style} loadingProgress={loadingProgress} />}
+  </PreviewContainer>
+);
+
+FilePreview.defaultProps = {
+  data: undefined,
+  loadingProgress: undefined
+};
+
+FilePreview.propTypes = {
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
+  // eslint-disable-next-line
+  style: PropTypes.object,
+  // eslint-disable-next-line
+  data: PropTypes.any,
+  // eslint-disable-next-line
+  type: PropTypes.oneOf(["image"]),
+  loadingProgress: PropTypes.number
+};
 
 export default withTheme(FilePreview);

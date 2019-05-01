@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Text from "../../../../../text";
+import Text from "../../../../../../../text";
 
 const PreviewLoadingText = styled(Text)`
   color: white;

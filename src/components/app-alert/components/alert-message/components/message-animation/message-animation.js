@@ -21,15 +21,10 @@ const MessageAnimation = WrappedComponent => {
       setTimeout(() => this.closeMessage(), 3500);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
       const { index } = this.props;
       const { style } = this.wrappedComponent.current;
-      style.top = `${30 + index * 80}px`;
-    }
-
-    componentShouldUpdate(nextProps) {
-      const { index } = this.props;
-      return nextProps.index !== index;
+      if (prevProps.index !== index) style.top = `${30 + index * 80}px`;
     }
 
     closeMessage() {

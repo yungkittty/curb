@@ -39,23 +39,10 @@ class CreateGroup4 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      t,
-      isCreateGroupFetching,
-      createGroupErrorCode,
-      enableAppModalButtons,
-      disableAppModalButtons,
-      appAlertPushAlert
-    } = this.props;
+    const { isCreateGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isCreateGroupFetching === isCreateGroupFetching) return;
     if (isCreateGroupFetching) disableAppModalButtons();
     else enableAppModalButtons();
-    if (prevProps.isCreateGroupFetching && createGroupErrorCode === "")
-      appAlertPushAlert({
-        type: "success",
-        message: t("alerts:groupCreated"),
-        icon: "check"
-      });
   }
 
   submit() {
@@ -157,7 +144,6 @@ CreateGroup4.propTypes = {
   isCreateGroupFetching: PropTypes.bool.isRequired,
   createGroupErrorCode: PropTypes.string.isRequired,
   hideAppModal: PropTypes.func.isRequired,
-  appAlertPushAlert: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
