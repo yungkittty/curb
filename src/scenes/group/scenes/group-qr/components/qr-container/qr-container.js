@@ -3,7 +3,6 @@ import Container from "../../../../../../components/container";
 
 const QrContainer = styled(Container)`
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
