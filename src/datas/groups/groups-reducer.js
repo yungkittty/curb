@@ -18,7 +18,7 @@ const postFetching = (state = { isFetching: false, errorCode: "" }, action) => {
 const byId = (state = {}, action) => {
   switch (action.type) {
     case groupsActionsTypes.GET_GROUP_REQUEST:
-    case groupsActionsTypes.GET_GROUP_TOKEN_REQUEST:
+    case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST:
       return {
         ...state,
         [action.payload.id]: {
@@ -27,7 +27,6 @@ const byId = (state = {}, action) => {
         }
       };
     case groupsActionsTypes.GET_GROUP_SUCCESS:
-    case groupsActionsTypes.GET_GROUP_TOKEN_SUCCESS:
       return {
         ...state,
         [action.payload.id]: {
@@ -37,8 +36,18 @@ const byId = (state = {}, action) => {
           errorCode: ""
         }
       };
+    case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          inviteToken: action.payload.token,
+          isFetching: false,
+          errorCode: ""
+        }
+      };
     case groupsActionsTypes.GET_GROUP_FAILURE:
-    case groupsActionsTypes.GET_GROUP_TOKEN_FAILURE:
+    case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_FAILURE:
       return {
         ...state,
         [action.payload.config.data.id]: {
