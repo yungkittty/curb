@@ -6,7 +6,7 @@ import AppModalSceneContainer from "../../../../components/app-modal-scene-conta
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
-import forbiddenPasswords from "./utils/forbidden-passwords";
+import forbiddenPasswords from "../../../../utils/forbidden-passwords";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
 
@@ -27,27 +27,10 @@ class SignUp2 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      isSignUpFetching,
-      t,
-      hideAppModal,
-      setAppModalHeaderLeftButton,
-      setAppModalHeaderRightButton,
-      setAppModalFooterButton
-    } = this.props;
+    const { isSignUpFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isSignUpFetching === isSignUpFetching) return;
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: !isSignUpFetching ? this.goToPrev : () => undefined
-    });
-    setAppModalHeaderRightButton({
-      icon: "times",
-      onClick: !isSignUpFetching ? hideAppModal : () => undefined
-    });
-    setAppModalFooterButton({
-      text: t("common:finish"),
-      onClick: !isSignUpFetching ? this.finish : () => undefined
-    });
+    if (isSignUpFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   goToPrev() {
@@ -104,7 +87,7 @@ class SignUp2 extends Component {
         <InputForm
           size="modal"
           id="createPassword"
-          placeholder={t("password")}
+          placeholder={t("common:password")}
           type="password"
           value={createPassword.value}
           onChange={this.handleChange}
@@ -113,7 +96,7 @@ class SignUp2 extends Component {
         <InputForm
           size="modal"
           id="confirmPassword"
-          placeholder={t("confirmPassword")}
+          placeholder={t("common:confirmPassword")}
           type="password"
           value={confirmPassword.value}
           onChange={this.handleChange}
@@ -130,9 +113,10 @@ SignUp2.defaultProps = {
 };
 
 SignUp2.propTypes = {
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,

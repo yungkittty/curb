@@ -4,6 +4,7 @@ import { appModalActions, appModalSelectors } from "../../datas/app-modal";
 
 const mapStateToProps = state => ({
   isAppModalShowed: appModalSelectors.isAppModalShowed(state),
+  isAppModalButtonsEnabled: appModalSelectors.isAppModalButtonsEnabled(state),
   appModalHeaderText: appModalSelectors.getAppModalHeaderText(state),
   appModalHeaderCurrentStep: appModalSelectors.getAppModalHeaderCurrentStep(state),
   appModalHeaderSteps: appModalSelectors.getAppModalHeaderSteps(state),
@@ -15,7 +16,7 @@ const mapStateToProps = state => ({
   appModalSceneDirection: appModalSelectors.getAppModalSceneDirection(state),
   appModalSceneData: appModalSelectors.getAppModalSceneData(state),
   appModalFooterText: appModalSelectors.getAppModalFooterText(state),
-  appModalFooterOnClick: appModalSelectors.getAppModalFooterOnClick(state),
+  appModalFooterOnClick: appModalSelectors.getAppModalFooterOnClick(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 const mergeProps = (stateProps, dispatchProps) => ({
   ...stateProps,
   ...(!stateProps.appModalHeaderRightOnClick ? dispatchProps : {})
-})
+});
 
 export default connect(
   mapStateToProps,

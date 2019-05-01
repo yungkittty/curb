@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../components/loader";
 import AppModalSceneContainer from "../../components/app-modal-scene-container";
 // eslint-disable-next-line
-import SignInRedirect from "./components/sign-in-redirect";
+import SignInFooter from "./components/sign-in-footer";
 import SignInForm from "./components/sign-in-form";
 
 class SignIn extends Component {
@@ -22,22 +22,10 @@ class SignIn extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      isSignInFetching,
-      t,
-      hideAppModal,
-      setAppModalHeaderRightButton,
-      setAppModalFooterButton
-    } = this.props;
+    const { isSignInFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isSignInFetching === isSignInFetching) return;
-    setAppModalHeaderRightButton({
-      icon: "times",
-      onClick: !isSignInFetching ? hideAppModal : () => undefined
-    });
-    setAppModalFooterButton({
-      text: t("signIn"),
-      onClick: !isSignInFetching ? this.submit : () => undefined
-    });
+    if (isSignInFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   submit() {
@@ -72,7 +60,7 @@ class SignIn extends Component {
     ) : (
       <AppModalSceneContainer>
         <SignInForm email={email} password={password} onChange={this.handleChange} />
-        <SignInRedirect setAppModalScene={setAppModalScene} t={t} />
+        <SignInFooter setAppModalScene={setAppModalScene} t={t} />
       </AppModalSceneContainer>
     );
   }
@@ -84,7 +72,8 @@ SignIn.defaultProps = {
 };
 
 SignIn.propTypes = {
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
