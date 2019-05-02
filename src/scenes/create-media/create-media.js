@@ -10,8 +10,8 @@ import withGroup from "../../hocs/with-group";
 //  import CreateMediaText from "./scenes/create-media-text";
 //  import CreateMediaImage from "./scenes/create-media-image";
 //  import CreateMediaVideo from "./scenes/create-media-video";
-/* eslint-enable */
 import CreateMediaLocation from "./scenes/create-media-location";
+/* eslint-enable */
 
 class CreateMedia extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class CreateMedia extends Component {
         //    case "video":
         //      return CreateMediaVideo;
         case "location":
-          return CreateMediaLocation;
+          return CreateMediaLocation();
         default:
           return undefined;
       }

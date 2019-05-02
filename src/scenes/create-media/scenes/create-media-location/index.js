@@ -1,3 +1,3 @@
-import CreateMediaLocation from "./create-media-location";
+import CreateMediaLocationContainer from "./create-media-location-container";
 
-export default CreateMediaLocation;
+export default CreateMediaLocationContainer;
