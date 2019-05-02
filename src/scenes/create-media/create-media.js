@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../components/list-flat";
-import ModalListItem from "../../components/modal-list-item";
+import AppModalSceneListItem from "../../components/app-modal-scene-list-item";
 import modulesList from "../../utils/modules-list/modules-list";
+import withGroup from "../../hocs/with-group";
 /* eslint-disable */
 //  import CreateMediaText from "./scenes/create-media-text";
 //  import CreateMediaImage from "./scenes/create-media-image";
@@ -50,7 +51,7 @@ class CreateMedia extends Component {
         keyExtractor={item => item.id}
         renderItem={({ item }) =>
           _.includes(groupMediaTypes, item.id) ? (
-            <ModalListItem
+            <AppModalSceneListItem
               icon={item.icon}
               title={t(`modules:${item.id}.title`)}
               onClick={() => this.handleChange(item.id)}
@@ -71,4 +72,8 @@ CreateMedia.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation()(CreateMedia);
+export default _.flow([
+  // eslint-disable-line
+  withGroup,
+  withTranslation()
+])(CreateMedia);
