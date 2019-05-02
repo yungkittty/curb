@@ -24,12 +24,12 @@ class InputForm extends Component {
           </FormPlaceholder>
         )}
         <FormInput
+          {...others}
           style={textStyle}
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
           value={value}
           error={error}
-          {...others}
         />
         {error && (
           <FormError type="h5" weight={300}>

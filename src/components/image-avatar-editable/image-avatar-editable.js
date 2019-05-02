@@ -4,25 +4,15 @@ import Circle from "../circle";
 import InputFile from "../input-file";
 import ImageUser from "../image-user";
 import ImageGroup from "../image-group";
-import FilePreview from "../input-file/components/file-preview";
 
 const ImageAvatarEditable = ({ style, size, userId, groupId, placeholderColor, ...others }) => {
   return (
     <InputFile
       {...others}
+      as={Circle}
+      containerProps={{ diameter: size }}
       type="image"
-      PreviewComponent={() => (
-        <Circle diameter={size} contentStyle={style}>
-          {innerDiameter => (
-            <FilePreview
-              type="image"
-              style={{ width: innerDiameter, height: innerDiameter, borderRadius: innerDiameter / 2 }}
-              {...others}
-            />
-          )}
-        </Circle>
-      )}
-      PlaceholderComponent={
+      Placeholder={
         // eslint-disable-next-line
         userId
           ? () => <ImageUser size={size} userId={userId} placeholderColor={placeholderColor} />
@@ -44,7 +34,8 @@ ImageAvatarEditable.defaultProps = {
 ImageAvatarEditable.propTypes = {
   // eslint-disable-next-line
   style: PropTypes.object,
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired,
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"])
+    .isRequired,
   userId: PropTypes.string,
   groupId: PropTypes.string,
   placeholderColor: PropTypes.string

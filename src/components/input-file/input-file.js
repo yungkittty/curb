@@ -4,25 +4,10 @@ import FileContainer from "./components/file-container";
 import FilePreview from "./components/file-preview";
 import FileSelector from "./components/file-selector";
 
-const InputFile = ({
-  id,
-  type,
-  editMode,
-  data,
-  onSelect,
-  PreviewComponent: previewComponent,
-  PlaceholderComponent: placeholderComponent,
-  ...others
-}) => (
+const InputFile = ({ id, type, editMode, data, onSelect, Placeholder: placeholder, ...others }) => (
   <FileContainer>
     {/* eslint-disable-next-line */}
-    {!data && placeholderComponent ? (
-      placeholderComponent()
-    ) : previewComponent ? (
-      previewComponent()
-    ) : (
-      <FilePreview {...others} type={type} data={data} />
-    )}
+    {!data && placeholder ? placeholder() : <FilePreview {...others} type={type} data={data} />}
     {editMode && (
       <FileSelector
         type={type}
@@ -42,8 +27,7 @@ const InputFile = ({
 InputFile.defaultProps = {
   data: undefined,
   editMode: false,
-  PreviewComponent: null,
-  PlaceholderComponent: null
+  Placeholder: null
 };
 
 InputFile.propTypes = {
@@ -52,8 +36,7 @@ InputFile.propTypes = {
   data: PropTypes.string,
   editMode: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
-  PreviewComponent: PropTypes.func,
-  PlaceholderComponent: PropTypes.func
+  Placeholder: PropTypes.func
 };
 
 export default InputFile;

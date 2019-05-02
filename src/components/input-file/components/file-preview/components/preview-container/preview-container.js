@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Container from "../../../../../container";
 
 const PreviewContainer = styled(Container)`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

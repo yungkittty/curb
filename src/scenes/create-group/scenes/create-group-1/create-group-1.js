@@ -57,7 +57,7 @@ class CreateGroup1 extends Component {
         <ImageAvatarEditable
           editMode
           id="avatar"
-          size="large"
+          size="extra-large"
           data={avatar.value.data}
           onSelect={this.handleChange}
         />

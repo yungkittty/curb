@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -29,4 +30,4 @@ AlertMessage.propTypes = {
   forwardedRef: PropTypes.object
 };
 
-export default withTranslation("alerts")(MessageAnimation(AlertMessage));
+export default _.flow([withTranslation("alerts"), MessageAnimation])(AlertMessage);

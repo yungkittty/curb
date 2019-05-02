@@ -15,8 +15,8 @@ const CircleContainer = ({
   const innerDiameter = (() => {
     const innerDiameters = platformBools.isReact
       ? // eslint-disable-line
-        [40, 60, 80, 200, 320]
-      : [30, 50, 70, 160, 200];
+        [40, 60, 80, 100, 200, 320]
+      : [30, 50, 70, 90, 160, 200];
     switch (diameter) {
       case "extra-small":
         return innerDiameters[0];
@@ -28,6 +28,8 @@ const CircleContainer = ({
         return innerDiameters[3];
       case "extra-large":
         return innerDiameters[4];
+      case "extra-extra-large":
+        return innerDiameters[5];
       default:
         return undefined;
     }
@@ -41,9 +43,7 @@ const CircleContainer = ({
         alignItems: "center",
         justifyContent: "center",
         width: innerDiameter,
-        minWidth: innerDiameter,
         height: innerDiameter,
-        minHeight: innerDiameter,
         borderRadius: innerDiameter / 2,
         overflow: "hidden",
         ...(backgroundColor ? { backgroundColor } : {})
@@ -61,7 +61,8 @@ CircleContainer.defaultProps = {
 };
 
 CircleContainer.propTypes = {
-  diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired,
+  diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"])
+    .isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   backgroundColor: PropTypes.string,
   children: PropTypes.node

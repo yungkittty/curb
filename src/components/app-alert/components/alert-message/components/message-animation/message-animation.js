@@ -17,7 +17,7 @@ const MessageAnimation = WrappedComponent => {
       style.transition = "right 0.5s ease-out, top 0.2s ease-out";
       setTimeout(() => {
         style.right = `30px`;
-      }, 80);
+      });
       setTimeout(() => this.closeMessage(), 3500);
     }
 

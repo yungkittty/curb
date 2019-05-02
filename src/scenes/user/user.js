@@ -127,7 +127,7 @@ class User extends Component {
         <UserContainer>
           <ImageAvatarEditable
             id="avatar"
-            size="extra-large"
+            size="extra-extra-large"
             placeholderColor={theme.primaryColor}
             userId={userId}
             editMode={editMode}
