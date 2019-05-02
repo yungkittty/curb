@@ -24,10 +24,10 @@ class CreateMedia extends Component {
 
   handleChange(moduleId) {
     const { setAppModalScene } = this.props;
-    const scene = () => {
+    const scene = (() => {
       switch (moduleId) {
         case "text":
-          return CreateMediaText();
+          return CreateMediaText;
         //    case "image":
         //      return CreateMediaImage;
         //    case "video":
@@ -37,7 +37,7 @@ class CreateMedia extends Component {
         default:
           return undefined;
       }
-    };
+    }();
     setAppModalScene({ scene, direction: 1 });
   }
 
