@@ -10,7 +10,7 @@ const OverlayBlur = WrappedComponent => {
         width: "100vw",
         height: "100vh",
         top: 0,
-        transition: "all 0.45s ease-out"
+        transition: "all 0.4s ease-out"
       };
 
       this.hideStyle = {
@@ -46,7 +46,7 @@ const OverlayBlur = WrappedComponent => {
 
     onTransitionEnd() {
       const { isAppModalShowed, appModalUnmount } = this.props;
-      if (!isAppModalShowed) setTimeout(() => appModalUnmount());
+      if (!isAppModalShowed) setTimeout(() => appModalUnmount(), 250);
     }
 
     startAnimation(state) {
