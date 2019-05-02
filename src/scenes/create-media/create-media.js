@@ -27,7 +27,7 @@ class CreateMedia extends Component {
     const scene = () => {
       switch (moduleId) {
         case "text":
-          return CreateMediaText;
+          return CreateMediaText();
         //    case "image":
         //      return CreateMediaImage;
         //    case "video":
