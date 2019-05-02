@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <KeyboardAvoidingView behavior="height" enabled>
+        <KeyboardAvoidingView behavior="padding" enabled>
           <AppContainer>
             <AppNavigation />
             <Switch>
