@@ -13,11 +13,7 @@ const ContainerScroll = ({
   showsVerticalScrollIndicator,
   horizontal
 }) => (
-  <ScrollContainer
-    className={className}
-    style={style}
-    horizontal={horizontal}
-  >
+  <ScrollContainer className={className} style={style} horizontal={horizontal}>
     <ScrollContainerContent
       ref={forwardedRef}
       style={contentContainerStyle}
@@ -52,6 +48,6 @@ ContainerScroll.propTypes = {
   horizontal: PropTypes.bool
 };
 
-export default React.forwardRef((props, forwardedRef) => (
-  <ContainerScroll {...props} forwardedRef={forwardedRef} />
-));
+export default React.forwardRef((props, forwardedRef) => {
+  return <ContainerScroll {...props} forwardedRef={forwardedRef} />;
+});
