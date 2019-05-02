@@ -33,7 +33,7 @@ class CreateMedia extends Component {
         //    case "video":
         //      return CreateMediaVideo;
         case "location":
-          return CreateMediaLocation;
+          return CreateMediaLocation();
         default:
           return undefined;
       }
