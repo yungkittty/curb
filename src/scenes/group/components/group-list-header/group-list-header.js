@@ -5,10 +5,13 @@ import HeaderContainer from "./components/header-container";
 import HeaderButtonIcon from "./components/header-button-icon";
 import ImageGroup from "../../../../components/image-group";
 import HeaderTitle from "./components/header-title";
+import GroupQr from "../../scenes/group-qr";
+import withAppModal from "../../../../hocs/with-app-modal";
 
 const GroupListHeader = ({
   isFeed,
   toggleScene,
+  showAppModal,
   userGroupsId,
   groupId,
   groupName,
@@ -23,7 +26,7 @@ const GroupListHeader = ({
           icon="qrcode"
           size="small"
           color={theme.backgroundColor}
-          onClick={() => undefined} // eslint-disable-next-line
+          onClick={() => showAppModal({ scene: GroupQr })}
           style={{ right: 40 }}
         />
         <HeaderButtonIcon
@@ -48,6 +51,7 @@ const GroupListHeader = ({
 );
 
 GroupListHeader.propTypes = {
+  showAppModal: PropTypes.func.isRequired,
   isFeed: PropTypes.bool.isRequired,
   toggleScene: PropTypes.func.isRequired,
   userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
@@ -58,4 +62,4 @@ GroupListHeader.propTypes = {
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default GroupListHeader;
+export default withAppModal(GroupListHeader);

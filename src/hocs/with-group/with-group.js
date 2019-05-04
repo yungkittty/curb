@@ -1,6 +1,8 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter, matchPath } from "react-router";
 import { groupsActions, groupsSelectors } from "../../datas/groups";
 
 const withGroup = WrappedComponent => {
@@ -26,7 +28,8 @@ const withGroup = WrappedComponent => {
   }
 
   const mapStateToProps = (state, ownProps) => {
-    const groupId = ownProps.groupId || ((ownProps.match || {}).params || {}).id || "";
+    const groupId =
+      ownProps.groupId || matchPath(ownProps.location.pathname, { path: "/groups/:id" }).params.id || "";
     const {
       isFetching: isFetchingGroup = false,
       creatorId: groupCreatorId = "",
@@ -35,6 +38,7 @@ const withGroup = WrappedComponent => {
       avatarUrl: groupAvatar = "",
       status: groupStatus = "",
       theme: groupTheme = "",
+      inviteToken: groupInviteToken = "",
       users: groupUsersId = [],
       mediaTypes: groupMediaTypes = [],
       medias: groupMediasId = [],
@@ -49,6 +53,7 @@ const withGroup = WrappedComponent => {
       groupAvatar,
       groupStatus,
       groupTheme,
+      groupInviteToken,
       groupUsersId,
       groupMediaTypes,
       groupMediasId,
@@ -65,10 +70,14 @@ const withGroup = WrappedComponent => {
     getGroup: PropTypes.func.isRequired
   };
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(WithGroup);
+  return _.flowRight([
+    // eslint-disable-line
+    withRouter,
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )
+  ])(WithGroup);
 };
 
 export default withGroup;

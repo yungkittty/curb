@@ -21,7 +21,7 @@ const ImageGroup = ({
 }) => (
   <CircleContainer
     {...others}
-    diameter={size}
+    diameter={size} // diameter
     backgroundColor={
       (isFetchingGroup && !groupName) || groupAvatar
         ? placeholderColor

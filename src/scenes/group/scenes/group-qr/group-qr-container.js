@@ -1,0 +1,42 @@
+import _ from "lodash";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import GroupQr from "./group-qr";
+import { groupsActions } from "../../../../datas/groups";
+import withAppModal from "../../../../hocs/with-app-modal";
+import withGroup from "../../../../hocs/with-group";
+
+class GroupQrContainer extends React.Component {
+  componentDidMount() {
+    const { groupStatus, getGroupInviteToken, groupId } = this.props;
+    // eslint-disable-next-line
+    groupStatus === "private" && getGroupInviteToken({ id: groupId });
+  }
+
+  render() {
+    return <GroupQr {...this.props} />;
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  getGroupInviteToken: payload => dispatch(groupsActions.getGroupInviteTokenRequest(payload))
+});
+
+GroupQrContainer.propTypes = {
+  groupId: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired,
+  getGroupInviteToken: PropTypes.func.isRequired
+};
+
+/** @TODO Same strategy with container ! Right ! */
+
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withGroup,
+  connect(
+    undefined,
+    mapDispatchToProps
+  )
+])(GroupQrContainer);
