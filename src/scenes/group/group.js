@@ -1,62 +1,121 @@
+/* eslint-disable */
+
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import GroupList from "./components/group-list";
-import GroupListHeader from "./components/group-list-header";
-import GroupListSectionHeader from "./components/group-list-section-header";
-import GroupListSectionItem from "./components/group-list-section-item";
+import GroupListSection from "./components/group-list";
+import GroupListSectionHeader from "./components/group-list-header";
+import GroupListSectionHeaderBis from "./components/group-list-section-header";
+import GroupListItemInfo from "./components/group-list-item-info";
+import GroupListItemMedia from "./components/group-list-item-media";
 import ButtonIconFloat from "../../components/button-icon-float";
 import withCurrentUser from "../../hocs/with-current-user";
 import withGroup from "../../hocs/with-group";
 
-const Group = ({
-  userGroupsId,
-  isFetchingGroup,
-  groupId,
-  groupName,
-  groupAvatar,
-  groupStatus,
-  groupTheme,
-  groupMediasId,
-  theme
-}) => (
-  <React.Fragment>
-    <GroupList
-      sections={[{ data: groupMediasId }]}
-      keyExtractor={groupMediaId => groupMediaId}
-      ListHeaderComponent={() => (
-        <GroupListHeader
-          userGroupsId={userGroupsId}
-          isFetchingGroup={isFetchingGroup}
-          groupId={groupId}
-          groupName={groupName}
-          groupAvatar={groupAvatar}
-          groupStatus={groupStatus}
-          groupTheme={groupTheme}
-          theme={theme}
+class Group extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleScene = this.toggleScene.bind(this);
+    this.renderItemInfo = this.renderItemInfo.bind(this);
+    this.renderItemMedia = this.renderItemMedia.bind(this);
+    this.state = { isFeed: true };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { groupId } = this.props;
+    if (groupId === prevProps.groupId) return;
+    // eslint-disable-next-line
+    this.setState({ isFeed: true });
+  }
+
+  toggleScene() {
+    const { isFeed } = this.state;
+    this.setState({ isFeed: !isFeed });
+  }
+
+  renderItemInfo() {
+    const {
+      // eslint-disable-line
+      groupUsersId,
+      groupMediaTypes,
+      theme
+    } = this.props;
+    return (
+      <GroupListItemInfo
+        // eslint-disable-line
+        groupUsersId={groupUsersId}
+        groupMediaTypes={groupMediaTypes}
+        theme={theme}
+      />
+    );
+  }
+
+  renderItemMedia({ item: mediaId }) {
+    const { theme } = this.props;
+    return (
+      <GroupListItemMedia
+        // eslint-disable-line
+        mediaId={mediaId}
+        theme={theme}
+      />
+    );
+  }
+
+  render() {
+    const { isFeed } = this.state;
+    const {
+      userGroupsId,
+      isFetchingGroup,
+      groupId,
+      groupName,
+      groupAvatar,
+      groupStatus,
+      groupTheme,
+      groupMediasId,
+      theme
+    } = this.props;
+    return (
+      <React.Fragment>
+        <GroupListSection
+          isFeed={isFeed}
+          sections={
+            !isFeed
+              ? [{ data: [{}], renderItem: this.renderItemInfo }]
+              : [{ data: groupMediasId, renderItem: this.renderItemMedia }]
+          }
+          keyExtractor={groupMediaId => groupMediaId}
+          ListHeaderComponent={() => (
+            <React.Fragment>
+              <GroupListSectionHeader
+                isFeed={isFeed}
+                toggleScene={this.toggleScene}
+                userGroupsId={userGroupsId}
+                isFetchingGroup={isFetchingGroup}
+                groupId={groupId}
+                groupName={groupName}
+                groupAvatar={groupAvatar}
+                groupStatus={groupStatus}
+                groupTheme={groupTheme}
+                theme={theme}
+              />
+            </React.Fragment>
+          )}
+          renderSectionHeader={() => (
+            <GroupListSectionHeaderBis
+              userGroupsId={userGroupsId}
+              groupId={groupId}
+              groupStatus={groupStatus}
+              groupTheme={groupTheme}
+              theme={theme}
+            />
+          )}
         />
-      )}
-      renderSectionHeader={() => (
-        <GroupListSectionHeader
-          userGroupsId={userGroupsId}
-          groupId={groupId}
-          groupStatus={groupStatus}
-          groupTheme={groupTheme}
-          theme={theme}
-        />
-      )}
-      renderItem={({ item: groupMediaId }) => (
-        <GroupListSectionItem
-          // eslint-disable-line
-          mediaId={groupMediaId}
-          theme={theme}
-        />
-      )}
-    />
-    <ButtonIconFloat icon="plus" onClick={() => undefined} />
-  </React.Fragment>
-);
+        <ButtonIconFloat icon="plus" onClick={() => undefined} />
+      </React.Fragment>
+    );
+  }
+}
 
 Group.propTypes = {
   userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
@@ -66,6 +125,8 @@ Group.propTypes = {
   groupAvatar: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
+  groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
+  groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
   groupMediasId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };

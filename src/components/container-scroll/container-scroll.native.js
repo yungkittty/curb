@@ -1,23 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, ScrollView } from "react-native";
-
-// https://stackoverflow.com/a/45134830
+import { ScrollView } from "react-native";
 
 const ContainerScroll = ({ contentContainerStyle, ...others }) => (
-  <View style={{ flex: 1 }}>
-    <ScrollView
-      {...others}
-      contentContainerStyle={[
-        contentContainerStyle,
-        { flexGrow: 1 }
-      ]}
-    />
-  </View>
+  <ScrollView
+    {...others}
+    contentContainerStyle={[
+      // eslint-disable-line
+      contentContainerStyle,
+      { flex: 1 }
+    ]}
+  />
 );
 
-ContainerScroll.defaultProps = { contentContainerStyle: undefined };
+ContainerScroll.defaultProps = {
+  contentContainerStyle: undefined
+};
 
-ContainerScroll.propTypes = { contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]) };
+ContainerScroll.propTypes = {
+  contentContainerStyle: PropTypes.object // eslint-disable-line
+};
 
 export default ContainerScroll;

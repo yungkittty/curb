@@ -12,7 +12,7 @@ const HeaderContainer = styled(Container)`
   width: 100%;
   height: 500px;
   min-height: 500px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   background-color: ${props => props.theme[`group${_.capitalize(props.groupTheme)}Color`]};
 `;
 

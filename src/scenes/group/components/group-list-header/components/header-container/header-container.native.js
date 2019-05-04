@@ -15,7 +15,7 @@ const HeaderContainer = styled(Container)`
   min-width: 100%;
   height: 350px;
   min-height: 350px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   background-color: ${props => props.theme[`group${_.capitalize(props.groupTheme)}Color`]};
 `;
 

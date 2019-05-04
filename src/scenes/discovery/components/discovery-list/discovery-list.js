@@ -47,7 +47,6 @@ class DiscoveryList extends React.Component {
     } = this.listFlat.current.containerScroll.current;
     this.setState({
       isScrollableToLeft: scrollLeft !== 0,
-      // eslint-disable-next-line
       isScrollableToRight: scrollWidth - scrollLeft > clientWidth + 40
     });
   }
@@ -66,7 +65,8 @@ class DiscoveryList extends React.Component {
     const { data: itemsData } = this.props;
     this.scrollToCurrentIndex = Math.min(
       this.scrollToCurrentIndex + this.scrollToOffset,
-      itemsData.length - this.scrollToOffset);
+      itemsData.length - this.scrollToOffset
+    );
     const { current: listFlat } = this.listFlat;
     listFlat.scrollToIndex({ index: this.scrollToCurrentIndex });
   }
@@ -74,33 +74,39 @@ class DiscoveryList extends React.Component {
   render() {
     const { isScrollableToLeft, isScrollableToRight } = this.state;
     return (
-      <Container style={{ position: "relative" }}>
-        {isScrollableToLeft ? (
+      <ListFlat
+        {...this.props}
+        ref={this.listFlat}
+        contentContainerStyle={{ paddingLeft: 40 }}
+        getItemLayout={(_, itemIndex) => ({ length: 140, offset: 140 * itemIndex })}
+      />
+    );
+  }
+}
+
+/*
+{/* 
+        <Container style={{ position: "relative" }}>
+        isScrollableToLeft ? (
           <ListButtonIconFloat
             // eslint-disable-line
             icon="angle-left"
             style={{ left: 20 }}
             onClick={this.scrollToLeft}
           />
-        ) : null}
-        <ListFlat
-          {...this.props}
-          ref={this.listFlat}
-          contentContainerStyle={{ paddingLeft: 40 }}
-          getItemLayout={(_, itemIndex) => ({ offset: 140 * itemIndex })}
-        />
-        {isScrollableToRight ? (
+        ) : null 
+{/* isScrollableToRight ? (
           <ListButtonIconFloat
             // eslint-disable-line
             icon="angle-right"
             style={{ right: 20 }}
             onClick={this.scrollToRight}
           />
-        ) : null}
-      </Container>
-    );
-  }
-}
+          </Container>
+        ) : null 
+
+
+*/
 
 DiscoveryList.propTypes = {
   // eslint-disable-next-line

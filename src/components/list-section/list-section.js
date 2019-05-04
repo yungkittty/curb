@@ -10,11 +10,12 @@ class ListSection extends React.Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  renderItem(sectionData, itemData, itemIndex) {
+  renderItem({ renderItem: renderItemBis, ...sectionData }, itemData, itemIndex) {
     const { keyExtractor, renderItem } = this.props;
+    const itemRender = renderItemBis || renderItem;
     const itemParams = { item: itemData, index: itemIndex, section: sectionData };
     const itemProps = { key: keyExtractor ? keyExtractor(itemData, itemIndex) : itemData.key };
-    return React.cloneElement(renderItem(itemParams), itemProps);
+    return React.cloneElement(itemRender(itemParams), itemProps);
   }
 
   // eslint-disable-next-line
@@ -29,10 +30,20 @@ class ListSection extends React.Component {
     return (
       <React.Fragment key={`${sectionIndex}:section`}>
         {renderSectionHeader &&
-          this.renderSectionLayout(renderSectionHeader, sectionData, `${sectionIndex}:section:header`)}
+          this.renderSectionLayout(
+            // eslint-disable-line
+            renderSectionHeader,
+            sectionData,
+            `${sectionIndex}:section:header`
+          )}
         {_.map(itemData, this.renderItem.bind(undefined, sectionData))}
         {renderSectionFooter &&
-          this.renderSectionLayout(renderSectionFooter, sectionData, `${sectionIndex}:section:footer`)}
+          this.renderSectionLayout(
+            // eslint-disable-line
+            renderSectionFooter,
+            sectionData,
+            `${sectionIndex}:section:footer`
+          )}
       </React.Fragment>
     );
   }
@@ -101,8 +112,7 @@ ListSection.propTypes = {
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool,
-  // eslint-disable-next-line
-  sections: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.array.isRequired })).isRequired,
+  sections: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.array.isRequired })).isRequired, // eslint-disable-line
   ListHeaderComponent: PropTypes.func,
   ListFooterComponent: PropTypes.func,
   keyExtractor: PropTypes.func,

@@ -7,7 +7,8 @@ import ImageGroup from "../../../../components/image-group";
 import HeaderTitle from "./components/header-title";
 
 const GroupListHeader = ({
-  // eslint-disable-line
+  isFeed,
+  toggleScene,
   userGroupsId,
   groupId,
   groupName,
@@ -16,30 +17,39 @@ const GroupListHeader = ({
   theme
 }) => (
   <HeaderContainer groupTheme={groupTheme}>
-    <React.Fragment>
-      {groupStatus === "public" || _.includes(userGroupsId, groupId) ? (
+    {groupStatus === "public" || _.includes(userGroupsId, groupId) ? (
+      <React.Fragment>
         <HeaderButtonIcon
-          icon="info-circle"
+          icon="qrcode"
           size="small"
           color={theme.backgroundColor}
           onClick={() => undefined} // eslint-disable-next-line
+          style={{ right: 40 }}
         />
-      ) : null}
-      <ImageGroup
-        // eslint-disable-line
-        groupId={groupId}
-        size="large"
-        placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`] || ""}
-      />
-      <HeaderTitle type="h1" weight={700}>
-        {/* eslint-disable-line */}
-        {groupName}
-      </HeaderTitle>
-    </React.Fragment>
+        <HeaderButtonIcon
+          icon={isFeed ? "info-circle" : "stream"}
+          size="small"
+          color={theme.backgroundColor}
+          onClick={toggleScene}
+          style={{ right: 95 }}
+        />
+      </React.Fragment>
+    ) : null}
+    <ImageGroup
+      groupId={groupId}
+      size="extra-large"
+      placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`] || ""}
+    />
+    <HeaderTitle type="h1" weight={700}>
+      {/* eslint-disable-line */}
+      {groupName}
+    </HeaderTitle>
   </HeaderContainer>
 );
 
 GroupListHeader.propTypes = {
+  isFeed: PropTypes.bool.isRequired,
+  toggleScene: PropTypes.func.isRequired,
   userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,

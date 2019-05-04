@@ -1,3 +1,3 @@
-import GroupList from "./group-list";
+import GroupListSection from "./group-list-section";
 
-export default GroupList;
+export default GroupListSection;
