@@ -15,7 +15,7 @@ const SelectorContainer = styled(Container)`
   width: 40px;
   height: 40px;
   z-index: 4;
-  box-shadow: 0px 3.6px 3.24px 0px rgba(0, 0, 0, 0.189);
+  box-shadow: 0px 2.4px 2.16px 0px rgba(0, 0, 0, 0.186);
 `;
 
 export default SelectorContainer;

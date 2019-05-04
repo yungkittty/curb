@@ -1,4 +1,4 @@
-const enAlerts = {
+const enAppAlerts = {
   patchUser: {
     userSuccess: "Your profile has been updated",
     USERS_DUPLICATE_NAME: "This username is already taken"
@@ -13,4 +13,4 @@ const enAlerts = {
   signOutFailure: "An error has occured while Signin out"
 };
 
-export default enAlerts;
+export default enAppAlerts;

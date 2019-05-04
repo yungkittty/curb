@@ -1,4 +1,4 @@
-const frAlerts = {
+const frAppAlerts = {
   patchUser: {
     userSuccess: "Votre profil a bien été mis à jour",
     USERS_DUPLICATE_NAME: "Ce nom d'utilisateur est déjà pris"
@@ -13,4 +13,4 @@ const frAlerts = {
   signOutFailure: "Une erreur est survenue pour vous déconnecter"
 };
 
-export default frAlerts;
+export default frAppAlerts;

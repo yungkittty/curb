@@ -25,8 +25,8 @@ const MessageAnimation = WrappedComponent => {
     }
 
     componentDidUpdate(prevProps) {
-      const { index } = this.props;
-      if (prevProps.index === index) setTimeout(() => this.closeMessage(), 500);
+      const { arrayLength } = this.props;
+      if (prevProps.arrayLength !== arrayLength) setTimeout(() => this.closeMessage(), 500);
     }
 
     closeMessage() {
@@ -52,7 +52,7 @@ const MessageAnimation = WrappedComponent => {
   }
 
   _MessageAnimation.propTypes = {
-    index: PropTypes.number.isRequired
+    arrayLength: PropTypes.number.isRequired
   };
 
   return _MessageAnimation;

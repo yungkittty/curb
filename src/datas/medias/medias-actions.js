@@ -18,9 +18,9 @@ const mediasActions = {
     type: mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST,
     payload
   }),
-  postMediaAvatarSuccess: payload => ({
+  postMediaAvatarSuccess: () => ({
     type: mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS,
-    payload
+    payload: undefined
   }),
   postMediaAvatarFailure: error => ({
     type: mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE,

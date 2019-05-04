@@ -20,8 +20,8 @@ function* getMediaRequestSaga(action) {
 function* postMediaAvatarRequestSaga(action) {
   const { target, id, onSuccessAlert } = action.payload;
   try {
-    const respond = yield call(mediasApi.postMediaAvatar, action.payload);
-    yield put(mediasActions.postMediaAvatarSuccess(respond));
+    yield call(mediasApi.postMediaAvatar, action.payload);
+    yield put(mediasActions.postMediaAvatarSuccess());
     if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
     yield put(
       target === "users" ? usersActions.getUserRequest({ id }) : groupsActions.getGroupRequest({ id })

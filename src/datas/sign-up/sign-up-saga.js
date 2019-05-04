@@ -10,8 +10,8 @@ import appAlertActions from "../app-alert/app-alert-actions";
 
 function* signUpRequestSaga(action) {
   try {
-    const { name, email, password, avatar } = action.payload;
-    const { data: payload } = yield call(signUpApi.signUp, { name, email, password });
+    const { avatar, ...others } = action.payload;
+    const { data: payload } = yield call(signUpApi.signUp, others);
     if (avatar) {
       yield put(
         mediasActions.postMediaAvatarRequest({
@@ -20,13 +20,10 @@ function* signUpRequestSaga(action) {
           avatar
         })
       );
-      const { type } = yield take([
+      yield take([
         mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS,
         mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE
       ]);
-      if (type === mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE) {
-        throw new Error();
-      }
     }
     yield put(signUpActions.signUpSuccess(payload));
     yield put(

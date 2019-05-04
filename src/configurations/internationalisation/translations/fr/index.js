@@ -9,7 +9,7 @@ import appDownload from "./fr-app-download";
 import settings from "./fr-settings";
 import createGroup from "./fr-create-group";
 import modules from "./fr-modules";
-import alerts from "./fr-alerts";
+import appAlerts from "./fr-app-alerts";
 
 export default {
   common,
@@ -23,5 +23,5 @@ export default {
   settings,
   createGroup,
   modules,
-  alerts
+  appAlerts
 };
