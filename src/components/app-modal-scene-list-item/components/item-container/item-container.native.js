@@ -8,7 +8,7 @@ const ItemContainer = styled(ButtonContainer)`
   flex-direction: row;
   width: 100%;
   height: 100px;
-  background: ${({ backgroundcolor }) => backgroundcolor || "transparent"};
+  background: ${({ backgroundColor }) => backgroundColor || "transparent"};
 `;
 
 export default ItemContainer;

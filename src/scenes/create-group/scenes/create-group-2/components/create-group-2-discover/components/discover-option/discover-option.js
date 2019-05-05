@@ -7,6 +7,7 @@ import OptionTitle from "./components/option-title";
 import OptionDescription from "./components/option-description";
 
 const DiscoverOption = ({
+  // eslint-disable-line
   theme,
   icon,
   title,
@@ -14,11 +15,7 @@ const DiscoverOption = ({
   selected,
   onClick
 }) => (
-  <OptionContainer
-    hoverColor={theme.primaryVariantColor}
-    selected={selected}
-    onClick={onClick}
-  >
+  <OptionContainer selected={selected} onClick={onClick}>
     <Fragment>
       <Icon
         icon={icon}
