@@ -42,13 +42,13 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  as: PropTypes.func,
+  as: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   children: PropTypes.node,
   contentStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  component: PropTypes.func
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 export default Button;

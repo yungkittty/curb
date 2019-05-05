@@ -102,7 +102,8 @@ ListSection.defaultProps = {
   ListFooterComponent: null,
   keyExtractor: () => undefined,
   renderSectionHeader: null,
-  renderSectionFooter: null
+  renderSectionFooter: null,
+  renderItem: null
 };
 
 ListSection.propTypes = {
@@ -118,7 +119,7 @@ ListSection.propTypes = {
   keyExtractor: PropTypes.func,
   renderSectionHeader: PropTypes.func,
   renderSectionFooter: PropTypes.func,
-  renderItem: PropTypes.func.isRequired
+  renderItem: PropTypes.func
 };
 
 export default ListSection;

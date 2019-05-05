@@ -1,5 +1,5 @@
 import React from "react";
-import { withTheme } from "styled-components";
+// import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 import ItemContainer from "./components/item-container";
 import ItemIcon from "./components/item-icon";
@@ -7,12 +7,12 @@ import ItemPreview from "./components/item-preview";
 import ItemSelection from "./components/item-selection";
 
 const AppModalSceneListItem = ({
-  theme,
+  // theme,
   icon,
   title,
   titleColor,
   backgroundColor,
-  normalHoverColor,
+  // normalHoverColor,
   description,
   selected,
   selectedColorAlternate,
@@ -22,7 +22,7 @@ const AppModalSceneListItem = ({
 }) => (
   <ItemContainer
     backgroundcolor={backgroundColor}
-    hoverColor={!normalHoverColor ? theme.primaryVariantColor : undefined}
+    // hoverColor={!normalHoverColor ? theme.primaryVariantColor : undefined}
     selected={selected}
     disabled={disabled}
     onClick={onClick}
@@ -53,7 +53,7 @@ AppModalSceneListItem.defaultProps = {
   icon: undefined,
   titleColor: undefined,
   backgroundColor: undefined,
-  normalHoverColor: false,
+  // normalHoverColor: false,
   description: undefined,
   selected: undefined,
   selectedColorAlternate: undefined,
@@ -63,13 +63,12 @@ AppModalSceneListItem.defaultProps = {
 };
 
 AppModalSceneListItem.propTypes = {
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired,
+  // theme: PropTypes.object.isRequired,
   icon: PropTypes.string,
   title: PropTypes.string.isRequired,
   titleColor: PropTypes.string,
   backgroundColor: PropTypes.string,
-  normalHoverColor: PropTypes.bool,
+  // normalHoverColor: PropTypes.bool,
   description: PropTypes.string,
   selected: PropTypes.bool,
   selectedColorAlternate: PropTypes.bool,
@@ -78,4 +77,4 @@ AppModalSceneListItem.propTypes = {
   onClick: PropTypes.func
 };
 
-export default withTheme(AppModalSceneListItem);
+export default /* withTheme( */ AppModalSceneListItem /* ) */;

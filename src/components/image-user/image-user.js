@@ -48,13 +48,17 @@ const ImageUser = ({
   </CircleContainer>
 );
 
+ImageUser.defaultProps = {
+  placeholderColor: undefined
+};
+
 ImageUser.propTypes = {
   isFetchingUser: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
-  placeholderColor: PropTypes.string.isRequired
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired,
+  placeholderColor: PropTypes.string
 };
 
 export default _.flow([

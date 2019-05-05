@@ -4,7 +4,7 @@ import currentSettingsActionsTypes from "./current-settings-actions-types";
 const language = (state = "", action) => {
   switch (action.type) {
     case currentSettingsActionsTypes.SET_CURRENT_SETTINGS_LANGUAGE:
-      return { ...state, language: action.payload.language };
+      return action.payload.language;
     default:
       return state;
   }

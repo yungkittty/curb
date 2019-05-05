@@ -64,7 +64,7 @@ CircleContainer.propTypes = {
   diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   backgroundColor: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
 };
 
 export default CircleContainer;

@@ -17,6 +17,7 @@ const GroupListItemInfo = ({
     <InfoList
       text={"Users"}
       data={groupUsersId}
+      keyExtractor={groupUserId => groupUserId}
       renderItem={({ item: userId }) => (
         <InfoListItemUser
           // eslint-disable-line
@@ -28,6 +29,7 @@ const GroupListItemInfo = ({
     <InfoList
       text={"Modules"}
       data={groupMediaTypes}
+      keyExtractor={groupMediaType => groupMediaType}
       renderItem={() => (
         <InfoListItemMediaType
           // eslint-disable-line

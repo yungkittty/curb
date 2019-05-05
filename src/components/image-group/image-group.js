@@ -54,14 +54,18 @@ const ImageGroup = ({
   </CircleContainer>
 );
 
+ImageGroup.defaultProps = {
+  placeholderColor: undefined
+};
+
 ImageGroup.propTypes = {
   isFetchingGroup: PropTypes.bool.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
-  placeholderColor: PropTypes.string.isRequired
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired,
+  placeholderColor: PropTypes.string
 };
 
 export default _.flow([

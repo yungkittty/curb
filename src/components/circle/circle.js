@@ -45,7 +45,7 @@ Circle.defaultProps = {
 };
 
 Circle.propTypes = {
-  as: PropTypes.func,
+  as: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
@@ -53,7 +53,7 @@ Circle.propTypes = {
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   children: PropTypes.node,
   contentStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  component: PropTypes.func
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 export default Circle;
