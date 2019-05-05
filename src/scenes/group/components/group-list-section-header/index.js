@@ -1,3 +1,3 @@
-import GroupListSectionHeader from "./group-list-section-header";
+import GroupListSectionHeaderContainer from "./group-list-section-header-container";
 
-export default GroupListSectionHeader;
+export default GroupListSectionHeaderContainer;

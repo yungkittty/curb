@@ -21,7 +21,6 @@ class GroupQr extends React.Component {
       isFetchingGroup,
       groupId,
       groupName,
-      groupStatus,
       groupInviteToken
     } = this.props;
 
@@ -40,7 +39,7 @@ class GroupQr extends React.Component {
             </QrTitle>
           </QrHeader>
           <QrCode
-            value={`${groupId}${groupStatus === "private" ? `?token=${groupInviteToken}` : ""}`}
+            value={JSON.stringify({ id: groupId, inviteToken: groupInviteToken })}
             size={platformBools.isReact ? 240 : 200}
           />
         </QrContainer>
@@ -54,7 +53,6 @@ GroupQr.propTypes = {
   isFetchingGroup: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
-  groupStatus: PropTypes.string.isRequired,
   groupInviteToken: PropTypes.string.isRequired
 };
 

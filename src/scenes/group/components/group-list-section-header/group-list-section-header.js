@@ -1,8 +1,6 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router";
-import { withTranslation } from "react-i18next";
 import HeaderContainer from "./components/header-container";
 import HeaderButtonIcon from "./components/header-button-icon";
 import HeaderTitle from "./components/header-title";
@@ -15,21 +13,18 @@ class GroupListSectionHeader extends React.Component {
     this.state = { isShowed: undefined, isInvited: undefined };
   }
 
-  /** @TODO QR should pass state is_invited! */
-
   static getDerivedStateFromProps(nextProps, prevState) {
     const { groupId, groupStatus, userGroupsId } = nextProps;
     if (!groupId || !groupStatus || prevState.isShowed === false) return {};
-    const { isInvited, inviteToken } = nextProps.location.state || {};
-    const isGroupPublic = groupStatus === "public";
     const isUserIn = _.includes(userGroupsId, groupId);
-    const isUserInvited = isInvited && (isGroupPublic || RegExp("^([a-f\\d]{24})$").test(inviteToken));
+    const { isUserInvited } = nextProps.location.state || {};
+    const isGroupPublic = groupStatus === "public";
     return { isShowed: !isUserIn && (isGroupPublic || isUserInvited), isInvited: isUserInvited };
   }
 
   render() {
     const { isShowed, isInvited } = this.state;
-    const { groupTheme, theme, t } = this.props;
+    const { groupId, groupTheme, postGroupInviteToken, theme, t } = this.props;
     return isShowed ? (
       <HeaderContainer>
         <HeaderButtonIcon
@@ -46,7 +41,7 @@ class GroupListSectionHeader extends React.Component {
           weight={700}
           groupTheme={groupTheme}
           contentStyle={{ color: theme.backgroundColor }}
-          onClick={() => undefined} // eslint-disable-line
+          onClick={() => postGroupInviteToken({ id: groupId })}
         >
           {t("headerButtonText")}
         </HeaderButtonText>
@@ -63,13 +58,10 @@ GroupListSectionHeader.propTypes = {
   groupId: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
+  postGroupInviteToken: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   /* eslint-enable */
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([
-  // eslint-disable-line
-  withRouter,
-  withTranslation("group")
-])(GroupListSectionHeader);
+export default GroupListSectionHeader;

@@ -5,9 +5,12 @@ import groupsActionsTypes from "./groups-actions-types";
 const isFetching = (state = false, action) => {
   switch (action.type) {
     case groupsActionsTypes.POST_GROUP_REQUEST:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST:
       return true;
     case groupsActionsTypes.POST_GROUP_SUCCESS:
     case groupsActionsTypes.POST_GROUP_FAILURE:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE:
       return false;
     default:
       return state;
@@ -74,8 +77,11 @@ const errorCode = (state = "", action) => {
   switch (action.type) {
     case groupsActionsTypes.POST_GROUP_REQUEST:
     case groupsActionsTypes.POST_GROUP_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
       return "";
     case groupsActionsTypes.POST_GROUP_FAILURE:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE:
       return action.payload.errorCode;
     default:
       return state;

@@ -30,6 +30,16 @@ function* getGroupRequestSaga(action) {
   }
 }
 
+function* postGroupInviteTokenRequestSaga(action) {
+  try {
+    yield call(groupsApi.postGroupInviteToken, action.payload);
+    yield put(groupsActions.postGroupInviteTokenSuccess());
+  } catch (error) {
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    yield put(groupsActions.postGroupInviteTokenFailure({ errorCode }));
+  }
+}
+
 function* getGroupInviteTokenRequestSaga(action) {
   try {
     const { data: payload } = yield call(groupsApi.getGroupInviteToken, action.payload);
@@ -43,6 +53,7 @@ function* getGroupInviteTokenRequestSaga(action) {
 const groupsSaga = all([
   takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
   takeNormalize(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
+  takeLatest(groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST, postGroupInviteTokenRequestSaga),
   takeLatest(groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)
 ]);
 
