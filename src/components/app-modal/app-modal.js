@@ -30,9 +30,9 @@ const AppModal = ({
           currentStep={appModalHeaderCurrentStep}
           steps={appModalHeaderSteps}
           leftIcon={appModalHeaderLeftIcon}
-          leftOnClick={isAppModalButtonsEnabled && appModalHeaderLeftOnClick}
+          leftOnClick={isAppModalButtonsEnabled ? appModalHeaderLeftOnClick : undefined}
           rightIcon={appModalHeaderRightIcon}
-          rightOnClick={isAppModalButtonsEnabled && appModalHeaderRightOnClick}
+          rightOnClick={isAppModalButtonsEnabled ? appModalHeaderRightOnClick : undefined}
         />
         <ModalScene
           scene={appModalScene}
@@ -40,7 +40,7 @@ const AppModal = ({
           sceneData={appModalSceneData}
         />
         {appModalFooterText ? (
-          <ModalFooter weight={500} onClick={isAppModalButtonsEnabled && appModalFooterOnClick}>
+          <ModalFooter weight={500} onClick={isAppModalButtonsEnabled ? appModalFooterOnClick : undefined}>
             {appModalFooterText}
           </ModalFooter>
         ) : null}
@@ -73,8 +73,7 @@ AppModal.propTypes = {
   appModalHeaderRightOnClick: PropTypes.func.isRequired,
   appModalScene: PropTypes.func,
   appModalSceneDirection: PropTypes.number,
-  // eslint-disable-next-line
-  appModalSceneData: PropTypes.object,
+  appModalSceneData: PropTypes.object, // eslint-disable-line
   appModalFooterText: PropTypes.string,
   appModalFooterOnClick: PropTypes.func
 };
