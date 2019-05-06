@@ -23,7 +23,6 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
           quality: 1,
           noData: true,
           allowsEditing: true,
-          storageOptions: { skipBackup: true, cameraRoll: true, waitUntilSaved: true },
           permissionDenied: {
             title: t("permissionDenied"),
             text: t("askCameraText"),
