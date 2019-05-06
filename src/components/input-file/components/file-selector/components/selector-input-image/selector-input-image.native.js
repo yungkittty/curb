@@ -36,7 +36,7 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
             onSelect(uri, {
               uri,
               type: response.type,
-              name: response.fileName
+              name: "image.jpg"
             });
           }
         }
