@@ -30,4 +30,4 @@ AlertMessage.propTypes = {
   forwardedRef: PropTypes.object
 };
 
-export default _.flow([withTranslation("alerts"), MessageAnimation])(AlertMessage);
+export default _.flow([withTranslation("appAlerts"), MessageAnimation])(AlertMessage);
