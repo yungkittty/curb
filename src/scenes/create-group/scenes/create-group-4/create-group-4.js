@@ -117,6 +117,7 @@ class CreateGroup4 extends Component {
             title={t(`themeList.${item.id}`)}
             titleColor="#ffffff"
             backgroundColor={theme[item.themeColor]}
+            normalHoverColor
             selected={item.id === value}
             selectionType
             selectedColorAlternate
@@ -169,7 +170,7 @@ CreateGroup4.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withRouter,

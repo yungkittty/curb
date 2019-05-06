@@ -5,7 +5,6 @@ const CircleTextContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   width: 100px;
-  min-width: 100px;
   margin-right: 40px;
 `;
 

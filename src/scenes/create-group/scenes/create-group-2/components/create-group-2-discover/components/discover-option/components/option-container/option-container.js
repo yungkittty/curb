@@ -4,11 +4,7 @@ import ButtonContainer from "../../../../../../../../../../components/button-con
 const OptionContainer = styled(ButtonContainer)`
   padding: 0 22px;
   flex: 1;
-  background-color: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
-  &:hover {
-    filter: initial;
-    background-color: ${({ theme }) => theme.primaryVariantColor};
-  }
+  background: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
 `;
 
 export default OptionContainer;

@@ -28,8 +28,9 @@ const withGroup = WrappedComponent => {
   }
 
   const mapStateToProps = (state, ownProps) => {
+    const { pathname } = ownProps.location;
     const groupId =
-      ownProps.groupId || matchPath(ownProps.location.pathname, { path: "/groups/:id" }).params.id || "";
+      ownProps.groupId || ((matchPath(pathname, { path: "/groups/:id" }) || {}).params || {}).id || "";
     const {
       isFetching: isFetchingGroup = false,
       creatorId: groupCreatorId = "",
@@ -66,6 +67,7 @@ const withGroup = WrappedComponent => {
   });
 
   WithGroup.propTypes = {
+    location: PropTypes.object.isRequired, // eslint-disable-line
     groupId: PropTypes.string.isRequired,
     getGroup: PropTypes.func.isRequired
   };

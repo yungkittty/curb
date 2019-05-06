@@ -18,7 +18,7 @@ const NavigationButton = ({
     {...others}
     as={Button}
     diameter="small"
-    style={[...(_.isArray(style) ? style : [style]), { marginBottom: 10 }]}
+    style={[...style, { marginBottom: 10 }]}
     onClick={() => {
       hideAppNavigation();
       // eslint-disable-next-line
@@ -33,18 +33,13 @@ NavigationButton.defaultProps = {
 };
 
 NavigationButton.propTypes = {
-  style: PropTypes.oneOf([PropTypes.object, PropTypes.array]),
+  style: PropTypes.PropTypes.array, // eslint-disable-line
   hideAppNavigation: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired, // eslint-disable-line
-  onClick: PropTypes.oneOfType([
-    // eslint-disable-line
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.func
-  ])
+  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func])
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppNavigation,
   withRouter

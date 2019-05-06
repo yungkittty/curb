@@ -66,7 +66,7 @@ SettingsGeneral.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,

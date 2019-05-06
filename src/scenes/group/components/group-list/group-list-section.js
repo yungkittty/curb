@@ -1,8 +1,12 @@
 import React from "react";
 import ListSection from "../../../../components/list-section";
 
-const GroupListSection = ({ isFeed, ...others }) => (
-  <ListSection {...others} contentContainerStyle={{ alignItems: isFeed ? "center" : undefined }} />
+const GroupListSection = props => (
+  <ListSection
+    // eslint-disable-line
+    {...props}
+    contentContainerStyle={{ alignItems: "center" }}
+  />
 );
 
 export default GroupListSection;

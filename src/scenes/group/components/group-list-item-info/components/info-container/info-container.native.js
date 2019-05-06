@@ -3,9 +3,9 @@ import Container from "../../../../../../components/container";
 
 const InfoContainer = styled(Container)`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
-  padding: 0px 80px;
+  padding: 0px 40px;
 `;
 
 export default InfoContainer;

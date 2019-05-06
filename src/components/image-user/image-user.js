@@ -61,7 +61,7 @@ ImageUser.propTypes = {
   placeholderColor: PropTypes.string
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withUser,
   withTheme

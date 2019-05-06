@@ -8,10 +8,10 @@ const withCurrentUser = WrappedComponent => {
     userId: currentUserSelectors.getCurrentUserId(state) || ""
   });
 
-  return _.flow([
+  return _.flowRight([
     // eslint-disable-line
-    withUser,
-    connect(mapStateToProps)
+    connect(mapStateToProps),
+    withUser
   ])(WrappedComponent);
 };
 

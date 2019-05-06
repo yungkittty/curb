@@ -30,9 +30,10 @@ const GroupListItemInfo = ({
       text={"Modules"}
       data={groupMediaTypes}
       keyExtractor={groupMediaType => groupMediaType}
-      renderItem={() => (
+      renderItem={({ item: groupMediaType }) => (
         <InfoListItemMediaType
           // eslint-disable-line
+          groupMediaType={groupMediaType}
           theme={theme}
         />
       )}

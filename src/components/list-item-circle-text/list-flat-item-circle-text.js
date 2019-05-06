@@ -4,13 +4,23 @@ import Container from "../container";
 import CircleTextContainer from "./components/circle-text-container";
 import Circle from "../circle";
 import CircleTextText from "./components/circle-text-text";
+import { platformBools } from "../../configurations/platform";
 
-const ListFlatItemCircleText = ({ as, onClick, text, ...others }) => (
+const ListFlatItemCircleText = ({
+  // eslint-disable-line
+  as,
+  onClick,
+  text,
+  ...others
+}) => (
   <Container>
     <CircleTextContainer as={as} onClick={onClick}>
       <React.Fragment>
-        {/** @TODO shouldnt be 15 if not validated! */}
-        <Circle {...others} diameter="large" style={{ marginBottom: 15 }} />
+        <Circle
+          {...others}
+          diameter={platformBools.isReact ? "large" : "medium"}
+          style={{ marginBottom: platformBools.isReact ? 20 : 10 }}
+        />
         <CircleTextText>
           {/* eslint-disable-line */}
           {text}

@@ -115,7 +115,7 @@ DiscoveryScanQr.propTypes = {
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withTheme

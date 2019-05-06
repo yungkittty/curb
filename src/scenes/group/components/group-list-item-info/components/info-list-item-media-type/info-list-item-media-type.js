@@ -1,19 +1,21 @@
 /* eslint-disable */
 
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import ListItemCircleText from "../../../../../../components/list-item-circle-text"; // !
 import Icon from "../../../../../../components/icon";
+import modulesList from "../../../../../../utils/modules-list";
 
-const InfoListItemUser = ({ theme }) => (
+const InfoListItemUser = ({ groupMediaType, theme, t }) => (
   <ListItemCircleText
-    // eslint-disable-line
     component={Icon}
-    icon="user"
+    icon={_.find(modulesList, ["id", groupMediaType]).icon}
     size="large"
     color={theme.fontColor}
-    text="video"
+    text={t(`${groupMediaType}.title`)}
   />
 );
 
-export default InfoListItemUser;
+export default withTranslation("modules")(InfoListItemUser);

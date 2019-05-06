@@ -1,24 +1,19 @@
-/* eslint-disable */
-
 import React from "react";
+import PropTypes from "prop-types";
 import ListContainer from "./components/list-container";
-import ListFlat from "../../../../../../components/list-flat";
 import ListHeaderCircleText from "../../../../../../components/list-header-circle-text";
+import ListCircleText from "../../../../../../components/list-circle-text";
 
 const InfoList = ({ text, ...others }) => (
   <ListContainer>
-    <ListHeaderCircleText>
+    <ListHeaderCircleText type="h3" weight={500}>
       {/* eslint-disable-line */}
       {text}
     </ListHeaderCircleText>
-    <ListFlat
-      // eslint-disable-lien
-      {...others}
-      getItemLayout={(_, itemIndex) => ({ length: 140, offset: 140 * itemIndex })}
-      showsHorizontalScrollIndicator={false}
-      horizontal
-    />
+    <ListCircleText {...others} />
   </ListContainer>
 );
+
+InfoList.propTypes = { text: PropTypes.string.isRequired };
 
 export default InfoList;

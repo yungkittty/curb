@@ -26,7 +26,7 @@ DiscoveryHeader.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withTheme

@@ -136,7 +136,7 @@ ResetPassword1.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withAccountRecovery,

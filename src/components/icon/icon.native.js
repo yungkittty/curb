@@ -10,8 +10,10 @@ const Icon = ({ size, icon, ...others }) => {
       case "small":
         return 30;
       case "medium":
-        return 50;
+        return 40;
       case "large":
+        return 60;
+      case "extra-large":
         return 150;
       default:
         return undefined;
@@ -22,7 +24,7 @@ const Icon = ({ size, icon, ...others }) => {
 
 Icon.propTypes = {
   icon: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired
 };
 
 export default Icon;

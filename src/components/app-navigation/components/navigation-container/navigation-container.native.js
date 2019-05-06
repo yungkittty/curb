@@ -16,7 +16,7 @@ class NavigationContainer extends React.Component {
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: this.moveContainerTo.bind(this),
-      onPanResponderRelease: this.moveContainerFrom.bind(this)
+      onPanResponderRelease: this.moveContainerToEnd.bind(this)
     });
   }
 
@@ -39,7 +39,7 @@ class NavigationContainer extends React.Component {
     containerAnimated.setValue(pageX > 70 ? 0 : pageX - 70);
   }
 
-  moveContainerFrom(event) {
+  moveContainerToEnd(event) {
     const { pageX } = event.nativeEvent;
     const { showAppNavigation, hideAppNavigation } = this.props;
     // eslint-disable-next-line

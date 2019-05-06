@@ -14,12 +14,11 @@ class GroupListSectionHeader extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { groupId, groupStatus, userGroupsId } = nextProps;
+    const { groupId, groupStatus, userId, userGroupsId } = nextProps;
     if (!groupId || !groupStatus || prevState.isShowed === false) return {};
-    const isUserIn = _.includes(userGroupsId, groupId);
-    const { isUserInvited } = nextProps.location.state || {};
-    const isGroupPublic = groupStatus === "public";
-    return { isShowed: !isUserIn && (isGroupPublic || isUserInvited), isInvited: isUserInvited };
+    const { isInvited = false } = nextProps.location.state || {};
+    const isShowed = !!userId && _.includes(userGroupsId, groupId) && (groupStatus === "public" || isInvited);
+    return { isShowed, isInvited };
   }
 
   render() {
@@ -54,11 +53,12 @@ class GroupListSectionHeader extends React.Component {
 GroupListSectionHeader.propTypes = {
   /* eslint-disable */
   location: PropTypes.object.isRequired,
-  userGroupsId: PropTypes.array.isRequired,
   groupId: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   postGroupInviteToken: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+  userGroupsId: PropTypes.array.isRequired,
   theme: PropTypes.object.isRequired,
   /* eslint-enable */
   t: PropTypes.func.isRequired

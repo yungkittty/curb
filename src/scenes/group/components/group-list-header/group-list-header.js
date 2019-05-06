@@ -6,17 +6,18 @@ import HeaderButtonIcon from "./components/header-button-icon";
 import ImageGroup from "../../../../components/image-group";
 import HeaderTitle from "./components/header-title";
 import GroupQr from "../../scenes/group-qr";
+import { platformBools } from "../../../../configurations/platform";
 import withAppModal from "../../../../hocs/with-app-modal";
 
 const GroupListHeader = ({
   isFeed,
   toggleScene,
   showAppModal,
-  userGroupsId,
   groupId,
   groupName,
   groupStatus,
   groupTheme,
+  userGroupsId,
   theme
 }) => (
   <HeaderContainer groupTheme={groupTheme}>
@@ -27,23 +28,23 @@ const GroupListHeader = ({
           size="small"
           color={theme.backgroundColor}
           onClick={() => showAppModal({ scene: GroupQr })}
-          style={{ right: 40 }}
+          style={{ right: platformBools.isReact ? 40 : 20 }}
         />
         <HeaderButtonIcon
           icon={isFeed ? "info-circle" : "stream"}
           size="small"
           color={theme.backgroundColor}
           onClick={toggleScene}
-          style={{ right: 95 }}
+          style={{ right: platformBools.isReact ? 95 : 60 }}
         />
       </React.Fragment>
     ) : null}
     <ImageGroup
       groupId={groupId}
       size="extra-large"
-      placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`] || ""}
+      placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}
     />
-    <HeaderTitle type="h1" weight={700}>
+    <HeaderTitle type="h2" weight={700}>
       {/* eslint-disable-line */}
       {groupName}
     </HeaderTitle>
@@ -54,11 +55,11 @@ GroupListHeader.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   isFeed: PropTypes.bool.isRequired,
   toggleScene: PropTypes.func.isRequired,
-  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
+  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 

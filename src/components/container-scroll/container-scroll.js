@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import ScrollContainer from "./components/scroll-container";
@@ -6,8 +7,8 @@ import ScrollContainerContent from "./components/scroll-container-content";
 class ContainerScroll extends React.Component {
   constructor(props) {
     super(props);
-    this.scrollContentContainer = props.forwardedRef || React.createRef();
     this.isScrollable = this.isScrollable.bind(this);
+    this.scrollContentContainerId = `scroll-content-container-${_.uniqueId()}`;
     this.state = { isScrollableToHorizontal: false, isScrollableToVertical: false };
   }
 
@@ -16,13 +17,20 @@ class ContainerScroll extends React.Component {
     this.isScrollable();
   }
 
+  componentDidUpdate(prevProps) {
+    const { children } = this.props;
+    const { children: prevChildren } = prevProps;
+    if (children === prevChildren) return;
+    this.isScrollable();
+  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.isScrollable);
   }
 
   isScrollable() {
-    const { scrollWidth, scrollHeight, clientWidth, clientHeight } =
-      this.scrollContentContainer.current || {};
+    const scrollContentContainer = document.getElementById(this.scrollContentContainerId);
+    const { scrollWidth, scrollHeight, clientWidth, clientHeight } = scrollContentContainer;
     const isScrollableToHorizontal = scrollWidth !== clientWidth;
     const isScrollableToVertical = scrollHeight !== clientHeight;
     this.setState({ isScrollableToHorizontal, isScrollableToVertical });
@@ -33,6 +41,7 @@ class ContainerScroll extends React.Component {
       className,
       style,
       children,
+      forwardedRef,
       contentContainerStyle,
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
@@ -46,7 +55,8 @@ class ContainerScroll extends React.Component {
     return (
       <ScrollContainer className={className} style={style} horizontal={horizontal}>
         <ScrollContainerContent
-          ref={this.scrollContentContainer}
+          id={this.scrollContentContainerId}
+          ref={forwardedRef}
           style={contentContainerStyle}
           showsHorizontalScrollIndicator={!isScrollableToHorizontal || showsHorizontalScrollIndicator}
           showsVerticalScrollIndicator={!isScrollableToVertical || showsVerticalScrollIndicator}

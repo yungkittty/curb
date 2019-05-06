@@ -1,12 +1,10 @@
-/* eslint-disable */
-
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import GroupListSection from "./components/group-list";
-import GroupListSectionHeader from "./components/group-list-header";
-import GroupListSectionHeaderBis from "./components/group-list-section-header";
+import GroupList from "./components/group-list";
+import GroupListHeader from "./components/group-list-header";
+import GroupListSectionHeader from "./components/group-list-section-header";
 import GroupListItemInfo from "./components/group-list-item-info";
 import GroupListItemMedia from "./components/group-list-item-media";
 import ButtonIconFloat from "../../components/button-icon-float";
@@ -65,7 +63,6 @@ class Group extends React.Component {
   render() {
     const { isFeed } = this.state;
     const {
-      userGroupsId,
       isFetchingGroup,
       groupId,
       groupName,
@@ -73,11 +70,13 @@ class Group extends React.Component {
       groupStatus,
       groupTheme,
       groupMediasId,
+      userId,
+      userGroupsId,
       theme
     } = this.props;
     return (
       <React.Fragment>
-        <GroupListSection
+        <GroupList
           isFeed={isFeed}
           sections={
             !isFeed
@@ -87,26 +86,27 @@ class Group extends React.Component {
           keyExtractor={groupMediaId => groupMediaId}
           ListHeaderComponent={() => (
             <React.Fragment>
-              <GroupListSectionHeader
+              <GroupListHeader
                 isFeed={isFeed}
                 toggleScene={this.toggleScene}
-                userGroupsId={userGroupsId}
                 isFetchingGroup={isFetchingGroup}
                 groupId={groupId}
                 groupName={groupName}
                 groupAvatar={groupAvatar}
                 groupStatus={groupStatus}
                 groupTheme={groupTheme}
+                userId={userId}
+                userGroupsId={userGroupsId}
                 theme={theme}
               />
             </React.Fragment>
           )}
           renderSectionHeader={() => (
-            <GroupListSectionHeaderBis
-              userGroupsId={userGroupsId}
+            <GroupListSectionHeader
               groupId={groupId}
               groupStatus={groupStatus}
               groupTheme={groupTheme}
+              userGroupsId={userGroupsId}
               theme={theme}
             />
           )}
@@ -118,7 +118,6 @@ class Group extends React.Component {
 }
 
 Group.propTypes = {
-  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   isFetchingGroup: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
@@ -128,10 +127,12 @@ Group.propTypes = {
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
   groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
   groupMediasId: PropTypes.array.isRequired, // eslint-disable-line
+  userId: PropTypes.string.isRequired,
+  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withCurrentUser,
   withGroup,

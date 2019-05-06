@@ -1,6 +1,8 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter, matchPath } from "react-router";
 import { usersActions, usersSelectors } from "../../datas/users";
 
 const withUser = WrappedComponent => {
@@ -26,7 +28,9 @@ const withUser = WrappedComponent => {
   }
 
   const mapStateToProps = (state, ownProps) => {
-    const userId = ownProps.userId || ((ownProps.match || {}).params || {}).id || "";
+    const { pathname } = ownProps.location;
+    const userId =
+      ownProps.userId || ((matchPath(pathname, { path: "/users/:id" }) || {}).params || {}).id || "";
     const {
       isFetching: isFetchingUser = false,
       dateCreation: userDateCreation = "",
@@ -51,14 +55,19 @@ const withUser = WrappedComponent => {
   });
 
   WithUser.propTypes = {
+    location: PropTypes.object.isRequired, // eslint-disable-line
     userId: PropTypes.string.isRequired,
     getUser: PropTypes.func.isRequired
   };
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(WithUser);
+  return _.flowRight([
+    // eslint-disable-line
+    withRouter,
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )
+  ])(WithUser);
 };
 
 export default withUser;

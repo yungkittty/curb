@@ -2,13 +2,13 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import ListFlat from "../list-flat";
 import NavigationContainer from "./components/navigation-container";
 import NavigationButton from "./components/navigation-button";
 import Icon from "../icon";
 import ImageUser from "../image-user";
 import ImageGroup from "../image-group";
 import NavigationRule from "./components/navigation-rule";
+import ListFlat from "../list-flat";
 import NavigationListFooter from "./components/navigation-list-footer";
 import SignIn from "../../scenes/sign-in";
 import Settings from "../../scenes/settings";
@@ -20,7 +20,7 @@ const AppNavigation = ({
   showAppModal,
   userId,
   userGroupsId,
-  theme
+  theme: { primaryColor, secondaryVariantColor }
 }) => (
   <NavigationContainer>
     {!userId ? (
@@ -28,8 +28,8 @@ const AppNavigation = ({
         component={Icon}
         icon="sign-in-alt"
         size="small"
-        color={theme.primaryColor}
-        backgroundColor={theme.secondaryVariantColor}
+        color={primaryColor}
+        backgroundColor={secondaryVariantColor}
         onClick={() => showAppModal({ scene: SignIn })}
       />
     ) : (
@@ -37,7 +37,7 @@ const AppNavigation = ({
         component={ImageUser}
         userId={userId}
         size="small"
-        placeholderColor={theme.secondaryVariantColor}
+        placeholderColor={secondaryVariantColor}
         onClick={`/users/${userId}`}
       />
     )}
@@ -50,7 +50,7 @@ const AppNavigation = ({
           component={ImageGroup}
           groupId={userGroupId}
           size="small"
-          placeholderColor={theme.secondaryVariantColor}
+          placeholderColor={secondaryVariantColor}
           onClick={`/groups/${userGroupId}`}
         />
       )}
@@ -59,7 +59,7 @@ const AppNavigation = ({
           component={Icon}
           icon="plus"
           size="extra-small"
-          color={theme.secondaryVariantColor}
+          color={secondaryVariantColor}
           onClick="/"
         />
       )}
@@ -71,8 +71,8 @@ const AppNavigation = ({
       component={Icon}
       icon="cog"
       size="small"
-      color={theme.primaryColor}
-      backgroundColor={theme.secondaryVariantColor}
+      color={primaryColor}
+      backgroundColor={secondaryVariantColor}
       onClick={() => showAppModal({ scene: Settings })}
     />
   </NavigationContainer>
@@ -85,7 +85,7 @@ AppNavigation.propTypes = {
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,

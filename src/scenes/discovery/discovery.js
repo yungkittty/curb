@@ -46,8 +46,6 @@ const Discovery = ({ showAppModal, userId, discoveryGroupsId, t }) => (
             // eslint-disable-line
             <DiscoveryListItem groupId={discoveryGroupId} />
           )}
-          showsHorizontalScrollIndicator={false}
-          horizontal
         />
       )}
     />
@@ -62,7 +60,7 @@ Discovery.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,

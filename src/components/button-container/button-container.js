@@ -34,7 +34,11 @@ const ButtonContainer = styled(({ onClick, ...others }) =>
       ? `
   transition: all 0.1s ease;
   &:hover {
-    filter: brightness(1.05);
+    ${
+      props.hoverColor // eslint-disable-line
+        ? `background-color: ${props.hoverColor}`
+        : "filter: brightness(1.05)"
+    };
   }`
       : ""}
   &::-moz-focus-inner {
