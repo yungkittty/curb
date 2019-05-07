@@ -1,3 +1,3 @@
-import CreateMediaImage from "./create-media-image";
+import CreateMediaImageContainer from "./create-media-image-container";
 
-export default CreateMediaImage;
+export default CreateMediaImageContainer;

@@ -1,0 +1,61 @@
+import { all, takeLatest, call, put } from "redux-saga/effects";
+import { takeNormalize } from "../../configurations/store/saga-effects";
+import mediasActionsTypes from "./medias-actions-types";
+import mediasActions from "./medias-actions";
+import mediasApi from "./medias-api";
+import usersActions from "../users/users-actions";
+import groupsActions from "../groups/groups-actions";
+import appAlertActions from "../app-alert/app-alert-actions";
+import { appModalActions } from "../app-modal";
+
+function* getMediaRequestSaga(action) {
+  try {
+    const { data: payload } = yield call(mediasApi.getMedia, action.payload);
+    yield put(mediasActions.getMediaSuccess(payload));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.getMediaFailure({ id: action.payload.id, errorCode }));
+  }
+}
+
+function* postMediaAvatarRequestSaga(action) {
+  const { target, id, onSuccessAlert } = action.payload;
+  try {
+    yield call(mediasApi.postMediaAvatar, action.payload);
+    yield put(mediasActions.postMediaAvatarSuccess());
+    if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
+    yield put(
+      target === "users" ? usersActions.getUserRequest({ id }) : groupsActions.getGroupRequest({ id })
+    );
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postMediaAvatarFailure({ id, errorCode }));
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "error",
+        message: `postAvatar.${errorCode}`,
+        icon: "times"
+      })
+    );
+  }
+}
+
+function* postGroupImageContentRequestSaga(action) {
+  try {
+    yield call(mediasApi.postGroupImageContent, action.payload);
+    yield put(mediasActions.postGroupImageContentSuccess());
+    yield put(appModalActions.hideAppModal());
+  } catch (error) {
+    const { groupId } = action.payload;
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postGroupImageContentFailure({ groupId, errorCode }));
+  }
+}
+
+const mediasSaga = all([
+  takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST, postMediaAvatarRequestSaga),
+  takeLatest(mediasActionsTypes.POST_GROUP_IMAGE_CONTENT_REQUEST, postGroupImageContentRequestSaga)
+]);
+
+export default mediasSaga;

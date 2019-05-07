@@ -1,20 +1,23 @@
 import { all } from "redux-saga/effects";
-import { signInSaga } from "../../datas/sign-in";
 import { signUpSaga } from "../../datas/sign-up";
+import { signInSaga } from "../../datas/sign-in";
+import { accountSaga } from "../../datas/account";
+import { accountRecoverySaga } from "../../datas/account-recovery";
 import { usersSaga } from "../../datas/users";
 import { groupsSaga } from "../../datas/groups";
+import { mediasSaga } from "../../datas/medias";
 import { discoverySaga } from "../../datas/discovery";
-import { accountSaga } from "../../datas/account";
 
 function* rootSaga() {
   yield all([
-    // eslint-disable-line
-    signInSaga,
     signUpSaga,
+    signInSaga,
+    accountSaga,
+    accountRecoverySaga,
     usersSaga,
     groupsSaga,
-    discoverySaga,
-    accountSaga
+    mediasSaga,
+    discoverySaga
   ]);
 }
 
