@@ -6,8 +6,8 @@ import PreviewImage from "./components/preview-image";
 import PreviewProgress from "./components/preview-progress";
 import Icon from "../../../icon";
 
-const FilePreview = ({ as, containerProps, style, theme, data, type, loadingProgress, ...others }) => (
-  <PreviewContainer as={as} style={style} haveData={data} {...containerProps}>
+const FilePreview = ({ as, containerProps, previewStyle, theme, data, type, loadingProgress, ...others }) => (
+  <PreviewContainer as={as} style={previewStyle} haveData={data} {...containerProps}>
     {/* eslint-disable-next-line */}
     {data ? (
       type === "image" ? (
@@ -38,7 +38,7 @@ FilePreview.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
-  style: PropTypes.object,
+  previewStyle: PropTypes.object,
   // eslint-disable-next-line
   data: PropTypes.any,
   // eslint-disable-next-line

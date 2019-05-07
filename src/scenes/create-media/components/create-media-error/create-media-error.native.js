@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import Text from "../../../../components/text";
 
-const CreateGroupError = styled(Text).attrs(() => ({
+const CreateMediaError = styled(Text).attrs(() => ({
   type: "h4",
   weight: 500
 }))`
   position: absolute;
   align-self: center;
-  margin-top: 68px;
+  top: 28px;
   color: ${({ theme }) => theme.errorColor};
 `;
 
-export default CreateGroupError;
+export default CreateMediaError;

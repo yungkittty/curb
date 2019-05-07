@@ -1,13 +1,14 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import withUser from "../../../../hocs/with-user";
 import withAppModal from "../../../../hocs/with-app-modal";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import InputFile from "../../../../components/input-file";
 import CreateMediaInputFile from "../../components/create-media-input-file";
 // eslint-disable-next-line
-import CreateMedia from "../../create-media";
+import CreateMedia from "../../../create-media";
+import CreateMediaError from "../../components/create-media-error";
 
 class CreateMediaImage extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class CreateMediaImage extends Component {
     this.state = { loadingProgress: undefined };
 
     const {
+      t,
       setAppModalHeaderText,
       setAppModalHeaderLeftButton,
       setAppModalScene,
@@ -26,19 +28,21 @@ class CreateMediaImage extends Component {
     this.onUploadProgress = this.onUploadProgress.bind(this);
     this.submit = this.submit.bind(this);
 
-    setAppModalHeaderText({ headerText: "Image" });
+    setAppModalHeaderText({ text: t("modules:image.title") });
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
       onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 })
     });
-    setAppModalFooterButton({ text: "Send", onClick: this.submit });
+    setAppModalFooterButton({ text: t("common:post"), onClick: this.submit });
   }
 
   componentDidUpdate(prevProps) {
-    const { isFetchingMedias } = this.props;
-    if (prevProps.isFetchingMedias && !isFetchingMedias)
+    const { enableAppModalButtons, isFetchingMedias } = this.props;
+    if (prevProps.isFetchingMedias && !isFetchingMedias) {
       // eslint-disable-next-line
       this.setState({ loadingProgress: undefined });
+      enableAppModalButtons();
+    }
   }
 
   onUploadProgress({ loaded, total }) {
@@ -46,14 +50,23 @@ class CreateMediaImage extends Component {
   }
 
   submit() {
+    const {
+      postGroupImageContent,
+      disableAppModalButtons,
+      groupId,
+      currentUserId: userId,
+      image: {
+        value: { file }
+      }
+    } = this.props;
     if (!this.checkForm()) return;
-    const { postGroupImageContent, groupId, currentUserId: userId, image } = this.props;
     postGroupImageContent({
       groupId,
       userId,
-      image: image.value.file,
+      image: file,
       onUploadProgress: this.onUploadProgress
     });
+    disableAppModalButtons();
   }
 
   checkForm() {
@@ -74,15 +87,19 @@ class CreateMediaImage extends Component {
   render() {
     const { loadingProgress } = this.state;
     const {
+      t,
+      mediasErrorCode,
       image: {
         value: { data }
       }
     } = this.props;
     return (
       <AppModalSceneContainer verticalAlign>
-        <InputFile
-          editMode
-          as={CreateMediaInputFile}
+        {mediasErrorCode !== "" && (
+          <CreateMediaError>{t(`errorCode:contents.${mediasErrorCode}`)}</CreateMediaError>
+        )}
+        <CreateMediaInputFile
+          editMode={loadingProgress === undefined}
           id="image"
           type="image"
           data={data}
@@ -99,7 +116,10 @@ CreateMediaImage.defaultProps = {
 };
 
 CreateMediaImage.propTypes = {
+  t: PropTypes.func.isRequired,
   postGroupImageContent: PropTypes.func.isRequired,
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
@@ -112,4 +132,4 @@ CreateMediaImage.propTypes = {
   image: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string }) })
 };
 
-export default _.flow([withUser, withAppModal])(CreateMediaImage);
+export default _.flow([withUser, withAppModal, withTranslation()])(CreateMediaImage);

@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import Container from "../../../../components/container";
-import { windowDimensions } from "../../../../configurations/window";
+import InputFile from "../../../../components/input-file";
 
-const CreateMediaInputFile = styled(Container)`
-  width: ${windowDimensions.width - 40}px;
-  height: 240px;
-  border-radius: 25px;
+const CreateMediaInputFile = styled(InputFile).attrs(() => ({
+  previewStyle: { width: "100%", height: "100%", borderRadius: 20 }
+}))`
+  width: 100%;
+  height: 200px;
+  padding: 0px 25px;
 `;
 
 export default CreateMediaInputFile;
