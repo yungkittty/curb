@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import TestFairy from "react-native-testfairy";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withUser from "../../../../hocs/with-user";
@@ -34,6 +35,7 @@ class CreateMediaImage extends Component {
       onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 })
     });
     setAppModalFooterButton({ text: t("common:post"), onClick: this.submit });
+    TestFairy.log(props);
   }
 
   componentDidUpdate(prevProps) {
