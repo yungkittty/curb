@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import CreateMedia from "./create-media";
 import { appModalActions } from "../../datas/app-modal";
 
@@ -7,7 +8,9 @@ const mapDispatchToProps = dispatch => ({
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(CreateMedia);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(CreateMedia)
+);
