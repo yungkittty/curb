@@ -1,5 +1,6 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
+import TestFairy from "react-native-testfairy";
 import mediasActionsTypes from "./medias-actions-types";
 import mediasActions from "./medias-actions";
 import mediasApi from "./medias-api";
@@ -46,6 +47,7 @@ function* postGroupImageContentRequestSaga(action) {
     yield put(mediasActions.postGroupImageContentSuccess());
     yield put(appModalActions.hideAppModal());
   } catch (error) {
+    TestFairy.log(error);
     const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postGroupImageContentFailure({ groupId, errorCode }));
