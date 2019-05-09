@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import withGroup from "../../hocs/with-group";
 import ButtonIconFloat from "../../components/button-icon-float";
 import CreateMedia from "../create-media";
 
@@ -20,4 +21,4 @@ Group.propTypes = {
   groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
-export default Group;
+export default withGroup(Group);
