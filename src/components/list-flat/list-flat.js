@@ -89,7 +89,7 @@ ListFlat.propTypes = {
   showsVerticalScrollIndicator: PropTypes.bool,
   horizontal: PropTypes.bool,
   // eslint-disable-next-line
-  data: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  data: PropTypes.array.isRequired,
   ListHeaderComponent: PropTypes.func,
   ListFooterComponent: PropTypes.func,
   keyExtractor: PropTypes.func,
