@@ -1,14 +1,38 @@
-import { all, takeLatest, select, call, put } from "redux-saga/effects";
+import { all, takeLatest, select, call, take, put } from "redux-saga/effects";
 import { currentUserSelectors } from "../current-user";
 import appModalActions from "../app-modal/app-modal-actions";
+import mediasActions from "../medias/medias-actions";
+import mediasActionsTypes from "../medias/medias-actions-types";
 import signUpActionsTypes from "./sign-up-actions-types";
 import signUpActions from "./sign-up-actions";
 import signUpApi from "./sign-up-api";
+import appAlertActions from "../app-alert/app-alert-actions";
 
 function* signUpRequestSaga(action) {
   try {
-    const { data: payload } = yield call(signUpApi.signUp, action.payload);
+    const { avatar, ...others } = action.payload;
+    const { data: payload } = yield call(signUpApi.signUp, others);
+    if (avatar) {
+      yield put(
+        mediasActions.postMediaAvatarRequest({
+          target: "users",
+          id: payload.id,
+          avatar
+        })
+      );
+      yield take([
+        mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS,
+        mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE
+      ]);
+    }
     yield put(signUpActions.signUpSuccess(payload));
+    yield put(
+      appAlertActions.pushAppAlert({
+        type: "success",
+        message: "accountCreated",
+        icon: "check"
+      })
+    );
     yield put(appModalActions.hideAppModal());
   } catch (error) {
     yield put(signUpActions.signUpFailure(error));

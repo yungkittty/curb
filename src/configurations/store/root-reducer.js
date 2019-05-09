@@ -1,31 +1,30 @@
 import { combineReducers } from "redux";
 import { appModalReducer as appModal } from "../../datas/app-modal";
-import { appNavigationReducer as appNavigation } from "../../datas/app-navigation";
-import { signUpReducer as signUp } from "../../datas/sign-up";
+import { appAlertReducer as appAlert } from "../../datas/app-alert";
 import { signInReducer as signIn } from "../../datas/sign-in";
+import { signUpReducer as signUp } from "../../datas/sign-up";
 import { accountReducer as account } from "../../datas/account";
 import { accountRecoveryReducer as accountRecovery } from "../../datas/account-recovery";
 import { currentUserReducer as currentUser } from "../../datas/current-user";
 import { currentSettingsReducer as currentSettings } from "../../datas/current-settings";
 import { usersReducer as users } from "../../datas/users";
 import { groupsReducer as groups } from "../../datas/groups";
-import { mediasReducer as medias } from "../../datas/medias";
 import { discoveryReducer as discovery } from "../../datas/discovery";
-import { platformBools } from "../platform";
+import { mediasReducer as medias } from "../../datas/medias";
 
 const rootReducer = combineReducers({
   appModal,
-  ...(platformBools.isReactNative ? { appNavigation } : {}),
-  signUp,
+  appAlert,
   signIn,
+  signUp,
   account,
   accountRecovery,
   currentUser,
   currentSettings,
   users,
   groups,
-  medias,
-  discovery
+  discovery,
+  medias
 });
 
 export default rootReducer;
