@@ -1,15 +1,7 @@
 import { connect } from "react-redux";
-import { withRouter, matchPath } from "react-router";
+import { withRouter } from "react-router";
 import CreateMedia from "./create-media";
 import { appModalActions } from "../../datas/app-modal";
-
-const mapStateToProps = (state, ownProps) => {
-  const { pathname } = ownProps.location;
-  const { id: groupId } = matchPath(pathname, {
-    path: "/groups/:id"
-  }).params;
-  return { groupId };
-};
 
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
@@ -18,7 +10,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default withRouter(
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
   )(CreateMedia)
 );
