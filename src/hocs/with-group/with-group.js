@@ -1,6 +1,8 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter, matchPath } from "react-router";
 import { groupsActions, groupsSelectors } from "../../datas/groups";
 
 const withGroup = WrappedComponent => {
@@ -14,7 +16,7 @@ const withGroup = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { groupId, getGroup } = this.props;
-      if (groupId !== prevProps.groupId) {
+      if (groupId && groupId !== prevProps.groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -26,22 +28,25 @@ const withGroup = WrappedComponent => {
   }
 
   const mapStateToProps = (state, ownProps) => {
-    const groupId = ownProps.groupId || ((ownProps.match || {}).params || {}).id || "";
+    const { pathname } = ownProps.location;
+    const groupId =
+      ownProps.groupId || ((matchPath(pathname, { path: "/groups/:id" }) || {}).params || {}).id || "";
     const {
-      isFetching: isGroupFetching = true,
+      isFetching: isFetchingGroup = false,
       creatorId: groupCreatorId = "",
       dateCreation: groupDateCreation = "",
       name: groupName = "",
       avatarUrl: groupAvatar = "",
       status: groupStatus = "",
       theme: groupTheme = "",
+      inviteToken: groupInviteToken = "",
       users: groupUsersId = [],
       mediaTypes: groupMediaTypes = [],
       medias: groupMediasId = [],
       errorCode: groupErrorCode = ""
     } = groupsSelectors.getGroupById(state, groupId) || {};
     return {
-      isGroupFetching,
+      isFetchingGroup,
       groupId,
       groupCreatorId,
       groupDateCreation,
@@ -49,6 +54,7 @@ const withGroup = WrappedComponent => {
       groupAvatar,
       groupStatus,
       groupTheme,
+      groupInviteToken,
       groupUsersId,
       groupMediaTypes,
       groupMediasId,
@@ -61,14 +67,19 @@ const withGroup = WrappedComponent => {
   });
 
   WithGroup.propTypes = {
+    location: PropTypes.object.isRequired, // eslint-disable-line
     groupId: PropTypes.string.isRequired,
     getGroup: PropTypes.func.isRequired
   };
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(WithGroup);
+  return _.flowRight([
+    // eslint-disable-line
+    withRouter,
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )
+  ])(WithGroup);
 };
 
 export default withGroup;

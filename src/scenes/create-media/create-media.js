@@ -16,9 +16,9 @@ import CreateMediaVideo from "./scenes/create-media-video";
 class CreateMedia extends Component {
   constructor(props) {
     super(props);
-    const { setAppModalHeaderText } = this.props;
+    const { t, setAppModalHeaderText } = this.props;
 
-    setAppModalHeaderText({ text: "Post content" });
+    setAppModalHeaderText({ text: t("common:post") });
 
     this.handleChange = this.handleChange.bind(this);
   }
