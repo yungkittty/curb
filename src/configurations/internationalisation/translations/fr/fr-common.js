@@ -7,6 +7,7 @@ const frCommon = {
   finish: "Terminer",
   cancel: "Annuler",
   reset: "Réinitialiser",
+  post: "Publier",
   selectImage: "Choisir une imge",
   takePhoto: "Prendre une photo",
   chooseLibrary: "Depuis la galerie",
