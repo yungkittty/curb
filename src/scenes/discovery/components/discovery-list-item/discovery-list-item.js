@@ -7,11 +7,15 @@ import ListItemTitle from "./components/list-item-title";
 
 // https://stackoverflow.com/a/38997047
 
-const DiscoveryListItem = ({ discoveryGroupId, discoveryGroupName, discoveryGroupAvatarUrl }) => (
+const DiscoveryListItem = ({
+  discoveryGroupId,
+  discoveryGroupName,
+  discoveryGroupAvatarUrl
+}) => (
   <Container>
     <ListItemButtonContainer onClick={`/groups/${discoveryGroupId}`}>
       <React.Fragment>
-        <ListItemImage src={`https://api.redux.curb-app.com${discoveryGroupAvatarUrl}`} />
+        <ListItemImage src={`${process.env.REACT_APP_API_URL}${discoveryGroupAvatarUrl}`} />
         <ListItemTitle>{discoveryGroupName}</ListItemTitle>
       </React.Fragment>
     </ListItemButtonContainer>
