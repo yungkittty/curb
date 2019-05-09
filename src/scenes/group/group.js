@@ -1,15 +1,17 @@
 import React from "react";
+import TestFairy from "react-native-testfairy";
 import PropTypes from "prop-types";
 import withGroup from "../../hocs/with-group";
 import ButtonIconFloat from "../../components/button-icon-float";
 import CreateMedia from "../create-media";
 
-const Group = ({ showAppModal, setAppModalSceneData, groupId, groupMediaTypes }) => (
+const Group = ({ showAppModal, setAppModalSceneData, ...others }) => (
   <ButtonIconFloat
     icon="plus"
     onClick={() => {
+      TestFairy.log(others);
       showAppModal({ scene: CreateMedia });
-      setAppModalSceneData({ groupId, groupMediaTypes });
+      setAppModalSceneData({ groupsId: others.groupId, groupMediaTypes: others.groupMediaTypes });
     }}
   />
 );
