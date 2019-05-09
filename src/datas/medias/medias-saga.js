@@ -5,6 +5,7 @@ import mediasActions from "./medias-actions";
 import mediasApi from "./medias-api";
 import usersActions from "../users/users-actions";
 import groupsActions from "../groups/groups-actions";
+import appModalActions from "../app-modal/app-modal-actions";
 import appAlertActions from "../app-alert/app-alert-actions";
 import { appModalActions } from "../app-modal";
 
