@@ -18,9 +18,7 @@ const Group = ({ showAppModal, setAppModalSceneData, ...others }) => (
 
 Group.propTypes = {
   showAppModal: PropTypes.func.isRequired,
-  setAppModalSceneData: PropTypes.func.isRequired,
-  groupId: PropTypes.string.isRequired,
-  groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired
+  setAppModalSceneData: PropTypes.func.isRequired
 };
 
 export default withGroup(Group);
