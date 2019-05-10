@@ -10,18 +10,20 @@ import settings from "./en-settings";
 import createGroup from "./en-create-group";
 import group from "./en-group";
 import modules from "./en-modules";
+import appAlerts from "./en-app-alerts";
 
 export default {
   common,
   glossary,
   validation,
   signIn,
+  appDownload,
   signUp,
   discovery,
   resetPassword,
-  appDownload,
   settings,
   createGroup,
   group,
-  modules
+  modules,
+  appAlerts
 };

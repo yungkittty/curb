@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { combineReducers } from "redux";
 import groupsActionsTypes from "./groups-actions-types";
+import mediasActionsTypes from "../medias/medias-actions-types";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -57,6 +58,14 @@ const byId = (state = {}, action) => {
           ...state[action.payload.id],
           isFetching: false,
           errorCode: action.payload.errorCode
+        }
+      };
+    case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          avatarUrl: action.payload.avatar.value.data
         }
       };
     default:

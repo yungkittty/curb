@@ -4,14 +4,19 @@ import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
 import groupsApi from "./groups-api";
 import appModalActions from "../app-modal/app-modal-actions";
+import appAlertActions from "../app-alert/app-alert-actions";
 import currentUserSelectors from "../current-user/current-user-selectors";
+import mediasActions from "../medias/medias-actions";
 
 function* postGroupRequestSaga(action) {
   try {
-    const { history, ...others } = action.payload;
+    const { history, avatar, ...others } = action.payload;
     const { data: payload } = yield call(groupsApi.postGroup, others);
+    if (avatar) yield put(mediasActions.postMediaAvatarGroupRequest({ id: payload.id, avatar }));
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
+    const successAlert = { type: "success", message: "groupCreated", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
     history.push(`/groups/${payload.id}`);
   } catch (error) {

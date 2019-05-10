@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import SelectImage from "./components/select-image";
+import ImageAvatarEditable from "../../../../components/image-avatar-editable";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 import withAppModal from "../../../../hocs/with-app-modal";
@@ -51,22 +51,26 @@ class CreateGroup1 extends Component {
   }
 
   render() {
-    const {
-      t,
-      groupName: { value, error }
-    } = this.props;
+    const { t, groupName, avatar } = this.props;
 
     return (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("createGroup")}</AppModalSceneTitle>
-        <SelectImage />
+        <AppModalSceneTitle style={{ marginBottom: 40 }}>{t("createGroup")}</AppModalSceneTitle>
+        <ImageAvatarEditable
+          editMode
+          id="avatar"
+          size="extra-large"
+          data={avatar.value.data}
+          onSelect={this.handleChange}
+        />
         <InputForm
+          containerStyle={{ marginTop: 60 }}
           size="modal"
           id="groupName"
           placeholder={t("groupName")}
           onChange={this.handleChange}
-          value={value}
-          error={error && t(`validation:groupName.${error}`)}
+          value={groupName.value}
+          error={groupName.error && t(`validation:groupName.${groupName.error}`)}
         />
       </AppModalSceneContainer>
     );
@@ -74,7 +78,8 @@ class CreateGroup1 extends Component {
 }
 
 CreateGroup1.defaultProps = {
-  groupName: { value: "", error: undefined }
+  groupName: { value: "", error: undefined },
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 CreateGroup1.propTypes = {
@@ -86,6 +91,7 @@ CreateGroup1.propTypes = {
     value: PropTypes.string,
     error: PropTypes.string
   }),
+  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

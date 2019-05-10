@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { appModalReducer as appModal } from "../../datas/app-modal";
 import { appNavigationReducer as appNavigation } from "../../datas/app-navigation";
+import { appAlertReducer as appAlert } from "../../datas/app-alert";
 import { signUpReducer as signUp } from "../../datas/sign-up";
 import { signInReducer as signIn } from "../../datas/sign-in";
 import { accountReducer as account } from "../../datas/account";
@@ -16,6 +17,7 @@ import { platformBools } from "../platform";
 const rootReducer = combineReducers({
   appModal,
   ...(platformBools.isReactNative ? { appNavigation } : {}),
+  appAlert,
   signUp,
   signIn,
   account,

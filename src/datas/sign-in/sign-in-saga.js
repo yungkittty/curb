@@ -3,6 +3,7 @@ import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
 import signInApi from "./sign-in-api";
 import appModalActions from "../app-modal/app-modal-actions";
+import appAlertActions from "../app-alert/app-alert-actions";
 
 function* signInRequestSaga(action) {
   try {
@@ -19,10 +20,14 @@ function* signOutRequestSaga() {
   try {
     yield call(signInApi.signOut);
     yield put(signInActions.signOutSuccess());
+    const successAlert = { type: "success", message: "signOutSuccess", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
     const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(signInActions.signOutFailure({ errorCode }));
+    const errorAlert = { type: "error", message: "signOutFailure", icon: "times" };
+    yield put(appAlertActions.pushAppAlert(errorAlert));
   }
 }
 
