@@ -6,6 +6,8 @@ const FormContainer = styled(Container)`
     switch (props.size) {
       case "modal":
         return 420;
+      case "large":
+        return 600;
       default:
         return 380;
     }

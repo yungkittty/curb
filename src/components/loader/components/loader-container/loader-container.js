@@ -9,7 +9,6 @@ const LoaderContainer = styled(Container)`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: ${props => props.theme.backgroundColor};
 `;
 
 export default LoaderContainer;

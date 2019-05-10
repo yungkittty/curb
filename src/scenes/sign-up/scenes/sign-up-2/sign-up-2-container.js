@@ -5,7 +5,8 @@ import { appModalActions } from "../../../../datas/app-modal";
 import { signUpActions, signUpSelectors } from "../../../../datas/sign-up";
 
 const mapStateToProps = state => ({
-  isSignUpFetching: signUpSelectors.isSignUpFetching(state)
+  isSignUpFetching: signUpSelectors.isSignUpFetching(state),
+  signUpErrorCode: signUpSelectors.getSignUpErrorCode(state)
 });
 
 const mapDispatchToProps = dispatch => ({

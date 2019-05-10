@@ -10,6 +10,7 @@ const SignInForm = ({ onChange, email, password, t }) => (
       size="modal"
       id="email"
       type="email"
+      autoCapitalize="none"
       placeholder={t("email")}
       value={email.value}
       onChange={onChange}

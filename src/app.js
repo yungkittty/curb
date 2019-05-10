@@ -4,6 +4,7 @@ import AppDownload from "./components/app-download";
 import AppContainer from "./components/app-container";
 import AppNavigation from "./components/app-navigation";
 import AppModal from "./components/app-modal";
+import AppAlert from "./components/app-alert";
 import Router from "./components/router";
 import Switch from "./components/switch";
 import Route from "./components/route";
@@ -27,6 +28,7 @@ const App = () => (
           </Switch>
         </AppContainer>
         <AppModal />
+        <AppAlert />
       </React.Fragment>
     )}
   </Router>
