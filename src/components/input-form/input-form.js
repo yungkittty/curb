@@ -62,7 +62,4 @@ InputForm.propTypes = {
   error: PropTypes.string
 };
 
-// eslint-disable-next-line
-export default React.forwardRef((props, forwardedRef) => (
-  <InputForm {...props} forwardedRef={forwardedRef} />
-));
+export default InputForm;

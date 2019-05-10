@@ -4,7 +4,7 @@ import { TextInput, Platform } from "react-native";
 
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.native.js
 
-const Input = styled(({ type, onChange, id, forwardedRef, ...others }) => (
+const Input = styled(({ type, onChange, id, ...others }) => (
   <TextInput
     {...others}
     secureTextEntry={type === "password"}

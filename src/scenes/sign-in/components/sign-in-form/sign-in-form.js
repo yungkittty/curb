@@ -38,8 +38,7 @@ SignInForm.propTypes = {
   password: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
-  }).isRequired,
-  onSubmit: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default withTranslation("common")(SignInForm);
