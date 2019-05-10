@@ -17,7 +17,7 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
           takePhotoButtonTitle: t("takePhoto"),
           chooseFromLibraryButtonTitle: t("chooseLibrary"),
           cancelButtonTitle: t("cancel"),
-          mediaTypes: "photo",
+          mediaType: "photo",
           maxWidth: 1024,
           maxHeight: 1024,
           quality: 1,
