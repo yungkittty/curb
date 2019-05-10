@@ -9,23 +9,27 @@ class Image extends React.Component {
 
   render() {
     const { isShowed } = this.state;
-    const { style, ...others } = this.props;
+    const { style, objectFit, ...others } = this.props;
     return (
       <img
         {...others}
         alt=""
         onLoadStart={() => this.setState({ isShowed: false })}
         onLoad={() => this.setState({ isShowed: true })}
-        style={{ ...style, opacity: +isShowed }}
+        style={{ ...style, opacity: +isShowed, objectFit }}
       />
     );
   }
 }
 
-Image.defaultProps = { style: undefined };
+Image.defaultProps = {
+  style: undefined,
+  objectFit: undefined
+};
 
 Image.propTypes = {
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  style: PropTypes.object, // eslint-disable-line
+  objectFit: PropTypes.oneOf(["cover"])
 };
 
 export default Image;

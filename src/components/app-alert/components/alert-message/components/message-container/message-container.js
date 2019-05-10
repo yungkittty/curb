@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import Container from "../../../../../container";
 
+// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 8
+
 const MessageContainer = styled(Container)`
-  position: absolute;
   display: flex;
-  width: 500px;
-  height: 60px;
-  border-radius: 32px;
+  position: absolute;
   z-index: 8;
-  box-shadow: 0px 6px 8px -2px rgba(51, 51, 51, 0.25);
   align-items: center;
   justify-content: center;
+  width: 500px;
+  height: 60px;
   margin-bottom: 20px;
+  border-radius: 32px;
+  box-shadow: 0px 4.8px 4.32px 0px rgba(0, 0, 0, 0.192);
   background-color: ${({ type, theme }) => {
     switch (type) {
       case "success":

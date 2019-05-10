@@ -27,7 +27,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => ({
   patchUser: payload => dispatch(usersActions.patchUserRequest(payload)),
-  postMediaAvatar: payload => dispatch(mediasActions.postMediaAvatarRequest(payload)) || ""
+  postMediaAvatarUser: payload => dispatch(mediasActions.postMediaAvatarUserRequest(payload))
 });
 
 export default connect(

@@ -14,10 +14,9 @@ function* getUsersRequestSaga(action) {
 }
 
 function* patchUsersRequestSaga(action) {
-  const { id, payload } = action.payload;
   try {
-    const respond = yield call(usersApi.patchUser, { id, payload });
-    yield put(usersActions.patchUserSuccess(respond));
+    const { data: payload } = yield call(usersApi.patchUser, action.payload);
+    yield put(usersActions.patchUserSuccess(payload));
     yield put(
       appAlertActions.pushAppAlert({
         type: "success",
@@ -25,7 +24,6 @@ function* patchUsersRequestSaga(action) {
         icon: "check"
       })
     );
-    yield put(usersActions.getUserRequest({ id }));
   } catch (error) {
     yield put(usersActions.patchUserFailure(error));
     yield put(

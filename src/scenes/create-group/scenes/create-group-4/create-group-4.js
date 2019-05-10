@@ -59,7 +59,7 @@ class CreateGroup4 extends Component {
       status: discoverability.value,
       mediaTypes: modules.value,
       theme: groupTheme.value,
-      avatar: avatar.value.file
+      avatar
     });
   }
 

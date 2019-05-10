@@ -45,7 +45,7 @@ class SignUp2 extends Component {
       name: name.value,
       email: email.value,
       password: createPassword.value,
-      avatar: avatar.value.file
+      avatar
     });
   }
 

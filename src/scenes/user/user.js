@@ -66,7 +66,7 @@ class User extends Component {
   }
 
   submit() {
-    const { userId, patchUser, postMediaAvatar } = this.props;
+    const { userId, patchUser, postMediaAvatarUser } = this.props;
     const { username, avatar } = this.state;
     let payload = null;
 
@@ -74,10 +74,9 @@ class User extends Component {
 
     if (payload) patchUser({ id: userId, payload });
     if (avatar.value.file) {
-      postMediaAvatar({
-        target: "users",
+      postMediaAvatarUser({
         id: userId,
-        avatar: avatar.value.file,
+        avatar,
         onUploadProgress: this.onUploadProgress,
         onSuccessAlert: {
           type: "success",
@@ -128,7 +127,7 @@ class User extends Component {
           <ImageAvatarEditable
             id="avatar"
             size="extra-extra-large"
-            placeholderColor={theme.primaryColor}
+            placeholderColor={theme.primaryVariantColor}
             userId={userId}
             editMode={editMode}
             data={avatarState.value.data}
@@ -168,7 +167,7 @@ User.propTypes = {
   userPatchingErrorCode: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
   patchUser: PropTypes.func.isRequired,
-  postMediaAvatar: PropTypes.func.isRequired,
+  postMediaAvatarUser: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   userName: PropTypes.string.isRequired,
   owner: PropTypes.bool.isRequired
