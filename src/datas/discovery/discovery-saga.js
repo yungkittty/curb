@@ -12,11 +12,6 @@ function* getDiscoveryRequestSaga(action) {
   }
 }
 
-const discoverySaga = all([
-  takeEvery(
-    discoveryActionsTypes.GET_DISCOVERY_REQUEST,
-    getDiscoveryRequestSaga
-  )
-]);
+const discoverySaga = all([takeEvery(discoveryActionsTypes.GET_DISCOVERY_REQUEST, getDiscoveryRequestSaga)]);
 
 export default discoverySaga;
