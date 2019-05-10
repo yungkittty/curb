@@ -40,7 +40,5 @@ ModalScene.propTypes = {
 };
 
 export default SceneSlide(
-  React.forwardRef((props, forwardedRef) => (
-    <ModalScene {...props} forwardedRef={forwardedRef} />
-  ))
+  React.forwardRef((props, forwardedRef) => <ModalScene {...props} forwardedRef={forwardedRef} />)
 );

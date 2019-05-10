@@ -59,7 +59,7 @@ class SignIn extends Component {
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <SignInForm email={email} password={password} onChange={this.handleChange} />
+        <SignInForm email={email} password={password} onChange={this.handleChange} onSubmit={this.submit} />
         <SignInFooter setAppModalScene={setAppModalScene} t={t} />
       </AppModalSceneContainer>
     );
