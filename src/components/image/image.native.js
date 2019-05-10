@@ -1,13 +1,40 @@
 import React from "react";
-import { Image } from "react-native";
 import PropTypes from "prop-types";
+import FastImage from "react-native-fast-image";
 
-// eslint-disable-next-line
-const _Image = ({ src: uri, ...others }) => <Image {...others} source={{ uri }} />;
+// https://www.npmjs.com/package/react-native-fast-image
 
-_Image.propTypes = {
-  // eslint-disable-next-line
-  src: PropTypes.any.isRequired
+class Image extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isShowed: false };
+  }
+
+  render() {
+    const { isShowed } = this.state;
+    const { src, objectFit, style, ...others } = this.props;
+    return (
+      <FastImage
+        {...others}
+        source={{ uri: src, cache: "web" }}
+        resizeMode={objectFit}
+        onLoadStart={() => this.setState({ isShowed: false })}
+        onLoad={() => this.setState({ isShowed: true })}
+        style={[style, { opacity: +isShowed }]}
+      />
+    );
+  }
+}
+
+Image.defaultProps = {
+  style: undefined,
+  objectFit: undefined
 };
 
-export default _Image;
+Image.propTypes = {
+  src: PropTypes.string.isRequired,
+  style: PropTypes.array, // eslint-disable-line
+  objectFit: PropTypes.oneOf(["cover"])
+};
+
+export default Image;
