@@ -40,9 +40,22 @@ function* postMediaAvatarRequestSaga(action) {
   }
 }
 
+function* postGroupVideoContentRequestSaga(action) {
+  try {
+    yield call(mediasApi.postGroupVideoContent, action.payload);
+    yield put(mediasActions.postGroupVideoContentSuccess());
+    yield put(appModalActions.hideAppModal());
+  } catch (error) {
+    const { groupId } = action.payload;
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postGroupVideoContentFailure({ groupId, errorCode }));
+  }
+}
+
 const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST, postMediaAvatarRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST, postMediaAvatarRequestSaga),
+  takeLatest(mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_REQUEST, postGroupVideoContentRequestSaga)
 ]);
 
 export default mediasSaga;

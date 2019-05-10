@@ -9,6 +9,17 @@ const mediasApi = {
       withCredentials: true,
       onUploadProgress: onUploadProgress ? progress => onUploadProgress(progress) : undefined
     });
+  },
+  postGroupVideoContent: ({ groupId, userId, video, onUploadProgress }) => {
+    const data = new FormData();
+    data.append("file", video);
+    console.log(groupId);
+    console.log(userId);
+    console.log(video);
+    return axios.post(`/contents/videos/${groupId}/${userId}`, data, {
+      withCredentials: true,
+      onUploadProgress: onUploadProgress ? progress => onUploadProgress(progress) : undefined
+    });
   }
 };
 

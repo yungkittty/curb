@@ -26,6 +26,19 @@ const mediasActions = {
     type: mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE,
     payload: error,
     error: true
+  }),
+  postGroupVideoContentRequest: payload => ({
+    type: mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_REQUEST,
+    payload
+  }),
+  postGroupVideoContentSuccess: () => ({
+    type: mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_SUCCESS,
+    payload: undefined
+  }),
+  postGroupVideoContentFailure: error => ({
+    type: mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_FAILURE,
+    payload: error,
+    error: true
   })
 };
 

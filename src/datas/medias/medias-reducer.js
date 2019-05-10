@@ -6,11 +6,14 @@ const isFetching = (state = false, action) => {
   switch (action.type) {
     case mediasActionsTypes.GET_MEDIA_REQUEST:
     case mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST:
+    case mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_REQUEST:
       return true;
     case mediasActionsTypes.GET_MEDIA_SUCCESS:
     case mediasActionsTypes.GET_MEDIA_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE:
+    case mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_SUCCESS:
+    case mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_FAILURE:
       return false;
     default:
       return state;
@@ -66,9 +69,12 @@ const errorCode = (state = "", action) => {
     case mediasActionsTypes.GET_MEDIA_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST:
     case mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS:
+    case mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_REQUEST:
+    case mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_SUCCESS:
       return "";
     case mediasActionsTypes.GET_MEDIA_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE:
+    case mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_FAILURE:
       return action.payload.errorCode;
     default:
       return state;

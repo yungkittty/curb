@@ -1,3 +1,4 @@
-import CreateMediaVideo from "./create-media-video";
+// eslint-disable-next-line
+import CreateMediaVideoContainer from "./create-media-video-container";
 
-export default CreateMediaVideo;
+export default CreateMediaVideoContainer;
