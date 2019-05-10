@@ -22,13 +22,13 @@ const InputFile = ({
       {editMode && (
         <FileSelector
           type={type}
-          onSelect={(objData, file) => 
+          onSelect={(objData, file) =>
             onSelect({
               target: {
                 id,
                 value: { data: objData, file }
               }
-            });
+            })
           }
         />
       )}
