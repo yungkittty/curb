@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Container from "../../../../components/container";
 // eslint-disable-next-line
 import createMedia from "../../../create-media";
+import MediaMap from "./components/media-map";
 
 class CreateMediaLocation extends Component {
   constructor(props) {
@@ -17,7 +18,16 @@ class CreateMediaLocation extends Component {
   }
 
   render() {
-    return <Container style={{ height: "100%", width: "100%", backgroundColor: "blue" }}>Hey</Container>;
+    return (
+      <Container style={{ height: "100%", width: "100%" }}>
+        <MediaMap
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </Container>
+    );
   }
 }
 
@@ -28,3 +38,10 @@ CreateMediaLocation.propTypes = {
 };
 
 export default CreateMediaLocation;
+/**<MyMapComponent
+  isMarkerShown
+  googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+  loadingElement={<div style={{ height: `100%` }} />}
+  containerElement={<div style={{ height: `400px` }} />}
+  mapElement={<div style={{ height: `100%` }} />}
+/>**/
