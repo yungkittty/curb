@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import PreviewContainer from "./components/preview-container";
-import PreviewProgress from "./components/preview-progress";
 import Image from "../../../image";
+import PreviewProgress from "./components/preview-progress";
 import Icon from "../../../icon";
 
 const FilePreview = ({

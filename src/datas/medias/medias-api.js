@@ -23,7 +23,7 @@ const mediasApi = {
     data.append("file", image);
     return axios.post(`/contents/images/${groupId}/${userId}`, data, {
       withCredentials: true,
-      onUploadProgress: onUploadProgress ? progress => onUploadProgress(progress) : undefined
+      onUploadProgress
     });
   }
 };
