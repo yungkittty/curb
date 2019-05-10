@@ -52,13 +52,14 @@ class CreateGroup4 extends Component {
       return;
     }
 
-    const { postGroup, history, groupName, discoverability, modules, groupTheme } = this.props;
+    const { postGroup, history, groupName, discoverability, modules, groupTheme, avatar } = this.props;
     postGroup({
       history,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
-      theme: groupTheme.value
+      theme: groupTheme.value,
+      avatar
     });
   }
 
@@ -128,7 +129,8 @@ CreateGroup4.defaultProps = {
   groupName: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
-  groupTheme: { value: "", error: undefined }
+  groupTheme: { value: "", error: undefined },
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 CreateGroup4.propTypes = {
@@ -140,6 +142,7 @@ CreateGroup4.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   isCreateGroupFetching: PropTypes.bool.isRequired,
+  createGroupErrorCode: PropTypes.string.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
   // eslint-disable-next-line
@@ -160,6 +163,10 @@ CreateGroup4.propTypes = {
   }),
   groupTheme: PropTypes.shape({
     value: PropTypes.string,
+    error: PropTypes.string
+  }),
+  avatar: PropTypes.shape({
+    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
     error: PropTypes.string
   }),
   t: PropTypes.func.isRequired

@@ -5,12 +5,15 @@ import mediasActionsTypes from "./medias-actions-types";
 const isFetching = (state = false, action) => {
   switch (action.type) {
     case mediasActionsTypes.GET_MEDIA_REQUEST:
-    case mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST:
       return true;
     case mediasActionsTypes.GET_MEDIA_SUCCESS:
     case mediasActionsTypes.GET_MEDIA_FAILURE:
-    case mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE:
       return false;
     default:
       return state;
@@ -64,11 +67,14 @@ const errorCode = (state = "", action) => {
   switch (action.type) {
     case mediasActionsTypes.GET_MEDIA_REQUEST:
     case mediasActionsTypes.GET_MEDIA_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST:
-    case mediasActionsTypes.POST_MEDIA_AVATAR_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
       return "";
     case mediasActionsTypes.GET_MEDIA_FAILURE:
-    case mediasActionsTypes.POST_MEDIA_AVATAR_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE:
       return action.payload.errorCode;
     default:
       return state;

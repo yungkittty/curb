@@ -7,7 +7,8 @@ import { appModalActions } from "../../../../datas/app-modal";
 
 const mapStateToProps = state => ({
   currentUserId: currentUserSelectors.getCurrentUserId(state) || "",
-  isSignOutFetching: signInSelectors.isSignInFetching(state) || false
+  isSignOutFetching: signInSelectors.isSignInFetching(state) || false,
+  signOutErrorCode: signInSelectors.getSignInErrorCode(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({
