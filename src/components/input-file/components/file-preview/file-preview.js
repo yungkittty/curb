@@ -2,22 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import PreviewContainer from "./components/preview-container";
-import PreviewImage from "./components/preview-image";
 import PreviewProgress from "./components/preview-progress";
+import Image from "../../../image";
 import Icon from "../../../icon";
 
-const FilePreview = ({ as, containerProps, previewStyle, theme, data, type, loadingProgress, ...others }) => (
+const FilePreview = ({
+  // eslint-disable-line
+  as,
+  containerProps,
+  previewStyle,
+  theme,
+  data,
+  type,
+  loadingProgress,
+  ...others
+}) => (
   <PreviewContainer as={as} style={previewStyle} haveData={data} {...containerProps}>
     {/* eslint-disable-next-line */}
     {data ? (
       type === "image" ? (
-        <PreviewImage data={data} {...others} />
+        <Image {...others} src={data} objectFit="cover" style={{ width: "100%", height: "100%" }} />
       ) : null
     ) : (
       <Icon
-        color={theme.secondaryVariantColor}
         icon={type === "image" ? "file-image" : undefined}
         size="medium"
+        color={theme.secondaryVariantColor}
       />
     )}
     {loadingProgress && <PreviewProgress loadingProgress={loadingProgress} />}
@@ -32,17 +42,12 @@ FilePreview.defaultProps = {
 };
 
 FilePreview.propTypes = {
-  as: PropTypes.func,
-  // eslint-disable-next-line
-  containerProps: PropTypes.object,
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired,
-  // eslint-disable-next-line
-  previewStyle: PropTypes.object,
-  // eslint-disable-next-line
-  data: PropTypes.any,
-  // eslint-disable-next-line
-  type: PropTypes.oneOf(["image"]),
+  as: PropTypes.func, // eslint-disable-line
+  containerProps: PropTypes.object, // eslint-disable-line
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  previewStyle: PropTypes.object, // eslint-disable-line
+  data: PropTypes.any, // eslint-disable-line
+  type: PropTypes.oneOf(["image"]).isRequired,
   loadingProgress: PropTypes.number
 };
 

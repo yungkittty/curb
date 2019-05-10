@@ -1,7 +1,8 @@
 import _ from "lodash";
 import { combineReducers } from "redux";
 import usersActionsTypes from "./users-actions-types";
-import groupsActionsTypes from "../groups/groups-actions-types";
+import { groupsActionsTypes } from "../groups";
+import { mediasActionsTypes } from "../medias";
 
 const initialState = { isFetching: false, errorCode: "" };
 
@@ -68,6 +69,14 @@ const byId = (state = {}, action) => {
             ...state[action.payload.currentUserId].groups,
             action.payload.id
           ]
+        }
+      };
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          avatarUrl: action.payload.avatar.value.data
         }
       };
     default:
