@@ -13,19 +13,8 @@ class InputForm extends Component {
   }
 
   render() {
-    const {
-      containerStyle,
-      textStyle,
-      placeholder,
-      size,
-      error,
-      value,
-      forwardedRef,
-      ...others
-    } = this.props;
+    const { containerStyle, textStyle, placeholder, size, error, value, ...others } = this.props;
     const { focused } = this.state;
-
-    console.log(forwardedRef);
 
     return (
       <FormContainer style={containerStyle} size={size}>
@@ -36,7 +25,6 @@ class InputForm extends Component {
         )}
         <FormInput
           {...others}
-          ref={forwardedRef}
           style={textStyle}
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}

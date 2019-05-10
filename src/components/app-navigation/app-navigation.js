@@ -29,7 +29,7 @@ const AppNavigation = ({
       />
     ) : (
       <NavigationButtonImage
-        src={`https://api.redux.curb-app.com${_.replace(currentUserAvatarUrl, "medium", "small")}`}
+        src={`${process.env.REACT_APP_API_URL}${_.replace(currentUserAvatarUrl, "medium", "small")}`}
         onClick={`/users/${currentUserId}`}
       />
     )}

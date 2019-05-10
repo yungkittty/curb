@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-native";
-import { TouchableHighlight } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 const Button = ({ children, onClick, ...others }) =>
   typeof onClick === "string" || onClick === "object" ? (
@@ -9,9 +9,9 @@ const Button = ({ children, onClick, ...others }) =>
       {React.Children.only(children)}
     </Link>
   ) : (
-    <TouchableHighlight {...others} onPress={onClick}>
+    <TouchableOpacity {...others} onPress={onClick}>
       {React.Children.only(children)}
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 
 Button.defaultProps = { onClick: undefined };

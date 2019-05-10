@@ -5,7 +5,7 @@ import NavigationButtonImage from "../navigation-button-image";
 
 const NavigationListItem = ({ currentUserGroupId, currentUserGroupAvatarUrl }) => (
   <NavigationButtonImage
-    src={`https://api.redux.curb-app.com${_.replace(currentUserGroupAvatarUrl, "medium", "small")}`}
+    src={`${process.env.REACT_APP_API_URL}${_.replace(currentUserGroupAvatarUrl, "medium", "small")}`}
     onClick={`/groups/${currentUserGroupId}`}
   />
 );

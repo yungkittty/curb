@@ -2,12 +2,20 @@ import axios from "axios";
 
 const mediasApi = {
   getMedia: ({ id }) => axios.get(`/contents/${id}`, { withCredentials: true }),
-  postMediaAvatar: ({ target, id, avatar, onUploadProgress }) => {
+  postMediaAvatarUser: ({ id, avatar, onUploadProgress }) => {
     const data = new FormData();
-    data.append("file", avatar);
-    return axios.post(`/contents/avatars/${target}/${id}`, data, {
+    data.append("file", avatar.value.file);
+    return axios.post(`/contents/avatars/users/${id}`, data, {
       withCredentials: true,
-      onUploadProgress: onUploadProgress ? progress => onUploadProgress(progress) : undefined
+      onUploadProgress
+    });
+  },
+  postMediaAvatarGroup: ({ id, avatar, onUploadProgress }) => {
+    const data = new FormData();
+    data.append("file", avatar.value.file);
+    return axios.post(`/contents/avatars/groups/${id}`, data, {
+      withCredentials: true,
+      onUploadProgress
     });
   },
   postGroupVideoContent: ({ groupId, userId, video, onUploadProgress }) => {

@@ -1,17 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// eslint-disable-next-line
-const Video = ({ src, ...others }) => (
-  // eslint-disable-next-line
-  <video controls {...others}>
-    <source src={src} />
-  </video>
-);
+class Video extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isShowed: false };
+  }
+
+  render() {
+    const { isShowed } = this.state;
+    const { style, objectFit, src, ...others } = this.props;
+    return (
+      // eslint-disable-next-line
+      <video
+        {...others}
+        style={{ ...style, opacity: +isShowed }}
+        controls
+        onLoadStart={() => this.setState({ isShowed: false })}
+        onCanPlay={() => this.setState({ isShowed: true })}
+      >
+        <source style={{ objectFit }} src={src} />
+      </video>
+    );
+  }
+}
+
+Video.defaultProps = {
+  style: undefined,
+  objectFit: undefined
+};
 
 Video.propTypes = {
-  // eslint-disable-next-line
-  src: PropTypes.any.isRequired
+  style: PropTypes.object, // eslint-disable-line
+  objectFit: PropTypes.oneOf(["cover"]),
+  src: PropTypes.string.isRequired
 };
 
 export default Video;

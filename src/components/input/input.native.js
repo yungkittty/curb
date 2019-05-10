@@ -7,18 +7,9 @@ import { TextInput, Platform } from "react-native";
 const Input = styled(({ type, onChange, id, forwardedRef, ...others }) => (
   <TextInput
     {...others}
-    onChangeText={text => onChange({ target: { id, value: text } })}
-    // eslint-disable-next-line
-    {...(type === "email"
-      ? {
-          keyboardType: "email-address",
-          textContentType: "emailAddress",
-          autoCapitalize: "none",
-          autoCorrect: false
-        }
-      : type === "password"
-      ? { textContentType: "password", secureTextEntry: true, autoCorrect: false }
-      : null)}
+    secureTextEntry={type === "password"}
+    keyboardType={type === "email" ? "email-address" : undefined}
+    onChangeText={value => onChange({ target: { id, value } })}
   />
 ))`
   font-family: Montserrat-Regular;

@@ -3,10 +3,8 @@ import { takeNormalize } from "../../configurations/store/saga-effects";
 import mediasActionsTypes from "./medias-actions-types";
 import mediasActions from "./medias-actions";
 import mediasApi from "./medias-api";
-import usersActions from "../users/users-actions";
-import groupsActions from "../groups/groups-actions";
-import appModalActions from "../app-modal/app-modal-actions";
 import appAlertActions from "../app-alert/app-alert-actions";
+import appModalActions from "../app-modal/app-modal-actions";
 
 function* getMediaRequestSaga(action) {
   try {
@@ -18,25 +16,31 @@ function* getMediaRequestSaga(action) {
   }
 }
 
-function* postMediaAvatarRequestSaga(action) {
-  const { target, id, onSuccessAlert } = action.payload;
+function* postMediaAvatarUserRequestSaga(action) {
   try {
-    yield call(mediasApi.postMediaAvatar, action.payload);
-    yield put(mediasActions.postMediaAvatarSuccess());
+    const { id, avatar, onSuccessAlert } = action.payload;
+    yield call(mediasApi.postMediaAvatarUser, action.payload);
+    yield put(mediasActions.postMediaAvatarUserSuccess({ id, avatar }));
     if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
-    yield put(
-      target === "users" ? usersActions.getUserRequest({ id }) : groupsActions.getGroupRequest({ id })
-    );
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaAvatarFailure({ id, errorCode }));
-    yield put(
-      appAlertActions.pushAppAlert({
-        type: "error",
-        message: `postAvatar.${errorCode}`,
-        icon: "times"
-      })
-    );
+    const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
+    yield put(mediasActions.postMediaAvatarUserFailure({ id: action.payload.id, errorCode }));
+    yield put(appAlertActions.pushAppAlert(errorAlert));
+  }
+}
+
+function* postMediaAvatarGroupRequestSaga(action) {
+  try {
+    const { id, avatar, onSuccessAlert } = action.payload;
+    yield call(mediasApi.postMediaAvatarGroup, action.payload);
+    yield put(mediasActions.postMediaAvatarGroupSuccess({ id, avatar }));
+    if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
+    yield put(mediasActions.postMediaAvatarGroupFailure({ id: action.payload.id, errorCode }));
+    yield put(appAlertActions.pushAppAlert(errorAlert));
   }
 }
 
@@ -54,7 +58,8 @@ function* postGroupVideoContentRequestSaga(action) {
 
 const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_REQUEST, postMediaAvatarRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga),
   takeLatest(mediasActionsTypes.POST_GROUP_VIDEO_CONTENT_REQUEST, postGroupVideoContentRequestSaga)
 ]);
 
