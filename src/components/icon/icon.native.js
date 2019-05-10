@@ -6,15 +6,15 @@ const Icon = ({ size, icon, ...others }) => {
   const X = (() => {
     switch (size) {
       case "extra-small":
-        return 20;
+        return 15;
       case "small":
         return 30;
       case "medium":
-        return 40;
+        return 35;
       case "large":
-        return 60;
+        return 40;
       case "extra-large":
-        return 150;
+        return 130;
       default:
         return undefined;
     }

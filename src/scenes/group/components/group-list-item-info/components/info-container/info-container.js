@@ -5,6 +5,7 @@ const InfoContainer = styled(Container)`
   display: flex;
   flex-direction: row;
   width: 100%;
+  min-width: 100%;
   padding: 0px 80px;
 `;
 

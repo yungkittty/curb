@@ -4,7 +4,6 @@ import Container from "../../../container";
 
 const ScrollContainerContent = styled(Container)`
   display: flex;
-  flex: 1;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
   ${props => (!props.showsVerticalScrollIndicator ? "margin-right: -15px;" : "")};
   ${props => (!props.showsHorizontalScrollIndicator ? "margin-bottom: -15px;" : "")};

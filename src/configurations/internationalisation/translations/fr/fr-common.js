@@ -19,4 +19,6 @@ const frCommon = {
   reset: "Réinitialiser"
 };
 
+// ajouter utilisateur + modules !
+
 export default frCommon;

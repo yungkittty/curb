@@ -18,7 +18,8 @@ const ListFlatItemCircleText = ({
       <React.Fragment>
         <Circle
           {...others}
-          diameter={platformBools.isReact ? "large" : "medium"}
+          diameter="large"
+          size="large"
           style={{ marginBottom: platformBools.isReact ? 20 : 10 }}
         />
         <CircleTextText>

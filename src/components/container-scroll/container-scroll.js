@@ -19,8 +19,7 @@ class ContainerScroll extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { children } = this.props;
-    const { children: prevChildren } = prevProps;
-    if (children === prevChildren) return;
+    if (children === prevProps.children) return;
     this.isScrollable();
   }
 

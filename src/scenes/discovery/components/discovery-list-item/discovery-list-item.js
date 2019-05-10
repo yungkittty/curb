@@ -13,7 +13,6 @@ const DiscoveryListItem = ({ groupId, groupName, theme }) => (
     onClick={`/groups/${groupId}`}
     component={ImageGroup}
     groupId={groupId}
-    size="large"
     placeholderColor={theme.primaryVariantColor}
     text={groupName}
   />

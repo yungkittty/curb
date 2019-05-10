@@ -22,10 +22,13 @@ class NavigationContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { isAppNavigationShowed } = this.props;
-    if (isAppNavigationShowed !== prevProps.isAppNavigationShowed) {
-      const { containerAnimated } = this.state;
+    const { isContainerShowed, containerAnimated } = this.state;
+    if (
+      isAppNavigationShowed !== prevProps.isAppNavigationShowed &&
+      isAppNavigationShowed !== isContainerShowed
+    ) {
       Animated.spring(containerAnimated, {
-        toValue: !isAppNavigationShowed ? -70 : 0,
+        toValue: isAppNavigationShowed ? 0 : -70,
         easing: Easing.inOut(Easing.quad),
         useNativeDriver: true
       }).start(() => this.setState({ isContainerShowed: isAppNavigationShowed }));
@@ -40,14 +43,22 @@ class NavigationContainer extends React.Component {
   }
 
   moveContainerToEnd(event) {
+    const { containerAnimated } = this.state;
     const { pageX } = event.nativeEvent;
-    const { showAppNavigation, hideAppNavigation } = this.props;
-    // eslint-disable-next-line
-    pageX >= 35 ? showAppNavigation() : hideAppNavigation();
+    Animated.spring(containerAnimated, {
+      toValue: pageX >= 35 ? 0 : -70,
+      easing: Easing.inOut(Easing.quad),
+      useNativeDriver: true
+    }).start(() => {
+      this.setState({ isContainerShowed: pageX >= 35 });
+      const { showAppNavigation, hideAppNavigation } = this.props;
+      // eslint-disable-next-line
+      pageX >= 35 ? showAppNavigation() : hideAppNavigation();
+    });
   }
 
   render() {
-    const { containerAnimated, isContainerShowed } = this.state;
+    const { isContainerShowed, containerAnimated } = this.state;
     const { hideAppNavigation, children } = this.props;
     return (
       <React.Fragment>

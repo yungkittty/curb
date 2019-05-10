@@ -86,20 +86,6 @@ class ListFlat extends React.Component {
     return React.cloneElement(renderItem(itemParams), itemProps);
   }
 
-  // eslint-disable-next-line
-  renderLayout(renderLayout, layoutKey) {
-    const layoutProps = { key: layoutKey };
-    return renderLayout
-      ? React.cloneElement(
-          typeof renderLayout === "function"
-            ? // eslint-disable-line
-              renderLayout()
-            : renderLayout,
-          layoutProps
-        )
-      : null;
-  }
-
   render() {
     const {
       className,
@@ -109,8 +95,8 @@ class ListFlat extends React.Component {
       showsVerticalScrollIndicator,
       horizontal,
       data: itemsData,
-      ListHeaderComponent: listHeaderComponent,
-      ListFooterComponent: listFooterComponent
+      ListHeaderComponent,
+      ListFooterComponent
     } = this.props;
     const { isScrollableToLeft, isScrollableToRight } = this.state;
     return (
@@ -131,9 +117,9 @@ class ListFlat extends React.Component {
             style={{ top: 30, left: 20 }}
           />
         ) : null}
-        {this.renderLayout(listHeaderComponent, "header")}
+        {ListHeaderComponent && <ListHeaderComponent />}
         {_.map(itemsData, this.renderItem)}
-        {this.renderLayout(listFooterComponent, "footer")}
+        {ListFooterComponent && <ListFooterComponent />}
         {horizontal && isScrollableToRight ? (
           <FlatButtonIconFloat
             // eslint-disable-line

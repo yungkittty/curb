@@ -11,9 +11,11 @@ const HeaderContainer = styled(Container)`
   justify-content: center;
   width: 100%;
   height: 500px;
+  min-width: 100%;
+  min-height: 500px;
   padding: 0px 40px;
   margin-bottom: 80px;
-  background-color: ${props => props.theme[`group${_.capitalize(props.groupTheme)}Color`]};
+  background-color: ${props => props.theme[`group${_.capitalize(props.groupTheme)}Color`] || undefined};
 `;
 
 HeaderContainer.propTypes = { groupTheme: PropTypes.string.isRequired };

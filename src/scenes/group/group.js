@@ -15,16 +15,16 @@ class Group extends React.Component {
   constructor(props) {
     super(props);
     this.toggleScene = this.toggleScene.bind(this);
-    this.renderItemInfo = this.renderItemInfo.bind(this);
-    this.renderItemMedia = this.renderItemMedia.bind(this);
+    this.renderListHeader = this.renderListHeader.bind(this);
+    this.renderListItemInfo = this.renderListItemInfo.bind(this);
+    this.renderListItemMedia = this.renderListItemMedia.bind(this);
     this.state = { isFeed: true };
   }
 
   componentDidUpdate(prevProps) {
     const { groupId } = this.props;
     if (groupId === prevProps.groupId) return;
-    // eslint-disable-next-line
-    this.setState({ isFeed: true });
+    this.setState({ isFeed: true }); // eslint-disable-line
   }
 
   toggleScene() {
@@ -32,7 +32,42 @@ class Group extends React.Component {
     this.setState({ isFeed: !isFeed });
   }
 
-  renderItemInfo() {
+  renderListHeader() {
+    const {
+      // eslint-disable-line
+      isFeed
+    } = this.state;
+    const {
+      isFetchingGroup,
+      groupId,
+      groupName,
+      groupAvatar,
+      groupStatus,
+      groupTheme,
+      userId,
+      userGroupsId,
+      theme
+    } = this.props;
+    return (
+      <GroupListHeader
+        isFeed={isFeed}
+        toggleScene={this.toggleScene}
+        isFetchingGroup={isFetchingGroup}
+        groupId={groupId}
+        groupName={groupName}
+        groupAvatar={groupAvatar}
+        groupStatus={groupStatus}
+        groupTheme={groupTheme}
+        userId={userId}
+        userGroupsId={userGroupsId}
+        theme={theme}
+      />
+    );
+  }
+
+  // renderListSectionHeader() {}
+
+  renderListItemInfo() {
     const {
       // eslint-disable-line
       groupUsersId,
@@ -49,7 +84,7 @@ class Group extends React.Component {
     );
   }
 
-  renderItemMedia({ item: mediaId }) {
+  renderListItemMedia({ item: mediaId }) {
     const { theme } = this.props;
     return (
       <GroupListItemMedia
@@ -61,16 +96,16 @@ class Group extends React.Component {
   }
 
   render() {
-    const { isFeed } = this.state;
     const {
-      isFetchingGroup,
+      // eslint-disable-line
+      isFeed
+    } = this.state;
+    const {
+      // eslint-disable-line
       groupId,
-      groupName,
-      groupAvatar,
       groupStatus,
       groupTheme,
       groupMediasId,
-      userId,
       userGroupsId,
       theme
     } = this.props;
@@ -80,27 +115,11 @@ class Group extends React.Component {
           isFeed={isFeed}
           sections={
             !isFeed
-              ? [{ data: [{}], renderItem: this.renderItemInfo }]
-              : [{ data: groupMediasId, renderItem: this.renderItemMedia }]
+              ? [{ data: [{}], renderItem: this.renderListItemInfo }]
+              : [{ data: groupMediasId, renderItem: this.renderListItemMedia }]
           }
           keyExtractor={groupMediaId => groupMediaId}
-          ListHeaderComponent={() => (
-            <React.Fragment>
-              <GroupListHeader
-                isFeed={isFeed}
-                toggleScene={this.toggleScene}
-                isFetchingGroup={isFetchingGroup}
-                groupId={groupId}
-                groupName={groupName}
-                groupAvatar={groupAvatar}
-                groupStatus={groupStatus}
-                groupTheme={groupTheme}
-                userId={userId}
-                userGroupsId={userGroupsId}
-                theme={theme}
-              />
-            </React.Fragment>
-          )}
+          ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={() => (
             <GroupListSectionHeader
               groupId={groupId}
