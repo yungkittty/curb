@@ -10,15 +10,15 @@ import withGroup from "../../hocs/with-group";
 //  import CreateMediaText from "./scenes/create-media-text";
 //  import CreateMediaImage from "./scenes/create-media-image";
 //  import CreateMediaVideo from "./scenes/create-media-video";
-import CreateMediaLocation from "./scenes/create-media-location";
+//  import CreateMediaLocation from "./scenes/create-media-location";
 /* eslint-enable */
 
 class CreateMedia extends Component {
   constructor(props) {
     super(props);
-    const { setAppModalHeaderText } = this.props;
+    const { t, setAppModalHeaderText } = this.props;
 
-    setAppModalHeaderText({ text: "Post content" });
+    setAppModalHeaderText({ text: t("common:post") });
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -33,8 +33,8 @@ class CreateMedia extends Component {
         //      return CreateMediaImage;
         //    case "video":
         //      return CreateMediaVideo;
-        case "location":
-          return CreateMediaLocation();
+        //    case "location":
+        //      return CreateMediaLocation;
         default:
           return undefined;
       }
