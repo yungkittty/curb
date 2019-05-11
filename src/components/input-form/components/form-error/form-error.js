@@ -5,7 +5,7 @@ const FormError = styled(Text)`
   white-space: pre;
   position: absolute;
   left: 0px;
-  top: 64px;
+  bottom: -18px;
   color: ${props => props.theme.errorColor};
 `;
 

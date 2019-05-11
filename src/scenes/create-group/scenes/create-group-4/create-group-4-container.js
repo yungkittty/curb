@@ -5,7 +5,8 @@ import { appModalActions } from "../../../../datas/app-modal";
 import { groupsSelectors, groupsActions } from "../../../../datas/groups";
 
 const mapStateToProps = state => ({
-  isCreateGroupFetching: groupsSelectors.isCreateGroupFetching(state) || false
+  isCreateGroupFetching: groupsSelectors.isCreateGroupFetching(state) || false,
+  createGroupErrorCode: groupsSelectors.getCreateGroupErrorCode(state) || ""
 });
 
 const mapDispatchToProps = dispatch => ({

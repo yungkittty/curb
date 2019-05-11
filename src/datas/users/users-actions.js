@@ -13,6 +13,19 @@ const usersActions = {
     type: usersActionsTypes.GET_USER_FAILURE,
     payload: error,
     error: true
+  }),
+  patchUserRequest: payload => ({
+    type: usersActionsTypes.PATCH_USER_REQUEST,
+    payload
+  }),
+  patchUserSuccess: payload => ({
+    type: usersActionsTypes.PATCH_USER_SUCCESS,
+    payload
+  }),
+  patchUserFailure: error => ({
+    type: usersActionsTypes.PATCH_USER_FAILURE,
+    payload: error,
+    error: true
   })
 };
 

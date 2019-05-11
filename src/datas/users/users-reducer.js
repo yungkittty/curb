@@ -1,7 +1,34 @@
 import _ from "lodash";
 import { combineReducers } from "redux";
 import usersActionsTypes from "./users-actions-types";
-import groupsActionsTypes from "../groups/groups-actions-types";
+import { groupsActionsTypes } from "../groups";
+import { mediasActionsTypes } from "../medias";
+
+const initialState = { isFetching: false, errorCode: "" };
+
+const patchingUser = (state = initialState, action) => {
+  switch (action.type) {
+    case usersActionsTypes.PATCH_USER_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case usersActionsTypes.PATCH_USER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        errorCode: ""
+      };
+    case usersActionsTypes.PATCH_USER_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorCode: action.payload.response.data.code
+      };
+    default:
+      return state;
+  }
+};
 
 const byId = (state = {}, action) => {
   switch (action.type) {
@@ -44,6 +71,14 @@ const byId = (state = {}, action) => {
           ]
         }
       };
+    case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          avatarUrl: action.payload.avatar.value.data
+        }
+      };
     default:
       return state;
   }
@@ -58,6 +93,6 @@ const allIds = (state = [], action) => {
   }
 };
 
-const usersReducer = combineReducers({ byId, allIds });
+const usersReducer = combineReducers({ patchingUser, byId, allIds });
 
 export default usersReducer;

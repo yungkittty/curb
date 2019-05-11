@@ -3,9 +3,10 @@ import styled from "styled-components";
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.js
 
 const Input = styled.input`
+  font-family: "Montserrat-Regular";
+  color: ${({ theme }) => theme.fontColor}
   box-sizing: border-box;
   box-shadow: none;
-  font-family: "Montserrat-Regular";
   padding: 18px;
   font-size: 18px;
   border: 0;
