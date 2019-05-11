@@ -29,8 +29,6 @@ GroupQrContainer.propTypes = {
   getGroupInviteToken: PropTypes.func.isRequired
 };
 
-/** @TODO Same strategy with container ! Right ! */
-
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,

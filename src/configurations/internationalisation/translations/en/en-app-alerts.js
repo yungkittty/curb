@@ -10,7 +10,7 @@ const enAppAlerts = {
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",
   signOutSuccess: "You have been disconnected",
-  signOutFailure: "An error has occured while Signin out"
+  signOutFailure: "An error has occured while signing out"
 };
 
 export default enAppAlerts;

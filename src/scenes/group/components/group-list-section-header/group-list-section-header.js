@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+import { withTranslation } from "react-i18next";
 import HeaderContainer from "./components/header-container";
 import HeaderButtonIcon from "./components/header-button-icon";
 import HeaderTitle from "./components/header-title";
@@ -14,10 +16,12 @@ class GroupListSectionHeader extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { groupId, groupStatus, userId, userGroupsId } = nextProps;
+    const { groupId, groupStatus, currentUserId, currentUserGroupsId } = nextProps;
     if (!groupId || !groupStatus || prevState.isShowed === false) return {};
+    const isGroupPublic = groupStatus === "public";
+    const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
     const { isInvited = false } = nextProps.location.state || {};
-    const isShowed = !!userId && _.includes(userGroupsId, groupId) && (groupStatus === "public" || isInvited);
+    const isShowed = !!currentUserId && isCurrentUserIn && (isGroupPublic || isInvited);
     return { isShowed, isInvited };
   }
 
@@ -57,11 +61,15 @@ GroupListSectionHeader.propTypes = {
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   postGroupInviteToken: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
-  userGroupsId: PropTypes.array.isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  currentUserGroupsId: PropTypes.array.isRequired,
   theme: PropTypes.object.isRequired,
   /* eslint-enable */
   t: PropTypes.func.isRequired
 };
 
-export default GroupListSectionHeader;
+export default _.flowRight([
+  // eslint-disable-line
+  withRouter,
+  withTranslation("group")
+])(GroupListSectionHeader);

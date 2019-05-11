@@ -15,7 +15,13 @@ import CreateGroup from "../create-group";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 
-const Discovery = ({ showAppModal, userId, discoveryGroupsId, t }) => (
+const Discovery = ({
+  // eslint-disable-line
+  showAppModal,
+  currentUserId,
+  discoveryGroupsId,
+  t
+}) => (
   <React.Fragment>
     <DiscoveryContainer
       /* eslint-disable-next-line */
@@ -49,13 +55,20 @@ const Discovery = ({ showAppModal, userId, discoveryGroupsId, t }) => (
         />
       )}
     />
-    <ButtonIconFloat icon="plus" onClick={() => showAppModal({ scene: userId ? CreateGroup : SignIn })} />
+    <ButtonIconFloat
+      icon="plus"
+      onClick={() =>
+        showAppModal({
+          scene: currentUserId ? CreateGroup : SignIn
+        })
+      }
+    />
   </React.Fragment>
 );
 
 Discovery.propTypes = {
   showAppModal: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
+  currentUserId: PropTypes.string.isRequired,
   discoveryGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };

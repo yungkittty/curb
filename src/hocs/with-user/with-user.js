@@ -55,7 +55,8 @@ const withUser = WrappedComponent => {
   });
 
   WithUser.propTypes = {
-    location: PropTypes.object.isRequired, // eslint-disable-line
+    // eslint-disable-next-line
+    location: PropTypes.object.isRequired,
     userId: PropTypes.string.isRequired,
     getUser: PropTypes.func.isRequired
   };

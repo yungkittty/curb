@@ -16,7 +16,7 @@ const CircleContainer = ({
     const innerDiameters = platformBools.isReact
       ? // eslint-disable-line
         [40, 60, 80, 100, 200, 300] // 320
-      : [30, 50, 70, 90, 150, 200]; // 150
+      : [30, 50, 60, 70, 150, 200]; // 150
     switch (diameter) {
       case "extra-small":
         return innerDiameters[0];

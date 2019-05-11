@@ -3,12 +3,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
-import withUser from "../../hocs/with-user";
-import { platformBools } from "../../configurations/platform";
 import UserContainer from "./components/user-container";
-import ButtonIconFloat from "../../components/button-icon-float";
-import ImageAvatarEditable from "../../components/image-avatar-editable";
 import UserNameForm from "./components/user-name-form";
+import ImageAvatarEditable from "../../components/image-avatar-editable";
+import ButtonIconFloat from "../../components/button-icon-float";
+import withUser from "../../hocs/with-user";
+import withCurrentUser from "../../hocs/with-current-user";
+import { platformBools } from "../../configurations/platform";
 
 class User extends Component {
   constructor(props) {
@@ -35,16 +36,17 @@ class User extends Component {
   componentDidUpdate(prevProps) {
     const { username: usernameState, avatar, editMode } = this.state;
     const {
-      owner,
-      isUserPatching,
-      userPatchingErrorCode,
+      isFetchingUsers,
+      usersErrorCode,
       isFetchingMedias,
       mediasErrorCode,
-      userName: usernameProps
+      userId,
+      userName: usernameProps,
+      currentUserId
     } = this.props;
     const { username: initialUsername, avatar: initialAvatar } = this.initialState;
     // eslint-disable-next-line
-    if (!owner && editMode) this.setState({ editMode: false });
+    if (!(userId === currentUserId) && editMode) this.setState({ editMode: false });
 
     if (prevProps.isFetchingMedias && !isFetchingMedias)
       // eslint-disable-next-line
@@ -52,9 +54,9 @@ class User extends Component {
         avatar: mediasErrorCode === "" ? initialAvatar : { ...avatar, loadingProgress: undefined },
         editMode: mediasErrorCode !== ""
       });
-    if (prevProps.isUserPatching && !isUserPatching)
+    if (prevProps.isFetchingUsers && !isFetchingUsers)
       // eslint-disable-next-line
-      this.setState({ editMode: userPatchingErrorCode !== "" });
+      this.setState({ editMode: usersErrorCode !== "" });
 
     // eslint-disable-next-line
     if (usernameState.value === usernameProps) this.setState({ username: initialUsername });
@@ -118,8 +120,22 @@ class User extends Component {
   }
 
   render() {
-    const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, theme, owner, userName: usernameProps, userId, isFetchingMedias, isUserPatching } = this.props;
+    const {
+      // eslint-disable-line
+      editMode,
+      username: usernameState,
+      avatar: avatarState
+    } = this.state;
+    const {
+      // eslint-disable-line
+      isFetchingUsers,
+      isFetchingMedias,
+      userId,
+      userName: usernameProps,
+      currentUserId,
+      theme,
+      t
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -150,7 +166,7 @@ class User extends Component {
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
         </UserContainer>
-        {owner && !isFetchingMedias && !isUserPatching && (
+        {userId === currentUserId && !isFetchingMedias && !isFetchingUsers && (
           <ButtonIconFloat icon={editMode ? "check" : "pen"} size="medium" onClick={this.handleSwapMode} />
         )}
       </React.Fragment>
@@ -159,23 +175,23 @@ class User extends Component {
 }
 
 User.propTypes = {
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired,
+  isFetchingUsers: PropTypes.bool.isRequired,
+  usersErrorCode: PropTypes.string.isRequired,
   isFetchingMedias: PropTypes.bool.isRequired,
   mediasErrorCode: PropTypes.string.isRequired,
-  isUserPatching: PropTypes.bool.isRequired,
-  userPatchingErrorCode: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  currentUserId: PropTypes.string.isRequired,
   patchUser: PropTypes.func.isRequired,
   postMediaAvatarUser: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
-  userName: PropTypes.string.isRequired,
-  owner: PropTypes.bool.isRequired
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  t: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
-  withTheme,
   withUser,
-  withTranslation()
+  withCurrentUser,
+  withTranslation(),
+  withTheme
 ])(User);

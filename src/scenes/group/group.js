@@ -44,8 +44,7 @@ class Group extends React.Component {
       groupAvatar,
       groupStatus,
       groupTheme,
-      userId,
-      userGroupsId,
+      currentUserGroupsId,
       theme
     } = this.props;
     return (
@@ -58,8 +57,7 @@ class Group extends React.Component {
         groupAvatar={groupAvatar}
         groupStatus={groupStatus}
         groupTheme={groupTheme}
-        userId={userId}
-        userGroupsId={userGroupsId}
+        currentUserGroupsId={currentUserGroupsId}
         theme={theme}
       />
     );
@@ -106,7 +104,8 @@ class Group extends React.Component {
       groupStatus,
       groupTheme,
       groupMediasId,
-      userGroupsId,
+      currentUserId,
+      currentUserGroupsId,
       theme
     } = this.props;
     return (
@@ -125,7 +124,8 @@ class Group extends React.Component {
               groupId={groupId}
               groupStatus={groupStatus}
               groupTheme={groupTheme}
-              userGroupsId={userGroupsId}
+              currentUserId={currentUserId}
+              currentUserGroupsId={currentUserGroupsId}
               theme={theme}
             />
           )}
@@ -146,8 +146,8 @@ Group.propTypes = {
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
   groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
   groupMediasId: PropTypes.array.isRequired, // eslint-disable-line
-  userId: PropTypes.string.isRequired,
-  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  currentUserId: PropTypes.string.isRequired,
+  currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 

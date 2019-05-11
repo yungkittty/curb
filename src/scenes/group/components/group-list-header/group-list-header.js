@@ -17,11 +17,11 @@ const GroupListHeader = ({
   groupName,
   groupStatus,
   groupTheme,
-  userGroupsId,
+  currentUserGroupsId,
   theme
 }) => (
   <HeaderContainer groupTheme={groupTheme}>
-    {groupStatus === "public" || _.includes(userGroupsId, groupId) ? (
+    {groupStatus === "public" || _.includes(currentUserGroupsId, groupId) ? (
       <React.Fragment>
         <HeaderButtonIcon
           icon="qrcode"
@@ -41,7 +41,7 @@ const GroupListHeader = ({
     ) : null}
     <ImageGroup
       groupId={groupId}
-      size="extra-large"
+      size="extra-extra-large"
       placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}
     />
     <HeaderTitle type="h2" weight={700}>
@@ -59,7 +59,7 @@ GroupListHeader.propTypes = {
   groupName: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
-  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 

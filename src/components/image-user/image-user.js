@@ -29,8 +29,9 @@ const ImageUser = ({
       // eslint-disable-next-line
       userAvatar ? (
         <Image
-          // eslint-disable-line
-          src={userAvatar}
+          // eslint-disable-next-line
+          // eslint-disable-next-line
+          src={_.replace(userAvatar, "medium", size.substr(0, 5) === "extra" ? "large" : size)}
           style={{
             width: innerDiameter,
             height: innerDiameter
@@ -57,8 +58,8 @@ ImageUser.propTypes = {
   userName: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired,
-  // "extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"])
+    .isRequired,
   placeholderColor: PropTypes.string
 };
 

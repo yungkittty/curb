@@ -32,7 +32,14 @@ class SettingsGeneral extends Component {
   }
 
   render() {
-    const { isFetchingSignIn, t, setAppModalScene, userId, signOut } = this.props;
+    const {
+      // eslint-disable-line
+      isFetchingSignIn,
+      t,
+      setAppModalScene,
+      currentUserId,
+      signOut
+    } = this.props;
 
     return isFetchingSignIn ? (
       <Loader />
@@ -45,7 +52,7 @@ class SettingsGeneral extends Component {
             icon={item.icon}
             title={t(`general.menu.${item.id}.title`)}
             description={t(`general.menu.${item.id}.description`)}
-            disabled={item.needSignedInUser && !userId}
+            disabled={item.needSignedInUser && !currentUserId}
             onClick={() => (item.scene ? setAppModalScene({ scene: item.scene, direction: 1 }) : signOut())}
           />
         )}
@@ -60,7 +67,7 @@ SettingsGeneral.propTypes = {
   isFetchingSignIn: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
+  currentUserId: PropTypes.string.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired

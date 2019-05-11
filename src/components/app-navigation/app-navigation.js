@@ -18,12 +18,13 @@ import withCurrentUser from "../../hocs/with-current-user";
 const AppNavigation = ({
   // eslint-disable-line
   showAppModal,
-  userId,
-  userGroupsId,
-  theme: { primaryColor, secondaryVariantColor }
+  currentUserId,
+  currentUserGroupsId,
+  theme: { primaryColor, secondaryVariantColor },
+  ...others
 }) => (
   <NavigationContainer>
-    {!userId ? (
+    {!currentUserId ? (
       <NavigationButton
         component={Icon}
         icon="sign-in-alt"
@@ -35,15 +36,15 @@ const AppNavigation = ({
     ) : (
       <NavigationButton
         component={ImageUser}
-        userId={userId}
+        userId={currentUserId}
         size="small"
         placeholderColor={secondaryVariantColor}
-        onClick={`/users/${userId}`}
+        onClick={`/users/${currentUserId}`}
       />
     )}
     <NavigationRule />
     <ListFlat
-      data={userGroupsId}
+      data={currentUserGroupsId}
       keyExtractor={userGroupId => userGroupId}
       renderItem={({ item: userGroupId }) => (
         <NavigationButton
@@ -80,8 +81,8 @@ const AppNavigation = ({
 
 AppNavigation.propTypes = {
   showAppModal: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
-  userGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  currentUserId: PropTypes.string.isRequired,
+  currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
