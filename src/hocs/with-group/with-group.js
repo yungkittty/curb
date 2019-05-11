@@ -14,7 +14,7 @@ const withGroup = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { groupId, getGroup } = this.props;
-      if (groupId !== prevProps.groupId) {
+      if (groupId && groupId !== prevProps.groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -28,7 +28,7 @@ const withGroup = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const groupId = ownProps.groupId || ((ownProps.match || {}).params || {}).id || "";
     const {
-      isFetching: isGroupFetching = true,
+      isFetching: isFetchingGroup = false,
       creatorId: groupCreatorId = "",
       dateCreation: groupDateCreation = "",
       name: groupName = "",
@@ -41,7 +41,7 @@ const withGroup = WrappedComponent => {
       errorCode: groupErrorCode = ""
     } = groupsSelectors.getGroupById(state, groupId) || {};
     return {
-      isGroupFetching,
+      isFetchingGroup,
       groupId,
       groupCreatorId,
       groupDateCreation,

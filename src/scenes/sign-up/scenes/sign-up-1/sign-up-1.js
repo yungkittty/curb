@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import SelectImage from "./components/select-image";
+import ImageAvatarEditable from "../../../../components/image-avatar-editable";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 /* eslint-disable */
@@ -63,12 +63,19 @@ class SignUp1 extends Component {
   }
 
   render() {
-    const { t, name, email } = this.props;
+    const { t, avatar, name, email } = this.props;
     return (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("createAccount")}</AppModalSceneTitle>
-        <SelectImage />
+        <AppModalSceneTitle style={{ marginBottom: 40 }}>{t("createAccount")}</AppModalSceneTitle>
+        <ImageAvatarEditable
+          editMode
+          id="avatar"
+          size="extra-large"
+          data={avatar.value.data}
+          onSelect={this.handleChange}
+        />
         <InputForm
+          containerStyle={{ marginTop: 60 }}
           size="modal"
           id="name"
           placeholder={t("common:username")}
@@ -80,6 +87,7 @@ class SignUp1 extends Component {
           size="modal"
           id="email"
           type="email"
+          autoCapitalize="none"
           placeholder={t("common:email")}
           onChange={this.handleChange}
           value={email.value}
@@ -92,7 +100,8 @@ class SignUp1 extends Component {
 
 SignUp1.defaultProps = {
   name: { value: "", error: undefined },
-  email: { value: "", error: undefined }
+  email: { value: "", error: undefined },
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 SignUp1.propTypes = {
@@ -107,6 +116,10 @@ SignUp1.propTypes = {
   }),
   email: PropTypes.shape({
     value: PropTypes.string.isRequired,
+    error: PropTypes.string
+  }),
+  avatar: PropTypes.shape({
+    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
     error: PropTypes.string
   }),
   t: PropTypes.func.isRequired
