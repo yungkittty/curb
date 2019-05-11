@@ -25,7 +25,7 @@ const FilePreview = ({
       type === "image" ? (
         <Image {...others} src={data} objectFit="cover" style={{ width: "100%", height: "100%" }} />
       ) : type === "video" ? (
-        <Video {...others} src={data} objectFit="cover" style={{ width: "100%", height: "100%" }} />
+        <Video {...others} src={data} objectFit="contain" style={{ width: "100%", height: "100%" }} />
       ) : null
     ) : (
       <Icon

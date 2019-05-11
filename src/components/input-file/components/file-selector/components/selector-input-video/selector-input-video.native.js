@@ -27,13 +27,13 @@ const SelectorInputVideo = ({ t, onSelect, ...others }) => (
           }
         },
         response => {
-          console.log(response);
           if (!response.didCancel && !response.error && !response.customButton) {
             const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
+            const type = response.path.substr(response.path.lastIndexOf(".") + 1);
             onSelect(uri, {
               uri,
-              type: "video/mp4",
-              name: "video.mp4"
+              type: `video/${type}`,
+              name: `video.${type}`
             });
           }
         }

@@ -14,12 +14,12 @@ class Video extends React.Component {
       // eslint-disable-next-line
       <video
         {...others}
-        style={{ ...style, opacity: +isShowed }}
-        controls
+        style={{ ...style, objectFit, opacity: +isShowed, maxHeight: "100%", background: "#000" }}
         onLoadStart={() => this.setState({ isShowed: false })}
         onCanPlay={() => this.setState({ isShowed: true })}
+        controls
       >
-        <source style={{ objectFit }} src={src} />
+        <source src={src} />
       </video>
     );
   }
@@ -32,7 +32,7 @@ Video.defaultProps = {
 
 Video.propTypes = {
   style: PropTypes.object, // eslint-disable-line
-  objectFit: PropTypes.oneOf(["cover"]),
+  objectFit: PropTypes.oneOf(["cover", "contain"]),
   src: PropTypes.string.isRequired
 };
 
