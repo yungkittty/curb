@@ -4,6 +4,7 @@ import { signUpSaga } from "../../datas/sign-up";
 import { usersSaga } from "../../datas/users";
 import { groupsSaga } from "../../datas/groups";
 import { discoverySaga } from "../../datas/discovery";
+import { mediasSaga } from "../../datas/medias";
 import { accountSaga } from "../../datas/account";
 
 function* rootSaga() {
@@ -14,6 +15,7 @@ function* rootSaga() {
     usersSaga,
     groupsSaga,
     discoverySaga,
+    mediasSaga,
     accountSaga
   ]);
 }

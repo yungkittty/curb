@@ -3,16 +3,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import NavigationButtonImage from "../navigation-button-image";
 
-const NavigationListItem = ({
-  currentUserGroupId,
-  currentUserGroupAvatarUrl
-}) => (
+const NavigationListItem = ({ currentUserGroupId, currentUserGroupAvatarUrl }) => (
   <NavigationButtonImage
-    src={`${process.env.REACT_APP_API_URL}${_.replace(
-      currentUserGroupAvatarUrl,
-      "medium",
-      "small"
-    )}`}
+    src={`${process.env.REACT_APP_API_URL}${_.replace(currentUserGroupAvatarUrl, "medium", "small")}`}
     onClick={`/groups/${currentUserGroupId}`}
   />
 );
