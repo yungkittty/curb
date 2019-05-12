@@ -15,7 +15,7 @@ const SelectorInputVideo = ({ t, onSelect, ...others }) => (
       ImagePicker.showImagePicker(
         {
           title: t("selectVideo"),
-          takePhotoButtonTitle: t("takeVideo"),
+          takePhotoButtonTitle: t("recordVideo"),
           chooseFromLibraryButtonTitle: t("chooseLibrary"),
           cancelButtonTitle: t("cancel"),
           mediaType: "video",
@@ -33,7 +33,7 @@ const SelectorInputVideo = ({ t, onSelect, ...others }) => (
             const type =
               Platform.OS === "android"
                 ? response.path.substr(response.path.lastIndexOf(".") + 1)
-                : uri.substr(response.path.lastIndexOf(".") + 1);
+                : uri.substr(uri.lastIndexOf(".") + 1);
             TestFairy.log(uri);
             TestFairy.log(type);
             onSelect(uri, {
