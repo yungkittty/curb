@@ -26,7 +26,7 @@ const AppModal = ({
 }) =>
   appModalScene !== null ? (
     <ModalOverlay isAppModalShowed={isAppModalShowed} appModalUnmount={appModalUnmount}>
-      <ModalContainer hideAppModal={hideAppModal} isAppModalShowed={isAppModalShowed}>
+      <ModalContainer isAppModalShowed={isAppModalShowed} hideAppModal={hideAppModal}>
         <ModalHeader
           text={appModalHeaderText}
           currentStep={appModalHeaderCurrentStep}
