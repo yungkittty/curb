@@ -8,9 +8,10 @@ import { platformBools } from "../../configurations/platform";
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 4
 
-const ButtonIconFloat = ({
+const ButtonFloat = ({
   // eslint-disable-line
   diameter,
+  component,
   size,
   theme,
   style,
@@ -21,24 +22,20 @@ const ButtonIconFloat = ({
     as={Button}
     diameter={diameter}
     backgroundColor={theme.primaryColor}
-    component={Icon}
-    size={size}
-    color={theme.secondaryVariantColor}
+    component={!others.children ? component : undefined}
+    size={!others.children ? size : undefined}
+    color={!others.children ? theme.secondaryVariantColor : undefined}
     style={{
       ...style,
       position: "absolute",
       zIndex: 4,
       ...(platformBools.isReact
         ? {
-            right: 30,
-            bottom: 30,
             boxShadow: "0px 2.4px 2.16px 0px rgba(0, 0, 0, 0.186)"
           }
         : {}),
       ...(platformBools.isReactNative
         ? {
-            right: 15,
-            bottom: 15,
             ...(platformBools.isAndroid
               ? {
                   elevation: 4
@@ -55,16 +52,22 @@ const ButtonIconFloat = ({
   />
 );
 
-ButtonIconFloat.defaultProps = {
+ButtonFloat.defaultProps = {
   diameter: "medium",
-  size: "small"
+  component: Icon,
+  size: "small",
+  style: platformBools.isReact
+    ? // eslint-disable-line
+      { right: 30, bottom: 30 }
+    : { right: 15, bottom: 15 }
 };
 
-ButtonIconFloat.propTypes = {
-  diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large"]),
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large"]),
+ButtonFloat.propTypes = {
+  diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"]),
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]),
   theme: PropTypes.object.isRequired, // eslint-disable-line
   style: PropTypes.object // eslint-disable-line
 };
 
-export default withTheme(ButtonIconFloat);
+export default withTheme(ButtonFloat);

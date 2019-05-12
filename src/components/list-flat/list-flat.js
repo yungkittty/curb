@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import ContainerScroll from "../container-scroll";
-import FlatButtonIconFloat from "./components/flat-button-icon-float";
+import FlatButtonFloat from "./components/flat-button-float";
 
 class ListFlat extends React.Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class ListFlat extends React.Component {
         horizontal={horizontal}
       >
         {horizontal && isScrollableToLeft ? (
-          <FlatButtonIconFloat
+          <FlatButtonFloat
             // eslint-disable-line
             icon="angle-left"
             onClick={this.scrollToLeft}
@@ -121,7 +121,7 @@ class ListFlat extends React.Component {
         {_.map(itemsData, this.renderItem)}
         {ListFooterComponent && <ListFooterComponent />}
         {horizontal && isScrollableToRight ? (
-          <FlatButtonIconFloat
+          <FlatButtonFloat
             // eslint-disable-line
             icon="angle-right"
             onClick={this.scrollToRight}

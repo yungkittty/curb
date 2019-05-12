@@ -7,8 +7,8 @@ const FormContainer = styled(Container)`
     displayPlaceholder
       ? ` background: ${theme.primaryVariantColor};
           height: ${textStyle.fontSize}px;
-          width: 320px;
-          border-radius: 10px;
+          width: 300px;
+          border-radius: 15px;
           `
       : ``}
 `;

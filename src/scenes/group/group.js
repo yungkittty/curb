@@ -7,7 +7,7 @@ import GroupListHeader from "./components/group-list-header";
 import GroupListSectionHeader from "./components/group-list-section-header";
 import GroupListItemInfo from "./components/group-list-item-info";
 import GroupListItemMedia from "./components/group-list-item-media";
-import ButtonIconFloat from "../../components/button-icon-float";
+import ButtonFloat from "../../components/button-float";
 import withCurrentUser from "../../hocs/with-current-user";
 import withGroup from "../../hocs/with-group";
 
@@ -130,7 +130,7 @@ class Group extends React.Component {
             />
           )}
         />
-        <ButtonIconFloat icon="plus" onClick={() => undefined} />
+        <ButtonFloat icon="plus" onClick={() => undefined} />
       </React.Fragment>
     );
   }

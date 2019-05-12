@@ -48,8 +48,15 @@ Circle.propTypes = {
   as: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large"]).isRequired,
-  // "extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"
+  diameter: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired,
   backgroundColor: PropTypes.string,
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   children: PropTypes.node,

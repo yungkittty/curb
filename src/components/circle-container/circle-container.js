@@ -63,8 +63,15 @@ CircleContainer.defaultProps = {
 };
 
 CircleContainer.propTypes = {
-  diameter: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired,
-  // "extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"
+  diameter: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   backgroundColor: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node])

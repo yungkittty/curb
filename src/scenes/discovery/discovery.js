@@ -9,7 +9,7 @@ import DiscoverySubtitle from "./components/discovery-subtitle";
 import DiscoveryListSectionHeader from "./components/discovery-list-section-header";
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
-import ButtonIconFloat from "../../components/button-icon-float";
+import ButtonFloat from "../../components/button-float";
 import SignIn from "../sign-in";
 import CreateGroup from "../create-group";
 import withAppModal from "../../hocs/with-app-modal";
@@ -55,7 +55,7 @@ const Discovery = ({
         />
       )}
     />
-    <ButtonIconFloat
+    <ButtonFloat
       icon="plus"
       onClick={() =>
         showAppModal({

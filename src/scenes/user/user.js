@@ -6,7 +6,7 @@ import { withTheme } from "styled-components";
 import UserContainer from "./components/user-container";
 import UserNameForm from "./components/user-name-form";
 import ImageAvatarEditable from "../../components/image-avatar-editable";
-import ButtonIconFloat from "../../components/button-icon-float";
+import ButtonFloat from "../../components/button-float";
 import withUser from "../../hocs/with-user";
 import withCurrentUser from "../../hocs/with-current-user";
 import { platformBools } from "../../configurations/platform";
@@ -167,7 +167,7 @@ class User extends Component {
           />
         </UserContainer>
         {userId === currentUserId && !isFetchingMedias && !isFetchingUsers && (
-          <ButtonIconFloat icon={editMode ? "check" : "pen"} size="medium" onClick={this.handleSwapMode} />
+          <ButtonFloat icon={editMode ? "check" : "pen"} onClick={this.handleSwapMode} />
         )}
       </React.Fragment>
     );

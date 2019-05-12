@@ -20,8 +20,7 @@ const AppNavigation = ({
   showAppModal,
   currentUserId,
   currentUserGroupsId,
-  theme: { primaryColor, secondaryVariantColor },
-  ...others
+  theme: { primaryColor, secondaryVariantColor }
 }) => (
   <NavigationContainer>
     {!currentUserId ? (

@@ -14,6 +14,8 @@ const Icon = ({ size, icon, ...others }) => {
       case "large":
         return 40;
       case "extra-large":
+        return 100;
+      case "extra-extra-large":
         return 130;
       default:
         return undefined;
@@ -24,7 +26,15 @@ const Icon = ({ size, icon, ...others }) => {
 
 Icon.propTypes = {
   icon: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large"]).isRequired
+  size: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired
 };
 
 export default Icon;
