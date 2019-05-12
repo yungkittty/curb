@@ -33,10 +33,14 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
         response => {
           if (!response.didCancel && !response.error && !response.customButton) {
             const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
+            const type =
+              Platform.OS === "android"
+                ? response.path.substr(response.path.lastIndexOf(".") + 1)
+                : uri.substr(response.path.lastIndexOf(".") + 1);
             onSelect(uri, {
               uri,
-              type: response.type,
-              name: "image.jpg"
+              type: `image/${type}`,
+              name: `image.${type}`
             });
           }
         }
