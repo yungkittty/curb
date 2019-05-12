@@ -29,11 +29,14 @@ const SelectorInputVideo = ({ t, onSelect, ...others }) => (
         },
         response => {
           if (!response.didCancel && !response.error && !response.customButton) {
-            const { uri } = response;
             const type =
               Platform.OS === "android"
                 ? response.path.substr(response.path.lastIndexOf(".") + 1)
-                : uri.substr(uri.lastIndexOf(".") + 1);
+                : response.uri.substr(response.uri.lastIndexOf(".") + 1);
+            const uri =
+              Platform.OS === "android"
+                ? response.uri
+                : `assets-library://asset/asset.${type}?id=${response.uri.substring(47, 83)}&ext=${type}`;
             TestFairy.log(uri);
             TestFairy.log(type);
             onSelect(uri, {
