@@ -36,7 +36,7 @@ const SelectorInputVideo = ({ t, onSelect, ...others }) => (
             const uri =
               Platform.OS === "android"
                 ? response.uri
-                : `assets-library://asset/asset.${type}?id=${response.uri.substring(47, 83)}&ext=${type}`;
+                : `assets-library://asset/asset.${type}?id=${response.uri.substring(88, 124)}&ext=${type}`;
             TestFairy.log(uri);
             TestFairy.log(type);
             onSelect(uri, {
