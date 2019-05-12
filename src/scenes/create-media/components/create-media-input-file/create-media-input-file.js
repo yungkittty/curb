@@ -6,7 +6,7 @@ const CreateMediaInputFile = styled(InputFile).attrs(() => ({
 }))`
   width: 100%;
   height: calc(((700px - 80px) * 9) / 16);
-  padding: 0px 40px;
+  padding: 0px 35px;
 `;
 
 export default CreateMediaInputFile;
