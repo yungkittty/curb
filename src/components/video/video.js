@@ -14,7 +14,7 @@ class Video extends React.Component {
       // eslint-disable-next-line
       <video
         {...others}
-        style={{ ...style, objectFit, opacity: +isShowed, maxHeight: "100%", background: "#000" }}
+        style={{ ...style, objectFit, opacity: +isShowed, background: "#000" }}
         onLoadStart={() => this.setState({ isShowed: false })}
         onCanPlay={() => this.setState({ isShowed: true })}
         controls

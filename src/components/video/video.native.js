@@ -7,7 +7,7 @@ import VideoPlayer from "react-native-video-controls";
 class _Video extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isShowed: true };
+    this.state = { isShowed: false };
 
     this.videoPlayer = React.createRef();
   }
