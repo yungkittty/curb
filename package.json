@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "mobile-start:development": "eval \"$(paste -s -d ' ' .env.development) react-native start --reset-cache\"",
+    "mobile-start:development": "react-native start --reset-cache\"",
     "mobile-bundle-android": "react-native bundle --platform android --dev false --bundle-output android/app/src/main/assets/index.android.bundle",
     "mobile-bundle-android:development": "eval \"$(paste -s -d ' ' .env.development) npm run mobile-bundle-android -- --entry-file index.js\"",
     "mobile-bundle-android:production": "eval \"$(paste -s -d ' ' .env.production) npm run mobile-bundle-android -- --entry-file index.production.js\"",
@@ -13,10 +13,11 @@
     "mobile-run-android": "react-native run-android",
     "mobile-run-ios": "react-native run-ios",
     "mobile-eject": "react-native eject",
-    "web-start:development": "eval \"$(paste -s -d ' ' .env.development) HTTPS=true react-scripts start\"",
+    "web-start:development": "react-scripts start\"",
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
-    "web-eject": "react-scripts eject"
+    "web-eject": "react-scripts eject",
+    "linkiii": "react-native link react-native-maps"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -32,6 +33,7 @@
     "react-code-input": "^3.8.1",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
+    "react-google-maps": "^9.4.5",
     "react-i18next": "^10.6.0",
     "react-native": "^0.59.1",
     "react-native-camera": "^2.0.2",
@@ -40,6 +42,7 @@
     "react-native-fast-image": "^5.4.2",
     "react-native-image-picker": "^0.28.1",
     "react-native-locale-detector": "^1.0.1",
+    "react-native-maps": "^0.24.2",
     "react-native-testfairy": "^2.17.0",
     "react-native-vector-icons": "^6.4.2",
     "react-qr-code": "^0.1.3",
@@ -56,7 +59,6 @@
   },
   "devDependencies": {
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "eslint": "^5.12.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-import": "^2.14.0",
