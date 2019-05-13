@@ -35,7 +35,7 @@ const SelectorInputVideo = ({ t, onSelect, ...others }) => (
                 : uri.substr(uri.lastIndexOf(".") + 1);
             onSelect(uri, {
               uri,
-              type: `video/${type.toLowerCase()}`,
+              type: `video/${type}`,
               name: `video.${type}`
             });
           }
