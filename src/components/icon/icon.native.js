@@ -6,7 +6,7 @@ const Icon = ({ size, icon, ...others }) => {
   const X = (() => {
     switch (size) {
       case "extra-small":
-        return 15;
+        return 20;
       case "small":
         return 30;
       case "medium":

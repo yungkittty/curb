@@ -15,7 +15,7 @@ const ItemSelection = ({ theme, selected, selectedColorAlternate, selectionType,
       <Icon
         icon={selectionType ? "check-circle" : "check-square"}
         color={selectedColorAlternate ? "#333333" : theme.secondaryVariantColor}
-        size="small"
+        size="extra-small"
       />
     ) : (
       <SelectionEmpty selectionType={selectionType} selectedColorAlternate={selectedColorAlternate} />

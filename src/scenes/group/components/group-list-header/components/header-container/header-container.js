@@ -15,7 +15,7 @@ const HeaderContainer = styled(Container)`
   min-height: 500px;
   padding: 0px 40px;
   margin-bottom: 80px;
-  background-color: ${props => props.theme[`group${_.capitalize(props.groupTheme)}Color`] || undefined};
+  background-color: ${props => props.theme[`group${_.capitalize(props.groupTheme)}Color`] || "transparent"};
 `;
 
 HeaderContainer.propTypes = { groupTheme: PropTypes.string.isRequired };

@@ -2,11 +2,9 @@ import styled from "styled-components";
 import Text from "../../../../../../../../../../components/text";
 
 const OptionDescription = styled(Text)`
-  color: ${({ selected, theme }) =>
-    selected === false ? theme.secondaryColor : theme.fontVariantColor};
+  color: ${({ selected, theme }) => (selected === false ? theme.secondaryColor : theme.fontVariantColor)};
   display: flex;
   text-align: center;
-  margin: auto;
   margin-top: 28px;
   line-height: 1.9;
 `;
