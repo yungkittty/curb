@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TestFairy from "react-native-testfairy";
 import { Platform } from "react-native";
 import { withTranslation } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
@@ -29,19 +28,14 @@ const SelectorInputVideo = ({ t, onSelect, ...others }) => (
         },
         response => {
           if (!response.didCancel && !response.error && !response.customButton) {
+            const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
             const type =
               Platform.OS === "android"
                 ? response.path.substr(response.path.lastIndexOf(".") + 1)
                 : response.uri.substr(response.uri.lastIndexOf(".") + 1);
-            const uri =
-              Platform.OS === "android"
-                ? response.uri
-                : `assets-library://asset/asset.${type}?id=${response.uri.substring(88, 124)}&ext=${type}`;
-            TestFairy.log(uri);
-            TestFairy.log(type);
             onSelect(uri, {
               uri,
-              type: `video/${type}`,
+              type: `video/${type.toLowerCase()}`,
               name: `video.${type}`
             });
           }

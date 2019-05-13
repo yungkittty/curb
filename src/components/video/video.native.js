@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "react-native-video-controls";
+import TestFairy from "react-native-testfairy";
 
 // https://www.npmjs.com/package/react-native-video
 
@@ -15,6 +16,7 @@ class _Video extends React.Component {
   render() {
     const { isShowed } = this.state;
     const { src: uri, objectFit, style, ...others } = this.props;
+    TestFairy.log(uri);
     return (
       <VideoPlayer
         {...others}

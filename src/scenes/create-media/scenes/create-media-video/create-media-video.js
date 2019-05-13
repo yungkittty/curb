@@ -60,7 +60,6 @@ class CreateMediaVideo extends Component {
       }
     } = this.props;
     if (!this.checkForm()) return;
-    console.log(file);
     postGroupVideoContent({
       groupId,
       userId,
