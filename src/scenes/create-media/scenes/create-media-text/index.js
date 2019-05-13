@@ -1,3 +1,3 @@
-import CreateMediaText from "./create-media-text";
+import CreateMediaTextContainer from "./create-media-text-container";
 
-export default CreateMediaText;
+export default CreateMediaTextContainer;
