@@ -1,37 +1,32 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import createMedia from "../../../create-media"; // eslint-disable-line
-import LocationMap from "./components/location-container";
-// import Map from "./components/media-map/components/map";
+import Container from "../../../../components/container";
+// eslint-disable-next-line
+import createMedia from "../../../create-media";
+import MediaMap from "./components/media-map";
 
 class CreateMediaLocation extends Component {
   constructor(props) {
     super(props);
-    const { setAppModalHeaderText, setAppModalHeaderLeftButton, setAppModalFooterButton } = props;
-    this.goToPrev = this.goToPrev.bind(this);
+    const { setAppModalHeaderText, setAppModalHeaderLeftButton, setAppModalScene } = props;
     setAppModalHeaderText({ text: "Localisation" });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
-    setAppModalFooterButton({ text: "Envoyer", onClick: this.submit });
-  }
-
-  goToPrev() {
-    const { setAppModalScene } = this.props;
-    setAppModalScene({ scene: createMedia, direction: -1 });
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: createMedia, direction: -1 })
+    });
   }
 
   render() {
     return (
-      <AppModalSceneContainer verticalAlign>
-        <LocationMap
+      <Container style={{ height: "100%", width: "100%", padding: "150px" }}>
+        <MediaMap
           isMarkerShown
-          // loadingElement={<LocationContainer />}
-          // containerElement={<LocationContainer />}
-          // mapElement={<LocationContainer />}
-          latitude={-34.397}
-          longitude={150.644}
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDcWsoBDPjrG-5a3LaMxR0e883wqZrH7iU&libraries=geometry,drawing,places"
+          loadingElement={<Container style={{ height: `100%` }} />}
+          containerElement={<Container style={{ height: `100%` }} />}
+          mapElement={<Container style={{ height: `100%` }} />}
         />
-      </AppModalSceneContainer>
+      </Container>
     );
   }
 }
@@ -39,11 +34,7 @@ class CreateMediaLocation extends Component {
 CreateMediaLocation.propTypes = {
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired
 };
 
 export default CreateMediaLocation;
-
-// appmodalscenecontainer props: longitude, lattitude, container
-//  map props: isMarkerShown, googlemapurl, loadingelement, containerelement, mapelement
