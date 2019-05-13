@@ -89,8 +89,8 @@ class ResetPassword2 extends Component {
     return isLoading ? (
       <Loader />
     ) : (
-      <AppModalSceneContainer verticalAlign>
-        <AppModalSceneTitle style={{ position: "absolute", top: 0 }}>
+      <AppModalSceneContainer>
+        <AppModalSceneTitle>
           {/* eslint-disable-line */}
           {t("enterCode")}
         </AppModalSceneTitle>

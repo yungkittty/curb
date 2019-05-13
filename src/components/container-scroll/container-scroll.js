@@ -41,6 +41,7 @@ class ContainerScroll extends React.Component {
       style,
       children,
       forwardedRef,
+      contentContainerClassName,
       contentContainerStyle,
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
@@ -56,6 +57,7 @@ class ContainerScroll extends React.Component {
         <ScrollContainerContent
           id={this.scrollContentContainerId}
           ref={forwardedRef}
+          className={contentContainerClassName}
           style={contentContainerStyle}
           showsHorizontalScrollIndicator={!isScrollableToHorizontal || showsHorizontalScrollIndicator}
           showsVerticalScrollIndicator={!isScrollableToVertical || showsVerticalScrollIndicator}
@@ -72,6 +74,7 @@ ContainerScroll.defaultProps = {
   className: undefined,
   style: undefined,
   forwardedRef: undefined,
+  contentContainerClassName: undefined,
   contentContainerStyle: undefined,
   showsHorizontalScrollIndicator: true,
   showsVerticalScrollIndicator: true,
@@ -83,6 +86,7 @@ ContainerScroll.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   children: PropTypes.node.isRequired,
   forwardedRef: PropTypes.object, // eslint-disable-line
+  contentContainerClassName: PropTypes.string,
   contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,

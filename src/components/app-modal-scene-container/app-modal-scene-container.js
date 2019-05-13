@@ -1,24 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ContainerScroll from "../container-scroll";
 
-const AppModalSceneContainer = ({ verticalAlign, ...props }) => (
+const AppModalSceneContainer = ({ ...others }) => (
   <ContainerScroll
-    {...props}
+    {...others}
     contentContainerStyle={{
+      display: "flex",
       position: "relative",
-      alignItems: "center",
-      justifyContent: verticalAlign ? "center" : undefined
+      flexGrow: 1,
+      alignItems: "center"
     }}
   />
 );
-
-AppModalSceneContainer.defaultProps = {
-  verticalAlign: undefined
-};
-
-AppModalSceneContainer.propTypes = {
-  verticalAlign: PropTypes.bool
-};
 
 export default AppModalSceneContainer;

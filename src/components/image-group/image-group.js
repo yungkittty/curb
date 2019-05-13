@@ -65,8 +65,15 @@ ImageGroup.propTypes = {
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"])
-    .isRequired,
+  size: PropTypes.oneOf([
+    // eslint-disalbe-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired,
   placeholderColor: PropTypes.string
 };
 

@@ -92,10 +92,8 @@ class ResetPassword1 extends Component {
     return isLoading ? (
       <Loader />
     ) : (
-      <AppModalSceneContainer verticalAlign>
-        <AppModalSceneTitle style={{ position: "absolute", top: 0 }}>
-          {t("enterYourEmail")}
-        </AppModalSceneTitle>
+      <AppModalSceneContainer>
+        <AppModalSceneTitle>{t("enterYourEmail")}</AppModalSceneTitle>
         <InputForm
           size="modal"
           id="email"

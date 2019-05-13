@@ -3,10 +3,11 @@ import Container from "../../../../../../components/container";
 
 const InfoContainer = styled(Container)`
   display: flex;
+  flex: 1;
+  flex-shrink: 0;
   flex-direction: column;
   width: 100%;
   min-width: 100%;
-  padding: 0px 40px;
 `;
 
 export default InfoContainer;

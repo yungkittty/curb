@@ -90,6 +90,7 @@ class ListFlat extends React.Component {
     const {
       className,
       style,
+      contentContainerClassName,
       contentContainerStyle,
       showsHorizontalScrollIndicator,
       showsVerticalScrollIndicator,
@@ -104,6 +105,7 @@ class ListFlat extends React.Component {
         className={className}
         style={{ ...style, position: "relative" }}
         ref={this.containerScroll}
+        contentContainerClassName={contentContainerClassName}
         contentContainerStyle={contentContainerStyle}
         showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
@@ -136,6 +138,7 @@ class ListFlat extends React.Component {
 ListFlat.defaultProps = {
   className: undefined,
   style: undefined,
+  contentContainerClassName: undefined,
   contentContainerStyle: undefined,
   showsHorizontalScrollIndicator: true,
   showsVerticalScrollIndicator: true,
@@ -149,6 +152,7 @@ ListFlat.defaultProps = {
 ListFlat.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  contentContainerClassName: PropTypes.string,
   contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   showsHorizontalScrollIndicator: PropTypes.bool,
   showsVerticalScrollIndicator: PropTypes.bool,

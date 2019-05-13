@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListContainer from "./components/list-container";
-import ListHeaderCircleText from "../../../../../../components/list-header-circle-text";
-import ListCircleText from "../../../../../../components/list-circle-text";
+import ListTitle from "./components/list-title";
+import ListList from "./components/list-list";
 
 const InfoList = ({ text, ...others }) => (
   <ListContainer>
-    <ListHeaderCircleText type="h3" weight={500}>
+    <ListTitle type="h3" weight={500}>
       {/* eslint-disable-line */}
       {text}
-    </ListHeaderCircleText>
-    <ListCircleText {...others} />
+    </ListTitle>
+    <ListList {...others} />
   </ListContainer>
 );
 
