@@ -8,7 +8,7 @@
     "mobile-bundle-android:development": "eval \"$(paste -s -d ' ' .env.development) npm run mobile-bundle-android -- --entry-file index.js\"",
     "mobile-bundle-android:production": "eval \"$(paste -s -d ' ' .env.production) npm run mobile-bundle-android -- --entry-file index.production.js\"",
     "mobile-bundle-ios": "react-native bundle --platform ios --dev false --bundle-output ios/curb/main.jsbundle",
-    "mobile-bundle-ios:development": "eval \"$(paste -s -d ' ' .env.development) npm run mobile-bundle-ios -- --entry-file index.production.js\"",
+    "mobile-bundle-ios:development": "eval \"$(paste -s -d ' ' .env.development) npm run mobile-bundle-ios -- --entry-file index.js\"",
     "mobile-bundle-ios:production": "eval \"$(paste -s -d ' ' .env.production) npm run mobile-bundle-ios -- --entry-file index.production.js\"",
     "mobile-run-android": "react-native run-android",
     "mobile-run-ios": "react-native run-ios",
