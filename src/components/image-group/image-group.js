@@ -67,7 +67,7 @@ ImageGroup.propTypes = {
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.oneOf([
-    // eslint-disalbe-line
+    // eslint-disable-line
     "extra-small",
     "small",
     "medium",

@@ -121,8 +121,14 @@ class Group extends React.Component {
     } = this.state;
     const {
       // eslint-disable-line
-      groupMediasId
+      groupId,
+      groupCreatorId,
+      groupMediasId,
+      currentUserId,
+      currentUserGroupsId
     } = this.props;
+    const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
+    const isCurrentuserCreator = groupCreatorId === currentUserId;
     return (
       <React.Fragment>
         <GroupList
@@ -136,7 +142,13 @@ class Group extends React.Component {
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
         />
-        <ButtonFloat icon="plus" onClick={() => undefined} />
+        {isCurrentUserIn && (isFeed || isCurrentuserCreator) ? (
+          <ButtonFloat
+            // eslint-disable-line
+            icon={!isFeed && isCurrentuserCreator ? "sliders-h" : "plus"}
+            onClick={() => undefined}
+          />
+        ) : null}
       </React.Fragment>
     );
   }
@@ -145,6 +157,7 @@ class Group extends React.Component {
 Group.propTypes = {
   isFetchingGroup: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
+  groupCreatorId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
