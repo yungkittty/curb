@@ -1,4 +1,4 @@
-import { all, takeLatest, select, call, put } from "redux-saga/effects";
+import { all, takeLatest, call, put, select } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
@@ -12,7 +12,7 @@ function* postGroupRequestSaga(action) {
   try {
     const { history, avatar, ...others } = action.payload;
     const { data: payload } = yield call(groupsApi.postGroup, others);
-    if (avatar) yield put(mediasActions.postMediaAvatarGroupRequest({ id: payload.id, avatar }));
+    if (avatar.file) yield put(mediasActions.postMediaAvatarGroupRequest({ id: payload.id, avatar }));
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
     const successAlert = { type: "success", message: "groupCreated", icon: "check" };

@@ -63,7 +63,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          avatarUrl: action.payload.avatar.value.data
+          avatarUrl: action.payload.avatar.data
         }
       };
     default:

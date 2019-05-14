@@ -18,39 +18,38 @@ class GroupQr extends React.Component {
   render() {
     const {
       // eslint-disable-line
-      isFetchingGroup,
+      isFetchingGroups,
       groupId,
       groupName,
       groupInviteToken
     } = this.props;
 
-    return (
-      <React.Fragment>
-        {isFetchingGroup ? <Loader /> : null}
-        <QrContainer>
-          <QrHeader>
-            <ImageGroup
-              groupId={groupId}
-              size="large"
-              style={{ marginRight: platformBools.isReact ? 40 : 20 }}
-            />
-            <QrTitle type="h2" weight={700}>
-              {groupName}
-            </QrTitle>
-          </QrHeader>
-          <QrCode
-            value={JSON.stringify({ id: groupId, inviteToken: groupInviteToken })}
-            size={platformBools.isReact ? 240 : 200}
+    return isFetchingGroups ? (
+      <Loader />
+    ) : (
+      <QrContainer>
+        <QrHeader>
+          <ImageGroup
+            groupId={groupId}
+            size="large"
+            style={{ marginRight: platformBools.isReact ? 40 : 20 }}
           />
-        </QrContainer>
-      </React.Fragment>
+          <QrTitle type="h2" weight={700}>
+            {groupName}
+          </QrTitle>
+        </QrHeader>
+        <QrCode
+          value={JSON.stringify({ id: groupId, inviteToken: groupInviteToken })}
+          size={platformBools.isReact ? 240 : 200}
+        />
+      </QrContainer>
     );
   }
 }
 
 GroupQr.propTypes = {
   setAppModalHeaderText: PropTypes.func.isRequired,
-  isFetchingGroup: PropTypes.bool.isRequired,
+  isFetchingGroups: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
   groupInviteToken: PropTypes.string.isRequired

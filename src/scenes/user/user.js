@@ -70,22 +70,23 @@ class User extends Component {
   submit() {
     const { userId, patchUser, postMediaAvatarUser } = this.props;
     const { username, avatar } = this.state;
-    let payload = null;
 
-    if (username.value) payload = { ...payload, name: username.value };
+    if (username.value) {
+      patchUser({
+        // eslint-disable-line
+        id: userId,
+        name: username.value
+      });
+    }
 
-    if (payload) patchUser({ id: userId, payload });
     if (avatar.value.file) {
       postMediaAvatarUser({
         id: userId,
-        avatar,
+        avatar: avatar.value,
         onUploadProgress: this.onUploadProgress,
-        onSuccessAlert: {
-          type: "success",
-          message: "postAvatar.userSuccess",
-          icon: "check"
-        }
+        onSuccessAlert: { type: "success", message: "postAvatar.userSuccess", icon: "check" }
       });
+
       this.onUploadProgress({ loaded: 0.01, total: 100 });
     }
   }
@@ -166,9 +167,11 @@ class User extends Component {
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
         </UserContainer>
-        {userId === currentUserId && !isFetchingMedias && !isFetchingUsers && (
-          <ButtonFloat icon={editMode ? "check" : "pen"} onClick={this.handleSwapMode} />
-        )}
+        <ButtonFloat
+          icon={editMode ? "check" : "pen"}
+          onClick={this.handleSwapMode}
+          disabled={userId === currentUserId && !isFetchingMedias && !isFetchingUsers}
+        />
       </React.Fragment>
     );
   }

@@ -23,7 +23,7 @@ function* postMediaAvatarUserRequestSaga(action) {
     if (successAlert) yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaAvatarUserFailure({ id: action.payload.id, errorCode }));
+    yield put(mediasActions.postMediaAvatarUserFailure({ errorCode }));
     const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
   }
@@ -37,7 +37,7 @@ function* postMediaAvatarGroupRequestSaga(action) {
     if (successAlert) yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaAvatarGroupFailure({ id: action.payload.id, errorCode }));
+    yield put(mediasActions.postMediaAvatarGroupFailure({ errorCode }));
     const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
   }

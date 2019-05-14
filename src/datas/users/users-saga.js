@@ -22,8 +22,9 @@ function* patchUsersRequestSaga(action) {
     const successAlert = { type: "success", message: "patchUser.userSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
-    yield put(usersActions.patchUserFailure(error));
-    const errorAlert = { type: "error", message: `patchUser.${error.response.data.code}`, icon: "times" };
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    yield put(usersActions.patchUserFailure({ errorCode }));
+    const errorAlert = { type: "error", message: `patchUser.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
   }
 }

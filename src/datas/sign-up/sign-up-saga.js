@@ -10,7 +10,7 @@ function* signUpRequestSaga(action) {
   try {
     const { avatar, ...others } = action.payload;
     const { data: payload } = yield call(signUpApi.signUp, others);
-    if (avatar) yield put(mediasActions.postMediaAvatarUserRequest({ id: payload.id, avatar }));
+    if (avatar.file) yield put(mediasActions.postMediaAvatarUserRequest({ id: payload.id, avatar }));
     yield put(signUpActions.signUpSuccess(payload));
     const successAlert = { type: "success", message: "accountCreated", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));

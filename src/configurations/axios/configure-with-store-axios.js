@@ -10,8 +10,8 @@ const configureWithStoreAxios = ({ dispatch }) => {
   axios.interceptors.response.use(
     response => response,
     error => {
-      const { status, data: { code } = {} } = (error || {}).response || {};
-      if (_.includes([400, 403], status) && _.includes(code, "ACCOUNTS_TOKEN_"))
+      const { status, data: { code: errorCode = "UNKNOW" } = {} } = (error || {}).response || {} || {};
+      if (_.includes([400, 403], status) && _.includes(errorCode, "ACCOUNTS_TOKEN_"))
         dispatch(signInActions.signOutSuccess());
       return Promise.reject(error);
     }

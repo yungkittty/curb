@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import GroupQr from "./group-qr";
-import { groupsActions } from "../../../../datas/groups";
+import { groupsActions, groupsSelectors } from "../../../../datas/groups";
 import withAppModal from "../../../../hocs/with-app-modal";
 import withGroup from "../../../../hocs/with-group";
 
@@ -18,6 +18,10 @@ class GroupQrContainer extends React.Component {
     return <GroupQr {...this.props} />;
   }
 }
+
+const mapStateToProps = state => ({
+  isFetchingGroups: groupsSelectors.isFetchingGroups(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   getGroupInviteToken: payload => dispatch(groupsActions.getGroupInviteTokenRequest(payload))
@@ -34,7 +38,7 @@ export default _.flowRight([
   withAppModal,
   withGroup,
   connect(
-    undefined,
+    mapStateToProps,
     mapDispatchToProps
   )
 ])(GroupQrContainer);

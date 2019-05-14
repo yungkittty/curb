@@ -57,14 +57,24 @@ class CreateGroup4 extends Component {
       return;
     }
 
-    const { postGroup, history, groupName, discoverability, modules, groupTheme, avatar } = this.props;
+    const {
+      // eslint-disable-line
+      postGroup,
+      history,
+      groupName,
+      discoverability,
+      modules,
+      groupTheme,
+      avatar
+    } = this.props;
+
     postGroup({
       history,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
       theme: groupTheme.value,
-      avatar
+      avatar: avatar.value
     });
   }
 
