@@ -19,9 +19,10 @@ const mediasApi = {
     });
   },
   postGroupTextContent: ({ groupId, userId, text, onUploadProgress }) => {
-    const data = new FormData();
-    data.append("text", text);
-    return axios.post(`/contents/text/${groupId}/${userId}`, data, {
+    const body = {
+      data: text.value
+    };
+    return axios.post(`/contents/texts/${groupId}/${userId}`, body, {
       withCredentials: true,
       onUploadProgress
     });

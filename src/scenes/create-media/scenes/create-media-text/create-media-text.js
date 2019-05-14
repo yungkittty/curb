@@ -3,17 +3,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withUser from "../../../../hocs/with-user";
-import withAppModal from "../../../../hocs/with-user";
+import withAppModal from "../../../../hocs/with-app-modal";
 import TextInput from "./components/text-input";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import CreateMedia from "../../../create-media";
+import CreateMediaError from "../../components/create-media-error";
 
 
 class CreateMediaText extends Component {
   constructor(props) {
     super(props);
     this.state = { loadingProgress: undefined };
-    const { 
+    const {
+      t,
       setAppModalHeaderText, 
       setAppModalFooterButton, 
       setAppModalHeaderLeftButton,
@@ -22,11 +24,10 @@ class CreateMediaText extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.submit = this.submit.bind(this);
-    this.onUploadProgress = this.onUploadProgress.bind(this);
     this.checkForm = this.checkForm.bind(this);
     
-    setAppModalHeaderText({ text: "Post content" });
-    setAppModalFooterButton({ text: "Send", onClick: this.submit });
+    setAppModalHeaderText({ text: t("modules:text.title") });
+    setAppModalFooterButton({ text: t("common:post"), onClick: this.submit });
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
       onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 })
@@ -37,22 +38,15 @@ class CreateMediaText extends Component {
     const { enableAppModalButtons, isFetchingMedias } = this.props;
     if (prevProps.isFetchingMedias && !isFetchingMedias) {
       // eslint-disable-next-line
-      this.setState({ loadingProgress: undefined });
       enableAppModalButtons();
     }
   }
 
-  onUploadProgress({ loaded, total }) {
-    this.setState({ loadingProgress: loaded / total });
-  }
-
   checkForm() {
     const {
-      text: {
-        value: { data }
-      }
+      text
     } = this.props;
-    return data !== undefined;
+    return text !== undefined;
   }
 
   handleChange(event) {
@@ -66,33 +60,34 @@ class CreateMediaText extends Component {
       postGroupTextContent,
       groupId,
       currentUserId: userId,
-      text: {
-        value: { data }
-      }
+      text
     } = this.props;
+    if (!this.checkForm()) return;
     postGroupTextContent({
       groupId,
       userId,
-      value: data,
-      onUploadProgress: this.onUploadProgress
+      text
     });
-    this.onUploadProgress({ loaded: 0.1, total: 100 });
   }
 
   render() {
-    const { loadingProgress } = this.state;
-    const { t, text } = this.props;
+    const { 
+      t,
+      mediasErrorCode,
+      text } = this.props;
 
     return (
       <AppModalSceneContainer>
+        {mediasErrorCode !== "" && (
+          <CreateMediaError>{t(`errorCode:contents.${mediasErrorCode}`)}</CreateMediaError>
+        )}
         <TextInput 
           multiline
           id="text"
-          placeholder="Type your post here" 
+          placeholder={t("modules:text.placeholder")}
           onChange={this.handleChange}
           value={text.value}
-          loadingProgress={loadingProgress}
-        />
+        />  
       </AppModalSceneContainer>
     );
   }
@@ -107,8 +102,8 @@ CreateMediaText.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  mediasErrorCode: PropTypes.string.isRequired,
   groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  /* text: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string }) }), */
   text: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
