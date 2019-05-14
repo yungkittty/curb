@@ -10,7 +10,7 @@ import settings from "./en-settings";
 import createGroup from "./en-create-group";
 import group from "./en-group";
 import modules from "./en-modules";
-import appAlerts from "./en-app-alerts";
+import appAlert from "./en-app-alert";
 
 export default {
   common,
@@ -25,5 +25,5 @@ export default {
   createGroup,
   group,
   modules,
-  appAlerts
+  appAlert
 };

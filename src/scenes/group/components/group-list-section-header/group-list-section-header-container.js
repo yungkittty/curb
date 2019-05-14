@@ -1,12 +1,16 @@
 import { connect } from "react-redux";
 import GroupListSectionHeader from "./group-list-section-header";
-import { groupsActions } from "../../../../datas/groups";
+import { groupsActions, groupsSelectors } from "../../../../datas/groups";
+
+const mapStateToProps = state => ({
+  isFetchingGroups: groupsSelectors.isFetchingGroups(state) || false
+});
 
 const mapDispatchToProps = dispatch => ({
   postGroupInviteToken: payload => dispatch(groupsActions.postGroupInviteTokenRequest(payload))
 });
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(GroupListSectionHeader);

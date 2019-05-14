@@ -38,10 +38,15 @@ function* getGroupRequestSaga(action) {
 function* postGroupInviteTokenRequestSaga(action) {
   try {
     yield call(groupsApi.postGroupInviteToken, action.payload);
-    yield put(groupsActions.postGroupInviteTokenSuccess());
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
+    yield put(groupsActions.postGroupInviteTokenSuccess({ ...action.payload, currentUserId }));
+    const successAlert = { type: "success", message: "postGroupInvite.groupInviteSuccess", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(groupsActions.postGroupInviteTokenFailure({ errorCode }));
+    const successAlert = { type: "error", message: `postGroupInvite.UNKNOW`, icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
   }
 }
 

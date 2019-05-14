@@ -5,12 +5,13 @@ const HeaderContainer = styled(Container)`
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 150px;
-  padding-top: 30px;
-  margin-bottom: 20px;
+  min-width: 100%;
+  height: 120px;
+  padding-top: 20px;
+  margin-bottom: 40px;
 `;
 
 export default HeaderContainer;

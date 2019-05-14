@@ -6,7 +6,7 @@ import Circle from "../circle";
 import CircleTextText from "./components/circle-text-text";
 import { platformBools } from "../../configurations/platform";
 
-const ListFlatItemCircleText = ({
+const ListItemCircleText = ({
   // eslint-disable-line
   as,
   onClick,
@@ -31,15 +31,15 @@ const ListFlatItemCircleText = ({
   </Container>
 );
 
-ListFlatItemCircleText.defaultProps = {
+ListItemCircleText.defaultProps = {
   as: undefined,
   onClick: undefined
 };
 
-ListFlatItemCircleText.propTypes = {
+ListItemCircleText.propTypes = {
   as: PropTypes.func,
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   text: PropTypes.string.isRequired
 };
 
-export default ListFlatItemCircleText;
+export default ListItemCircleText;

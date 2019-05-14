@@ -16,6 +16,7 @@ class Group extends React.Component {
     super(props);
     this.toggleScene = this.toggleScene.bind(this);
     this.renderListHeader = this.renderListHeader.bind(this);
+    this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
     this.renderListItemInfo = this.renderListItemInfo.bind(this);
     this.renderListItemMedia = this.renderListItemMedia.bind(this);
     this.state = { isFeed: true };
@@ -63,7 +64,27 @@ class Group extends React.Component {
     );
   }
 
-  // renderListSectionHeader() {}
+  renderListSectionHeader() {
+    const {
+      // eslint-disable-line
+      groupId,
+      groupStatus,
+      groupTheme,
+      currentUserId,
+      currentUserGroupsId,
+      theme
+    } = this.props;
+    return (
+      <GroupListSectionHeader
+        groupId={groupId}
+        groupStatus={groupStatus}
+        groupTheme={groupTheme}
+        currentUserId={currentUserId}
+        currentUserGroupsId={currentUserGroupsId}
+        theme={theme}
+      />
+    );
+  }
 
   renderListItemInfo() {
     const {
@@ -100,13 +121,7 @@ class Group extends React.Component {
     } = this.state;
     const {
       // eslint-disable-line
-      groupId,
-      groupStatus,
-      groupTheme,
-      groupMediasId,
-      currentUserId,
-      currentUserGroupsId,
-      theme
+      groupMediasId
     } = this.props;
     return (
       <React.Fragment>
@@ -119,16 +134,7 @@ class Group extends React.Component {
           }
           keyExtractor={groupMediaId => groupMediaId}
           ListHeaderComponent={this.renderListHeader}
-          renderSectionHeader={() => (
-            <GroupListSectionHeader
-              groupId={groupId}
-              groupStatus={groupStatus}
-              groupTheme={groupTheme}
-              currentUserId={currentUserId}
-              currentUserGroupsId={currentUserGroupsId}
-              theme={theme}
-            />
-          )}
+          renderSectionHeader={this.renderListSectionHeader}
         />
         <ButtonFloat icon="plus" onClick={() => undefined} />
       </React.Fragment>

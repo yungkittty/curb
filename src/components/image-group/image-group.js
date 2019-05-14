@@ -35,6 +35,7 @@ const ImageGroup = ({
           // eslint-disable-next-line
           // eslint-disable-next-line
           src={_.replace(groupAvatar, "medium", size.substr(0, 5) === "extra" ? "large" : size)}
+          objectFit="cover"
           style={{
             width: innerDiameter,
             height: innerDiameter

@@ -16,18 +16,19 @@ class GroupListSectionHeader extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { groupId, groupStatus, currentUserId, currentUserGroupsId } = nextProps;
+    const { groupId, groupStatus, currentUserId, currentUserGroupsId, isFetchingGroups } = nextProps;
     if (!groupId || !groupStatus || prevState.isShowed === false) return {};
     const isGroupPublic = groupStatus === "public";
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
     const { isInvited = false } = nextProps.location.state || {};
-    const isShowed = !!currentUserId && isCurrentUserIn && (isGroupPublic || isInvited);
+    const isShowed = !!currentUserId && !isCurrentUserIn && (isGroupPublic || isInvited) && !isFetchingGroups;
     return { isShowed, isInvited };
   }
 
   render() {
     const { isShowed, isInvited } = this.state;
-    const { groupId, groupTheme, postGroupInviteToken, theme, t } = this.props;
+    const { location, groupId, groupTheme, postGroupInviteToken, theme, t } = this.props;
+    const { inviteToken } = location.state || {};
     return isShowed ? (
       <HeaderContainer>
         <HeaderButtonIcon
@@ -44,7 +45,7 @@ class GroupListSectionHeader extends React.Component {
           weight={700}
           groupTheme={groupTheme}
           contentStyle={{ color: theme.backgroundColor }}
-          onClick={() => postGroupInviteToken({ id: groupId })}
+          onClick={() => postGroupInviteToken({ id: groupId, inviteToken })}
         >
           {t("headerButtonText")}
         </HeaderButtonText>
@@ -55,16 +56,15 @@ class GroupListSectionHeader extends React.Component {
 }
 
 GroupListSectionHeader.propTypes = {
-  /* eslint-disable */
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired, // eslint-disable-line
   groupId: PropTypes.string.isRequired,
-  groupStatus: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired, // eslint-disable-line
   groupTheme: PropTypes.string.isRequired,
   postGroupInviteToken: PropTypes.func.isRequired,
-  currentUserId: PropTypes.string.isRequired,
-  currentUserGroupsId: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired,
-  /* eslint-enable */
+  currentUserId: PropTypes.string.isRequired, // eslint-disable-line
+  currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  isFetchingGroups: PropTypes.bool.isRequired, // eslint-disable-line
+  theme: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };
 

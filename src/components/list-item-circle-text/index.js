@@ -1,3 +1,3 @@
-import ListFlatItemCircleText from "./list-flat-item-circle-text";
+import ListItemCircleText from "./list-item-circle-text";
 
-export default ListFlatItemCircleText;
+export default ListItemCircleText;

@@ -31,9 +31,9 @@ const groupsActions = {
     type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST,
     payload
   }),
-  postGroupInviteTokenSuccess: () => ({
+  postGroupInviteTokenSuccess: payload => ({
     type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS,
-    payload: undefined
+    payload
   }),
   postGroupInviteTokenFailure: error => ({
     type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE,

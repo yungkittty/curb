@@ -4,8 +4,7 @@ import ButtonContainer from "../../../../../../../../../../components/button-con
 const OptionContainer = styled(ButtonContainer)`
   display: flex;
   flex: 1;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   padding: 0 22px;
   background: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
 `;

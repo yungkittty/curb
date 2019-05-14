@@ -46,6 +46,7 @@ const byId = (state = {}, action) => {
         }
       };
     case groupsActionsTypes.POST_GROUP_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
       return {
         ...state,
         [action.payload.currentUserId]: {
