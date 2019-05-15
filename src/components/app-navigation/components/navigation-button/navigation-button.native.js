@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import Circle from "../../../circle";
 import Button from "../../../button";
-import withAppNavigation from "../../../../hocs/with-app-navigation";
 
 const NavigationButton = ({
   // eslint-disable-line
   style,
-  hideAppNavigation,
+  hideContainer,
   history,
   onClick,
   ...others
@@ -20,7 +19,7 @@ const NavigationButton = ({
     diameter="small"
     style={[...style, { marginBottom: 10 }]}
     onClick={() => {
-      hideAppNavigation();
+      hideContainer();
       // eslint-disable-next-line
       onClick && _.includes(["string", "object"], typeof onClick) ? history.push(onClick) : onClick();
     }}
@@ -34,13 +33,9 @@ NavigationButton.defaultProps = {
 
 NavigationButton.propTypes = {
   style: PropTypes.PropTypes.array, // eslint-disable-line
-  hideAppNavigation: PropTypes.func.isRequired,
+  hideContainer: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired, // eslint-disable-line
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func])
 };
 
-export default _.flowRight([
-  // eslint-disable-line
-  withAppNavigation,
-  withRouter
-])(NavigationButton);
+export default withRouter(NavigationButton);

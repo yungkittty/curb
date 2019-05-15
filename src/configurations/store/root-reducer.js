@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 import { appModalReducer as appModal } from "../../datas/app-modal";
-import { appNavigationReducer as appNavigation } from "../../datas/app-navigation";
 import { appAlertReducer as appAlert } from "../../datas/app-alert";
 import { signUpReducer as signUp } from "../../datas/sign-up";
 import { signInReducer as signIn } from "../../datas/sign-in";
@@ -12,11 +11,9 @@ import { usersReducer as users } from "../../datas/users";
 import { groupsReducer as groups } from "../../datas/groups";
 import { mediasReducer as medias } from "../../datas/medias";
 import { discoveryReducer as discovery } from "../../datas/discovery";
-import { platformBools } from "../platform";
 
 const rootReducer = combineReducers({
   appModal,
-  ...(platformBools.isReactNative ? { appNavigation } : {}),
   appAlert,
   signUp,
   signIn,

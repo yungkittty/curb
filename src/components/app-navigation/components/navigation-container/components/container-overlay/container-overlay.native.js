@@ -1,14 +1,16 @@
-import { Animated, TouchableOpacity } from "react-native";
-import styled from "styled-components";
-import { platformBools } from "../../../../../../configurations/platform";
+import React from "react";
+import PropTypes from "prop-types";
+import OverlayContainer from "./components/overlay-container";
+import OverlayDarken from "./components/overlay-darken";
 
-const ContainerOverlay = styled(TouchableOpacity)`
-  position: absolute;
-  z-index: 6;
-  width: 100%;
-  height: 100%;
-  ${platformBools.isAndroid ? "elevation: 6;" : ""}
-  background-color: black;
-`;
+const ContainerOverlay = ({ style, ...others }) => (
+  <OverlayContainer {...others}>
+    <OverlayDarken style={style} />
+  </OverlayContainer>
+);
 
-export default Animated.createAnimatedComponent(ContainerOverlay);
+ContainerOverlay.propTypes = {
+  style: PropTypes.object.isRequired // eslint-disable-line
+};
+
+export default ContainerOverlay;

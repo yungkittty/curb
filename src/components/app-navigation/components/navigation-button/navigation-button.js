@@ -2,10 +2,14 @@ import React from "react";
 import Circle from "../../../circle";
 import Button from "../../../button";
 
-const NavigationButton = props => (
+const NavigationButton = ({
+  // eslint-disable-next-line
+  hideContainer,
+  ...others
+}) => (
   <Circle
     // eslint-disable-line
-    {...props}
+    {...others}
     as={Button}
     diameter="small"
     style={{ marginBottom: 10 }}

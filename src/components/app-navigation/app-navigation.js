@@ -23,58 +23,67 @@ const AppNavigation = ({
   theme: { primaryColor, secondaryVariantColor }
 }) => (
   <NavigationContainer>
-    {!currentUserId ? (
-      <NavigationButton
-        component={Icon}
-        icon="sign-in-alt"
-        size="small"
-        color={primaryColor}
-        backgroundColor={secondaryVariantColor}
-        onClick={() => showAppModal({ scene: SignIn })}
-      />
-    ) : (
-      <NavigationButton
-        component={ImageUser}
-        userId={currentUserId}
-        size="small"
-        placeholderColor={secondaryVariantColor}
-        onClick={`/users/${currentUserId}`}
-      />
-    )}
-    <NavigationRule />
-    <ListFlat
-      data={currentUserGroupsId}
-      keyExtractor={userGroupId => userGroupId}
-      renderItem={({ item: userGroupId }) => (
+    {hideContainer => (
+      <React.Fragment>
+        {!currentUserId ? (
+          <NavigationButton
+            component={Icon}
+            icon="sign-in-alt"
+            size="small"
+            color={primaryColor}
+            backgroundColor={secondaryVariantColor}
+            onClick={() => showAppModal({ scene: SignIn })}
+            hideContainer={hideContainer}
+          />
+        ) : (
+          <NavigationButton
+            component={ImageUser}
+            userId={currentUserId}
+            size="small"
+            placeholderColor={secondaryVariantColor}
+            onClick={`/users/${currentUserId}`}
+            hideContainer={hideContainer}
+          />
+        )}
+        <NavigationRule />
+        <ListFlat
+          data={currentUserGroupsId}
+          keyExtractor={userGroupId => userGroupId}
+          renderItem={({ item: userGroupId }) => (
+            <NavigationButton
+              component={ImageGroup}
+              groupId={userGroupId}
+              size="small"
+              placeholderColor={secondaryVariantColor}
+              onClick={`/groups/${userGroupId}`}
+              hideContainer={hideContainer}
+            />
+          )}
+          ListFooterComponent={() => (
+            <NavigationListFooter
+              component={Icon}
+              icon="plus"
+              size="extra-small"
+              color={secondaryVariantColor}
+              onClick="/"
+              hideContainer={hideContainer}
+            />
+          )}
+          contentContainerStyle={{ paddingTop: 10 }}
+          showsVerticalScrollIndicator={false}
+        />
+        <NavigationRule style={{ paddingBottom: 10 }} />
         <NavigationButton
-          component={ImageGroup}
-          groupId={userGroupId}
-          size="small"
-          placeholderColor={secondaryVariantColor}
-          onClick={`/groups/${userGroupId}`}
-        />
-      )}
-      ListFooterComponent={() => (
-        <NavigationListFooter
           component={Icon}
-          icon="plus"
-          size="extra-small"
-          color={secondaryVariantColor}
-          onClick="/"
+          icon="cog"
+          size="small"
+          color={primaryColor}
+          backgroundColor={secondaryVariantColor}
+          onClick={() => showAppModal({ scene: Settings })}
+          hideContainer={hideContainer}
         />
-      )}
-      contentContainerStyle={{ paddingTop: 10 }}
-      showsVerticalScrollIndicator={false}
-    />
-    <NavigationRule style={{ paddingBottom: 10 }} />
-    <NavigationButton
-      component={Icon}
-      icon="cog"
-      size="small"
-      color={primaryColor}
-      backgroundColor={secondaryVariantColor}
-      onClick={() => showAppModal({ scene: Settings })}
-    />
+      </React.Fragment>
+    )}
   </NavigationContainer>
 );
 

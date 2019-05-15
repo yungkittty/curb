@@ -5,67 +5,57 @@ import ContainerOverlay from "./components/container-overlay";
 import ContainerContainer from "./components/container-container";
 import ContainerContentContainer from "./components/container-content-container";
 import ContainerZipper from "./components/container-zipper";
-import withAppNavigation from "../../../../hocs/with-app-navigation";
 
 // https://github.com/facebook/react-native/issues/16250#issuecomment-335401902
 
 class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { containerAnimated: new Animated.Value(-70), isContainerShowed: false };
+    this.moveContainer = this.moveContainer.bind(this);
+    this.moveContainerTo = this.moveContainerTo.bind(this);
+    this.moveContainerToEnd = this.moveContainerToEnd.bind(this);
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: this.moveContainerTo.bind(this),
-      onPanResponderRelease: this.moveContainerToEnd.bind(this)
-    });
+      onPanResponderMove: this.moveContainer,
+      onPanResponderRelease: this.moveContainerToEnd });
+    this.state = {
+      containerAnimated: new Animated.Value(-70),
+      isContainerShowed: false
+    };
   }
 
-  componentDidUpdate(prevProps) {
-    const { isAppNavigationShowed } = this.props;
-    const { isContainerShowed, containerAnimated } = this.state;
-    if (
-      isAppNavigationShowed !== prevProps.isAppNavigationShowed &&
-      isAppNavigationShowed !== isContainerShowed
-    ) {
-      Animated.spring(containerAnimated, {
-        toValue: isAppNavigationShowed ? 0 : -70,
-        easing: Easing.inOut(Easing.quad),
-        useNativeDriver: true
-      }).start(() => this.setState({ isContainerShowed: isAppNavigationShowed }));
-    }
-  }
-
-  moveContainerTo(event) {
+  moveContainer(event) {
     const { containerAnimated, isContainerShowed } = this.state;
     const { pageX } = event.nativeEvent;
     if (!isContainerShowed) this.setState({ isContainerShowed: true });
     containerAnimated.setValue(pageX > 70 ? 0 : pageX - 70);
   }
 
-  moveContainerToEnd(event) {
-    const { containerAnimated } = this.state;
-    const { pageX } = event.nativeEvent;
+  moveContainerTo(toBegin) {
+    const { containerAnimated, isContainerShowed } = this.state;
+    if (!isContainerShowed) this.setState({ isContainerShowed: true });
     Animated.spring(containerAnimated, {
-      toValue: pageX >= 35 ? 0 : -70,
+      toValue: toBegin ? 0 : -70,
       easing: Easing.inOut(Easing.quad),
       useNativeDriver: true
-    }).start(() => {
-      this.setState({ isContainerShowed: pageX >= 35 });
-      const { showAppNavigation, hideAppNavigation } = this.props;
-      // eslint-disable-next-line
-      pageX >= 35 ? showAppNavigation() : hideAppNavigation();
-    });
+    }).start();
+    this.setState({ isContainerShowed: toBegin });
+  }
+
+  moveContainerToEnd(event) {
+    const { pageX } = event.nativeEvent;
+    const toBegin = pageX >= 35;
+    this.moveContainerTo(toBegin);
   }
 
   render() {
     const { isContainerShowed, containerAnimated } = this.state;
-    const { hideAppNavigation, children } = this.props;
+    const { children } = this.props;
     return (
       <React.Fragment>
         {isContainerShowed ? (
           <ContainerOverlay
-            onPressIn={() => hideAppNavigation()}
-            activeOpacity={0.26}
+            onPressIn={() => this.moveContainerTo(false)}
             style={{
               opacity: containerAnimated.interpolate({
                 inputRange: [-70, 0],
@@ -77,12 +67,12 @@ class NavigationContainer extends React.Component {
         <ContainerContainer style={{ transform: [{ translateX: containerAnimated }] }}>
           <ContainerContentContainer>
             {/* eslint-disable-line */}
-            {children}
+            {children(() => this.moveContainerTo(false))}
           </ContainerContentContainer>
           <ContainerZipper
             // eslint-disable-line
             {...this.panResponder.panHandlers}
-            hitSlop={{ top: 20, right: 20, bottom: 20 }}
+            hitSlop={{ top: 10, right: 10, bottom: 10 }}
           />
         </ContainerContainer>
       </React.Fragment>
@@ -91,10 +81,7 @@ class NavigationContainer extends React.Component {
 }
 
 NavigationContainer.propTypes = {
-  isAppNavigationShowed: PropTypes.bool.isRequired,
-  showAppNavigation: PropTypes.func.isRequired,
-  hideAppNavigation: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.func.isRequired
 };
 
-export default withAppNavigation(NavigationContainer);
+export default NavigationContainer;
