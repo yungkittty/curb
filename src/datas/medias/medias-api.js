@@ -18,7 +18,7 @@ const mediasApi = {
       onUploadProgress
     });
   },
-  postGroupImageContent: ({ groupId, userId, image, onUploadProgress }) => {
+  postMediaImage: ({ groupId, userId, image, onUploadProgress }) => {
     const data = new FormData();
     data.append("file", image);
     return axios.post(`/contents/images/${groupId}/${userId}`, data, {

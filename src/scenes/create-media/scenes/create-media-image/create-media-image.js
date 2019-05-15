@@ -2,8 +2,8 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import withUser from "../../../../hocs/with-user";
 import withAppModal from "../../../../hocs/with-app-modal";
+import withCurrentUser from "../../../../hocs/with-current-user";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import CreateMediaInputFile from "../../components/create-media-input-file";
 // eslint-disable-next-line
@@ -51,18 +51,18 @@ class CreateMediaImage extends Component {
 
   submit() {
     const {
-      postGroupImageContent,
+      postMediaImage,
       disableAppModalButtons,
       groupId,
-      currentUserId: userId,
+      currentUserId,
       image: {
         value: { file }
       }
     } = this.props;
     if (!this.checkForm()) return;
-    postGroupImageContent({
+    postMediaImage({
       groupId,
-      userId,
+      userId: currentUserId,
       image: file,
       onUploadProgress: this.onUploadProgress
     });
@@ -118,7 +118,7 @@ CreateMediaImage.defaultProps = {
 
 CreateMediaImage.propTypes = {
   t: PropTypes.func.isRequired,
-  postGroupImageContent: PropTypes.func.isRequired,
+  postMediaImage: PropTypes.func.isRequired,
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
@@ -133,4 +133,4 @@ CreateMediaImage.propTypes = {
   image: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string }) })
 };
 
-export default _.flow([withUser, withAppModal, withTranslation()])(CreateMediaImage);
+export default _.flow([withAppModal, withCurrentUser, withTranslation()])(CreateMediaImage);

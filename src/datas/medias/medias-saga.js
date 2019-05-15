@@ -44,10 +44,10 @@ function* postMediaAvatarGroupRequestSaga(action) {
   }
 }
 
-function* postGroupImageContentRequestSaga(action) {
+function* postMediaImageRequestSaga(action) {
   try {
-    yield call(mediasApi.postGroupImageContent, action.payload);
-    yield put(mediasActions.postGroupImageContentSuccess());
+    const { data: payload } = yield call(mediasApi.postMediaImage, action.payload);
+    yield put(mediasActions.postMediaImageSuccess({ id: action.payload.groupId, mediasId: payload.id }));
     yield put(appModalActions.hideAppModal());
     yield put(
       appAlertActions.pushAppAlert({ type: "success", message: "createMedia.imagePosted", icon: "check" })
@@ -55,7 +55,7 @@ function* postGroupImageContentRequestSaga(action) {
   } catch (error) {
     const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postGroupImageContentFailure({ groupId, errorCode }));
+    yield put(mediasActions.postMediaImageFailure({ id: groupId, errorCode }));
   }
 }
 
@@ -63,7 +63,7 @@ const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga),
-  takeLatest(mediasActionsTypes.POST_GROUP_IMAGE_CONTENT_REQUEST, postGroupImageContentRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST, postMediaImageRequestSaga)
 ]);
 
 export default mediasSaga;
