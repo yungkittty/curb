@@ -67,8 +67,6 @@ const appModalReducer = (state = initialState, action) => {
       });
     case appModalActionsTypes.HIDE_APP_MODAL:
       return _.assign({}, state, { isShowed: false });
-    case appModalActionsTypes.UNMOUNT_APP_MODAL:
-      return _.assign({}, initialState);
     default:
       return state;
   }

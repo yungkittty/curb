@@ -1,4 +1,5 @@
 import React from "react";
+import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 
 const OverlayBlur = WrappedComponent => {
@@ -10,7 +11,7 @@ const OverlayBlur = WrappedComponent => {
         width: "100vw",
         height: "100vh",
         top: 0,
-        transition: "all 0.4s ease-out"
+        transition: "all 0.45s ease-out"
       };
 
       this.hideStyle = {
@@ -33,20 +34,14 @@ const OverlayBlur = WrappedComponent => {
       this.startAnimation(isAppModalShowed);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      const { children } = this.props;
-      const { style } = this.state;
-      return children !== nextProps.children || style !== nextState.style;
-    }
-
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
       const { isAppModalShowed } = this.props;
-      this.startAnimation(isAppModalShowed);
+      if (prevProps.isAppModalShowed !== isAppModalShowed) this.startAnimation(isAppModalShowed);
     }
 
     onTransitionEnd() {
-      const { isAppModalShowed, appModalUnmount } = this.props;
-      if (!isAppModalShowed) setTimeout(() => appModalUnmount(), 250);
+      const { isAppModalShowed, appModalCloseTransitionEnd } = this.props;
+      if (!isAppModalShowed) setTimeout(() => appModalCloseTransitionEnd(), 50);
     }
 
     startAnimation(state) {
@@ -68,13 +63,12 @@ const OverlayBlur = WrappedComponent => {
 
   _OverlayBlur.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired,
-    appModalUnmount: PropTypes.func.isRequired,
+    appModalCloseTransitionEnd: PropTypes.func.isRequired,
     // eslint-disable-next-line
     theme: PropTypes.object.isRequired
   };
 
-  return _OverlayBlur;
+  return withTheme(_OverlayBlur);
 };
 
 export default OverlayBlur;

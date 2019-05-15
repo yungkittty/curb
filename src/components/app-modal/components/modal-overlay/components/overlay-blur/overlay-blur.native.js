@@ -1,4 +1,5 @@
 import React from "react";
+import { withTheme } from "styled-components";
 import { Animated, Easing } from "react-native";
 import PropTypes from "prop-types";
 
@@ -27,13 +28,13 @@ const OverlayBlur = WrappedComponent => {
       this.startAnimation(isAppModalShowed);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
       const { isAppModalShowed } = this.props;
-      this.startAnimation(isAppModalShowed);
+      if (prevProps.isAppModalShowed !== isAppModalShowed) this.startAnimation(isAppModalShowed);
     }
 
     startAnimation(state) {
-      const { appModalUnmount } = this.props;
+      const { appModalCloseTransitionEnd } = this.props;
       const { animationRunning, backgroundColor } = this.state;
       if (animationRunning) return;
       this.setState({ animationRunning: true });
@@ -43,7 +44,7 @@ const OverlayBlur = WrappedComponent => {
         ease: Easing.out(Easing.exp)
       }).start(() => {
         this.setState({ animationRunning: false });
-        if (!state) appModalUnmount();
+        if (!state) appModalCloseTransitionEnd();
       });
     }
 
@@ -68,13 +69,12 @@ const OverlayBlur = WrappedComponent => {
 
   _OverlayBlur.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired,
-    appModalUnmount: PropTypes.func.isRequired,
+    appModalCloseTransitionEnd: PropTypes.func.isRequired,
     // eslint-disable-next-line
     theme: PropTypes.object.isRequired
   };
 
-  return _OverlayBlur;
+  return withTheme(_OverlayBlur);
 };
 
 export default OverlayBlur;

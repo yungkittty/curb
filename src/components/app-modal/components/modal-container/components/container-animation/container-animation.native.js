@@ -11,6 +11,7 @@ const ContainerAnimation = WrappedComponent => {
 
       this.commonStyle = {
         position: "absolute",
+        display: "flex",
         flexDirection: "column",
         width: "100%",
         height: "100%",
@@ -33,9 +34,9 @@ const ContainerAnimation = WrappedComponent => {
       this.startAnimation(isAppModalShowed);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
       const { isAppModalShowed } = this.props;
-      this.startAnimation(isAppModalShowed);
+      if (prevProps.isAppModalShowed !== isAppModalShowed) this.startAnimation(isAppModalShowed);
     }
 
     startAnimation(state) {
@@ -71,8 +72,7 @@ const ContainerAnimation = WrappedComponent => {
   }
 
   _ContainerAnimation.propTypes = {
-    isAppModalShowed: PropTypes.bool.isRequired,
-    children: PropTypes.arrayOf(PropTypes.node).isRequired
+    isAppModalShowed: PropTypes.bool.isRequired
   };
 
   return _ContainerAnimation;
