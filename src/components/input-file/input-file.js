@@ -14,27 +14,25 @@ const InputFile = ({
   onSelect,
   Placeholder: placeholder,
   ...others
-}) => {
-  return (
-    <FileContainer className={className} style={style}>
-      {/* eslint-disable-next-line */}
-      {!data && placeholder ? placeholder() : <FilePreview {...others} type={type} data={data} />}
-      {editMode && (
-        <FileSelector
-          type={type}
-          onSelect={(objData, file) =>
-            onSelect({
-              target: {
-                id,
-                value: { data: objData, file }
-              }
-            })
-          }
-        />
-      )}
-    </FileContainer>
-  );
-};
+}) => (
+  <FileContainer className={className} style={style}>
+    {/* eslint-disable-next-line */}
+    {!data && placeholder ? placeholder() : <FilePreview {...others} type={type} data={data} />}
+    {editMode && (
+      <FileSelector
+        type={type}
+        onSelect={(objData, file) =>
+          onSelect({
+            target: {
+              id,
+              value: { data: objData, file }
+            }
+          })
+        }
+      />
+    )}
+  </FileContainer>
+);
 
 InputFile.defaultProps = {
   className: undefined,
