@@ -17,8 +17,8 @@ class AppModal extends Component {
 
   componentDidUpdate(prevProps) {
     const { isAppModalShowed } = this.props;
-    if (prevProps.isAppModalShowed !== isAppModalShowed) {
-      this.setState(isAppModalShowed ? { isAppModalRender: true } : { isAppModalHidding: true }); // eslint-disable-line
+    if (prevProps.isAppModalShowed !== isAppModalShowed && isAppModalShowed) {
+      this.setState({ isAppModalRender: true }); // eslint-disable-line
     }
   }
 
