@@ -50,20 +50,12 @@ class CreateMediaImage extends Component {
   }
 
   submit() {
-    const {
-      postMediaImage,
-      disableAppModalButtons,
-      groupId,
-      currentUserId,
-      image: {
-        value: { file }
-      }
-    } = this.props;
+    const { postMediaImage, disableAppModalButtons, groupId, currentUserId, image } = this.props;
     if (!this.checkForm()) return;
     postMediaImage({
       groupId,
       userId: currentUserId,
-      image: file,
+      image,
       onUploadProgress: this.onUploadProgress
     });
     disableAppModalButtons();
