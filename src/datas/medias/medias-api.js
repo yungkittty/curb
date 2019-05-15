@@ -18,7 +18,7 @@ const mediasApi = {
       onUploadProgress
     });
   },
-  postGroupTextContent: ({ groupId, userId, text, onUploadProgress }) => {
+  postMediasTextContent: ({ groupId, userId, text, onUploadProgress }) => {
     const body = {
       data: text.value
     };

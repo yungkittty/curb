@@ -57,13 +57,13 @@ class CreateMediaText extends Component {
 
   submit() {
     const {
-      postGroupTextContent,
+      postMediasTextContent,
       groupId,
       currentUserId: userId,
       text
     } = this.props;
     if (!this.checkForm()) return;
-    postGroupTextContent({
+    postMediasTextContent({
       groupId,
       userId,
       text
@@ -103,7 +103,6 @@ CreateMediaText.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   mediasErrorCode: PropTypes.string.isRequired,
-  groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   text: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired
 };

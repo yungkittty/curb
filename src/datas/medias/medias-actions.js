@@ -40,16 +40,16 @@ const mediasActions = {
     payload: error,
     error: true
   }),
-  postGroupTextContentRequest: payload => ({
-    type: mediasActionsTypes.POST_GROUP_TEXT_CONTENT_REQUEST,
+  postMediasTextContentRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_REQUEST,
     payload
   }),
-  postGroupTextContentSuccess: () => ({
-    type: mediasActionsTypes.POST_GROUP_TEXT_CONTENT_SUCCESS,
+  postMediasTextContentSuccess: () => ({
+    type: mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_SUCCESS,
     payload: undefined
   }),
-  postGroupTextContentFailure: error => ({
-    type: mediasActionsTypes.POST_GROUP_TEXT_CONTENT_FAILURE,
+  postMediasTextContentFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_FAILURE,
     payload: error,
     error: true
   })
