@@ -84,7 +84,7 @@ class CreateMediaText extends Component {
         <TextInput 
           multiline
           id="text"
-          placeholder={t("modules:text.placeholder")}
+          placeholder={t("modules:text.postPlaceholder")}
           onChange={this.handleChange}
           value={text.value}
         />  
