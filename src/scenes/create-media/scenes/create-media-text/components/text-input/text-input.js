@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import InputArea from "../../../../../../components/input-area";
+import TextArea from "../../../../../../components/text-area";
 
-const TextInput = styled(InputArea)`    
+const TextInput = styled(TextArea)`    
     margin-top: 20%;
     width: 90%;
     height: 50%;
