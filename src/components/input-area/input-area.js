@@ -6,9 +6,7 @@ const TextArea = styled.textarea`
   font-family: "Montserrat-Regular";
   padding: 18px;
   font-size: 18px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  border: 0px;
   resize: none;
   outline: none;
   box-shadow: none;
