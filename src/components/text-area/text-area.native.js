@@ -4,7 +4,7 @@ import { TextInput } from "react-native";
 
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.native.js
 
-const TextInput = styled(({ type, onChange, id, ...others }) => (
+const TextArea = styled(({ type, onChange, id, ...others }) => (
   <TextInput
     {...others}
     multiline={true}
@@ -19,4 +19,4 @@ const TextInput = styled(({ type, onChange, id, ...others }) => (
     error ? theme.errorColor : theme.primaryColor};
 `;
 
-export default TextInput;
+export default TextArea;
