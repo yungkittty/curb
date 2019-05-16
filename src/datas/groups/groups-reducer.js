@@ -65,6 +65,17 @@ const byId = (state = {}, action) => {
           avatarUrl: action.payload.avatar.value.data
         }
       };
+    case mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          medias: [...state[action.payload.id].medias, action.payload.mediasId],
+          isFetching: false,
+          errorCode: ""
+        }
+      };
     default:
       return state;
   }

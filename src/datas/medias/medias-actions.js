@@ -39,6 +39,32 @@ const mediasActions = {
     type: mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE,
     payload: error,
     error: true
+  }),
+  postMediaVideoRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST,
+    payload
+  }),
+  postMediaVideoSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS,
+    payload
+  }),
+  postMediaVideoFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_VIDEO_FAILURE,
+    payload: error,
+    error: true
+  }),
+  postMediaImageRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST,
+    payload
+  }),
+  postMediaImageSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS,
+    payload
+  }),
+  postMediaImageFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_IMAGE_FAILURE,
+    payload: error,
+    error: true
   })
 };
 
