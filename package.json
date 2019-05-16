@@ -17,7 +17,7 @@
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
     "web-eject": "react-scripts eject",
-    "linkiii": "react-native link react-native-geolocation-service"
+    "linkiii": "react-native link react-native-maps"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -40,7 +40,6 @@
     "react-native-confirmation-code-field": "^3.4.0",
     "react-native-device-detection": "^0.2.0",
     "react-native-fast-image": "^5.4.2",
-    "react-native-geolocation-service": "^2.0.1",
     "react-native-image-picker": "^0.28.1",
     "react-native-locale-detector": "^1.0.1",
     "react-native-maps": "^0.24.2",

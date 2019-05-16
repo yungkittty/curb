@@ -1,3 +1,3 @@
-import CreateMediaLocationContainer from "./create-media-location-container"; // eslint-disable-line
+import CreateMediaLocationContainer from "./create-media-location-container";
 
 export default CreateMediaLocationContainer;
