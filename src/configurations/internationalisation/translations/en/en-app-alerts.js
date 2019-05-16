@@ -7,6 +7,7 @@ const enAppAlerts = {
     userSuccess: "Your avatar has been updated",
     UNKNOWN: "An error occured with your avatar"
   },
+  createMedia: { imagePosted: "Your image has been posted" },
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",
   signOutSuccess: "You have been disconnected",
