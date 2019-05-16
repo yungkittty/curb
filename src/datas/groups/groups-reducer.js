@@ -6,10 +6,16 @@ import { mediasActionsTypes } from "../medias";
 const postFetching = (state = { isFetching: false, errorCode: "" }, action) => {
   switch (action.type) {
     case groupsActionsTypes.POST_GROUP_REQUEST:
+    case groupsActionsTypes.DELETE_GROUP_REQUEST:
+    case groupsActionsTypes.PATCH_GROUP_REQUEST:
       return { ...state, isFetching: true };
     case groupsActionsTypes.POST_GROUP_SUCCESS:
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+    case groupsActionsTypes.PATCH_GROUP_SUCCESS:
       return { ...state, isFetching: false, errorCode: "" };
     case groupsActionsTypes.POST_GROUP_FAILURE:
+    case groupsActionsTypes.DELETE_GROUP_FAILURE:
+    case groupsActionsTypes.PATCH_GROUP_FAILURE:
       return { ...state, isFetching: false, errorCode: "" };
     default:
       return state;
@@ -28,6 +34,7 @@ const byId = (state = {}, action) => {
         }
       };
     case groupsActionsTypes.GET_GROUP_SUCCESS:
+    case groupsActionsTypes.PATCH_GROUP_SUCCESS:
       return {
         ...state,
         [action.payload.id]: {
@@ -74,6 +81,8 @@ const allIds = (state = [], action) => {
   switch (action.type) {
     case groupsActionsTypes.GET_GROUP_REQUEST:
       return _.union(state, [action.payload.id]);
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+      return _.without(state, action.payload.id);
     default:
       return state;
   }

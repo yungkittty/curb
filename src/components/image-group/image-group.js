@@ -32,8 +32,10 @@ const ImageGroup = ({
       // eslint-disable-next-line
       groupAvatar ? (
         <Image
-          // eslint-disable-line
-          src={groupAvatar}
+          // eslint-disable-next-line
+          // eslint-disable-next-line
+          src={_.replace(groupAvatar, "medium", size.substr(0, 5) === "extra" ? "large" : size)}
+          objectFit="cover"
           style={{
             width: innerDiameter,
             height: innerDiameter
@@ -54,18 +56,29 @@ const ImageGroup = ({
   </CircleContainer>
 );
 
+ImageGroup.defaultProps = {
+  placeholderColor: undefined
+};
+
 ImageGroup.propTypes = {
   isFetchingGroup: PropTypes.bool.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"])
-    .isRequired,
-  placeholderColor: PropTypes.string.isRequired
+  size: PropTypes.oneOf([
+    // eslint-disalbe-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired,
+  placeholderColor: PropTypes.string
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withGroup,
   withTheme

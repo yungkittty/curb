@@ -22,6 +22,33 @@ function* postGroupRequestSaga(action) {
   }
 }
 
+function* deleteGroupRequestSaga(action) {
+  try {
+    const { history, ...others } = action.payload;
+    yield call(groupsApi.deleteGroup, others);
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
+    yield put(groupsActions.deleteGroupSuccess({ ...action.payload, currentUserId }));
+    yield put(appAlertActions.pushAppAlert({ type: "success", message: "groupDeleted", icon: "check" }));
+    yield put(appModalActions.hideAppModal());
+    history.push(`/`);
+  } catch (error) {
+    yield put(groupsActions.deleteGroupFailure(error));
+  }
+}
+
+function* patchGroupRequestSaga(action) {
+  try {
+    const { id, avatar, ...others } = action.payload;
+    yield call(groupsApi.patchGroup, { id, ...others });
+    if (avatar && avatar.value.file) yield put(mediasActions.postMediaAvatarGroupRequest({ id, avatar }));
+    yield put(groupsActions.patchGroupSuccess({ id, ...others }));
+    yield put(appAlertActions.pushAppAlert({ type: "success", message: "groupPatched", icon: "check" }));
+    yield put(appModalActions.hideAppModal());
+  } catch (error) {
+    yield put(groupsActions.patchGroupFailure(error));
+  }
+}
+
 function* getGroupRequestSaga(action) {
   try {
     const { data: payload } = yield call(groupsApi.getGroup, action.payload);
@@ -42,6 +69,8 @@ function* getGroupInviteTokenRequestSaga(action) {
 
 const groupsSaga = all([
   takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
+  takeLatest(groupsActionsTypes.DELETE_GROUP_REQUEST, deleteGroupRequestSaga),
+  takeLatest(groupsActionsTypes.PATCH_GROUP_REQUEST, patchGroupRequestSaga),
   takeEvery(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
   takeLatest(groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)
 ]);

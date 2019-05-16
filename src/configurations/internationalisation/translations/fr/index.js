@@ -7,9 +7,9 @@ import discovery from "./fr-discovery";
 import resetPassword from "./fr-reset-password";
 import appDownload from "./fr-app-download";
 import settings from "./fr-settings";
-import createGroup from "./fr-create-group";
 import modules from "./fr-modules";
 import appAlerts from "./fr-app-alerts";
+import groupSettings from "./fr-group-settings";
 
 export default {
   common,
@@ -21,7 +21,7 @@ export default {
   resetPassword,
   appDownload,
   settings,
-  createGroup,
   modules,
-  appAlerts
+  appAlerts,
+  groupSettings
 };
