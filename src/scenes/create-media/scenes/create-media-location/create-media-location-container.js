@@ -6,7 +6,6 @@ import { appModalActions } from "../../../../datas/app-modal";
 const mapDispatchToProps = dispatch => ({
   setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
   setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
-  setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
   setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload))
 });
 

@@ -69,7 +69,5 @@
 		<string>$(PRODUCT_NAME) would like to use your camera</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 		<string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
-	<key>NSLocationWhenInUseUsageDescription<key/>
-		<string>$(PRODUCT_NAME) would like to show your location on the map</string>
 </dict>
 </plist>
