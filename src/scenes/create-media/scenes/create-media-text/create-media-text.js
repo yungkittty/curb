@@ -62,7 +62,7 @@ class CreateMediaText extends Component {
       postMediasTextContent,
       groupId,
       currentUserId: userId,
-      text: text
+      text
     } = this.props;
     if (!this.checkForm()) return;
     postMediasTextContent({

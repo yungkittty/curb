@@ -44,10 +44,10 @@ function* postMediaAvatarGroupRequestSaga(action) {
   }
 }
 
-function* postMediasTextContentRequestSaga(action) {
+function* postMediaTextRequestSaga(action) {
   try {
-    yield call(mediasApi.postMediasTextContent, action.payload);
-    yield put(mediasActions.postMediasTextContentSuccess());
+    yield call(mediasApi.postMediaText, action.payload);
+    yield put(mediasActions.postMediaTextSuccess());
     yield put(appModalActions.hideAppModal());
     yield put(
       appAlertActions.pushAppAlert({ type: "success", message: "createMedia.textPosted", icon: "check" })
@@ -55,7 +55,7 @@ function* postMediasTextContentRequestSaga(action) {
   } catch (error) {
     const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediasTextContentFailure({ groupId, errorCode }));
+    yield put(mediasActions.postMediasTextFailure({ groupId, errorCode }));
   }
 }
 
@@ -63,7 +63,7 @@ const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_REQUEST, postMediasTextContentRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_TEXT_REQUEST, postMediaTextRequestSaga)
 ]);
 
 export default mediasSaga;

@@ -14,8 +14,8 @@ const isFetching = (state = false, action) => {
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE:
-    case mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_SUCCESS:
-    case mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_TEXT_FAILURE:
       return false;
     default:
       return state;
@@ -73,13 +73,13 @@ const errorCode = (state = "", action) => {
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
-    case mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_REQUEST:
-    case mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_TEXT_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS:
       return "";
     case mediasActionsTypes.GET_MEDIA_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE:
-    case mediasActionsTypes.POST_MEDIAS_TEXT_CONTENT_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_TEXT_FAILURE:
       return action.payload.errorCode;
     default:
       return state;

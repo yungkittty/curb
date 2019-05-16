@@ -18,7 +18,7 @@ const mediasApi = {
       onUploadProgress
     });
   },
-  postMediasTextContent: ({ groupId, userId, text, onUploadProgress }) => {
+  postMediaText: ({ groupId, userId, text, onUploadProgress }) => {
     return axios.post(`/contents/texts/${groupId}/${userId}`, { data: text }, {
       withCredentials: true,
       onUploadProgress
