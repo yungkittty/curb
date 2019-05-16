@@ -4,19 +4,12 @@ import { withTheme } from "styled-components";
 import Icon from "../../../icon";
 import SelectorContainer from "./components/selector-container";
 import SelectorInputImage from "./components/selector-input-image";
-import SelectorInputVideo from "./components/selector-input-video";
 
 const FileSelector = ({ theme, type, onSelect, ...others }) => (
   <SelectorContainer {...others}>
     <Icon icon="plus" size="small" color={theme.secondaryVariantColor} />
-    {/* eslint-disable-next-line */}
     {type === "image" ? (
       <SelectorInputImage
-        style={{ position: "absolute", width: "100%", height: "100%" }}
-        onSelect={onSelect}
-      />
-    ) : type === "video" ? (
-      <SelectorInputVideo
         style={{ position: "absolute", width: "100%", height: "100%" }}
         onSelect={onSelect}
       />
@@ -29,7 +22,7 @@ const FileSelector = ({ theme, type, onSelect, ...others }) => (
 FileSelector.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
-  type: PropTypes.oneOf(["image", "video"]).isRequired,
+  type: PropTypes.oneOf(["image"]).isRequired,
   onSelect: PropTypes.func.isRequired
 };
 

@@ -17,7 +17,7 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
           takePhotoButtonTitle: t("takePhoto"),
           chooseFromLibraryButtonTitle: t("chooseLibrary"),
           cancelButtonTitle: t("cancel"),
-          mediaType: "photo",
+          mediaTypes: "photo",
           maxWidth: 1024,
           maxHeight: 1024,
           quality: 1,
@@ -33,14 +33,10 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
         response => {
           if (!response.didCancel && !response.error && !response.customButton) {
             const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
-            const type =
-              Platform.OS === "android"
-                ? response.path.substr(response.path.lastIndexOf(".") + 1)
-                : uri.substr(response.path.lastIndexOf(".") + 1);
             onSelect(uri, {
               uri,
-              type: `image/${type}`,
-              name: `image.${type}`
+              type: response.type,
+              name: "image.jpg"
             });
           }
         }
