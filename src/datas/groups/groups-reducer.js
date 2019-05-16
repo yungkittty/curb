@@ -66,6 +66,7 @@ const byId = (state = {}, action) => {
         }
       };
     case mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS:
       return {
         ...state,
         [action.payload.id]: {
