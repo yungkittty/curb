@@ -40,7 +40,6 @@ const mediasActions = {
     payload: error,
     error: true
   }),
-<<<<<<< HEAD
   postMediaVideoRequest: payload => ({
     type: mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST,
     payload
@@ -51,7 +50,9 @@ const mediasActions = {
   }),
   postMediaVideoFailure: error => ({
     type: mediasActionsTypes.POST_MEDIA_VIDEO_FAILURE,
-=======
+    payload: error,
+    error: true
+  }),
   postMediaImageRequest: payload => ({
     type: mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST,
     payload
@@ -62,7 +63,6 @@ const mediasActions = {
   }),
   postMediaImageFailure: error => ({
     type: mediasActionsTypes.POST_MEDIA_IMAGE_FAILURE,
->>>>>>> add-post-60
     payload: error,
     error: true
   })
