@@ -4,8 +4,11 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withUser from "../../../../hocs/with-user";
 import withAppModal from "../../../../hocs/with-app-modal";
+import Loader from "../../../../components/loader";
 import TextInput from "./components/text-input";
+import TextContainer from "./components/text-container";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
+// eslint-disable-line
 import CreateMedia from "../../../create-media";
 import CreateMediaError from "../../components/create-media-error";
 
@@ -13,7 +16,7 @@ import CreateMediaError from "../../components/create-media-error";
 class CreateMediaText extends Component {
   constructor(props) {
     super(props);
-    this.state = { loadingProgress: undefined };
+
     const {
       t,
       setAppModalHeaderText, 
@@ -35,11 +38,10 @@ class CreateMediaText extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { enableAppModalButtons, isFetchingMedias } = this.props;
-    if (prevProps.isFetchingMedias && !isFetchingMedias) {
-      // eslint-disable-next-line
-      enableAppModalButtons();
-    }
+    const { enableAppModalButtons, disableAppModalButtons, isFetchingMedias } = this.props;
+    if (prevProps.isFetchingMedias === !isFetchingMedias) return;
+    if (isFetchingMedias) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   checkForm() {
@@ -60,13 +62,13 @@ class CreateMediaText extends Component {
       postMediasTextContent,
       groupId,
       currentUserId: userId,
-      text
+      text: text
     } = this.props;
     if (!this.checkForm()) return;
     postMediasTextContent({
       groupId,
       userId,
-      text
+      text: text.value
     });
   }
 
@@ -74,13 +76,18 @@ class CreateMediaText extends Component {
     const { 
       t,
       mediasErrorCode,
-      text } = this.props;
+      isFetchingMedias,
+      text
+    } = this.props;
 
-    return (
-      <AppModalSceneContainer>
+    return isFetchingMedias? (
+      <Loader />
+    ) : (
+      <AppModalSceneContainer verticalAlign>
         {mediasErrorCode !== "" && (
           <CreateMediaError>{t(`errorCode:contents.${mediasErrorCode}`)}</CreateMediaError>
         )}
+        <TextContainer>
         <TextInput 
           multiline
           id="text"
@@ -88,6 +95,7 @@ class CreateMediaText extends Component {
           onChange={this.handleChange}
           value={text.value}
         />  
+        </TextContainer>
       </AppModalSceneContainer>
     );
   }
@@ -102,6 +110,7 @@ CreateMediaText.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  isFetchingMedias: PropTypes.bool.isRequired,
   mediasErrorCode: PropTypes.string.isRequired,
   text: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired

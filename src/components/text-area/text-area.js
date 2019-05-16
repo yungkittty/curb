@@ -10,7 +10,8 @@ const TextArea = styled.textarea`
   resize: none;
   outline: none;
   box-shadow: none;
-  border-bottom-width: 2px;
+  border-bottom-width: 1px;
+  border-style: solid;
   border-bottom-color: ${({ theme, error }) =>
     error ? theme.errorColor : theme.primaryColor};
 `;

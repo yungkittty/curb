@@ -14,7 +14,8 @@ const TextArea = styled(({ type, onChange, id, ...others }) => (
   font-family: "Montserrat-Regular";
   padding: 16px;
   font-size: 16px;
-  border-bottom-width: 2px;
+  border-bottom-width: 1px;
+  border-style: solid;
   border-bottom-color: ${({ theme, error }) =>
     error ? theme.errorColor : theme.primaryColor};
 `;
