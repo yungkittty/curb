@@ -15,6 +15,8 @@ const ContainerAnimation = WrappedComponent => {
         flexDirection: "column",
         width: "100%",
         height: "100%",
+        elevation: Platform.OS === "android" ? 4 : undefined,
+        boxShadow: Platform.OS === "ios" ? "0px 10px 35px 0px rgba(0, 0, 0, 0.2)" : undefined,
         // eslint-disable-next-line
         paddingTop: Platform.OS === "ios" ? (isIphoneX ? 30 : 20) : undefined
       };

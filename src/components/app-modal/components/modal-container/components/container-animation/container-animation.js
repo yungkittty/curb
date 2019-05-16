@@ -15,6 +15,7 @@ const ContainerAnimation = WrappedComponent => {
         height: 740,
         borderRadius: 25,
         boxShadow: "0px 10px 35px 0px rgba(0, 0, 0, 0.2)",
+        zIndex: 4,
         transition: "all 0.3s ease-out"
       };
 
@@ -48,7 +49,7 @@ const ContainerAnimation = WrappedComponent => {
     }
 
     startAnimation(state) {
-      this.timeout = setTimeout(
+      setTimeout(
         () =>
           this.setState({
             style: state ? this.showStyle : this.hideStyle

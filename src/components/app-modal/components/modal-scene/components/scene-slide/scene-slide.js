@@ -17,10 +17,6 @@ const SceneSlide = WrappedComponent => {
       };
     }
 
-    shouldComponentUpdate(nextProps) {
-      return nextProps.scene !== null;
-    }
-
     componentDidUpdate(prevProps) {
       const { scene: prevScene } = prevProps;
       const { scene, sceneDirection } = this.props;
