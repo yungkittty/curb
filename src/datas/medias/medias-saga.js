@@ -44,6 +44,18 @@ function* postMediaAvatarGroupRequestSaga(action) {
   }
 }
 
+function* postMediaVideoRequestSaga(action) {
+  try {
+    const { data: payload } = yield call(mediasApi.postMediaVideo, action.payload);
+    yield put(mediasActions.postMediaVideoSuccess({ id: action.payload.groupId, mediasId: payload.id }));
+    yield put(appModalActions.hideAppModal());
+  } catch (error) {
+    const { groupId } = action.payload;
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postMediaVideoFailure({ id: groupId, errorCode }));
+  }
+}
+
 function* postMediaImageRequestSaga(action) {
   try {
     const { data: payload } = yield call(mediasApi.postMediaImage, action.payload);
@@ -63,6 +75,7 @@ const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST, postMediaVideoRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST, postMediaImageRequestSaga)
 ]);
 

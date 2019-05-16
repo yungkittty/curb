@@ -9,7 +9,9 @@ const enCommon = {
   reset: "Reset",
   post: "Post",
   selectImage: "Select an image",
+  selectVideo: "Select a video",
   takePhoto: "Take a photo",
+  recordVideo: "Record a video",
   chooseLibrary: "Choose from Library",
   permissionDenied: "Permission denied",
   askCameraText:

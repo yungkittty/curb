@@ -7,6 +7,7 @@ const isFetching = (state = false, action) => {
     case mediasActionsTypes.GET_MEDIA_REQUEST:
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST:
     case mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST:
       return true;
     case mediasActionsTypes.GET_MEDIA_SUCCESS:
@@ -15,6 +16,8 @@ const isFetching = (state = false, action) => {
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_VIDEO_FAILURE:
     case mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_IMAGE_FAILURE:
       return false;
@@ -74,12 +77,15 @@ const errorCode = (state = "", action) => {
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST:
+    case mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS:
     case mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST:
     case mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS:
       return "";
     case mediasActionsTypes.GET_MEDIA_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_FAILURE:
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE:
+    case mediasActionsTypes.POST_MEDIA_VIDEO_FAILURE:
     case mediasActionsTypes.POST_MEDIA_IMAGE_FAILURE:
       return action.payload.errorCode;
     default:
