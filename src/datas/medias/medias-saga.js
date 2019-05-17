@@ -10,7 +10,7 @@ function* getMediaRequestSaga(action) {
     const { data: payload } = yield call(mediasApi.getMedia, action.payload);
     yield put(mediasActions.getMediaSuccess(payload));
   } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.getMediaFailure({ id: action.payload.id, errorCode }));
   }
 }
@@ -22,7 +22,7 @@ function* postMediaAvatarUserRequestSaga(action) {
     yield put(mediasActions.postMediaAvatarUserSuccess({ id, avatar }));
     if (successAlert) yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postMediaAvatarUserFailure({ errorCode }));
     const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
@@ -36,7 +36,7 @@ function* postMediaAvatarGroupRequestSaga(action) {
     yield put(mediasActions.postMediaAvatarGroupSuccess({ id, avatar }));
     if (successAlert) yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postMediaAvatarGroupFailure({ errorCode }));
     const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));

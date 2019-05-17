@@ -5,11 +5,8 @@ import Button from "../../../../../../components/button";
 import ImageUser from "../../../../../../components/image-user";
 import HeaderInfos from "./components/header-infos";
 
-/** @TODO WHILE BOTH IS_FETCHING HIDE ! + NAME WITHOUT WIDTH ! */
-
 const ItemHeader = ({
   // eslint-disable-line
-  isFetchingMedia,
   mediaCreatorId,
   mediaDateCreation,
   theme
@@ -17,6 +14,7 @@ const ItemHeader = ({
   <HeaderContainer>
     <Button
       // eslint-disable-line
+      onClick={`/users/${mediaCreatorId}`}
       component={ImageUser}
       userId={mediaCreatorId}
       size="small"
@@ -25,14 +23,12 @@ const ItemHeader = ({
     <HeaderInfos
       // eslint-disable-line
       userId={mediaCreatorId}
-      isFetchingMedia={isFetchingMedia}
       mediaDateCreation={mediaDateCreation}
     />
   </HeaderContainer>
 );
 
 ItemHeader.propTypes = {
-  isFetchingMedia: PropTypes.bool.isRequired,
   mediaCreatorId: PropTypes.string.isRequired,
   mediaDateCreation: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired // eslint-disable-line

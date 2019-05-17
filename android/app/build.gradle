@@ -110,6 +110,9 @@ android {
 
         // react-native-camera
         missingDimensionStrategy 'react-native-camera', 'general'
+
+        // https://developer.android.com/studio/build/multidex
+        multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -152,6 +155,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-video')
     implementation project(':react-native-fast-image')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-locale-detector')

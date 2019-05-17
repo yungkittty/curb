@@ -6,8 +6,8 @@ const HeaderContainer = styled(Container)`
   flex-direction: row;
   width: 100%;
   height: 60px;
-  padding-left: 20px;
   margin-bottom: 20px;
+  margin-left: -30px;
 `;
 
 export default HeaderContainer;

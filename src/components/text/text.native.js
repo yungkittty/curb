@@ -18,32 +18,61 @@ const Text = styled.Text`
         return "Montserrat-Regular";
     }
   }};
-  font-size: ${props => {
+  ${props => {
     switch (props.type) {
       case "h1":
-        return 36; // +8
+        return `
+          font-size: 36px;
+          ${props.isIndented ? `line-height: ${36 * 1.8}px;` : ""}
+        `; // +8
       case "h2":
-        return 24; // +8
+        return `
+          font-size: 24px;
+          ${props.isIndented ? `line-height: ${24 * 1.8}px;` : ""}
+        `; // +8
       case "h3":
-        return 18; // +4
+        return `
+          font-size: 18px;
+          ${props.isIndented ? `line-height: ${18 * 1.8}px;` : ""}
+        `; // +4
       case "h4":
-        return 14; // +2
+        return `
+          font-size: 14px;
+          ${props.isIndented ? `line-height: ${14 * 1.8}px;` : ""}
+        `; // +2
       case "h5":
-        return 12; // -2
+        return `
+          font-size: 12px;
+          ${props.isIndented ? `line-height: ${12 * 1.8}px;` : ""}
+        `; // -2
       case "h6":
-        return 10; // -2
+        return `
+          font-size: 10px;
+          ${props.isIndented ? `line-height: ${10 * 1.8}px;` : ""}
+        `; // -2
       default:
-        return 14;
+        return `
+          font-size: 14px;
+          ${props.isIndented ? `line-height: ${14 * 1.8}px;` : ""}
+        `;
     }
-  }}px;
+  }}
+  
   color: ${props => props.theme.fontColor};
 `;
 
-Text.defaultProps = { type: undefined, weight: 400 };
+// ${props => (props.isIndented ? "white-space: pre-wrap" : "")}
+
+Text.defaultProps = {
+  type: undefined,
+  weight: 400,
+  isIndented: false
+};
 
 Text.propTypes = {
-  type: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5"]),
-  weight: PropTypes.oneOf([300, 400, 500, 600, 700, 800])
+  type: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5", "h6"]),
+  weight: PropTypes.oneOf([300, 400, 500, 600, 700, 800]),
+  isIndented: PropTypes.bool
 };
 
 export default Text;

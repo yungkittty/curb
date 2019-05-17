@@ -6,7 +6,6 @@ const OptionDescription = styled(Text)`
   display: flex;
   text-align: center;
   margin-top: 28px;
-  line-height: 1.9;
 `;
 
 export default OptionDescription;

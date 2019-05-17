@@ -9,9 +9,7 @@ import withUser from "../../../../../../../../hocs/with-user";
 
 const HeaderInfos = ({
   // eslint-disable-line
-  isFetchingMedia,
   mediaDateCreation,
-  isFetchingUser,
   userName,
   t
 }) => {
@@ -30,26 +28,20 @@ const HeaderInfos = ({
   })();
   return (
     <InfosContainer>
-      <InfosTitle weight={700} isFetchingUser={isFetchingUser}>
-        {!isFetchingUser
-          ? // eslint-disable-line
-            userName
-          : ""}
+      <InfosTitle weight={700} userName={userName}>
+        {/* eslint-disable-line */}
+        {userName}
       </InfosTitle>
-      <InfosSubtitle type="h5" isFetchingMedia={isFetchingMedia}>
-        {!isFetchingMedia
-          ? // eslint-disable-line
-            t("infosSubtitle", { when: dateDelta })
-          : ""}
+      <InfosSubtitle type="h5" mediaDateCreation={mediaDateCreation}>
+        {/* eslint-disable-line */}
+        {mediaDateCreation ? t("infosSubtitle", { when: dateDelta }) : ""}
       </InfosSubtitle>
     </InfosContainer>
   );
 };
 
 HeaderInfos.propTypes = {
-  isFetchingMedia: PropTypes.bool.isRequired,
   mediaDateCreation: PropTypes.string.isRequired,
-  isFetchingUser: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired
 };

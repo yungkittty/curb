@@ -23,7 +23,7 @@ const ImageGroup = ({
     {...others}
     diameter={size}
     backgroundColor={
-      (isFetchingGroup && !groupName) || groupAvatar
+      !groupName || groupAvatar // eslint-disable-line
         ? placeholderColor
         : theme[`group${_.capitalize(groupTheme)}VariantColor`]
     }

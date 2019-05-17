@@ -128,7 +128,7 @@ class Group extends React.Component {
       currentUserGroupsId
     } = this.props;
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
-    const isCurrentuserCreator = groupCreatorId === currentUserId;
+    const isCurrentUserCreator = groupCreatorId === currentUserId;
     return (
       <React.Fragment>
         <GroupList
@@ -142,10 +142,10 @@ class Group extends React.Component {
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
         />
-        {isCurrentUserIn && (isFeed || isCurrentuserCreator) ? (
+        {isCurrentUserIn && (isFeed || isCurrentUserCreator) ? (
           <ButtonFloat
             // eslint-disable-line
-            icon={!isFeed && isCurrentuserCreator ? "sliders-h" : "plus"}
+            icon={isFeed ? "plus" : "sliders-h"}
             onClick={() => undefined}
           />
         ) : null}

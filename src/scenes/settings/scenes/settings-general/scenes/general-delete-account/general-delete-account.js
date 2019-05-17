@@ -50,7 +50,7 @@ class GeneralDeleteAccount extends Component {
     ) : (
       <AppModalSceneContainer>
         <AppModalSceneTitle>{t("general.menu.deleteAccount.contentTitle")}</AppModalSceneTitle>
-        <ContentDescription type="h4">
+        <ContentDescription type="h4" isIndented>
           {t("general.menu.deleteAccount.contentDescription")}
         </ContentDescription>
       </AppModalSceneContainer>

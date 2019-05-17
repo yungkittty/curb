@@ -1,37 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MediaContainer from "./components/media-container";
+import MediaImage from "./components/media-image";
 import MediaText from "./components/media-text";
-
-const MediaImage = () => null;
-const MediaLocation = () => null;
-const MediaVideo = () => null;
-
-/** @todo placeholder not on point ! */
+import MediaVideo from "./components/media-video";
 
 const ItemMedia = ({
   // eslint-disable-line
-  isFetchingMedia,
   mediaType,
   mediaData
 }) => (
-  <MediaContainer isFetchingMedia={isFetchingMedia}>
+  <MediaContainer mediaData={mediaData}>
     {/* eslint-disable */}
-    {isFetchingMedia ? null : mediaType === "image" ? (
-      <MediaImage />
+    {mediaType === "image" ? (
+      <MediaImage src={mediaData} />
     ) : mediaType === "location" ? (
       <MediaLocation />
     ) : mediaType === "text" ? (
-      <MediaText>{mediaData}</MediaText>
+      <MediaText>
+        {/* eslint-disable-line */}
+        {mediaData}
+      </MediaText>
     ) : mediaType === "video" ? (
-      <MediaVideo />
+      <MediaVideo src={mediaData} />
     ) : null}
     {/* eslint-enable */}
   </MediaContainer>
 );
 
 ItemMedia.propTypes = {
-  isFetchingMedia: PropTypes.bool.isRequired,
   mediaType: PropTypes.string.isRequired,
   mediaData: PropTypes.string.isRequired
 };

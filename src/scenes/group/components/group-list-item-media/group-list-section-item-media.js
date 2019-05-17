@@ -6,7 +6,7 @@ import ItemMedia from "./components/item-media";
 import withMedia from "../../../../hocs/with-media";
 
 const GroupListSectionMedia = ({
-  isFetchingMedia,
+  // eslint-disable-line
   mediaCreatorId,
   mediaDateCreation,
   mediaType,
@@ -15,14 +15,13 @@ const GroupListSectionMedia = ({
 }) => (
   <ItemContainer>
     <ItemHeader
-      isFetchingMedia={isFetchingMedia}
+      // eslint-disable-line
       mediaCreatorId={mediaCreatorId}
       mediaDateCreation={mediaDateCreation}
       theme={theme}
     />
     <ItemMedia
       // eslint-disable-line
-      isFetchingMedia={isFetchingMedia}
       mediaType={mediaType}
       mediaData={mediaData}
     />
@@ -30,7 +29,6 @@ const GroupListSectionMedia = ({
 );
 
 GroupListSectionMedia.propTypes = {
-  isFetchingMedia: PropTypes.bool.isRequired,
   mediaCreatorId: PropTypes.string.isRequired,
   mediaDateCreation: PropTypes.string.isRequired,
   mediaType: PropTypes.string.isRequired,

@@ -38,9 +38,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>$(PRODUCT_NAME) would like to use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-ExtraBold.ttf</string>
@@ -62,10 +62,8 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-		<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
-    <key>NSCameraUsageDescription</key>
-		<string>$(PRODUCT_NAME) would like to use your camera</string>
+	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-		<string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
+	<string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
 </dict>
 </plist>

@@ -31,7 +31,7 @@ Image.defaultProps = {
 Image.propTypes = {
   src: PropTypes.string.isRequired,
   style: PropTypes.object, // eslint-disable-line
-  objectFit: PropTypes.oneOf(["cover"])
+  objectFit: PropTypes.oneOf(["cover", "contain"])
 };
 
 export default Image;

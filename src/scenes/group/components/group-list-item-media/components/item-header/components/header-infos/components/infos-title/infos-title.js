@@ -1,18 +1,17 @@
 import styled from "styled-components";
 import Text from "../../../../../../../../../../components/text";
 
-/** @todo This is better to define placeholder ! To reproduce ! */
-
 const InfosTitle = styled(Text)`
   ${props =>
-    props.isFetchingUser
+    !props.userName
       ? `
-        width: 80px;
+        width: 120px;
         height: 14px;
       `
       : ""}
-  border-radius: 5px;
-  ${props => (props.isFetchingUser ? `background-color: ${props.theme.primaryVariantColor};` : "")};
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: ${props => (!props.userName ? props.theme.primaryVariantColor : "transparent")};
 `;
 
 export default InfosTitle;

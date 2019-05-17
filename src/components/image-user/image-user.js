@@ -20,7 +20,7 @@ const ImageUser = ({
     {...others}
     diameter={size}
     backgroundColor={
-      (isFetchingUser && !userName) || userAvatar // eslint-disable-line
+      !userName || userAvatar // eslint-disable-line
         ? placeholderColor
         : secondaryVariantColor
     }

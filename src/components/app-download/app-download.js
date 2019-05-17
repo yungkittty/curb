@@ -8,7 +8,7 @@ import DownloadBranch from "./components/download-branch";
 
 const AppDownload = ({ t }) => (
   <DownloadContainer>
-    <DownloadText type="h3" weight={700}>
+    <DownloadText type="h3" weight={700} isIndented>
       {t("downloadText")}
     </DownloadText>
     <DownloadButton t={t} />

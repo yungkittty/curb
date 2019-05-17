@@ -5,11 +5,11 @@ const frAppAlert = {
   },
   postAvatar: {
     userSuccess: "Votre avatar a été mis à jour",
-    UNKNOWN: "Une erreur est survenue sur votre avatar"
+    UNKNOW: "Une erreur est survenue sur votre avatar"
   },
   postGroupInvite: {
     groupInviteSuccess: "Vous avez rejoint ce groupe",
-    UNKNOWN: "Une erreur est survenue en rejoignant ce groupe"
+    UNKNOW: "Une erreur est survenue en rejoignant ce groupe"
   },
   accountCreated: "Votre compte a été créé",
   groupCreated: "Votre groupe a été créé",

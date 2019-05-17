@@ -3,12 +3,11 @@ import Container from "../../../../../../../../components/container";
 
 const MediaContainer = styled(Container)`
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  border-radius: 25px;
+  min-width: 100%;
+  ${props => (!props.mediaData ? "height: 250px;" : "")}
+  border-radius: 15px;
   overflow: hidden;
-  ${props => (props.isFetchingMedia ? `background-color: ${props.theme.primaryVariantColor};` : "")};
 `;
 
 export default MediaContainer;
