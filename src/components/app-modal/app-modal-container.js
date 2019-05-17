@@ -20,7 +20,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal())
+  appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal()),
+  enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
+  disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons())
 });
 
 const mergeProps = (stateProps, dispatchProps) => ({
