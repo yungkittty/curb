@@ -8,7 +8,6 @@ const OptionContainer = styled(Button)`
   justify-content: center;
 
   background: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
-  }
 `;
 
 export default OptionContainer;

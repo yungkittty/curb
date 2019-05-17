@@ -40,7 +40,7 @@ function* patchGroupRequestSaga(action) {
   try {
     const { id, avatar, ...others } = action.payload;
     yield call(groupsApi.patchGroup, { id, ...others });
-    if (avatar && avatar.value.file) yield put(mediasActions.postMediaAvatarGroupRequest({ id, avatar }));
+    if (avatar) yield put(mediasActions.postMediaAvatarGroupRequest({ id, avatar }));
     yield put(groupsActions.patchGroupSuccess({ id, ...others }));
     yield put(appAlertActions.pushAppAlert({ type: "success", message: "groupPatched", icon: "check" }));
     yield put(appModalActions.hideAppModal());
