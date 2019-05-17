@@ -12,7 +12,7 @@ const ModalContainer = styled(Container)`
   height: 740px;
   border-radius: 25px;
   box-shadow: 0px 19.2px 17.28px 0px rgba(0, 0, 0, 0.228);
-  z-index: 4;
+  z-index: 32;
   transition-property: opacity, transform;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;

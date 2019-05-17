@@ -11,7 +11,9 @@ const ModalContainer = styled(Container)`
   position: absolute;
   width: 100%;
   height: 100%;
-  ${Platform.OS === "android" ? "elevation: 4;" : "box-shadow: 0px 19.2px 17.28px 0px rgba(0, 0, 0, 0.228);"};
+  ${Platform.OS === "android"
+    ? "elevation: 32;"
+    : "box-shadow: 0px 19.2px 17.28px 0px rgba(0, 0, 0, 0.228);"};
   ${Platform.OS === "ios" ? `padding-top: ${isIphoneX ? 30 : 20}` : ""};
   flex-direction: column;
   background-color: ${({ theme }) => theme.backgroundColor};
