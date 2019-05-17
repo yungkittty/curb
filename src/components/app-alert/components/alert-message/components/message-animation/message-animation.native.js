@@ -1,14 +1,14 @@
 import React from "react";
-import { Platform, Animated, Easing } from "react-native";
-import { isIphoneX } from "react-native-device-detection";
+import { Animated, Easing } from "react-native";
 import PropTypes from "prop-types";
+import { windowDimensions } from "../../../../../../configurations/window";
 
 const MessageAnimation = WrappedComponent => {
   class _MessageAnimation extends React.Component {
     constructor(props) {
       super(props);
       // eslint-disable-next-line
-      this.initialTop = -(Platform.OS === "ios" ? (isIphoneX ? 80 : 70) : 60);
+      this.initialTop = -windowDimensions.statusBarHeight + 50;
       this.state = { top: new Animated.Value(this.initialTop) };
       this.closeMessage = this.closeMessage.bind(this);
     }

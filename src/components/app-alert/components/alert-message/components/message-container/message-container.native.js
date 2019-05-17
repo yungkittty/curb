@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Animated, Platform } from "react-native";
-import { isIphoneX } from "react-native-device-detection";
+import { windowDimensions } from "../../../../../../configurations/window";
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 8
 
@@ -11,8 +11,8 @@ const MessageContainer = styled(Animated.View)`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: ${Platform.OS === "ios" ? `${isIphoneX ? 80 : 70}` : 60}px;
-  ${Platform.OS === "ios" ? `padding-top: ${isIphoneX ? 30 : 20}px;` : ``}
+  height: ${windowDimensions.statusBarHeight + 50}px;
+  padding-top: ${windowDimensions.statusBarHeight}px;
   ${
     Platform.OS === "android"
       ? `
