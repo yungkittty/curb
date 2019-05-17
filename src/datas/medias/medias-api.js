@@ -17,6 +17,22 @@ const mediasApi = {
       withCredentials: true,
       onUploadProgress
     });
+  },
+  postMediaVideo: ({ groupId, userId, video, onUploadProgress }) => {
+    const data = new FormData();
+    data.append("file", video.value.file);
+    return axios.post(`/contents/videos/${groupId}/${userId}`, data, {
+      withCredentials: true,
+      onUploadProgress
+    });
+  },
+  postMediaImage: ({ groupId, userId, image, onUploadProgress }) => {
+    const data = new FormData();
+    data.append("file", image.value.file);
+    return axios.post(`/contents/images/${groupId}/${userId}`, data, {
+      withCredentials: true,
+      onUploadProgress
+    });
   }
 };
 

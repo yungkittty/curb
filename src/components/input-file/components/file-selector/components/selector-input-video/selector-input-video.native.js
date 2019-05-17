@@ -7,25 +7,21 @@ import Button from "../../../../../button";
 
 // https://github.com/react-native-community/react-native-image-picker/blob/master/docs/Reference.md
 
-const SelectorInputImage = ({ t, onSelect, ...others }) => (
+const SelectorInputVideo = ({ t, onSelect, ...others }) => (
   <Button
     {...others}
     onClick={() => {
       ImagePicker.showImagePicker(
         {
-          title: t("selectImage"),
-          takePhotoButtonTitle: t("takePhoto"),
+          title: t("selectVideo"),
+          takePhotoButtonTitle: t("recordVideo"),
           chooseFromLibraryButtonTitle: t("chooseLibrary"),
           cancelButtonTitle: t("cancel"),
-          mediaType: "photo",
-          maxWidth: 1024,
-          maxHeight: 1024,
-          quality: 1,
-          noData: true,
-          allowsEditing: true,
+          mediaType: "video",
+          videoQuality: "high",
           permissionDenied: {
             title: t("permissionDenied"),
-            text: t("askCameraText"),
+            text: t("askStorageText"),
             reTryTitle: t("authorize"),
             okTitle: t("cancel")
           }
@@ -36,11 +32,11 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
             const type =
               Platform.OS === "android"
                 ? response.path.substr(response.path.lastIndexOf(".") + 1)
-                : uri.substr(response.path.lastIndexOf(".") + 1);
+                : uri.substr(uri.lastIndexOf(".") + 1);
             onSelect(uri, {
               uri,
-              type: `image/${type}`,
-              name: `image.${type}`
+              type: `video/${type}`,
+              name: `video.${type}`
             });
           }
         }
@@ -51,6 +47,6 @@ const SelectorInputImage = ({ t, onSelect, ...others }) => (
   </Button>
 );
 
-SelectorInputImage.propTypes = { t: PropTypes.func.isRequired, onSelect: PropTypes.func.isRequired };
+SelectorInputVideo.propTypes = { t: PropTypes.func.isRequired, onSelect: PropTypes.func.isRequired };
 
-export default withTranslation("common")(SelectorInputImage);
+export default withTranslation("common")(SelectorInputVideo);
