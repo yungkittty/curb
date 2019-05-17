@@ -2,6 +2,8 @@ import styled from "styled-components";
 import ContainerAnimation from "./components/container-animation";
 import Container from "../../../container";
 
+// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 32
+
 const ModalContainer = styled(Container)`
   display: flex;
   position: absolute;
@@ -9,7 +11,7 @@ const ModalContainer = styled(Container)`
   width: 700px;
   height: 740px;
   border-radius: 25px;
-  box-shadow: 0px 10px 35px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 19.2px 17.28px 0px rgba(0, 0, 0, 0.228);
   z-index: 4;
   transition-property: opacity, transform;
   transition-duration: 0.3s;
