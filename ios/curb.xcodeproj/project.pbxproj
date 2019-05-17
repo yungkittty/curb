@@ -1463,10 +1463,6 @@
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-=======
->>>>>>> 7c06f6c38664b4f6f95a7b582c679018e4315dd5
 				);
 				INFOPLIST_FILE = curbTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1506,10 +1502,6 @@
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-					"$(SRCROOT/../node_modules/react-native-maps/lib/ios/**",
-=======
->>>>>>> 7c06f6c38664b4f6f95a7b582c679018e4315dd5
 				);
 				INFOPLIST_FILE = curbTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1551,10 +1543,6 @@
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-=======
->>>>>>> 7c06f6c38664b4f6f95a7b582c679018e4315dd5
 				);
 				INFOPLIST_FILE = curb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1619,10 +1607,6 @@
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-=======
->>>>>>> 7c06f6c38664b4f6f95a7b582c679018e4315dd5
 				);
 				INFOPLIST_FILE = "curb-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1670,10 +1654,6 @@
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-=======
->>>>>>> 7c06f6c38664b4f6f95a7b582c679018e4315dd5
 				);
 				INFOPLIST_FILE = "curb-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1720,10 +1700,6 @@
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-=======
->>>>>>> 7c06f6c38664b4f6f95a7b582c679018e4315dd5
 				);
 				INFOPLIST_FILE = "curb-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1770,10 +1746,6 @@
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-=======
->>>>>>> 7c06f6c38664b4f6f95a7b582c679018e4315dd5
 				);
 				INFOPLIST_FILE = "curb-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
