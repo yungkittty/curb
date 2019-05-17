@@ -49,9 +49,6 @@ function* postMediaVideoRequestSaga(action) {
     const { data: payload } = yield call(mediasApi.postMediaVideo, action.payload);
     yield put(mediasActions.postMediaVideoSuccess({ id: action.payload.groupId, mediasId: payload.id }));
     yield put(appModalActions.hideAppModal());
-    yield put(
-      appAlertActions.pushAppAlert({ type: "success", message: "createMedia.videoPosted", icon: "check" })
-    );
   } catch (error) {
     const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
