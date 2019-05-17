@@ -6,27 +6,12 @@ const ContainerAnimation = WrappedComponent => {
     constructor(props) {
       super(props);
 
-      this.commonStyle = {
-        display: "flex",
-        position: "absolute",
-        margin: "auto",
-        flexDirection: "column",
-        width: 700,
-        height: 740,
-        borderRadius: 25,
-        boxShadow: "0px 10px 35px 0px rgba(0, 0, 0, 0.2)",
-        zIndex: 4,
-        transition: "all 0.3s ease-out"
-      };
-
       this.hideStyle = {
-        ...this.commonStyle,
         opacity: 0,
         transform: "translateY(-20px)"
       };
 
       this.showStyle = {
-        ...this.commonStyle,
         opacity: 1,
         transform: "translateY(0px)"
       };

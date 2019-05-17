@@ -8,11 +8,6 @@ const OverlayBlur = WrappedComponent => {
     constructor(props) {
       super(props);
 
-      this.commonStyle = {
-        width: "100%",
-        height: "100%"
-      };
-
       this.state = {
         animationRunning: false,
         backgroundColor: new Animated.Value(0)
@@ -34,7 +29,7 @@ const OverlayBlur = WrappedComponent => {
     }
 
     startAnimation(state) {
-      const { appModalCloseTransitionEnd } = this.props;
+      const { appModalTransitionEnd } = this.props;
       const { animationRunning, backgroundColor } = this.state;
       if (animationRunning) return;
       this.setState({ animationRunning: true });
@@ -44,7 +39,7 @@ const OverlayBlur = WrappedComponent => {
         ease: Easing.out(Easing.exp)
       }).start(() => {
         this.setState({ animationRunning: false });
-        if (!state) appModalCloseTransitionEnd();
+        appModalTransitionEnd();
       });
     }
 
@@ -56,7 +51,6 @@ const OverlayBlur = WrappedComponent => {
         <AnimatedWrappedComponent
           {...this.props}
           style={{
-            ...this.commonStyle,
             backgroundColor: backgroundColor.interpolate({
               inputRange: [0, 1],
               outputRange: ["rgba(0, 0, 0, 0)", theme.overlayColor]
@@ -69,7 +63,7 @@ const OverlayBlur = WrappedComponent => {
 
   _OverlayBlur.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    appModalCloseTransitionEnd: PropTypes.func.isRequired,
+    appModalTransitionEnd: PropTypes.func.isRequired,
     // eslint-disable-next-line
     theme: PropTypes.object.isRequired
   };

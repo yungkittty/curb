@@ -12,18 +12,21 @@ class AppModal extends Component {
 
     this.state = { isAppModalRender: false };
 
-    this.appModalCloseTransitionEnd = this.appModalCloseTransitionEnd.bind(this);
+    this.appModalTransitionEnd = this.appModalTransitionEnd.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    const { isAppModalShowed } = this.props;
+    const { isAppModalShowed, disableAppModalButtons } = this.props;
     if (prevProps.isAppModalShowed !== isAppModalShowed && isAppModalShowed) {
+      disableAppModalButtons();
       this.setState({ isAppModalRender: true }); // eslint-disable-line
     }
   }
 
-  appModalCloseTransitionEnd() {
-    this.setState({ isAppModalRender: false });
+  appModalTransitionEnd() {
+    const { isAppModalShowed, enableAppModalButtons } = this.props;
+    if (isAppModalShowed) enableAppModalButtons();
+    else this.setState({ isAppModalRender: false });
   }
 
   render() {
@@ -45,10 +48,7 @@ class AppModal extends Component {
       appModalFooterOnClick
     } = this.props;
     return isAppModalRender ? (
-      <ModalOverlay
-        isAppModalShowed={isAppModalShowed}
-        appModalCloseTransitionEnd={this.appModalCloseTransitionEnd}
-      >
+      <ModalOverlay isAppModalShowed={isAppModalShowed} appModalTransitionEnd={this.appModalTransitionEnd}>
         <ModalContainer isAppModalShowed={isAppModalShowed}>
           <ModalHeader
             text={appModalHeaderText}
@@ -105,7 +105,9 @@ AppModal.propTypes = {
   // eslint-disable-next-line
   appModalSceneData: PropTypes.object,
   appModalFooterText: PropTypes.string,
-  appModalFooterOnClick: PropTypes.func
+  appModalFooterOnClick: PropTypes.func,
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired
 };
 
 export default AppModal;

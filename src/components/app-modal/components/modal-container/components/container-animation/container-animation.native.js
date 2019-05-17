@@ -1,6 +1,5 @@
 import React from "react";
-import { Animated, Easing, Platform } from "react-native";
-import { isIphoneX } from "react-native-device-detection";
+import { Animated, Easing } from "react-native";
 import PropTypes from "prop-types";
 import { windowDimensions } from "../../../../../../configurations/window";
 
@@ -8,18 +7,6 @@ const ContainerAnimation = WrappedComponent => {
   class _ContainerAnimation extends React.Component {
     constructor(props) {
       super(props);
-
-      this.commonStyle = {
-        position: "absolute",
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        height: "100%",
-        elevation: Platform.OS === "android" ? 4 : undefined,
-        boxShadow: Platform.OS === "ios" ? "0px 10px 35px 0px rgba(0, 0, 0, 0.2)" : undefined,
-        // eslint-disable-next-line
-        paddingTop: Platform.OS === "ios" ? (isIphoneX ? 30 : 20) : undefined
-      };
 
       this.state = {
         animationRunning: false,
@@ -64,7 +51,6 @@ const ContainerAnimation = WrappedComponent => {
         <AnimatedWrappedComponent
           {...this.props}
           style={{
-            ...this.commonStyle,
             opacity,
             transform: [{ translateY: top }]
           }}

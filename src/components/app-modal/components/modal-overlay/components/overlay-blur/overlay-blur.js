@@ -7,19 +7,10 @@ const OverlayBlur = WrappedComponent => {
     constructor(props) {
       super(props);
 
-      this.commonStyle = {
-        width: "100vw",
-        height: "100vh",
-        top: 0,
-        transition: "all 0.45s ease-out"
-      };
-
       this.hideStyle = {
-        ...this.commonStyle,
         backgroundColor: "rgba(0, 0, 0, 0)"
       };
       this.showStyle = {
-        ...this.commonStyle,
         backgroundColor: props.theme.overlayColor
       };
 
@@ -40,19 +31,17 @@ const OverlayBlur = WrappedComponent => {
     }
 
     onTransitionEnd() {
-      const { isAppModalShowed, appModalCloseTransitionEnd } = this.props;
-      if (!isAppModalShowed) setTimeout(() => appModalCloseTransitionEnd(), 50);
+      const { appModalTransitionEnd } = this.props;
+      setTimeout(() => appModalTransitionEnd(), 100);
     }
 
     startAnimation(state) {
-      document.getElementById("app-container").style.filter = `blur(${state ? 3.5 : 0}px)`;
-      setTimeout(
-        () =>
-          this.setState({
-            style: state ? this.showStyle : this.hideStyle
-          }),
-        50
-      );
+      setTimeout(() => {
+        document.getElementById("app-container").style.filter = `blur(${state ? 3.5 : 0}px)`;
+        this.setState({
+          style: state ? this.showStyle : this.hideStyle
+        });
+      }, 50);
     }
 
     render() {
@@ -63,7 +52,7 @@ const OverlayBlur = WrappedComponent => {
 
   _OverlayBlur.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    appModalCloseTransitionEnd: PropTypes.func.isRequired,
+    appModalTransitionEnd: PropTypes.func.isRequired,
     // eslint-disable-next-line
     theme: PropTypes.object.isRequired
   };
