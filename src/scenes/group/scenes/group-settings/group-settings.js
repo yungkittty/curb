@@ -36,7 +36,6 @@ class GroupSettings extends Component {
   }
 
   render() {
-    const { t, setAppModalScene } = this.props;
     return (
       <ListFlat
         ref={this.listFlat}
