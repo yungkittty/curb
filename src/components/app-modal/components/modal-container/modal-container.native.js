@@ -13,9 +13,15 @@ const ModalContainer = styled(Container)`
   height: 100%;
   background-color: ${props => props.theme.backgroundColor};
   z-index: 32;
-  ${Platform.OS === "android"
-    ? "elevation: 32;"
-    : "box-shadow: 0px 19.2px 17.28px 0px rgba(0, 0, 0, 0.228);"};
+  ${
+    Platform.OS === "android"
+      ? `elevation: 32;`
+      : `
+  shadow-offset: 0px 19.2px;
+  shadow-radius: 17.28px;
+  shadow-color: rgba(0, 0, 0, 0.228);
+  shadow-opacity: 1;`
+  }
   padding-top: ${windowDimensions.statusBarHeight}px;
   flex-direction: column;
   background-color: ${({ theme }) => theme.backgroundColor};
