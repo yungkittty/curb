@@ -14,6 +14,25 @@ class GroupSettings extends Component {
     super(props);
 
     this.state = {};
+
+    this.renderListHeader = this.renderListHeader.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+  }
+
+  renderListHeader() {
+    const { t } = this.props;
+    return <AppModalSceneTitle>{t("groupSettings")}</AppModalSceneTitle>;
+  }
+
+  renderItem({ item }) {
+    const { t, setAppModalScene } = this.props;
+    return (
+      <AppModalSceneListItem
+        title={t(`${item.id}.title`)}
+        description={t(`${item.id}.description`)}
+        onClick={() => setAppModalScene({ scene: item.scene, direction: 1 })}
+      />
+    );
   }
 
   render() {
@@ -24,14 +43,8 @@ class GroupSettings extends Component {
         contentContainerStyle={{ position: "relative" }}
         data={groupSettingsData}
         keyExtractor={item => item.id}
-        ListHeaderComponent={() => <AppModalSceneTitle>{t("groupSettings")}</AppModalSceneTitle>}
-        renderItem={({ item }) => (
-          <AppModalSceneListItem
-            title={t(`${item.id}.title`)}
-            description={t(`${item.id}.description`)}
-            onClick={() => setAppModalScene({ scene: item.scene, direction: 1 })}
-          />
-        )}
+        ListHeaderComponent={this.renderListHeader}
+        renderItem={this.renderItem}
       />
     );
   }

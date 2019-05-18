@@ -18,7 +18,7 @@ const enGroupSettings = {
     title: "Delete group",
     description: "Permanently delete the group",
     buttonTitle: "Delete my group",
-    contentTitle: "Are you sure you want to delete your group?",
+    contentTitle: "Are you sure you want to delete this group?",
     contentDescription:
       "You’ll never be able to recover your group, and all of the content posted by users will be deleted.\n\n" +
       "If you agree with that, you can confirm this action by clicking the button below:"

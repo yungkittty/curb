@@ -18,7 +18,7 @@ const frGroupSettings = {
     title: "Supprimer le groupe",
     description: "Supprime le groupe définitivement",
     buttonTitle: "Supprimer mon groupe",
-    contentTitle: "Voulez-vous vraiment supprimer votre groupe ?",
+    contentTitle: "Voulez-vous vraiment supprimer ce groupe ?",
     contentDescription:
       "Il sera impossible de récupérer votre groupe, Et tout le contenu posté par les utilisateurs va être effacé.\n\n" +
       "Si vous acceptez cela, vous pouvez cliquer sur le bouton ci-dessous :"
