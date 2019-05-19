@@ -7,6 +7,7 @@ const getScaledSize = (
   areaWidth,
   areaHeight
 ) => {
+  if (!mediaWidth || !mediaHeight) return { width: 0, height: 0 };
   const mediaRatio = mediaWidth / mediaHeight;
   let mediaWidthScaled = mediaWidth;
   let mediaHeightScaled = mediaHeight;

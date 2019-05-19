@@ -6,6 +6,7 @@ const AppContainer = styled(Container).attrs({ id: "app-container" })`
   height: 100vh;
   padding-left: 80px;
   background-color: ${props => props.theme.backgroundColor};
+  transition: filter 0.45s ease-out;
 `;
 
 export default AppContainer;

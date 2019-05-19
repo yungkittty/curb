@@ -17,7 +17,6 @@ const isButtonsEnabled = (state = false, action) => {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.ENABLE_APP_MODAL_BUTTONS:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return true;
     case appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS:
       return false;
@@ -30,7 +29,6 @@ const headerText = (state = "", action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return "";
     case appModalActionsTypes.SET_APP_MODAL_HEADER_TEXT:
       return action.payload.text;
@@ -43,7 +41,6 @@ const headerCurrentStep = (state = 0, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return 0;
     case appModalActionsTypes.SET_APP_MODAL_HEADER_STEPS:
       return action.payload.currentStep;
@@ -56,7 +53,6 @@ const headerSteps = (state = 0, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return 0;
     case appModalActionsTypes.SET_APP_MODAL_HEADER_STEPS:
       return action.payload.steps;
@@ -69,7 +65,6 @@ const headerLeftIcon = (state = "", action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return "";
     case appModalActionsTypes.SET_APP_MODAL_HEADER_LEFT_BUTTON:
       return action.payload.icon;
@@ -82,7 +77,6 @@ const headerLeftOnClick = (state = null, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return null;
     case appModalActionsTypes.SET_APP_MODAL_HEADER_LEFT_BUTTON:
       return action.payload.onClick;
@@ -95,7 +89,6 @@ const headerRightIcon = (state = "", action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return "";
     case appModalActionsTypes.SET_APP_MODAL_HEADER_RIGHT_BUTTON:
       return action.payload.icon;
@@ -108,7 +101,6 @@ const headerRightOnClick = (state = null, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return "";
     case appModalActionsTypes.SET_APP_MODAL_HEADER_RIGHT_BUTTON:
       return action.payload.onClick;
@@ -122,8 +114,6 @@ const scene = (state = null, action) => {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
       return action.payload.scene;
-    case appModalActionsTypes.HIDE_APP_MODAL:
-      return null;
     default:
       return state;
   }
@@ -132,7 +122,6 @@ const scene = (state = null, action) => {
 const sceneDirection = (state = 0, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return 0;
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
       return action.payload.direction;
@@ -144,7 +133,6 @@ const sceneDirection = (state = 0, action) => {
 const sceneData = (state = {}, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return {};
     case appModalActionsTypes.SET_APP_MODAL_SCENE_DATA:
       return { ...state, ...action.payload };
@@ -157,7 +145,6 @@ const footerText = (state = "", action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return "";
     case appModalActionsTypes.SET_APP_MODAL_FOOTER_BUTTON:
       return action.payload.text;
@@ -170,7 +157,6 @@ const footerOnClick = (state = null, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-    case appModalActionsTypes.HIDE_APP_MODAL:
       return null;
     case appModalActionsTypes.SET_APP_MODAL_FOOTER_BUTTON:
       return action.payload.onClick;
