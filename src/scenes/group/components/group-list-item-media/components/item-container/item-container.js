@@ -5,8 +5,9 @@ const ItemContainer = styled(Container)`
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  width: 800px;
-  min-width: 800px;
+  align-items: flex-start;
+  width: 500px;
+  min-width: 500px;
   margin-bottom: 80px;
 `;
 

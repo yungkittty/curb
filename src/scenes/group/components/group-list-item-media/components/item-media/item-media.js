@@ -1,32 +1,30 @@
+/* eslint-disable */
+
 import React from "react";
 import PropTypes from "prop-types";
-import MediaContainer from "./components/media-container";
 import MediaImage from "./components/media-image";
 import MediaText from "./components/media-text";
 import MediaVideo from "./components/media-video";
+
+// placeholder components
 
 const ItemMedia = ({
   // eslint-disable-line
   mediaType,
   mediaData
-}) => (
-  <MediaContainer mediaData={mediaData}>
-    {/* eslint-disable */}
-    {mediaType === "image" ? (
-      <MediaImage src={mediaData} />
-    ) : mediaType === "location" ? (
-      <MediaLocation />
-    ) : mediaType === "text" ? (
-      <MediaText>
-        {/* eslint-disable-line */}
-        {mediaData}
-      </MediaText>
-    ) : mediaType === "video" ? (
-      <MediaVideo src={mediaData} />
-    ) : null}
-    {/* eslint-enable */}
-  </MediaContainer>
-);
+}) =>
+  mediaType === "image" ? (
+    <MediaImage src={mediaData} />
+  ) : mediaType === "location" ? (
+    <MediaLocation />
+  ) : mediaType === "text" ? (
+    <MediaText>
+      {/* eslint-disable-line */}
+      {mediaData}
+    </MediaText>
+  ) : mediaType === "video" ? (
+    <MediaVideo src={mediaData} />
+  ) : null;
 
 ItemMedia.propTypes = {
   mediaType: PropTypes.string.isRequired,

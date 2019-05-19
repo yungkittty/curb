@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -8,29 +9,57 @@ class Image extends React.Component {
   }
 
   render() {
-    const { isShowed } = this.state;
-    const { style, src, objectFit, ...others } = this.props;
+    const {
+      // eslint-disable-line
+      isShowed
+    } = this.state;
+    const {
+      // eslint-disable-line
+      src,
+      onLoadStart,
+      onLoad,
+      style,
+      objectFit,
+      ...others
+    } = this.props;
+    const isImageFromApi = src.substr(0, 9) === "/contents";
     return (
+      /* eslint-disable-next-line */
       <img
         {...others}
-        alt=""
-        src={src[0] === "/" ? `${process.env.REACT_APP_API_URL}${src}` : src}
-        onLoadStart={() => this.setState({ isShowed: false })}
-        onLoad={() => this.setState({ isShowed: true })}
-        style={{ ...style, objectFit, opacity: +isShowed }}
+        src={isImageFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src}
+        onLoadStart={event => {
+          // eslint-disable-next-line
+          onLoadStart && onLoadStart(event);
+          this.setState({ isShowed: false });
+        }}
+        onLoad={event => {
+          // eslint-disable-next-line
+          onLoad && onLoad(event);
+          this.setState({ isShowed: true });
+        }}
+        style={{
+          ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
+          objectFit,
+          opacity: +isShowed
+        }}
       />
     );
   }
 }
 
 Image.defaultProps = {
+  onLoadStart: undefined,
+  onLoad: undefined,
   style: undefined,
   objectFit: undefined
 };
 
 Image.propTypes = {
   src: PropTypes.string.isRequired,
-  style: PropTypes.object, // eslint-disable-line
+  onLoadStart: PropTypes.func,
+  onLoad: PropTypes.func,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   objectFit: PropTypes.oneOf(["cover", "contain"])
 };
 
