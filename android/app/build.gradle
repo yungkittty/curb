@@ -153,7 +153,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-geolocation-service')
     implementation project(':react-native-maps')
     implementation project(':react-native-video')
     implementation project(':react-native-fast-image')

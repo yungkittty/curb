@@ -16,8 +16,7 @@
     "web-start:development": "eval \"$(paste -s -d ' ' .env.development) HTTPS=true react-scripts start\"",
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
-    "web-eject": "react-scripts eject",
-    "linkiii": "react-native link react-native-geolocation-service"
+    "web-eject": "react-scripts eject"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -33,6 +32,7 @@
     "react-code-input": "^3.8.1",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
+    "react-google-maps": "^9.4.5",
     "react-i18next": "^10.6.0",
     "react-native": "^0.59.1",
     "react-native-camera": "^2.0.2",
