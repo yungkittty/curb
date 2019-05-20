@@ -98,6 +98,7 @@ class ResetPassword1 extends Component {
           size="modal"
           id="email"
           type="email"
+          autoCapitalize="none"
           placeholder={t("common:email")}
           value={email.value}
           onChange={this.handleChange}
