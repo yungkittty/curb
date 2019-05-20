@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import CreateGroupError from "../../components/create-group-error";
+import CreateGroupError from "../../../group/components/create-group-error";
 import ListFlat from "../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 import withAppModal from "../../../../hocs/with-app-modal";

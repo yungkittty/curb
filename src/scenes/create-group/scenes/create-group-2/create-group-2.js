@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import CreateGroupError from "../../components/create-group-error";
+import CreateGroupError from "../../../group/components/create-group-error";
 import CreateGroup2Discover from "./components/create-group-2-discover";
 import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable */
