@@ -20,7 +20,7 @@ function* postGroupRequestSaga(action) {
     yield put(appModalActions.hideAppModal());
     history.push(`/groups/${payload.id}`);
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(groupsActions.postGroupFailure({ errorCode }));
   }
 }
@@ -30,7 +30,7 @@ function* getGroupRequestSaga(action) {
     const { data: payload } = yield call(groupsApi.getGroup, action.payload);
     yield put(groupsActions.getGroupSuccess(payload));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(groupsActions.getGroupFailure({ id: action.payload.id, errorCode }));
   }
 }
@@ -43,9 +43,9 @@ function* postGroupInviteTokenRequestSaga(action) {
     const successAlert = { type: "success", message: "postGroupInvite.groupInviteSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(groupsActions.postGroupInviteTokenFailure({ errorCode }));
-    const successAlert = { type: "error", message: `postGroupInvite.UNKNOW`, icon: "check" };
+    const successAlert = { type: "error", message: `postGroupInvite.UNKNOWN`, icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
   }
 }
@@ -55,7 +55,7 @@ function* getGroupInviteTokenRequestSaga(action) {
     const { data: payload } = yield call(groupsApi.getGroupInviteToken, action.payload);
     yield put(groupsActions.getGroupInviteTokenSuccess({ ...payload, id: action.payload.id }));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(groupsActions.getGroupInviteTokenFailure({ id: action.payload.id, errorCode }));
   }
 }

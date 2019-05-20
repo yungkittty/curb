@@ -8,7 +8,7 @@ function* getDiscoveryRequestSaga(action) {
     const { data: payload } = yield call(discoveryApi.getDiscovery, action.payload);
     yield put(discoveryActions.getDiscoverySuccess(payload));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(discoveryActions.getDiscoveryFailure({ errorCode }));
   }
 }

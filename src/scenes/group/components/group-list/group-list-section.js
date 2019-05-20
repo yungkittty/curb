@@ -5,6 +5,7 @@ const GroupListSection = props => (
   <ListSection
     // eslint-disable-line
     {...props}
+    alwaysBounceVertical={false}
     contentContainerStyle={{
       display: "flex",
       alignItems: "center"

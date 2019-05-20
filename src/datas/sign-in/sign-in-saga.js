@@ -11,7 +11,7 @@ function* signInRequestSaga(action) {
     yield put(signInActions.signInSuccess(payload));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(signInActions.signInFailure({ errorCode }));
   }
 }
@@ -24,7 +24,7 @@ function* signOutRequestSaga() {
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(signInActions.signOutFailure({ errorCode }));
     const errorAlert = { type: "error", message: "signOutFailure", icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));

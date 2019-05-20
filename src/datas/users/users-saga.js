@@ -10,7 +10,7 @@ function* getUsersRequestSaga(action) {
     const { data: payload } = yield call(usersApi.getUser, action.payload);
     yield put(usersActions.getUserSuccess(payload));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(usersActions.getUserFailure({ id: action.payload.id, errorCode }));
   }
 }
@@ -22,7 +22,7 @@ function* patchUsersRequestSaga(action) {
     const successAlert = { type: "success", message: "patchUser.userSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
-    const { code: errorCode = "UNKNOW" } = ((error || {}).response || {}).data || {};
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(usersActions.patchUserFailure({ errorCode }));
     const errorAlert = { type: "error", message: `patchUser.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
