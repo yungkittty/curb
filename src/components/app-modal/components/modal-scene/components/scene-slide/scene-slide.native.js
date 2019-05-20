@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Animated, Easing } from "react-native";
+import { Animated, Easing, Keyboard } from "react-native";
 import { windowDimensions } from "../../../../../../configurations/window";
 
 const SceneSlide = WrappedComponent => {
@@ -47,6 +47,7 @@ const SceneSlide = WrappedComponent => {
             }).start();
           })
       );
+      Keyboard.dismiss();
     }
 
     render() {
