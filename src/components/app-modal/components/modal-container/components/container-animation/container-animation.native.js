@@ -10,7 +10,7 @@ const ContainerAnimation = WrappedComponent => {
 
       this.state = {
         animationRunning: false,
-        top: new Animated.Value(windowDimensions.renderHeight)
+        top: new Animated.Value(windowDimensions.height)
       };
 
       this.AnimatedWrappedComponent = Animated.createAnimatedComponent(WrappedComponent);
@@ -33,7 +33,7 @@ const ContainerAnimation = WrappedComponent => {
       if (animationRunning) return;
       this.setState({ animationRunning: true });
       Animated.timing(top, {
-        toValue: state ? 0 : windowDimensions.renderHeight,
+        toValue: state ? 0 : windowDimensions.height,
         duration: 500,
         easing: Easing.out(Easing.exp),
         useNativeDriver: true
