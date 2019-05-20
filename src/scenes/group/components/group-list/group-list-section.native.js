@@ -7,7 +7,10 @@ const GroupListSection = props => (
   <ListSection
     // eslint-disable-line
     {...props}
-    contentContainerStyle={{ alignItems: "center" }}
+    contentContainerStyle={{
+      display: "flex",
+      alignItems: "center"
+    }}
   />
 );
 
