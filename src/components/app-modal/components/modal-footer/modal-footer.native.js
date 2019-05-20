@@ -7,13 +7,13 @@ class ModalFooter extends React.Component {
     super(props);
     this.keyboardDidShowListener = Keyboard.addListener(
       Platform.OS === "android" ? "keyboardDidShow" : "keyboardWillShow",
-      () => this.setState({ isButtonShowed: false })
+      () => this.setState({ isShowed: false })
     );
     this.keyboardDidHideListener = Keyboard.addListener(
       Platform.OS === "android" ? "keyboardDidHide" : "keyboardWillHide",
-      () => this.setState({ isButtonShowed: true })
+      () => this.setState({ isShowed: true })
     );
-    this.state = { isButtonShowed: true };
+    this.state = { isShowed: true };
   }
 
   componentWillUnmount() {
@@ -22,8 +22,8 @@ class ModalFooter extends React.Component {
   }
 
   render() {
-    const { isButtonShowed } = this.state;
-    return isButtonShowed ? <FooterButtonText type="h3" {...this.props} /> : null;
+    const { isShowed } = this.state;
+    return isShowed ? <FooterButtonText type="h3" {...this.props} /> : null;
   }
 }
 
