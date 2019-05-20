@@ -1,28 +1,23 @@
 import _ from "lodash";
 import React from "react";
+import PropTypes from "prop-types";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import Container from "../../../../../../../../components/container";
 
-const Map = ({ className, style, ...others }) => {
+const Map = ({ className, style, forwardedRef, ...others }) => {
   // eslint-disable-next-line
-  const _Map = _.flowRight([
-    // eslint-disable-line
-    withScriptjs,
-    withGoogleMap
-  ])(
-    class extends React.Component {
+  const _Map = _.flowRight([withScriptjs, withGoogleMap])(() => {
+    class __Map extends React.Component {
       constructor(props) {
         super(props);
         const { geolocation } = navigator;
         // eslint-disable-next-line
         geolocation &&
-          geolocation.getCurrentPosition(
-            // eslint-disable-line
-            ({ coords: { latitude, longitude } }) => {
-              this.setState({ latitude, longitude });
-            }
-          );
+          geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+            this.setState({ latitude, longitude });
+          });
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.getCurrentPosition = this.getCurrentPosition.bind(this);
         this.state = { latitude: undefined, longitude: undefined };
       }
 
@@ -30,16 +25,16 @@ const Map = ({ className, style, ...others }) => {
         const { latLng } = marker;
         const latitude = latLng.lat();
         const longitude = latLng.lng();
-        const { onDragEnd } = this.props;
-        // eslint-disable-next-line
-        onDragEnd && onDragEnd({ latitude, longitude }); //proptypes required
+        this.setState({ latitude, longitude });
+      }
+
+      getCurrentPosition() {
+        const { latitude, longitude } = this.state;
+        return { latitude, longitude };
       }
 
       render() {
-        const {
-          // eslint-disable-line
-          geolocation
-        } = navigator;
+        const { geolocation } = navigator;
         const {
           /* eslint-disable */
           latitude = this.state.latitude,
@@ -47,13 +42,8 @@ const Map = ({ className, style, ...others }) => {
           /* eslint-enable */
         } = this.props;
         return geolocation && latitude && longitude ? (
-          <GoogleMap
-            // eslint-disable-line
-            defaultZoom={8}
-            defaultCenter={{ lat: latitude, lng: longitude }}
-          >
+          <GoogleMap defaultZoom={10} defaultCenter={{ lat: latitude, lng: longitude }}>
             <Marker
-              // eslint-disable-line
               {...others}
               defaultPosition={{ lat: latitude, lng: longitude }}
               onDragEnd={this.onDragEnd}
@@ -62,7 +52,9 @@ const Map = ({ className, style, ...others }) => {
         ) : null;
       }
     }
-  );
+    // eslint-disable-next-line
+    return <__Map {...others} ref={forwardedRef} />;
+  });
   return (
     // eslint-disable-next-line
     <_Map
@@ -75,7 +67,20 @@ const Map = ({ className, style, ...others }) => {
   );
 };
 
-export default Map;
+Map.defaultProps = {
+  className: undefined,
+  style: undefined,
+  forwardedRef: undefined,
+  latitude: undefined,
+  longitude: undefined
+};
 
-// propTypes
-// recup la position comme en native si possible
+Map.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.oneOfType(PropTypes.object, PropTypes.array),
+  forwardedRef: PropTypes.object, // eslint-disable-line
+  latitude: PropTypes.number,
+  longitude: PropTypes.number
+};
+
+export default React.forwardRef((props, forwardedRef) => <Map {...props} forwardedRef={forwardedRef} />);

@@ -65,6 +65,19 @@ const mediasActions = {
     type: mediasActionsTypes.POST_MEDIA_IMAGE_FAILURE,
     payload: error,
     error: true
+  }),
+  postMediaLocationRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_LOCATION_REQUEST,
+    payload
+  }),
+  postMediaLocationSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_LOCATION_SUCCESS,
+    payload
+  }),
+  postMediaLocationFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_LOCATION_FAILURE,
+    payload: error,
+    error: true
   })
 };
 

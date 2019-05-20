@@ -1,13 +1,10 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
 import CreateMediaLocation from "./create-media-location";
-import { appModalActions } from "../../../../datas/app-modal";
+import { mediasActions } from "../../../../datas/medias";
 
 const mapDispatchToProps = dispatch => ({
-  setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
-  setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
-  setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
-  setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload))
+  postMediaLocation: payload => dispatch(mediasActions.postMediaLocationRequest(payload))
 });
 
 export default connect(
