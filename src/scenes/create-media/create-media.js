@@ -8,9 +8,8 @@ import modulesList from "../../utils/modules-list/modules-list";
 import withGroup from "../../hocs/with-group";
 /* eslint-disable */
 import CreateMediaText from "./scenes/create-media-text";
-//  import CreateMediaImage from "./scenes/create-media-image";
-//  import CreateMediaVideo from "./scenes/create-media-video";
-//  import CreateMediaLocation from "./scenes/create-media-location";
+import CreateMediaVideo from "./scenes/create-media-video";
+import CreateMediaImage from "./scenes/create-media-image";
 /* eslint-enable */
 
 class CreateMedia extends Component {
@@ -29,10 +28,10 @@ class CreateMedia extends Component {
       switch (moduleId) {
         case "text":
           return CreateMediaText;
-        //    case "image":
-        //      return CreateMediaImage;
-        //    case "video":
-        //      return CreateMediaVideo;
+        case "video":
+          return CreateMediaVideo;
+        case "image":
+          return CreateMediaImage;
         //    case "location":
         //      return CreateMediaLocation;
         default:

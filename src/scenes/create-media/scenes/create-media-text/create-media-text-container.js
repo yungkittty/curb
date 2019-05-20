@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  postMediasTextContent: payload => dispatch(mediasActions.postMediasTextContentRequest(payload))
+  postMediaText: payload => dispatch(mediasActions.postMediaTextRequest(payload))
 });
 
 export default connect(

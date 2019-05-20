@@ -46,8 +46,8 @@ function* postMediaAvatarGroupRequestSaga(action) {
 
 function* postMediaTextRequestSaga(action) {
   try {
-    yield call(mediasApi.postMediaText, action.payload);
-    yield put(mediasActions.postMediaTextSuccess());
+    const { data: payload } = yield call(mediasApi.postMediaText, action.payload);
+    yield put(mediasActions.postMediaTextSuccess({ id: action.payload.groupId, mediasId: payload.id }));
     yield put(appModalActions.hideAppModal());
     yield put(
       appAlertActions.pushAppAlert({ type: "success", message: "createMedia.textPosted", icon: "check" })
@@ -55,7 +55,37 @@ function* postMediaTextRequestSaga(action) {
   } catch (error) {
     const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediasTextFailure({ groupId, errorCode }));
+    yield put(mediasActions.postMediaTextFailure({ id: groupId, errorCode }));
+  }
+}
+
+function* postMediaVideoRequestSaga(action) {
+  try {
+    const { data: payload } = yield call(mediasApi.postMediaVideo, action.payload);
+    yield put(mediasActions.postMediaVideoSuccess({ id: action.payload.groupId, mediasId: payload.id }));
+    yield put(appModalActions.hideAppModal());
+    yield put(
+      appAlertActions.pushAppAlert({ type: "success", message: "createMedia.videoPosted", icon: "check" })
+    );
+  } catch (error) {
+    const { groupId } = action.payload;
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postMediaVideoFailure({ id: groupId, errorCode }));
+  }
+}
+
+function* postMediaImageRequestSaga(action) {
+  try {
+    const { data: payload } = yield call(mediasApi.postMediaImage, action.payload);
+    yield put(mediasActions.postMediaImageSuccess({ id: action.payload.groupId, mediasId: payload.id }));
+    yield put(appModalActions.hideAppModal());
+    yield put(
+      appAlertActions.pushAppAlert({ type: "success", message: "createMedia.imagePosted", icon: "check" })
+    );
+  } catch (error) {
+    const { groupId } = action.payload;
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postMediaImageFailure({ id: groupId, errorCode }));
   }
 }
 
@@ -63,7 +93,9 @@ const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_TEXT_REQUEST, postMediaTextRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_TEXT_REQUEST, postMediaTextRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST, postMediaVideoRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST, postMediaImageRequestSaga)
 ]);
 
 export default mediasSaga;

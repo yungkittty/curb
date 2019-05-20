@@ -1,16 +1,14 @@
 import styled from "styled-components";
-import Container from "../../../container";
 import OverlayBlur from "./components/overlay-blur";
+import Container from "../../../container";
 
 const ModalOverlay = styled(Container)`
   display: flex;
+  height: 100%;
+  width: 100%;
   position: absolute;
-  top: 0px;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: ${props => props.theme.overlayColor};
   overflow: hidden;
 `;
 

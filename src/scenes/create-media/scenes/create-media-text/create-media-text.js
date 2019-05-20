@@ -38,10 +38,11 @@ class CreateMediaText extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { enableAppModalButtons, disableAppModalButtons, isFetchingMedias } = this.props;
-    if (prevProps.isFetchingMedias === !isFetchingMedias) return;
-    if (isFetchingMedias) disableAppModalButtons();
-    else enableAppModalButtons();
+    const { enableAppModalButtons, isFetchingMedias } = this.props;
+    if (prevProps.isFetchingMedias && !isFetchingMedias) {
+      // eslint-disable-next-line
+      enableAppModalButtons();
+    }
   }
 
   checkForm() {
@@ -59,13 +60,13 @@ class CreateMediaText extends Component {
 
   submit() {
     const {
-      postMediasTextContent,
+      postMediaText,
       groupId,
       currentUserId: userId,
       text
     } = this.props;
     if (!this.checkForm()) return;
-    postMediasTextContent({
+    postMediaText({
       groupId,
       userId,
       text: text.value

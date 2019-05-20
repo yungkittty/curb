@@ -46,7 +46,7 @@ InputFile.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   id: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["image"]).isRequired,
+  type: PropTypes.oneOf(["image", "video"]).isRequired,
   data: PropTypes.string,
   editMode: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,

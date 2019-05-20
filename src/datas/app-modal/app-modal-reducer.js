@@ -66,7 +66,7 @@ const appModalReducer = (state = initialState, action) => {
         footerOnClick: action.payload.onClick
       });
     case appModalActionsTypes.HIDE_APP_MODAL:
-      return _.assign({}, initialState);
+      return _.assign({}, state, { isShowed: false });
     default:
       return state;
   }
