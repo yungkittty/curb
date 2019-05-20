@@ -14,6 +14,8 @@ const enAppAlerts = {
   },
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",
+  groupDeleted: "Your group have been deleted",
+  groupPatched: "Your group have been updated",
   signOutSuccess: "You have been disconnected",
   signOutFailure: "An error has occured while Signin out"
 };

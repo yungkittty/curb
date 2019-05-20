@@ -6,6 +6,7 @@ const enCommon = {
   next: "Next",
   finish: "Finish",
   cancel: "Cancel",
+  edit: "Edit",
   reset: "Reset",
   post: "Post",
   selectImage: "Select an image",

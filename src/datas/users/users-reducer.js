@@ -71,6 +71,14 @@ const byId = (state = {}, action) => {
           ]
         }
       };
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+      return {
+        ...state,
+        [action.payload.currentUserId]: {
+          ...state[action.payload.currentUserId],
+          groups: _.without(state[action.payload.currentUserId].groups, action.payload.id)
+        }
+      };
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:
       return {
         ...state,
