@@ -85,7 +85,7 @@ class CreateGroup3 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("modules")}</AppModalSceneTitle>
+            <AppModalSceneTitle>{t("modules.title")}</AppModalSceneTitle>
             <CreateGroupError>{error && t(`validation:modules.${error}`)}</CreateGroupError>
           </React.Fragment>
         )}
@@ -121,4 +121,4 @@ CreateGroup3.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("createGroup")(CreateGroup3);
+export default withTranslation("groupSettings")(CreateGroup3);

@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import CreateGroupError from "../../components/create-group-error";
-import CreateGroup2Discover from "./components/create-group-2-discover";
+import GroupDiscoverability from "../../../group/components/group-discoverability";
 /* eslint-disable */
 import CreateGroup1 from "../create-group-1";
 import CreateGroup3 from "../create-group-3";
@@ -69,9 +69,9 @@ class CreateGroup2 extends Component {
 
     return (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("discoverability")}</AppModalSceneTitle>
+        <AppModalSceneTitle>{t("discoverability.title")}</AppModalSceneTitle>
         <CreateGroupError>{error && t(`validation:discoverability.${error}`)}</CreateGroupError>
-        <CreateGroup2Discover onClick={this.handleChange} discoverability={value} />
+        <GroupDiscoverability onClick={this.handleChange} discoverability={value} />
       </AppModalSceneContainer>
     );
   }
@@ -94,4 +94,4 @@ CreateGroup2.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("createGroup")(CreateGroup2);
+export default withTranslation("groupSettings")(CreateGroup2);

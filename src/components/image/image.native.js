@@ -16,7 +16,7 @@ class Image extends React.Component {
     return (
       <FastImage
         {...others}
-        source={{ uri: src, cache: "web" }}
+        source={{ uri: src[0] === "/" ? `${process.env.REACT_APP_API_URL}${src}` : src, cache: "web" }}
         resizeMode={objectFit}
         onLoadStart={() => this.setState({ isShowed: false })}
         onLoad={() => this.setState({ isShowed: true })}
