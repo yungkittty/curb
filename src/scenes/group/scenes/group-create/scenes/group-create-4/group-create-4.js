@@ -120,7 +120,7 @@ class GroupCreate4 extends Component {
           <React.Fragment>
             <AppModalSceneTitle>
               {/* eslint-disable-line */}
-              {t("theme.title")}
+              {t("theme")}
             </AppModalSceneTitle>
             <GroupCreateError>
               {/* eslint-disable-line */}
@@ -195,6 +195,6 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withRouter,
-  withTranslation("createGroup"),
+  withTranslation("groupCreate"),
   withTheme
 ])(GroupCreate4);

@@ -89,7 +89,7 @@ class GroupCreate3 extends Component {
           <React.Fragment>
             <AppModalSceneTitle>
               {/* eslint-disable-line */}
-              {t("modules.title")}
+              {t("modules")}
             </AppModalSceneTitle>
             <GroupCreateError>
               {/* eslint-disable-line */}
@@ -132,5 +132,5 @@ GroupCreate3.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withTranslation("createGroup")
+  withTranslation("groupCreate")
 ])(GroupCreate3);

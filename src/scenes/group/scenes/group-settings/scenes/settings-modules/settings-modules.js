@@ -37,7 +37,6 @@ class SettingsModules extends Component {
       onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
     });
     setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
-
     setAppModalSceneData({ newGroupMediaTypes: { value: [...groupMediaTypes], error: undefined } });
   }
 
@@ -107,8 +106,14 @@ class SettingsModules extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("modules.title")}</AppModalSceneTitle>
-            <AppModalSceneError>{error && t(`validation:modules.${error}`)}</AppModalSceneError>
+            <AppModalSceneTitle>
+              {/* eslint-disable-line */}
+              {t("modules.title")}
+            </AppModalSceneTitle>
+            <AppModalSceneError>
+              {/* eslint-disable-line */}
+              {error && t(`validation:modules.${error}`)}
+            </AppModalSceneError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (

@@ -74,7 +74,7 @@ class GroupCreate2 extends Component {
       <AppModalSceneContainer>
         <AppModalSceneTitle>
           {/* eslint-disable-line */}
-          {t("discoverability.title")}
+          {t("discoverability")}
         </AppModalSceneTitle>
         <GroupCreateError>
           {/* eslint-disable-line */}
@@ -106,5 +106,5 @@ GroupCreate2.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withTranslation("createGroup")
+  withTranslation("groupCreate")
 ])(GroupCreate2);

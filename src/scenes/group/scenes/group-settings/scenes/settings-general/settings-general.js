@@ -102,7 +102,7 @@ class SettingsGeneral extends Component {
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <AppModalSceneTitle style={{ marginBottom: 40 }}>
+        <AppModalSceneTitle>
           {/* eslint-disable-line */}
           {t("general.title")}
         </AppModalSceneTitle>

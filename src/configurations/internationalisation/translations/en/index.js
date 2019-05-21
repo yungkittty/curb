@@ -10,6 +10,7 @@ import settings from "./en-settings";
 import group from "./en-group";
 import modules from "./en-modules";
 import appAlert from "./en-app-alert";
+import groupCreate from "./en-group-create";
 import groupSettings from "./en-group-settings";
 
 export default {
@@ -25,5 +26,6 @@ export default {
   group,
   modules,
   appAlert,
+  groupCreate,
   groupSettings
 };

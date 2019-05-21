@@ -56,7 +56,7 @@ class GroupCreate1 extends Component {
       <AppModalSceneContainer>
         <AppModalSceneTitle style={{ marginBottom: 40 }}>
           {/* eslint-disable-line */}
-          {t("createGroup")}
+          {t("groupCreate")}
         </AppModalSceneTitle>
         <ImageAvatarEditable
           editMode
@@ -100,5 +100,5 @@ GroupCreate1.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withTranslation("createGroup")
+  withTranslation("groupCreate")
 ])(GroupCreate1);

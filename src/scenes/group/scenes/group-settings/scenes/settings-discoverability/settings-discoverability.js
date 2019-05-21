@@ -96,9 +96,19 @@ class SettingsDiscoverability extends Component {
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("discoverability.title")}</AppModalSceneTitle>
-        <AppModalSceneError>{error && t(`validation:discoverability.${error}`)}</AppModalSceneError>
-        <GroupDiscoverability onClick={this.handleChange} discoverability={value} />
+        <AppModalSceneTitle>
+          {/* eslint-disable-line */}
+          {t("discoverability.title")}
+        </AppModalSceneTitle>
+        <AppModalSceneError>
+          {/* eslint-disable-line */}
+          {error && t(`validation:discoverability.${error}`)}
+        </AppModalSceneError>
+        <GroupDiscoverability
+          // eslint-disable-line
+          onClick={this.handleChange}
+          discoverability={value}
+        />
       </AppModalSceneContainer>
     );
   }
