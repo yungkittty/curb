@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
-import GroupCreateError from "../../../../components/group-create-error";
+import GroupCreateError from "../../components/group-create-error";
 import GroupDiscoverability from "../../../../components/group-discoverability";
 import GroupCreate1 from "../group-create-1"; // eslint-disable-line
 import GroupCreate3 from "../group-create-3"; // eslint-disable-line

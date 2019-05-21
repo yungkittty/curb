@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
-import GroupCreateError from "../../../../components/group-create-error";
+import GroupCreateError from "../../components/group-create-error";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import Loader from "../../../../../../components/loader";
