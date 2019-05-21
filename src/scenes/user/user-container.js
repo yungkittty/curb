@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import User from "./user";
 import { usersActions, usersSelectors } from "../../datas/users";
-import { mediasActions, mediasSelectors } from "../../datas/medias";
+import { mediasSelectors } from "../../datas/medias";
 
 const mapStateToProps = state => {
   const isFetchingUsers = usersSelectors.isFetchingUsers(state) || false;
@@ -17,8 +17,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  patchUser: payload => dispatch(usersActions.patchUserRequest(payload)),
-  postMediaAvatarUser: payload => dispatch(mediasActions.postMediaAvatarUserRequest(payload))
+  patchUser: payload => dispatch(usersActions.patchUserRequest(payload))
 });
 
 export default connect(

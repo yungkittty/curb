@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { combineReducers } from "redux";
 import discoveryActionsTypes from "./discovery-actions-types";
+import { groupsActionsTypes } from "../groups";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -19,6 +20,8 @@ const groups = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_SUCCESS:
       return _.union(state, action.payload.groups);
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+      return _.without(state, action.payload.id);
     default:
       return state;
   }

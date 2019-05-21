@@ -35,6 +35,36 @@ function* getGroupRequestSaga(action) {
   }
 }
 
+function* patchGroupRequestSaga(action) {
+  try {
+    const { id, avatar = {}, ...others } = action.payload;
+    yield call(groupsApi.patchGroup, { ...others, id });
+    if (avatar.file) yield put(mediasActions.postMediaAvatarGroupRequest({ id, avatar }));
+    yield put(groupsActions.patchGroupSuccess({ ...others, id }));
+    const successAlert = { type: "success", message: "groupPatched", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(groupsActions.patchGroupFailure({ errorCode }));
+  }
+}
+
+function* deleteGroupRequestSaga(action) {
+  try {
+    const { history, ...others } = action.payload;
+    yield call(groupsApi.deleteGroup, others);
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
+    yield put(groupsActions.deleteGroupSuccess({ ...others, currentUserId }));
+    const successAlert = { type: "success", message: "groupDeleted", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
+    yield put(appModalActions.hideAppModal());
+    history.push(`/`);
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(groupsActions.deleteGroupFailure({ errorCode }));
+  }
+}
+
 function* postGroupInviteTokenRequestSaga(action) {
   try {
     yield call(groupsApi.postGroupInviteToken, action.payload);
@@ -62,6 +92,8 @@ function* getGroupInviteTokenRequestSaga(action) {
 
 const groupsSaga = all([
   takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
+  takeLatest(groupsActionsTypes.DELETE_GROUP_REQUEST, deleteGroupRequestSaga),
+  takeLatest(groupsActionsTypes.PATCH_GROUP_REQUEST, patchGroupRequestSaga),
   takeNormalize(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
   takeLatest(groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST, postGroupInviteTokenRequestSaga),
   takeLatest(groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)

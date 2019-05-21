@@ -7,9 +7,10 @@ import UserContainer from "./components/user-container";
 import UserNameForm from "./components/user-name-form";
 import ImageAvatarEditable from "../../components/image-avatar-editable";
 import ButtonFloat from "../../components/button-float";
+import { platformBools } from "../../configurations/platform";
+import inputRegex from "../../utils/input-regex";
 import withUser from "../../hocs/with-user";
 import withCurrentUser from "../../hocs/with-current-user";
-import { platformBools } from "../../configurations/platform";
 
 class User extends Component {
   constructor(props) {
@@ -25,8 +26,6 @@ class User extends Component {
     };
 
     this.state = this.initialState;
-
-    this.onUploadProgress = this.onUploadProgress.bind(this);
     this.submit = this.submit.bind(this);
     this.handleSwapMode = this.handleSwapMode.bind(this);
     this.checkInput = this.checkInput.bind(this);
@@ -62,32 +61,15 @@ class User extends Component {
     if (usernameState.value === usernameProps) this.setState({ username: initialUsername });
   }
 
-  onUploadProgress({ loaded, total }) {
-    const { avatar } = this.state;
-    this.setState({ avatar: { ...avatar, loadingProgress: loaded / total } });
-  }
-
   submit() {
-    const { userId, patchUser, postMediaAvatarUser } = this.props;
+    const { userId, patchUser } = this.props;
     const { username, avatar } = this.state;
-
-    if (username.value) {
+    if (username.value || avatar.value.file) {
       patchUser({
-        // eslint-disable-line
-        id: userId,
-        name: username.value
-      });
-    }
-
-    if (avatar.value.file) {
-      postMediaAvatarUser({
         id: userId,
         avatar: avatar.value,
-        onUploadProgress: this.onUploadProgress,
-        onSuccessAlert: { type: "success", message: "postAvatar.userSuccess", icon: "check" }
+        name: username.value
       });
-
-      this.onUploadProgress({ loaded: 0.01, total: 100 });
     }
   }
 
@@ -99,15 +81,14 @@ class User extends Component {
 
   checkInput(id, value) {
     const { [id]: Y } = this.state;
-    const error = id === "username" && value.length === 0 ? "missing" : undefined;
-
+    let error = id === "username" && value.length === 0 ? "missing" : undefined;
+    if (error === undefined) error = !RegExp(inputRegex.username).test(value) ? "invalid" : undefined;
     this.setState({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
 
   handleSwapMode() {
     const { editMode } = this.state;
-
     if (!editMode) this.setState({ editMode: true });
     else if (editMode && this.checkForm()) {
       this.submit();
@@ -167,11 +148,13 @@ class User extends Component {
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
         </UserContainer>
-        <ButtonFloat
-          icon={editMode ? "check" : "pen"}
-          onClick={this.handleSwapMode}
-          disabled={userId === currentUserId && !isFetchingMedias && !isFetchingUsers}
-        />
+        {userId === currentUserId ? (
+          <ButtonFloat
+            icon={editMode ? "check" : "pen"}
+            onClick={this.handleSwapMode}
+            disabled={!isFetchingMedias && !isFetchingUsers}
+          />
+        ) : null}
       </React.Fragment>
     );
   }
@@ -186,7 +169,7 @@ User.propTypes = {
   userName: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,
   patchUser: PropTypes.func.isRequired,
-  postMediaAvatarUser: PropTypes.func.isRequired,
+  // postMediaAvatarUser: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };

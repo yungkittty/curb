@@ -27,6 +27,32 @@ const groupsActions = {
     payload: error,
     error: true
   }),
+  patchGroupRequest: payload => ({
+    type: groupsActionsTypes.PATCH_GROUP_REQUEST,
+    payload
+  }),
+  patchGroupSuccess: payload => ({
+    type: groupsActionsTypes.PATCH_GROUP_SUCCESS,
+    payload
+  }),
+  patchGroupFailure: error => ({
+    type: groupsActionsTypes.PATCH_GROUP_FAILURE,
+    payload: error,
+    error: true
+  }),
+  deleteGroupRequest: payload => ({
+    type: groupsActionsTypes.DELETE_GROUP_REQUEST,
+    payload
+  }),
+  deleteGroupSuccess: payload => ({
+    type: groupsActionsTypes.DELETE_GROUP_SUCCESS,
+    payload
+  }),
+  deleteGroupFailure: error => ({
+    type: groupsActionsTypes.DELETE_GROUP_FAILURE,
+    payload: error,
+    error: true
+  }),
   postGroupInviteTokenRequest: payload => ({
     type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST,
     payload

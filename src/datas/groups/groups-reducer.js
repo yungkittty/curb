@@ -6,11 +6,17 @@ import mediasActionsTypes from "../medias/medias-actions-types";
 const isFetching = (state = false, action) => {
   switch (action.type) {
     case groupsActionsTypes.POST_GROUP_REQUEST:
+    case groupsActionsTypes.PATCH_GROUP_REQUEST:
+    case groupsActionsTypes.DELETE_GROUP_REQUEST:
     case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST:
       return true;
     case groupsActionsTypes.POST_GROUP_SUCCESS:
     case groupsActionsTypes.POST_GROUP_FAILURE:
+    case groupsActionsTypes.PATCH_GROUP_SUCCESS:
+    case groupsActionsTypes.PATCH_GROUP_FAILURE:
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+    case groupsActionsTypes.DELETE_GROUP_FAILURE:
     case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
     case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
@@ -33,6 +39,7 @@ const byId = (state = {}, action) => {
         }
       };
     case groupsActionsTypes.GET_GROUP_SUCCESS:
+    case groupsActionsTypes.PATCH_GROUP_SUCCESS:
       return {
         ...state,
         [action.payload.id]: {
@@ -40,6 +47,20 @@ const byId = (state = {}, action) => {
           ...action.payload,
           isFetching: false,
           errorCode: ""
+        }
+      };
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: undefined
+      };
+    case groupsActionsTypes.GET_GROUP_FAILURE:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          isFetching: false,
+          errorCode: action.payload.errorCode
         }
       };
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
@@ -50,15 +71,6 @@ const byId = (state = {}, action) => {
           inviteToken: action.payload.token,
           isFetching: false,
           errorCode: ""
-        }
-      };
-    case groupsActionsTypes.GET_GROUP_FAILURE:
-      return {
-        ...state,
-        [action.payload.id]: {
-          ...state[action.payload.id],
-          isFetching: false,
-          errorCode: action.payload.errorCode
         }
       };
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
@@ -78,6 +90,8 @@ const allIds = (state = [], action) => {
   switch (action.type) {
     case groupsActionsTypes.GET_GROUP_REQUEST:
       return _.union(state, [action.payload.id]);
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+      return _.without(state, action.payload.id);
     default:
       return state;
   }
@@ -87,12 +101,18 @@ const errorCode = (state = "", action) => {
   switch (action.type) {
     case groupsActionsTypes.POST_GROUP_REQUEST:
     case groupsActionsTypes.POST_GROUP_SUCCESS:
+    case groupsActionsTypes.PATCH_GROUP_REQUEST:
+    case groupsActionsTypes.PATCH_GROUP_SUCCESS:
+    case groupsActionsTypes.DELETE_GROUP_REQUEST:
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
     case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST:
     case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
       return "";
     case groupsActionsTypes.POST_GROUP_FAILURE:
+    case groupsActionsTypes.PATCH_GROUP_FAILURE:
+    case groupsActionsTypes.DELETE_GROUP_FAILURE:
     case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_FAILURE:
       return action.payload.errorCode;

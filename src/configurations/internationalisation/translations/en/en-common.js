@@ -18,6 +18,7 @@ const enCommon = {
   next: "Next",
   finish: "Finish",
   cancel: "Cancel",
+  edit: "Edit",
   reset: "Reset",
   selectImage: "Select an image",
   takePhoto: "Take a photo",

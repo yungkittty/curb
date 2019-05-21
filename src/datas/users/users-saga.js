@@ -4,6 +4,7 @@ import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
 import appAlertActions from "../app-alert/app-alert-actions";
+import mediasActions from "../medias/medias-actions";
 
 function* getUsersRequestSaga(action) {
   try {
@@ -17,7 +18,9 @@ function* getUsersRequestSaga(action) {
 
 function* patchUsersRequestSaga(action) {
   try {
-    const { data: payload } = yield call(usersApi.patchUser, action.payload);
+    const { id, avatar, ...others } = action.payload;
+    const { data: payload } = yield call(usersApi.patchUser, { ...others, id });
+    if (avatar.file) yield put(mediasActions.postMediaAvatarUserRequest({ id, avatar }));
     yield put(usersActions.patchUserSuccess(payload));
     const successAlert = { type: "success", message: "patchUser.userSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));

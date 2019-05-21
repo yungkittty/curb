@@ -17,6 +17,7 @@ const frCommon = {
   next: "Suivant",
   finish: "Terminer",
   cancel: "Annuler",
+  edit: "Modifier",
   reset: "Réinitialiser",
   selectImage: "Choisir une imge",
   takePhoto: "Prendre une photo",
@@ -26,7 +27,5 @@ const frCommon = {
     "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application à y accéder",
   authorize: "Autoriser"
 };
-
-// ajouter utilisateur + modules !
 
 export default frCommon;

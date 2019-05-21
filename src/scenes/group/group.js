@@ -8,6 +8,8 @@ import GroupListSectionHeader from "./components/group-list-section-header";
 import GroupListItemInfo from "./components/group-list-item-info";
 import GroupListItemMedia from "./components/group-list-item-media";
 import ButtonFloat from "../../components/button-float";
+import GroupSettings from "./scenes/group-settings";
+import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 import withGroup from "../../hocs/with-group";
 
@@ -121,6 +123,7 @@ class Group extends React.Component {
     } = this.state;
     const {
       // eslint-disable-line
+      showAppModal,
       groupId,
       groupCreatorId,
       groupMediasId,
@@ -146,7 +149,7 @@ class Group extends React.Component {
           <ButtonFloat
             // eslint-disable-line
             icon={isFeed ? "plus" : "sliders-h"}
-            onClick={() => undefined}
+            onClick={() => (isFeed ? undefined : showAppModal({ scene: GroupSettings }))}
           />
         ) : null}
       </React.Fragment>
@@ -155,6 +158,7 @@ class Group extends React.Component {
 }
 
 Group.propTypes = {
+  showAppModal: PropTypes.func.isRequired,
   isFetchingGroup: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   groupCreatorId: PropTypes.string.isRequired,
@@ -172,6 +176,7 @@ Group.propTypes = {
 
 export default _.flowRight([
   // eslint-disable-line
+  withAppModal,
   withCurrentUser,
   withGroup,
   withTheme

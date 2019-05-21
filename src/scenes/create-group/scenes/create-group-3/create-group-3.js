@@ -89,7 +89,7 @@ class CreateGroup3 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("modules")}</AppModalSceneTitle>
+            <AppModalSceneTitle>{t("modules.title")}</AppModalSceneTitle>
             <CreateGroupError>{error && t(`validation:modules.${error}`)}</CreateGroupError>
           </React.Fragment>
         )}
