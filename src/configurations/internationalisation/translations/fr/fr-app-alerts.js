@@ -9,7 +9,8 @@ const frAppAlerts = {
   },
   createMedia: {
     videoPosted: "Votre video a bien été publiée",
-    imagePosted: "Votre image a bien été publiée"
+    imagePosted: "Votre image a bien été publiée",
+    locationPosted: "Votre localisation a bien été publiée"
   },
   accountCreated: "Votre compte a bien été créé",
   groupCreated: "Votre groupe a bien été créé",
