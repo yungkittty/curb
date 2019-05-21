@@ -104,7 +104,7 @@ class CreateGroup4 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("theme")}</AppModalSceneTitle>
+            <AppModalSceneTitle>{t("theme.title")}</AppModalSceneTitle>
             <CreateGroupError>{error && t(`validation:theme.${error}`)}</CreateGroupError>
           </React.Fragment>
         )}
@@ -172,4 +172,4 @@ CreateGroup4.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTheme(withRouter(withTranslation("createGroup")(CreateGroup4)));
+export default withTheme(withRouter(withTranslation("groupSettings")(CreateGroup4)));

@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		21EA5E3671404BB3B9257684 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01F15A8229A943FB8852B605 /* Montserrat-Bold.ttf */; };
 		27AA7EC79F0343589E31115F /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCEA116D78504E68AA24084E /* FontAwesome5_Solid.ttf */; };
+		2AC5217DF79340A48E5014D1 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D0B695B5774A769CED347E /* libSplashScreen.a */; };
 		2C96FFC99B9F4493AD08E4BE /* libReactNativeTestFairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6D219D7B4D47429AF64C9C /* libReactNativeTestFairy.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -385,6 +386,7 @@
 		00E356F21AD99517003FC87E /* curbTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = curbTests.m; sourceTree = "<group>"; };
 		0146B0B6105B450FAD0164F1 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		01F15A8229A943FB8852B605 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		05D0B695B5774A769CED347E /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
 		0A78043FFF3D40CFBDEC4E35 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		121727EF7B5545A294AB3ADD /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 		8FE353A0F70C41FDB91358CA /* ReactNativeTestFairy.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeTestFairy.xcodeproj; path = "../node_modules/react-native-testfairy/ios/ReactNativeTestFairy.xcodeproj"; sourceTree = "<group>"; };
 		93EDF17156F846CE97F48690 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		94E8058361A84C6FA987E591 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		97A4763928444360A0938052 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		9A1DF83B0BC245E3BFC0F347 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../src/assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		9E6D219D7B4D47429AF64C9C /* libReactNativeTestFairy.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeTestFairy.a; sourceTree = "<group>"; };
 		A6F329B42CDF49C696E33AAF /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -483,6 +486,7 @@
 				2C96FFC99B9F4493AD08E4BE /* libReactNativeTestFairy.a in Frameworks */,
 				43E9C1EC656C4103961E5DBC /* libRNVectorIcons.a in Frameworks */,
 				37FBBABC0E95477686735DDC /* libRNI18n.a in Frameworks */,
+				2AC5217DF79340A48E5014D1 /* libSplashScreen.a in Frameworks */,
 				D699A28B0D2849BEA703EDA6 /* libRNImagePicker.a in Frameworks */,
 				0B1EC395956C45D28DAE9D21 /* libFastImage.a in Frameworks */,
 				D5291407D3764AEAA0416AD8 /* libRCTVideo.a in Frameworks */,
@@ -719,6 +723,7 @@
 				8FE353A0F70C41FDB91358CA /* ReactNativeTestFairy.xcodeproj */,
 				317376AA01AB40D6BE59326A /* RNVectorIcons.xcodeproj */,
 				5866486DFECA46E7953A7792 /* RNI18n.xcodeproj */,
+				97A4763928444360A0938052 /* SplashScreen.xcodeproj */,
 				7F1E20A277D74CAB8A174AB2 /* RNImagePicker.xcodeproj */,
 				B2FFF84E42EF45BFB54AEB4A /* FastImage.xcodeproj */,
 				B4ABFC4206D341669DE1DEC4 /* RCTVideo.xcodeproj */,
@@ -780,6 +785,7 @@
 				888BE31DD8474426A16E3DCE /* libRNVectorIcons-tvOS.a */,
 				8A9A097222B443CFB1ED7173 /* libRNI18n.a */,
 				66BE37A6AB944E15B76A59C3 /* RNI18nTests.xctest */,
+				05D0B695B5774A769CED347E /* libSplashScreen.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1461,6 +1467,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);
@@ -1500,6 +1507,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);
@@ -1541,6 +1549,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);
@@ -1570,6 +1579,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);
@@ -1605,6 +1615,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);
@@ -1652,6 +1663,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);
@@ -1698,6 +1710,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);
@@ -1744,6 +1757,7 @@
 					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
 				);

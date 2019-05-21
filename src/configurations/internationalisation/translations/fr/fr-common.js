@@ -6,6 +6,7 @@ const frCommon = {
   next: "Suivant",
   finish: "Terminer",
   cancel: "Annuler",
+  edit: "Modifier",
   reset: "Réinitialiser",
   post: "Publier",
   selectImage: "Choisir une imge",
