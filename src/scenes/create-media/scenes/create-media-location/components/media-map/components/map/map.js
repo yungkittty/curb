@@ -34,14 +34,13 @@ const Map = ({ className, style, forwardedRef, ...others }) => {
       }
 
       render() {
-        const { geolocation } = navigator;
         const {
           /* eslint-disable */
-          latitude = this.state.latitude,
-          longitude = this.state.longitude
+          latitude = this.state.latitude || 48.8566,
+          longitude = this.state.longitude || 2.3522
           /* eslint-enable */
         } = this.props;
-        return geolocation && latitude && longitude ? (
+        return (
           <GoogleMap defaultZoom={10} defaultCenter={{ lat: latitude, lng: longitude }}>
             <Marker
               {...others}
@@ -49,7 +48,7 @@ const Map = ({ className, style, forwardedRef, ...others }) => {
               onDragEnd={this.onDragEnd}
             />
           </GoogleMap>
-        ) : null;
+        );
       }
     }
     // eslint-disable-next-line

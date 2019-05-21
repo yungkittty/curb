@@ -31,16 +31,15 @@ class Map extends Component {
   }
 
   render() {
-    const { geolocation } = navigator;
     const {
       style,
       /* eslint-disable */
-      latitude = this.state.latitude,
-      longitude = this.state.longitude,
+      latitude = this.state.latitude || 48.856,
+      longitude = this.state.longitude || 2.3522,
       /* eslint-enable */
       ...others
     } = this.props;
-    return geolocation && latitude && longitude ? (
+    return (
       <Container style={style}>
         <MapView
           {...others}
@@ -58,7 +57,7 @@ class Map extends Component {
           <Marker {...others} coordinate={{ latitude, longitude }} onDragEnd={this.onDragEnd} />
         </MapView>
       </Container>
-    ) : null;
+    );
   }
 }
 
