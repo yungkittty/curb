@@ -4,7 +4,7 @@ async function requestLocationPermission() {
   try {
     const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
       title: "Geolocation",
-      message: "Curb App needs access to your location " + "to show your position on the map.",
+      message: "Curb App needs access to your location to show your position on the map.",
       buttonNeutral: "Ask Me Later",
       buttonNegative: "Cancel",
       buttonPositive: "OK"
