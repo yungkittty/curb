@@ -1,8 +1,8 @@
 const frModules = {
   text: {
-    title: "Post",
+    title: "Texte",
     description: "Permet aux utilisateurs de publier du contenu textuel",
-    postPlaceholder: "Écrivez votre publication ici"
+    postPlaceholder: "Écrivez votre publication ici ..."
   },
   image: {
     title: "Image",

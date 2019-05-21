@@ -8,23 +8,7 @@ class Map extends Component {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
     this.getCurrentPosition = this.getCurrentPosition.bind(this);
-    this.state = {
-      isShowed: false,
-      latitude: undefined,
-      longitude: undefined
-    };
-  }
-
-  componentDidMount() {
-    const { geolocation } = navigator;
-    geolocation.getCurrentPosition(currentPosition => {
-      const {
-        // eslint-disable-line
-        latitude,
-        longitude
-      } = currentPosition.coords;
-      this.setState({ isShowed: true, latitude, longitude });
-    });
+    this.state = { latitude: props.latitude, longitude: props.longitude };
   }
 
   onDragEnd(event) {
@@ -43,19 +27,18 @@ class Map extends Component {
 
   render() {
     const {
+      // eslint-disable-line
       style,
-      /* eslint-disable */
       latitude,
       longitude,
-      /* eslint-enable */
       ...others
     } = this.props;
     const {
-      isShowed,
-      latitude: currentLatitude = 48.8566,
-      longitude: currentLongitude = 2.3522
+      // eslint-disable-line
+      latitude: currentLatitude,
+      longitude: currentLongitude
     } = this.state;
-    return isShowed ? (
+    return (
       <Container style={style}>
         <MapView
           {...others}
@@ -64,8 +47,8 @@ class Map extends Component {
           zoomEnabled
           showsUserLocation
           region={{
-            latitude: latitude || currentLatitude,
-            longitude: longitude || currentLongitude,
+            latitude: currentLatitude || latitude,
+            longitude: currentLongitude || longitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
           }}
@@ -75,13 +58,13 @@ class Map extends Component {
             {...others}
             onDragEnd={this.onDragEnd}
             coordinate={{
-              latitude: latitude || currentLatitude,
-              longitude: longitude || currentLongitude
+              latitude: currentLatitude || latitude,
+              longitude: currentLongitude || longitude
             }}
           />
         </MapView>
       </Container>
-    ) : null;
+    );
   }
 }
 

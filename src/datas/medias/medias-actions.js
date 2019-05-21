@@ -40,32 +40,6 @@ const mediasActions = {
     payload: error,
     error: true
   }),
-  postMediaTextRequest: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_TEXT_REQUEST,
-    payload
-  }),
-  postMediaTextSuccess: () => ({
-    type: mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS,
-    payload: undefined
-  }),
-  postMediaTextFailure: error => ({
-    type: mediasActionsTypes.POST_MEDIA_TEXT_FAILURE,
-    payload: error,
-    error: true
-  }),
-  postMediaVideoRequest: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST,
-    payload
-  }),
-  postMediaVideoSuccess: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS,
-    payload
-  }),
-  postMediaVideoFailure: error => ({
-    type: mediasActionsTypes.POST_MEDIA_VIDEO_FAILURE,
-    payload: error,
-    error: true
-  }),
   postMediaImageRequest: payload => ({
     type: mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST,
     payload
@@ -89,6 +63,32 @@ const mediasActions = {
   }),
   postMediaLocationFailure: error => ({
     type: mediasActionsTypes.POST_MEDIA_LOCATION_FAILURE,
+    payload: error,
+    error: true
+  }),
+  postMediaTextRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_TEXT_REQUEST,
+    payload
+  }),
+  postMediaTextSuccess: () => ({
+    type: mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS,
+    payload: undefined
+  }),
+  postMediaTextFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_TEXT_FAILURE,
+    payload: error,
+    error: true
+  }),
+  postMediaVideoRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST,
+    payload
+  }),
+  postMediaVideoSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS,
+    payload
+  }),
+  postMediaVideoFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_VIDEO_FAILURE,
     payload: error,
     error: true
   })
