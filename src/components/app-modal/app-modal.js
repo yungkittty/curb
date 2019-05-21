@@ -24,9 +24,12 @@ class AppModal extends Component {
   }
 
   appModalTransitionEnd() {
-    const { isAppModalShowed, enableAppModalButtons } = this.props;
-    if (isAppModalShowed) enableAppModalButtons();
-    else this.setState({ isAppModalRender: false });
+    const { isAppModalShowed, isAppModalButtonsEnabled, enableAppModalButtons } = this.props;
+    if (isAppModalShowed && !isAppModalButtonsEnabled) {
+      enableAppModalButtons();
+    } else if (!isAppModalShowed) {
+      this.setState({ isAppModalRender: false });
+    }
   }
 
   render() {

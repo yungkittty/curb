@@ -93,4 +93,4 @@ CreateGroup1.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("createGroup")(CreateGroup1);
+export default withTranslation("groupSettings")(CreateGroup1);

@@ -7,7 +7,7 @@ const enModules = {
   image: { title: "Image", description: "Allows users to post images" },
   video: { title: "Video", description: "Allows users to post videos" },
   location: {
-    title: "Localisation",
+    title: "Location",
     description: "Allows users to post localisation points"
   }
 };

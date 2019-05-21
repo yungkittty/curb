@@ -9,10 +9,13 @@ const frAppAlerts = {
   },
   createMedia: {
     videoPosted: "Votre video a bien été publiée",
-    imagePosted: "Votre image a bien été publiée"
+    imagePosted: "Votre image a bien été publiée",
+    locationPosted: "Votre localisation a bien été publiée"
   },
   accountCreated: "Votre compte a bien été créé",
   groupCreated: "Votre groupe a bien été créé",
+  groupDeleted: "Votre groupe a bien été supprimé",
+  groupPatched: "Votre groupe a bien été mis à jour",
   signOutSuccess: "Vous avez été déconnecté",
   signOutFailure: "Une erreur est survenue lors de la déconnexion"
 };

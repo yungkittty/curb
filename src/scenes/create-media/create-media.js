@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../components/list-flat";
 import AppModalSceneListItem from "../../components/app-modal-scene-list-item";
-import modulesList from "../../utils/modules-list/modules-list";
+import modulesList from "../../utils/modules-list";
 import withGroup from "../../hocs/with-group";
 /* eslint-disable */
 import CreateMediaText from "./scenes/create-media-text";
 import CreateMediaVideo from "./scenes/create-media-video";
 import CreateMediaImage from "./scenes/create-media-image";
+import CreateMediaLocation from "./scenes/create-media-location";
 /* eslint-enable */
 
 class CreateMedia extends Component {
@@ -32,8 +33,8 @@ class CreateMedia extends Component {
           return CreateMediaVideo;
         case "image":
           return CreateMediaImage;
-        //    case "location":
-        //      return CreateMediaLocation;
+        case "location":
+          return CreateMediaLocation;
         default:
           return undefined;
       }
@@ -71,7 +72,7 @@ CreateMedia.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withGroup,
   withTranslation()

@@ -40,6 +40,11 @@ const mediasApi = {
       withCredentials: true,
       onUploadProgress
     });
+  },
+  postMediaLocation: ({ groupId, userId, data }) => {
+    return axios.post(`/contents/locations/${groupId}/${userId}`, data, {
+      withCredentials: true
+    });
   }
 };
 
