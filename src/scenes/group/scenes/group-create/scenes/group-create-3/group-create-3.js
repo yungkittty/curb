@@ -2,18 +2,16 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import CreateGroupError from "../../../group/components/create-group-error";
-import ListFlat from "../../../../components/list-flat";
-import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
-import withAppModal from "../../../../hocs/with-app-modal";
-/* eslint-disable */
-import CreateGroup2 from "../create-group-2";
-import CreateGroup4 from "../create-group-4";
-import modulesList from "../../../../utils/modules-list/modules-list";
-/* eslint-enable */
+import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
+import GroupCreateError from "../../../../components/group-create-error";
+import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
+import GroupCreate2 from "../group-create-2"; // eslint-disable-line
+import GroupCreate4 from "../group-create-4"; // eslint-disable-line
+import modulesList from "../../../../../../utils/modules-list/modules-list";
+import withAppModal from "../../../../../../hocs/with-app-modal";
 
-class CreateGroup3 extends Component {
+class GroupCreate3 extends Component {
   constructor(props) {
     super(props);
     const {
@@ -39,7 +37,7 @@ class CreateGroup3 extends Component {
 
   goToPrev() {
     const { setAppModalScene } = this.props;
-    setAppModalScene({ scene: CreateGroup2, direction: -1 });
+    setAppModalScene({ scene: GroupCreate2, direction: -1 });
   }
 
   goToNext() {
@@ -47,7 +45,7 @@ class CreateGroup3 extends Component {
     if (!this.checkForm()) {
       const { current: listFlat } = this.listFlat;
       listFlat.scrollToOffset({ offset: 0 });
-    } else setAppModalScene({ scene: CreateGroup4, direction: 1 });
+    } else setAppModalScene({ scene: GroupCreate4, direction: 1 });
   }
 
   checkForm() {
@@ -89,8 +87,14 @@ class CreateGroup3 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("modules.title")}</AppModalSceneTitle>
-            <CreateGroupError>{error && t(`validation:modules.${error}`)}</CreateGroupError>
+            <AppModalSceneTitle>
+              {/* eslint-disable-line */}
+              {t("modules.title")}
+            </AppModalSceneTitle>
+            <GroupCreateError>
+              {/* eslint-disable-line */}
+              {error && t(`validation:modules.${error}`)}
+            </GroupCreateError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
@@ -108,11 +112,11 @@ class CreateGroup3 extends Component {
   }
 }
 
-CreateGroup3.defaultProps = {
+GroupCreate3.defaultProps = {
   modules: { value: [], error: undefined }
 };
 
-CreateGroup3.propTypes = {
+GroupCreate3.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
@@ -129,4 +133,4 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withTranslation("createGroup")
-])(CreateGroup3);
+])(GroupCreate3);

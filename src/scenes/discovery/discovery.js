@@ -11,7 +11,7 @@ import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonFloat from "../../components/button-float";
 import SignIn from "../sign-in";
-import CreateGroup from "../create-group";
+import GroupCreate from "../group/scenes/group-create";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 
@@ -59,7 +59,7 @@ const Discovery = ({
       icon="plus"
       onClick={() =>
         showAppModal({
-          scene: currentUserId ? CreateGroup : SignIn
+          scene: currentUserId ? GroupCreate : SignIn
         })
       }
     />

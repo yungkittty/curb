@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-/* eslint-disable-next-line */
-import CreateGroup4 from "./create-group-4";
-import { groupsActions, groupsSelectors } from "../../../../datas/groups";
+import GroupCreate4 from "./group-create-4"; // eslint-disable-line
+import { groupsActions, groupsSelectors } from "../../../../../../datas/groups";
 
 const mapStateToProps = state => ({
   isFetchingGroups: groupsSelectors.isFetchingGroups(state) || false
@@ -14,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateGroup4);
+)(GroupCreate4);

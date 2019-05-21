@@ -4,17 +4,16 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
-import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import CreateGroupError from "../../../group/components/create-group-error";
-import ListFlat from "../../../../components/list-flat";
-import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
-import Loader from "../../../../components/loader";
-import themesData from "./create-group-4-themes-data";
-import withAppModal from "../../../../hocs/with-app-modal";
-/* eslint-disable-next-line */
-import CreateGroup3 from "../create-group-3";
+import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
+import GroupCreateError from "../../../../components/group-create-error";
+import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
+import Loader from "../../../../../../components/loader";
+import GroupCreate3 from "../group-create-3"; // eslint-disable-line
+import groupCreate4ThemesData from "./group-create-4-themes-data";
+import withAppModal from "../../../../../../hocs/with-app-modal";
 
-class CreateGroup4 extends Component {
+class GroupCreate4 extends Component {
   constructor(props) {
     super(props);
     const {
@@ -47,7 +46,7 @@ class CreateGroup4 extends Component {
 
   goToPrev() {
     const { setAppModalScene } = this.props;
-    setAppModalScene({ scene: CreateGroup3, direction: -1 });
+    setAppModalScene({ scene: GroupCreate3, direction: -1 });
   }
 
   submit() {
@@ -114,13 +113,19 @@ class CreateGroup4 extends Component {
       <ListFlat
         ref={this.listFlat}
         contentContainerStyle={{ position: "relative" }}
-        data={themesData}
+        data={groupCreate4ThemesData}
         extraData={{ value }}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("theme.title")}</AppModalSceneTitle>
-            <CreateGroupError>{error && t(`validation:theme.${error}`)}</CreateGroupError>
+            <AppModalSceneTitle>
+              {/* eslint-disable-line */}
+              {t("theme.title")}
+            </AppModalSceneTitle>
+            <GroupCreateError>
+              {/* eslint-disable-line */}
+              {error && t(`validation:theme.${error}`)}
+            </GroupCreateError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
@@ -140,7 +145,7 @@ class CreateGroup4 extends Component {
   }
 }
 
-CreateGroup4.defaultProps = {
+GroupCreate4.defaultProps = {
   groupName: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
@@ -148,7 +153,7 @@ CreateGroup4.defaultProps = {
   avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
-CreateGroup4.propTypes = {
+GroupCreate4.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
@@ -192,4 +197,4 @@ export default _.flowRight([
   withRouter,
   withTranslation("createGroup"),
   withTheme
-])(CreateGroup4);
+])(GroupCreate4);

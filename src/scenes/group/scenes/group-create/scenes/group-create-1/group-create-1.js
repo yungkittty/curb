@@ -2,16 +2,15 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
-import ImageAvatarEditable from "../../../../components/image-avatar-editable";
-import InputForm from "../../../../components/input-form";
-import inputRegex from "../../../../utils/input-regex";
-import withAppModal from "../../../../hocs/with-app-modal";
-/* eslint-disable-next-line */
-import CreateGroup2 from "../create-group-2";
+import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
+import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
+import ImageAvatarEditable from "../../../../../../components/image-avatar-editable";
+import GroupCreate2 from "../group-create-2"; // eslint-disable-line
+import InputForm from "../../../../../../components/input-form";
+import inputRegex from "../../../../../../utils/input-regex";
+import withAppModal from "../../../../../../hocs/with-app-modal";
 
-class CreateGroup1 extends Component {
+class GroupCreate1 extends Component {
   constructor(props) {
     super(props);
     const { t, setAppModalHeaderSteps, setAppModalFooterButton } = this.props;
@@ -27,7 +26,7 @@ class CreateGroup1 extends Component {
 
   goToNext() {
     const { setAppModalScene } = this.props;
-    if (this.checkForm()) setAppModalScene({ scene: CreateGroup2, direction: 1 });
+    if (this.checkForm()) setAppModalScene({ scene: GroupCreate2, direction: 1 });
   }
 
   checkForm() {
@@ -55,7 +54,10 @@ class CreateGroup1 extends Component {
 
     return (
       <AppModalSceneContainer>
-        <AppModalSceneTitle style={{ marginBottom: 40 }}>{t("createGroup")}</AppModalSceneTitle>
+        <AppModalSceneTitle style={{ marginBottom: 40 }}>
+          {/* eslint-disable-line */}
+          {t("createGroup")}
+        </AppModalSceneTitle>
         <ImageAvatarEditable
           editMode
           id="avatar"
@@ -77,12 +79,12 @@ class CreateGroup1 extends Component {
   }
 }
 
-CreateGroup1.defaultProps = {
+GroupCreate1.defaultProps = {
   groupName: { value: "", error: undefined },
   avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
-CreateGroup1.propTypes = {
+GroupCreate1.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
@@ -99,4 +101,4 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withTranslation("createGroup")
-])(CreateGroup1);
+])(GroupCreate1);
