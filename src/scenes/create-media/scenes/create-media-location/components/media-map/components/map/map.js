@@ -16,23 +16,7 @@ const Map = ({ className, style, forwardedRef, ...others }) => {
         super(props);
         this.onDragEnd = this.onDragEnd.bind(this);
         this.getCurrentPosition = this.getCurrentPosition.bind(this);
-        this.state = {
-          isShowed: false,
-          latitude: undefined,
-          longitude: undefined
-        };
-      }
-
-      componentDidMount() {
-        const { geolocation } = navigator;
-        geolocation.getCurrentPosition(currentPosition => {
-          const {
-            // eslint-disable-line
-            latitude,
-            longitude
-          } = currentPosition.coords;
-          this.setState({ isShowed: true, latitude, longitude });
-        });
+        this.state = { latitude: props.latitude, longitude: props.longitude };
       }
 
       onDragEnd(marker) {
@@ -49,34 +33,33 @@ const Map = ({ className, style, forwardedRef, ...others }) => {
 
       render() {
         const {
-          /* eslint-disable */
+          // eslint-disable-line
           latitude,
           longitude
-          /* eslint-enable */
         } = this.props;
         const {
-          isShowed,
-          latitude: currentLatitude = 48.8566,
-          longitude: currentLongitude = 2.3522
+          // eslint-disable-line
+          latitude: currentLatitude,
+          longitude: currentLongitude
         } = this.state;
-        return isShowed ? (
+        return (
           <GoogleMap
             defaultZoom={10}
             defaultCenter={{
-              lat: latitude || currentLatitude,
-              lng: longitude || currentLongitude
+              lat: currentLatitude || latitude,
+              lng: currentLongitude || longitude
             }}
           >
             <Marker
               {...others}
               onDragEnd={this.onDragEnd}
               defaultPosition={{
-                lat: latitude || currentLatitude,
-                lng: longitude || currentLongitude
+                lat: currentLatitude || latitude,
+                lng: currentLongitude || longitude
               }}
             />
           </GoogleMap>
-        ) : null;
+        );
       }
     }
     // eslint-disable-next-line

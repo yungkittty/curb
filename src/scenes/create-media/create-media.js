@@ -7,10 +7,10 @@ import AppModalSceneListItem from "../../components/app-modal-scene-list-item";
 import modulesList from "../../utils/modules-list";
 import withGroup from "../../hocs/with-group";
 /* eslint-disable */
-//  import CreateMediaText from "./scenes/create-media-text";
-import CreateMediaVideo from "./scenes/create-media-video";
 import CreateMediaImage from "./scenes/create-media-image";
 import CreateMediaLocation from "./scenes/create-media-location";
+import CreateMediaText from "./scenes/create-media-text";
+import CreateMediaVideo from "./scenes/create-media-video";
 /* eslint-enable */
 
 class CreateMedia extends Component {
@@ -27,14 +27,14 @@ class CreateMedia extends Component {
     const { setAppModalScene } = this.props;
     const scene = (() => {
       switch (moduleId) {
-        //    case "text":
-        //      return CreateMediaText;
-        case "video":
-          return CreateMediaVideo;
         case "image":
           return CreateMediaImage;
         case "location":
           return CreateMediaLocation;
+        case "text":
+          return CreateMediaText;
+        case "video":
+          return CreateMediaVideo;
         default:
           return undefined;
       }

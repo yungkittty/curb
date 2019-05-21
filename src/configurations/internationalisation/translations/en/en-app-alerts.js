@@ -8,9 +8,10 @@ const enAppAlerts = {
     UNKNOWN: "An error occured with your avatar"
   },
   createMedia: {
-    videoPosted: "Your video has been posted",
     imagePosted: "Your image has been posted",
-    locationPosted: "Your location has been posted"
+    locationPosted: "Your location has been posted",
+    textPosted: "Your text has been posted",
+    videoPosted: "Your video has been posted"
   },
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",

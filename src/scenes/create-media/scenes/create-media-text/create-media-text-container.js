@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 /* eslint-disable-next-line */
-import CreateMediaLocation from "./create-media-location";
+import CreateMediaText from "./create-media-text";
 import { mediasActions, mediasSelectors } from "../../../../datas/medias";
 
 const mapStateToProps = state => ({
@@ -8,10 +8,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  postMediaLocation: payload => dispatch(mediasActions.postMediaLocationRequest(payload))
+  postMediaText: payload => dispatch(mediasActions.postMediaTextRequest(payload))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateMediaLocation);
+)(CreateMediaText);

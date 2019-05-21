@@ -93,6 +93,7 @@ class SignUp2 extends Component {
           id="createPassword"
           placeholder={t("common:password")}
           type="password"
+          autoCapitalize="none"
           value={createPassword.value}
           onChange={this.handleChange}
           error={createPassword.error && t(`validation:password.${createPassword.error}`)}
@@ -102,6 +103,7 @@ class SignUp2 extends Component {
           id="confirmPassword"
           placeholder={t("common:confirmPassword")}
           type="password"
+          autoCapitalize="none"
           value={confirmPassword.value}
           onChange={this.handleChange}
           error={confirmPassword.error && t(`validation:password.${confirmPassword.error}`)}

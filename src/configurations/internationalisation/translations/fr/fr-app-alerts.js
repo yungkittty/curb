@@ -8,9 +8,10 @@ const frAppAlerts = {
     UNKNOWN: "Une erreur est survenue sur votre avatar"
   },
   createMedia: {
-    videoPosted: "Votre video a bien été publiée",
-    imagePosted: "Votre image a bien été publiée",
-    locationPosted: "Votre localisation a bien été publiée"
+    imagePosted: "Votre image a bien été postée",
+    locationPosted: "Votre localisation a bien été postée",
+    textPosted: "Votre texte a bien été postée",
+    videoPosted: "Votre video a bien été postée"
   },
   accountCreated: "Votre compte a bien été créé",
   groupCreated: "Votre groupe a bien été créé",
