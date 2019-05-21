@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../components/list-flat";
 import AppModalSceneListItem from "../../components/app-modal-scene-list-item";
-import modulesList from "../../utils/modules-list/modules-list";
+import modulesList from "../../utils/modules-list";
 import withGroup from "../../hocs/with-group";
 /* eslint-disable */
 //  import CreateMediaText from "./scenes/create-media-text";
@@ -72,7 +72,7 @@ CreateMedia.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withGroup,
   withTranslation()

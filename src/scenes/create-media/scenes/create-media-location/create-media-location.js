@@ -38,7 +38,7 @@ class CreateMediaLocation extends Component {
 
   render() {
     return (
-      <AppModalSceneContainer verticalAlign>
+      <AppModalSceneContainer>
         <LocationMap ref={this.locationMap} isMarkerShown draggable />
       </AppModalSceneContainer>
     );
@@ -56,4 +56,9 @@ CreateMediaLocation.propTypes = {
   currentUserId: PropTypes.string.isRequired
 };
 
-export default _.flowRight([withAppModal, withCurrentUser, withTranslation()])(CreateMediaLocation);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withCurrentUser,
+  withTranslation()
+])(CreateMediaLocation);

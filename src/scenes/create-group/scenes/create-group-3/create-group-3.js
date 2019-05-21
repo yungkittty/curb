@@ -9,7 +9,7 @@ import AppModalSceneListItem from "../../../../components/app-modal-scene-list-i
 /* eslint-disable */
 import CreateGroup2 from "../create-group-2";
 import CreateGroup4 from "../create-group-4";
-import modulesList from "../../../../utils/modules-list/modules-list";
+import modulesList from "../../../../utils/modules-list";
 /* eslint-enable */
 
 class CreateGroup3 extends Component {

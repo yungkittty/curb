@@ -8,7 +8,7 @@ import AppModalSceneTitle from "../../../../../../components/app-modal-scene-tit
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
-import modulesList from "../../../../../../utils/modules-list/modules-list";
+import modulesList from "../../../../../../utils/modules-list";
 /* eslint-disable-next-line */
 import GroupSettings from "../../group-settings";
 

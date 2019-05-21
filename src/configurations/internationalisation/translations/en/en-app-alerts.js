@@ -10,7 +10,7 @@ const enAppAlerts = {
   createMedia: {
     videoPosted: "Your video has been posted",
     imagePosted: "Your image has been posted",
-    locationPosted: "The location has been posted"
+    locationPosted: "Your location has been posted"
   },
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",

@@ -1,27 +1,38 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import requestLocationPermission from "../../../../../../../../utils/permissions/permission-location";
 import Container from "../../../../../../../../components/container";
 
 class Map extends Component {
   constructor(props) {
     super(props);
-    requestLocationPermission().then(() => {
-      const { geolocation } = navigator;
-      // eslint-disable-next-line
-      geolocation &&
-        geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-          this.setState({ latitude, longitude });
-        });
-    });
     this.onDragEnd = this.onDragEnd.bind(this);
     this.getCurrentPosition = this.getCurrentPosition.bind(this);
-    this.state = { latitude: undefined, longitude: undefined };
+    this.state = {
+      isShowed: false,
+      latitude: undefined,
+      longitude: undefined
+    };
+  }
+
+  componentDidMount() {
+    const { geolocation } = navigator;
+    geolocation.getCurrentPosition(currentPosition => {
+      const {
+        // eslint-disable-line
+        latitude,
+        longitude
+      } = currentPosition.coords;
+      this.setState({ isShowed: true, latitude, longitude });
+    });
   }
 
   onDragEnd(event) {
-    const { latitude, longitude } = event.nativeEvent.coordinate;
+    const {
+      // eslint-disable-line
+      latitude,
+      longitude
+    } = event.nativeEvent.coordinate;
     this.setState({ latitude, longitude });
   }
 
@@ -34,12 +45,17 @@ class Map extends Component {
     const {
       style,
       /* eslint-disable */
-      latitude = this.state.latitude || 48.856,
-      longitude = this.state.longitude || 2.3522,
+      latitude,
+      longitude,
       /* eslint-enable */
       ...others
     } = this.props;
-    return (
+    const {
+      isShowed,
+      latitude: currentLatitude = 48.8566,
+      longitude: currentLongitude = 2.3522
+    } = this.state;
+    return isShowed ? (
       <Container style={style}>
         <MapView
           {...others}
@@ -48,16 +64,24 @@ class Map extends Component {
           zoomEnabled
           showsUserLocation
           region={{
-            latitude,
-            longitude,
+            latitude: latitude || currentLatitude,
+            longitude: longitude || currentLongitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
           }}
         >
-          <Marker {...others} coordinate={{ latitude, longitude }} onDragEnd={this.onDragEnd} />
+          <Marker
+            // eslint-disable-line
+            {...others}
+            onDragEnd={this.onDragEnd}
+            coordinate={{
+              latitude: latitude || currentLatitude,
+              longitude: longitude || currentLongitude
+            }}
+          />
         </MapView>
       </Container>
-    );
+    ) : null;
   }
 }
 
