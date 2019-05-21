@@ -3,7 +3,6 @@ package com.curb;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-
 import com.airbnb.android.react.maps.MapsPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
