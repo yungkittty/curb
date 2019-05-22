@@ -9,7 +9,7 @@ const frAppAlerts = {
   },
   createMedia: {
     imagePosted: "Votre image a bien été postée",
-    locationPosted: "Votre localisation a bien été postée",
+    locationPosted: "Votre localisation a bien été posté",
     textPosted: "Votre texte a bien été postée",
     videoPosted: "Votre video a bien été postée"
   },

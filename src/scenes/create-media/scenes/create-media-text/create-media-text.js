@@ -43,7 +43,7 @@ class CreateMediaText extends Component {
 
   checkForm() {
     const { text } = this.props;
-    return text !== undefined;
+    return text.value !== "";
   }
 
   handleChange(event) {

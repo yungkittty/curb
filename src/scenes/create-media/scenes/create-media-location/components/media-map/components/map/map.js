@@ -80,17 +80,19 @@ const Map = ({ className, style, forwardedRef, ...others }) => {
 Map.defaultProps = {
   className: undefined,
   style: undefined,
-  forwardedRef: undefined,
-  latitude: undefined,
-  longitude: undefined
+  forwardedRef: undefined
 };
 
 Map.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType(PropTypes.object, PropTypes.array),
   forwardedRef: PropTypes.object, // eslint-disable-line
-  latitude: PropTypes.number,
-  longitude: PropTypes.number
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired
 };
 
-export default React.forwardRef((props, forwardedRef) => <Map {...props} forwardedRef={forwardedRef} />);
+// eslint-disable-next-line
+export default React.forwardRef((props, forwardedRef) => (
+  // eslint-disable-line
+  <Map {...props} forwardedRef={forwardedRef} />
+));

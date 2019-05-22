@@ -23,10 +23,7 @@ const InputFile = ({
         type={type}
         onSelect={(objData, file) =>
           onSelect({
-            target: {
-              id,
-              value: { data: objData, file }
-            }
+            target: { id, value: { data: objData, file } }
           })
         }
       />

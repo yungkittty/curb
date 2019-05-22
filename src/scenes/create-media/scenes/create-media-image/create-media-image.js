@@ -125,4 +125,9 @@ CreateMediaImage.propTypes = {
   image: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string }) })
 };
 
-export default _.flow([withAppModal, withCurrentUser, withTranslation()])(CreateMediaImage);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withCurrentUser,
+  withTranslation()
+])(CreateMediaImage);

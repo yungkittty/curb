@@ -24,8 +24,8 @@ function* postMediaAvatarUserRequestSaga(action) {
     if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(mediasActions.postMediaAvatarUserFailure({ id: action.payload.id, errorCode }));
+    const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
   }
 }
@@ -38,8 +38,8 @@ function* postMediaAvatarGroupRequestSaga(action) {
     if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(mediasActions.postMediaAvatarGroupFailure({ id: action.payload.id, errorCode }));
+    const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
   }
 }
@@ -52,23 +52,21 @@ function* postMediaImageRequestSaga(action) {
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaImageFailure({ id: groupId, errorCode }));
+    yield put(mediasActions.postMediaImageFailure({ errorCode }));
   }
 }
 
 function* postMediaLocationRequestSaga(action) {
   try {
-    yield call(mediasApi.postMediaLocation, action.payload);
-    yield put(mediasActions.postMediaLocationSuccess());
+    const { data: payload } = yield call(mediasApi.postMediaLocation, action.payload);
+    yield put(mediasActions.postMediaLocationSuccess({ id: action.payload.groupId, mediasId: payload.id }));
     const successAlert = { type: "success", message: "createMedia.locationPosted", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaLocationFailure({ groupId, errorCode }));
+    yield put(mediasActions.postMediaLocationFailure({ errorCode }));
   }
 }
 
@@ -80,9 +78,8 @@ function* postMediaTextRequestSaga(action) {
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaTextFailure({ id: groupId, errorCode }));
+    yield put(mediasActions.postMediaTextFailure({ errorCode }));
   }
 }
 
@@ -94,9 +91,8 @@ function* postMediaVideoRequestSaga(action) {
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    const { groupId } = action.payload;
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaVideoFailure({ id: groupId, errorCode }));
+    yield put(mediasActions.postMediaVideoFailure({ errorCode }));
   }
 }
 
