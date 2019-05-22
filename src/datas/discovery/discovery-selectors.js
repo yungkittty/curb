@@ -1,5 +1,5 @@
 const discoverySelectors = {};
 
-discoverySelectors.getDiscoveryGroupsId = state => state.discovery.groups;
+discoverySelectors.getDiscoverySections = state => state.discovery.sections;
 
 export default discoverySelectors;

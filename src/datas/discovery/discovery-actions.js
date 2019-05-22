@@ -1,16 +1,16 @@
 import discoveryActionsTypes from "./discovery-actions-types";
 
 const discoveryActions = {
-  getDiscoveryRequest: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_REQUEST,
+  getDiscoverySectionsRequest: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_SECTIONS_REQUEST,
     payload
   }),
-  getDiscoverySuccess: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_SUCCESS,
+  getDiscoverySectionsSuccess: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_SECTIONS_SUCCESS,
     payload
   }),
-  getDiscoveryFailure: error => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_FAILURE,
+  getDiscoverySectionsFailure: error => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_SECTIONS_FAILURE,
     payload: error,
     error: true
   })

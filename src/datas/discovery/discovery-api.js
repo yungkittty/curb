@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const discoveryApi = {
-  getDiscovery: ({ count }) => axios.get(`/groups?count=${count}`)
+  getDiscoverySections: ({ id }) => axios.get(`/groups/trending?userId=${id}&count=${25}`)
 };
 
 export default discoveryApi;

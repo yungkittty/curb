@@ -1,11 +1,9 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import FastImage from "react-native-fast-image";
+import { Image } from "react-native";
 
-// https://www.npmjs.com/package/react-native-fast-image
-
-class Image extends React.Component {
+class _Image extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isShowed: false };
@@ -27,10 +25,10 @@ class Image extends React.Component {
     } = this.props;
     const isImageFromApi = src.substr(0, 9) === "/contents";
     return (
-      <FastImage
+      <Image
         {...others}
         source={{ uri: isImageFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src, cache: "web" }}
-        resizeMode={objectFit ? FastImage.resizeMode[objectFit] : undefined}
+        resizeMode={objectFit}
         onLoadStart={onLoadStartArgs => {
           // eslint-disable-next-line
           onLoadStart && onLoadStart(onLoadStartArgs);
@@ -50,14 +48,14 @@ class Image extends React.Component {
   }
 }
 
-Image.defaultProps = {
+_Image.defaultProps = {
   onLoadStart: undefined,
   onLoad: undefined,
   style: undefined,
   objectFit: undefined
 };
 
-Image.propTypes = {
+_Image.propTypes = {
   src: PropTypes.string.isRequired,
   onLoadStart: PropTypes.func,
   onLoad: PropTypes.func,
@@ -65,4 +63,4 @@ Image.propTypes = {
   objectFit: PropTypes.oneOf(["cover", "contain"])
 };
 
-export default Image;
+export default _Image;

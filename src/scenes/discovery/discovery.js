@@ -15,61 +15,96 @@ import GroupCreate from "../group/scenes/group-create";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 
-const Discovery = ({
-  // eslint-disable-line
-  showAppModal,
-  currentUserId,
-  discoveryGroupsId,
-  t
-}) => (
-  <React.Fragment>
-    <DiscoveryContainer
-      /* eslint-disable-next-line */
-      sections={[{ data: [{}] }]}
-      keyExtractor={(sectionData, sectionIndex) => sectionIndex}
-      ListHeaderComponent={() => (
-        <DiscoveryHeader>
-          <DiscoveryTitle type="h1" weight={700}>
-            {t("title")}
-          </DiscoveryTitle>
-          <DiscoverySubtitle type="h4">
-            {/* eslint-disable-line */}
-            {t("subtitle")}
-          </DiscoverySubtitle>
-        </DiscoveryHeader>
-      )}
-      renderSectionHeader={() => (
-        /* eslint-disable-next-line */
-        <DiscoveryListSectionHeader type="h3" weight={500}>
-          {t("section")}
-        </DiscoveryListSectionHeader>
-      )}
-      renderItem={() => (
-        <DiscoveryList
-          data={discoveryGroupsId}
-          keyExtractor={discoveryGroupId => discoveryGroupId}
-          renderItem={({ item: discoveryGroupId }) => (
-            // eslint-disable-line
-            <DiscoveryListItem groupId={discoveryGroupId} />
-          )}
+class Discovery extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderListHeader = this.renderListHeader.bind(this);
+    this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
+    this.renderListItem = this.renderListItem.bind(this);
+    this.renderListSectionItem = this.renderListSectionItem.bind(this);
+  }
+
+  renderListHeader() {
+    const { t } = this.props;
+    return (
+      <DiscoveryHeader>
+        <DiscoveryTitle type="h1" weight={700}>
+          {t("title")}
+        </DiscoveryTitle>
+        <DiscoverySubtitle type="h4">
+          {/* eslint-disable-line */}
+          {t("subtitle")}
+        </DiscoverySubtitle>
+      </DiscoveryHeader>
+    );
+  }
+
+  renderListSectionHeader({ section: discoverySectionData }) {
+    const { t } = this.props;
+    return (
+      <DiscoveryListSectionHeader type="h3" weight={500}>
+        {t(`sections.${discoverySectionData.category}`)}
+      </DiscoveryListSectionHeader>
+    );
+  }
+
+  // eslint-disable-next-line
+  renderListItem({ item: discoveryItemId }) {
+    return (
+      // eslint-disable-line
+      <DiscoveryListItem
+        // eslint-disable-line
+        groupId={discoveryItemId}
+      />
+    );
+  }
+
+  renderListSectionItem({ item: discoveryItemData }) {
+    const { groups: discoveryItemsId } = discoveryItemData;
+    return (
+      <DiscoveryList
+        data={discoveryItemsId}
+        keyExtractor={(discoveryItemId, discoveryItemIndex) =>
+          // eslint-disable-line
+          `${discoveryItemId}${discoveryItemIndex}`}
+        renderItem={this.renderListItem}
+      />
+    );
+  }
+
+  render() {
+    const {
+      // eslint-disable-line
+      showAppModal,
+      currentUserId,
+      discoverySections
+    } = this.props;
+    return (
+      <React.Fragment>
+        <DiscoveryContainer
+          sections={discoverySections}
+          keyExtractor={(sectionData, sectionIndex) => sectionIndex}
+          ListHeaderComponent={this.renderListHeader}
+          renderSectionHeader={this.renderListSectionHeader}
+          renderItem={this.renderListSectionItem}
         />
-      )}
-    />
-    <ButtonFloat
-      icon="plus"
-      onClick={() =>
-        showAppModal({
-          scene: currentUserId ? GroupCreate : SignIn
-        })
-      }
-    />
-  </React.Fragment>
-);
+        <ButtonFloat
+          icon="plus"
+          onClick={() =>
+            showAppModal({
+              scene: currentUserId ? GroupCreate : SignIn
+            })
+          }
+        />
+      </React.Fragment>
+    );
+  }
+}
 
 Discovery.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  discoveryGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  discoverySections: PropTypes.array.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };
 

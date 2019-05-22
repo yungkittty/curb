@@ -91,8 +91,8 @@ const byId = (state = {}, action) => {
           ...state[action.payload.id],
           medias: [
             // eslint-disable-line
+            action.payload.mediasId,
             ...state[action.payload.id].medias,
-            action.payload.mediasId
           ]
         }
       };

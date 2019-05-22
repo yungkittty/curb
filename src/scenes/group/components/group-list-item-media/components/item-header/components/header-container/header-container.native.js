@@ -7,7 +7,7 @@ const HeaderContainer = styled(Container)`
   width: 100%;
   height: 50px;
   margin-bottom: 10px;
-  margin-left: -15px;
+  margin-left: -20px;
 `;
 
 export default HeaderContainer;

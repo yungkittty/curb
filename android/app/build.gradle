@@ -159,7 +159,6 @@ dependencies {
     implementation project(':react-native-maps')
     implementation project(':react-native-video')
     implementation project(':react-native-splash-screen')
-    implementation project(':react-native-fast-image')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-locale-detector')
     implementation project(':react-native-vector-icons')

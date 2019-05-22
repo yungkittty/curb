@@ -35,7 +35,8 @@ const ImageUser = ({
           objectFit="cover"
           style={{
             width: innerDiameter,
-            height: innerDiameter
+            height: innerDiameter,
+            borderRadius: innerDiameter / 2
           }}
         />
       ) : userName ? (

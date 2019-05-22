@@ -1,27 +1,24 @@
-import _ from "lodash";
 import { combineReducers } from "redux";
 import discoveryActionsTypes from "./discovery-actions-types";
-import { groupsActionsTypes } from "../groups";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_SECTIONS_REQUEST:
       return true;
-    case discoveryActionsTypes.GET_DISCOVERY_SUCCESS:
-    case discoveryActionsTypes.GET_DISCOVERY_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_SECTIONS_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_SECTIONS_FAILURE:
       return false;
     default:
       return state;
   }
 };
 
-// eslint-disable-next-line
-const groups = (state = [], action) => {
+/** @TODO DELETE_GROUP_SUCCESS */
+
+const sections = (state = [], action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_SUCCESS:
-      return _.union(state, action.payload.groups);
-    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
-      return _.without(state, action.payload.id);
+    case discoveryActionsTypes.GET_DISCOVERY_SECTIONS_SUCCESS:
+      return action.payload;
     default:
       return state;
   }
@@ -29,10 +26,10 @@ const groups = (state = [], action) => {
 
 const errorCode = (state = "", action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_REQUEST:
-    case discoveryActionsTypes.GET_DISCOVERY_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_SECTIONS_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_SECTIONS_SUCCESS:
       return "";
-    case discoveryActionsTypes.GET_DISCOVERY_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_SECTIONS_FAILURE:
       return action.payload.errorCode;
     default:
       return state;
@@ -42,7 +39,7 @@ const errorCode = (state = "", action) => {
 const discoveryReducer = combineReducers({
   // eslint-disable-line
   isFetching,
-  groups,
+  sections,
   errorCode
 });
 

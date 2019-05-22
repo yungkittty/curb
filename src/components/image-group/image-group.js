@@ -38,7 +38,8 @@ const ImageGroup = ({
           objectFit="cover"
           style={{
             width: innerDiameter,
-            height: innerDiameter
+            height: innerDiameter,
+            borderRadius: innerDiameter / 2
           }}
         />
       ) : groupName ? (

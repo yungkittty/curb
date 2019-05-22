@@ -53,7 +53,6 @@
 		EE827BC63BC047BCBD58DBC9 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93EDF17156F846CE97F48690 /* Montserrat-SemiBold.ttf */; };
 		F565119B5D7F4258A2386C01 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94E8058361A84C6FA987E591 /* Montserrat-Regular.ttf */; };
 		D699A28B0D2849BEA703EDA6 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1227BB1E5A44D9845646FC /* libRNImagePicker.a */; };
-		0B1EC395956C45D28DAE9D21 /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 142C7A8C85B646ECBB7BBE93 /* libFastImage.a */; };
 		D5291407D3764AEAA0416AD8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F7B4F3245F4666A4EF9EC8 /* libRCTVideo.a */; };
 		7A5BA09C88E949178E98CD0B /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CCD7E5860648CABE275697 /* libAirMaps.a */; };
 /* End PBXBuildFile section */
@@ -451,17 +450,10 @@
 		F8902427C65844B8AC8B7211 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		7F1E20A277D74CAB8A174AB2 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		AD1227BB1E5A44D9845646FC /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		B2FFF84E42EF45BFB54AEB4A /* FastImage.xcodeproj */ = {isa = PBXFileReference; name = "FastImage.xcodeproj"; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		142C7A8C85B646ECBB7BBE93 /* libFastImage.a */ = {isa = PBXFileReference; name = "libFastImage.a"; path = "libFastImage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-<<<<<<< HEAD
-		FBD66FC7193F43B48471199E /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		47DE9452B0524BE7A870A5DD /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-=======
 		B4ABFC4206D341669DE1DEC4 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		74F7B4F3245F4666A4EF9EC8 /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		75956D34F0D4490E95A4293A /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		02CCD7E5860648CABE275697 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,13 +488,8 @@
 				37FBBABC0E95477686735DDC /* libRNI18n.a in Frameworks */,
 				2AC5217DF79340A48E5014D1 /* libSplashScreen.a in Frameworks */,
 				D699A28B0D2849BEA703EDA6 /* libRNImagePicker.a in Frameworks */,
-				0B1EC395956C45D28DAE9D21 /* libFastImage.a in Frameworks */,
-<<<<<<< HEAD
-				F0B4D5B425484A18BD25504C /* libRCTVideo.a in Frameworks */,
-=======
 				D5291407D3764AEAA0416AD8 /* libRCTVideo.a in Frameworks */,
 				7A5BA09C88E949178E98CD0B /* libAirMaps.a in Frameworks */,
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,13 +725,8 @@
 				5866486DFECA46E7953A7792 /* RNI18n.xcodeproj */,
 				97A4763928444360A0938052 /* SplashScreen.xcodeproj */,
 				7F1E20A277D74CAB8A174AB2 /* RNImagePicker.xcodeproj */,
-				B2FFF84E42EF45BFB54AEB4A /* FastImage.xcodeproj */,
-<<<<<<< HEAD
-				FBD66FC7193F43B48471199E /* RCTVideo.xcodeproj */,
-=======
 				B4ABFC4206D341669DE1DEC4 /* RCTVideo.xcodeproj */,
 				75956D34F0D4490E95A4293A /* AirMaps.xcodeproj */,
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1486,30 +1468,14 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = curbTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
-=======
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1534,30 +1500,14 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = curbTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
-=======
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1584,12 +1534,8 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = curb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1618,12 +1564,8 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = curb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1658,29 +1600,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = "curb-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
-=======
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1714,29 +1640,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = "curb-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
-=======
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1769,29 +1679,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = "curb-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
-=======
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1824,29 +1718,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-locale-detector/RNI18n",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
 					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
-<<<<<<< HEAD
-=======
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				INFOPLIST_FILE = "curb-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-<<<<<<< HEAD
-=======
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
->>>>>>> 290038258dceb0844e569055f5582929d8d183a7
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

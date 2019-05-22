@@ -25,7 +25,9 @@ const OverlayBlur = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { isAppModalShowed } = this.props;
-      if (prevProps.isAppModalShowed !== isAppModalShowed) this.startAnimation(isAppModalShowed);
+      if (prevProps.isAppModalShowed !== isAppModalShowed) {
+        this.startAnimation(isAppModalShowed);
+      }
     }
 
     startAnimation(/* state */) {
@@ -38,8 +40,13 @@ const OverlayBlur = WrappedComponent => {
         duration: 500,
         ease: Easing.out(Easing.exp)
       }).start(() => { */
-      this.setState({ animationRunning: false });
-      appModalTransitionEnd();
+
+      // simulate animation with setTimeout.
+      setTimeout(() => {
+        this.setState({ animationRunning: false });
+        appModalTransitionEnd();
+      }, 500);
+
       /* }); */
     }
 
