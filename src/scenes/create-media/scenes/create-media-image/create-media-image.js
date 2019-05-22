@@ -2,13 +2,13 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import withAppModal from "../../../../hocs/with-app-modal";
-import withCurrentUser from "../../../../hocs/with-current-user";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import CreateMediaInputFile from "../../components/create-media-input-file";
-// eslint-disable-next-line
-import CreateMedia from "../../../create-media";
+import CreateMedia from "../../../create-media"; // eslint-disable-line
 import CreateMediaError from "../../components/create-media-error";
+import withAppModal from "../../../../hocs/with-app-modal";
+import withCurrentUser from "../../../../hocs/with-current-user";
+import withGroup from "../../../../hocs/with-group";
 
 class CreateMediaImage extends Component {
   constructor(props) {
@@ -129,5 +129,6 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,
+  withGroup,
   withTranslation()
 ])(CreateMediaImage);

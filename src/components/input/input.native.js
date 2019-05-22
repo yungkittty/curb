@@ -14,11 +14,12 @@ const Input = styled(({ type, onChange, id, isMultiline, ...others }) => (
     multiline={isMultiline}
   />
 ))`
-  padding: 16px;
+  padding: 15px;
   font-family: Montserrat-Regular;
   font-size: 16px;
   ${Platform.OS === "android" ? "font-weight: normal;" : ""}
   text-align-vertical: top;
+  ${props => (props.isMultiline ? `line-height: ${16 * 1.5}px;` : "")}
   color: ${({ theme }) => theme.fontColor};
 `;
 

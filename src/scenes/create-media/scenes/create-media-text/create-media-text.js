@@ -8,6 +8,7 @@ import AppModalSceneContainer from "../../../../components/app-modal-scene-conta
 import CreateMedia from "../../../create-media"; // eslint-disable-line
 import withAppModal from "../../../../hocs/with-app-modal";
 import withCurrentUser from "../../../../hocs/with-current-user";
+import withGroup from "../../../../hocs/with-group";
 
 class CreateMediaText extends Component {
   constructor(props) {
@@ -108,5 +109,6 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,
+  withGroup,
   withTranslation()
 ])(CreateMediaText);

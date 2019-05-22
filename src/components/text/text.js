@@ -24,41 +24,38 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
       case "h1":
         return `
           font-size: 48px;
-          ${props.isIndented ? `line-height: ${48 * 1.8}px;` : ""}
+          ${props.isIndented ? `line-height: ${48 * 1.5}px;` : ""}
         `; // +12
       case "h2":
         return `
           font-size: 36px;
-          ${props.isIndented ? `line-height: ${36 * 1.8}px;` : ""}
+          ${props.isIndented ? `line-height: ${36 * 1.5}px;` : ""}
         `; // +12
       case "h3":
         return `
           font-size: 24px;
-          ${props.isIndented ? `line-height: ${24 * 1.8}px;` : ""}
+          ${props.isIndented ? `line-height: ${24 * 1.5}px;` : ""}
         `; // +6
       case "h4":
         return `
           font-size: 18px;
-          ${props.isIndented ? `line-height: ${18 * 1.8}px;` : ""}
+          ${props.isIndented ? `line-height: ${18 * 1.5}px;` : ""}
         `; // +4
       case "h5":
         return `
           font-size: 12px;
-          ${props.isIndented ? `line-height: ${12 * 1.8}px;` : ""}
+          ${props.isIndented ? `line-height: ${12 * 1.5}px;` : ""}
         `; // -2
       default:
         return `
           font-size: 14px;
-          ${props.isIndented ? `line-height: ${14 * 1.8}px;` : ""}
+          ${props.isIndented ? `line-height: ${14 * 1.5}px;` : ""}
         `;
     }
   }}
   font-weight: initial;
-
   color: ${props => props.theme.fontColor};
 `;
-
-// ${props => (props.isIndented ? "white-space: pre-wrap" : "")}
 
 Text.defaultProps = {
   type: undefined,

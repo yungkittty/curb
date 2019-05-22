@@ -20,10 +20,12 @@ const HeaderInfos = ({
     const dateMedia = new Date(mediaDateCreation);
     const dateApi = ["FullYear", "Month", "Date", "Hours", "Minutes", "Seconds"];
     const dateTrans = ["year", "month", "day", "hour", "minute", "second"];
-    let i = -1;
-    while (dateDelta === 0)
-      // eslint-disable-next-line
-      dateDelta = date[`get${dateApi[++i]}`]() - dateMedia[`get${dateApi[i]}`]();
+    let i = 0;
+    while (dateDelta === 0 && i < 5) {
+      const dateCurrentApi = `get${dateApi[i]}`;
+      dateDelta = date[dateCurrentApi]() - dateMedia[dateCurrentApi]();
+      i += 1;
+    }
     return t(`common:${dateTrans[i]}`, { count: dateDelta });
   })();
   return (

@@ -5,10 +5,11 @@ import styled from "styled-components";
 
 const Input = styled.input.attrs(({ isMultiline }) => ({ as: isMultiline ? "textarea" : undefined }))`
   box-sizing: border-box;
-  padding: 18px;
+  padding: 20px;
   border: 0;
   font-family: "Montserrat-Regular";
   font-size: 18px;
+  ${props => (props.isMultiline ? `line-height: ${18 * 1.5}px;` : "")}
   box-shadow: none;
   color: ${({ theme }) => theme.fontColor}
   

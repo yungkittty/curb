@@ -8,6 +8,7 @@ import GroupListSectionHeader from "./components/group-list-section-header";
 import GroupListItemInfo from "./components/group-list-item-info";
 import GroupListItemMedia from "./components/group-list-item-media";
 import ButtonFloat from "../../components/button-float";
+import CreateMedia from "../create-media"; /** @TODO ... */
 import GroupSettings from "./scenes/group-settings";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
@@ -149,7 +150,7 @@ class Group extends React.Component {
           <ButtonFloat
             // eslint-disable-line
             icon={isFeed ? "plus" : "sliders-h"}
-            onClick={() => (isFeed ? undefined : showAppModal({ scene: GroupSettings }))}
+            onClick={() => showAppModal({ scene: isFeed ? CreateMedia : GroupSettings })}
           />
         ) : null}
       </React.Fragment>

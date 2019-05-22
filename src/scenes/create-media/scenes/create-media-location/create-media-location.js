@@ -8,6 +8,7 @@ import LocationMap from "./components/location-container";
 import createMedia from "../../../create-media"; // eslint-disable-line
 import withAppModal from "../../../../hocs/with-app-modal";
 import withCurrentUser from "../../../../hocs/with-current-user";
+import withGroup from "../../../../hocs/with-group";
 
 class CreateMediaLocation extends Component {
   constructor(props) {
@@ -150,5 +151,6 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,
+  withGroup,
   withTranslation()
 ])(CreateMediaLocation);

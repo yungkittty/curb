@@ -70,9 +70,9 @@ const mediasActions = {
     type: mediasActionsTypes.POST_MEDIA_TEXT_REQUEST,
     payload
   }),
-  postMediaTextSuccess: () => ({
+  postMediaTextSuccess: payload => ({
     type: mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS,
-    payload: undefined
+    payload
   }),
   postMediaTextFailure: error => ({
     type: mediasActionsTypes.POST_MEDIA_TEXT_FAILURE,
