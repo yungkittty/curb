@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import Container from "../../../../../../../../components/container";
+import Container from "../container";
 
 const Map = ({ className, style, forwardedRef, ...others }) => {
   // eslint-disable-next-line

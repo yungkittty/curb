@@ -21,8 +21,10 @@ const mediasApi = {
       onUploadProgress
     });
   },
-  postMediaLocation: ({ groupId, userId, data }) =>
-    axios.post(`/contents/locations/${groupId}/${userId}`, data),
+  postMediaLocation: ({ groupId, userId, location }) => {
+    const data = { data: location };
+    return axios.post(`/contents/locations/${groupId}/${userId}`, data);
+  },
   postMediaText: ({ groupId, userId, text }) => {
     const data = { data: text };
     return axios.post(`/contents/texts/${groupId}/${userId}`, data);

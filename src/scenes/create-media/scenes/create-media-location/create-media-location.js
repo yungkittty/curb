@@ -96,12 +96,12 @@ class CreateMediaLocation extends Component {
       currentUserId
     } = this.props;
     if (!isShowed) return;
-    const data = locationMap.getCurrentPosition();
+    const location = JSON.stringify(locationMap.getCurrentPosition());
     disableAppModalButtons();
     postMediaLocation({
       groupId,
       userId: currentUserId,
-      data
+      location
     });
   }
 
@@ -125,7 +125,6 @@ class CreateMediaLocation extends Component {
           ref={this.locationMap}
           latitude={latitude}
           longitude={longitude}
-          isMarkerShown
           draggable
         />
       </AppModalSceneContainer>

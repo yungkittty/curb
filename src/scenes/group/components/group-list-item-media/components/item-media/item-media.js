@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MediaImage from "./components/media-image";
+import MediaLocation from "./components/media-location";
 import MediaText from "./components/media-text";
 import MediaVideo from "./components/media-video";
-
-// placeholder components
 
 const ItemMedia = ({
   // eslint-disable-line
@@ -14,9 +13,9 @@ const ItemMedia = ({
   /* eslint-disable */
   mediaType === "image" ? (
     <MediaImage src={mediaData} />
-  ) : /* mediaType === "location" ? (
-    <MediaLocation />
-  ) : */ mediaType === "text" ? (
+  ) : mediaType === "location" ? (
+    <MediaLocation {...JSON.parse(mediaData)} />
+  ) : mediaType === "text" ? (
     <MediaText>
       {/* eslint-disable-line */}
       {mediaData}

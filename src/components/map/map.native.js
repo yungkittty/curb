@@ -1,7 +1,8 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import Container from "../../../../../../../../components/container";
+import Container from "../container";
 
 class Map extends Component {
   constructor(props) {
@@ -39,7 +40,12 @@ class Map extends Component {
       longitude: currentLongitude
     } = this.state;
     return (
-      <Container style={style}>
+      <Container
+        style={{
+          ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
+          overflow: "hidden"
+        }}
+      >
         <MapView
           {...others}
           provider={PROVIDER_GOOGLE}
@@ -54,7 +60,6 @@ class Map extends Component {
           }}
         >
           <Marker
-            // eslint-disable-line
             {...others}
             onDragEnd={this.onDragEnd}
             coordinate={{
