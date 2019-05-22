@@ -5,7 +5,8 @@ import FilePreview from "./components/file-preview";
 import FileSelector from "./components/file-selector";
 
 const InputFile = ({
-  // eslint-disable-line
+  className,
+  style,
   id,
   type,
   editMode,
@@ -14,7 +15,7 @@ const InputFile = ({
   Placeholder: placeholder,
   ...others
 }) => (
-  <FileContainer>
+  <FileContainer className={className} style={style}>
     {/* eslint-disable-next-line */}
     {!data && placeholder ? placeholder() : <FilePreview {...others} type={type} data={data} />}
     {editMode && (
@@ -31,14 +32,18 @@ const InputFile = ({
 );
 
 InputFile.defaultProps = {
+  className: undefined,
+  style: undefined,
   data: undefined,
   editMode: false,
   Placeholder: null
 };
 
 InputFile.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   id: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["image"]).isRequired,
+  type: PropTypes.oneOf(["image", "video"]).isRequired,
   data: PropTypes.string,
   editMode: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,

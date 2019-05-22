@@ -81,6 +81,21 @@ const byId = (state = {}, action) => {
           avatarUrl: action.payload.avatar.data
         }
       };
+    case mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_LOCATION_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS:
+    case mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          medias: [
+            // eslint-disable-line
+            ...state[action.payload.id].medias,
+            action.payload.mediasId
+          ]
+        }
+      };
     default:
       return state;
   }

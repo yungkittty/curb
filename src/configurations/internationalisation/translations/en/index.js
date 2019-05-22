@@ -12,6 +12,7 @@ import modules from "./en-modules";
 import appAlert from "./en-app-alert";
 import groupCreate from "./en-group-create";
 import groupSettings from "./en-group-settings";
+import errorCode from "./en-error-code";
 
 export default {
   common,
@@ -27,5 +28,6 @@ export default {
   modules,
   appAlert,
   groupCreate,
-  groupSettings
+  groupSettings,
+  errorCode
 };

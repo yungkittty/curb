@@ -7,10 +7,16 @@ const enAppAlert = {
     groupInviteSuccess: "You have joined this group",
     UNKNOWN: "An error occured while joining this group"
   },
+  createMedia: {
+    imagePosted: "Your image has been posted",
+    locationPosted: "Your location has been posted",
+    textPosted: "Your text has been posted",
+    videoPosted: "Your video has been posted"
+  },
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",
-  groupDeleted: "Your group have been deleted",
   groupPatched: "Your group have been updated",
+  groupDeleted: "Your group have been deleted",
   signOutSuccess: "You have been disconnected",
   signOutFailure: "An error has occured while signing out"
 };

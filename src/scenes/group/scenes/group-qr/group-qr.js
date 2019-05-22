@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import QrCode from "react-qr-code";
 import Loader from "../../../../components/loader";
 import QrContainer from "./components/qr-container";
 import QrHeader from "./components/qr-group-header";
 import ImageGroup from "../../../../components/image-group";
 import QrTitle from "./components/qr-title";
+import QrCode from "../../../../components/qr-code";
 import { platformBools } from "../../../../configurations/platform";
 
 class GroupQr extends React.Component {

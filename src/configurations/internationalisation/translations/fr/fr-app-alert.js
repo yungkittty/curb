@@ -7,10 +7,16 @@ const frAppAlert = {
     groupInviteSuccess: "Vous avez rejoint ce groupe",
     UNKNOWN: "Une erreur est survenue en rejoignant ce groupe"
   },
+  createMedia: {
+    imagePosted: "Votre image été postée",
+    locationPosted: "Votre localisation été posté",
+    textPosted: "Votre texte été postée",
+    videoPosted: "Votre video été postée"
+  },
   accountCreated: "Votre compte a été créé",
   groupCreated: "Votre groupe a été créé",
-  groupDeleted: "Votre groupe a été supprimé",
   groupPatched: "Votre groupe a été mis à jour",
+  groupDeleted: "Votre groupe a été supprimé",
   signOutSuccess: "Vous avez été déconnecté",
   signOutFailure: "Une erreur est survenue lors de la déconnexion"
 };
