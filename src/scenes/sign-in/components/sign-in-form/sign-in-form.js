@@ -21,6 +21,7 @@ const SignInForm = ({ onChange, email, password, t }) => (
       id="password"
       placeholder={t("password")}
       type="password"
+      autoCapitalize="none"
       value={password.value}
       onChange={onChange}
       error={password.error && t(`validation:password.${password.error}`)}

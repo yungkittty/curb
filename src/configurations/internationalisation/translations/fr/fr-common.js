@@ -8,8 +8,11 @@ const frCommon = {
   cancel: "Annuler",
   edit: "Modifier",
   reset: "Réinitialiser",
+  post: "Publier",
   selectImage: "Choisir une imge",
+  selectVideo: "Choisir une vidéo",
   takePhoto: "Prendre une photo",
+  recordVideo: "Enregistrer une vidéo",
   chooseLibrary: "Depuis la galerie",
   permissionDenied: "Permission non accordée",
   askCameraText:

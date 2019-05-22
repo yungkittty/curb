@@ -9,6 +9,7 @@ import appDownload from "./en-app-download";
 import settings from "./en-settings";
 import modules from "./en-modules";
 import appAlerts from "./en-app-alerts";
+import errorCode from "./en-error-code";
 import groupSettings from "./en-group-settings";
 
 export default {
@@ -23,5 +24,6 @@ export default {
   settings,
   modules,
   appAlerts,
+  errorCode,
   groupSettings
 };
