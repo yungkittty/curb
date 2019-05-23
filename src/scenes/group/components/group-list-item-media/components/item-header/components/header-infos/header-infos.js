@@ -21,9 +21,10 @@ const HeaderInfos = ({
     const dateApi = ["FullYear", "Month", "Date", "Hours", "Minutes", "Seconds"];
     const dateTrans = ["year", "month", "day", "hour", "minute", "second"];
     let i = 0;
-    while (dateDelta === 0 && i < 5) {
+    while (i <= 5) {
       const dateCurrentApi = `get${dateApi[i]}`;
       dateDelta = date[dateCurrentApi]() - dateMedia[dateCurrentApi]();
+      if (dateDelta !== 0) break;
       i += 1;
     }
     return t(`common:${dateTrans[i]}`, { count: dateDelta });
