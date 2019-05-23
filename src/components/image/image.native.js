@@ -27,7 +27,7 @@ class _Image extends React.Component {
     return (
       <Image
         {...others}
-        source={{ uri: isImageFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src, cache: "web" }}
+        source={{ uri: isImageFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src }}
         resizeMode={objectFit}
         onLoadStart={onLoadStartArgs => {
           // eslint-disable-next-line

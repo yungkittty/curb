@@ -1,6 +1,6 @@
 const frGroupSettings = {
   groupSettings: "Paramètres du groupe",
-  general: { title: "Général", description: "Icône  ·  Nom du groupe" },
+  general: { title: "Général", description: "Icône  ·  Nom" },
   discoverability: {
     title: "Découvrabilité",
     description: "Modifier la découvrabilité"

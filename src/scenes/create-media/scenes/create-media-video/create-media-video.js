@@ -55,7 +55,7 @@ class CreateMediaVideo extends Component {
     postMediaVideo({
       groupId,
       userId: currentUserId,
-      video,
+      video: video.value,
       onUploadProgress: this.onUploadProgress
     });
     disableAppModalButtons();

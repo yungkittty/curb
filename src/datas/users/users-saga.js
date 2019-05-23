@@ -18,10 +18,10 @@ function* getUsersRequestSaga(action) {
 
 function* patchUsersRequestSaga(action) {
   try {
-    const { id, avatar, ...others } = action.payload;
-    const { data: payload } = yield call(usersApi.patchUser, { ...others, id });
+    const { id, avatar = {}, ...others } = action.payload;
+    yield call(usersApi.patchUser, { ...others, id });
     if (avatar.file) yield put(mediasActions.postMediaAvatarUserRequest({ id, avatar }));
-    yield put(usersActions.patchUserSuccess(payload));
+    yield put(usersActions.patchUserSuccess({ ...others, id }));
     const successAlert = { type: "success", message: "patchUser.userSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {

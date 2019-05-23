@@ -9,14 +9,14 @@ const mediasApi = {
   },
   postMediaAvatarGroup: ({ id, avatar, onUploadProgress }) => {
     const data = new FormData();
-    data.append("file", avatar.value.file);
+    data.append("file", avatar.file);
     return axios.post(`/contents/avatars/groups/${id}`, data, {
       onUploadProgress
     });
   },
   postMediaImage: ({ groupId, userId, image, onUploadProgress }) => {
     const data = new FormData();
-    data.append("file", image.value.file);
+    data.append("file", image.file);
     return axios.post(`/contents/images/${groupId}/${userId}`, data, {
       onUploadProgress
     });
@@ -31,7 +31,7 @@ const mediasApi = {
   },
   postMediaVideo: ({ groupId, userId, video, onUploadProgress }) => {
     const data = new FormData();
-    data.append("file", video.value.file);
+    data.append("file", video.file);
     return axios.post(`/contents/videos/${groupId}/${userId}`, data, {
       onUploadProgress
     });

@@ -8,7 +8,7 @@ import mediasActions from "../medias/medias-actions";
 
 function* signUpRequestSaga(action) {
   try {
-    const { avatar, ...others } = action.payload;
+    const { avatar = {}, ...others } = action.payload;
     const { data: payload } = yield call(signUpApi.signUp, others);
     if (avatar.file) yield put(mediasActions.postMediaAvatarUserRequest({ id: payload.id, avatar }));
     yield put(signUpActions.signUpSuccess(payload));

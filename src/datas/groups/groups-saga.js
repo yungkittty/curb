@@ -10,7 +10,7 @@ import mediasActions from "../medias/medias-actions";
 
 function* postGroupRequestSaga(action) {
   try {
-    const { history, avatar, ...others } = action.payload;
+    const { history, avatar = {}, ...others } = action.payload;
     const { data: payload } = yield call(groupsApi.postGroup, others);
     if (avatar.file) yield put(mediasActions.postMediaAvatarGroupRequest({ id: payload.id, avatar }));
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);

@@ -50,12 +50,19 @@ class CreateMediaImage extends Component {
   }
 
   submit() {
-    const { postMediaImage, disableAppModalButtons, groupId, currentUserId, image } = this.props;
+    const {
+      // eslint-disable-line
+      postMediaImage,
+      disableAppModalButtons,
+      groupId,
+      currentUserId,
+      image
+    } = this.props;
     if (!this.checkForm()) return;
     postMediaImage({
       groupId,
       userId: currentUserId,
-      image,
+      image: image.value,
       onUploadProgress: this.onUploadProgress
     });
     disableAppModalButtons();
@@ -89,7 +96,10 @@ class CreateMediaImage extends Component {
     return (
       <AppModalSceneContainer verticalAlign>
         {mediasErrorCode !== "" && (
-          <CreateMediaError>{t(`errorCode:contents.${mediasErrorCode}`)}</CreateMediaError>
+          <CreateMediaError>
+            {/* eslint-disable-line */}
+            {t(`errorCode:contents.${mediasErrorCode}`)}
+          </CreateMediaError>
         )}
         <CreateMediaInputFile
           editMode={loadingProgress === undefined}
