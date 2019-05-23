@@ -49,10 +49,6 @@ class _Video extends React.Component {
             height: "100%"
           }}
           toggleResizeModeOnFullscreen={false}
-          disableBack
-          disableVolume
-          disableFullscreen
-          paused
         />
       </Container>
     );
