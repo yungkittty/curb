@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import Container from "../container";
 
 class Map extends Component {
@@ -48,7 +48,6 @@ class Map extends Component {
       >
         <MapView
           {...others}
-          provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
           zoomEnabled
           showsUserLocation
