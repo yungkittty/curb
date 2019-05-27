@@ -11,6 +11,7 @@ import ListFlat from "../list-flat";
 import NavigationListItem from "./components/navigation-list-item";
 import NavigationListFooter from "./components/navigation-list-footer";
 import SignIn from "../../scenes/sign-in";
+import Settings from "../../scenes/settings";
 
 const AppNavigation = ({
   showAppModal,
@@ -29,11 +30,7 @@ const AppNavigation = ({
       />
     ) : (
       <NavigationButtonImage
-        src={`${process.env.REACT_APP_API_URL}${_.replace(
-          currentUserAvatarUrl,
-          "medium",
-          "small"
-        )}`}
+        src={`${process.env.REACT_APP_API_URL}${_.replace(currentUserAvatarUrl, "medium", "small")}`}
         onClick={`/users/${currentUserId}`}
       />
     )}
@@ -45,12 +42,7 @@ const AppNavigation = ({
         <NavigationListItem currentUserGroupId={currentUserGroupId} />
       )}
       ListFooterComponent={() => (
-        <NavigationListFooter
-          icon="plus"
-          size="small"
-          color={theme.secondaryVariantColor}
-          onClick="/"
-        />
+        <NavigationListFooter icon="plus" size="small" color={theme.secondaryVariantColor} onClick="/" />
       )}
       contentContainerStyle={{ paddingTop: 10 }}
       showsVerticalScrollIndicator={false}
@@ -60,7 +52,7 @@ const AppNavigation = ({
       icon="cog"
       size="medium"
       color={theme.primaryColor}
-      onClick={() => undefined}
+      onClick={() => showAppModal({ scene: Settings })}
     />
   </NavigationContainer>
 );

@@ -13,20 +13,22 @@ class InputForm extends Component {
   }
 
   render() {
-    const { size, type, placeholder, value, onChange, id, error } = this.props;
+    const { containerStyle, textStyle, placeholder, size, error, value, ...others } = this.props;
     const { focused } = this.state;
+
     return (
-      <FormContainer size={size}>
-        <FormPlaceholder weight={300} upper={value !== "" || focused}>
-          {placeholder}
-        </FormPlaceholder>
+      <FormContainer style={containerStyle} size={size}>
+        {placeholder && (
+          <FormPlaceholder weight={300} upper={value !== "" || focused}>
+            {placeholder}
+          </FormPlaceholder>
+        )}
         <FormInput
+          {...others}
+          style={textStyle}
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
-          type={type}
           value={value}
-          onChange={onChange}
-          id={id}
           error={error}
         />
         {error && (
@@ -40,15 +42,20 @@ class InputForm extends Component {
 }
 
 InputForm.defaultProps = {
+  containerStyle: undefined,
+  textStyle: undefined,
   size: undefined,
-  type: undefined,
+  placeholder: undefined,
   error: undefined
 };
 
 InputForm.propTypes = {
-  size: PropTypes.oneOf(["modal"]),
-  type: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
+  // eslint-disable-next-line
+  containerStyle: PropTypes.object,
+  // eslint-disable-next-line
+  textStyle: PropTypes.object,
+  size: PropTypes.oneOf(["modal", "large"]),
+  placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

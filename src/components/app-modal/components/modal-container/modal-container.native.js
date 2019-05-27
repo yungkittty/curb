@@ -1,24 +1,31 @@
-import { Platform } from "react-native";
 import styled from "styled-components";
-import { isIphoneX } from "react-native-device-detection";
+import { Platform } from "react-native";
+import { windowDimensions } from "../../../../configurations/window";
+import ContainerAnimation from "./components/container-animation";
 import Container from "../../../container";
-import { windowQueries } from "../../../../configurations/window";
+
+// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 32
 
 const ModalContainer = styled(Container)`
   display: flex;
-  flex-direction: column;
+  position: absolute;
   width: 100%;
   height: 100%;
-  ${Platform.OS === "ios" ? `padding-top: ${isIphoneX ? 30 : 20}px;` : ``}
   background-color: ${props => props.theme.backgroundColor};
+  z-index: 32;
+  ${
+    Platform.OS === "android"
+      ? `elevation: 32;`
+      : `
+  shadow-offset: 0px 19.2px;
+  shadow-radius: 17.28px;
+  shadow-color: rgba(0, 0, 0, 0.228);
+  shadow-opacity: 1;`
+  }
+  padding-top: ${windowDimensions.statusBarHeight}px;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.backgroundColor};
   overflow: hidden;
-
-  ${windowQueries.large`
-    width: 700px;
-    height: 740px;
-    padding-top: 0px;
-    border-radius: 25px;
-  `};
 `;
 
-export default ModalContainer;
+export default ContainerAnimation(ModalContainer);

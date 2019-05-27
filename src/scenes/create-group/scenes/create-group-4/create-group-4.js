@@ -39,30 +39,10 @@ class CreateGroup4 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      isCreateGroupFetching,
-      t,
-      hideAppModal,
-      setAppModalHeaderLeftButton,
-      setAppModalHeaderRightButton,
-      setAppModalScene,
-      setAppModalFooterButton
-    } = this.props;
+    const { isCreateGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
     if (prevProps.isCreateGroupFetching === isCreateGroupFetching) return;
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: !isCreateGroupFetching
-        ? () => setAppModalScene({ scene: CreateGroup3, direction: -1 })
-        : () => undefined
-    });
-    setAppModalHeaderRightButton({
-      icon: "times",
-      onClick: !isCreateGroupFetching ? hideAppModal : () => undefined
-    });
-    setAppModalFooterButton({
-      text: t("common:finish"),
-      onClick: !isCreateGroupFetching ? this.submit : () => undefined
-    });
+    if (isCreateGroupFetching) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
   submit() {
@@ -72,13 +52,14 @@ class CreateGroup4 extends Component {
       return;
     }
 
-    const { postGroup, history, groupName, discoverability, modules, groupTheme } = this.props;
+    const { postGroup, history, groupName, discoverability, modules, groupTheme, avatar } = this.props;
     postGroup({
       history,
       name: groupName.value,
       status: discoverability.value,
       mediaTypes: modules.value,
-      theme: groupTheme.value
+      theme: groupTheme.value,
+      avatar
     });
   }
 
@@ -123,7 +104,7 @@ class CreateGroup4 extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("theme")}</AppModalSceneTitle>
+            <AppModalSceneTitle>{t("theme.title")}</AppModalSceneTitle>
             <CreateGroupError>{error && t(`validation:theme.${error}`)}</CreateGroupError>
           </React.Fragment>
         )}
@@ -148,17 +129,20 @@ CreateGroup4.defaultProps = {
   groupName: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
-  groupTheme: { value: "", error: undefined }
+  groupTheme: { value: "", error: undefined },
+  avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
 CreateGroup4.propTypes = {
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalHeaderRightButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   isCreateGroupFetching: PropTypes.bool.isRequired,
+  createGroupErrorCode: PropTypes.string.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
   // eslint-disable-next-line
@@ -181,7 +165,11 @@ CreateGroup4.propTypes = {
     value: PropTypes.string,
     error: PropTypes.string
   }),
+  avatar: PropTypes.shape({
+    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
+    error: PropTypes.string
+  }),
   t: PropTypes.func.isRequired
 };
 
-export default withTheme(withRouter(withTranslation("createGroup")(CreateGroup4)));
+export default withTheme(withRouter(withTranslation("groupSettings")(CreateGroup4)));

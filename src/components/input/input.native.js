@@ -1,20 +1,33 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import { TextInput } from "react-native";
+import { TextInput, Platform } from "react-native";
 
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.native.js
 
-const Input = styled(({ type, onChange, id, ...others }) => (
+const Input = styled(({ type, onChange, id, isMultiline, ...others }) => (
   <TextInput
     {...others}
     secureTextEntry={type === "password"}
     keyboardType={type === "email" ? "email-address" : undefined}
-    onChangeText={text => onChange({ target: { id, value: text } })}
+    onChangeText={value => onChange({ target: { id, value } })}
+    multiline={isMultiline}
   />
 ))`
-  font-family: "Montserrat-Regular";
   padding: 16px;
+  font-family: Montserrat-Regular;
   font-size: 16px;
+  ${Platform.OS === "android" ? "font-weight: normal;" : ""}
+  text-align-vertical: top;
+  color: ${({ theme }) => theme.fontColor};
 `;
+
+Input.defaultProps = {
+  isMultiline: false
+};
+
+Input.propTypes = {
+  isMultiline: PropTypes.bool
+};
 
 export default Input;

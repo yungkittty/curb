@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Animated, Easing } from "react-native";
+import { Animated, Easing, Keyboard } from "react-native";
 import { windowDimensions } from "../../../../../../configurations/window";
 
 const SceneSlide = WrappedComponent => {
@@ -27,26 +27,27 @@ const SceneSlide = WrappedComponent => {
       const { width: windowWidth } = windowDimensions;
       wrappedComponentAnimated.setValue(sceneDirection > 0 ? 0 : -windowWidth);
       const { sceneAlt: prevSceneAlt } = this.state;
-      const sceneAlt =
-        sceneDirection === this.prevSceneDirection
-          ? !prevSceneAlt
-          : prevSceneAlt;
+      const sceneAlt = sceneDirection === this.prevSceneDirection ? !prevSceneAlt : prevSceneAlt;
       this.prevSceneDirection = sceneDirection;
       // eslint-disable-next-line
-      this.setState({
-        sceneAlt,
-        ...((sceneAlt ? -sceneDirection : sceneDirection) > 0
-          ? { sceneRightKey: _.uniqueId(), sceneRight: scene }
-          : { sceneLeftKey: _.uniqueId(), sceneLeft: scene })
-      },
-      () => setTimeout(() => {
-        Animated.timing(wrappedComponentAnimated, {
-          toValue: sceneDirection > 0 ? -windowWidth : 0,
-          easing: Easing.inOut(Easing.quad),
-          duration: 450,
-          useNativeDriver: true
-        }).start();
-      }));
+      this.setState(
+        {
+          sceneAlt,
+          ...((sceneAlt ? -sceneDirection : sceneDirection) > 0
+            ? { sceneRightKey: _.uniqueId(), sceneRight: scene }
+            : { sceneLeftKey: _.uniqueId(), sceneLeft: scene })
+        },
+        () =>
+          setTimeout(() => {
+            Animated.timing(wrappedComponentAnimated, {
+              toValue: sceneDirection > 0 ? -windowWidth : 0,
+              easing: Easing.inOut(Easing.quad),
+              duration: 450,
+              useNativeDriver: true
+            }).start();
+          })
+      );
+      Keyboard.dismiss();
     }
 
     render() {

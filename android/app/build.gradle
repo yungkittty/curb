@@ -107,7 +107,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName System.getenv("CURB_VERSION")
-
+        multiDexEnabled true 
+        
         // react-native-camera
         missingDimensionStrategy 'react-native-camera', 'general'
     }
@@ -152,6 +153,11 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-maps')
+    implementation project(':react-native-video')
+    implementation project(':react-native-splash-screen')
+    implementation project(':react-native-fast-image')
+    implementation project(':react-native-image-picker')
     implementation project(':react-native-locale-detector')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-testfairy')

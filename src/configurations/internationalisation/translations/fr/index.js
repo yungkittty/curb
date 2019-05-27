@@ -4,9 +4,13 @@ import validation from "./fr-validation";
 import signIn from "./fr-sign-in";
 import signUp from "./fr-sign-up";
 import discovery from "./fr-discovery";
+import resetPassword from "./fr-reset-password";
 import appDownload from "./fr-app-download";
-import createGroup from "./fr-create-group";
+import settings from "./fr-settings";
 import modules from "./fr-modules";
+import appAlerts from "./fr-app-alerts";
+import errorCode from "./fr-error-code";
+import groupSettings from "./fr-group-settings";
 
 export default {
   common,
@@ -15,7 +19,11 @@ export default {
   signIn,
   signUp,
   discovery,
+  resetPassword,
   appDownload,
-  createGroup,
-  modules
+  settings,
+  modules,
+  appAlerts,
+  errorCode,
+  groupSettings
 };
