@@ -6,7 +6,7 @@ set -xe
 # Decodes certificates and mobile provision.
 openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in curb-developer.cer.enc -d -a -out curb-developer.cer
 openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in curb-development-key.cer.p12.enc -d -a -out curb-development-key.cer.p12
-#openssl aes-256-cbc -k "$ENCRYPT_PASSWORD_2" -in curb.mobileprovision.enc -d -a -out curb.mobileprovision
+openssl aes-256-cbc -k "$ENCRYPT_PASSWORD" -in curb.mobileprovision.enc -d -a -out curb_old.mobileprovision
 
 # Creates keychain to store certificates.
 security create-keychain -p "$CUSTOM_KEYCHAIN_PASSWORD" ios-build.keychain
@@ -26,6 +26,9 @@ security set-key-partition-list -S apple-tool:,apple: -s -k "$CUSTOM_KEYCHAIN_PA
 # Copies mobile provision.
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+ls ~/Library/MobileDevice/Provisioning\ Profiles/
+cat ~/Library/MobileDevice/Provisioning\ Profiles/curb_old.mobileprovision
+cat ~/Library/MobileDevice/Provisioning\ Profiles/curb.mobileprovision
 
 # Builds .xcarchive using `Release` configuration, then create .ipa from it.
 xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive
