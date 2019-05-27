@@ -1,9 +1,5 @@
 import React from "react";
 
-const NavigationNativeRoute = WrappedComponent => {
-  const _NavigationNativeRoute = props => <WrappedComponent {...props} />;
-
-  return _NavigationNativeRoute;
-};
+const NavigationNativeRoute = WrappedComponent => props => <WrappedComponent {...props} />;
 
 export default NavigationNativeRoute;
