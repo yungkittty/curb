@@ -921,12 +921,6 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 9478G9T3JY;
-						ProvisioningStyle = Manual;
-						SystemCapabilities = {
-							com.apple.SafariKeychain = {
-								enabled = 1;
-							};
-						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1557,8 +1551,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = curb/curb.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 9478G9T3JY;
@@ -1583,7 +1575,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.curb.eip;
 				PRODUCT_NAME = curb;
-				PROVISIONING_PROFILE_SPECIFIER = "2020 Curb";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1593,8 +1584,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = curb/curb.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9478G9T3JY;
 				HEADER_SEARCH_PATHS = (
@@ -1618,7 +1607,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.curb.eip;
 				PRODUCT_NAME = curb;
-				PROVISIONING_PROFILE_SPECIFIER = "2020 Curb";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
