@@ -28,5 +28,5 @@ mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
 # Builds .xcarchive using `Release` configuration, then create .ipa from it.
-xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive PROVISIONING_PROFILE="b520996c-f5cd-4b95-97ca-1756c2357f76"
+xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive
 xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath "export"
