@@ -25,8 +25,9 @@ security set-key-partition-list -S apple-tool:,apple: -s -k "$CUSTOM_KEYCHAIN_PA
 
 # Copies mobile provision.
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+sudo chmod 777 curb.mobileprovision
 cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
 # Builds .xcarchive using `Release` configuration, then create .ipa from it.
-xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive PROVISIONING_PROFILE="a84cf2c7-5263-42df-a0a1-1e5ca309c90a" CODE_SIGN_IDENTITY="iPhone Developer"
+xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive PROVISIONING_PROFILE="b84cf2c7-5263-42df-a0a1-1e5ca309c90a" CODE_SIGN_IDENTITY="iPhone Developer"
 xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath "export"
