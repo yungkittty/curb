@@ -23,7 +23,7 @@ class GeneralLanguage extends Component {
       setAppModalScene
     } = this.props;
 
-    this.state = { key: language.substring(0, 2) || fallbackLng[0] };
+    this.state = { key: language.substring(0, 3) || fallbackLng[0] };
 
     setAppModalHeaderText({ text: t("general.menu.language.title") });
     setAppModalHeaderLeftButton({

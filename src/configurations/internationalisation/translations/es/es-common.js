@@ -1,0 +1,35 @@
+const esCommon = {
+  second: "{{count}} segundo",
+  second_plural: "{{count}} segundos",
+  minute: "{{count}} minuto",
+  minute_plural: "{{count}} minutos",
+  hour: "{{count}} hora",
+  hour_plural: "{{count}} horas",
+  day: "{{count}} dia",
+  day_plural: "{{count}} dias",
+  month: "{{count}} mes",
+  month_plural: "{{count}} meses",
+  year: "{{count}} año",
+  year_plural: "{{count}} años",
+  username: "Nombre de usuario",
+  email: "Correo electronico",
+  password: "Contraseña",
+  confirmPassword: "Confirmar contraseña",
+  next: "Siguiente",
+  finish: "Terminar",
+  cancel: "Cancelar",
+  edit: "Editar",
+  reset: "Reiniciar",
+  post: "Publicar",
+  selectImage: "Selecciona una imagen",
+  selectVideo: "Seleccione un video",
+  takePhoto: "Toma una foto",
+  recordVideo: "Grabar un video",
+  chooseLibrary: "De la galeria",
+  permissionDenied: "Permiso denegado",
+  askCameraText:
+    "Para tomar fotos con su cámara y elegir imágenes de su galería, debe permitir que la aplicación acceda a ellas",
+  authorize: "Autorizar"
+};
+
+export default esCommon;
