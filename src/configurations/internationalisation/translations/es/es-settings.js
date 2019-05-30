@@ -2,7 +2,7 @@ const esSettings = {
   settings: "Ajustes",
   general: {
     title: "General",
-    description: "Idioma  ·  Desconectar  ·  Borrar cuenta",
+    description: "Idioma  ·  Desconectar  ·  Eliminar cuenta",
     menu: {
       language: {
         title: "Idioma",
@@ -14,8 +14,8 @@ const esSettings = {
       },
       deleteAccount: {
         title: "Eliminar cuenta",
-        description: "Borrar permanentemente tu cuenta",
-        buttonTitle: "Borrar mi cuenta",
+        description: "Eliminar permanentemente tu cuenta",
+        buttonTitle: "Eliminar mi cuenta",
         contentTitle: "¿Estás seguro de que quieres eliminar tu cuenta?",
         contentDescription:
           "Nunca podrá recuperar su cuenta, y todo el contenido de sus datos se eliminará para siempre.\n\n" +
