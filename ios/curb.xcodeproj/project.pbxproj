@@ -1602,7 +1602,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jimmy DJABALI (F755AX7A93)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9478G9T3JY;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
@@ -1624,7 +1624,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.curb.eip;
 				PRODUCT_NAME = curb;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "2020 Curb";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
