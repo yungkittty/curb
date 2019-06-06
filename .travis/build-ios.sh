@@ -26,7 +26,6 @@ security set-key-partition-list -S apple-tool:,apple: -s -k "$CUSTOM_KEYCHAIN_PA
 # Copies mobile provision.
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 ls -la
-sudo chmod 777 curb.mobileprovision
 cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
 # Builds .xcarchive using `Release` configuration, then create .ipa from it.
