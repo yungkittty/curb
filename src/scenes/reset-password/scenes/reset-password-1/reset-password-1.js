@@ -92,8 +92,11 @@ class ResetPassword1 extends Component {
     return isLoading ? (
       <Loader />
     ) : (
-      <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("enterYourEmail")}</AppModalSceneTitle>
+      <AppModalSceneContainer isJustified>
+        <AppModalSceneTitle style={{ position: "absolute", top: 0 }}>
+          {/* eslint-disable-line */}
+          {t("enterYourEmail")}
+        </AppModalSceneTitle>
         <InputForm
           size="modal"
           id="email"

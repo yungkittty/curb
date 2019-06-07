@@ -87,9 +87,12 @@ class CreateMediaVideo extends Component {
       }
     } = this.props;
     return (
-      <AppModalSceneContainer verticalAlign>
+      <AppModalSceneContainer isJustified>
         {mediasErrorCode !== "" && (
-          <CreateMediaError>{t(`errorCode:contents.${mediasErrorCode}`)}</CreateMediaError>
+          <CreateMediaError>
+            {/* eslint-disable-line */}
+            {t(`errorCode:contents.${mediasErrorCode}`)}
+          </CreateMediaError>
         )}
         <CreateMediaInputFile
           editMode={loadingProgress === undefined}

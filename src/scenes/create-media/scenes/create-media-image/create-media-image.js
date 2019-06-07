@@ -94,7 +94,7 @@ class CreateMediaImage extends Component {
       }
     } = this.props;
     return (
-      <AppModalSceneContainer verticalAlign>
+      <AppModalSceneContainer isJustified>
         {mediasErrorCode !== "" && (
           <CreateMediaError>
             {/* eslint-disable-line */}

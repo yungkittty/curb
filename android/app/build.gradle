@@ -107,7 +107,6 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName System.getenv("CURB_VERSION")
-        multiDexEnabled true 
         
         // react-native-camera
         missingDimensionStrategy 'react-native-camera', 'general'
