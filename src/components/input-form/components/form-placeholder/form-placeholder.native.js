@@ -19,11 +19,7 @@ class FormPlaceholder extends React.Component {
   componentDidUpdate(prevProps) {
     const { upper } = this.props;
     if (upper === prevProps.upper) return;
-    const {
-      placeholderScale,
-      placeholderTranslateY,
-      placeholderTranslateX
-    } = this.state;
+    const { placeholderScale, placeholderTranslateY, placeholderTranslateX } = this.state;
     Animated.parallel([
       Animated.timing(placeholderScale, {
         toValue: upper ? 0.75 : 1,
@@ -48,12 +44,8 @@ class FormPlaceholder extends React.Component {
 
   render() {
     const { AnimatedWrappedComponent } = this;
-    const {
-      placeholderScale,
-      placeholderTranslateY,
-      placeholderTranslateX
-    } = this.state;
-    const { theme } = this.props;
+    const { placeholderScale, placeholderTranslateY, placeholderTranslateX } = this.state;
+    const { theme, error } = this.props;
     return (
       <AnimatedWrappedComponent
         {...this.props}
@@ -61,7 +53,7 @@ class FormPlaceholder extends React.Component {
         style={{
           position: "absolute",
           width: "100%",
-          color: theme.secondaryColor,
+          color: error ? theme.errorColor : theme.secondaryColor,
           transform: [
             { scale: placeholderScale },
             { translateY: placeholderTranslateY },
@@ -76,7 +68,8 @@ class FormPlaceholder extends React.Component {
 FormPlaceholder.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
-  upper: PropTypes.bool.isRequired
+  upper: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired
 };
 
 export default withTheme(FormPlaceholder);

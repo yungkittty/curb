@@ -19,7 +19,7 @@ class InputForm extends Component {
     return (
       <FormContainer style={containerStyle} size={size}>
         {placeholder && (
-          <FormPlaceholder weight={300} upper={value !== "" || focused}>
+          <FormPlaceholder weight={300} upper={value !== "" || focused} error={error !== undefined}>
             {placeholder}
           </FormPlaceholder>
         )}
@@ -29,7 +29,7 @@ class InputForm extends Component {
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
           value={value}
-          error={error}
+          error={error !== undefined}
         />
         {error && (
           <FormError type="h5" weight={300}>

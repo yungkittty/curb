@@ -6,11 +6,11 @@ const FormPlaceholder = styled(Text).attrs(({ upper }) => ({
 }))`
   position: absolute;
   pointer-events: none;
-  transition: 200ms ease all;
+  transition: font-size 200ms ease 0s, top 200ms ease 0s, left 200ms ease 0s;
   width: 100%;
   top: ${({ upper }) => (upper ? "-12" : "18")}px;
   left: ${({ upper }) => (upper ? "4" : "18")}px;
-  color: ${({ theme }) => theme.secondaryColor};
+  color: ${({ theme, error }) => (error ? theme.errorColor : theme.secondaryColor)};
 `;
 
 export default FormPlaceholder;
