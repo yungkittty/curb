@@ -5,13 +5,12 @@ import ButtonFloat from "../../../button-float";
 import Icon from "../../../icon";
 import SelectorInputImage from "./components/selector-input-image";
 import SelectorInputVideo from "./components/selector-input-video";
-import { platformBools } from "../../../../configurations/platform";
 
 const FileSelector = ({ type, onSelect, theme }) => (
   <ButtonFloat
     // eslint-disable-line
     diameter="extra-small"
-    style={{ bottom: platformBools.isReact ? -20 : -15 }}
+    style={{ bottom: -20 }}
   >
     <React.Fragment>
       <Icon

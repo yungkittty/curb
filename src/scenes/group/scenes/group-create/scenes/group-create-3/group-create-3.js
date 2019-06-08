@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
-import GroupCreateError from "../../components/group-create-error";
+import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate2 from "../group-create-2"; // eslint-disable-line
@@ -91,10 +91,10 @@ class GroupCreate3 extends Component {
               {/* eslint-disable-line */}
               {t("modules")}
             </AppModalSceneTitle>
-            <GroupCreateError>
+            <AppModalSceneError>
               {/* eslint-disable-line */}
               {error && t(`validation:modules.${error}`)}
-            </GroupCreateError>
+            </AppModalSceneError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (

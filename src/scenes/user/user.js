@@ -62,9 +62,9 @@ class User extends Component {
   }
 
   submit() {
-    const { userId, patchUser } = this.props;
+    const { userId, userName, patchUser } = this.props;
     const { username, avatar } = this.state;
-    if (username.value || avatar.value.file) {
+    if (username.value !== userName || avatar.value.file) {
       patchUser({
         id: userId,
         avatar: avatar.value,

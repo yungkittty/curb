@@ -8,10 +8,10 @@ const frAppAlert = {
     UNKNOWN: "Une erreur est survenue en rejoignant ce groupe"
   },
   createMedia: {
-    imagePosted: "Votre image été postée",
-    locationPosted: "Votre localisation été postée",
-    textPosted: "Votre texte été posté",
-    videoPosted: "Votre video été postée"
+    imagePosted: "Votre image a été postée",
+    locationPosted: "Votre localisation a été postée",
+    textPosted: "Votre texte a été posté",
+    videoPosted: "Votre video a été postée"
   },
   accountCreated: "Votre compte a été créé",
   groupCreated: "Votre groupe a été créé",

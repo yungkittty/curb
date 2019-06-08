@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
+import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
-import GroupCreateError from "../../components/group-create-error";
+import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
-import Loader from "../../../../../../components/loader";
 import GroupCreate3 from "../group-create-3"; // eslint-disable-line
 import groupCreate4ThemesData from "./group-create-4-themes-data";
 import withAppModal from "../../../../../../hocs/with-app-modal";
@@ -122,10 +122,10 @@ class GroupCreate4 extends Component {
               {/* eslint-disable-line */}
               {t("theme")}
             </AppModalSceneTitle>
-            <GroupCreateError>
+            <AppModalSceneError>
               {/* eslint-disable-line */}
               {error && t(`validation:theme.${error}`)}
-            </GroupCreateError>
+            </AppModalSceneError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
