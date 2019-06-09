@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Container from "../container";
 import CircleTextContainer from "./components/circle-text-container";
 import Circle from "../circle";
+import CircleTextPlaceholder from "./components/circle-text-placeholder";
 import CircleTextText from "./components/circle-text-text";
 import { platformBools } from "../../configurations/platform";
 
@@ -22,10 +23,14 @@ const ListItemCircleText = ({
           size="large"
           style={{ marginBottom: platformBools.isReact ? 20 : 10 }}
         />
-        <CircleTextText>
-          {/* eslint-disable-line */}
-          {text}
-        </CircleTextText>
+        {!text ? (
+          <CircleTextPlaceholder />
+        ) : (
+          <CircleTextText>
+            {/* eslint-disable-line */}
+            {text}
+          </CircleTextText>
+        )}
       </React.Fragment>
     </CircleTextContainer>
   </Container>
@@ -33,13 +38,14 @@ const ListItemCircleText = ({
 
 ListItemCircleText.defaultProps = {
   as: undefined,
-  onClick: undefined
+  onClick: undefined,
+  text: undefined
 };
 
 ListItemCircleText.propTypes = {
   as: PropTypes.func,
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
-  text: PropTypes.string.isRequired
+  text: PropTypes.string
 };
 
 export default ListItemCircleText;
