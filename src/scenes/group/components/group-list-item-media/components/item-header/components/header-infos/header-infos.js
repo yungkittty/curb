@@ -33,7 +33,7 @@ const HeaderInfos = ({
   })();
   return (
     <InfosContainer>
-      {userName ? (
+      {!userName ? (
         <InfosTitlePlaceholder />
       ) : (
         <InfosTitle weight={700}>
@@ -41,7 +41,7 @@ const HeaderInfos = ({
           {userName}
         </InfosTitle>
       )}
-      {mediaDateCreation ? (
+      {!mediaDateCreation ? (
         <InfosSubtitlePlaceholder />
       ) : (
         <InfosSubtitle type="h5">
