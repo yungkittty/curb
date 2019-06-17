@@ -70,7 +70,7 @@ WEBHOOK_DATA='{
       },
       {
         "name": "Preview",
-        "value": "'"[Preview]($DEPLOY_PREVIEW_URL)"'",
+        "value": "'"[Preview URL]($DEPLOY_PREVIEW_URL)"'",
         "inline": true
       },
     ],
