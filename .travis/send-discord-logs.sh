@@ -60,7 +60,7 @@ WEBHOOK_DATA='{
     "fields": [
       {
         "name": "Preview",
-        "value": "'"[Preview URL]($DEPLOY_PREVIEW_URL)"'",
+        "value": "'"[Preview URL]($3)"'",
         "inline": true
       },
       {
