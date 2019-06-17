@@ -64,8 +64,8 @@ WEBHOOK_DATA='{
         "inline": true
       },
       {
-        "name": "Branch",
-        "value": "'"[\`$CURB_VERSION\`](https://github.com/$TRAVIS_REPO_SLUG/tree/$CURB_VERSION)"'",
+        "name": "Pull Request",
+        "value": "'"[\`$CURB_VERSION\`]($URL)"'",
         "inline": true
       },
       {
