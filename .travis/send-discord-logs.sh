@@ -65,7 +65,7 @@ WEBHOOK_DATA='{
       },
       {
         "name": "Pull Request",
-        "value": "'"[\`$CURB_VERSION\`]($URL)"'",
+        "value": "'"[\`$TRAVIS_PULL_REQUEST_BRANCH\`]($URL)"'",
         "inline": true
       }
     ],
