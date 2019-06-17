@@ -20,8 +20,6 @@ jobs:
         - npm run web-bundle:${CURB_BUILD} || travis_terminate 1
       script:
         - bash .travis/deploy-web.sh || travis_terminate 1
-      after_success:
-        - bash .travis/send-discord-logs.sh success $WEBHOOK_URL
       after_failure:
         - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
     - stage: Android

@@ -59,18 +59,13 @@ WEBHOOK_DATA='{
     "description": "'"${COMMIT_MESSAGE//$'\n'/ }"\\n\\n"$CREDITS"'",
     "fields": [
       {
-        "name": "Commit",
-        "value": "'"[\`${TRAVIS_COMMIT:0:7}\`](https://github.com/$TRAVIS_REPO_SLUG/commit/$TRAVIS_COMMIT)"'",
+        "name": "Preview",
+        "value": "'"[Preview URL]($DEPLOY_PREVIEW_URL)"'",
         "inline": true
       },
       {
         "name": "Pull Request",
         "value": "'"[\`$CURB_VERSION\`]($URL)"'",
-        "inline": true
-      },
-      {
-        "name": "Preview",
-        "value": "'"[Preview URL]($DEPLOY_PREVIEW_URL)"'",
         "inline": true
       }
     ],
