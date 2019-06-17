@@ -72,7 +72,7 @@ WEBHOOK_DATA='{
         "name": "Preview",
         "value": "'"[Preview URL]($DEPLOY_PREVIEW_URL)"'",
         "inline": true
-      },
+      }
     ],
     "timestamp": "'"$TIMESTAMP"'"
   } ]
