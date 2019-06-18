@@ -8,20 +8,7 @@ import currentUserSelectors from "../../datas/current-user/current-user-selector
 
 class DiscoveryContainer extends React.Component {
   componentDidMount() {
-    const {
-      getDiscovery,
-      location: { search }
-    } = this.props;
-    if (search) {
-      const validateEmail = "?validateEmail=";
-      const index = search.lastIndexOf(validateEmail);
-      if (index !== -1) {
-        const token = search.substring(index + validateEmail.length);
-        console.log(token);
-      }
-
-      // Call validate email
-    }
+    const { getDiscovery } = this.props;
     getDiscovery({ count: 25 });
   }
 
@@ -42,10 +29,7 @@ const mapDispatchToProps = dispatch => ({
   showAppModal: payload => dispatch(appModalActions.showAppModal(payload))
 });
 
-DiscoveryContainer.propTypes = {
-  getDiscovery: PropTypes.func.isRequired,
-  location: PropTypes.shape({ search: PropTypes.string.isRequired }).isRequired
-};
+DiscoveryContainer.propTypes = { getDiscovery: PropTypes.func.isRequired };
 
 export default connect(
   mapStateToProps,
