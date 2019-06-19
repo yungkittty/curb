@@ -5,6 +5,8 @@ import { windowDimensions } from "../../../../configurations/window";
 
 const ScrollContainerContent = styled(Container)`
   display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
   ${props => (!props.horizontal ? "max-height: 100%;" : "")}
   ${props => (props.horizontal ? "max-width: 100%;" : "")}

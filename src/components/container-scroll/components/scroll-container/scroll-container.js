@@ -4,7 +4,8 @@ import Container from "../../../container";
 
 const ScrollContainer = styled(Container)`
   display: flex;
-  flex: 1;
+  flex-grow: 1;
+  flew-shrink: 1;
   flex-direction: ${props => (props.horizontal ? "row" : "column")};
   ${props => (!props.horizontal ? "max-height: 100%;" : "")}
   ${props => (props.horizontal ? "max-width: 100%;" : "")}
