@@ -58,6 +58,11 @@ WEBHOOK_DATA='{
     "url": "'"$URL"'",
     "fields": [
       {
+        "name": "Travis Job",
+        "value": "'"[\`$TRAVIS_JOB_NUMBER\`]($TRAVIS_BUILD_WEB_URL)"'",
+        "inline": true
+      },
+      {
         "name": "Pull Request",
         "value": "'"[\`$TRAVIS_PULL_REQUEST_BRANCH\`]($URL)"'",
         "inline": true

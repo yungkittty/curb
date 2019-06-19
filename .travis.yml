@@ -11,14 +11,6 @@ before_install:
   - nvm install 8.3.0
   - nvm alias default 8.3.0
   - npm install
-after_success:
-  - bash .travis/send-discord-logs.sh success $WEBHOOK_URL
-after_failure:
-  - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
-stages:
-  - Web
-  - Android
-  - iOS
 jobs:
   include:
     - stage: Web
@@ -28,6 +20,8 @@ jobs:
         - npm run web-bundle:${CURB_BUILD} || travis_terminate 1
       script:
         - bash .travis/deploy-web.sh || travis_terminate 1
+      after_failure:
+        - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
     - stage: Android
       language: android
       jdk: oraclejdk8
@@ -53,6 +47,8 @@ jobs:
         - cd android
         - bash ../.travis/build-android.sh || travis_terminate 1
         - bash ../.travis/deploy-android.sh || travis_terminate 1
+      after_failure:
+        - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
     - stage: iOS
       os: osx
       osx_image: xcode9.4
@@ -67,3 +63,7 @@ jobs:
         - cd ios
         - bash ../.travis/build-ios.sh || travis_terminate 1
         - bash ../.travis/deploy-ios.sh || travis_terminate 1
+      after_success:
+        - bash .travis/send-discord-logs.sh success $WEBHOOK_URL
+      after_failure:
+        - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
