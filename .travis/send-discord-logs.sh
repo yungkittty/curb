@@ -58,11 +58,6 @@ WEBHOOK_DATA='{
     "url": "'"$URL"'",
     "fields": [
       {
-        "name": "Preview",
-        "value": "'"[Preview URL]($3)"'",
-        "inline": true
-      },
-      {
         "name": "Pull Request",
         "value": "'"[\`$TRAVIS_PULL_REQUEST_BRANCH\`]($URL)"'",
         "inline": true
