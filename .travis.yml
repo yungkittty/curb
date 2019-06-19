@@ -15,6 +15,10 @@ after_success:
   - bash .travis/send-discord-logs.sh success $WEBHOOK_URL
 after_failure:
   - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
+stages:
+  - Web
+  - Android
+  - iOS
 jobs:
   include:
     - stage: Web
