@@ -14,7 +14,11 @@ class MediaVideo extends React.Component {
   }
 
   onLoad(event) {
-    const { width, height } = event.naturalSize;
+    const {
+      // eslint-disable-line
+      width,
+      height
+    } = event.naturalSize;
     const {
       // eslint-disable-line
       width: videoWidth,
