@@ -9,8 +9,8 @@ class MediaImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageWidth: undefined,
-      imageHeight: undefined
+      imageWidth: 0,
+      imageHeight: 0
     };
   }
 

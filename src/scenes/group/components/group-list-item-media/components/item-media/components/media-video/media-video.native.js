@@ -8,8 +8,8 @@ class MediaVideo extends React.Component {
     super(props);
     this.onLoad = this.onLoad.bind(this);
     this.state = {
-      videoWidth: undefined,
-      videoHeight: undefined
+      videoWidth: 0,
+      videoHeight: 0
     };
   }
 
