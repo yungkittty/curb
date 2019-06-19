@@ -85,7 +85,7 @@ Map.defaultProps = {
 
 Map.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOfType(PropTypes.object, PropTypes.array),
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   forwardedRef: PropTypes.object, // eslint-disable-line
   latitude: PropTypes.number.isRequired,
   longitude: PropTypes.number.isRequired

@@ -10,6 +10,7 @@ const HeaderContainer = styled(Container)`
   width: 100%;
   min-width: 100%;
   height: 120px;
+  min-height: 120px;
   padding-top: 20px;
   margin-bottom: 40px;
 `;

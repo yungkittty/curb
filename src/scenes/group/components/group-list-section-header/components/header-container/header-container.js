@@ -8,7 +8,9 @@ const HeaderContainer = styled(Container)`
   justify-content: space-between;
   align-items: center;
   width: 500px;
+  min-width: 500px;
   height: 160px;
+  min-height: 160px;
   padding-top: 20px;
   margin-bottom: 80px;
 `;

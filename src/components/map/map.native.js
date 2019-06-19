@@ -77,7 +77,7 @@ Map.defaultProps = {
 };
 
 Map.propTypes = {
-  style: PropTypes.oneOfType(PropTypes.object, PropTypes.array),
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   latitude: PropTypes.number.isRequired,
   longitude: PropTypes.number.isRequired
 };
