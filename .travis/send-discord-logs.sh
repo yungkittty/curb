@@ -59,7 +59,7 @@ WEBHOOK_DATA='{
     "fields": [
       {
         "name": "Travis Job",
-        "value": "'"[\`$TRAVIS_JOB_NUMBER\`]($TRAVIS_BUILD_WEB_URL)"'",
+        "value": "'"[\`$TRAVIS_JOB_ID\`]($TRAVIS_BUILD_WEB_URL)"'",
         "inline": true
       },
       {
