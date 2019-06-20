@@ -4,9 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:www.curb-app.com</string>
 		<string>applinks:curb-app.com</string>
-		<string>applinks:https://curb-app.com</string>
 	</array>
 </dict>
 </plist>
