@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "curb",
-      "package_name": "com.curb",
+      "package_name": "com.curb.eip",
       "sha256_cert_fingerprints": [
         "59:C3:9C:73:0B:46:FC:64:FD:45:9E:7A:EA:95:4B:15:98:B8:06:EB:1C:77:A1:E2:CD:D5:01:6B:BD:C1:D5:1E"
       ]
