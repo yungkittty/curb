@@ -59,12 +59,12 @@ WEBHOOK_DATA='{
     "fields": [
       {
         "name": "Travis Job",
-        "value": "'"[#\`$TRAVIS_BUILD_NUMBER\`]($TRAVIS_BUILD_WEB_URL)"'",
+        "value": "'"[#$TRAVIS_BUILD_NUMBER]($TRAVIS_BUILD_WEB_URL)"'",
         "inline": true
       },
       {
         "name": "Pull Request",
-        "value": "'"[\`$TRAVIS_PULL_REQUEST_BRANCH\`]($URL)"'",
+        "value": "'"[$TRAVIS_PULL_REQUEST_BRANCH]($URL)"'",
         "inline": true
       }
     ],
