@@ -4,7 +4,7 @@
     "details": [
       {
         "appID": "9478G9T3JY.com.curb.eip",
-        "paths": ["/*"]
+        "paths": ["*"]
       }
     ]
   }
