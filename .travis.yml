@@ -47,6 +47,7 @@ jobs:
         - cd android
         - bash ../.travis/build-android.sh || travis_terminate 1
         - bash ../.travis/deploy-android.sh || travis_terminate 1
+        - cd ..
       after_failure:
         - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
     - stage: iOS
@@ -63,6 +64,7 @@ jobs:
         - cd ios
         - bash ../.travis/build-ios.sh || travis_terminate 1
         - bash ../.travis/deploy-ios.sh || travis_terminate 1
+        - cd ..
       after_success:
         - bash .travis/send-discord-logs.sh success $WEBHOOK_URL
       after_failure:
