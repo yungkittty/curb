@@ -23,6 +23,13 @@ const frSettings = {
           "Si vous acceptez cela, vous pouvez cliquer sur le bouton ci-dessous :"
       }
     }
+  },
+  feedback: {
+    title: "Retour utilisateur",
+    contentTitle: "Merci de nous aider à construire une meilleure application",
+    buttonTitle: "Envoyé",
+    description: "Donnez nous votre avis sur Curb",
+    placeholder: "Que devrions nous améliorer ?"
   }
 };
 

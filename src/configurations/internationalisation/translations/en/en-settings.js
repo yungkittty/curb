@@ -23,6 +23,13 @@ const enSettings = {
           "If you agree with that, you can confirm this action by clicking the button below:"
       }
     }
+  },
+  feedback: {
+    title: "Feedback",
+    contentTitle: "Thanks to help us to build a better app!",
+    buttonTitle: "Send",
+    description: "Give us your feedback about curb",
+    placeholder: "What should we improve"
   }
 };
 
