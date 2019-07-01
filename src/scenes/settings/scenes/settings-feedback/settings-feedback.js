@@ -56,8 +56,6 @@ class SettingsFeedback extends Component {
   submit() {
     const {
       // eslint-disable-line
-      currentUserId: userId,
-      text,
       disableAppModalButtons
     } = this.props;
     if (!this.checkForm()) return;
