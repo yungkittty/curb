@@ -29,22 +29,24 @@ const withGroup = WrappedComponent => {
 
   const mapStateToProps = (state, ownProps) => {
     const { pathname } = ownProps.location;
-    const groupId =
-      ownProps.groupId || ((matchPath(pathname, { path: "/groups/:id" }) || {}).params || {}).id || "";
+    const groupParamsId = ((matchPath(pathname, { path: "/groups/:id" }) || {}).params || {}).id;
+    const groupId = ownProps.groupId || groupParamsId;
+    const group = groupsSelectors.getGroupById(state, groupId);
+    if (!group) return { groupId };
     const {
-      isFetching: isFetchingGroup = false,
-      creatorId: groupCreatorId = "",
-      dateCreation: groupDateCreation = "",
-      name: groupName = "",
-      avatarUrl: groupAvatar = "",
-      status: groupStatus = "",
-      theme: groupTheme = "",
-      inviteToken: groupInviteToken = "",
-      users: groupUsersId = [],
-      mediaTypes: groupMediaTypes = [],
-      medias: groupMediasId = [],
-      errorCode: groupErrorCode = ""
-    } = groupsSelectors.getGroupById(state, groupId) || {};
+      isFetching: isFetchingGroup,
+      creatorId: groupCreatorId,
+      dateCreation: groupDateCreation,
+      name: groupName,
+      avatarUrl: groupAvatar,
+      status: groupStatus,
+      theme: groupTheme,
+      inviteToken: groupInviteToken,
+      users: groupUsersId,
+      mediaTypes: groupMediaTypes,
+      medias: groupMediasId,
+      errorCode: groupErrorCode
+    } = group;
     return {
       isFetchingGroup,
       groupId,
@@ -66,9 +68,37 @@ const withGroup = WrappedComponent => {
     getGroup: payload => dispatch(groupsActions.getGroupRequest(payload))
   });
 
+  WithGroup.defaultProps = {
+    isFetchingGroup: false,
+    groupId: "",
+    groupCreatorId: "",
+    groupDateCreation: "",
+    groupName: "",
+    groupAvatar: "",
+    groupStatus: "",
+    groupTheme: "",
+    groupInviteToken: "",
+    groupUsersId: [],
+    groupMediaTypes: [],
+    groupMediasId: [],
+    groupErrorCode: ""
+  };
+
   WithGroup.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
-    groupId: PropTypes.string.isRequired,
+    isFetchingGroup: PropTypes.bool,
+    groupId: PropTypes.string,
+    groupCreatorId: PropTypes.string,
+    groupDateCreation: PropTypes.string,
+    groupName: PropTypes.string,
+    groupAvatar: PropTypes.string,
+    groupStatus: PropTypes.string,
+    groupTheme: PropTypes.string,
+    groupInviteToken: PropTypes.string,
+    groupUsersId: PropTypes.array, // eslint-disable-line
+    groupMediaTypes: PropTypes.array, // eslint-disable-line
+    groupMediasId: PropTypes.array, // eslint-disable-line
+    groupErrorCode: PropTypes.string,
     getGroup: PropTypes.func.isRequired
   };
 

@@ -27,15 +27,17 @@ const withMedia = WrappedComponent => {
 
   const mapStateToProps = (state, ownProps) => {
     const mediaId = ownProps.mediaId; // eslint-disable-line
+    const media = mediasSelectors.getMediaById(state, mediaId);
+    if (!media) return { mediaId };
     const {
-      isFetching: isFetchingMedia = false,
-      creatorId: mediaCreatorId = "",
-      dateCreation: mediaDateCreation = "",
-      type: mediaType = "",
-      data: mediaData = "",
-      groupId: mediaGroupId = "",
-      errorCode: mediaErrorCode = ""
-    } = mediasSelectors.getMediaById(state, mediaId) || {};
+      isFetching: isFetchingMedia,
+      creatorId: mediaCreatorId,
+      dateCreation: mediaDateCreation,
+      type: mediaType,
+      data: mediaData,
+      groupId: mediaGroupId,
+      errorCode: mediaErrorCode
+    } = media;
     return {
       isFetchingMedia,
       mediaId,
@@ -52,8 +54,26 @@ const withMedia = WrappedComponent => {
     getMedia: payload => dispatch(mediasActions.getMediaRequest(payload))
   });
 
+  WithMedia.defaultProps = {
+    isFetchingMedia: false,
+    mediaId: "",
+    mediaCreatorId: "",
+    mediaDateCreation: "",
+    mediaType: "",
+    mediaData: "",
+    mediaGroupId: "",
+    mediaErrorCode: ""
+  };
+
   WithMedia.propTypes = {
-    mediaId: PropTypes.string.isRequired,
+    isFetchingMedia: PropTypes.bool,
+    mediaId: PropTypes.string,
+    mediaCreatorId: PropTypes.string,
+    mediaDateCreation: PropTypes.string,
+    mediaType: PropTypes.string,
+    mediaData: PropTypes.string,
+    mediaGroupId: PropTypes.string,
+    mediaErrorCode: PropTypes.string,
     getMedia: PropTypes.func.isRequired
   };
 
