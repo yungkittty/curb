@@ -49,11 +49,6 @@ const byId = (state = {}, action) => {
           errorCode: ""
         }
       };
-    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
-      return {
-        ...state,
-        [action.payload.id]: undefined
-      };
     case groupsActionsTypes.GET_GROUP_FAILURE:
       return {
         ...state,
@@ -62,6 +57,11 @@ const byId = (state = {}, action) => {
           isFetching: false,
           errorCode: action.payload.errorCode
         }
+      };
+    case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: undefined
       };
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
       return {
@@ -92,7 +92,7 @@ const byId = (state = {}, action) => {
           medias: [
             // eslint-disable-line
             action.payload.mediasId,
-            ...state[action.payload.id].medias,
+            ...state[action.payload.id].medias
           ]
         }
       };

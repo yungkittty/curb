@@ -4,34 +4,39 @@ import HeaderContainer from "./components/header-container";
 import Button from "../../../../../../components/button";
 import ImageUser from "../../../../../../components/image-user";
 import HeaderInfos from "./components/header-infos";
+import withUser from "../../../../../../hocs/with-user";
 
 const ItemHeader = ({
   // eslint-disable-line
-  mediaCreatorId,
+  userId,
+  userName,
   mediaDateCreation,
   theme
 }) => (
   <HeaderContainer>
     <Button
       // eslint-disable-line
-      onClick={`/users/${mediaCreatorId}`}
+      onClick={`/users/${userId}`}
       component={ImageUser}
-      userId={mediaCreatorId}
+      shouldFetch={false}
+      userId={userId}
       size="small"
       placeholderColor={theme.primaryVariantColor}
     />
     <HeaderInfos
       // eslint-disable-line
-      userId={mediaCreatorId}
+      userId={userId}
+      userName={userName}
       mediaDateCreation={mediaDateCreation}
     />
   </HeaderContainer>
 );
 
 ItemHeader.propTypes = {
-  mediaCreatorId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   mediaDateCreation: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default ItemHeader;
+export default withUser(ItemHeader);

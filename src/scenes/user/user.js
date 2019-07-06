@@ -126,6 +126,7 @@ class User extends Component {
             id="avatar"
             size="extra-extra-large"
             placeholderColor={theme.primaryVariantColor}
+            shouldFetch={false}
             userId={userId}
             editMode={editMode}
             data={avatarState.value.data}
@@ -169,7 +170,6 @@ User.propTypes = {
   userName: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,
   patchUser: PropTypes.func.isRequired,
-  // postMediaAvatarUser: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };

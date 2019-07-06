@@ -38,6 +38,7 @@ const AppNavigation = ({
         ) : (
           <NavigationButton
             component={ImageUser}
+            shouldFetch={false}
             userId={currentUserId}
             size="small"
             placeholderColor={secondaryVariantColor}

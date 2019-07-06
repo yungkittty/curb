@@ -40,6 +40,7 @@ const GroupListHeader = ({
       </React.Fragment>
     ) : null}
     <ImageGroup
+      shouldFetch={false}
       groupId={groupId}
       size="extra-extra-large"
       placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}

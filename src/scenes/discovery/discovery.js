@@ -13,7 +13,6 @@ import ButtonFloat from "../../components/button-float";
 import SignIn from "../sign-in";
 import GroupCreate from "../group/scenes/group-create";
 import withAppModal from "../../hocs/with-app-modal";
-import withCurrentUser from "../../hocs/with-current-user";
 
 class Discovery extends React.Component {
   constructor(props) {
@@ -111,6 +110,5 @@ Discovery.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withCurrentUser,
   withTranslation("discovery")
 ])(Discovery);

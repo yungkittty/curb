@@ -16,7 +16,7 @@ const GroupListSectionMedia = ({
   <ItemContainer>
     <ItemHeader
       // eslint-disable-line
-      mediaCreatorId={mediaCreatorId}
+      userId={mediaCreatorId}
       mediaDateCreation={mediaDateCreation}
       theme={theme}
     />

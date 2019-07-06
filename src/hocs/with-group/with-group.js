@@ -8,15 +8,27 @@ import { groupsActions, groupsSelectors } from "../../datas/groups";
 const withGroup = WrappedComponent => {
   class WithGroup extends React.Component {
     componentDidMount() {
-      const { groupId, getGroup } = this.props;
-      if (groupId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingGroup,
+        groupId,
+        getGroup
+      } = this.props;
+      if (shouldFetch && !isFetchingGroup && groupId) {
         getGroup({ id: groupId });
       }
     }
 
     componentDidUpdate(prevProps) {
-      const { groupId, getGroup } = this.props;
-      if (groupId && groupId !== prevProps.groupId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingGroup,
+        groupId,
+        getGroup
+      } = this.props;
+      if (shouldFetch && !isFetchingGroup && groupId && groupId !== prevProps.groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -69,6 +81,7 @@ const withGroup = WrappedComponent => {
   });
 
   WithGroup.defaultProps = {
+    shouldFetch: true,
     isFetchingGroup: false,
     groupId: "",
     groupCreatorId: "",
@@ -86,6 +99,7 @@ const withGroup = WrappedComponent => {
 
   WithGroup.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
+    shouldFetch: PropTypes.bool,
     isFetchingGroup: PropTypes.bool,
     groupId: PropTypes.string,
     groupCreatorId: PropTypes.string,

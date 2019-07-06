@@ -8,15 +8,27 @@ import { usersActions, usersSelectors } from "../../datas/users";
 const withUser = WrappedComponent => {
   class WithUser extends React.Component {
     componentDidMount() {
-      const { userId, getUser } = this.props;
-      if (userId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingUser,
+        userId,
+        getUser
+      } = this.props;
+      if (shouldFetch && !isFetchingUser && userId) {
         getUser({ id: userId });
       }
     }
 
     componentDidUpdate(prevProps) {
-      const { userId, getUser } = this.props;
-      if (userId && userId !== prevProps.userId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingUser,
+        userId,
+        getUser
+      } = this.props;
+      if (shouldFetch && !isFetchingUser && userId && userId !== prevProps.userId) {
         getUser({ id: userId });
       }
     }
@@ -57,6 +69,7 @@ const withUser = WrappedComponent => {
   });
 
   WithUser.defaultProps = {
+    shouldFetch: true,
     isFetchingUser: false,
     userId: "",
     userDateCreation: "",
@@ -68,6 +81,7 @@ const withUser = WrappedComponent => {
 
   WithUser.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
+    shouldFetch: PropTypes.bool,
     isFetchingUser: PropTypes.bool,
     userId: PropTypes.string,
     userDateCreation: PropTypes.string,
