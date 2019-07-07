@@ -3,7 +3,7 @@ const enGroupSettings = {
   general: { title: "General", description: "Icon  ·  Name" },
   discoverability: {
     title: "Discoverability",
-    description: "Edit the discoverability"
+    description: "Edit the discoverability (public or private)"
   },
   modules: {
     title: "Modules",

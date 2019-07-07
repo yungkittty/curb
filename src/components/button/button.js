@@ -8,6 +8,8 @@ const Button = ({
   className,
   style,
   onClick,
+  hoverColor,
+  disabled,
   children,
   contentStyle,
   component,
@@ -20,6 +22,8 @@ const Button = ({
     className={className}
     style={style}
     onClick={onClick}
+    hoverColor={hoverColor}
+    disabled={disabled}
   >
     {component ? (
       <Component {...others} style={contentStyle}>
@@ -36,6 +40,8 @@ Button.defaultProps = {
   className: undefined,
   style: undefined,
   onClick: undefined,
+  hoverColor: undefined,
+  disabled: undefined,
   children: undefined,
   contentStyle: undefined,
   component: undefined
@@ -46,6 +52,8 @@ Button.propTypes = {
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
+  hoverColor: PropTypes.string,
+  disabled: PropTypes.bool,
   children: PropTypes.node,
   contentStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])

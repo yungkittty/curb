@@ -6,7 +6,7 @@ const OptionContainer = styled(Button)`
   flex: 1;
   flex-direction: column;
   padding: 0 22px;
-  background: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
+  background-color: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
 `;
 
 export default OptionContainer;
