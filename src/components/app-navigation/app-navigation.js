@@ -8,7 +8,7 @@ import Icon from "../icon";
 import ImageUser from "../image-user";
 import ImageGroup from "../image-group";
 import NavigationRule from "./components/navigation-rule";
-import ListFlat from "../list-flat";
+import NavigationList from "./components/navigation-list";
 import NavigationListFooter from "./components/navigation-list-footer";
 import SignIn from "../../scenes/sign-in";
 import Settings from "../../scenes/settings";
@@ -47,7 +47,7 @@ const AppNavigation = ({
           />
         )}
         <NavigationRule />
-        <ListFlat
+        <NavigationList
           data={currentUserGroupsId}
           keyExtractor={userGroupId => userGroupId}
           renderItem={({ item: userGroupId }) => (
