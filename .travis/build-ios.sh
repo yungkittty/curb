@@ -4,9 +4,9 @@
 set -e
 
 # Decodes certificates and mobile provision.
-openssl aes-256-cbc -k "$ENCRYPT_PASSWORD_NEW" -in curb-developer.cer.enc -d -a -out curb-developer.cer
-openssl aes-256-cbc -k "$ENCRYPT_PASSWORD_NEW" -in curb-development-key.cer.p12.enc -d -a -out curb-development-key.cer.p12
-openssl aes-256-cbc -k "$ENCRYPT_PASSWORD_NEW" -in curb.mobileprovision.enc -d -a -out curb.mobileprovision
+openssl aes-256-cbc -k "$CURB_IOS_ENCRYPT_PASSWORD" -in curb-developer.cer.enc -d -a -out curb-developer.cer
+openssl aes-256-cbc -k "$CURB_IOS_ENCRYPT_PASSWORD" -in curb-development-key.cer.p12.enc -d -a -out curb-development-key.cer.p12
+openssl aes-256-cbc -k "$CURB_IOS_ENCRYPT_PASSWORD" -in curb.mobileprovision.enc -d -a -out curb.mobileprovision
 
 # Creates keychain to store certificates.
 security create-keychain -p "$CUSTOM_KEYCHAIN_PASSWORD" ios-build.keychain
@@ -17,7 +17,7 @@ security set-keychain-settings -t 3600 -l ~/Library/Keychains/ios-build.keychain
 # Imports certificates to keychain.
 security import curb-apple.cer -k ios-build.keychain -A
 security import curb-developer.cer -k ios-build.keychain -A
-security import curb-development-key.cer.p12 -k ios-build.keychain -P "$DEV_KEY_PASSWORD_NEW" -A
+security import curb-development-key.cer.p12 -k ios-build.keychain -P "$DEV_KEY_PASSWORD" -A
 
 # Allows codesigning.
 # https://stackoverflow.com/a/40039594

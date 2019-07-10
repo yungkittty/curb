@@ -116,9 +116,9 @@ android {
         release {
             if (project.hasProperty('CURB_RELEASE_STORE_FILE')) {
                 storeFile file(CURB_RELEASE_STORE_FILE)
-                storePassword System.getenv('CURB_RELEASE_STORE_PASSWORD_NEW')
+                storePassword System.getenv('CURB_RELEASE_STORE_PASSWORD')
                 keyAlias CURB_RELEASE_KEY_ALIAS
-                keyPassword System.getenv('CURB_RELEASE_KEY_PASSWORD_NEW')
+                keyPassword System.getenv('CURB_RELEASE_KEY_PASSWORD')
             }
         }
     }
