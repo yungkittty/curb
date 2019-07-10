@@ -3,7 +3,7 @@ const frGroupSettings = {
   general: { title: "Général", description: "Icône  ·  Nom" },
   discoverability: {
     title: "Découvrabilité",
-    description: "Modifier la découvrabilité (publique ou privé)"
+    description: "Modifier la découvrabilité (public ou privé)"
   },
   modules: {
     title: "Modules",

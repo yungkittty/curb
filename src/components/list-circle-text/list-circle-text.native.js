@@ -4,7 +4,7 @@ import ListFlat from "../list-flat";
 const ListCircleText = props => (
   <ListFlat
     {...props}
-    style={{ marginBottom: 40 }}
+    style={{ flexShrink: 0, marginBottom: 40 }}
     getItemLayout={(_, itemIndex) => ({
       length: 90,
       offset: 90 * itemIndex,

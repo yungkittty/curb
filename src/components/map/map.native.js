@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import MapView, { Marker } from "react-native-maps";
 import Container from "../container";
 
+// https://github.com/react-native-community/react-native-maps/issues/705#issuecomment-343781344
+
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -54,8 +56,8 @@ class Map extends Component {
           region={{
             latitude: currentLatitude || latitude,
             longitude: currentLongitude || longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
+            latitudeDelta: 0,
+            longitudeDelta: 0.01 // 15
           }}
         >
           <Marker

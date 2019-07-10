@@ -15,7 +15,7 @@ const Input = styled(({ type, onChange, id, isMultiline, ...others }) => (
     multiline={isMultiline}
   />
 ))`
-  padding: 15px;
+  padding: 16px;
   font-family: Montserrat-Regular;
   font-size: 16px;
   ${Platform.OS === "android" ? "font-weight: normal;" : ""}
