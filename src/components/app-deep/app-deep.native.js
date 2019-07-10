@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Linking } from "react-native";
 import { withRouter } from "react-router";
 
-const NavigationNativeRoute = WrappedComponent => {
-  class _NavigationNativeRoute extends React.Component {
+const AppDeep = WrappedComponent => {
+  class _AppDeep extends React.Component {
     constructor(props) {
       super(props);
 
@@ -35,11 +35,11 @@ const NavigationNativeRoute = WrappedComponent => {
     }
   }
 
-  _NavigationNativeRoute.propTypes = {
+  _AppDeep.propTypes = {
     history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired
   };
 
-  return withRouter(_NavigationNativeRoute);
+  return withRouter(_AppDeep);
 };
 
-export default NavigationNativeRoute;
+export default AppDeep;
