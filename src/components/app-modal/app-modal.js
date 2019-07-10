@@ -10,7 +10,12 @@ class AppModal extends Component {
   constructor(props) {
     super(props);
     this.appModalTransitionEnd = this.appModalTransitionEnd.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = { isShowed: false };
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress, false);
   }
 
   componentDidUpdate(prevProps) {
@@ -19,6 +24,15 @@ class AppModal extends Component {
       disableAppModalButtons();
       this.setState({ isShowed: true }); // eslint-disable-line
     }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress, false);
+  }
+
+  handleKeyPress(event) {
+    const { appModalHide } = this.props;
+    if (event.keyCode === 27) appModalHide();
   }
 
   appModalTransitionEnd() {
@@ -117,6 +131,7 @@ AppModal.propTypes = {
   appModalSceneData: PropTypes.object, // eslint-disable-line
   appModalFooterText: PropTypes.string,
   appModalFooterOnClick: PropTypes.func,
+  appModalHide: PropTypes.func.isRequired,
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired
 };
