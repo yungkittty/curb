@@ -7,6 +7,8 @@ set -e
 openssl aes-256-cbc -k "$CURB_IOS_ENCRYPT_PASSWORD" -in curb-developer.cer.enc -d -a -out curb-developer.cer
 openssl aes-256-cbc -k "$CURB_IOS_ENCRYPT_PASSWORD" -in curb-development-key.cer.p12.enc -d -a -out curb-development-key.cer.p12
 openssl aes-256-cbc -k "$CURB_IOS_ENCRYPT_PASSWORD" -in curb.mobileprovision.enc -d -a -out curb.mobileprovision
+cat curb-developer.cer
+cat curb-development-key.cer.p12
 cat curb.mobileprovision
 
 # Creates keychain to store certificates.
