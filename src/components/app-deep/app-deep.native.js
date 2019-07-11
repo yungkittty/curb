@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Linking } from "react-native";
@@ -12,18 +13,14 @@ const AppDeep = WrappedComponent => {
     }
 
     componentDidMount() {
-      Linking.getInitialURL()
-        .then(url => {
-          if (url) this.handleLink({ url });
-        })
-        .catch(err => console.error("An error occurred", err));
+      Linking.getInitialURL().then(url => {
+        if (url) this.handleLink({ url });
+      });
       Linking.addEventListener("url", this.handleLink);
     }
 
     handleLink({ url }) {
-      const parts = url.split("/");
-      let redirectLink = "";
-      for (let i = 3; parts.length > i; i += 1) redirectLink += `/${parts[i]}`;
+      const redirectLink = _.trimStart(url, "https://curb-app.com");
       const {
         history: { push }
       } = this.props;
