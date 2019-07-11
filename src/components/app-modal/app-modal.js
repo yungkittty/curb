@@ -10,12 +10,8 @@ class AppModal extends Component {
   constructor(props) {
     super(props);
     this.appModalTransitionEnd = this.appModalTransitionEnd.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.state = { isShowed: false };
-  }
-
-  componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyPress, false);
   }
 
   componentDidUpdate(prevProps) {
@@ -26,11 +22,7 @@ class AppModal extends Component {
     }
   }
 
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyPress, false);
-  }
-
-  handleKeyPress(event) {
+  handleKeyDown(event) {
     const { appModalHide } = this.props;
     if (event.keyCode === 27) appModalHide();
   }
@@ -72,6 +64,8 @@ class AppModal extends Component {
         // eslint-disable-line
         isAppModalShowed={isAppModalShowed}
         appModalTransitionEnd={this.appModalTransitionEnd}
+        onKeyDown={this.handleKeyDown}
+        tabIndex="0"
       >
         <ModalContainer isAppModalShowed={isAppModalShowed}>
           <ModalHeader
