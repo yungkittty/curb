@@ -6,7 +6,7 @@ import Loader from "../../../../components/loader";
 import FeedbackInput from "./components/feedback-input";
 import FeedbackTitle from "./components/feedback-title"
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
-import CreateMedia from "../../../settings"; // eslint-disable-line
+import Settings from "../../../settings"; // eslint-disable-line
 import withAppModal from "../../../../hocs/with-app-modal";
 import withCurrentUser from "../../../../hocs/with-current-user";
 
@@ -30,13 +30,13 @@ class SettingsFeedback extends Component {
     setAppModalFooterButton({ text: t("feedback.buttonTitle"), onClick: this.submit });
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 })
+      onClick: () => setAppModalScene({ scene: Settings, direction: -1 })
     });
   }
 
   componentDidUpdate(prevProps) {
-    const { enableAppModalButtons, isFetchingMedias } = this.props;
-    if (prevProps.isFetchingMedias && !isFetchingMedias) {
+    const { enableAppModalButtons, isFetchingFeedback } = this.props;
+    if (prevProps.isFetchingFeedback && !isFetchingFeedback) {
       // eslint-disable-next-line
       enableAppModalButtons();
     }
@@ -49,22 +49,26 @@ class SettingsFeedback extends Component {
 
   handleChange(event) {
     const { id, value } = event.target;
+    const error = value.length === 0 ? "missing" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
-    setAppModalSceneData({ [id]: { ...Y, value } });
+    setAppModalSceneData({ [id]: { ...Y, value, error } });
   }
 
   submit() {
     const {
       // eslint-disable-line
+      postFeedback,
+      text,
       disableAppModalButtons
     } = this.props;
     if (!this.checkForm()) return;
+    postFeedback({ text: text.value });
     disableAppModalButtons();
   }
 
   render() {
-    const { isFetchingMedias, text, t } = this.props;
-    return isFetchingMedias ? (
+    const { isFetchingFeedback, text, t } = this.props;
+    return isFetchingFeedback ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
@@ -76,6 +80,7 @@ class SettingsFeedback extends Component {
           placeholder={t("feedback.placeholder")}
           onChange={this.handleChange}
           value={text.value}
+          error={text.error && t("feedback.error")}
           isMultiline
         />
       </AppModalSceneContainer>
@@ -84,11 +89,11 @@ class SettingsFeedback extends Component {
 }
 
 SettingsFeedback.defaultProps = {
-  text: { value: "" }
+  text: { value: "", error: undefined }
 };
 
 SettingsFeedback.propTypes = {
-  postMediaText: PropTypes.func.isRequired,
+  postFeedback: PropTypes.func.isRequired,
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
@@ -96,7 +101,7 @@ SettingsFeedback.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  isFetchingMedias: PropTypes.bool.isRequired,
+  isFetchingFeedback: PropTypes.bool.isRequired,
   currentUserId: PropTypes.string.isRequired,
   text: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired
