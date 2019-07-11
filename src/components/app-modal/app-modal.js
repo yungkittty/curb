@@ -57,17 +57,19 @@ class AppModal extends Component {
       appModalSceneDirection,
       appModalSceneData,
       appModalFooterText,
-      appModalFooterOnClick
+      appModalFooterOnClick,
+      appModalHide
     } = this.props;
     return isShowed ? (
       <ModalOverlay
         // eslint-disable-line
         isAppModalShowed={isAppModalShowed}
         appModalTransitionEnd={this.appModalTransitionEnd}
+        onClick={appModalHide}
         onKeyDown={this.handleKeyDown}
         tabIndex="0"
       >
-        <ModalContainer isAppModalShowed={isAppModalShowed}>
+        <ModalContainer isAppModalShowed={isAppModalShowed} onClick={e => e.stopPropagation()}>
           <ModalHeader
             text={appModalHeaderText}
             currentStep={appModalHeaderCurrentStep}
