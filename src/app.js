@@ -1,8 +1,8 @@
 import _ from "lodash";
 import React from "react";
 import { isMobile } from "react-device-detect";
-import AppDeep from "./components/app-deep";
 import AppSplash from "./components/app-splash";
+import AppDeep from "./components/app-deep";
 import AppKeyboardAvoidingView from "./components/app-keyboard-avoiding-view";
 import AppDownload from "./components/app-download";
 import AppContainer from "./components/app-container";
@@ -38,4 +38,9 @@ const App = () => (
   </Router>
 );
 
-export default _.flowRight([AppDeep, AppSplash, AppKeyboardAvoidingView])(App);
+export default _.flowRight([
+  // eslint-disable-line
+  AppSplash,
+  AppDeep,
+  AppKeyboardAvoidingView
+])(App);
