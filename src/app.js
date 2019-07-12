@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import { isMobile } from "react-device-detect";
+import AppDeep from "./components/app-deep";
 import AppSplash from "./components/app-splash";
 import AppKeyboardAvoidingView from "./components/app-keyboard-avoiding-view";
 import AppDownload from "./components/app-download";
@@ -37,7 +38,4 @@ const App = () => (
   </Router>
 );
 
-export default _.flow(
-  AppSplash,
-  AppKeyboardAvoidingView
-)(App);
+export default _.flowRight([AppDeep, AppSplash, AppKeyboardAvoidingView])(App);
