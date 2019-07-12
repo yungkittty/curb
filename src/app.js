@@ -22,6 +22,7 @@ const App = () => (
       <AppDownload />
     ) : (
       <React.Fragment>
+        <AppDeep />
         <AppContainer>
           <AppNavigation />
           <Switch>
@@ -41,6 +42,5 @@ const App = () => (
 export default _.flowRight([
   // eslint-disable-line
   AppSplash,
-  AppDeep,
   AppKeyboardAvoidingView
 ])(App);

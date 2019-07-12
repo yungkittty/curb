@@ -1,5 +1,3 @@
-import React from "react";
-
-const AppDeep = WrappedComponent => props => <WrappedComponent {...props} />;
+const AppDeep = () => null;
 
 export default AppDeep;
