@@ -22,11 +22,12 @@ class AppDeep extends React.Component {
   }
 
   handleLinking({ url }) {
-    const redirectLink = url.replace("https://curb-app.com", "");
+    const paths = ["/users", "/groups"];
     const {
       history: { push }
     } = this.props;
-    push(redirectLink);
+    const link = url.replace("https://curb-app.com", "");
+    for (let i = 0; i < paths.length; i += 1) if (link.startsWith(paths[i])) push(link);
   }
 
   render() {
