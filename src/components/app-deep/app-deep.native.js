@@ -7,17 +7,21 @@ class AppDeep extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleLink = this.handleLink.bind(this);
+    this.handleLinking = this.handleLinking.bind(this);
   }
 
   componentDidMount() {
     Linking.getInitialURL().then(url => {
-      if (url) this.handleLink({ url });
+      if (url) this.handleLinking({ url });
     });
-    Linking.addEventListener("url", this.handleLink);
+    Linking.addEventListener("url", this.handleLinking);
   }
 
-  handleLink({ url }) {
+  componentWillUnmount() {
+    Linking.removeEventListener("url", this.handleLinking);
+  }
+
+  handleLinking({ url }) {
     const redirectLink = url.replace("https://curb-app.com", "");
     const {
       history: { push }
