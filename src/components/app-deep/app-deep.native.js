@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Linking } from "react-native";
@@ -19,9 +18,7 @@ class AppDeep extends React.Component {
   }
 
   handleLink({ url }) {
-    console.log(url);
     const redirectLink = url.replace("https://curb-app.com", "");
-    console.log(redirectLink);
     const {
       history: { push }
     } = this.props;
