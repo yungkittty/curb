@@ -22,12 +22,10 @@ class AppDeep extends React.Component {
   }
 
   handleLinking({ url }) {
-    const paths = ["/users", "/groups"];
     const {
       history: { push }
     } = this.props;
-    const link = url.replace("https://curb-app.com", "");
-    for (let i = 0; i < paths.length; i += 1) if (link.startsWith(paths[i])) push(link);
+    push(url.replace("https://curb-app.com", ""));
   }
 
   render() {

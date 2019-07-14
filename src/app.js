@@ -30,7 +30,7 @@ const App = () => (
             <Route exact path="/" component={Discovery} />
             <Route path="/users/:id" component={User} />
             <Route path="/groups/:id" component={Group} />
-            <Redirect path="/" />
+            <Redirect to="/" />
           </Switch>
         </AppContainer>
         <AppModal />
