@@ -12,6 +12,7 @@ import AppAlert from "./components/app-alert";
 import Router from "./components/router";
 import Switch from "./components/switch";
 import Route from "./components/route";
+import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
@@ -29,7 +30,7 @@ const App = () => (
             <Route exact path="/" component={Discovery} />
             <Route path="/users/:id" component={User} />
             <Route path="/groups/:id" component={Group} />
-            <Route />
+            <Redirect path="/" />
           </Switch>
         </AppContainer>
         <AppModal />
