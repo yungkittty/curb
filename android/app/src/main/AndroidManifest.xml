@@ -37,8 +37,8 @@
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
           <data android:scheme="https"
-          android:host="curb-app.com"
-          android:pathPrefix="/" />
+            android:host="curb-app.com"
+            android:pathPrefix="/" />
         </intent-filter>
       </activity>
 
