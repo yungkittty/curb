@@ -1,4 +1,4 @@
-package com.curb;
+package com.curb.eip;
 
 import android.app.Application;
 

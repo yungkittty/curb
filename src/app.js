@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import { isMobile } from "react-device-detect";
 import AppSplash from "./components/app-splash";
+import AppDeep from "./components/app-deep";
 import AppKeyboardAvoidingView from "./components/app-keyboard-avoiding-view";
 import AppDownload from "./components/app-download";
 import AppContainer from "./components/app-container";
@@ -11,6 +12,7 @@ import AppAlert from "./components/app-alert";
 import Router from "./components/router";
 import Switch from "./components/switch";
 import Route from "./components/route";
+import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
@@ -21,13 +23,14 @@ const App = () => (
       <AppDownload />
     ) : (
       <React.Fragment>
+        <AppDeep />
         <AppContainer>
           <AppNavigation />
           <Switch>
             <Route exact path="/" component={Discovery} />
             <Route path="/users/:id" component={User} />
             <Route path="/groups/:id" component={Group} />
-            <Route />
+            <Redirect to="/" />
           </Switch>
         </AppContainer>
         <AppModal />
@@ -37,7 +40,8 @@ const App = () => (
   </Router>
 );
 
-export default _.flow(
+export default _.flowRight([
+  // eslint-disable-line
   AppSplash,
   AppKeyboardAvoidingView
-)(App);
+])(App);

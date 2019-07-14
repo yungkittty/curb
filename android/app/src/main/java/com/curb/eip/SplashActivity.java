@@ -1,4 +1,4 @@
-package com.curb;
+package com.curb.eip;
 
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
