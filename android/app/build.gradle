@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.curb"
+        applicationId "com.curb.eip"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
