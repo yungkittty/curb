@@ -1,4 +1,4 @@
-package com.curb;
+package com.curb.eip;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
