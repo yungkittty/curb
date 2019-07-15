@@ -9,12 +9,16 @@ function* postFeedbackRequestSaga(action) {
   try {
     const { data: payload } = yield call(feedbackApi.postFeedback, action.payload);
     yield put(feedbackActions.postFeedbackSuccess({ feedbackId: payload.id }));
-    const successAlert = { type: "success", message: "feedback.sended", icon: "check" };
+    const successAlert = { type: "success", message: `feedback.Success`, icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(feedbackActions.postFeedbackFailure({ errorCode }));
+    const errorAlert = { type: "error", message: `feedback.${errorCode}`, icon: "times" };
+    yield put(appAlertActions.pushAppAlert(errorAlert));
+    yield put(appModalActions.hideAppModal());
+
   }
 }
 

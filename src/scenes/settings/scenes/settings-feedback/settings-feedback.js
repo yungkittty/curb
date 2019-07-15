@@ -44,14 +44,19 @@ class SettingsFeedback extends Component {
 
   checkForm() {
     const { text } = this.props;
-    return text.value !== "";
+    return this.checkInput("text", text.value)
+  }
+
+  checkInput(id, value) {
+    const error = value.length === 0 ? "missing" : undefined;
+    const { setAppModalSceneData, [id]: Y } = this.props;
+    setAppModalSceneData({ [id]: { ...Y, value, error } });
+    return error === undefined;
   }
 
   handleChange(event) {
     const { id, value } = event.target;
-    const error = value.length === 0 ? "missing" : undefined;
-    const { setAppModalSceneData, [id]: Y } = this.props;
-    setAppModalSceneData({ [id]: { ...Y, value, error } });
+    this.checkInput(id, value);
   }
 
   submit() {
@@ -63,7 +68,6 @@ class SettingsFeedback extends Component {
     } = this.props;
     if (!this.checkForm()) return;
     postFeedback({ text: text.value });
-    disableAppModalButtons();
   }
 
   render() {
