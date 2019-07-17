@@ -1,4 +1,3 @@
-// eslint-disable-next-line
-import ResetPassword2Container from "./reset-password-2-container";
+import ResetPassword2 from "./reset-password-2";
 
-export default ResetPassword2Container;
+export default ResetPassword2;

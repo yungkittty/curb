@@ -4,8 +4,7 @@ import SettingsDeleteGroup from "./settings-delete-group";
 import { groupsSelectors, groupsActions } from "../../../../../../datas/groups";
 
 const mapStateToProps = state => ({
-  isDeleteGroupFetching: groupsSelectors.isCreateGroupFetching(state) || false,
-  deleteGroupErrorCode: groupsSelectors.getCreateGroupErrorCode(state) || ""
+  isFetchingGroups: groupsSelectors.isFetchingGroups(state) || false
 });
 
 const mapDispatchToProps = dispatch => ({

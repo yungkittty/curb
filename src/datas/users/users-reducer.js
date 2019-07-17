@@ -1,30 +1,16 @@
 import _ from "lodash";
 import { combineReducers } from "redux";
 import usersActionsTypes from "./users-actions-types";
-import { groupsActionsTypes } from "../groups";
-import { mediasActionsTypes } from "../medias";
+import groupsActionsTypes from "../groups/groups-actions-types";
+import mediasActionsTypes from "../medias/medias-actions-types";
 
-const initialState = { isFetching: false, errorCode: "" };
-
-const patchingUser = (state = initialState, action) => {
+const isFetching = (state = false, action) => {
   switch (action.type) {
     case usersActionsTypes.PATCH_USER_REQUEST:
-      return {
-        ...state,
-        isFetching: true
-      };
+      return true;
     case usersActionsTypes.PATCH_USER_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        errorCode: ""
-      };
     case usersActionsTypes.PATCH_USER_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-        errorCode: action.payload.response.data.code
-      };
+      return false;
     default:
       return state;
   }
@@ -53,13 +39,14 @@ const byId = (state = {}, action) => {
     case usersActionsTypes.GET_USER_FAILURE:
       return {
         ...state,
-        [action.payload.config.data.id]: {
-          ...state[action.payload.config.data.id],
-          isFetching: true,
-          errorCode: action.payload.response.data.code
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          isFetching: false,
+          errorCode: action.payload.errorCode
         }
       };
     case groupsActionsTypes.POST_GROUP_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
       return {
         ...state,
         [action.payload.currentUserId]: {
@@ -84,7 +71,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          avatarUrl: action.payload.avatar.value.data
+          avatarUrl: action.payload.avatar.data
         }
       };
     default:
@@ -101,6 +88,24 @@ const allIds = (state = [], action) => {
   }
 };
 
-const usersReducer = combineReducers({ patchingUser, byId, allIds });
+const errorCode = (state = "", action) => {
+  switch (action.type) {
+    case usersActionsTypes.PATCH_USER_REQUEST:
+    case usersActionsTypes.PATCH_USER_SUCCESS:
+      return "";
+    case usersActionsTypes.PATCH_USER_FAILURE:
+      return action.payload.errorCode;
+    default:
+      return state;
+  }
+};
+
+const usersReducer = combineReducers({
+  // eslint-disable-line
+  isFetching,
+  byId,
+  allIds,
+  errorCode
+});
 
 export default usersReducer;

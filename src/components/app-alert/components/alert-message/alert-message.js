@@ -30,4 +30,8 @@ AlertMessage.propTypes = {
   forwardedRef: PropTypes.object
 };
 
-export default _.flow([withTranslation("appAlerts"), MessageAnimation])(AlertMessage);
+export default _.flow([
+  // eslint-disable-line
+  withTranslation("appAlert"),
+  MessageAnimation
+])(AlertMessage);

@@ -1,21 +1,20 @@
 import { combineReducers } from "redux";
 import appAlertActionsTypes from "./app-alert-actions-types";
 
-const initialState = {
-  list: []
-};
-
-const appAlertStatus = (state = initialState, action) => {
+const list = (state = [], action) => {
   switch (action.type) {
     case appAlertActionsTypes.PUSH_APP_ALERT:
-      return { ...state, list: [...state.list, action.payload] };
+      return [...state, action.payload];
     case appAlertActionsTypes.CLEAR_APP_ALERT:
-      return initialState;
+      return [];
     default:
       return state;
   }
 };
 
-const appAlertReducer = combineReducers({ appAlertStatus });
+const appAlertReducer = combineReducers({
+  // eslint-disable-line
+  list
+});
 
 export default appAlertReducer;

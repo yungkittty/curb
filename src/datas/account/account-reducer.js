@@ -1,27 +1,34 @@
-import accountActionTypes from "./account-actions-types";
+import { combineReducers } from "redux";
+import accountActionsTypes from "./account-actions-types";
 
-const initialState = {
-  isFetching: false,
-  errorCode: ""
-};
-
-const accountReducer = (state = initialState, action) => {
+const isFetching = (state = false, action) => {
   switch (action.type) {
-    case accountActionTypes.REQUEST_ACCOUNT_RESET_PASSWORD_CODE_REQUEST:
-    case accountActionTypes.VALIDATE_ACCOUNT_RESET_PASSWORD_CODE_REQUEST:
-    case accountActionTypes.RESET_ACCOUNT_PASSWORD_REQUEST:
-      return { ...state, isFetching: true };
-    case accountActionTypes.REQUEST_ACCOUNT_RESET_PASSWORD_CODE_SUCCESS:
-    case accountActionTypes.VALIDATE_ACCOUNT_RESET_PASSWORD_CODE_SUCCESS:
-    case accountActionTypes.RESET_ACCOUNT_PASSWORD_SUCCESS:
-      return { ...state, isFetching: false, errorCode: "" };
-    case accountActionTypes.REQUEST_ACCOUNT_RESET_PASSWORD_CODE_FAILURE:
-    case accountActionTypes.VALIDATE_ACCOUNT_RESET_PASSWORD_CODE_FAILURE:
-    case accountActionTypes.RESET_ACCOUNT_PASSWORD_FAILURE:
-      return { ...state, isFetching: false, errorCode: action.payload.response.data.code };
+    case accountActionsTypes.DELETE_ACCOUNT_REQUEST:
+      return true;
+    case accountActionsTypes.DELETE_ACCOUNT_SUCCESS:
+    case accountActionsTypes.DELETE_ACCOUNT_FAILURE:
+      return false;
     default:
       return state;
   }
 };
+
+const errorCode = (state = "", action) => {
+  switch (action.type) {
+    case accountActionsTypes.DELETE_ACCOUNT_REQUEST:
+    case accountActionsTypes.DELETE_ACCOUNT_SUCCESS:
+      return "";
+    case accountActionsTypes.DELETE_ACCOUNT_FAILURE:
+      return action.payload.errorCode;
+    default:
+      return state;
+  }
+};
+
+const accountReducer = combineReducers({
+  // eslint-disable-line
+  isFetching,
+  errorCode
+});
 
 export default accountReducer;

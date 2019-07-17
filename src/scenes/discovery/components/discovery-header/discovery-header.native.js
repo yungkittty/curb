@@ -1,15 +1,17 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import HeaderContainer from "./components/header-container";
 import HeaderButtonIcon from "./components/header-button-icon";
 import DiscoveryScanQr from "../../scenes/discovery-scan-qr";
+import withAppModal from "../../../../hocs/with-app-modal";
 
 const DiscoveryHeader = ({ theme, showAppModal, children }) => (
   <HeaderContainer>
     <HeaderButtonIcon
       icon="qrcode"
-      size="medium"
+      size="small"
       color={theme.primaryColor}
       onClick={() => showAppModal({ scene: DiscoveryScanQr })}
     />
@@ -24,4 +26,8 @@ DiscoveryHeader.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default withTheme(DiscoveryHeader);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTheme
+])(DiscoveryHeader);

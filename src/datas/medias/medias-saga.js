@@ -18,13 +18,13 @@ function* getMediaRequestSaga(action) {
 
 function* postMediaAvatarUserRequestSaga(action) {
   try {
-    const { id, avatar, onSuccessAlert } = action.payload;
+    const { id, avatar, onSuccessAlert: successAlert } = action.payload;
     yield call(mediasApi.postMediaAvatarUser, action.payload);
     yield put(mediasActions.postMediaAvatarUserSuccess({ id, avatar }));
-    if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
+    if (successAlert) yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaAvatarUserFailure({ id: action.payload.id, errorCode }));
+    yield put(mediasActions.postMediaAvatarUserFailure({ errorCode }));
     const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
   }
@@ -32,13 +32,13 @@ function* postMediaAvatarUserRequestSaga(action) {
 
 function* postMediaAvatarGroupRequestSaga(action) {
   try {
-    const { id, avatar, onSuccessAlert } = action.payload;
+    const { id, avatar, onSuccessAlert: successAlert } = action.payload;
     yield call(mediasApi.postMediaAvatarGroup, action.payload);
     yield put(mediasActions.postMediaAvatarGroupSuccess({ id, avatar }));
-    if (onSuccessAlert) yield put(appAlertActions.pushAppAlert(onSuccessAlert));
+    if (successAlert) yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaAvatarGroupFailure({ id: action.payload.id, errorCode }));
+    yield put(mediasActions.postMediaAvatarGroupFailure({ errorCode }));
     const errorAlert = { type: "error", message: `postAvatar.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
   }

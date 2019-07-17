@@ -23,7 +23,7 @@ const ImageGroup = ({
     {...others}
     diameter={size}
     backgroundColor={
-      (isFetchingGroup && !groupName) || groupAvatar
+      !groupName || groupAvatar // eslint-disable-line
         ? placeholderColor
         : theme[`group${_.capitalize(groupTheme)}VariantColor`]
     }
@@ -38,7 +38,8 @@ const ImageGroup = ({
           objectFit="cover"
           style={{
             width: innerDiameter,
-            height: innerDiameter
+            height: innerDiameter,
+            borderRadius: innerDiameter / 2
           }}
         />
       ) : groupName ? (
@@ -67,7 +68,7 @@ ImageGroup.propTypes = {
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.oneOf([
-    // eslint-disalbe-line
+    // eslint-disable-line
     "extra-small",
     "small",
     "medium",

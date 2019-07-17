@@ -1,12 +1,9 @@
 import styled from "styled-components";
-import Button from "../../../../../../components/button";
+import ButtonContainer from "../../../../../../components/button-container";
 
-const FooterButton = styled(Button)`
+const FooterButton = styled(ButtonContainer)`
   height: 100%;
   width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export default FooterButton;

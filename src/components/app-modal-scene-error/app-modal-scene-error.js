@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import Text from "../text";
 
-const AppModalSceneError = styled(Text).attrs(() => ({
-  type: "h4",
-  weight: 500
-}))`
+const AppModalSceneError = styled(Text).attrs(() => ({ type: "h4", weight: 500 }))`
   position: absolute;
   align-self: center;
   top: 68px;

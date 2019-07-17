@@ -6,7 +6,7 @@ import Icon from "../../../../../icon";
 
 const MessageIcon = ({ theme, icon }) => (
   <IconContainer>
-    <Icon icon={icon} color={theme.backgroundColor} size="small" />
+    <Icon icon={icon} color={theme.backgroundColor} size="extra-small" />
   </IconContainer>
 );
 

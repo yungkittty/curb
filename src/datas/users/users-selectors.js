@@ -1,9 +1,9 @@
 const usersSelectors = {};
 
-usersSelectors.isUserPatching = state => state.users.patchingUser.isFetching;
-
-usersSelectors.getUserPatchingErrorCode = state => state.users.patchingUser.errorCode;
+usersSelectors.isFetchingUsers = state => state.users.isFetching;
 
 usersSelectors.getUserById = (state, id) => state.users.byId[id];
+
+usersSelectors.getUsersErrorCode = state => state.users.errorCode;
 
 export default usersSelectors;

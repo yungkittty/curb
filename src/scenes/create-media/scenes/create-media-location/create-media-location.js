@@ -8,6 +8,7 @@ import LocationMap from "./components/location-container";
 import createMedia from "../../../create-media"; // eslint-disable-line
 import withAppModal from "../../../../hocs/with-app-modal";
 import withCurrentUser from "../../../../hocs/with-current-user";
+import withGroup from "../../../../hocs/with-group";
 
 class CreateMediaLocation extends Component {
   constructor(props) {
@@ -95,12 +96,12 @@ class CreateMediaLocation extends Component {
       currentUserId
     } = this.props;
     if (!isShowed) return;
-    const data = locationMap.getCurrentPosition();
+    const location = JSON.stringify(locationMap.getCurrentPosition());
     disableAppModalButtons();
     postMediaLocation({
       groupId,
       userId: currentUserId,
-      data
+      location
     });
   }
 
@@ -124,7 +125,6 @@ class CreateMediaLocation extends Component {
           ref={this.locationMap}
           latitude={latitude}
           longitude={longitude}
-          isMarkerShown
           draggable
         />
       </AppModalSceneContainer>
@@ -150,5 +150,6 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,
+  withGroup,
   withTranslation()
 ])(CreateMediaLocation);

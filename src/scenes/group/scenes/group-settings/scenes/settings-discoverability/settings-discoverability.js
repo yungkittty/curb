@@ -2,12 +2,13 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import withAppModal from "../../../../../../hocs/with-app-modal";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
 import GroupDiscoverability from "../../../../components/group-discoverability";
+import withAppModal from "../../../../../../hocs/with-app-modal";
+import withGroup from "../../../../../../hocs/with-group";
 /* eslint-disable-next-line */
 import GroupSettings from "../../group-settings";
 
@@ -33,14 +34,18 @@ class SettingsDiscoverability extends Component {
       onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
     });
     setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
-
     setAppModalSceneData({ newGroupStatus: { value: groupStatus, error: undefined } });
   }
 
   componentDidUpdate(prevProps) {
-    const { isPatchGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isPatchGroupFetching === isPatchGroupFetching) return;
-    if (isPatchGroupFetching) disableAppModalButtons();
+    const {
+      // eslint-disable-line
+      isFetchingGroups,
+      enableAppModalButtons,
+      disableAppModalButtons
+    } = this.props;
+    if (prevProps.isFetchingGroups === isFetchingGroups) return;
+    if (isFetchingGroups) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
@@ -51,7 +56,12 @@ class SettingsDiscoverability extends Component {
       newGroupStatus: { value },
       groupStatus
     } = this.props;
-    if (this.checkForm() && value !== groupStatus) patchGroup({ id: groupId, status: value });
+    if (this.checkForm() && value !== groupStatus) {
+      patchGroup({
+        id: groupId,
+        status: value
+      });
+    }
   }
 
   checkForm() {
@@ -79,16 +89,26 @@ class SettingsDiscoverability extends Component {
   render() {
     const {
       t,
-      isPatchGroupFetching,
+      isFetchingGroups,
       newGroupStatus: { value, error }
     } = this.props;
-    return isPatchGroupFetching ? (
+    return isFetchingGroups ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("discoverability.title")}</AppModalSceneTitle>
-        <AppModalSceneError>{error && t(`validation:discoverability.${error}`)}</AppModalSceneError>
-        <GroupDiscoverability onClick={this.handleChange} discoverability={value} />
+        <AppModalSceneTitle>
+          {/* eslint-disable-line */}
+          {t("discoverability.title")}
+        </AppModalSceneTitle>
+        <AppModalSceneError>
+          {/* eslint-disable-line */}
+          {error && t(`validation:discoverability.${error}`)}
+        </AppModalSceneError>
+        <GroupDiscoverability
+          // eslint-disable-line
+          onClick={this.handleChange}
+          discoverability={value}
+        />
       </AppModalSceneContainer>
     );
   }
@@ -105,15 +125,17 @@ SettingsDiscoverability.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  isPatchGroupFetching: PropTypes.bool.isRequired,
+  isFetchingGroups: PropTypes.bool.isRequired,
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
-  newGroupStatus: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
   groupStatus: PropTypes.string.isRequired,
+  newGroupStatus: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([withAppModal, withTranslation("groupSettings")])(SettingsDiscoverability);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withGroup,
+  withTranslation("groupSettings")
+])(SettingsDiscoverability);

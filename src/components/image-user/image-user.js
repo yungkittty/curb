@@ -20,7 +20,7 @@ const ImageUser = ({
     {...others}
     diameter={size}
     backgroundColor={
-      (isFetchingUser && !userName) || userAvatar // eslint-disable-line
+      !userName || userAvatar // eslint-disable-line
         ? placeholderColor
         : secondaryVariantColor
     }
@@ -29,15 +29,14 @@ const ImageUser = ({
       // eslint-disable-next-line
       userAvatar ? (
         <Image
-          // eslint-disable-line
-          src={`${process.env.REACT_APP_API_URL}${_.replace(
-            userAvatar,
-            "medium",
-            _.replace(size, new RegExp("extra-", "g"), "")
-          )}`}
+          // eslint-disable-next-line
+          // eslint-disable-next-line
+          src={_.replace(userAvatar, "medium", size.substr(0, 5) === "extra" ? "large" : size)}
+          objectFit="cover"
           style={{
             width: innerDiameter,
-            height: innerDiameter
+            height: innerDiameter,
+            borderRadius: innerDiameter / 2
           }}
         />
       ) : userName ? (
@@ -52,17 +51,28 @@ const ImageUser = ({
   </CircleContainer>
 );
 
+ImageUser.defaultProps = {
+  placeholderColor: undefined
+};
+
 ImageUser.propTypes = {
   isFetchingUser: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"])
-    .isRequired,
-  placeholderColor: PropTypes.string.isRequired
+  size: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired,
+  placeholderColor: PropTypes.string
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
   withUser,
   withTheme

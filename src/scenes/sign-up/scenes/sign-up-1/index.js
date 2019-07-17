@@ -1,4 +1,3 @@
-// eslint-disable-next-line
-import SignUp1Container from "./sign-up-1-container";
+import SignUp1 from "./sign-up-1"; // eslint-disable-line
 
-export default SignUp1Container;
+export default SignUp1;

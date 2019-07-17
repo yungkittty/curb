@@ -1,4 +1,3 @@
-// eslint-disable-next-line
-import ContainerOverlay from "./container-overlay";
+import ContainerOverlay from "./container-overlay.native";
 
 export default ContainerOverlay;

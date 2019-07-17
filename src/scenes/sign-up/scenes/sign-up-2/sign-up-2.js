@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -7,6 +8,7 @@ import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 import forbiddenPasswords from "../../../../utils/forbidden-passwords";
+import withAppModal from "../../../../hocs/with-app-modal";
 // eslint-disable-next-line
 import SignUp1 from "../sign-up-1";
 
@@ -27,9 +29,9 @@ class SignUp2 extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignUpFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isSignUpFetching === isSignUpFetching) return;
-    if (isSignUpFetching) disableAppModalButtons();
+    const { isFetchingSignUp, enableAppModalButtons, disableAppModalButtons } = this.props;
+    if (prevProps.isFetchingSignUp === isFetchingSignUp) return;
+    if (isFetchingSignUp) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
@@ -39,14 +41,15 @@ class SignUp2 extends Component {
   }
 
   finish() {
-    const { signUp, name, email, createPassword, avatar } = this.props;
-    if (!this.checkForm()) return;
-    signUp({
-      name: name.value,
-      email: email.value,
-      password: createPassword.value,
-      avatar
-    });
+    const { isFetchingSignUp, signUp, name, email, createPassword, avatar } = this.props;
+    if (!isFetchingSignUp && this.checkForm()) {
+      signUp({
+        name: name.value,
+        email: email.value,
+        password: createPassword.value,
+        avatar: avatar.value
+      });
+    }
   }
 
   checkForm() {
@@ -82,8 +85,8 @@ class SignUp2 extends Component {
   }
 
   render() {
-    const { isSignUpFetching, t, createPassword, confirmPassword } = this.props;
-    return isSignUpFetching ? (
+    const { isFetchingSignUp, t, createPassword, confirmPassword } = this.props;
+    return isFetchingSignUp ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
@@ -127,8 +130,7 @@ SignUp2.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  isSignUpFetching: PropTypes.bool.isRequired,
-  signUpErrorCode: PropTypes.string.isRequired,
+  isFetchingSignUp: PropTypes.bool.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
@@ -142,4 +144,8 @@ SignUp2.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("signUp")(SignUp2);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("signUp")
+])(SignUp2);

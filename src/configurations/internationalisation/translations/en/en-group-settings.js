@@ -1,14 +1,13 @@
 const enGroupSettings = {
   groupSettings: "Group settings",
-  createGroup: "Create group",
-  general: { title: "General", description: "Icon  ·  Group name" },
+  general: { title: "General", description: "Icon  ·  Name" },
   discoverability: {
     title: "Discoverability",
     description: "Edit the discoverability (public or private)"
   },
   modules: {
     title: "Modules",
-    description: "Edit available modules"
+    description: "Edit the available modules"
   },
   theme: {
     title: "Theme",

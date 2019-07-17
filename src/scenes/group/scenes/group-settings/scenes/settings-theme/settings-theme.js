@@ -3,13 +3,14 @@ import React, { Component } from "react";
 import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import withAppModal from "../../../../../../hocs/with-app-modal";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import settingsThemeData from "./settings-theme-data";
+import withAppModal from "../../../../../../hocs/with-app-modal";
+import withGroup from "../../../../../../hocs/with-group";
 /* eslint-disable-next-line */
 import GroupSettings from "../../group-settings";
 
@@ -37,14 +38,18 @@ class SettingsTheme extends Component {
       onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
     });
     setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
-
     setAppModalSceneData({ newGroupTheme: { value: groupTheme, error: undefined } });
   }
 
   componentDidUpdate(prevProps) {
-    const { isPatchGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isPatchGroupFetching === isPatchGroupFetching) return;
-    if (isPatchGroupFetching) disableAppModalButtons();
+    const {
+      // eslint-disable-line
+      isFetchingGroups,
+      enableAppModalButtons,
+      disableAppModalButtons
+    } = this.props;
+    if (prevProps.isFetchingGroups === isFetchingGroups) return;
+    if (isFetchingGroups) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
@@ -87,12 +92,12 @@ class SettingsTheme extends Component {
   render() {
     const {
       t,
-      isPatchGroupFetching,
+      isFetchingGroups,
       theme,
       newGroupTheme: { value, error }
     } = this.props;
 
-    return isPatchGroupFetching ? (
+    return isFetchingGroups ? (
       <Loader />
     ) : (
       <ListFlat
@@ -102,15 +107,21 @@ class SettingsTheme extends Component {
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
-            <AppModalSceneTitle>{t("theme.title")}</AppModalSceneTitle>
-            <AppModalSceneError>{error && t(`validation:theme.${error}`)}</AppModalSceneError>
+            <AppModalSceneTitle>
+              {/* eslint-disable-line */}
+              {t("theme.title")}
+            </AppModalSceneTitle>
+            <AppModalSceneError>
+              {/* eslint-disable-line */}
+              {error && t(`validation:theme.${error}`)}
+            </AppModalSceneError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
           <AppModalSceneListItem
             title={t(`themeList.${item.id}`)}
             titleColor="#ffffff"
-            backgroundColor={theme[`group${item.id.charAt(0).toUpperCase()}${item.id.substring(1)}Color`]}
+            backgroundColor={theme[`group${_.capitalize(item.id)}Color`]}
             selected={item.id === value}
             normalHoverColor
             selectionType
@@ -134,18 +145,24 @@ SettingsTheme.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  isPatchGroupFetching: PropTypes.bool.isRequired,
+  isFetchingGroups: PropTypes.bool.isRequired,
   // eslint-disable-next-line
   theme: PropTypes.object.isRequired,
   // eslint-disable-next-line
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
+  groupTheme: PropTypes.string.isRequired,
   newGroupTheme: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),
-  groupTheme: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([withAppModal, withTheme, withTranslation("groupSettings")])(SettingsTheme);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withGroup,
+  withTheme,
+  withTranslation("groupSettings")
+])(SettingsTheme);

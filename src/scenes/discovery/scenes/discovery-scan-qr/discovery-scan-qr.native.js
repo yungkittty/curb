@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { TouchableWithoutFeedback } from "react-native";
@@ -8,6 +9,7 @@ import Icon from "../../../../components/icon";
 import ScanQrCamera from "./components/scan-qr-camera";
 import ScanQrCorner from "./components/scan-qr-corner";
 import { windowDimensions } from "../../../../configurations/window";
+import withAppModal from "../../../../hocs/with-app-modal";
 
 class DiscoveryScanQr extends React.Component {
   constructor(props) {
@@ -74,7 +76,7 @@ class DiscoveryScanQr extends React.Component {
               />
               <Icon
                 icon="bolt"
-                size="medium"
+                size="small"
                 color={theme.primaryColor}
                 style={{
                   position: "absolute",
@@ -110,8 +112,11 @@ class DiscoveryScanQr extends React.Component {
 DiscoveryScanQr.propTypes = {
   setAppModalHeaderText: PropTypes.func.isRequired,
   hideAppModal: PropTypes.func.isRequired,
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default withTheme(DiscoveryScanQr);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTheme
+])(DiscoveryScanQr);

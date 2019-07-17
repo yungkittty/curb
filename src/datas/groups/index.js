@@ -6,6 +6,7 @@ import groupsSaga from "./groups-saga";
 import groupsSelectors from "./groups-selectors";
 
 export {
+  // eslint-disable-line
   groupsActionsTypes,
   groupsActions,
   groupsApi,
