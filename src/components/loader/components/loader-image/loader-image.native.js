@@ -17,8 +17,7 @@ class LoaderImage extends Component {
       Animated.timing(opacity, {
         toValue: 2,
         easing: Easing.ease,
-        duration: 1700,
-        useNativeDriver: true
+        duration: 1300
       })
     ).start();
   }
@@ -31,8 +30,7 @@ class LoaderImage extends Component {
         style={{
           opacity: opacity.interpolate({
             inputRange: [0, 1, 2],
-            outputRange: [1, 0, 1],
-            useNativeDriver: true
+            outputRange: [1, 0, 1]
           })
         }}
       >
