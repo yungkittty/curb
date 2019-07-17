@@ -14,7 +14,7 @@ const fade = keyframes`
 const LoaderImage = styled(Image)`
   width: 80px;
   height: 80px;
-  animation: ${fade} 0.65s ease infinite alternate;
+  animation: ${fade} 0.7s ease infinite alternate-reverse;
 `;
 
 export default LoaderImage;
