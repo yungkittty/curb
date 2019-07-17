@@ -43,8 +43,8 @@ const ButtonFloat = ({
               : {
                   shadowOffset: { width: 0, height: 2.4 },
                   shadowRadius: 2.16,
-                  shadowColor: "rgba(0, 0, 0, 0.186)",
-                  shadowOpacity: 1
+                  shadowColor: "rgba(0, 0, 0, 1)",
+                  shadowOpacity: 0.186
                 })
           }
         : {})

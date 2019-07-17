@@ -47,7 +47,6 @@ const CircleContainer = ({
         height: innerDiameter,
         minHeight: innerDiameter,
         borderRadius: innerDiameter / 2,
-        overflow: "hidden",
         ...(backgroundColor ? { backgroundColor } : {})
       }}
     >
