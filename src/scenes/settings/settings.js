@@ -25,7 +25,6 @@ class Settings extends Component {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <AppModalSceneListItem
-            icon={item.icon}
             title={t(`${item.id}.title`)}
             description={t(`${item.id}.description`)}
             onClick={() => setAppModalScene({ scene: item.scene, direction: 1 })}

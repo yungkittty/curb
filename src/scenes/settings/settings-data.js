@@ -3,7 +3,6 @@ import SettingsGeneral from "./scenes/settings-general";
 
 const settingsData = [
   {
-    icon: "cog",
     id: "general",
     scene: SettingsGeneral
   }
