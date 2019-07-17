@@ -13,7 +13,7 @@ const CircleContainer = ({
   ...others
 }) => {
   const innerDiameter = (() => {
-    const innerDiameters = platformBools.isReact
+    const innerDiameters = platformBools.isWeb
       ? // eslint-disable-line
         [40, 60, 80, 100, 200, 300] // 320
       : [40, 50, 60, 70, 150, 200]; // 150

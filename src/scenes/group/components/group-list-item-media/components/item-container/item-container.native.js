@@ -8,6 +8,7 @@ const ItemContainer = styled(Container)`
   width: 100%;
   min-width: 100%;
   padding: 0px 40px;
+  margin: auto;
   margin-bottom: 40px;
 `;
 

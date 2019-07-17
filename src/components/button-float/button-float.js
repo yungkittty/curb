@@ -29,12 +29,12 @@ const ButtonFloat = ({
       ...style,
       position: "absolute",
       zIndex: 4,
-      ...(platformBools.isReact
+      ...(platformBools.isWeb
         ? {
             boxShadow: "0px 2.4px 2.16px 0px rgba(0, 0, 0, 0.186)"
           }
         : {}),
-      ...(platformBools.isReactNative
+      ...(platformBools.isNative
         ? {
             ...(platformBools.isAndroid
               ? {
@@ -56,7 +56,7 @@ ButtonFloat.defaultProps = {
   diameter: "medium",
   component: Icon,
   size: "small",
-  style: platformBools.isReact
+  style: platformBools.isWeb
     ? // eslint-disable-line
       { right: 30, bottom: 30 }
     : { right: 15, bottom: 15 }

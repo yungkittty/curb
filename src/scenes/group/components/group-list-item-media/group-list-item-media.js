@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Container from "../../../../components/container";
 import ItemContainer from "./components/item-container";
 import ItemHeader from "./components/item-header";
 import ItemMedia from "./components/item-media";
@@ -14,21 +13,19 @@ const GroupListSectionMedia = ({
   mediaData,
   theme
 }) => (
-  <Container>
-    <ItemContainer>
-      <ItemHeader
-        // eslint-disable-line
-        userId={mediaCreatorId}
-        mediaDateCreation={mediaDateCreation}
-        theme={theme}
-      />
-      <ItemMedia
-        // eslint-disable-line
-        mediaType={mediaType}
-        mediaData={mediaData}
-      />
-    </ItemContainer>
-  </Container>
+  <ItemContainer>
+    <ItemHeader
+      // eslint-disable-line
+      userId={mediaCreatorId}
+      mediaDateCreation={mediaDateCreation}
+      theme={theme}
+    />
+    <ItemMedia
+      // eslint-disable-line
+      mediaType={mediaType}
+      mediaData={mediaData}
+    />
+  </ItemContainer>
 );
 
 GroupListSectionMedia.propTypes = {

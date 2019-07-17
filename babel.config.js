@@ -1,4 +1,4 @@
 module.exports = {
   presets: ["module:metro-react-native-babel-preset"],
-  plugins: ["babel-plugin-transform-inline-environment-variables"]
+  plugins: [["transform-inline-environment-variables"], ["react-native-web", { commonjs: true }]]
 };

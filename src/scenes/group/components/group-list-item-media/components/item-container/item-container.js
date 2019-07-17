@@ -7,6 +7,7 @@ const ItemContainer = styled(Container)`
   flex-direction: column;
   width: 500px;
   min-width: 500px;
+  margin: auto;
   margin-bottom: 80px;
 `;
 

@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React from "react";
-import { isMobile } from "react-device-detect";
 import AppSplash from "./components/app-splash";
 import AppDeep from "./components/app-deep";
 import AppKeyboardAvoidingView from "./components/app-keyboard-avoiding-view";
@@ -16,10 +15,11 @@ import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
+import { platformBools } from "./configurations/platform";
 
 const App = () => (
   <Router>
-    {isMobile ? (
+    {platformBools.isMobile ? (
       <AppDownload />
     ) : (
       <React.Fragment>

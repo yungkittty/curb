@@ -136,7 +136,7 @@ class User extends Component {
             readOnly={!editMode}
             containerStyle={{ marginTop: 64, textAlign: "center" }}
             textStyle={{
-              fontSize: platformBools.isReact ? 36 : 32,
+              fontSize: platformBools.isWeb ? 36 : 32,
               fontFamily: "Montserrat-Bold",
               textAlign: "center"
             }}
