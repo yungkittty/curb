@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import NavigationButtonIcon from "../navigation-button-icon";
+import NavigationButton from "../navigation-button";
+import { platformBools } from "../../../../configurations/platform";
 
-const NavigationListFooter = styled(NavigationButtonIcon)`
+const NavigationListFooter = styled(NavigationButton)`
   border-width: 1px;
   border-style: solid;
   border-color: ${props => props.theme.secondaryVariantColor};
-  box-sizing: border-box;
-  background-color: transparent;
+  ${platformBools.isReact ? "box-sizing: border-box;" : ""}
 `;
 
 export default NavigationListFooter;

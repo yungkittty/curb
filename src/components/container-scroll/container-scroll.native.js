@@ -1,23 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 
-// https://stackoverflow.com/a/45134830
+const ContainerScroll = props => <ScrollView {...props} />;
 
-const ContainerScroll = ({ contentContainerStyle, ...others }) => (
-  <View style={{ flex: 1 }}>
-    <ScrollView
-      {...others}
-      contentContainerStyle={[
-        contentContainerStyle,
-        { flexGrow: 1 }
-      ]}
-    />
-  </View>
-);
+ContainerScroll.defaultProps = {
+  bounces: false
+};
 
-ContainerScroll.defaultProps = { contentContainerStyle: undefined };
-
-ContainerScroll.propTypes = { contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]) };
+ContainerScroll.propTypes = {
+  bounces: PropTypes.bool
+};
 
 export default ContainerScroll;

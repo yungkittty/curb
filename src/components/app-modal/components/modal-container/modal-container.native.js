@@ -13,15 +13,14 @@ const ModalContainer = styled(Container)`
   height: 100%;
   background-color: ${props => props.theme.backgroundColor};
   z-index: 32;
-  ${
-    Platform.OS === "android"
-      ? `elevation: 32;`
-      : `
-  shadow-offset: 0px 19.2px;
-  shadow-radius: 17.28px;
-  shadow-color: rgba(0, 0, 0, 0.228);
-  shadow-opacity: 1;`
-  }
+  ${Platform.OS === "android" ? `
+    elevation: 32;
+  ` : `
+    shadow-offset: 0px 19.2px;
+    shadow-radius: 17.28px;
+    shadow-color: rgba(0, 0, 0, 1);
+    shadow-opacity: 0.228;
+  `}
   padding-top: ${windowDimensions.statusBarHeight}px;
   flex-direction: column;
   background-color: ${({ theme }) => theme.backgroundColor};

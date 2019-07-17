@@ -5,24 +5,46 @@ import InputFile from "../input-file";
 import ImageUser from "../image-user";
 import ImageGroup from "../image-group";
 
-const ImageAvatarEditable = ({ style, size, userId, groupId, placeholderColor, ...others }) => {
-  return (
-    <InputFile
-      {...others}
-      as={Circle}
-      containerProps={{ diameter: size }}
-      type="image"
-      Placeholder={
-        // eslint-disable-next-line
-        userId
-          ? () => <ImageUser size={size} userId={userId} placeholderColor={placeholderColor} />
-          : groupId
-          ? () => <ImageGroup size={size} groupId={groupId} placeholderColor={placeholderColor} />
-          : undefined
-      }
-    />
-  );
-};
+const ImageAvatarEditable = ({
+  // eslint-disable-line
+  style,
+  userId,
+  groupId,
+  size,
+  placeholderColor,
+  ...others
+}) => (
+  <InputFile
+    {...others}
+    as={Circle}
+    containerProps={{ diameter: size }}
+    type="image"
+    Placeholder={
+      // eslint-disable-next-line
+      userId
+        ? () => (
+            // eslint-disable-next-line
+            <ImageUser
+              // eslint-disable-line
+              userId={userId}
+              size={size}
+              placeholderColor={placeholderColor}
+            />
+          )
+        : groupId
+        ? () => (
+            // eslint-disable-next-line
+            <ImageGroup
+              // eslint-disable-line
+              groupId={groupId}
+              size={size}
+              placeholderColor={placeholderColor}
+            />
+          )
+        : null
+    }
+  />
+);
 
 ImageAvatarEditable.defaultProps = {
   style: undefined,
@@ -32,12 +54,18 @@ ImageAvatarEditable.defaultProps = {
 };
 
 ImageAvatarEditable.propTypes = {
-  // eslint-disable-next-line
-  style: PropTypes.object,
-  size: PropTypes.oneOf(["extra-small", "small", "medium", "large", "extra-large", "extra-extra-large"])
-    .isRequired,
+  style: PropTypes.object, // eslint-disable-line
   userId: PropTypes.string,
   groupId: PropTypes.string,
+  size: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired,
   placeholderColor: PropTypes.string
 };
 

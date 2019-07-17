@@ -4,7 +4,15 @@ import FormContainer from "./components/form-container";
 import InputForm from "../../../../components/input-form";
 import Text from "../../../../components/text";
 
-const UserNameForm = ({ containerStyle, textStyle, readOnly, displayPlaceholder, value, ...others }) => (
+const UserNameForm = ({
+  // eslint-disable-line
+  containerStyle,
+  textStyle,
+  readOnly,
+  displayPlaceholder,
+  value,
+  ...others
+}) => (
   <FormContainer
     style={containerStyle}
     readOnly={readOnly}

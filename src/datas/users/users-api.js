@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const usersApi = {
-  getUser: ({ id }) => axios.get(`/users/${id}`, { withCredentials: true }),
-  patchUser: ({ id, payload }) => axios.patch(`/users/${id}`, payload, { withCredentials: true })
+  getUser: ({ id }) => axios.get(`/users/${id}`),
+  patchUser: ({ id, ...others }) => axios.patch(`/users/${id}`, others)
 };
 
 export default usersApi;

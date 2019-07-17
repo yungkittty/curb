@@ -14,16 +14,16 @@ const groupsActions = {
     payload: error,
     error: true
   }),
-  deleteGroupRequest: payload => ({
-    type: groupsActionsTypes.DELETE_GROUP_REQUEST,
+  getGroupRequest: payload => ({
+    type: groupsActionsTypes.GET_GROUP_REQUEST,
     payload
   }),
-  deleteGroupSuccess: payload => ({
-    type: groupsActionsTypes.DELETE_GROUP_SUCCESS,
+  getGroupSuccess: payload => ({
+    type: groupsActionsTypes.GET_GROUP_SUCCESS,
     payload
   }),
-  deleteGroupFailure: error => ({
-    type: groupsActionsTypes.DELETE_GROUP_FAILURE,
+  getGroupFailure: error => ({
+    type: groupsActionsTypes.GET_GROUP_FAILURE,
     payload: error,
     error: true
   }),
@@ -40,16 +40,29 @@ const groupsActions = {
     payload: error,
     error: true
   }),
-  getGroupRequest: payload => ({
-    type: groupsActionsTypes.GET_GROUP_REQUEST,
+  deleteGroupRequest: payload => ({
+    type: groupsActionsTypes.DELETE_GROUP_REQUEST,
     payload
   }),
-  getGroupSuccess: payload => ({
-    type: groupsActionsTypes.GET_GROUP_SUCCESS,
+  deleteGroupSuccess: payload => ({
+    type: groupsActionsTypes.DELETE_GROUP_SUCCESS,
     payload
   }),
-  getGroupFailure: error => ({
-    type: groupsActionsTypes.GET_GROUP_FAILURE,
+  deleteGroupFailure: error => ({
+    type: groupsActionsTypes.DELETE_GROUP_FAILURE,
+    payload: error,
+    error: true
+  }),
+  postGroupInviteTokenRequest: payload => ({
+    type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST,
+    payload
+  }),
+  postGroupInviteTokenSuccess: payload => ({
+    type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS,
+    payload
+  }),
+  postGroupInviteTokenFailure: error => ({
+    type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE,
     payload: error,
     error: true
   }),

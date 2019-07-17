@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -6,6 +7,7 @@ import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import ImageAvatarEditable from "../../../../components/image-avatar-editable";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
+import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable */
 import SignIn from "../../../sign-in";
 import SignUp2 from "../sign-up-2";
@@ -125,4 +127,8 @@ SignUp1.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("signUp")(SignUp1);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("signUp")
+])(SignUp1);

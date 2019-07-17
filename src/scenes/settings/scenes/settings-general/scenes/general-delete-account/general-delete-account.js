@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -5,6 +6,7 @@ import Loader from "../../../../../../components/loader";
 import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import ContentDescription from "./components/content-description";
+import withAppModal from "../../../../../../hocs/with-app-modal";
 // eslint-disable-next-line
 import SettingsGeneral from "../../../settings-general";
 
@@ -16,10 +18,9 @@ class GeneralDeleteAccount extends Component {
       setAppModalHeaderText,
       setAppModalHeaderLeftButton,
       setAppModalScene,
-      setAppModalFooterButton
+      setAppModalFooterButton,
+      deleteAccount
     } = this.props;
-
-    this.deleteAccount = this.deleteAccount.bind(this);
 
     setAppModalHeaderText({
       text: t("general.menu.deleteAccount.title")
@@ -30,31 +31,26 @@ class GeneralDeleteAccount extends Component {
     });
     setAppModalFooterButton({
       text: t("general.menu.deleteAccount.buttonTitle"),
-      onClick: this.deleteAccount
+      onClick: deleteAccount
     });
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignUpFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isSignUpFetching === isSignUpFetching) return;
-    if (isSignUpFetching) disableAppModalButtons();
+    const { isFetchingAccount, enableAppModalButtons, disableAppModalButtons } = this.props;
+    if (prevProps.isFetchingAccount === isFetchingAccount) return;
+    if (isFetchingAccount) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
-  deleteAccount() {
-    const { deleteAccount } = this.props;
-    deleteAccount();
-  }
-
   render() {
-    const { t, isSignUpFetching } = this.props;
+    const { t, isFetchingAccount } = this.props;
 
-    return isSignUpFetching ? (
+    return isFetchingAccount ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
         <AppModalSceneTitle>{t("general.menu.deleteAccount.contentTitle")}</AppModalSceneTitle>
-        <ContentDescription type="h4">
+        <ContentDescription type="h4" isIndented>
           {t("general.menu.deleteAccount.contentDescription")}
         </ContentDescription>
       </AppModalSceneContainer>
@@ -66,7 +62,7 @@ GeneralDeleteAccount.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  isSignUpFetching: PropTypes.bool.isRequired,
+  isFetchingAccount: PropTypes.bool.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
@@ -74,4 +70,8 @@ GeneralDeleteAccount.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired
 };
 
-export default withTranslation("settings")(GeneralDeleteAccount);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("settings")
+])(GeneralDeleteAccount);

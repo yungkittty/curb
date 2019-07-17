@@ -21,7 +21,7 @@ const AppModalSceneListItem = ({
   onClick
 }) => (
   <ItemContainer
-    backgroundcolor={backgroundColor}
+    backgroundColor={backgroundColor}
     hoverColor={!normalHoverColor ? theme.primaryVariantColor : undefined}
     selected={selected}
     disabled={disabled}

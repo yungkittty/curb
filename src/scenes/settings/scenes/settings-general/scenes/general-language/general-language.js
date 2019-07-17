@@ -1,8 +1,10 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
+import withAppModal from "../../../../../../hocs/with-app-modal";
 // eslint-disable-next-line
 import SettingsGeneral from "../../../settings-general";
 import generalLanguageData from "./general-language-data";
@@ -79,4 +81,8 @@ GeneralLanguage.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default withTranslation("settings")(GeneralLanguage);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("settings")
+])(GeneralLanguage);

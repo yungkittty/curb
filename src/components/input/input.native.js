@@ -8,8 +8,9 @@ import { TextInput, Platform } from "react-native";
 const Input = styled(({ type, onChange, id, isMultiline, ...others }) => (
   <TextInput
     {...others}
-    secureTextEntry={type === "password"}
+    textAlignVertical="top"
     keyboardType={type === "email" ? "email-address" : undefined}
+    secureTextEntry={type === "password"}
     onChangeText={value => onChange({ target: { id, value } })}
     multiline={isMultiline}
   />
@@ -18,7 +19,7 @@ const Input = styled(({ type, onChange, id, isMultiline, ...others }) => (
   font-family: Montserrat-Regular;
   font-size: 16px;
   ${Platform.OS === "android" ? "font-weight: normal;" : ""}
-  text-align-vertical: top;
+  ${props => (props.isMultiline ? `line-height: ${16 * 1.5}px;` : "")}
   color: ${({ theme }) => theme.fontColor};
 `;
 

@@ -3,12 +3,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
-import withUser from "../../hocs/with-user";
-import { platformBools } from "../../configurations/platform";
 import UserContainer from "./components/user-container";
-import ButtonIconFloat from "../../components/button-icon-float";
-import ImageAvatarEditable from "../../components/image-avatar-editable";
 import UserNameForm from "./components/user-name-form";
+import ImageAvatarEditable from "../../components/image-avatar-editable";
+import ButtonFloat from "../../components/button-float";
+import { platformBools } from "../../configurations/platform";
+import inputRegex from "../../utils/input-regex";
+import withUser from "../../hocs/with-user";
+import withCurrentUser from "../../hocs/with-current-user";
 
 class User extends Component {
   constructor(props) {
@@ -16,16 +18,11 @@ class User extends Component {
 
     this.initialState = {
       editMode: false,
-      username: {
-        value: undefined,
-        error: undefined
-      },
+      username: { value: undefined, error: undefined },
       avatar: { value: { data: undefined }, loadingProgress: undefined }
     };
 
     this.state = this.initialState;
-
-    this.onUploadProgress = this.onUploadProgress.bind(this);
     this.submit = this.submit.bind(this);
     this.handleSwapMode = this.handleSwapMode.bind(this);
     this.checkInput = this.checkInput.bind(this);
@@ -35,16 +32,17 @@ class User extends Component {
   componentDidUpdate(prevProps) {
     const { username: usernameState, avatar, editMode } = this.state;
     const {
-      owner,
-      isUserPatching,
-      userPatchingErrorCode,
+      isFetchingUsers,
+      usersErrorCode,
       isFetchingMedias,
       mediasErrorCode,
-      userName: usernameProps
+      userId,
+      userName: usernameProps,
+      currentUserId
     } = this.props;
     const { username: initialUsername, avatar: initialAvatar } = this.initialState;
     // eslint-disable-next-line
-    if (!owner && editMode) this.setState({ editMode: false });
+    if (!(userId === currentUserId) && editMode) this.setState({ editMode: false });
 
     if (prevProps.isFetchingMedias && !isFetchingMedias)
       // eslint-disable-next-line
@@ -52,39 +50,23 @@ class User extends Component {
         avatar: mediasErrorCode === "" ? initialAvatar : { ...avatar, loadingProgress: undefined },
         editMode: mediasErrorCode !== ""
       });
-    if (prevProps.isUserPatching && !isUserPatching)
+    if (prevProps.isFetchingUsers && !isFetchingUsers)
       // eslint-disable-next-line
-      this.setState({ editMode: userPatchingErrorCode !== "" });
+      this.setState({ editMode: usersErrorCode !== "" });
 
     // eslint-disable-next-line
     if (usernameState.value === usernameProps) this.setState({ username: initialUsername });
   }
 
-  onUploadProgress({ loaded, total }) {
-    const { avatar } = this.state;
-    this.setState({ avatar: { ...avatar, loadingProgress: loaded / total } });
-  }
-
   submit() {
-    const { userId, patchUser, postMediaAvatarUser } = this.props;
+    const { userId, userName, patchUser } = this.props;
     const { username, avatar } = this.state;
-    let payload = null;
-
-    if (username.value) payload = { ...payload, name: username.value };
-
-    if (payload) patchUser({ id: userId, payload });
-    if (avatar.value.file) {
-      postMediaAvatarUser({
+    if ((username.value && username.value !== userName) || avatar.value.file) {
+      patchUser({
         id: userId,
-        avatar,
-        onUploadProgress: this.onUploadProgress,
-        onSuccessAlert: {
-          type: "success",
-          message: "postAvatar.userSuccess",
-          icon: "check"
-        }
+        avatar: avatar.value,
+        name: username.value
       });
-      this.onUploadProgress({ loaded: 0.01, total: 100 });
     }
   }
 
@@ -96,15 +78,14 @@ class User extends Component {
 
   checkInput(id, value) {
     const { [id]: Y } = this.state;
-    const error = id === "username" && value.length === 0 ? "missing" : undefined;
-
+    let error = id === "username" && value.length === 0 ? "missing" : undefined;
+    if (error === undefined) error = !RegExp(inputRegex.username).test(value) ? "invalid" : undefined;
     this.setState({ [id]: { ...Y, value, error } });
     return error === undefined;
   }
 
   handleSwapMode() {
     const { editMode } = this.state;
-
     if (!editMode) this.setState({ editMode: true });
     else if (editMode && this.checkForm()) {
       this.submit();
@@ -118,8 +99,22 @@ class User extends Component {
   }
 
   render() {
-    const { editMode, username: usernameState, avatar: avatarState } = this.state;
-    const { t, theme, owner, userName: usernameProps, userId, isFetchingMedias, isUserPatching } = this.props;
+    const {
+      // eslint-disable-line
+      editMode,
+      username: usernameState,
+      avatar: avatarState
+    } = this.state;
+    const {
+      // eslint-disable-line
+      isFetchingUsers,
+      isFetchingMedias,
+      userId,
+      userName: usernameProps,
+      currentUserId,
+      theme,
+      t
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -150,32 +145,36 @@ class User extends Component {
             error={usernameState.error && t(`validation:username.${usernameState.error}`)}
           />
         </UserContainer>
-        {owner && !isFetchingMedias && !isUserPatching && (
-          <ButtonIconFloat icon={editMode ? "check" : "pen"} size="medium" onClick={this.handleSwapMode} />
-        )}
+        {userId === currentUserId ? (
+          <ButtonFloat
+            icon={editMode ? "check" : "pen"}
+            onClick={this.handleSwapMode}
+            disabled={!isFetchingMedias && !isFetchingUsers}
+          />
+        ) : null}
       </React.Fragment>
     );
   }
 }
 
 User.propTypes = {
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired,
+  isFetchingUsers: PropTypes.bool.isRequired,
+  usersErrorCode: PropTypes.string.isRequired,
   isFetchingMedias: PropTypes.bool.isRequired,
   mediasErrorCode: PropTypes.string.isRequired,
-  isUserPatching: PropTypes.bool.isRequired,
-  userPatchingErrorCode: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
-  patchUser: PropTypes.func.isRequired,
-  postMediaAvatarUser: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
   userName: PropTypes.string.isRequired,
-  owner: PropTypes.bool.isRequired
+  currentUserId: PropTypes.string.isRequired,
+  patchUser: PropTypes.func.isRequired,
+  // postMediaAvatarUser: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  t: PropTypes.func.isRequired
 };
 
-export default _.flow([
+export default _.flowRight([
   // eslint-disable-line
-  withTheme,
   withUser,
-  withTranslation()
+  withCurrentUser,
+  withTranslation(),
+  withTheme
 ])(User);

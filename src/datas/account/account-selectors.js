@@ -1,6 +1,6 @@
 const accountSelectors = {};
 
-accountSelectors.isAccountFetching = state => state.account.isFetching;
+accountSelectors.isFetchingAccount = state => state.account.isFetching;
 
 accountSelectors.getAccountErrorCode = state => state.account.errorCode;
 

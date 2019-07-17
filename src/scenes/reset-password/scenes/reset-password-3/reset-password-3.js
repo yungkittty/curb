@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -7,52 +8,55 @@ import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import InputForm from "../../../../components/input-form";
 import inputRegex from "../../../../utils/input-regex";
 import forbiddenPasswords from "../../../../utils/forbidden-passwords";
-// eslint-disable-next-line
+import withAppModal from "../../../../hocs/with-app-modal";
+/* eslint-disable */
+import withAccountRecovery from "../../../../hocs/with-account-recovery";
 import ResetPassword2 from "../reset-password-2";
+/* eslint-enable */
 
 class ResetPassword3 extends Component {
   constructor(props) {
     super(props);
 
     const {
+      // eslint-disable-line
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
-      setAppModalScene,
       setAppModalFooterButton,
       t
     } = props;
 
     this.state = { isLoading: false };
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.submit = this.submit.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 3, steps: 3 });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: ResetPassword2, direction: -1 })
-    });
-    setAppModalFooterButton({
-      text: t("resetPass"),
-      onClick: this.submit
-    });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalFooterButton({ text: t("resetPass"), onClick: this.submit });
   }
 
   componentDidUpdate(prevProps) {
-    const { accountErrorCode, enableAppModalButtons } = this.props;
+    const { accountRecoveryErrorCode, enableAppModalButtons } = this.props;
 
-    if (prevProps.isAccountFetching && accountErrorCode !== "") {
+    if (prevProps.isFetchingAccountRecovery && accountRecoveryErrorCode !== "") {
       // eslint-disable-next-line
       this.setState({ isLoading: false });
       enableAppModalButtons();
     }
   }
 
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: ResetPassword2, direction: -1 });
+  }
+
   submit() {
-    const { resetAccountPassword, email, code, resetPassword, disableAppModalButtons } = this.props;
+    const { postAccountRecoveryPassword, email, code, resetPassword, disableAppModalButtons } = this.props;
     if (!this.checkForm()) return;
-    resetAccountPassword({
+    postAccountRecoveryPassword({
       email: email.value,
       code: code.value,
       password: resetPassword.value
@@ -104,7 +108,10 @@ class ResetPassword3 extends Component {
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("chooseNewPassword")}</AppModalSceneTitle>
+        <AppModalSceneTitle>
+          {/* eslint-disable-line */}
+          {t("chooseNewPassword")}
+        </AppModalSceneTitle>
         <InputForm
           size="modal"
           id="resetPassword"
@@ -136,21 +143,26 @@ ResetPassword3.defaultProps = {
 };
 
 ResetPassword3.propTypes = {
-  isAccountFetching: PropTypes.bool.isRequired,
-  accountErrorCode: PropTypes.string.isRequired,
   enableAppModalButtons: PropTypes.func.isRequired,
-  disableAppModalButtons: PropTypes.func.isRequired,
-  email: PropTypes.shape({ value: PropTypes.string }),
-  code: PropTypes.shape({ value: PropTypes.string }),
-  resetPassword: PropTypes.shape({ value: PropTypes.string }),
-  confirmResetPassword: PropTypes.shape({ value: PropTypes.string }),
-  t: PropTypes.func.isRequired,
-  resetAccountPassword: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired
+  setAppModalFooterButton: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
+  isFetchingAccountRecovery: PropTypes.bool.isRequired,
+  accountRecoveryErrorCode: PropTypes.string.isRequired,
+  postAccountRecoveryPassword: PropTypes.func.isRequired,
+  email: PropTypes.shape({ value: PropTypes.string }),
+  code: PropTypes.shape({ value: PropTypes.string }),
+  resetPassword: PropTypes.shape({ value: PropTypes.string }),
+  confirmResetPassword: PropTypes.shape({ value: PropTypes.string }),
+  t: PropTypes.func.isRequired
 };
 
-export default withTranslation("resetPassword")(ResetPassword3);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withAccountRecovery,
+  withTranslation("resetPassword")
+])(ResetPassword3);

@@ -9,9 +9,11 @@ const Input = styled.input.attrs(({ isMultiline }) => ({ as: isMultiline ? "text
   border: 0;
   font-family: "Montserrat-Regular";
   font-size: 18px;
+  ${props => (props.isMultiline ? `line-height: ${18 * 1.5}px;` : "")}
   box-shadow: none;
-  color: ${({ theme }) => theme.fontColor}
-  
+  color: ${({ theme }) => theme.fontColor};
+  resize: none;
+
   &:focus {
     outline: 0;
   }

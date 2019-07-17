@@ -6,7 +6,7 @@ import LoaderIcon from "./components/loader-icon";
 
 const Loader = ({ theme }) => (
   <LoaderContainer>
-    <LoaderIcon icon="spinner" size="medium" color={theme.secondaryColor} />
+    <LoaderIcon icon="spinner" size="small" color={theme.secondaryColor} />
   </LoaderContainer>
 );
 

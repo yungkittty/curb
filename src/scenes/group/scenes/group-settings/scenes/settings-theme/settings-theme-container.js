@@ -4,8 +4,7 @@ import SettingsTheme from "./settings-theme";
 import { groupsSelectors, groupsActions } from "../../../../../../datas/groups";
 
 const mapStateToProps = state => ({
-  isPatchGroupFetching: groupsSelectors.isCreateGroupFetching(state) || false,
-  patchGroupErrorCode: groupsSelectors.getCreateGroupErrorCode(state) || ""
+  isFetchingGroups: groupsSelectors.isFetchingGroups(state) || false
 });
 
 const mapDispatchToProps = dispatch => ({

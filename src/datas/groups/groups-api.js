@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const groupsApi = {
-  postGroup: payload => axios.post(`/groups`, payload, { withCredentials: true }),
-  deleteGroup: ({ id }) => axios.delete(`/groups/${id}`, { withCredentials: true }),
-  patchGroup: ({ id, ...others }) => axios.patch(`/groups/${id}`, others, { withCredentials: true }),
-  getGroup: ({ id }) => axios.get(`/groups/${id}`, { withCredentials: true }),
-  getGroupInviteToken: ({ id }) => axios.get(`/groups/invite/${id}`, { withCredentials: true })
+  postGroup: payload => axios.post(`/groups`, payload),
+  getGroup: ({ id }) => axios.get(`/groups/${id}`),
+  patchGroup: ({ id, ...others }) => axios.patch(`/groups/${id}`, others),
+  deleteGroup: ({ id }) => axios.delete(`/groups/${id}`),
+  postGroupInviteToken: ({ id, inviteToken: token }) => axios.post(`/groups/join/${id}`, { token }),
+  getGroupInviteToken: ({ id }) => axios.get(`/groups/invite/${id}`)
 };
 
 export default groupsApi;

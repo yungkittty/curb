@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Map from "../media-map/components/map";
+import Map from "../../../../../../components/map";
 
 const LocationContainer = styled(Map)`
   width: 100%;

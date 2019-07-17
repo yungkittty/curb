@@ -1,8 +1,7 @@
 import _ from "lodash";
 import { css } from "styled-components";
 import windowBreakpoints from "./window-breakpoints";
-// eslint-disable-next-line
-import windowDimensions from "./window-dimensions";
+import windowDimensions from "./window-dimensions"; // eslint-disable-line
 
 const windowQueries = _.reduce(
   windowBreakpoints,

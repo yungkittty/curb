@@ -5,12 +5,18 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 const Icon = ({ size, icon, ...others }) => {
   const X = (() => {
     switch (size) {
-      case "small":
+      case "extra-small":
         return 20;
-      case "medium":
+      case "small":
         return 30;
+      case "medium":
+        return 35;
       case "large":
-        return 50;
+        return 40;
+      case "extra-large":
+        return 100;
+      case "extra-extra-large":
+        return 130;
       default:
         return undefined;
     }
@@ -19,8 +25,16 @@ const Icon = ({ size, icon, ...others }) => {
 };
 
 Icon.propTypes = {
-  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
-  icon: PropTypes.string.isRequired
+  icon: PropTypes.string.isRequired,
+  size: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired
 };
 
 export default Icon;

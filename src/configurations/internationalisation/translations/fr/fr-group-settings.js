@@ -1,10 +1,9 @@
 const frGroupSettings = {
   groupSettings: "Paramètres du groupe",
-  createGroup: "Créer un groupe",
-  general: { title: "Général", description: "Icône  ·  Nom du groupe" },
+  general: { title: "Général", description: "Icône  ·  Nom" },
   discoverability: {
-    title: "Type de groupe",
-    description: "Modifier le niveau de découverte (public ou privé)"
+    title: "Découvrabilité",
+    description: "Modifier la découvrabilité (public ou privé)"
   },
   modules: {
     title: "Modules",

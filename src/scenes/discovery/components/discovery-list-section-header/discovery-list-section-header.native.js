@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import Text from "../../../../components/text";
+import ListHeaderCircleText from "../../../../components/list-header-circle-text";
 
-const DiscoveryListSectionHeader = styled(Text)`
+const DiscoveryListSectionHeader = styled(ListHeaderCircleText)`
   margin-left: 20px;
-  margin-bottom: 15px;
 `;
 
 export default DiscoveryListSectionHeader;

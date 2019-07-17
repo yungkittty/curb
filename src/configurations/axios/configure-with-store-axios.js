@@ -6,14 +6,12 @@ import { signInActions } from "../../datas/sign-in";
 
 const configureWithStoreAxios = ({ dispatch }) => {
   axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+  axios.defaults.withCredentials = true;
   axios.interceptors.response.use(
     response => response,
     error => {
-      const {
-        status,
-        data: { code }
-      } = error.response;
-      if (_.includes([400, 403], status) && _.includes(code, "ACCOUNTS_TOKEN_"))
+      const { status, data: { code: errorCode = "UNKNOWN" } = {} } = (error || {}).response || {} || {};
+      if (_.includes([400, 403], status) && _.includes(errorCode, "ACCOUNTS_TOKEN_"))
         dispatch(signInActions.signOutSuccess());
       return Promise.reject(error);
     }

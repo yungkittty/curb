@@ -1,8 +1,10 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../components/loader";
 import AppModalSceneContainer from "../../components/app-modal-scene-container";
+import withAppModal from "../../hocs/with-app-modal";
 // eslint-disable-next-line
 import SignInFooter from "./components/sign-in-footer";
 import SignInForm from "./components/sign-in-form";
@@ -22,9 +24,9 @@ class SignIn extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignInFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isSignInFetching === isSignInFetching) return;
-    if (isSignInFetching) disableAppModalButtons();
+    const { isFetchingSignIn, enableAppModalButtons, disableAppModalButtons } = this.props;
+    if (prevProps.isFetchingSignIn === isFetchingSignIn) return;
+    if (isFetchingSignIn) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
@@ -54,8 +56,8 @@ class SignIn extends Component {
   }
 
   render() {
-    const { isSignInFetching, setAppModalScene, email, password, t } = this.props;
-    return isSignInFetching ? (
+    const { isFetchingSignIn, setAppModalScene, email, password, t } = this.props;
+    return isFetchingSignIn ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
@@ -78,7 +80,7 @@ SignIn.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  isSignInFetching: PropTypes.bool.isRequired,
+  isFetchingSignIn: PropTypes.bool.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
@@ -86,4 +88,8 @@ SignIn.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("signIn")(SignIn);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("signIn")
+])(SignIn);

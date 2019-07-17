@@ -2,12 +2,11 @@ import styled from "styled-components";
 import Button from "../../../../../../../../components/button";
 
 const OptionContainer = styled(Button)`
-  padding: 18px 30px;
+  display: flex;
   flex: 1;
-  align-items: center;
-  justify-content: center;
-
-  background: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
+  flex-direction: column;
+  padding: 18px 30px;
+  background-color: ${({ selected, theme }) => (selected ? theme.primaryVariantColor : "transparent")};
 `;
 
 export default OptionContainer;

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Loader from "../../../../components/loader";
 import QrContainer from "./components/qr-container";
 import QrHeader from "./components/qr-group-header";
-import QrCode from "../../../../components/qr-code";
+import ImageGroup from "../../../../components/image-group";
 import QrTitle from "./components/qr-title";
-import QrImage from "./components/qr-image";
+import QrCode from "../../../../components/qr-code";
 import { platformBools } from "../../../../configurations/platform";
 
 class GroupQr extends React.Component {
@@ -17,28 +17,29 @@ class GroupQr extends React.Component {
 
   render() {
     const {
-      isFetchingCurrentGroup,
-      currentGroupId,
-      currentGroupName,
-      currentGroupAvatarUrl,
-      currentGroupStatus,
-      currentGroupInviteToken
+      // eslint-disable-line
+      isFetchingGroups,
+      groupId,
+      groupName,
+      groupStatus,
+      groupInviteToken
     } = this.props;
-
-    return isFetchingCurrentGroup ? (
+    return isFetchingGroups || (groupStatus === "private" && !groupInviteToken) ? (
       <Loader />
     ) : (
       <QrContainer>
         <QrHeader>
-          <QrImage src={`${process.env.REACT_APP_API_URL}${currentGroupAvatarUrl}`} />
+          <ImageGroup
+            groupId={groupId}
+            size="large"
+            style={{ marginRight: platformBools.isReact ? 40 : 20 }}
+          />
           <QrTitle type="h2" weight={700}>
-            {currentGroupName}
+            {groupName}
           </QrTitle>
         </QrHeader>
         <QrCode
-          value={`${currentGroupId}${
-            currentGroupStatus === "private" ? `?token=${currentGroupInviteToken}` : ""
-          }`}
+          value={JSON.stringify({ id: groupId, inviteToken: groupInviteToken })}
           size={platformBools.isReact ? 240 : 200}
         />
       </QrContainer>
@@ -47,13 +48,12 @@ class GroupQr extends React.Component {
 }
 
 GroupQr.propTypes = {
-  isFetchingCurrentGroup: PropTypes.bool.isRequired,
-  currentGroupId: PropTypes.string.isRequired,
-  currentGroupName: PropTypes.string.isRequired,
-  currentGroupAvatarUrl: PropTypes.string.isRequired,
-  currentGroupStatus: PropTypes.string.isRequired,
-  currentGroupInviteToken: PropTypes.string.isRequired,
-  setAppModalHeaderText: PropTypes.func.isRequired
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  isFetchingGroups: PropTypes.bool.isRequired,
+  groupId: PropTypes.string.isRequired,
+  groupName: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired,
+  groupInviteToken: PropTypes.string.isRequired
 };
 
 export default GroupQr;

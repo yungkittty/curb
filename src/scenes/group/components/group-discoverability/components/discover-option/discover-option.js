@@ -6,18 +6,42 @@ import Icon from "../../../../../../components/icon";
 import OptionTitle from "./components/option-title";
 import OptionDescription from "./components/option-description";
 
-const DiscoverOption = ({ theme, icon, title, description, selected, onClick }) => (
-  <OptionContainer hoverColor={theme.primaryVariantColor} selected={selected} onClick={onClick}>
+const DiscoverOption = ({
+  // eslint-disable-line
+  theme,
+  icon,
+  title,
+  description,
+  selected,
+  onClick
+}) => (
+  <OptionContainer
+    // eslint-disable-line
+    hoverColor={theme.primaryVariantColor}
+    selected={selected}
+    onClick={onClick}
+  >
     <Fragment>
       <Icon
         icon={icon}
         size="large"
         color={selected === false ? theme.primaryColor : theme.fontVariantColor}
       />
-      <OptionTitle selected={selected} type="h3" weight={700}>
+      <OptionTitle
+        // eslint-disable-line
+        selected={selected}
+        type="h3"
+        weight={700}
+      >
         {title}
       </OptionTitle>
-      <OptionDescription selected={selected} type="h4" weight={400}>
+      <OptionDescription
+        // eslint-disable-line
+        selected={selected}
+        type="h4"
+        weight={400}
+        isIndented
+      >
         {description}
       </OptionDescription>
     </Fragment>

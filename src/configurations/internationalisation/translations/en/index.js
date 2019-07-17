@@ -7,23 +7,27 @@ import discovery from "./en-discovery";
 import resetPassword from "./en-reset-password";
 import appDownload from "./en-app-download";
 import settings from "./en-settings";
+import group from "./en-group";
 import modules from "./en-modules";
-import appAlerts from "./en-app-alerts";
-import errorCode from "./en-error-code";
+import appAlert from "./en-app-alert";
+import groupCreate from "./en-group-create";
 import groupSettings from "./en-group-settings";
+import errorCode from "./en-error-code";
 
 export default {
   common,
   glossary,
   validation,
   signIn,
+  appDownload,
   signUp,
   discovery,
   resetPassword,
-  appDownload,
   settings,
+  group,
   modules,
-  appAlerts,
-  errorCode,
-  groupSettings
+  appAlert,
+  groupCreate,
+  groupSettings,
+  errorCode
 };

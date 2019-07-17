@@ -5,7 +5,7 @@ const DiscoverContainer = styled(Container)`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 390px;
+  height: 400px;
 `;
 
 export default DiscoverContainer;

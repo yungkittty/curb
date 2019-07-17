@@ -1,15 +1,11 @@
 import React from "react";
-import ListFlat from "../../../../components/list-flat";
+import ListCircleText from "../../../../components/list-circle-text";
 
 const DiscoveryList = props => (
-  <ListFlat
+  <ListCircleText
+    // eslint-disable-line
     {...props}
     contentContainerStyle={{ paddingLeft: 20 }}
-    getItemLayout={(_, itemIndex) => ({
-      length: 90,
-      offset: 90 * itemIndex,
-      index: itemIndex
-    })}
   />
 );
 
