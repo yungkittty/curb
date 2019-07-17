@@ -1,16 +1,17 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withRouter, matchPath } from "react-router";
 import GroupQr from "./group-qr";
-import { appModalActions } from "../../../../datas/app-modal";
 import { groupsActions, groupsSelectors } from "../../../../datas/groups";
+import withAppModal from "../../../../hocs/with-app-modal";
+import withGroup from "../../../../hocs/with-group";
 
 class GroupQrContainer extends React.Component {
   componentDidMount() {
-    const { currentGroupStatus, getGroupInviteToken, currentGroupId } = this.props;
+    const { groupStatus, getGroupInviteToken, groupId } = this.props;
     // eslint-disable-next-line
-    currentGroupStatus === "private" && getGroupInviteToken({ id: currentGroupId });
+    groupStatus === "private" && getGroupInviteToken({ id: groupId });
   }
 
   render() {
@@ -18,40 +19,26 @@ class GroupQrContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { pathname } = ownProps.location;
-  const { id: currentGroupId } = matchPath(pathname, { path: "/groups/:id" }).params;
-  const {
-    isFetching: isFetchingCurrentGroup = true,
-    name: currentGroupName = "",
-    avatarUrl: currentGroupAvatarUrl = "",
-    status: currentGroupStatus = "",
-    inviteToken: currentGroupInviteToken = ""
-  } = groupsSelectors.getGroupById(state, currentGroupId);
-  return {
-    isFetchingCurrentGroup,
-    currentGroupId,
-    currentGroupName,
-    currentGroupAvatarUrl,
-    currentGroupStatus,
-    currentGroupInviteToken
-  };
-};
+const mapStateToProps = state => ({
+  isFetchingGroups: groupsSelectors.isFetchingGroups(state)
+});
 
 const mapDispatchToProps = dispatch => ({
-  setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
   getGroupInviteToken: payload => dispatch(groupsActions.getGroupInviteTokenRequest(payload))
 });
 
 GroupQrContainer.propTypes = {
-  currentGroupId: PropTypes.string.isRequired,
-  currentGroupStatus: PropTypes.string.isRequired,
+  groupId: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired,
   getGroupInviteToken: PropTypes.func.isRequired
 };
 
-export default withRouter(
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withGroup,
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(GroupQrContainer)
-);
+  )
+])(GroupQrContainer);

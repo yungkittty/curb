@@ -11,40 +11,51 @@ import ContainerZipper from "./components/container-zipper";
 class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { containerAnimated: new Animated.Value(-70),
-      isContainerShowed: false };
+    this.moveContainer = this.moveContainer.bind(this);
+    this.moveContainerTo = this.moveContainerTo.bind(this);
+    this.moveContainerToEnd = this.moveContainerToEnd.bind(this);
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: this.moveContainerTo.bind(this),
-      onPanResponderRelease: this.moveContainerToEnd.bind(this)
-    });
+      onPanResponderMove: this.moveContainer,
+      onPanResponderRelease: this.moveContainerToEnd });
+    this.state = {
+      containerAnimated: new Animated.Value(-70),
+      isContainerShowed: false
+    };
   }
 
-  moveContainerTo(event) {
+  moveContainer(event) {
     const { containerAnimated, isContainerShowed } = this.state;
     const { pageX } = event.nativeEvent;
     if (!isContainerShowed) this.setState({ isContainerShowed: true });
     containerAnimated.setValue(pageX > 70 ? 0 : pageX - 70);
   }
 
-  moveContainerToEnd(event) {
-    const { containerAnimated } = this.state;
-    const { pageX } = event.nativeEvent;
-    this.setState({ isContainerShowed: pageX >= 35 });
+  moveContainerTo(toBegin) {
+    const { containerAnimated, isContainerShowed } = this.state;
+    if (!isContainerShowed) this.setState({ isContainerShowed: true });
     Animated.spring(containerAnimated, {
-      toValue: pageX < 35 ? -70 : 0,
+      toValue: toBegin ? 0 : -70,
       easing: Easing.inOut(Easing.quad),
       useNativeDriver: true
     }).start();
+    this.setState({ isContainerShowed: toBegin });
+  }
+
+  moveContainerToEnd(event) {
+    const { pageX } = event.nativeEvent;
+    const toBegin = pageX >= 35;
+    this.moveContainerTo(toBegin);
   }
 
   render() {
-    const { containerAnimated, isContainerShowed } = this.state;
+    const { isContainerShowed, containerAnimated } = this.state;
     const { children } = this.props;
     return (
       <React.Fragment>
         {isContainerShowed ? (
           <ContainerOverlay
+            onPressIn={() => this.moveContainerTo(false)}
             style={{
               opacity: containerAnimated.interpolate({
                 inputRange: [-70, 0],
@@ -55,11 +66,13 @@ class NavigationContainer extends React.Component {
         ) : null}
         <ContainerContainer style={{ transform: [{ translateX: containerAnimated }] }}>
           <ContainerContentContainer>
-            {children}
+            {/* eslint-disable-line */}
+            {children(() => this.moveContainerTo(false))}
           </ContainerContentContainer>
           <ContainerZipper
+            // eslint-disable-line
             {...this.panResponder.panHandlers}
-            hitSlop={{ top: 20, right: 20, bottom: 20 }}
+            hitSlop={{ top: 10, right: 10, bottom: 10 }}
           />
         </ContainerContainer>
       </React.Fragment>
@@ -67,6 +80,8 @@ class NavigationContainer extends React.Component {
   }
 }
 
-NavigationContainer.propTypes = { children: PropTypes.node.isRequired };
+NavigationContainer.propTypes = {
+  children: PropTypes.func.isRequired
+};
 
 export default NavigationContainer;

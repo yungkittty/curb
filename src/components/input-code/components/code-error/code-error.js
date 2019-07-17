@@ -6,7 +6,6 @@ const CodeError = styled(Text)`
   bottom: -22px;
   left: 10px;
   color: ${({ theme }) => theme.errorColor};
-  white-space: pre;
 `;
 
 export default CodeError;

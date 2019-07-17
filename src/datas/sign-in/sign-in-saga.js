@@ -1,8 +1,8 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
-import appModalActions from "../app-modal/app-modal-actions";
 import signInActionsTypes from "./sign-in-actions-types";
 import signInActions from "./sign-in-actions";
 import signInApi from "./sign-in-api";
+import appModalActions from "../app-modal/app-modal-actions";
 import appAlertActions from "../app-alert/app-alert-actions";
 
 function* signInRequestSaga(action) {
@@ -11,7 +11,8 @@ function* signInRequestSaga(action) {
     yield put(signInActions.signInSuccess(payload));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    yield put(signInActions.signInFailure(error));
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(signInActions.signInFailure({ errorCode }));
   }
 }
 
@@ -19,23 +20,14 @@ function* signOutRequestSaga() {
   try {
     yield call(signInApi.signOut);
     yield put(signInActions.signOutSuccess());
-    yield put(
-      appAlertActions.pushAppAlert({
-        type: "success",
-        message: "signOutSuccess",
-        icon: "check"
-      })
-    );
+    const successAlert = { type: "success", message: "signOutSuccess", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
   } catch (error) {
-    yield put(signInActions.signOutFailure(error));
-    yield put(
-      appAlertActions.pushAppAlert({
-        type: "error",
-        message: "signOutFailure",
-        icon: "times"
-      })
-    );
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(signInActions.signOutFailure({ errorCode }));
+    const errorAlert = { type: "error", message: "signOutFailure", icon: "times" };
+    yield put(appAlertActions.pushAppAlert(errorAlert));
   }
 }
 

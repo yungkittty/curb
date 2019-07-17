@@ -12,9 +12,9 @@ const SelectorInputVideo = styled.input.attrs(({ onSelect }) => ({
     reader.readAsDataURL(file);
   }
 }))`
+  padding: 0px;
   opacity: 0;
   cursor: pointer;
-  filter: alpha(opacity=0);
 `;
 
 export default SelectorInputVideo;

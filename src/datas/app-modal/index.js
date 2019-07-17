@@ -4,6 +4,7 @@ import appModalReducer from "./app-modal-reducer";
 import appModalSelectors from "./app-modal-selectors";
 
 export {
+  // eslint-disable-line
   appModalActionsTypes,
   appModalActions,
   appModalReducer,

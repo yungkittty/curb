@@ -1,17 +1,30 @@
-import styled from "styled-components";
+import React from "react";
+import PropTypes from "prop-types";
+import { withTheme } from "styled-components";
 import Container from "../../../container";
 
-const NavigationContainer = styled(Container)`
-  display: flex;
-  position: absolute;
-  left: 0px;
-  flex-direction: column;
-  width: 80px;
-  height: 100%;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
-  background-color: ${props => props.theme.primaryColor};
-`;
+const NavigationContainer = ({ children, theme }) => (
+  <Container
+    style={{
+      display: "flex",
+      position: "absolute",
+      left: 0,
+      flexDirection: "column",
+      width: 80,
+      height: "100%",
+      paddingLeft: 10,
+      paddingTop: 10,
+      paddingRight: 10,
+      backgroundColor: theme.primaryColor
+    }}
+  >
+    {children()}
+  </Container>
+);
 
-export default NavigationContainer;
+NavigationContainer.propTypes = {
+  children: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired // eslint-disable-line
+};
+
+export default withTheme(NavigationContainer);

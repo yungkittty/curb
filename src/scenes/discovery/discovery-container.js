@@ -1,37 +1,41 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Discovery from "./discovery";
 import { discoveryActions, discoverySelectors } from "../../datas/discovery";
-import { appModalActions } from "../../datas/app-modal";
-import currentUserSelectors from "../../datas/current-user/current-user-selectors";
+import withCurrentUser from "../../hocs/with-current-user";
 
 class DiscoveryContainer extends React.Component {
   componentDidMount() {
-    const { getDiscovery } = this.props;
-    getDiscovery({ count: 25 });
+    const { getDiscoverySections, currentUserId } = this.props;
+    getDiscoverySections({ id: currentUserId });
   }
 
   render() {
-    const { getDiscovery, ...others } = this.props;
+    const { getDiscoverySections, ...others } = this.props;
     return <Discovery {...others} />;
   }
 }
 
 const mapStateToProps = state => ({
-  /* eslint-disable-next-line */
-  discoveryGroupsIds: discoverySelectors.getDiscoveryGroupsIds(state) || [],
-  currentUserId: currentUserSelectors.getCurrentUserId(state) || ""
+  discoverySections: discoverySelectors.getDiscoverySections(state) || []
 });
 
 const mapDispatchToProps = dispatch => ({
-  getDiscovery: payload => dispatch(discoveryActions.getDiscoveryRequest(payload)),
-  showAppModal: payload => dispatch(appModalActions.showAppModal(payload))
+  getDiscoverySections: payload => dispatch(discoveryActions.getDiscoverySectionsRequest(payload))
 });
 
-DiscoveryContainer.propTypes = { getDiscovery: PropTypes.func.isRequired };
+DiscoveryContainer.propTypes = {
+  currentUserId: PropTypes.string.isRequired,
+  getDiscoverySections: PropTypes.func.isRequired
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DiscoveryContainer);
+export default _.flowRight([
+  // eslint-disable-line
+  withCurrentUser,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+])(DiscoveryContainer);

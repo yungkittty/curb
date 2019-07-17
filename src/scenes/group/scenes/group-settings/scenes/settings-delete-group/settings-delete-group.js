@@ -3,11 +3,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import { withRouter } from "react-router";
-import withAppModal from "../../../../../../hocs/with-app-modal";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import ContentDescription from "./components/content-description";
+import withAppModal from "../../../../../../hocs/with-app-modal";
+import withGroup from "../../../../../../hocs/with-group";
 // eslint-disable-next-line
 import GroupSettings from "../../../group-settings";
 
@@ -35,21 +36,32 @@ class SettingsDeleteGroup extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isDeleteGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isDeleteGroupFetching === isDeleteGroupFetching) return;
-    if (isDeleteGroupFetching) disableAppModalButtons();
+    const {
+      // eslint-disable-line
+      isFetchingGroups,
+      enableAppModalButtons,
+      disableAppModalButtons
+    } = this.props;
+    if (prevProps.isFetchingGroups === isFetchingGroups) return;
+    if (isFetchingGroups) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
   render() {
-    const { t, isDeleteGroupFetching } = this.props;
+    const { t, isFetchingGroups } = this.props;
 
-    return isDeleteGroupFetching ? (
+    return isFetchingGroups ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <AppModalSceneTitle>{t("deleteGroup.contentTitle")}</AppModalSceneTitle>
-        <ContentDescription type="h4">{t("deleteGroup.contentDescription")}</ContentDescription>
+        <AppModalSceneTitle>
+          {/* eslint-disable-line */}
+          {t("deleteGroup.contentTitle")}
+        </AppModalSceneTitle>
+        <ContentDescription type="h4" isIndented>
+          {/* eslint-disable-line */}
+          {t("deleteGroup.contentDescription")}
+        </ContentDescription>
       </AppModalSceneContainer>
     );
   }
@@ -61,11 +73,17 @@ SettingsDeleteGroup.propTypes = {
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  isDeleteGroupFetching: PropTypes.bool.isRequired,
+  isFetchingGroups: PropTypes.bool.isRequired,
   deleteGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([withAppModal, withRouter, withTranslation("groupSettings")])(SettingsDeleteGroup);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withGroup,
+  withRouter,
+  withTranslation("groupSettings")
+])(SettingsDeleteGroup);

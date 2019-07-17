@@ -1,53 +1,62 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import ButtonContainer from "../button-container";
 
-const Button = styled(({ children, onClick, hoverColor, ...others }) =>
-  // eslint-disable-next-line
-  typeof onClick === "string" && onClick.charAt(0) !== "/" ? (
-    <a {...others} href={onClick}>
-      {React.Children.only(children)}
-    </a>
-  ) : typeof onClick === "string" || onClick === "object" ? (
-    <Link {...others} to={onClick}>
-      {React.Children.only(children)}
-    </Link>
-  ) : (
-    <button {...others} type="button" onClick={onClick}>
-      {React.Children.only(children)}
-    </button>
-  )
-)`
-  padding: 0px;
-  border-width: initial;
-  border-style: initial;
-  border-color: initial;
-  outline: initial;
-  text-decoration: initial;
-  background-color: initial;
-  cursor: pointer;
+const Button = ({
+  // eslint-disable-line
+  as,
+  className,
+  style,
+  onClick,
+  hoverColor,
+  disabled,
+  children,
+  contentStyle,
+  component,
+  component: Component,
+  ...others
+}) => (
+  <ButtonContainer
+    // eslint-disable-line
+    as={as}
+    className={className}
+    style={style}
+    onClick={onClick}
+    hoverColor={hoverColor}
+    disabled={disabled}
+  >
+    {component ? (
+      <Component {...others} style={contentStyle}>
+        {children}
+      </Component>
+    ) : (
+      children
+    )}
+  </ButtonContainer>
+);
 
-  transition: all 0.1s ease;
-  ${({ disabled, hoverColor }) =>
-    !disabled
-      ? ` &:hover {
-          ${hoverColor ? `background-color: ${hoverColor};` : "filter: brightness(1.05);"}
-          }`
-      : ""}
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  ${({ disabled }) => (disabled ? "cursor: default;" : "")}
-`;
-
-Button.defaultProps = { onClick: undefined };
+Button.defaultProps = {
+  as: undefined,
+  className: undefined,
+  style: undefined,
+  onClick: undefined,
+  hoverColor: undefined,
+  disabled: undefined,
+  children: undefined,
+  contentStyle: undefined,
+  component: undefined
+};
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func])
+  as: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  className: PropTypes.string,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
+  hoverColor: PropTypes.string,
+  disabled: PropTypes.bool,
+  children: PropTypes.node,
+  contentStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };
 
 export default Button;

@@ -37,7 +37,9 @@ ModalHeader.defaultProps = {
   currentStep: undefined,
   steps: undefined,
   leftIcon: undefined,
-  leftOnClick: undefined
+  leftOnClick: undefined,
+  rightIcon: undefined,
+  rightOnClick: undefined
 };
 
 ModalHeader.propTypes = {
@@ -46,8 +48,8 @@ ModalHeader.propTypes = {
   steps: PropTypes.number,
   leftIcon: PropTypes.string,
   leftOnClick: PropTypes.func,
-  rightIcon: PropTypes.string.isRequired,
-  rightOnClick: PropTypes.func.isRequired
+  rightIcon: PropTypes.string,
+  rightOnClick: PropTypes.func
 };
 
 export default ModalHeader;

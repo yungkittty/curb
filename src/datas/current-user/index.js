@@ -1,4 +1,8 @@
-import currentUserReducer from "./current-user-reducer";
+import currentUserReducer from "./current-user-reducer"; // eslint-disable-line
 import currentUserSelectors from "./current-user-selectors";
 
-export { currentUserReducer, currentUserSelectors };
+export {
+  // eslint-disable-line
+  currentUserReducer,
+  currentUserSelectors
+};

@@ -19,11 +19,13 @@ const DownloadButton = ({ t, theme }) => (
   >
     <React.Fragment>
       <ButtonIcon
+        // eslint-disable-line
         icon="cloud-download-alt"
         color={theme.backgroundColor}
         size="medium"
       />
       <Text style={{ color: theme.backgroundColor }}>
+        {/* eslint-disable-line */}
         {t("downloadButton")}
       </Text>
     </React.Fragment>

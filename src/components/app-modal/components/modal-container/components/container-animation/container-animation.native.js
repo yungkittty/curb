@@ -25,7 +25,9 @@ const ContainerAnimation = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { isAppModalShowed } = this.props;
-      if (prevProps.isAppModalShowed !== isAppModalShowed) this.startAnimation(isAppModalShowed);
+      if (prevProps.isAppModalShowed !== isAppModalShowed) {
+        this.startAnimation(isAppModalShowed);
+      }
     }
 
     startAnimation(state) {
@@ -37,11 +39,9 @@ const ContainerAnimation = WrappedComponent => {
         duration: 500,
         easing: Easing.out(Easing.exp),
         useNativeDriver: true
-      }).start(() =>
-        this.setState({
-          animationRunning: false
-        })
-      );
+      }).start(() => {
+        this.setState({ animationRunning: false });
+      });
     }
 
     render() {

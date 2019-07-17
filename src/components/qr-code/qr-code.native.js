@@ -1,3 +1,3 @@
-import QrCode from "react-native-qrcode";
+import QrCode from "react-native-qrcode-svg";
 
 export default QrCode;

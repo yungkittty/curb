@@ -2,13 +2,14 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import withAppModal from "../../../../../../hocs/with-app-modal";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import ImageAvatarEditable from "../../../../../../components/image-avatar-editable";
 import InputForm from "../../../../../../components/input-form";
 import inputRegex from "../../../../../../utils/input-regex";
+import withAppModal from "../../../../../../hocs/with-app-modal";
+import withGroup from "../../../../../../hocs/with-group";
 /* eslint-disable-next-line */
 import GroupSettings from "../../group-settings";
 
@@ -34,21 +35,37 @@ class SettingsGeneral extends Component {
       onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
     });
     setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
-
     setAppModalSceneData({ newGroupName: { value: groupName, error: undefined } });
   }
 
   componentDidUpdate(prevProps) {
-    const { isPatchGroupFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isPatchGroupFetching === isPatchGroupFetching) return;
-    if (isPatchGroupFetching) disableAppModalButtons();
+    const {
+      // eslint-disable-line
+      isFetchingGroups,
+      enableAppModalButtons,
+      disableAppModalButtons
+    } = this.props;
+    if (prevProps.isFetchingGroups === isFetchingGroups) return;
+    if (isFetchingGroups) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
   submit() {
-    const { patchGroup, groupId, avatar, newGroupName, groupName } = this.props;
-    if (this.checkForm() && newGroupName.value !== groupName)
-      patchGroup({ id: groupId, avatar, name: newGroupName.value });
+    const {
+      // eslint-disable-line
+      patchGroup,
+      groupId,
+      avatar,
+      newGroupName,
+      groupName
+    } = this.props;
+    if (this.checkForm() && (newGroupName.value !== groupName || avatar.value.file)) {
+      patchGroup({
+        id: groupId,
+        avatar: avatar.value,
+        name: newGroupName.value
+      });
+    }
   }
 
   checkForm() {
@@ -72,12 +89,23 @@ class SettingsGeneral extends Component {
   }
 
   render() {
-    const { t, isPatchGroupFetching, groupId, newGroupName, groupName, avatar } = this.props;
-    return isPatchGroupFetching ? (
+    const {
+      // eslint-disable-line
+      t,
+      isFetchingGroups,
+      groupId,
+      newGroupName,
+      groupName,
+      avatar
+    } = this.props;
+    return isFetchingGroups ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <AppModalSceneTitle style={{ marginBottom: 40 }}>{t("general.title")}</AppModalSceneTitle>
+        <AppModalSceneTitle>
+          {/* eslint-disable-line */}
+          {t("general.title")}
+        </AppModalSceneTitle>
         <ImageAvatarEditable
           editMode
           id="avatar"
@@ -112,16 +140,18 @@ SettingsGeneral.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  isPatchGroupFetching: PropTypes.bool.isRequired,
+  isFetchingGroups: PropTypes.bool.isRequired,
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
-  newGroupName: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
   groupName: PropTypes.string.isRequired,
+  newGroupName: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
   avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
-export default _.flow([withAppModal, withTranslation("groupSettings")])(SettingsGeneral);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withGroup,
+  withTranslation("groupSettings")
+])(SettingsGeneral);

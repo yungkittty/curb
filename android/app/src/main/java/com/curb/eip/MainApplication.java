@@ -3,10 +3,10 @@ package com.curb.eip;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.horcrux.svg.SvgPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.dylanvann.fastimage.FastImageViewPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -32,10 +32,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SvgPackage(),
             new MapsPackage(),
             new ReactVideoPackage(),
             new SplashScreenReactPackage(),
-            new FastImageViewPackage(),
             new ImagePickerPackage(),
             new ReactNativeI18n(),
             new VectorIconsPackage(),

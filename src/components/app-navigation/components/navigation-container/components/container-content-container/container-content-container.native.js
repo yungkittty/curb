@@ -16,16 +16,14 @@ const ContainerContentContainer = styled(Container)`
   padding-left: 10px;
   padding-right: 10px;
   padding-top: ${windowDimensions.statusBarHeight + 10}px;
-  ${
-    Platform.OS === "android"
-      ? `elevation: 8;`
-      : `
+  ${Platform.OS === "android" ? `
+    elevation: 8;
+  ` : `
     shadow-offset: 0px 4.8px;
     shadow-radius: 4.32px;
-    shadow-color: rgba(0, 0, 0, 0.192);
-    shadow-opacity: 1;
-  `
-  }
+    shadow-color: rgba(0, 0, 0, 1);
+    shadow-opacity: 0.192;
+  `}
   background-color: ${props => props.theme.primaryColor};
 `;
 

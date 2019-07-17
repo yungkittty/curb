@@ -1,8 +1,11 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import ListFlat from "../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
+import withAppModal from "../../../../hocs/with-app-modal";
+import withCurrentUser from "../../../../hocs/with-current-user";
 /* eslint-disable */
 import Settings from "../../../settings";
 import settingsGeneralData from "./settings-general-data";
@@ -22,16 +25,23 @@ class SettingsGeneral extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isSignOutFetching, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isSignOutFetching === isSignOutFetching) return;
-    if (isSignOutFetching) disableAppModalButtons();
+    const { isFetchingSignIn, enableAppModalButtons, disableAppModalButtons } = this.props;
+    if (prevProps.isFetchingSignIn === isFetchingSignIn) return;
+    if (isFetchingSignIn) disableAppModalButtons();
     else enableAppModalButtons();
   }
 
   render() {
-    const { isSignOutFetching, t, setAppModalScene, currentUserId, signOut } = this.props;
+    const {
+      // eslint-disable-line
+      isFetchingSignIn,
+      t,
+      setAppModalScene,
+      currentUserId,
+      signOut
+    } = this.props;
 
-    return isSignOutFetching ? (
+    return isFetchingSignIn ? (
       <Loader />
     ) : (
       <ListFlat
@@ -54,7 +64,7 @@ class SettingsGeneral extends Component {
 SettingsGeneral.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
-  isSignOutFetching: PropTypes.bool.isRequired,
+  isFetchingSignIn: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
@@ -63,4 +73,9 @@ SettingsGeneral.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default withTranslation("settings")(SettingsGeneral);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withCurrentUser,
+  withTranslation("settings")
+])(SettingsGeneral);

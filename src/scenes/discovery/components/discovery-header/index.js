@@ -1,3 +1,3 @@
-import DiscoveryHeaderContainer from "./discovery-header-container";
+import DiscoveryHeader from "./discovery-header";
 
-export default DiscoveryHeaderContainer;
+export default DiscoveryHeader;
