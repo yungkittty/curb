@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { FlatList } from "react-native";
+import { FlatList } from "react-native-web";
 import FlatContainer from "./components/flat-container";
 import FlatButtonFloat from "./components/flat-button-float";
 

@@ -1,11 +1,11 @@
-import { isAndroid, isIOS as isIos, isMobile } from "react-device-detect";
+import { isAndroid, isIOS as isIos, isMobile, isDesktop } from "react-device-detect";
 
 const platformBools = {
   isWeb: true,
   isNative: false,
   isAndroid,
   isIos,
-  isDesktop: !isMobile,
+  isDesktop,
   isMobile,
   isIphoneX: false
 };

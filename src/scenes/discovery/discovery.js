@@ -13,14 +13,63 @@ import ButtonFloat from "../../components/button-float";
 import SignIn from "../sign-in";
 import GroupCreate from "../group/scenes/group-create";
 import withAppModal from "../../hocs/with-app-modal";
+import withCurrentUser from "../../hocs/with-current-user";
 
 class Discovery extends React.Component {
   constructor(props) {
     super(props);
     this.renderListHeader = this.renderListHeader.bind(this);
     this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
-    this.renderListItem = this.renderListItem.bind(this);
     this.renderListSectionItem = this.renderListSectionItem.bind(this);
+    this.renderListItem = this.renderListItem.bind(this);
+  }
+
+  // eslint-disable-next-line
+  getSection(
+    // eslint-disable-line
+    discSectionTitle,
+    discSectionGroupsId,
+    getDiscSectionGroups,
+    isShowed = true
+  ) {
+    return isShowed ? [{
+      title: discSectionTitle,
+      data: [{ groupsId: discSectionGroupsId }],
+      getGroups: getDiscSectionGroups
+    }] : [];
+  }
+
+  getSections() {
+    const {
+      currentUserId,
+      discGlobalSectionGrpsId,
+      discCustomSectionGrpsId,
+      discRandomSectionGrpsId,
+      getDiscGlobalSectionGrps,
+      getDiscCustomSectionGrps,
+      getDiscRandomSectionGrps
+    } = this.props;
+    return [
+      ...this.getSection(
+        // eslint-disable-line
+        "global",
+        discGlobalSectionGrpsId,
+        getDiscGlobalSectionGrps
+      ),
+      ...this.getSection(
+        // eslint-disable-line
+        "custom",
+        discCustomSectionGrpsId,
+        getDiscCustomSectionGrps,
+        !!currentUserId
+      ),
+      ...this.getSection(
+        // eslint-disable-line
+        "random",
+        discRandomSectionGrpsId,
+        getDiscRandomSectionGrps
+      )
+    ];
   }
 
   renderListHeader() {
@@ -42,8 +91,27 @@ class Discovery extends React.Component {
     const { t } = this.props;
     return (
       <DiscoveryListSectionHeader type="h3" weight={500}>
-        {t(`sections.${discoverySectionData.category}`)}
+        {t(`sections.${discoverySectionData.title}`)}
       </DiscoveryListSectionHeader>
+    );
+  }
+
+  renderListSectionItem({
+    // eslint-disable-line
+    item: discoveryItemData,
+    section: discoverySectionData
+  }) {
+    const { groupsId: discoveryGroupsId } = discoveryItemData;
+    const { getGroups: getDiscoveryGroups } = discoverySectionData;
+    return (
+      <DiscoveryList
+        data={discoveryGroupsId}
+        keyExtractor={(discoveryGroupId, discoveryItemIndex) =>
+          // eslint-disable-line
+          `${discoveryGroupId}${discoveryItemIndex}`}
+        getDiscoveryGroups={getDiscoveryGroups}
+        renderItem={this.renderListItem}
+      />
     );
   }
 
@@ -58,30 +126,12 @@ class Discovery extends React.Component {
     );
   }
 
-  renderListSectionItem({ item: discoveryItemData }) {
-    const { groups: discoveryItemsId } = discoveryItemData;
-    return (
-      <DiscoveryList
-        data={discoveryItemsId}
-        keyExtractor={(discoveryItemId, discoveryItemIndex) =>
-          // eslint-disable-line
-          `${discoveryItemId}${discoveryItemIndex}`}
-        renderItem={this.renderListItem}
-      />
-    );
-  }
-
   render() {
-    const {
-      // eslint-disable-line
-      showAppModal,
-      currentUserId,
-      discoverySections
-    } = this.props;
+    const { showAppModal, currentUserId } = this.props;
     return (
       <React.Fragment>
         <DiscoveryContainer
-          sections={discoverySections}
+          sections={this.getSections()}
           keyExtractor={(sectionData, sectionIndex) => sectionIndex}
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
@@ -89,11 +139,7 @@ class Discovery extends React.Component {
         />
         <ButtonFloat
           icon="plus"
-          onClick={() =>
-            showAppModal({
-              scene: currentUserId ? GroupCreate : SignIn
-            })
-          }
+          onClick={() => showAppModal({ scene: currentUserId ? GroupCreate : SignIn })}
         />
       </React.Fragment>
     );
@@ -103,12 +149,18 @@ class Discovery extends React.Component {
 Discovery.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  discoverySections: PropTypes.array.isRequired, // eslint-disable-line
+  discGlobalSectionGrpsId: PropTypes.array.isRequired, // eslint-disable-line
+  discCustomSectionGrpsId: PropTypes.array.isRequired, // eslint-disable-line
+  discRandomSectionGrpsId: PropTypes.array.isRequired, // eslint-disable-line
+  getDiscGlobalSectionGrps: PropTypes.func.isRequired,
+  getDiscCustomSectionGrps: PropTypes.func.isRequired,
+  getDiscRandomSectionGrps: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };
 
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
+  withCurrentUser,
   withTranslation("discovery")
 ])(Discovery);
