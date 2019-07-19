@@ -20,7 +20,7 @@ class DiscoveryList extends React.Component {
 
   // eslint-disable-next-line
   getCount() {
-    return Math.round(windowDimensions.getWidth() / 90);
+    return Math.round((windowDimensions.getWidth() / 90) - 1.5);
   }
 
   render() {
@@ -30,7 +30,7 @@ class DiscoveryList extends React.Component {
         // eslint-disable-line
         {...this.props}
         contentContainerStyle={{ paddingLeft: 20 }}
-        onEndReachedThreshold={0.2}
+        onEndReachedThreshold={0.01}
         onEndReached={() => {
           getDiscoveryGroups({
             // eslint-disable-next-line
