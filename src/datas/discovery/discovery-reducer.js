@@ -24,7 +24,7 @@ const isFetching = (state = false, action) => {
 const globalSectionGroups = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_SUCCESS:
-      return [...(action.payload.count === 1 ? state : []), ...action.payload.groups];
+      return [...(action.payload.count !== 1 ? state : []), ...action.payload.groups];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
     default:
@@ -35,7 +35,7 @@ const globalSectionGroups = (state = [], action) => {
 const customSectionGroups = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_SUCCESS:
-      return [...(action.payload.count === 1 ? state : []), ...action.payload.groups];
+      return [...(action.payload.count !== 1 ? state : []), ...action.payload.groups];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
     default:
@@ -46,7 +46,7 @@ const customSectionGroups = (state = [], action) => {
 const randomSectionGroups = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_SUCCESS:
-      return [...(action.payload.count === 1 ? state : []), ...action.payload.groups];
+      return [...(action.payload.count !== 1 ? state : []), ...action.payload.groups];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
     default:

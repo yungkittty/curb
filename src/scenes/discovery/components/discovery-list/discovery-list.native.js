@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListCircleText from "../../../../components/list-circle-text";
+import { windowDimensions } from "../../../../configurations/window";
 
 class DiscoveryList extends React.Component {
   constructor(props) {
@@ -10,19 +11,33 @@ class DiscoveryList extends React.Component {
 
   componentDidMount() {
     const { getDiscoveryGroups } = this.props;
-    // eslint-disable-next-line
-    getDiscoveryGroups({ page: ++this.page, count: 5 });
+    getDiscoveryGroups({
+      // eslint-disable-next-line
+      page: ++this.page,
+      count: this.getCount()
+    });
+  }
+
+  // eslint-disable-next-line
+  getCount() {
+    return Math.round(windowDimensions.getWidth() / 90);
   }
 
   render() {
+    const { getDiscoveryGroups } = this.props;
     return (
       <ListCircleText
         // eslint-disable-line
         {...this.props}
         contentContainerStyle={{ paddingLeft: 20 }}
-        // eslint-disable-next-line
-        onEndReached={() => getDiscoveryGroups({ page: ++this.page, count: 5 })}
-        onEndReachedThreshold={0.8}
+        onEndReachedThreshold={0.2}
+        onEndReached={() => {
+          getDiscoveryGroups({
+            // eslint-disable-next-line
+            page: ++this.page,
+            count: this.getCount()
+          });
+        }}
       />
     );
   }

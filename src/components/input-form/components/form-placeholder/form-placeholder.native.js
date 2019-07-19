@@ -20,6 +20,7 @@ class FormPlaceholder extends React.Component {
     const { upper } = this.props;
     if (upper === prevProps.upper) return;
     const {
+      // eslint-disable-line
       placeholderScale,
       placeholderTranslateY,
       placeholderTranslateX
@@ -49,6 +50,7 @@ class FormPlaceholder extends React.Component {
   render() {
     const { AnimatedWrappedComponent } = this;
     const {
+      // eslint-disable-line
       placeholderScale,
       placeholderTranslateY,
       placeholderTranslateX
