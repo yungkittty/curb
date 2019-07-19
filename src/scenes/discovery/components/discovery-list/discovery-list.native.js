@@ -20,7 +20,7 @@ class DiscoveryList extends React.Component {
 
   // eslint-disable-next-line
   getCount() {
-    return Math.round((windowDimensions.getWidth() / 90) - 1.5);
+    return Math.round((windowDimensions.getWidth() / 90) * 1.5);
   }
 
   render() {
