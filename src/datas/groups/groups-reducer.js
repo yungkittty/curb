@@ -63,6 +63,48 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: undefined
       };
+    case groupsActionsTypes.GET_GROUPS_REQUEST:
+      return {
+        ...state,
+        ..._.reduce(
+          action.payload.ids,
+          // eslint-disable-line
+          (groups, groupId) => ({
+            // eslint-disable-line
+            ...groups,
+            [groupId]: { isFetching: true, errorCode: "" }
+          }),
+          {}
+        )
+      };
+    case groupsActionsTypes.GET_GROUPS_SUCCESS:
+      return {
+        ...state,
+        ..._.reduce(
+          action.payload,
+          // eslint-disable-line
+          (groups, group) => ({
+            // eslint-disable-line
+            ...groups,
+            [group.id]: { isFetching: false, ...group }
+          }),
+          {}
+        )
+      };
+    case groupsActionsTypes.GET_GROUPS_FAILURE:
+      return {
+        ...state,
+        ..._.reduce(
+          action.payload.ids,
+          // eslint-disable-line
+          (groups, groupId) => ({
+            // eslint-disable-line
+            ...groups,
+            [groupId]: { isFetching: false, errorCode: action.payload.errorCode }
+          }),
+          {}
+        )
+      };
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
       return {
         ...state,
@@ -105,6 +147,8 @@ const allIds = (state = [], action) => {
   switch (action.type) {
     case groupsActionsTypes.GET_GROUP_REQUEST:
       return _.union(state, [action.payload.id]);
+    case groupsActionsTypes.GET_GROUPS_REQUEST:
+      return _.union(state, action.payload.ids);
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
     default:
