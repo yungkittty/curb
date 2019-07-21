@@ -1,9 +1,9 @@
 const discoverySelectors = {};
 
-discoverySelectors.getDiscoveryGlobalSectionGroupsId = state => state.discovery.globalSectionGroups;
+discoverySelectors.getDiscoveryGlobalSectionGroupsId = state => state.discovery.globalSectionGroupsId;
 
-discoverySelectors.getDiscoveryCustomSectionGroupsId = state => state.discovery.customSectionGroups;
+discoverySelectors.getDiscoveryCustomSectionGroupsId = state => state.discovery.customSectionGroupsId;
 
-discoverySelectors.getDiscoveryRandomSectionGroupsId = state => state.discovery.randomSectionGroups;
+discoverySelectors.getDiscoveryRandomSectionGroupsId = state => state.discovery.randomSectionGroupsId;
 
 export default discoverySelectors;

@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const discoveryApi = {
-  getDiscoveryGlobalSectionGroups: ({ page, count }) =>
+  getDiscoveryGlobalSectionGroupsId: ({ page, count }) =>
     axios.get(`/groups/list-global?page=${page}&count=${count}`),
-  getDiscoveryCustomSectionGroups: ({ page, count }) =>
+  getDiscoveryCustomSectionGroupsId: ({ page, count }) =>
     axios.get(`/groups/list-custom?page=${page}&count=${count}`),
-  getDiscoveryRandomSectionGroups: ({ page, count }) =>
+  getDiscoveryRandomSectionGroupsId: ({ page, count }) =>
     axios.get(`/groups/list-random?page=${page}&count=${count}`)
 };
 

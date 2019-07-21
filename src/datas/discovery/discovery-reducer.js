@@ -5,25 +5,25 @@ import groupsActionsTypes from "../groups/groups-actions-types";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_REQUEST:
-    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_REQUEST:
-    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_REQUEST:
       return true;
-    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_SUCCESS:
-    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_SUCCESS:
-    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_SUCCESS:
-    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_FAILURE:
-    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_FAILURE:
-    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_FAILURE:
       return false;
     default:
       return state;
   }
 };
 
-const globalSectionGroups = (state = [], action) => {
+const globalSectionGroupsId = (state = [], action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS:
       return [...(action.payload.count !== 1 ? state : []), ...action.payload.groups];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
@@ -32,9 +32,9 @@ const globalSectionGroups = (state = [], action) => {
   }
 };
 
-const customSectionGroups = (state = [], action) => {
+const customSectionGroupsId = (state = [], action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS:
       return [...(action.payload.count !== 1 ? state : []), ...action.payload.groups];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
@@ -43,9 +43,9 @@ const customSectionGroups = (state = [], action) => {
   }
 };
 
-const randomSectionGroups = (state = [], action) => {
+const randomSectionGroupsId = (state = [], action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS:
       return [...(action.payload.count !== 1 ? state : []), ...action.payload.groups];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
@@ -56,16 +56,16 @@ const randomSectionGroups = (state = [], action) => {
 
 const errorCode = (state = "", action) => {
   switch (action.type) {
-    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_REQUEST:
-    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_REQUEST:
-    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_REQUEST:
-    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_SUCCESS:
-    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_SUCCESS:
-    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_REQUEST:
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS:
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS:
       return "";
-    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_FAILURE:
-    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_FAILURE:
-    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_FAILURE:
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_FAILURE:
       return action.payload.errorCode;
     default:
       return state;
@@ -75,9 +75,9 @@ const errorCode = (state = "", action) => {
 const discoveryReducer = combineReducers({
   // eslint-disable-line
   isFetching,
-  globalSectionGroups,
-  customSectionGroups,
-  randomSectionGroups,
+  globalSectionGroupsId,
+  customSectionGroupsId,
+  randomSectionGroupsId,
   errorCode
 });
 

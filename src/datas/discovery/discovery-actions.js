@@ -1,42 +1,42 @@
 import discoveryActionsTypes from "./discovery-actions-types";
 
 const discoveryActions = {
-  getDiscoveryGlobalSectionGroupsRequest: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_REQUEST,
+  getDiscoveryGlobalSectionGroupsIdRequest: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_REQUEST,
     payload
   }),
-  getDiscoveryGlobalSectionGroupsSuccess: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_SUCCESS,
+  getDiscoveryGlobalSectionGroupsIdSuccess: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS,
     payload
   }),
-  getDiscoveryGlobalSectionGroupsFailure: error => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_FAILURE,
+  getDiscoveryGlobalSectionGroupsIdFailure: error => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_FAILURE,
     payload: error,
     error: true
   }),
-  getDiscoveryCustomSectionGroupsRequest: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_REQUEST,
+  getDiscoveryCustomSectionGroupsIdRequest: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_REQUEST,
     payload
   }),
-  getDiscoveryCustomSectionGroupsSuccess: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_SUCCESS,
+  getDiscoveryCustomSectionGroupsIdSuccess: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS,
     payload
   }),
-  getDiscoveryCustomSectionGroupsFailure: error => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_FAILURE,
+  getDiscoveryCustomSectionGroupsIdFailure: error => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_FAILURE,
     payload: error,
     error: true
   }),
-  getDiscoveryRandomSectionGroupsRequest: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_REQUEST,
+  getDiscoveryRandomSectionGroupsIdRequest: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_REQUEST,
     payload
   }),
-  getDiscoveryRandomSectionGroupsSuccess: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_SUCCESS,
+  getDiscoveryRandomSectionGroupsIdSuccess: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS,
     payload
   }),
-  getDiscoveryRandomSectionGroupsFailure: error => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_FAILURE,
+  getDiscoveryRandomSectionGroupsIdFailure: error => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_FAILURE,
     payload: error,
     error: true
   })

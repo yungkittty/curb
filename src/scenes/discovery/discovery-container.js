@@ -3,18 +3,18 @@ import Discovery from "./discovery";
 import { discoverySelectors, discoveryActions } from "../../datas/discovery";
 
 const mapStateToProps = state => ({
-  discGlobalSectionGrpsId: discoverySelectors.getDiscoveryGlobalSectionGroupsId(state),
-  discCustomSectionGrpsId: discoverySelectors.getDiscoveryCustomSectionGroupsId(state),
-  discRandomSectionGrpsId: discoverySelectors.getDiscoveryRandomSectionGroupsId(state)
+  discoveryGlobalSectionGroupsId: discoverySelectors.getDiscoveryGlobalSectionGroupsId(state),
+  discoveryCustomSectionGroupsId: discoverySelectors.getDiscoveryCustomSectionGroupsId(state),
+  discoveryRandomSectionGroupsId: discoverySelectors.getDiscoveryRandomSectionGroupsId(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  getDiscGlobalSectionGrps: payload =>
-    dispatch(discoveryActions.getDiscoveryGlobalSectionGroupsRequest(payload)),
-  getDiscCustomSectionGrps: payload =>
-    dispatch(discoveryActions.getDiscoveryCustomSectionGroupsRequest(payload)),
-  getDiscRandomSectionGrps: payload =>
-    dispatch(discoveryActions.getDiscoveryRandomSectionGroupsRequest(payload))
+  getDiscoveryGlobalSectionGroupsId: payload =>
+    dispatch(discoveryActions.getDiscoveryGlobalSectionGroupsIdRequest(payload)),
+  getDiscoveryCustomSectionGroupsId: payload =>
+    dispatch(discoveryActions.getDiscoveryCustomSectionGroupsIdRequest(payload)),
+  getDiscoveryRandomSectionGroupsId: payload =>
+    dispatch(discoveryActions.getDiscoveryRandomSectionGroupsIdRequest(payload))
 });
 
 export default connect(

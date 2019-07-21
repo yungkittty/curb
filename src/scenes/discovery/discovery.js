@@ -27,47 +27,47 @@ class Discovery extends React.Component {
   // eslint-disable-next-line
   getSection(
     // eslint-disable-line
-    discSectionTitle,
-    discSectionGroupsId,
-    getDiscSectionGroups,
+    discoverySectionTitle,
+    discoverySectionGroupsId,
+    getDiscoverySectionGroupsId,
     isShowed = true
   ) {
     return isShowed ? [{
-      title: discSectionTitle,
-      data: [{ groupsId: discSectionGroupsId }],
-      getGroups: getDiscSectionGroups
+      title: discoverySectionTitle,
+      data: [{ groupsId: discoverySectionGroupsId }],
+      getGroupsId: getDiscoverySectionGroupsId
     }] : [];
   }
 
   getSections() {
     const {
       currentUserId,
-      discGlobalSectionGrpsId,
-      discCustomSectionGrpsId,
-      discRandomSectionGrpsId,
-      getDiscGlobalSectionGrps,
-      getDiscCustomSectionGrps,
-      getDiscRandomSectionGrps
+      discoveryGlobalSectionGroupsId,
+      discoveryCustomSectionGroupsId,
+      discoveryRandomSectionGroupsId,
+      getDiscoveryGlobalSectionGroupsId,
+      getDiscoveryCustomSectionGroupsId,
+      getDiscoveryRandomSectionGroupsId
     } = this.props;
     return [
       ...this.getSection(
         // eslint-disable-line
         "global",
-        discGlobalSectionGrpsId,
-        getDiscGlobalSectionGrps
+        discoveryGlobalSectionGroupsId,
+        getDiscoveryGlobalSectionGroupsId
       ),
       ...this.getSection(
         // eslint-disable-line
         "custom",
-        discCustomSectionGrpsId,
-        getDiscCustomSectionGrps,
+        discoveryCustomSectionGroupsId,
+        getDiscoveryCustomSectionGroupsId,
         !!currentUserId
       ),
       ...this.getSection(
         // eslint-disable-line
         "random",
-        discRandomSectionGrpsId,
-        getDiscRandomSectionGrps
+        discoveryRandomSectionGroupsId,
+        getDiscoveryRandomSectionGroupsId
       )
     ];
   }
@@ -101,15 +101,15 @@ class Discovery extends React.Component {
     item: discoveryItemData,
     section: discoverySectionData
   }) {
-    const { groupsId: discoveryGroupsId } = discoveryItemData;
-    const { getGroups: getDiscoveryGroups } = discoverySectionData;
+    const { groupsId } = discoveryItemData;
+    const { getGroupsId } = discoverySectionData;
     return (
       <DiscoveryList
-        data={discoveryGroupsId}
+        groupsId={groupsId}
+        getGroupsId={getGroupsId}
         keyExtractor={(discoveryGroupId, discoveryItemIndex) =>
           // eslint-disable-line
           `${discoveryGroupId}${discoveryItemIndex}`}
-        getDiscoveryGroups={getDiscoveryGroups}
         renderItem={this.renderListItem}
       />
     );
@@ -121,6 +121,7 @@ class Discovery extends React.Component {
       // eslint-disable-line
       <DiscoveryListItem
         // eslint-disable-line
+        shouldFetch={false}
         groupId={discoveryItemId}
       />
     );
@@ -149,12 +150,12 @@ class Discovery extends React.Component {
 Discovery.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
-  discGlobalSectionGrpsId: PropTypes.array.isRequired, // eslint-disable-line
-  discCustomSectionGrpsId: PropTypes.array.isRequired, // eslint-disable-line
-  discRandomSectionGrpsId: PropTypes.array.isRequired, // eslint-disable-line
-  getDiscGlobalSectionGrps: PropTypes.func.isRequired,
-  getDiscCustomSectionGrps: PropTypes.func.isRequired,
-  getDiscRandomSectionGrps: PropTypes.func.isRequired,
+  discoveryGlobalSectionGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  discoveryCustomSectionGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  discoveryRandomSectionGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  getDiscoveryGlobalSectionGroupsId: PropTypes.func.isRequired,
+  getDiscoveryCustomSectionGroupsId: PropTypes.func.isRequired,
+  getDiscoveryRandomSectionGroupsId: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };
 

@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
-import createSagaMiddleware from "redux-saga";
+import { enableBatching } from "redux-batched-actions";
+import configureSaga from "./configure-saga";
 import configurePersist from "./configure-persist";
 import rootReducer from "./root-reducer";
 import rootSaga from "./root-saga";
@@ -10,9 +11,9 @@ import rootSaga from "./root-saga";
 // https://github.com/rt2zz/redux-persist#basic-usage
 
 const configureStore = () => {
-  const sagaMiddleware = createSagaMiddleware();
+  const sagaMiddleware = configureSaga();
   const middlewares = [sagaMiddleware];
-  const persistedReducer = persistReducer(configurePersist(), rootReducer);
+  const persistedReducer = enableBatching(persistReducer(configurePersist(), rootReducer));
   const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(...middlewares)));
   const persistedStore = persistStore(store);
   sagaMiddleware.run(rootSaga);
