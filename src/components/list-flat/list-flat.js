@@ -60,8 +60,6 @@ class ListFlat extends React.Component {
     const itemLength = getItemLayout(itemsData[0], 0).length; // eslint-disable-line
     const scrollCurrentIndex = Math.floor(scrollLeft / itemLength);
     const scrollCurrentOffset = Math.floor(clientWidth / itemLength);
-    const scrollCurrentIndex = Math.round(scrollLeft / itemLength);
-    const scrollCurrentOffset = Math.round(clientWidth / itemLength);
     const scrollIndex = scrollCurrentIndex - scrollCurrentOffset;
     this.scrollToIndex({ index: Math.max(scrollIndex, 0) });
   }
