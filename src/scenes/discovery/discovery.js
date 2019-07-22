@@ -101,12 +101,12 @@ class Discovery extends React.Component {
     item: discoveryItemData,
     section: discoverySectionData
   }) {
-    const { groupsId } = discoveryItemData;
-    const { getGroupsId } = discoverySectionData;
+    const { groupsId: discoverySectionGroupsId } = discoveryItemData;
+    const { getGroupsId: getDiscoverySectionGroupsId } = discoverySectionData;
     return (
       <DiscoveryList
-        groupsId={groupsId}
-        getGroupsId={getGroupsId}
+        groupsId={discoverySectionGroupsId}
+        getGroupsId={getDiscoverySectionGroupsId}
         keyExtractor={(discoveryGroupId, discoveryItemIndex) =>
           // eslint-disable-line
           `${discoveryGroupId}${discoveryItemIndex}`}
