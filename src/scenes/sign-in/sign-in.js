@@ -57,7 +57,7 @@ class SignIn extends Component {
 
   render() {
     const { isFetchingSignIn, setAppModalScene, email, password, t } = this.props;
-    return isFetchingSignIn ? (
+    return !isFetchingSignIn ? (
       <Loader />
     ) : (
       <AppModalSceneContainer>
