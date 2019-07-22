@@ -86,7 +86,7 @@ const byId = (state = {}, action) => {
           (groups, group) => ({
             // eslint-disable-line
             ...groups,
-            [group.id]: { isFetching: false, ...group }
+            [group.id]: { isFetching: false, errorCode: "", ...group }
           }),
           {}
         )

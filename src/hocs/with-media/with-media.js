@@ -6,15 +6,27 @@ import { mediasActions, mediasSelectors } from "../../datas/medias";
 const withMedia = WrappedComponent => {
   class WithMedia extends React.Component {
     componentDidMount() {
-      const { mediaId, getMedia } = this.props;
-      if (mediaId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingMedia,
+        mediaId,
+        getMedia
+      } = this.props;
+      if (shouldFetch && !isFetchingMedia && mediaId) {
         getMedia({ id: mediaId });
       }
     }
 
     componentDidUpdate(prevProps) {
-      const { mediaId, getMedia } = this.props;
-      if (mediaId && mediaId !== prevProps.mediaId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingMedia,
+        mediaId,
+        getMedia
+      } = this.props;
+      if (shouldFetch && !isFetchingMedia && mediaId && mediaId !== prevProps.mediaId) {
         getMedia({ id: mediaId });
       }
     }
@@ -55,6 +67,7 @@ const withMedia = WrappedComponent => {
   });
 
   WithMedia.defaultProps = {
+    shouldFetch: true,
     isFetchingMedia: false,
     mediaId: "",
     mediaCreatorId: "",
@@ -66,6 +79,7 @@ const withMedia = WrappedComponent => {
   };
 
   WithMedia.propTypes = {
+    shouldFetch: PropTypes.bool,
     isFetchingMedia: PropTypes.bool,
     mediaId: PropTypes.string,
     mediaCreatorId: PropTypes.string,

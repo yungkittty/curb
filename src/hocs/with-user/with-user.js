@@ -11,10 +11,11 @@ const withUser = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
+        isFetchingUser,
         userId,
         getUser
       } = this.props;
-      if (shouldFetch && userId) {
+      if (shouldFetch && !isFetchingUser && userId) {
         getUser({ id: userId });
       }
     }
@@ -23,10 +24,11 @@ const withUser = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
+        isFetchingUser,
         userId,
         getUser
       } = this.props;
-      if (shouldFetch && userId && userId !== prevProps.userId) {
+      if (shouldFetch && !isFetchingUser && userId && userId !== prevProps.userId) {
         getUser({ id: userId });
       }
     }

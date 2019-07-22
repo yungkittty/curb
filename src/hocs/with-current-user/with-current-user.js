@@ -7,15 +7,27 @@ import { usersActions, usersSelectors } from "../../datas/users";
 const withCurrentUser = WrappedComponent => {
   class WithCurrentUser extends React.Component {
     componentDidMount() {
-      const { currentUserId, getUser } = this.props;
-      if (currentUserId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingCurrentUser,
+        currentUserId,
+        getUser
+      } = this.props;
+      if (shouldFetch && !isFetchingCurrentUser && currentUserId) {
         getUser({ id: currentUserId });
       }
     }
 
     componentDidUpdate(prevProps) {
-      const { currentUserId, getUser } = this.props;
-      if (currentUserId && currentUserId !== prevProps.currentUserId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingCurrentUser,
+        currentUserId,
+        getUser
+      } = this.props;
+      if (shouldFetch && !isFetchingCurrentUser && currentUserId && currentUserId !== prevProps.currentUserId) {
         getUser({ id: currentUserId || currentUserId });
       }
     }
@@ -55,6 +67,7 @@ const withCurrentUser = WrappedComponent => {
   });
 
   WithCurrentUser.defaultProps = {
+    shouldFetch: true,
     isFetchingCurrentUser: false,
     currentUserId: "",
     currentUserDateCreation: "",
@@ -65,6 +78,7 @@ const withCurrentUser = WrappedComponent => {
   };
 
   WithCurrentUser.propTypes = {
+    shouldFetch: PropTypes.bool,
     isFetchingCurrentUser: PropTypes.bool,
     currentUserId: PropTypes.string,
     currentUserDateCreation: PropTypes.string,

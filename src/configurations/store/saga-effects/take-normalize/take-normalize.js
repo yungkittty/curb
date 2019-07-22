@@ -12,7 +12,7 @@ const takeNormalize = (patternOrChannel, saga, ...sagaArgs) =>
         const sagaAction = yield take(patternOrChannel);
         const sagaActionHasId = _.has(sagaAction.payload, "id");
         const sagaActionHasIds = _.has(sagaAction.payload, "ids");
-        if (!sagaActionHasId || !sagaActionHasIds)
+        if (!sagaActionHasId && !sagaActionHasIds)
           // eslint-disable-next-line
           throw "takeNormalize only accept actions of normalized reducer.";
         const sagaActionIds = sagaActionHasIds ? sagaAction.payload.ids : [sagaAction.payload.id];

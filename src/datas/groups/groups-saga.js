@@ -1,4 +1,4 @@
-import { all, takeLatest, takeEvery, call, put, select } from "redux-saga/effects";
+import { all, takeLatest, call, put, select } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
@@ -105,7 +105,7 @@ const groupsSaga = all([
   takeNormalize(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
   takeLatest(groupsActionsTypes.PATCH_GROUP_REQUEST, patchGroupRequestSaga),
   takeLatest(groupsActionsTypes.DELETE_GROUP_REQUEST, deleteGroupRequestSaga),
-  takeEvery(groupsActionsTypes.GET_GROUPS_REQUEST, getGroupsRequestSaga),
+  takeNormalize(groupsActionsTypes.GET_GROUPS_REQUEST, getGroupsRequestSaga),
   takeLatest(groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST, postGroupInviteTokenRequestSaga),
   takeLatest(groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)
 ]);
