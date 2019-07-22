@@ -54,6 +54,7 @@ const Text = styled.span.attrs(({ type }) => ({ as: type }))`
     }
   }}
   font-weight: initial;
+  white-space: pre-wrap;
   color: ${props => props.theme.fontColor};
 `;
 
