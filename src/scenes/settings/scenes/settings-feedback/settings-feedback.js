@@ -66,7 +66,10 @@ class SettingsFeedback extends Component {
       text,
       disableAppModalButtons
     } = this.props;
-    if (!this.checkForm()) return;
+    if (!this.checkForm()){
+      disableAppModalButtons();
+      return;
+    } 
     postFeedback({ text: text.value });
   }
 
