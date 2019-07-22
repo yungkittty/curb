@@ -27,9 +27,9 @@ const frSettings = {
   feedback: {
     title: "Retour utilisateur",
     contentTitle: "Merci de nous aider à construire une meilleure application",
-    buttonTitle: "Envoyé",
-    description: "Donnez nous votre avis sur Curb",
-    placeholder: "Que devrions nous améliorer ?"
+    buttonTitle: "Envoyer",
+    description: "Donnez-nous votre avis sur Curb",
+    placeholder: "Que devrions-nous améliorer ?"
   }
 };
 
