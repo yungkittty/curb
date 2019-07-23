@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import withAppModal from "../../../../../../hocs/with-app-modal";
 // eslint-disable-next-line
@@ -52,7 +52,7 @@ class GeneralLanguage extends Component {
     } = this.props;
 
     return (
-      <ListFlat
+      <AppModalSceneList
         data={Object.keys(data)}
         keyExtractor={item => item}
         renderItem={({ item }) => (

@@ -1,9 +1,10 @@
 import React from "react";
 import ListFlat from "../list-flat";
 
-const AppModalSceneList = props => (
+const AppModalSceneList = ({ forwardedRef, ...others }) => (
   <ListFlat
-    {...props}
+    {...others}
+    ref={forwardedRef}
     getItemLayout={(_, itemIndex) => ({
       length: 100,
       offset: 100 * itemIndex,
@@ -12,4 +13,17 @@ const AppModalSceneList = props => (
   />
 );
 
-export default AppModalSceneList;
+AppModalSceneList.propTypes = {
+  forwardedRef: PropTypes.object // eslint-disable-line
+};
+
+export default React.forwardRef(
+  // eslint-disable-line
+  (props, forwardedRef) => (
+    <AppModalSceneList
+      // eslint-disable-line
+      {...props}
+      forwardedRef={forwardedRef}
+    />
+  )
+);

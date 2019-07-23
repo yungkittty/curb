@@ -18,30 +18,42 @@ class DiscoveryListContainer extends React.Component {
     });
   }
 
-  // eslint-disable-next-line
   getPage() {
+    // eslint-disable-next-line
+    return this.page;
+  }
+
+  getNextPage() {
     // eslint-disable-next-line
     return this.page++;
   }
 
   // eslint-disable-next-line
-  getCount() {
+  getItemsCount() {
     const listOffsetWidth = platformBools.isWeb ? 70 : 0;
     const listWidth = windowDimensions.getWidth() - listOffsetWidth;
     const itemWidth = platformBools.isWeb ? 140 : 90;
-    return Math.round((listWidth / itemWidth) * 1.5);
+    return Math.round(listWidth / itemWidth);
+  }
+
+  getCount() {
+    // eslint-disable-line
+    return Math.round(this.getItemsCount() * 1.5);
   }
 
   render() {
-    const { getGroupsId } = this.props;
+    const { groupsId, getGroupsId } = this.props;
     return (
       <DiscoveryList
         // eslint-disable-line
         {...this.props}
-        onEndReachedThreshold={0.1}
+        onEndReachedThreshold={0}
         onEndReached={() => {
+          if (groupsId.length < this.getItemsCount())
+            // eslint-disable-line
+            return;
           getGroupsId({
-            page: this.getPage(),
+            page: this.getNextPage(),
             count: this.getCount()
           });
         }}
@@ -51,6 +63,7 @@ class DiscoveryListContainer extends React.Component {
 }
 
 DiscoveryListContainer.propTypes = {
+  groupsId: PropTypes.array.isRequired, // eslint-disable-line
   getGroupsId: PropTypes.func.isRequired
 };
 
