@@ -154,7 +154,7 @@ class Discovery extends React.Component {
       <React.Fragment>
         <DiscoveryContainer
           sections={this.getSections(...getSectionsArgs)}
-          keyExtractor={(sectionData, sectionIndex) => sectionIndex}
+          keyExtractor={(sectionData) => sectionData.title}
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
           renderItem={this.renderListSectionItem}
