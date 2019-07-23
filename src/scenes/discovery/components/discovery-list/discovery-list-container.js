@@ -19,24 +19,21 @@ class DiscoveryListContainer extends React.Component {
   }
 
   getPage() {
-    return this.page;
-  }
-
-  getNextPage() {
     // eslint-disable-next-line
-    return ++this.page;
+    return this.page++;
   }
 
   // eslint-disable-next-line
-  getItemsCount() {
-    const listOffsetWidth = platformBools.isWeb ? 70 : 0;
-    const listWidth = windowDimensions.getWidth() - listOffsetWidth;
+  getCountMax() {
+    const windowWidth = windowDimensions.getWidth();
+    const windowWidthOffset = platformBools.isWeb ? 70 : 0;
+    const listWidth = windowWidth - windowWidthOffset;
     const itemWidth = platformBools.isWeb ? 140 : 90;
     return Math.round(listWidth / itemWidth);
   }
 
   getCount() {
-    return Math.round(this.getItemsCount() * 1.5);
+    return Math.round(this.getCountMax() * 1.5);
   }
 
   render() {
@@ -44,13 +41,13 @@ class DiscoveryListContainer extends React.Component {
     return (
       <DiscoveryList
         {...this.props}
-        onEndReachedThreshold={0}
+        onEndReachedThreshold={0.2}
         onEndReached={() => {
-          if (groupsId.length < this.getItemsCount())
+          if (groupsId.length < this.getCountMax())
             // eslint-disable-line
             return;
           getGroupsId({
-            page: this.getNextPage(),
+            page: this.getPage(),
             count: this.getCount()
           });
         }}

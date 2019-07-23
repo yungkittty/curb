@@ -12,6 +12,7 @@ const ContainerContainer = styled(Container)`
   min-height: ${props => props.innerDiameter}px;
   border-radius: ${props => props.innerDiameter / 2}px;
   ${props => (props.backgroundColor ? `background-color: ${props.backgroundColor};` : "")}
+  overflow: hidden;
 `;
 
 ContainerContainer.defaultProps = {

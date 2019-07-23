@@ -6,7 +6,7 @@ import { platformBools } from "../../configurations/platform";
 
 // https://react-native.canny.io/feature-requests/p/shadow-does-not-appear-if-overflow-hidden-is-set-on-ios
 
-class CircleContainer extends React.PureComponent {
+class CircleContainer extends React.Component {
   constructor(props) {
     super(props);
     this.getInnerDiameter = _.memoize(this.getInnerDiameter);
@@ -48,22 +48,15 @@ class CircleContainer extends React.PureComponent {
     return (
       <ContainerContainer
         // eslint-disable-line
+        {...others}
         className={className}
         style={style}
         innerDiameter={this.getInnerDiameter(diameter)}
       >
-        <ContainerContainer
-          // eslint-disable-line
-          {...others}
-          style={{ overflow: "hidden" }}
-          innerDiameter={this.getInnerDiameter(diameter)}
-        >
-          {/* eslint-disable-line */}
-          {typeof children === "function"
-            ? // eslint-disable-line
-              children(this.getInnerDiameter(diameter))
-            : children}
-        </ContainerContainer>
+        {typeof children === "function"
+          ? // eslint-disable-line
+            children(this.getInnerDiameter(diameter))
+          : children}
       </ContainerContainer>
     );
   }
