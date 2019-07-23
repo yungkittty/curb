@@ -28,7 +28,7 @@ const withCurrentUser = WrappedComponent => {
         getUser
       } = this.props;
       if (shouldFetch && !isFetchingCurrentUser && currentUserId && currentUserId !== prevProps.currentUserId) {
-        getUser({ id: currentUserId || currentUserId });
+        getUser({ id: currentUserId });
       }
     }
 

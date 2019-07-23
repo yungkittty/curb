@@ -39,7 +39,7 @@ const withGroups = WrappedComponent => {
   });
 
   WithGroups.propTypes = {
-    groupsId: PropTypes.array, // eslint-disable-line
+    groupsId: PropTypes.array.isRequired, // eslint-disable-line
     getGroups: PropTypes.func.isRequired
   };
 

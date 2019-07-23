@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import InfoContainer from "./components/info-container";
 import InfoList from "./components/info-list";
 import InfoListItemUser from "./components/info-list-item-user";
@@ -9,11 +10,12 @@ const GroupListItemInfo = ({
   // eslint-disable-line
   groupUsersId,
   groupMediaTypes,
-  theme
+  theme,
+  t
 }) => (
   <InfoContainer>
     <InfoList
-      text="Users" /** @TODO ... */
+      text={t("infosTitleUser")}
       data={groupUsersId}
       keyExtractor={groupUserId => groupUserId}
       renderItem={({ item: userId }) => (
@@ -25,7 +27,7 @@ const GroupListItemInfo = ({
       )}
     />
     <InfoList
-      text="Modules" /** @TODO ... */
+      text={t("infosTitleModules")}
       data={groupMediaTypes}
       keyExtractor={groupMediaType => groupMediaType}
       renderItem={({ item: groupMediaType }) => (
@@ -42,7 +44,8 @@ const GroupListItemInfo = ({
 GroupListItemInfo.propTypes = {
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
   groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
-  theme: PropTypes.object.isRequired // eslint-disable-line
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  t: PropTypes.func.isRequired
 };
 
-export default GroupListItemInfo;
+export default withTranslation("group")(GroupListItemInfo);

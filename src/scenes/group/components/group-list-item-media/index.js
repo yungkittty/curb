@@ -1,3 +1,3 @@
-import GroupListSectionItemMedia from "./group-list-item-media";
+import GroupListItemMedia from "./group-list-item-media";
 
-export default GroupListSectionItemMedia;
+export default GroupListItemMedia;

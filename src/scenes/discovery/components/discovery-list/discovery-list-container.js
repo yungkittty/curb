@@ -19,13 +19,12 @@ class DiscoveryListContainer extends React.Component {
   }
 
   getPage() {
-    // eslint-disable-next-line
     return this.page;
   }
 
   getNextPage() {
     // eslint-disable-next-line
-    return this.page++;
+    return ++this.page;
   }
 
   // eslint-disable-next-line
@@ -37,7 +36,6 @@ class DiscoveryListContainer extends React.Component {
   }
 
   getCount() {
-    // eslint-disable-line
     return Math.round(this.getItemsCount() * 1.5);
   }
 
@@ -45,7 +43,6 @@ class DiscoveryListContainer extends React.Component {
     const { groupsId, getGroupsId } = this.props;
     return (
       <DiscoveryList
-        // eslint-disable-line
         {...this.props}
         onEndReachedThreshold={0}
         onEndReached={() => {

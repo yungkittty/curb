@@ -2,7 +2,7 @@ const enDiscovery = {
   title: "Discovery",
   subtitle: "Join popular groups on the network",
   sections: {
-    global: "Most Popular",
+    global: "Most popular",
     custom: "Recommended",
     random: "Random"
   }

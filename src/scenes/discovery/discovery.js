@@ -18,6 +18,9 @@ import withCurrentUser from "../../hocs/with-current-user";
 class Discovery extends React.Component {
   constructor(props) {
     super(props);
+    const sectionResolver = (...sectionArgs) => JSON.stringify(sectionArgs);
+    this.getSection = _.memoize(this.getSection.bind(this), sectionResolver);
+    this.getSections = _.memoize(this.getSections.bind(this), sectionResolver);
     this.renderListHeader = this.renderListHeader.bind(this);
     this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
     this.renderListSectionItem = this.renderListSectionItem.bind(this);
@@ -39,16 +42,16 @@ class Discovery extends React.Component {
     }] : [];
   }
 
-  getSections() {
-    const {
-      currentUserId,
-      discoveryGlobalSectionGroupsId,
-      discoveryCustomSectionGroupsId,
-      discoveryRandomSectionGroupsId,
-      getDiscoveryGlobalSectionGroupsId,
-      getDiscoveryCustomSectionGroupsId,
-      getDiscoveryRandomSectionGroupsId
-    } = this.props;
+  getSections(
+    // eslint-disable-line
+    currentUserId,
+    discoveryGlobalSectionGroupsId,
+    discoveryCustomSectionGroupsId,
+    discoveryRandomSectionGroupsId,
+    getDiscoveryGlobalSectionGroupsId,
+    getDiscoveryCustomSectionGroupsId,
+    getDiscoveryRandomSectionGroupsId
+  ) {
     return [
       ...this.getSection(
         // eslint-disable-line
@@ -128,11 +131,29 @@ class Discovery extends React.Component {
   }
 
   render() {
-    const { showAppModal, currentUserId } = this.props;
+    const {
+      showAppModal,
+      currentUserId,
+      discoveryGlobalSectionGroupsId,
+      discoveryCustomSectionGroupsId,
+      discoveryRandomSectionGroupsId,
+      getDiscoveryGlobalSectionGroupsId,
+      getDiscoveryCustomSectionGroupsId,
+      getDiscoveryRandomSectionGroupsId
+    } = this.props;
+    const getSectionsArgs = [
+      currentUserId,
+      discoveryGlobalSectionGroupsId,
+      discoveryCustomSectionGroupsId,
+      discoveryRandomSectionGroupsId,
+      getDiscoveryGlobalSectionGroupsId,
+      getDiscoveryCustomSectionGroupsId,
+      getDiscoveryRandomSectionGroupsId
+    ];
     return (
       <React.Fragment>
         <DiscoveryContainer
-          sections={this.getSections()}
+          sections={this.getSections(...getSectionsArgs)}
           keyExtractor={(sectionData, sectionIndex) => sectionIndex}
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
