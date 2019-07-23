@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -23,7 +24,7 @@ const withGroups = WrappedComponent => {
         getGroups
       } = this.props;
       if (groupsId.length && groupsId.length !== prevProps.groupsId.length) {
-        getGroups({ ids: groupsId });
+        getGroups({ ids: _.differenceWith(groupsId, prevProps.groupsId) });
       }
     }
 

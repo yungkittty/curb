@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { isIphoneX } from "react-native-device-detection";
+import { isTablet, isPhone as isMobile, isIphoneX } from "react-native-device-detection";
 
 const platformBools = {
   isWeb: false,
@@ -7,7 +7,8 @@ const platformBools = {
   isAndroid: Platform.OS === "android",
   isIos: Platform.OS === "ios",
   isDesktop: false,
-  isMobile: false,
+  isMobile,
+  isTablet,
   isIphoneX
 };
 
