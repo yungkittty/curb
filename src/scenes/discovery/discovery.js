@@ -18,9 +18,9 @@ import withCurrentUser from "../../hocs/with-current-user";
 class Discovery extends React.Component {
   constructor(props) {
     super(props);
-    const sectionResolver = (...sectionArgs) => JSON.stringify(sectionArgs);
-    this.getSection = _.memoize(this.getSection.bind(this), sectionResolver);
-    this.getSections = _.memoize(this.getSections.bind(this), sectionResolver);
+    const getSectionsResolver = (...sectionArgs) => JSON.stringify(sectionArgs);
+    this.getSection = _.memoize(this.getSection.bind(this), getSectionsResolver);
+    this.getSections = _.memoize(this.getSections.bind(this), getSectionsResolver);
     this.renderListHeader = this.renderListHeader.bind(this);
     this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
     this.renderListSectionItem = this.renderListSectionItem.bind(this);
