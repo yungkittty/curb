@@ -30,21 +30,26 @@ class Discovery extends React.Component {
   // eslint-disable-next-line
   getSection(
     // eslint-disable-line
+    isDiscoverySectionEnd,
     discoverySectionTitle,
     discoverySectionGroupsId,
     getDiscoverySectionGroupsId,
     isShowed = true
   ) {
     return isShowed ? [{
-      title: discoverySectionTitle,
-      data: [{ groupsId: discoverySectionGroupsId }],
-      getGroupsId: getDiscoverySectionGroupsId
+      isDiscoverySectionEnd,
+      discoverySectionTitle,
+      data: [{ key: discoverySectionTitle, discoverySectionGroupsId }],
+      getDiscoverySectionGroupsId
     }] : [];
   }
 
   getSections(
     // eslint-disable-line
     currentUserId,
+    isDiscoveryGlobalSectionEnd,
+    isDiscoveryCustomSectionEnd,
+    isDiscoveryRandomSectionEnd,
     discoveryGlobalSectionGroupsId,
     discoveryCustomSectionGroupsId,
     discoveryRandomSectionGroupsId,
@@ -55,12 +60,14 @@ class Discovery extends React.Component {
     return [
       ...this.getSection(
         // eslint-disable-line
+        isDiscoveryGlobalSectionEnd,
         "global",
         discoveryGlobalSectionGroupsId,
         getDiscoveryGlobalSectionGroupsId
       ),
       ...this.getSection(
         // eslint-disable-line
+        isDiscoveryCustomSectionEnd,
         "custom",
         discoveryCustomSectionGroupsId,
         getDiscoveryCustomSectionGroupsId,
@@ -68,6 +75,7 @@ class Discovery extends React.Component {
       ),
       ...this.getSection(
         // eslint-disable-line
+        isDiscoveryRandomSectionEnd,
         "random",
         discoveryRandomSectionGroupsId,
         getDiscoveryRandomSectionGroupsId
@@ -94,7 +102,7 @@ class Discovery extends React.Component {
     const { t } = this.props;
     return (
       <DiscoveryListSectionHeader type="h3" weight={500}>
-        {t(`sections.${discoverySectionData.title}`)}
+        {t(`sections.${discoverySectionData.discoverySectionTitle}`)}
       </DiscoveryListSectionHeader>
     );
   }
@@ -104,12 +112,14 @@ class Discovery extends React.Component {
     item: discoveryItemData,
     section: discoverySectionData
   }) {
-    const { groupsId } = discoveryItemData;
-    const { getGroupsId } = discoverySectionData;
+    const { isDiscoverySectionEnd } = discoverySectionData;
+    const { discoverySectionGroupsId } = discoveryItemData;
+    const { getDiscoverySectionGroupsId } = discoverySectionData;
     return (
       <DiscoveryList
-        groupsId={groupsId}
-        getGroupsId={getGroupsId}
+        isDiscoverySectionEnd={isDiscoverySectionEnd}
+        discoverySectionGroupsId={discoverySectionGroupsId}
+        getDiscoverySectionGroupsId={getDiscoverySectionGroupsId}
         keyExtractor={(discoveryGroupId, discoveryItemIndex) =>
           // eslint-disable-line
           `${discoveryGroupId}${discoveryItemIndex}`}
@@ -134,6 +144,9 @@ class Discovery extends React.Component {
     const {
       showAppModal,
       currentUserId,
+      isDiscoveryGlobalSectionEnd,
+      isDiscoveryCustomSectionEnd,
+      isDiscoveryRandomSectionEnd,
       discoveryGlobalSectionGroupsId,
       discoveryCustomSectionGroupsId,
       discoveryRandomSectionGroupsId,
@@ -143,6 +156,9 @@ class Discovery extends React.Component {
     } = this.props;
     const getSectionsArgs = [
       currentUserId,
+      isDiscoveryGlobalSectionEnd,
+      isDiscoveryCustomSectionEnd,
+      isDiscoveryRandomSectionEnd,
       discoveryGlobalSectionGroupsId,
       discoveryCustomSectionGroupsId,
       discoveryRandomSectionGroupsId,
@@ -154,7 +170,6 @@ class Discovery extends React.Component {
       <React.Fragment>
         <DiscoveryContainer
           sections={this.getSections(...getSectionsArgs)}
-          keyExtractor={(sectionData) => sectionData.title}
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
           renderItem={this.renderListSectionItem}
@@ -171,6 +186,9 @@ class Discovery extends React.Component {
 Discovery.propTypes = {
   showAppModal: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
+  isDiscoveryGlobalSectionEnd: PropTypes.bool.isRequired,
+  isDiscoveryCustomSectionEnd: PropTypes.bool.isRequired,
+  isDiscoveryRandomSectionEnd: PropTypes.bool.isRequired,
   discoveryGlobalSectionGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   discoveryCustomSectionGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   discoveryRandomSectionGroupsId: PropTypes.array.isRequired, // eslint-disable-line

@@ -21,6 +21,33 @@ const isFetching = (state = false, action) => {
   }
 };
 
+const isGlobalSectionEnd = (state = false, action) => {
+  switch (action.type) {
+    case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS:
+      return !action.payload.groups.length;
+    default:
+      return state;
+  }
+};
+
+const isCustomSectionEnd = (state = false, action) => {
+  switch (action.type) {
+    case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS:
+      return !action.payload.groups.length;
+    default:
+      return state;
+  }
+};
+
+const isRandomSectionEnd = (state = false, action) => {
+  switch (action.type) {
+    case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS:
+      return !action.payload.groups.length;
+    default:
+      return state;
+  }
+};
+
 const globalSectionGroupsId = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS:
@@ -75,6 +102,9 @@ const errorCode = (state = "", action) => {
 const discoveryReducer = combineReducers({
   // eslint-disable-line
   isFetching,
+  isGlobalSectionEnd,
+  isCustomSectionEnd,
+  isRandomSectionEnd,
   globalSectionGroupsId,
   customSectionGroupsId,
   randomSectionGroupsId,

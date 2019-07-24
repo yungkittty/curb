@@ -7,12 +7,12 @@ import { windowDimensions } from "../../../../configurations/window";
 class DiscoveryListContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.page = 1;
+    this.discoveryListpage = 1;
   }
 
   componentDidMount() {
-    const { getGroupsId } = this.props;
-    getGroupsId({
+    const { getDiscoverySectionGroupsId } = this.props;
+    getDiscoverySectionGroupsId({
       page: this.getPage(),
       count: this.getCount()
     });
@@ -20,33 +20,41 @@ class DiscoveryListContainer extends React.Component {
 
   getPage() {
     // eslint-disable-next-line
-    return this.page++;
+    return this.discoveryListpage++;
   }
 
   // eslint-disable-next-line
   getCountMax() {
     const windowWidth = windowDimensions.getWidth();
     const windowWidthOffset = platformBools.isWeb ? 70 : 0;
-    const listWidth = windowWidth - windowWidthOffset;
-    const itemWidth = platformBools.isWeb ? 140 : 90;
-    return Math.round(listWidth / itemWidth);
+    const discoveryListWidth = windowWidth - windowWidthOffset;
+    const discoveryListItemWidth = platformBools.isWeb ? 140 : 90;
+    return Math.round(discoveryListWidth / discoveryListItemWidth);
   }
 
+  // eslint-disable-next-line
   getCount() {
     return Math.round(this.getCountMax() * 1.5);
   }
 
   render() {
-    const { groupsId, getGroupsId } = this.props;
+    const {
+      // eslint-disable-line
+      isDiscoverySectionEnd,
+      discoverySectionGroupsId,
+      getDiscoverySectionGroupsId,
+      ...others
+    } = this.props;
     return (
       <DiscoveryList
-        {...this.props}
-        onEndReachedThreshold={0.2}
+        {...others}
+        groupsId={discoverySectionGroupsId}
+        onEndReachedThreshold={0.1}
         onEndReached={() => {
-          if (groupsId.length < this.getCountMax())
+          if (isDiscoverySectionEnd || discoverySectionGroupsId.length < this.getCountMax())
             // eslint-disable-line
             return;
-          getGroupsId({
+          getDiscoverySectionGroupsId({
             page: this.getPage(),
             count: this.getCount()
           });
@@ -57,8 +65,9 @@ class DiscoveryListContainer extends React.Component {
 }
 
 DiscoveryListContainer.propTypes = {
-  groupsId: PropTypes.array.isRequired, // eslint-disable-line
-  getGroupsId: PropTypes.func.isRequired
+  isDiscoverySectionEnd: PropTypes.bool.isRequired,
+  discoverySectionGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  getDiscoverySectionGroupsId: PropTypes.func.isRequired
 };
 
 export default DiscoveryListContainer;
