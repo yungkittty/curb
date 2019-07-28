@@ -8,17 +8,21 @@ import GroupListSectionHeader from "./components/group-list-section-header";
 import GroupListItemInfo from "./components/group-list-item-info";
 import GroupListItemMedia from "./components/group-list-item-media";
 import ButtonFloat from "../../components/button-float";
-import CreateMedia from "../create-media";
-import GroupSettings from "./scenes/group-settings";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 import withGroup from "../../hocs/with-group";
 
+/* eslint-disable */
+
+import CreateMedia from "../create-media"; /** @TODO !! */
+import GroupSettings from "./scenes/group-settings";
+
+/* eslint-enable */
+
 class Group extends React.Component {
   constructor(props) {
     super(props);
-    const getSectionsResolver = (...sectionsArgs) => JSON.stringify(sectionsArgs);
-    this.getSections = _.memoize(this.getSections, getSectionsResolver);
+    this.toggleScene = this.toggleScene.bind(this);
     this.renderListHeader = this.renderListHeader.bind(this);
     this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
     this.renderListItemInfo = this.renderListItemInfo.bind(this);
@@ -26,11 +30,21 @@ class Group extends React.Component {
     this.state = { isFeed: true };
   }
 
-  getSections(isFeed) {
+  // eslint-disable-next-line
+  toggleScene() {
+    const { isFeed } = this.state;
+    this.setState({ isFeed: !isFeed });
+  }
+
+  getSections() {
+    const { isFeed } = this.state;
     const { groupMediasId } = this.props;
-    const sectionData = isFeed ? groupMediasId : [{}];
-    const sectionRenderItem = this[`renderListItem${isFeed ? "Media" : "Info"}`];
-    return [{ data: sectionData, renderItem: sectionRenderItem }];
+    const sectionsFirstData = isFeed ? groupMediasId : [{}];
+    const sectionsFirstRenderItem = this[`renderListItem${isFeed ? "Media" : "Info"}`];
+    return [
+      // eslint-disable-line
+      { data: sectionsFirstData, renderItem: sectionsFirstRenderItem }
+    ];
   }
 
   renderListHeader() {
@@ -39,6 +53,7 @@ class Group extends React.Component {
       isFeed
     } = this.state;
     const {
+      showAppModal,
       isFetchingGroup,
       groupId,
       groupName,
@@ -51,7 +66,8 @@ class Group extends React.Component {
     return (
       <GroupListHeader
         isFeed={isFeed}
-        toggleScene={() => this.setState({ isFeed: !isFeed })}
+        toggleScene={this.toggleScene}
+        showAppModal={showAppModal}
         isFetchingGroup={isFetchingGroup}
         groupId={groupId}
         groupName={groupName}
@@ -124,17 +140,16 @@ class Group extends React.Component {
       showAppModal,
       groupId,
       groupCreatorId,
-      groupMediasId,
       currentUserId,
       currentUserGroupsId
     } = this.props;
-    const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
     const isCurrentUserCreator = groupCreatorId === currentUserId;
-    const isButtonShowed = isCurrentUserIn && (isCurrentUserCreator || isFeed);
+    const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
+    const isButtonShowed = (isFeed || isCurrentUserCreator) && isCurrentUserIn;
     return (
       <React.Fragment>
         <ListSection
-          sections={this.getSections(isFeed, groupMediasId)}
+          sections={this.getSections()}
           keyExtractor={groupMediaId => groupMediaId}
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
