@@ -18,10 +18,13 @@ const OverlayBlur = WrappedComponent => {
 
       this.onTransitionEnd = this.onTransitionEnd.bind(this);
       this.startAnimation = this.startAnimation.bind(this);
+
+      this.wrappedComponent = React.createRef();
     }
 
     componentDidMount() {
       const { isAppModalShowed } = this.props;
+      this.wrappedComponent.current.focus();
       this.startAnimation(isAppModalShowed);
     }
 
@@ -48,7 +51,14 @@ const OverlayBlur = WrappedComponent => {
 
     render() {
       const { style } = this.state;
-      return <WrappedComponent {...this.props} onTransitionEnd={this.onTransitionEnd} style={style} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          ref={this.wrappedComponent}
+          onTransitionEnd={this.onTransitionEnd}
+          style={style}
+        />
+      );
     }
   }
 
