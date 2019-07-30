@@ -1,21 +1,37 @@
+import _ from "lodash";
 import React from "react";
+import PropTypes from "prop-types";
 import LoaderContainer from "./components/loader-container";
-import LoaderAnimationContainer from "./components/loader-animation-container";
 import LoaderAnimationRound from "./components/loader-animation-round";
+import CircleContainer from "../circle-container";
+import loaderData from "./loader-data";
 
-const Loader = () => (
+const Loader = ({ size }) => (
   <LoaderContainer>
-    <LoaderAnimationContainer>
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.036, top: 63, left: 63 }} />
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.072, top: 68, left: 56 }} />
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.108, top: 71, left: 48 }} />
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.144, top: 72, left: 40 }} />
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.18, top: 71, left: 32 }} />
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.216, top: 68, left: 24 }} />
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.252, top: 63, left: 17 }} />
-      <LoaderAnimationRound roundConfig={{ animationDelay: -0.288, top: 56, left: 12 }} />
-    </LoaderAnimationContainer>
+    <CircleContainer diameter={size} style={{ transform: `translate(-50%, -50%)` }}>
+      {innerDiameter =>
+        _.map(loaderData, (props, index) => (
+          <LoaderAnimationRound key={index} innerDiameter={innerDiameter} {...props} />
+        ))
+      }
+    </CircleContainer>
   </LoaderContainer>
 );
+
+Loader.defaultProps = {
+  size: "medium"
+};
+
+Loader.propTypes = {
+  size: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ])
+};
 
 export default Loader;

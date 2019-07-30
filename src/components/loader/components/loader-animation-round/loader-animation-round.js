@@ -11,23 +11,24 @@ const rotateAnimation = keyframes`
 `;
 
 const LoaderAnimationRound = styled(Container)`
-  transform-origin: 40px 40px;
+  transform-origin: ${({ innerDiameter }) => `${innerDiameter / 2}px ${innerDiameter / 2}px`};
+
   animation: ${rotateAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  ${({ roundConfig: { animationDelay } }) => `animation-delay: ${animationDelay}s;`}
+  ${({ animationDelay }) => `animation-delay: ${animationDelay}s;`}
 
   &:after {
     content: " ";
-    display: block;
     position: absolute;
-    width: 7px;
-    height: 7px;
+    ${({ innerDiameter }) => `width: ${innerDiameter / 10}px;
+                              height: ${innerDiameter / 10}px;
+                              `}
     border-radius: 50%;
     background: ${({ theme }) => theme.secondaryVariantColor};
-    margin: -4px 0 0 -4px;
-    ${({ roundConfig: { top, left } }) => `
-      top: ${top}px;
-      left: ${left}px;
-      `}
+    margin: ${({ innerDiameter }) => `-${innerDiameter / 20}px 0 0 -${innerDiameter / 20}px`};
+    ${({ innerDiameter, top, left }) => `
+      top: ${(top * innerDiameter) / 300}px;
+      left: ${(left * innerDiameter) / 300}px;
+      `};
   }
 `;
 
