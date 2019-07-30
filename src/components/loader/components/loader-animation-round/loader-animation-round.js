@@ -1,56 +1,34 @@
 import styled, { withTheme, keyframes } from "styled-components";
 import Container from "../../../container";
 
-const ellipsis1 = keyframes`
+const rotateAnimation = keyframes`
   from {
-    transform: scale(0);
+    transform: rotate(0deg);
   }
   to {
-    transform: scale(1);
-  }
-`;
-
-const ellipsis2 = keyframes`
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    transform: translate(19px, 0);
-  }
-`;
-
-const ellipsis3 = keyframes`
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(0);
+    transform: rotate(360deg);
   }
 `;
 
 const LoaderAnimationRound = styled(Container)`
-  position: absolute;
-  top: 27px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: ${({ theme }) => theme.secondaryVariantColor};
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  transform-origin: 40px 40px;
+  animation: ${rotateAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  ${({ roundConfig: { animationDelay } }) => `animation-delay: ${animationDelay}s;`}
 
-  left: ${({ left }) => left}px;
-  animation: ${({ animationNumber }) => {
-      switch (animationNumber) {
-        case 1:
-          return ellipsis1;
-        case 2:
-          return ellipsis2;
-        case 3:
-          return ellipsis3;
-        default:
-          return undefined;
-      }
-    }}
-    0.6s infinite;
+  &:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.secondaryVariantColor};
+    margin: -4px 0 0 -4px;
+    ${({ roundConfig: { top, left } }) => `
+      top: ${top}px;
+      left: ${left}px;
+      `}
+  }
 `;
 
 export default withTheme(LoaderAnimationRound);

@@ -6,10 +6,14 @@ import LoaderAnimationRound from "./components/loader-animation-round";
 const Loader = () => (
   <LoaderContainer>
     <LoaderAnimationContainer>
-      <LoaderAnimationRound left={6} animationNumber={1} />
-      <LoaderAnimationRound left={6} animationNumber={2} />
-      <LoaderAnimationRound left={26} animationNumber={2} />
-      <LoaderAnimationRound left={45} animationNumber={3} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.036, top: 63, left: 63 }} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.072, top: 68, left: 56 }} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.108, top: 71, left: 48 }} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.144, top: 72, left: 40 }} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.18, top: 71, left: 32 }} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.216, top: 68, left: 24 }} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.252, top: 63, left: 17 }} />
+      <LoaderAnimationRound roundConfig={{ animationDelay: -0.288, top: 56, left: 12 }} />
     </LoaderAnimationContainer>
   </LoaderContainer>
 );

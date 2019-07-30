@@ -4,8 +4,8 @@ import Container from "../../../container";
 const LoaderAnimationContainer = styled(Container)`
   display: inline-block;
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
 `;
 
 export default LoaderAnimationContainer;
