@@ -23,12 +23,11 @@ class _Image extends React.Component {
       style,
       ...others
     } = this.props;
-    const isImageLocal = typeof src !== "string";
-    const isImageFromApi = !isImageLocal && src.substr(0, 9) === "/contents";
+    const isImageFromApi = src.substr(0, 9) === "/contents";
     return (
       <Image
         {...others}
-        source={isImageLocal ? src : { uri: isImageFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src }}
+        source={{ uri: isImageFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src }}
         resizeMode={objectFit}
         onLoadStart={onLoadStartArgs => {
           // eslint-disable-next-line
@@ -57,7 +56,7 @@ _Image.defaultProps = {
 };
 
 _Image.propTypes = {
-  src: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  src: PropTypes.string.isRequired,
   onLoadStart: PropTypes.func,
   onLoad: PropTypes.func,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
