@@ -25,8 +25,7 @@ const LoaderAnimationRound = styled(Container)`
     margin: ${({ innerDiameter }) => `-${innerDiameter / 20}px 0 0 -${innerDiameter / 20}px`};
     ${({ innerDiameter, top, left }) => `
       top: ${(top * innerDiameter) / 300}px;
-      left: ${(left * innerDiameter) / 300}px;
-      `};
+      left: ${(left * innerDiameter) / 300}px;`};
   }
 `;
 
