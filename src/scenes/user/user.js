@@ -18,10 +18,7 @@ class User extends Component {
 
     this.initialState = {
       editMode: false,
-      username: {
-        value: undefined,
-        error: undefined
-      },
+      username: { value: undefined, error: undefined },
       avatar: { value: { data: undefined }, loadingProgress: undefined }
     };
 
@@ -64,7 +61,7 @@ class User extends Component {
   submit() {
     const { userId, userName, patchUser } = this.props;
     const { username, avatar } = this.state;
-    if (username.value !== userName || avatar.value.file) {
+    if ((username.value && username.value !== userName) || avatar.value.file) {
       patchUser({
         id: userId,
         avatar: avatar.value,

@@ -26,8 +26,6 @@ const mapDispatchToProps = dispatch => ({
   appModalHide: () => dispatch(appModalActions.hideAppModal())
 });
 
-// ...
-
 const mergeProps = (stateProps, dispatchProps) => ({
   ...stateProps,
   ...(!stateProps.appModalHeaderRightOnClick ? dispatchProps : {})

@@ -14,7 +14,6 @@ const ScrollContainerContent = styled(Container)`
   ${props => (!props.showsHorizontalScrollIndicator ? `margin-bottom: -${windowDimensions.scrollBarWidth}px;` : "")}
   overflow-y: ${props => (!props.horizontal ? "auto" : "hidden")};
   overflow-x: ${props => (props.horizontal ? "auto" : "hidden")};
-  & > * { flex-shrink: 0; }
 `;
 
 ScrollContainerContent.propTypes = {

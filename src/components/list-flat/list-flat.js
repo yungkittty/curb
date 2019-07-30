@@ -18,38 +18,48 @@ class ListFlat extends React.Component {
   }
 
   componentDidMount() {
+    const { horizontal } = this.props;
     const { current: containerScroll } = this.containerScroll;
+    if (!horizontal) return;
     window.addEventListener("resize", this.isScrollable);
     containerScroll.addEventListener("scroll", this.isScrollable);
     this.isScrollable();
   }
 
   componentDidUpdate(prevProps) {
-    const { data: itemsData } = this.props;
+    const { horizontal, data: itemsData } = this.props;
     const { data: prevItemsData } = prevProps;
-    if (itemsData === prevItemsData) return;
+    if (!horizontal || itemsData === prevItemsData) return;
     this.isScrollable();
   }
 
   componentWillUnmount() {
+    const { horizontal } = this.props;
     const { current: containerScroll } = this.containerScroll;
+    if (!horizontal) return;
     window.removeEventListener("resize", this.isScrollable);
     containerScroll.removeEventListener("scroll", this.isScrollable);
   }
 
   isScrollable() {
-    const { scrollLeft, scrollWidth, clientWidth } = this.containerScroll.current;
-    const isScrollableToLeft = scrollLeft !== 0;
-    const isScrollableToRight = scrollWidth - scrollLeft > clientWidth;
-    this.setState({ isScrollableToLeft, isScrollableToRight });
+    const { data: itemsData, getItemLayout } = this.props;
+    const { scrollLeft, clientWidth } = this.containerScroll.current;
+    const itemLength = (getItemLayout(itemsData[0], 0) || []).length; // eslint-disable-line
+    const scrollCurrentIndex = Math.round(scrollLeft / itemLength);
+    const scrollCurrentOffset = Math.round(clientWidth / itemLength);
+    const isScrollableToLeft = scrollCurrentIndex !== 0;
+    const isScrollableToRight = scrollCurrentIndex !== itemsData.length - scrollCurrentOffset;
+    const { isScrollableToLeft: wasScrollableToLeft, isScrollableToRight: wasScrollableToRight } = this.state;
+    if (isScrollableToLeft !== wasScrollableToLeft || isScrollableToRight !== wasScrollableToRight)
+      this.setState({ isScrollableToLeft, isScrollableToRight });
   }
 
   scrollToLeft() {
     const { getItemLayout, data: itemsData } = this.props;
     const { scrollLeft, clientWidth } = this.containerScroll.current;
     const itemLength = getItemLayout(itemsData[0], 0).length; // eslint-disable-line
-    const scrollCurrentIndex = Math.floor(scrollLeft / itemLength);
-    const scrollCurrentOffset = Math.floor(clientWidth / itemLength);
+    const scrollCurrentIndex = Math.round(scrollLeft / itemLength);
+    const scrollCurrentOffset = Math.round(clientWidth / itemLength);
     const scrollIndex = scrollCurrentIndex - scrollCurrentOffset;
     this.scrollToIndex({ index: Math.max(scrollIndex, 0) });
   }
@@ -58,8 +68,8 @@ class ListFlat extends React.Component {
     const { getItemLayout, data: itemsData } = this.props;
     const { scrollLeft, clientWidth } = this.containerScroll.current;
     const itemLength = getItemLayout(itemsData[0], 0).length; // eslint-disable-line
-    const scrollCurrentIndex = Math.floor(scrollLeft / itemLength);
-    const scrollCurrentOffset = Math.floor(clientWidth / itemLength);
+    const scrollCurrentIndex = Math.round(scrollLeft / itemLength);
+    const scrollCurrentOffset = Math.round(clientWidth / itemLength);
     const scrollIndex = scrollCurrentIndex + scrollCurrentOffset;
     this.scrollToIndex({ index: Math.min(scrollIndex, itemsData.length - scrollCurrentOffset) });
   }
@@ -145,8 +155,7 @@ ListFlat.defaultProps = {
   horizontal: false,
   ListHeaderComponent: null,
   ListFooterComponent: null,
-  keyExtractor: () => undefined,
-  getItemLayout: () => undefined
+  keyExtractor: () => undefined
 };
 
 ListFlat.propTypes = {
@@ -162,7 +171,7 @@ ListFlat.propTypes = {
   ListFooterComponent: PropTypes.func,
   keyExtractor: PropTypes.func,
   renderItem: PropTypes.func.isRequired,
-  getItemLayout: PropTypes.func
+  getItemLayout: PropTypes.func.isRequired
 };
 
 export default ListFlat;

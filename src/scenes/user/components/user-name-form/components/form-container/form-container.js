@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Container from "../../../../../../components/container";
 
 const FormContainer = styled(Container)`
-  ${({ readOnly }) => (readOnly ? "padding: 20px;" : "")}
+  ${({ readOnly }) => (readOnly ? "padding: 18px;" : "")}
   ${({ theme, displayPlaceholder, textStyle }) =>
     displayPlaceholder
       ? `

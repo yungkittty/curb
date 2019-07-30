@@ -44,7 +44,7 @@ const Map = ({ className, style, forwardedRef, ...others }) => {
         } = this.state;
         return (
           <GoogleMap
-            defaultZoom={10}
+            defaultZoom={15}
             defaultCenter={{
               lat: currentLatitude || latitude,
               lng: currentLongitude || longitude
