@@ -12,7 +12,6 @@ const rotateAnimation = keyframes`
 
 const LoaderAnimationRound = styled(Container)`
   transform-origin: ${({ innerDiameter }) => `${innerDiameter / 2}px ${innerDiameter / 2}px`};
-
   animation: ${rotateAnimation} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   ${({ animationDelay }) => `animation-delay: ${animationDelay}s;`}
 
@@ -20,8 +19,7 @@ const LoaderAnimationRound = styled(Container)`
     content: " ";
     position: absolute;
     ${({ innerDiameter }) => `width: ${innerDiameter / 10}px;
-                              height: ${innerDiameter / 10}px;
-                              `}
+                              height: ${innerDiameter / 10}px;`}
     border-radius: 50%;
     background: ${({ theme }) => theme.secondaryVariantColor};
     margin: ${({ innerDiameter }) => `-${innerDiameter / 20}px 0 0 -${innerDiameter / 20}px`};
