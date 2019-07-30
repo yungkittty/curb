@@ -4,19 +4,18 @@ import { windowDimensions } from "../../../../configurations/window";
 
 const HeaderContainer = styled(Container)`
   ${({ backgroundColor }) => {
-    const headerPadding = windowDimensions.getStatusBarHeight();
-    const headerHeight = headerPadding + 70;
-    const headerBackgroundColor = backgroundColor || "transparent";
+    const containerPaddingTop = windowDimensions.getStatusBarHeight();
+    const containerHeight = containerPaddingTop + 70;
+    const containerBackgroundColor = backgroundColor || "transparent";
     return `
       display: flex;
+      position: relative;
       flex-direction: row;
-      justify-content: space-between;
       width: 100%;
-      height: ${headerHeight}px;
+      height: ${containerHeight}px;
       min-width: 100%;
-      min-height: ${headerHeight}px;
-      padding-top: ${headerPadding}px;
-      background-color: ${headerBackgroundColor};  
+      min-height: ${containerHeight}px;
+      background-color: ${containerBackgroundColor};
     `;
   }}
 `;

@@ -150,7 +150,7 @@ class User extends Component {
           <ButtonFloat
             icon={editMode ? "check" : "pen"}
             onClick={this.handleSwapMode}
-            disabled={!isFetchingMedias && !isFetchingUsers}
+            disabled={isFetchingMedias || isFetchingUsers}
           />
         ) : null}
       </React.Fragment>

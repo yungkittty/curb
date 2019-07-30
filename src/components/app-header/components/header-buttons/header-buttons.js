@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import ButtonsContainer from "./components/buttons-container";
 import ButtonsButton from "./components/buttons-button";
 
-const HeaderButtons = ({ buttons }) => (
-  <ButtonsContainer>
+const HeaderButtons = ({ buttons, ...others }) => (
+  <ButtonsContainer {...others}>
     {_.map(buttons, (button, buttonIndex) => (
       <ButtonsButton {...button} key={buttonIndex} />
     ))}

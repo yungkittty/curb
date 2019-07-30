@@ -1,18 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Circle from "../../../../../circle";
 import Button from "../../../../../button";
 import Icon from "../../../../../icon";
 
-const ButtonsButton = props => (
+const ButtonsButton = ({ size, ...others }) => (
   <Circle
     // eslint-disable-line
-    {...props}
+    {...others}
     as={Button}
     diameter="small"
-    style={{ marginRight: 10 }}
     component={Icon}
-    size="small"
+    size={size}
   />
 );
+
+ButtonsButton.defaultProps = { size: "small" };
+
+ButtonsButton.propTypes = { size: PropTypes.string };
 
 export default ButtonsButton;

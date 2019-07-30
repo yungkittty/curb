@@ -15,13 +15,18 @@ import Loader from "../../../../components/loader";
 class SettingsGeneral extends Component {
   constructor(props) {
     super(props);
-    const { t, setAppModalHeaderText, setAppModalHeaderLeftButton, setAppModalScene } = this.props;
+    const {
+      // eslint-disable-line
+      t,
+      setAppModalHeaderText,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
+      setAppModalScene
+    } = this.props;
 
     setAppModalHeaderText({ text: t("general.title") });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: Settings, direction: -1 })
-    });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: Settings, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: Settings, direction: -1 }) });
   }
 
   componentDidUpdate(prevProps) {
@@ -64,13 +69,14 @@ class SettingsGeneral extends Component {
 SettingsGeneral.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
   isFetchingSignIn: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
-  currentUserId: PropTypes.string.isRequired,
-  setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalScene: PropTypes.func.isRequired
+  currentUserId: PropTypes.string.isRequired
 };
 
 export default _.flowRight([

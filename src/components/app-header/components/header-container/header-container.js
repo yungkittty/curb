@@ -6,8 +6,8 @@ const HeaderContainer = styled(Container)`
     const headerBackgroundColor = backgroundColor || "transparent";
     return `
       display: flex;
+      position: relative;
       flex-direction: row;
-      justify-content: space-between;
       width: 100%;
       height: 80px;
       min-width: 100%;

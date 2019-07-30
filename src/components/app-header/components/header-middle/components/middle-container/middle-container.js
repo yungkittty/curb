@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import Container from "../../../../../container";
 
-const HeaderContainer = styled(Container)`
+const MiddleContainer = styled(Container)`
   display: flex;
-  position: relative;
-  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 1;
   justify-content: center;
   align-items: center;
-  height: 75px;
 `;
 
-export default HeaderContainer;
+export default MiddleContainer;

@@ -8,19 +8,22 @@ const HeaderBack = WrappedComponent => {
   class _HeaderBack extends React.Component {
     constructor(props) {
       super(props);
-      this.onBackClick = this.onBackClick.bind(this);
-      this.backPressListener = BackHandler.addEventListener("hardwareBackPress", this.onBackClick);
+      this.backPressListener = undefined;
     }
 
-    componentWillMount() {
+    componentDidMount() {
+      this.backPressListener =
+        // eslint-disable-line
+        BackHandler.addEventListener("hardwareBackPress", () => {
+          const { onBackClick } = this.props;
+          if (!onBackClick) return false;
+          onBackClick();
+          return true;
+        });
+    }
+
+    componentWillUnmount() {
       this.backPressListener.remove();
-    }
-
-    onBackClick() {
-      const { onBackClick } = this.props;
-      if (!onBackClick) return true;
-      onBackClick();
-      return false;
     }
 
     render() {

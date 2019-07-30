@@ -16,11 +16,7 @@ class GroupListHeader extends React.Component {
     this.onBackClick = this.onBackClick.bind(this);
   }
 
-  onBackClick() {
-    const { history } = this.props;
-    history.goBack();
-  }
-
+  // eslint-disable-next-line
   getLeftButtons() {
     return [
       // eslint-disable-line
@@ -39,6 +35,11 @@ class GroupListHeader extends React.Component {
       { icon: rightButtonsFirstIcon, color: "white", onClick: rightButtonsFirstOnClick },
       { icon: rightButtonsSecondIcon, color: "white", onClick: rightButtonsSecondOnClick }
     ];
+  }
+
+  onBackClick() {
+    const { history } = this.props;
+    history.goBack();
   }
 
   render() {
