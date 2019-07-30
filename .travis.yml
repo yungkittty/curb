@@ -24,7 +24,8 @@ jobs:
         - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
     - stage: Android
       language: android
-      jdk: openjdk8
+      dist: trusty
+      jdk: orackejdk8
       env:
         - SKIP_BUNDLING=1
       android:
