@@ -23,6 +23,7 @@ jobs:
       after_failure:
         - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
     - stage: Android
+      dist: trusty
       language: android
       jdk: oraclejdk8
       env:
