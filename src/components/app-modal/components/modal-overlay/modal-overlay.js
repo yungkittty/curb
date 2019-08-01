@@ -11,6 +11,7 @@ const ModalOverlay = styled(Container)`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  outline: none;
   transition-property: background-color;
   transition-duration: 0.45s;
   transition-timing-function: ease;
