@@ -2,17 +2,14 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import LoaderContainer from "./components/loader-container";
-import LoaderAnimationRound from "./components/loader-animation-round";
+import LoaderCircle from "./components/loader-circle";
 import CircleContainer from "../circle-container";
-import loaderData from "./loader-data";
 
 const Loader = ({ size }) => (
   <LoaderContainer>
-    <CircleContainer diameter={size} style={{ transform: `translate(-50%, -50%)` }}>
+    <CircleContainer diameter={size}>
       {innerDiameter =>
-        _.map(loaderData, (props, index) => (
-          <LoaderAnimationRound key={index} innerDiameter={innerDiameter} {...props} />
-        ))
+        _.times(8, index => <LoaderCircle key={index} index={index} innerDiameter={innerDiameter} />)
       }
     </CircleContainer>
   </LoaderContainer>
