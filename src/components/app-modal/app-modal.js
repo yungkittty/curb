@@ -23,8 +23,15 @@ class AppModal extends Component {
   }
 
   handleKeyDown(event) {
-    const { appModalHide } = this.props;
-    if (event.keyCode === 27) appModalHide();
+    const { appModalHide, appModalFooterOnClick, appModalFooterText } = this.props;
+    switch (event.keyCode) {
+      case 27:
+        return appModalHide();
+      case 13:
+        return appModalFooterText ? appModalFooterOnClick() : null;
+      default:
+        return;
+    }
   }
 
   appModalTransitionEnd() {
