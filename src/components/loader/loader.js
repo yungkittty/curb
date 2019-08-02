@@ -3,15 +3,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import LoaderContainer from "./components/loader-container";
 import LoaderCircle from "./components/loader-circle";
-import CircleContainer from "../circle-container";
+import LoaderCircleContainer from "./components/loader-circle-container";
 
 const Loader = ({ size }) => (
   <LoaderContainer>
-    <CircleContainer diameter={size}>
+    <LoaderCircleContainer diameter={size}>
       {innerDiameter =>
         _.times(8, index => <LoaderCircle key={index} index={index} innerDiameter={innerDiameter} />)
       }
-    </CircleContainer>
+    </LoaderCircleContainer>
   </LoaderContainer>
 );
 

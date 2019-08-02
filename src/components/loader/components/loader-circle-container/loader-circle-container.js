@@ -1,12 +1,17 @@
-import styled from "styled-components";
-import Container from "../../../container";
+import styled, { keyframes } from "styled-components";
+import CircleContainer from "../../../circle-container";
 
-const LoaderCircleContainer = styled(Container)`
-  position: absolute;
-  display: flex;
-  width: ${({ innerDiameter }) => innerDiameter - innerDiameter / 10}px;
-  height: ${({ innerDiameter }) => innerDiameter - innerDiameter / 10}px;
-  transform: rotate(${({ index }) => index * 12}deg);
+const rotateAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const LoaderCircleContainer = styled(CircleContainer)`
+  animation: ${rotateAnimation} 5s linear infinite;
 `;
 
 export default LoaderCircleContainer;

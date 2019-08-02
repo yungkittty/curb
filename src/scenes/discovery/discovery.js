@@ -14,6 +14,7 @@ import SignIn from "../sign-in";
 import GroupCreate from "../group/scenes/group-create";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
+import Loader from "../../components/loader";
 
 class Discovery extends React.Component {
   constructor(props) {
@@ -66,7 +67,8 @@ class Discovery extends React.Component {
         data={discoveryItemsId}
         keyExtractor={(discoveryItemId, discoveryItemIndex) =>
           // eslint-disable-line
-          `${discoveryItemId}${discoveryItemIndex}`}
+          `${discoveryItemId}${discoveryItemIndex}`
+        }
         renderItem={this.renderListItem}
       />
     );
@@ -79,25 +81,7 @@ class Discovery extends React.Component {
       currentUserId,
       discoverySections
     } = this.props;
-    return (
-      <React.Fragment>
-        <DiscoveryContainer
-          sections={discoverySections}
-          keyExtractor={(sectionData, sectionIndex) => sectionIndex}
-          ListHeaderComponent={this.renderListHeader}
-          renderSectionHeader={this.renderListSectionHeader}
-          renderItem={this.renderListSectionItem}
-        />
-        <ButtonFloat
-          icon="plus"
-          onClick={() =>
-            showAppModal({
-              scene: currentUserId ? GroupCreate : SignIn
-            })
-          }
-        />
-      </React.Fragment>
-    );
+    return <Loader />;
   }
 }
 
