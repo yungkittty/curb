@@ -8,15 +8,17 @@ import LoaderCircleContainer from "./components/loader-circle-container";
 const Loader = ({ size }) => (
   <LoaderContainer>
     <LoaderCircleContainer diameter={size}>
-      {innerDiameter =>
-        _.times(8, index => <LoaderCircle key={index} index={index} innerDiameter={innerDiameter} />)
+      {(innerDiameter, mounted) =>
+        _.times(8, index => (
+          <LoaderCircle key={index} index={index} innerDiameter={innerDiameter} mounted={mounted} />
+        ))
       }
     </LoaderCircleContainer>
   </LoaderContainer>
 );
 
 Loader.defaultProps = {
-  size: "medium"
+  size: "extra-large"
 };
 
 Loader.propTypes = {

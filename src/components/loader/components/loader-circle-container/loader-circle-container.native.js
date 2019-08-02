@@ -8,6 +8,7 @@ class LoaderCircleContainer extends Component {
     super(props);
 
     this.state = {
+      mounted: false,
       rotation: new Animated.Value(0)
     };
   }
@@ -18,16 +19,17 @@ class LoaderCircleContainer extends Component {
     Animated.loop(
       Animated.timing(rotation, {
         toValue: 1,
-        easing: Easing.ease,
+        easing: Easing.linear,
         duration: 5000,
         useNativeDriver: true
       })
     ).start();
+    this.setState({ mounted: true });
   }
 
   render() {
     const { diameter, children } = this.props;
-    const { rotation } = this.state;
+    const { rotation, mounted } = this.state;
 
     return (
       <Animated.View
@@ -42,7 +44,9 @@ class LoaderCircleContainer extends Component {
           ]
         }}
       >
-        <CircleContainer diameter={diameter}>{innerDiameter => children(innerDiameter)}</CircleContainer>
+        <CircleContainer diameter={diameter}>
+          {innerDiameter => children(innerDiameter, mounted)}
+        </CircleContainer>
       </Animated.View>
     );
   }

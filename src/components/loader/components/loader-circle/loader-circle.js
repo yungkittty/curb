@@ -4,9 +4,9 @@ import CircleContainer from "./components/circle-container";
 import CircleRoundContainer from "./components/circle-round-container";
 import CircleRound from "./components/circle-round";
 
-const LoaderCircle = ({ index, innerDiameter }) => (
+const LoaderCircle = ({ index, innerDiameter, mounted }) => (
   <CircleContainer index={index} innerDiameter={innerDiameter}>
-    <CircleRoundContainer index={index} innerDiameter={innerDiameter}>
+    <CircleRoundContainer index={index} mounted={mounted}>
       <CircleRound innerDiameter={innerDiameter} />
     </CircleRoundContainer>
   </CircleContainer>

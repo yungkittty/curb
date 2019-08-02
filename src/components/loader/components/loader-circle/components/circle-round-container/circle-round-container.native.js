@@ -9,16 +9,22 @@ class CircleRoundContainer extends Component {
     this.state = {
       rotation: new Animated.Value(0)
     };
+
+    this.startAnimation = this.startAnimation.bind(this);
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
+    const { mounted } = this.props;
+    if (!prevProps.mounted && mounted) this.startAnimation();
+  }
+
+  startAnimation() {
     const { index } = this.props;
     const { rotation } = this.state;
-    //console.log((8 - index) * 36);
 
     Animated.loop(
       Animated.timing(rotation, {
-        toValue: 360,
+        toValue: 1,
         delay: (8 - index) * 36,
         easing: Easing.bezier(0.5, 0, 0.5, 1),
         duration: 1200,
@@ -30,7 +36,6 @@ class CircleRoundContainer extends Component {
   render() {
     const { children } = this.props;
     const { rotation } = this.state;
-
     return (
       <Animated.View
         style={{
@@ -38,7 +43,7 @@ class CircleRoundContainer extends Component {
           transform: [
             {
               rotate: rotation.interpolate({
-                inputRange: [0, 360],
+                inputRange: [0, 1],
                 outputRange: ["0deg", "360deg"]
               })
             }
