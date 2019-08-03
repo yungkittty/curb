@@ -18,7 +18,7 @@ const Loader = ({ size }) => (
 );
 
 Loader.defaultProps = {
-  size: "extra-large"
+  size: "medium"
 };
 
 Loader.propTypes = {
