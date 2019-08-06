@@ -29,9 +29,9 @@ class GroupQr extends React.Component {
       groupInviteToken,
       groupTheme
     } = this.props;
-    const qrCodeValue = `https://${
-      platformBools.isWeb ? window.location.host : "curb-app.com"
-    }/groups/${groupId}${groupInviteToken ? `?inviteToken=${groupInviteToken}` : ``}`;
+    const qrCodeValue = `https://5d49ce9d5af54fcbeb653412--curb-app.netlify.com/groups/${groupId}${
+      groupInviteToken ? `?inviteToken=${groupInviteToken}` : ``
+    }`;
     return isFetchingGroups || (groupStatus === "private" && !groupInviteToken) ? (
       <Loader />
     ) : (
