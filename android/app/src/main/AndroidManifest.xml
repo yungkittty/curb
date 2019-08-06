@@ -38,7 +38,7 @@
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
           <data android:scheme="https"
-            android:host="curb-app.com"
+            android:host="5d49ce9d5af54fcbeb653412--curb-app.netlify.com"
             android:pathPrefix="/" />
         </intent-filter>
       </activity>
