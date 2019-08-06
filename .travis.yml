@@ -53,7 +53,7 @@ jobs:
         - bash .travis/send-discord-logs.sh failure $WEBHOOK_URL
     - stage: iOS
       os: osx
-      osx_image: xcode9.4
+      osx_image: xcode11
       language: objective-c
       env:
         - SKIP_BUNDLING=1
