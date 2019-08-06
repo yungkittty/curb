@@ -2,10 +2,10 @@
   {
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
-      "namespace": "curb",
+      "namespace": "android_app",
       "package_name": "com.curb.eip",
       "sha256_cert_fingerprints": [
-        "A4:07:72:AB:91:22:35:2D:04:9F:F9:7D:68:C1:84:9C:D7:DA:85:BC:27:5F:D7:AC:BE:55:41:8D:DB:AF:E1:82"
+        "DC:61:6D:0A:F8:D9:12:62:D8:A9:A0:B5:A6:15:4A:0C:69:B7:B2:CE:F3:50:A1:B0:EE:56:63:F3:FA:3D:75:B1"
       ]
     }
   }
