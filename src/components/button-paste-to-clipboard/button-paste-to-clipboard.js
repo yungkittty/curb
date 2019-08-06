@@ -1,14 +1,16 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import PasteToClipboard from "./components/paste-to-clipboard";
 import ButtonPasteToClipboardContainer from "./components/button-paste-to-clipboard-container";
 import Text from "../text";
 import Icon from "../icon";
 
-const ButtonPasteToClipboard = ({ color, isPasted, ...others }) => (
+const ButtonPasteToClipboard = ({ t, color, isPasted, ...others }) => (
   <ButtonPasteToClipboardContainer color={color} {...others}>
     <Text style={{ color: "white" }} weight={700}>
-      {isPasted ? "Copied to Clipboard" : "Copy link to Clipboard"}
+      {isPasted ? t("successfullyPastedToClipboard") : t("pasteToClipboard")}
     </Text>
     <Icon
       style={{ position: "absolute", left: 25 }}
@@ -20,8 +22,13 @@ const ButtonPasteToClipboard = ({ color, isPasted, ...others }) => (
 );
 
 ButtonPasteToClipboard.propTypes = {
+  t: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired,
   isPasted: PropTypes.bool.isRequired
 };
 
-export default PasteToClipboard(ButtonPasteToClipboard);
+export default _.flowRight([
+  // eslint-disable-line
+  PasteToClipboard,
+  withTranslation("common")
+])(ButtonPasteToClipboard);

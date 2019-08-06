@@ -26,7 +26,7 @@ class GroupListHeader extends React.Component {
 
   getRightButtons() {
     const { showAppModal, isFeed, toggleScene } = this.props;
-    const rightButtonsFirstIcon = "qrcode";
+    const rightButtonsFirstIcon = "user-plus";
     const rightButtonsSecondIcon = isFeed ? "info-circle" : "stream";
     const rightButtonsFirstOnClick = () => showAppModal({ scene: GroupQr });
     const rightButtonsSecondOnClick = toggleScene;

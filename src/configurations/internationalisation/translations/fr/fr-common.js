@@ -28,7 +28,9 @@ const frCommon = {
   permissionDenied: "Permission non accordée",
   askCameraText:
     "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application à y accéder",
-  authorize: "Autoriser"
+  authorize: "Autoriser",
+  pasteToClipboard: "Copier le lien dans le presse-papier",
+  successfullyPastedToClipboard: "Copié dans le presse-papier"
 };
 
 export default frCommon;

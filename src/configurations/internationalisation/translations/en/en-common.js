@@ -29,7 +29,9 @@ const enCommon = {
   permissionDenied: "Permission denied",
   askCameraText:
     "To be able to take pictures with your camera and choose images from your library, you must authorize the app to access them",
-  authorize: "Authorize"
+  authorize: "Authorize",
+  pasteToClipboard: "Copy link to clipboard",
+  successfullyPastedToClipboard: "Copied to clipbaord"
 };
 
 export default enCommon;
