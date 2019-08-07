@@ -7,10 +7,10 @@ import ButtonPasteToClipboardContainer from "./components/button-paste-to-clipbo
 import Text from "../text";
 import Icon from "../icon";
 
-const ButtonPasteToClipboard = ({ t, color, isPasted, ...others }) => (
+const ButtonPasteToClipboard = ({ t, color, text, isPasted, ...others }) => (
   <ButtonPasteToClipboardContainer color={color} {...others}>
     <Text style={{ color: "white" }} weight={700}>
-      {isPasted ? t("successfullyPastedToClipboard") : t("pasteToClipboard")}
+      {isPasted ? t("successfullyPastedToClipboard") : text}
     </Text>
     <Icon
       style={{ position: "absolute", left: 25 }}
@@ -23,6 +23,7 @@ const ButtonPasteToClipboard = ({ t, color, isPasted, ...others }) => (
 
 ButtonPasteToClipboard.propTypes = {
   t: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   isPasted: PropTypes.bool.isRequired
 };

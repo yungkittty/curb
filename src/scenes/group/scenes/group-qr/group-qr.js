@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import QrContainer from "./components/qr-container";
 import QrHeader from "./components/qr-group-header";
@@ -21,6 +22,7 @@ class GroupQr extends React.Component {
   render() {
     const {
       // eslint-disable-line
+      t,
       theme,
       isFetchingGroups,
       groupId,
@@ -51,6 +53,7 @@ class GroupQr extends React.Component {
         <ButtonPasteToClipboard
           style={{ marginTop: 40 }}
           color={theme[`group${_.capitalize(groupTheme)}Color`]}
+          text={groupInviteToken ? t("copyInvitationLink") : t("copyGroupLink")}
           valueToPaste={qrCodeValue}
         />
       </QrContainer>
@@ -69,4 +72,8 @@ GroupQr.propTypes = {
   groupTheme: PropTypes.string.isRequired
 };
 
-export default withTheme(GroupQr);
+export default _.flowRight([
+  // eslint-disable-line
+  withTheme,
+  withTranslation("common")
+])(GroupQr);

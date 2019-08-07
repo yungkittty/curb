@@ -29,7 +29,8 @@ const frCommon = {
   askCameraText:
     "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application à y accéder",
   authorize: "Autoriser",
-  pasteToClipboard: "Copier le lien dans le presse-papier",
+  copyGroupLink: "Copier le lien du groupe",
+  copyInvitationLink: "Copier le lien d'invitation",
   successfullyPastedToClipboard: "Copié dans le presse-papier"
 };
 

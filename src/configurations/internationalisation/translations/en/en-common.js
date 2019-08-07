@@ -30,7 +30,8 @@ const enCommon = {
   askCameraText:
     "To be able to take pictures with your camera and choose images from your library, you must authorize the app to access them",
   authorize: "Authorize",
-  pasteToClipboard: "Copy link to clipboard",
+  copyGroupLink: "Copy group link",
+  copyInvitationLink: "Copy invitation link",
   successfullyPastedToClipboard: "Copied to clipbaord"
 };
 
