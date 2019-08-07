@@ -24,7 +24,7 @@ const GroupListHeader = ({
     {groupStatus === "public" || _.includes(currentUserGroupsId, groupId) ? (
       <React.Fragment>
         <HeaderButtonIcon
-          icon="qrcode"
+          icon="user-plus"
           size="small"
           color={theme.backgroundColor}
           onClick={() => showAppModal({ scene: GroupQr })}

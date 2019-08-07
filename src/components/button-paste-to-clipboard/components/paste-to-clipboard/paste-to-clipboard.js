@@ -22,7 +22,6 @@ const PasteToClipboard = WrappedComponent => {
               ? () => {
                   navigator.clipboard.writeText(valueToPaste).then(() => {
                     this.setState({ isPasted: true });
-                    //setTimeout(() => this.setState({ isPasted: false }), 2000);
                   });
                 }
               : undefined

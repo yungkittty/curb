@@ -23,7 +23,6 @@ const PasteToClipboard = WrappedComponent => {
               ? () => {
                   Clipboard.setString(valueToPaste);
                   this.setState({ isPasted: true });
-                  //setTimeout(() => this.setState({ isPasted: false }), 3000);
                 }
               : undefined
           }
