@@ -1,12 +1,10 @@
-import { Dimensions, StatusBar } from "react-native";
-import { platformBools } from "../platform";
+import { Dimensions, Platform, StatusBar } from "react-native";
+import { isIphoneX } from "react-native-device-detection";
 
-const statusBarHeight = platformBools.isAndroid ? StatusBar.currentHeight : platformBools.isIphoneX ? 30 : 20; // eslint-disable-line
+const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
-const windowDimensions = {
-  getWidth: () => Dimensions.get("window").width,
-  getHeight: () => Dimensions.get("window").height,
-  getStatusBarHeight: () => statusBarHeight
-};
+const statusBarHeight = Platform.OS === "android" ? StatusBar.currentHeight : isIphoneX ? 30 : 20; // eslint-disable-line
+
+const windowDimensions = { width: windowWidth, height: windowHeight, statusBarHeight };
 
 export default windowDimensions;

@@ -6,7 +6,7 @@ import usersApi from "./users-api";
 import appAlertActions from "../app-alert/app-alert-actions";
 import mediasActions from "../medias/medias-actions";
 
-function* getUserRequestSaga(action) {
+function* getUsersRequestSaga(action) {
   try {
     const { data: payload } = yield call(usersApi.getUser, action.payload);
     yield put(usersActions.getUserSuccess(payload));
@@ -16,7 +16,7 @@ function* getUserRequestSaga(action) {
   }
 }
 
-function* patchUserRequestSaga(action) {
+function* patchUsersRequestSaga(action) {
   try {
     const { id, avatar = {}, ...others } = action.payload;
     yield call(usersApi.patchUser, { ...others, id });
@@ -33,8 +33,8 @@ function* patchUserRequestSaga(action) {
 }
 
 const usersSaga = all([
-  takeNormalize(usersActionsTypes.GET_USER_REQUEST, getUserRequestSaga),
-  takeLatest(usersActionsTypes.PATCH_USER_REQUEST, patchUserRequestSaga)
+  takeNormalize(usersActionsTypes.GET_USER_REQUEST, getUsersRequestSaga),
+  takeLatest(usersActionsTypes.PATCH_USER_REQUEST, patchUsersRequestSaga)
 ]);
 
 export default usersSaga;

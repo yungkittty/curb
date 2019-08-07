@@ -2,9 +2,12 @@ const enDiscovery = {
   title: "Discovery",
   subtitle: "Join popular groups on the network",
   sections: {
-    global: "Most popular",
+    global: "Most Popular",
     custom: "Recommended",
-    random: "Random"
+    image: "Using images",
+    location: "Using locations",
+    text: "Using texts",
+    video: "Using videos"
   }
 };
 

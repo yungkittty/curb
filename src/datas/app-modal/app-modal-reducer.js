@@ -12,14 +12,14 @@ const isShowed = (state = false, action) => {
   }
 };
 
-const areButtonsDisabled = (state = false, action) => {
+const isButtonsEnabled = (state = false, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.ENABLE_APP_MODAL_BUTTONS:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-      return false;
-    case appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS:
       return true;
+    case appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS:
+      return false;
     default:
       return state;
   }
@@ -61,37 +61,49 @@ const headerSteps = (state = 0, action) => {
   }
 };
 
-const headerLeftButtons = (state = [], action) => {
+const headerLeftIcon = (state = "", action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-      return [];
-    case appModalActionsTypes.SET_APP_MODAL_HEADER_LEFT_BUTTONS:
-      return action.payload;
+      return "";
+    case appModalActionsTypes.SET_APP_MODAL_HEADER_LEFT_BUTTON:
+      return action.payload.icon;
     default:
       return state;
   }
 };
 
-const headerRightButtons = (state = [], action) => {
+const headerLeftOnClick = (state = null, action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-      return [];
-    case appModalActionsTypes.SET_APP_MODAL_HEADER_RIGHT_BUTTONS:
-      return action.payload;
+      return null;
+    case appModalActionsTypes.SET_APP_MODAL_HEADER_LEFT_BUTTON:
+      return action.payload.onClick;
     default:
       return state;
   }
 };
 
-const headerBackButton = (state = {}, action) => {
+const headerRightIcon = (state = "", action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
     case appModalActionsTypes.SET_APP_MODAL_SCENE:
-      return {};
-    case appModalActionsTypes.SET_APP_MODAL_HEADER_BACK_BUTTON:
-      return action.payload;
+      return "";
+    case appModalActionsTypes.SET_APP_MODAL_HEADER_RIGHT_BUTTON:
+      return action.payload.icon;
+    default:
+      return state;
+  }
+};
+
+const headerRightOnClick = (state = null, action) => {
+  switch (action.type) {
+    case appModalActionsTypes.SHOW_APP_MODAL:
+    case appModalActionsTypes.SET_APP_MODAL_SCENE:
+      return "";
+    case appModalActionsTypes.SET_APP_MODAL_HEADER_RIGHT_BUTTON:
+      return action.payload.onClick;
     default:
       return state;
   }
@@ -155,13 +167,14 @@ const footerOnClick = (state = null, action) => {
 
 const appModalReducer = combineReducers({
   isShowed,
-  areButtonsDisabled,
+  isButtonsEnabled,
   headerText,
   headerCurrentStep,
   headerSteps,
-  headerLeftButtons,
-  headerRightButtons,
-  headerBackButton,
+  headerLeftIcon,
+  headerLeftOnClick,
+  headerRightIcon,
+  headerRightOnClick,
   scene,
   sceneDirection,
   sceneData,

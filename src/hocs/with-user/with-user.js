@@ -8,27 +8,15 @@ import { usersActions, usersSelectors } from "../../datas/users";
 const withUser = WrappedComponent => {
   class WithUser extends React.Component {
     componentDidMount() {
-      const {
-        // eslint-disable-line
-        shouldFetch,
-        isFetchingUser,
-        userId,
-        getUser
-      } = this.props;
-      if (shouldFetch && !isFetchingUser && userId) {
+      const { userId, getUser } = this.props;
+      if (userId) {
         getUser({ id: userId });
       }
     }
 
     componentDidUpdate(prevProps) {
-      const {
-        // eslint-disable-line
-        shouldFetch,
-        isFetchingUser,
-        userId,
-        getUser
-      } = this.props;
-      if (shouldFetch && !isFetchingUser && userId && userId !== prevProps.userId) {
+      const { userId, getUser } = this.props;
+      if (userId && userId !== prevProps.userId) {
         getUser({ id: userId });
       }
     }
@@ -41,18 +29,16 @@ const withUser = WrappedComponent => {
 
   const mapStateToProps = (state, ownProps) => {
     const { pathname } = ownProps.location;
-    const userParamsId = ((matchPath(pathname, { path: "/users/:id" }) || {}).params || {}).id;
-    const userId = ownProps.userId || userParamsId;
-    const user = usersSelectors.getUserById(state, userId);
-    if (!user) return { userId };
+    const userId =
+      ownProps.userId || ((matchPath(pathname, { path: "/users/:id" }) || {}).params || {}).id || "";
     const {
-      isFetching: isFetchingUser,
-      dateCreation: userDateCreation,
-      name: userName,
-      avatarUrl: userAvatar,
-      groups: userGroupsId,
-      errorCode: userErrorCode
-    } = user;
+      isFetching: isFetchingUser = false,
+      dateCreation: userDateCreation = "",
+      name: userName = "",
+      avatarUrl: userAvatar = "",
+      groups: userGroupsId = [],
+      errorCode: userErrorCode = ""
+    } = usersSelectors.getUserById(state, userId) || {};
     return {
       isFetchingUser,
       userId,
@@ -68,27 +54,10 @@ const withUser = WrappedComponent => {
     getUser: payload => dispatch(usersActions.getUserRequest(payload))
   });
 
-  WithUser.defaultProps = {
-    shouldFetch: true,
-    isFetchingUser: false,
-    userId: "",
-    userDateCreation: "",
-    userName: "",
-    userAvatar: "",
-    userGroupsId: [],
-    userErrorCode: ""
-  };
-
   WithUser.propTypes = {
-    location: PropTypes.object.isRequired, // eslint-disable-line
-    shouldFetch: PropTypes.bool,
-    isFetchingUser: PropTypes.bool,
-    userId: PropTypes.string,
-    userDateCreation: PropTypes.string,
-    userName: PropTypes.string,
-    userAvatar: PropTypes.string,
-    userGroupsId: PropTypes.array, // eslint-disable-line
-    userErrorCode: PropTypes.string,
+    // eslint-disable-next-line
+    location: PropTypes.object.isRequired,
+    userId: PropTypes.string.isRequired,
     getUser: PropTypes.func.isRequired
   };
 

@@ -5,8 +5,7 @@ const groupsApi = {
   getGroup: ({ id }) => axios.get(`/groups/${id}`),
   patchGroup: ({ id, ...others }) => axios.patch(`/groups/${id}`, others),
   deleteGroup: ({ id }) => axios.delete(`/groups/${id}`),
-  getGroups: ({ ids }) => axios.get(`/groups/list?groupIds=${JSON.stringify(ids)}`),
-  postGroupInviteToken: ({ id, ...others }) => axios.post(`/groups/join/${id}`, others),
+  postGroupInviteToken: ({ id, inviteToken: token }) => axios.post(`/groups/join/${id}`, { token }),
   getGroupInviteToken: ({ id }) => axios.get(`/groups/invite/${id}`)
 };
 
