@@ -11,9 +11,8 @@ const HeaderContainer = styled(Container)`
   min-width: 100%;
   height: 120px;
   min-height: 120px;
-  margin: auto;
-  margin-bottom: 40px;
   padding-top: 20px;
+  margin-bottom: 40px;
 `;
 
 export default HeaderContainer;

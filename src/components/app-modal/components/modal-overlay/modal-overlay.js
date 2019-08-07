@@ -4,12 +4,12 @@ import Container from "../../../container";
 
 const ModalOverlay = styled(Container)`
   display: flex;
-  position: absolute;
-  top: 0;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100vw;
+  top: 0;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   transition-property: background-color;
   transition-duration: 0.45s;

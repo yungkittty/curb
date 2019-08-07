@@ -16,8 +16,7 @@ class GroupCreate2 extends Component {
     const {
       // eslint-disable-line
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton,
+      setAppModalHeaderLeftButton,
       setAppModalFooterButton,
       t
     } = this.props;
@@ -29,8 +28,7 @@ class GroupCreate2 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 2, steps: 4 });
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
-    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
@@ -94,12 +92,14 @@ GroupCreate2.defaultProps = {
 
 GroupCreate2.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  discoverability: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  setAppModalSceneData: PropTypes.func.isRequired,
+  discoverability: PropTypes.shape({
+    value: PropTypes.string,
+    error: PropTypes.string
+  }),
   t: PropTypes.func.isRequired
 };
 

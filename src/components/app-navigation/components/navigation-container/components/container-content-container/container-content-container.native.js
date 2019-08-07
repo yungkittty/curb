@@ -15,7 +15,7 @@ const ContainerContentContainer = styled(Container)`
   height: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: ${windowDimensions.getStatusBarHeight() + 10}px;
+  padding-top: ${windowDimensions.statusBarHeight + 10}px;
   ${Platform.OS === "android" ? `
     elevation: 8;
   ` : `

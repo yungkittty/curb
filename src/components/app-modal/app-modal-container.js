@@ -4,13 +4,14 @@ import { appModalActions, appModalSelectors } from "../../datas/app-modal";
 
 const mapStateToProps = state => ({
   isAppModalShowed: appModalSelectors.isAppModalShowed(state),
-  areAppModalButtonsDisabled: appModalSelectors.areAppModalButtonsDisabled(state),
+  isAppModalButtonsEnabled: appModalSelectors.isAppModalButtonsEnabled(state),
   appModalHeaderText: appModalSelectors.getAppModalHeaderText(state),
   appModalHeaderCurrentStep: appModalSelectors.getAppModalHeaderCurrentStep(state),
   appModalHeaderSteps: appModalSelectors.getAppModalHeaderSteps(state),
-  appModalHeaderLeftButtons: appModalSelectors.getAppModalHeaderLeftButtons(state),
-  appModalHeaderRightButtons: appModalSelectors.getAppModalHeaderRightButtons(state),
-  appModalHeaderBackButton: appModalSelectors.getAppModalHeaderBackButton(state),
+  appModalHeaderLeftIcon: appModalSelectors.getAppModalHeaderLeftIcon(state),
+  appModalHeaderLeftOnClick: appModalSelectors.getAppModalHeaderLeftOnClick(state),
+  appModalHeaderRightIcon: appModalSelectors.getAppModalHeaderRightIcon(state) || "times",
+  appModalHeaderRightOnClick: appModalSelectors.getAppModalHeaderRightOnClick(state),
   appModalScene: appModalSelectors.getAppModalScene(state),
   appModalSceneDirection: appModalSelectors.getAppModalSceneDirection(state),
   appModalSceneData: appModalSelectors.getAppModalSceneData(state),
@@ -19,10 +20,18 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  hideAppModal: () => dispatch(appModalActions.hideAppModal())
+  appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal()),
+  enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
+  disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons())
+});
+
+const mergeProps = (stateProps, dispatchProps) => ({
+  ...stateProps,
+  ...(!stateProps.appModalHeaderRightOnClick ? dispatchProps : {})
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  mergeProps
 )(AppModal);

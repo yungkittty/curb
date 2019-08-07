@@ -24,7 +24,7 @@ const SceneSlide = WrappedComponent => {
       const { scene, sceneDirection } = this.props;
       if (scene === prevScene) return;
       const { wrappedComponentAnimated } = this.state;
-      const windowWidth = windowDimensions.getWidth();
+      const { width: windowWidth } = windowDimensions;
       wrappedComponentAnimated.setValue(sceneDirection > 0 ? 0 : -windowWidth);
       const { sceneAlt: prevSceneAlt } = this.state;
       const sceneAlt = sceneDirection === this.prevSceneDirection ? !prevSceneAlt : prevSceneAlt;

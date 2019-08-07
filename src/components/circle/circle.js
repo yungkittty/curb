@@ -7,9 +7,8 @@ const Circle = ({
   className,
   style,
   diameter,
-  onClick,
   backgroundColor,
-  disabled,
+  onClick,
   children,
   contentStyle,
   component,
@@ -21,9 +20,8 @@ const Circle = ({
     className={className}
     style={style}
     diameter={diameter}
-    onClick={onClick}
     backgroundColor={backgroundColor}
-    disabled={disabled}
+    onClick={onClick}
   >
     {component ? (
       <Component {...others} style={contentStyle}>
@@ -39,9 +37,8 @@ Circle.defaultProps = {
   as: undefined,
   className: undefined,
   style: undefined,
-  onClick: undefined,
   backgroundColor: undefined,
-  disabled: undefined,
+  onClick: undefined,
   children: undefined,
   contentStyle: undefined,
   component: undefined
@@ -51,10 +48,17 @@ Circle.propTypes = {
   as: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  diameter: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
+  diameter: PropTypes.oneOf([
+    // eslint-disable-line
+    "extra-small",
+    "small",
+    "medium",
+    "large",
+    "extra-large",
+    "extra-extra-large"
+  ]).isRequired,
   backgroundColor: PropTypes.string,
-  disabled: PropTypes.bool,
+  onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   children: PropTypes.node,
   contentStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])

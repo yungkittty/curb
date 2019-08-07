@@ -16,12 +16,7 @@ class ResetPassword2 extends Component {
   constructor(props) {
     super(props);
 
-    const {
-      // eslint-disable-line
-      setAppModalHeaderSteps,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton
-    } = props;
+    const { setAppModalHeaderSteps, setAppModalHeaderLeftButton } = props;
 
     this.state = { isLoading: false, errorCode: undefined };
 
@@ -31,8 +26,7 @@ class ResetPassword2 extends Component {
     this.focusFirstNode = this.focusFirstNode.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 2, steps: 3 });
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
-    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
 
     this.inputCode = React.createRef();
     setTimeout(() => this.focusFirstNode(), 450);
@@ -119,13 +113,12 @@ ResetPassword2.defaultProps = {
 
 ResetPassword2.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
-  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   postAccountRecoveryPasswordCode: PropTypes.func.isRequired,
   isFetchingAccountRecovery: PropTypes.bool.isRequired,
   accountRecoveryErrorCode: PropTypes.string.isRequired,

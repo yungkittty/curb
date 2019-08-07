@@ -10,6 +10,8 @@ const AppModalSceneContainer = ({
   <ContainerScroll
     {...others}
     contentContainerStyle={{
+      display: "flex",
+      position: "relative",
       flexGrow: 1,
       ...(isJustified ? { justifyContent: "center" } : {}),
       alignItems: "center"

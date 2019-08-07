@@ -14,68 +14,74 @@ class AppModal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isAppModalShowed } = this.props;
-    if (isAppModalShowed && isAppModalShowed !== prevProps.isAppModalShowed) {
+    const { isAppModalShowed, disableAppModalButtons } = this.props;
+    if (prevProps.isAppModalShowed !== isAppModalShowed && isAppModalShowed) {
+      disableAppModalButtons();
       this.setState({ isShowed: true }); // eslint-disable-line
     }
   }
 
   appModalTransitionEnd() {
-    const { isAppModalShowed } = this.props;
-    if (!isAppModalShowed) {
-      this.setState({ isShowed: false }); // eslint-disable-line
+    const {
+      // eslint-disable-line
+      isAppModalShowed,
+      isAppModalButtonsEnabled,
+      enableAppModalButtons
+    } = this.props;
+    if (isAppModalShowed && !isAppModalButtonsEnabled) {
+      enableAppModalButtons();
+    } else if (!isAppModalShowed) {
+      this.setState({ isShowed: false });
     }
   }
 
   render() {
+    const { isShowed } = this.state;
     const {
-      // eslint-disable-line
-      isShowed
-    } = this.state;
-    const {
-      // eslint-disable-line
       isAppModalShowed,
-      areAppModalButtonsDisabled,
+      isAppModalButtonsEnabled,
       appModalHeaderText,
       appModalHeaderCurrentStep,
       appModalHeaderSteps,
-      appModalHeaderLeftButtons,
-      appModalHeaderRightButtons,
-      appModalHeaderBackButton,
+      appModalHeaderLeftIcon,
+      appModalHeaderLeftOnClick,
+      appModalHeaderRightIcon,
+      appModalHeaderRightOnClick,
       appModalScene,
       appModalSceneDirection,
       appModalSceneData,
       appModalFooterText,
-      appModalFooterOnClick,
-      hideAppModal
+      appModalFooterOnClick
     } = this.props;
     return isShowed ? (
       <ModalOverlay
+        // eslint-disable-line
         isAppModalShowed={isAppModalShowed}
-        appModalTransitionEnd={this.appModalTransitionEnd} // !
+        appModalTransitionEnd={this.appModalTransitionEnd}
       >
         <ModalContainer isAppModalShowed={isAppModalShowed}>
           <ModalHeader
-            areAppModalButtonsDisabled={areAppModalButtonsDisabled}
-            appModalHeaderText={appModalHeaderText}
-            appModalHeaderCurrentStep={appModalHeaderCurrentStep}
-            appModalHeaderSteps={appModalHeaderSteps}
-            appModalHeaderLeftButtons={appModalHeaderLeftButtons}
-            appModalHeaderRightButtons={appModalHeaderRightButtons}
-            appModalHeaderBackButton={appModalHeaderBackButton}
-            hideAppModal={hideAppModal}
+            text={appModalHeaderText}
+            currentStep={appModalHeaderCurrentStep}
+            steps={appModalHeaderSteps}
+            leftIcon={appModalHeaderLeftIcon}
+            leftOnClick={isAppModalButtonsEnabled ? appModalHeaderLeftOnClick : undefined}
+            rightIcon={appModalHeaderRightIcon}
+            rightOnClick={isAppModalButtonsEnabled ? appModalHeaderRightOnClick : undefined}
           />
           <ModalScene
-            scene={appModalScene} // !
+            scene={appModalScene}
             sceneDirection={appModalSceneDirection}
             sceneData={appModalSceneData}
           />
           {appModalFooterText ? (
             <ModalFooter
-              areAppModalButtonsDisabled={areAppModalButtonsDisabled}
-              appModalFooterText={appModalFooterText}
-              appModalFooterOnClick={appModalFooterOnClick}
-            />
+              // eslint-disable-line
+              weight={500}
+              onClick={isAppModalButtonsEnabled ? appModalFooterOnClick : undefined}
+            >
+              {appModalFooterText}
+            </ModalFooter>
           ) : null}
         </ModalContainer>
       </ModalOverlay>
@@ -83,21 +89,36 @@ class AppModal extends Component {
   }
 }
 
+AppModal.defaultProps = {
+  appModalHeaderText: undefined,
+  appModalHeaderCurrentStep: undefined,
+  appModalHeaderSteps: undefined,
+  appModalHeaderLeftIcon: undefined,
+  appModalHeaderLeftOnClick: undefined,
+  appModalScene: undefined,
+  appModalSceneDirection: undefined,
+  appModalSceneData: undefined,
+  appModalFooterText: undefined,
+  appModalFooterOnClick: undefined
+};
+
 AppModal.propTypes = {
   isAppModalShowed: PropTypes.bool.isRequired,
-  areAppModalButtonsDisabled: PropTypes.bool.isRequired,
-  appModalHeaderText: PropTypes.string.isRequired,
-  appModalHeaderCurrentStep: PropTypes.number.isRequired,
-  appModalHeaderSteps: PropTypes.number.isRequired,
-  appModalHeaderLeftButtons: PropTypes.array.isRequired, // eslint-disable-line
-  appModalHeaderRightButtons: PropTypes.array.isRequired, // eslint-disable-line
-  appModalHeaderBackButton: PropTypes.object.isRequired, // eslint-disable-line
-  appModalScene: PropTypes.func.isRequired,
-  appModalSceneDirection: PropTypes.number.isRequired,
-  appModalSceneData: PropTypes.object.isRequired, // eslint-disable-line
-  appModalFooterText: PropTypes.string.isRequired,
-  appModalFooterOnClick: PropTypes.func.isRequired,
-  hideAppModal: PropTypes.func.isRequired
+  isAppModalButtonsEnabled: PropTypes.bool.isRequired,
+  appModalHeaderText: PropTypes.string,
+  appModalHeaderCurrentStep: PropTypes.number,
+  appModalHeaderSteps: PropTypes.number,
+  appModalHeaderLeftIcon: PropTypes.string,
+  appModalHeaderLeftOnClick: PropTypes.func,
+  appModalHeaderRightIcon: PropTypes.string.isRequired,
+  appModalHeaderRightOnClick: PropTypes.func.isRequired,
+  appModalScene: PropTypes.func,
+  appModalSceneDirection: PropTypes.number,
+  appModalSceneData: PropTypes.object, // eslint-disable-line
+  appModalFooterText: PropTypes.string,
+  appModalFooterOnClick: PropTypes.func,
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired
 };
 
 export default AppModal;

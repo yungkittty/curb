@@ -4,31 +4,29 @@ import PropTypes from "prop-types";
 import MiddleTitle from "./components/middle-title";
 import MiddleStep from "./components/middle-step";
 
-const HeaderMiddle = ({
-  // eslint-disable-line
-  appModalHeaderText,
-  appModalHeaderCurrentStep,
-  appModalHeaderSteps
-}) => (
+const HeaderMiddle = ({ text, currentStep, steps }) => (
   <React.Fragment>
-    {appModalHeaderText ? (
+    {text ? (
       <MiddleTitle type="h3" weight={600}>
-        {appModalHeaderText}
+        {text}
       </MiddleTitle>
     ) : null}
-    {appModalHeaderCurrentStep
-      ? _.times(appModalHeaderSteps, index => (
-          // eslint-disable-next-line
-          <MiddleStep key={index} isEnabled={index < appModalHeaderCurrentStep} />
-        ))
-      : null}
+    {steps ? _.times(steps, index => (
+      <MiddleStep key={index} enabled={index < currentStep} />
+    )) : null}
   </React.Fragment>
 );
 
+HeaderMiddle.defaultProps = {
+  text: undefined,
+  currentStep: undefined,
+  steps: undefined
+};
+
 HeaderMiddle.propTypes = {
-  appModalHeaderText: PropTypes.string.isRequired,
-  appModalHeaderCurrentStep: PropTypes.number.isRequired,
-  appModalHeaderSteps: PropTypes.number.isRequired
+  text: PropTypes.string,
+  currentStep: PropTypes.number,
+  steps: PropTypes.number
 };
 
 export default HeaderMiddle;

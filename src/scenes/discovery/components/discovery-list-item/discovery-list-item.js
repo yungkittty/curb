@@ -12,7 +12,6 @@ const DiscoveryListItem = ({ groupId, groupName, theme }) => (
     as={Button}
     onClick={`/groups/${groupId}`}
     component={ImageGroup}
-    shouldFetch={false}
     groupId={groupId}
     placeholderColor={theme.primaryVariantColor}
     text={groupName}

@@ -17,10 +17,9 @@ class CreateMediaText extends Component {
     const {
       t,
       setAppModalHeaderText,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton,
-      setAppModalScene,
       setAppModalFooterButton,
+      setAppModalHeaderLeftButton,
+      setAppModalScene
     } = this.props;
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,9 +27,11 @@ class CreateMediaText extends Component {
     this.checkForm = this.checkForm.bind(this);
 
     setAppModalHeaderText({ text: t("modules:text.title") });
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 }) }]);
-    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 }) });
     setAppModalFooterButton({ text: t("common:post"), onClick: this.submit });
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 })
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -93,11 +94,10 @@ CreateMediaText.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingMedias: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,

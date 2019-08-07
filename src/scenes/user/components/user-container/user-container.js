@@ -3,9 +3,11 @@ import ContainerScroll from "../../../../components/container-scroll";
 
 const UserContainer = props => (
   <ContainerScroll
-    // eslint-disable-line
     {...props}
-    contentContainerStyle={{ alignItems: "center" }}
+    contentContainerStyle={{
+      alignItems: "center",
+      paddingTop: 120
+    }}
   />
 );
 

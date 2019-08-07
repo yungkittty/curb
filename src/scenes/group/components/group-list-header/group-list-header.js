@@ -1,78 +1,66 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router";
-import AppHeader from "../../../../components/app-header";
 import HeaderContainer from "./components/header-container";
-
-/* eslint-disable */
-
+import HeaderButtonIcon from "./components/header-button-icon";
+import ImageGroup from "../../../../components/image-group";
+import HeaderTitle from "./components/header-title";
 import GroupQr from "../../scenes/group-qr";
+import { platformBools } from "../../../../configurations/platform";
+import withAppModal from "../../../../hocs/with-app-modal";
 
-/* eslint-enable */
-
-class GroupListHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onBackClick = this.onBackClick.bind(this);
-  }
-
-  // eslint-disable-next-line
-  getLeftButtons() {
-    return [
-      // eslint-disable-line
-      { icon: "arrow-left", color: "white", onClick: this.onBackClick }
-    ];
-  }
-
-  getRightButtons() {
-    const { showAppModal, isFeed, toggleScene } = this.props;
-    const rightButtonsFirstIcon = "user-plus";
-    const rightButtonsSecondIcon = isFeed ? "info-circle" : "stream";
-    const rightButtonsFirstOnClick = () => showAppModal({ scene: GroupQr });
-    const rightButtonsSecondOnClick = toggleScene;
-    return [
-      // eslint-disable-line
-      { icon: rightButtonsFirstIcon, color: "white", onClick: rightButtonsFirstOnClick },
-      { icon: rightButtonsSecondIcon, color: "white", onClick: rightButtonsSecondOnClick }
-    ];
-  }
-
-  onBackClick() {
-    const { history } = this.props;
-    history.goBack();
-  }
-
-  render() {
-    const { groupTheme } = this.props; // !
-    return (
+const GroupListHeader = ({
+  isFeed,
+  toggleScene,
+  showAppModal,
+  groupId,
+  groupName,
+  groupStatus,
+  groupTheme,
+  currentUserGroupsId,
+  theme
+}) => (
+  <HeaderContainer groupTheme={groupTheme}>
+    {groupStatus === "public" || _.includes(currentUserGroupsId, groupId) ? (
       <React.Fragment>
-        <AppHeader
-          // eslint-disable-line
-          leftButtons={this.getLeftButtons()}
-          rightButtons={this.getRightButtons()}
-          onBackClick={this.onBackClick}
-          backgroundColor="red"
+        <HeaderButtonIcon
+          icon="qrcode"
+          size="small"
+          color={theme.backgroundColor}
+          onClick={() => showAppModal({ scene: GroupQr })}
+          style={{ right: platformBools.isReact ? 40 : 20 }}
         />
-        <HeaderContainer groupTheme={groupTheme}>
-          {/* ... */}
-          {/* ... */}
-        </HeaderContainer>
+        <HeaderButtonIcon
+          icon={isFeed ? "info-circle" : "stream"}
+          size="small"
+          color={theme.backgroundColor}
+          onClick={toggleScene}
+          style={{ right: platformBools.isReact ? 95 : 60 }}
+        />
       </React.Fragment>
-    );
-  }
-}
+    ) : null}
+    <ImageGroup
+      groupId={groupId}
+      size="extra-extra-large"
+      placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}
+    />
+    <HeaderTitle type="h2" weight={700}>
+      {/* eslint-disable-line */}
+      {groupName}
+    </HeaderTitle>
+  </HeaderContainer>
+);
 
 GroupListHeader.propTypes = {
+  showAppModal: PropTypes.func.isRequired,
   isFeed: PropTypes.bool.isRequired,
   toggleScene: PropTypes.func.isRequired,
-  showAppModal: PropTypes.func.isRequired,
-  // groupId: PropTypes.string.isRequired,
-  // groupName: PropTypes.string.isRequired,
-  // groupStatus: PropTypes.string.isRequired,
+  groupId: PropTypes.string.isRequired,
+  groupName: PropTypes.string.isRequired,
+  groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
-  // currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
-  // theme: PropTypes.object.isRequired // eslint-disable-line
-  history: PropTypes.object.isRequired // eslint-disable-line
+  currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default withRouter(GroupListHeader);
+export default withAppModal(GroupListHeader);

@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React from "react";
-import { Linking } from "react-native";
 import PropTypes from "prop-types";
 import { RNCamera } from "react-native-camera";
 import { withRouter } from "react-router";
@@ -17,7 +16,10 @@ const ScanQrCamera = ({ history, hideAppModal, ...others }) => {
         try {
           const { data: qrCodeData } = qrCode;
           if (!qrCodeData) return;
-          Linking.openURL(qrCodeData);
+          const { id: groupId, inviteToken: groupInviteToken } = JSON.parse(qrCodeData);
+          if (!groupId || !_.isString(groupId)) return;
+          if (!_.isString(groupInviteToken)) return;
+          history.replace(`/groups/${groupId}`, { isInvited: true, inviteToken: groupInviteToken });
           hideAppModal();
         } catch (error) {} // eslint-disable-line
       }}

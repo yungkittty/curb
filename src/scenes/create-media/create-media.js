@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import AppModalSceneList from "../../components/app-modal-scene-list";
+import ListFlat from "../../components/list-flat";
 import AppModalSceneListItem from "../../components/app-modal-scene-list-item";
 import modulesList from "../../utils/modules-list";
 import withGroup from "../../hocs/with-group";
@@ -46,7 +46,7 @@ class CreateMedia extends Component {
     const { t, groupMediaTypes } = this.props;
 
     return (
-      <AppModalSceneList
+      <ListFlat
         data={modulesList}
         keyExtractor={item => item.id}
         renderItem={({ item }) =>

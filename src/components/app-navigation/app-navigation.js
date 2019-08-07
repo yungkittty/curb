@@ -38,7 +38,6 @@ const AppNavigation = ({
         ) : (
           <NavigationButton
             component={ImageUser}
-            shouldFetch={false}
             userId={currentUserId}
             size="small"
             placeholderColor={secondaryVariantColor}
@@ -48,12 +47,11 @@ const AppNavigation = ({
         )}
         <NavigationRule />
         <NavigationList
-          groupsId={currentUserGroupsId}
+          data={currentUserGroupsId}
           keyExtractor={userGroupId => userGroupId}
           renderItem={({ item: userGroupId }) => (
             <NavigationButton
               component={ImageGroup}
-              shouldFetch={false}
               groupId={userGroupId}
               size="small"
               placeholderColor={secondaryVariantColor}

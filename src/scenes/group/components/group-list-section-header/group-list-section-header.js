@@ -12,7 +12,7 @@ import HeaderRule from "./components/header-rule";
 class GroupListSectionHeader extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isShowed: undefined, isInvited: undefined, inviteToken: undefined };
+    this.state = { isShowed: undefined, isInvited: undefined };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -20,15 +20,15 @@ class GroupListSectionHeader extends React.Component {
     if (!groupId || !groupStatus || prevState.isShowed === false) return {};
     const isGroupPublic = groupStatus === "public";
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
-    const isInvited = _.startsWith(nextProps.location.search, "?inviteToken=");
-    const inviteToken = isInvited && _.trimStart(nextProps.location.search, "?inviteToken=");
+    const { isInvited = false } = nextProps.location.state || {};
     const isShowed = !!currentUserId && !isCurrentUserIn && (isGroupPublic || isInvited) && !isFetchingGroups;
-    return { isShowed, isInvited, inviteToken };
+    return { isShowed, isInvited };
   }
 
   render() {
-    const { isShowed, isInvited, inviteToken } = this.state;
-    const { groupId, groupTheme, postGroupInviteToken, theme, t } = this.props;
+    const { isShowed, isInvited } = this.state;
+    const { location, groupId, groupTheme, postGroupInviteToken, theme, t } = this.props;
+    const { inviteToken } = location.state || {};
     return isShowed ? (
       <HeaderContainer>
         <HeaderButtonIcon
@@ -45,7 +45,7 @@ class GroupListSectionHeader extends React.Component {
           weight={700}
           groupTheme={groupTheme}
           contentStyle={{ color: theme.backgroundColor }}
-          onClick={() => postGroupInviteToken({ id: groupId, token: inviteToken })}
+          onClick={() => postGroupInviteToken({ id: groupId, inviteToken })}
         >
           {t("headerButtonText")}
         </HeaderButtonText>

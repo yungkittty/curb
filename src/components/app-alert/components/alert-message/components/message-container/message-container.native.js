@@ -11,8 +11,8 @@ const MessageContainer = styled(Animated.View)`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: ${windowDimensions.getStatusBarHeight() + 50}px;
-  padding-top: ${windowDimensions.getStatusBarHeight()}px;
+  height: ${windowDimensions.statusBarHeight + 50}px;
+  padding-top: ${windowDimensions.statusBarHeight}px;
   ${Platform.OS === "android" ? `
     elevation: 8;
   ` : `

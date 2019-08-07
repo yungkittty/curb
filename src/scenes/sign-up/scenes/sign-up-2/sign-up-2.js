@@ -15,14 +15,7 @@ import SignUp1 from "../sign-up-1";
 class SignUp2 extends Component {
   constructor(props) {
     super(props);
-    const {
-      // eslint-disable-line
-      t,
-      setAppModalHeaderSteps,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton,
-      setAppModalFooterButton
-    } = this.props;
+    const { t, setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
 
     this.goToPrev = this.goToPrev.bind(this);
     this.finish = this.finish.bind(this);
@@ -31,8 +24,7 @@ class SignUp2 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 2, steps: 2 });
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
-    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.finish });
   }
 
@@ -134,19 +126,21 @@ SignUp2.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  hideAppModal: PropTypes.func.isRequired,
   isFetchingSignUp: PropTypes.bool.isRequired,
+  hideAppModal: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   name: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   email: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired,
   createPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
   confirmPassword: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
-  avatar: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }), error: PropTypes.string }),
+  avatar: PropTypes.shape({
+    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
+    error: PropTypes.string
+  }),
   t: PropTypes.func.isRequired
 };
 

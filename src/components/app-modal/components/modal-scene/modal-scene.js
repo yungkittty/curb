@@ -29,23 +29,18 @@ ModalScene.defaultProps = {
 };
 
 ModalScene.propTypes = {
-  forwardedRef: PropTypes.object, // eslint-disable-line
+  // eslint-disable-next-line
+  forwardedRef: PropTypes.object,
   sceneLeftKey: PropTypes.string,
   sceneLeft: PropTypes.func,
   sceneRightKey: PropTypes.string,
   sceneRight: PropTypes.func,
-  sceneData: PropTypes.object // eslint-disable-line
+  // eslint-disable-next-line
+  sceneData: PropTypes.object
 };
 
 export default SceneSlide(
-  React.forwardRef(
-    // eslint-disable-line
-    (props, forwardedRef) => (
-      <ModalScene
-        // eslint-disable-line
-        {...props}
-        forwardedRef={forwardedRef}
-      />
-    )
-  )
+  React.forwardRef((props, forwardedRef) => (
+    <ModalScene {...props} forwardedRef={forwardedRef} />
+  ))
 );

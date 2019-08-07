@@ -27,7 +27,7 @@ class MediaVideo extends React.Component {
       // eslint-disable-line
       width,
       height,
-      windowDimensions.getWidth() - 80,
+      windowDimensions.width - 80,
       350
     );
     this.setState({

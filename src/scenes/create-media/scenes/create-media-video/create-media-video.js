@@ -19,8 +19,7 @@ class CreateMediaVideo extends Component {
     const {
       t,
       setAppModalHeaderText,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton,
+      setAppModalHeaderLeftButton,
       setAppModalScene,
       setAppModalFooterButton
     } = props;
@@ -30,8 +29,10 @@ class CreateMediaVideo extends Component {
     this.submit = this.submit.bind(this);
 
     setAppModalHeaderText({ text: t("modules:video.title") });
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 }) }]);
-    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 }) });
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: CreateMedia, direction: -1 })
+    });
     setAppModalFooterButton({ text: t("common:post"), onClick: this.submit });
   }
 
@@ -116,8 +117,7 @@ CreateMediaVideo.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,

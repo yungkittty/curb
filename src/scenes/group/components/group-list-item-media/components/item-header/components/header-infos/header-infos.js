@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -6,11 +7,12 @@ import InfosTitlePlaceholder from "./components/infos-title-placeholder";
 import InfosTitle from "./components/infos-title";
 import InfosSubtitlePlaceholder from "./components/infos-subtitle-placeholder";
 import InfosSubtitle from "./components/infos-subtitle";
+import withUser from "../../../../../../../../hocs/with-user";
 
 const HeaderInfos = ({
   // eslint-disable-line
-  userName,
   mediaDateCreation,
+  userName,
   t
 }) => {
   const dateDelta = (() => {
@@ -21,7 +23,7 @@ const HeaderInfos = ({
     const dateApi = ["FullYear", "Month", "Date", "Hours", "Minutes", "Seconds"];
     const dateTrans = ["year", "month", "day", "hour", "minute", "second"];
     let i = 0;
-    while (i < 6) {
+    while (i <= 5) {
       const dateCurrentApi = `get${dateApi[i]}`;
       dateDelta = date[dateCurrentApi]() - dateMedia[dateCurrentApi]();
       if (dateDelta !== 0) break;
@@ -52,9 +54,13 @@ const HeaderInfos = ({
 };
 
 HeaderInfos.propTypes = {
-  userName: PropTypes.string.isRequired,
   mediaDateCreation: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired
 };
 
-export default withTranslation("group")(HeaderInfos);
+export default _.flowRight([
+  // eslint-disable-line
+  withUser,
+  withTranslation("group")
+])(HeaderInfos);

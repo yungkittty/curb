@@ -21,8 +21,7 @@ class ResetPassword3 extends Component {
     const {
       // eslint-disable-line
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton,
+      setAppModalHeaderLeftButton,
       setAppModalFooterButton,
       t
     } = props;
@@ -35,8 +34,7 @@ class ResetPassword3 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 3, steps: 3 });
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
-    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("resetPass"), onClick: this.submit });
   }
 
@@ -146,13 +144,12 @@ ResetPassword3.defaultProps = {
 
 ResetPassword3.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
-  disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
   isFetchingAccountRecovery: PropTypes.bool.isRequired,
   accountRecoveryErrorCode: PropTypes.string.isRequired,
   postAccountRecoveryPassword: PropTypes.func.isRequired,

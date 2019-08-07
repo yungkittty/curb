@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Container from "../container";
 
-const AppContainer = styled(Container).attrs(() => ({ id: "app-container" }))`
-  display: flex;
+const AppContainer = styled(Container).attrs({ id: "app-container" })`
   width: 100vw;
   height: 100vh;
   padding-left: 80px;

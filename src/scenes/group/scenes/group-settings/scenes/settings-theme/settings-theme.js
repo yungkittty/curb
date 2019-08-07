@@ -6,7 +6,7 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
+import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import settingsThemeData from "./settings-theme-data";
 import withAppModal from "../../../../../../hocs/with-app-modal";
@@ -19,11 +19,10 @@ class SettingsTheme extends Component {
     super(props);
     const {
       t,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton,
+      setAppModalHeaderLeftButton,
       setAppModalScene,
-      setAppModalSceneData,
       setAppModalFooterButton,
+      setAppModalSceneData,
       groupTheme
     } = this.props;
 
@@ -34,10 +33,12 @@ class SettingsTheme extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) }]);
-    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) });
-    setAppModalSceneData({ newGroupTheme: { value: groupTheme, error: undefined } });
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
+    });
     setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
+    setAppModalSceneData({ newGroupTheme: { value: groupTheme, error: undefined } });
   }
 
   componentDidUpdate(prevProps) {
@@ -99,8 +100,9 @@ class SettingsTheme extends Component {
     return isFetchingGroups ? (
       <Loader />
     ) : (
-      <AppModalSceneList
+      <ListFlat
         ref={this.listFlat}
+        contentContainerStyle={{ position: "relative" }}
         data={settingsThemeData}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
@@ -139,17 +141,21 @@ SettingsTheme.defaultProps = {
 SettingsTheme.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
+  setAppModalSceneData: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
-  theme: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line
+  theme: PropTypes.object.isRequired,
+  // eslint-disable-next-line
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
-  newGroupTheme: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  newGroupTheme: PropTypes.shape({
+    value: PropTypes.string,
+    error: PropTypes.string
+  }),
   t: PropTypes.func.isRequired
 };
 

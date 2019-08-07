@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
+import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate2 from "../group-create-2"; // eslint-disable-line
 import GroupCreate4 from "../group-create-4"; // eslint-disable-line
@@ -17,8 +17,7 @@ class GroupCreate3 extends Component {
     const {
       // eslint-disable-line
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButtons,
-      setAppModalHeaderBackButton,
+      setAppModalHeaderLeftButton,
       setAppModalFooterButton,
       t
     } = this.props;
@@ -32,8 +31,7 @@ class GroupCreate3 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 3, steps: 4 });
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
-    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
@@ -81,9 +79,11 @@ class GroupCreate3 extends Component {
     } = this.props;
 
     return (
-      <AppModalSceneList
+      <ListFlat
         ref={this.listFlat}
+        contentContainerStyle={{ position: "relative" }}
         data={modulesList}
+        extraData={{ value }}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
@@ -118,12 +118,14 @@ GroupCreate3.defaultProps = {
 
 GroupCreate3.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
-  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  modules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
+  setAppModalSceneData: PropTypes.func.isRequired,
+  modules: PropTypes.shape({
+    value: PropTypes.arrayOf(PropTypes.string),
+    error: PropTypes.string
+  }),
   t: PropTypes.func.isRequired
 };
 

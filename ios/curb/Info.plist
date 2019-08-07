@@ -49,13 +49,13 @@
 	<string>$(PRODUCT_NAME) would like to save to your photo gallery</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Montserrat-ExtraBold.woff</string>
-		<string>Montserrat-Bold.woff</string>
-		<string>Montserrat-SemiBold.woff</string>
-		<string>Montserrat-Medium.woff</string>
-		<string>Montserrat-Regular.woff</string>
-		<string>Montserrat-Light.woff</string>
-		<string>FontAwesome5_Solid.woff</string>
+		<string>Montserrat-ExtraBold.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-Light.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
