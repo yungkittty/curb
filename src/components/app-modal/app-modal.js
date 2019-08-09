@@ -66,7 +66,7 @@ class AppModal extends Component {
             hideAppModal={hideAppModal}
           />
           <ModalScene
-            scene={appModalScene} // !
+            scene={appModalScene}
             sceneDirection={appModalSceneDirection}
             sceneData={appModalSceneData}
           />
@@ -83,6 +83,11 @@ class AppModal extends Component {
   }
 }
 
+AppModal.defaultProps = {
+  appModalScene: null,
+  appModalFooterOnClick: null
+};
+
 AppModal.propTypes = {
   isAppModalShowed: PropTypes.bool.isRequired,
   areAppModalButtonsDisabled: PropTypes.bool.isRequired,
@@ -92,11 +97,11 @@ AppModal.propTypes = {
   appModalHeaderLeftButtons: PropTypes.array.isRequired, // eslint-disable-line
   appModalHeaderRightButtons: PropTypes.array.isRequired, // eslint-disable-line
   appModalHeaderBackButton: PropTypes.object.isRequired, // eslint-disable-line
-  appModalScene: PropTypes.func.isRequired,
+  appModalScene: PropTypes.func,
   appModalSceneDirection: PropTypes.number.isRequired,
   appModalSceneData: PropTypes.object.isRequired, // eslint-disable-line
   appModalFooterText: PropTypes.string.isRequired,
-  appModalFooterOnClick: PropTypes.func.isRequired,
+  appModalFooterOnClick: PropTypes.func,
   hideAppModal: PropTypes.func.isRequired
 };
 

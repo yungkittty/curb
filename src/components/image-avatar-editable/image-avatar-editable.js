@@ -62,15 +62,7 @@ ImageAvatarEditable.propTypes = {
   shouldFetch: PropTypes.bool,
   userId: PropTypes.string,
   groupId: PropTypes.string,
-  size: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large",
-    "extra-large",
-    "extra-extra-large"
-  ]).isRequired,
+  size: PropTypes.string.isRequired,
   placeholderColor: PropTypes.string
 };
 

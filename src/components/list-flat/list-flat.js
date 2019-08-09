@@ -15,6 +15,7 @@ class ListFlat extends React.Component {
     this.isScrollable = _.throttle(this.isScrollable.bind(this), 10);
     this.scrollToLeft = this.scrollToLeft.bind(this);
     this.scrollToRight = this.scrollToRight.bind(this);
+    this.onScroll = this.onScroll.bind(this);
     this.state = { isScrollableToLeft: false, isScrollableToRight: false };
   }
 
@@ -38,6 +39,7 @@ class ListFlat extends React.Component {
     window.removeEventListener("resize", this.isScrollable);
   }
 
+  // eslint-disable-next-line
   isScrollable() {
     const { getItemLayout, data: itemsData } = this.props;
     const { current: listFlat, listFlatNode = listFlat.getScrollableNode() } = this.listFlat;
@@ -80,6 +82,13 @@ class ListFlat extends React.Component {
     }
   }
 
+  onScroll(event) {
+    // eslint-disable-next-line
+    const { onScroll, horizontal } = this.props;
+    if (onScroll) onScroll(event);
+    if (horizontal) this.isScrollable(event);
+  }
+
   render() {
     const {
       // eslint-disable-line
@@ -90,7 +99,11 @@ class ListFlat extends React.Component {
       horizontal,
       ...others
     } = this.props;
-    const { isScrollableToLeft, isScrollableToRight } = this.state;
+    const {
+      // eslint-disable-line
+      isScrollableToLeft,
+      isScrollableToRight
+    } = this.state;
     return (
       <FlatContainer
         // eslint-disable-line
@@ -112,7 +125,7 @@ class ListFlat extends React.Component {
           ref={this.listFlat}
           className={contentContainerClassName}
           style={contentContainerStyle}
-          onScroll={horizontal ? this.isScrollable : undefined}
+          onScroll={this.onScroll}
           horizontal={horizontal}
         />
         {horizontal && isScrollableToRight ? (

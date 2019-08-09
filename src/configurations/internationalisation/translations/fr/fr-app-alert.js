@@ -3,9 +3,13 @@ const frAppAlert = {
     userSuccess: "Votre profil a été mis à jour",
     USERS_DUPLICATE_NAME: "Ce nom d'utilisateur est déjà pris"
   },
-  postGroupInvite: {
-    groupInviteSuccess: "Vous avez rejoint ce groupe",
+  postGroupJoin: {
+    groupJoinSuccess: "Vous avez rejoint ce groupe",
     UNKNOWN: "Une erreur est survenue en rejoignant ce groupe"
+  },
+  postGroupUnjoin: {
+    groupUnjoinSuccess: "Vous avez quitté ce groupe",
+    UNKNOWN: "Une erreur est survenue en quittant ce groupe"
   },
   createMedia: {
     imagePosted: "Votre image a été postée",

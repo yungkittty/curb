@@ -60,15 +60,7 @@ ImageUser.propTypes = {
   userName: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large",
-    "extra-large",
-    "extra-extra-large"
-  ]).isRequired,
+  size: PropTypes.string.isRequired,
   placeholderColor: PropTypes.string
 };
 

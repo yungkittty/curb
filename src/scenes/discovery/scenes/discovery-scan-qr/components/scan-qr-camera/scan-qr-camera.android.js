@@ -21,7 +21,7 @@ const ScanQrCamera = ({ history, hideAppModal, ...others }) => {
           const { id: groupId, inviteToken: groupInviteToken } = JSON.parse(qrCodeData);
           if (!groupId || !_.isString(groupId)) return;
           if (!_.isString(groupInviteToken)) return;
-          history.replace(`/groups/${groupId}`, { isInvited: true, inviteToken: groupInviteToken });
+          history.replace(`/groups/${groupId}`, { inviteToken: groupInviteToken });
           hideAppModal();
         } catch (error) {} // eslint-disable-line
       }}

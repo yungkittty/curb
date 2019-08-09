@@ -51,7 +51,7 @@ Circle.propTypes = {
   as: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   className: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  diameter: PropTypes.arrayOf(PropTypes.string).isRequired,
+  diameter: PropTypes.string.isRequired,
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   backgroundColor: PropTypes.string,
   disabled: PropTypes.bool,
