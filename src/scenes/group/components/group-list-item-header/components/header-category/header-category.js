@@ -10,7 +10,7 @@ const HeaderCategory = ({
   groupGradientColors
 }) => {
   const categoryMarginBottom = platformBools.isWeb ? 20 : 10;
-  const categoryTextColor = groupGradientColors[0];
+  const categoryTextColor = groupGradientColors[1];
   return (
     <Stadium
       // eslint-disable-line
