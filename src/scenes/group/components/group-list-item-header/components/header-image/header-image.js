@@ -5,7 +5,8 @@ import ImageGroup from "../../../../../../components/image-group";
 
 const HeaderImage = ({
   // eslint-disable-line
-  groupId
+  groupId,
+  groupGradientColors
 }) => (
   <ImageContainer>
     <ImageGroup
@@ -13,13 +14,14 @@ const HeaderImage = ({
       shouldFetch={false}
       groupId={groupId}
       size="extra-extra-large"
-      // placeholderColor={}
+      placeholderColor={groupGradientColors[1]}
     />
   </ImageContainer>
 );
 
 HeaderImage.propTypes = {
-  groupId: PropTypes.string.isRequired
+  groupId: PropTypes.string.isRequired,
+  groupGradientColors: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default HeaderImage;

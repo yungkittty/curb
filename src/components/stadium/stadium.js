@@ -26,8 +26,9 @@ const Stadium = ({
     radius={radius}
     scale={scale}
     onClick={onClick}
-    gradientAngle={gradientAngle || 0}
-    gradientColors={gradientColors || [backgroundColor, backgroundColor]}
+    gradientAngle={gradientAngle}
+    gradientColors={gradientColors}
+    backgroundColor={backgroundColor}
     disabled={disabled}
   >
     {component ? (

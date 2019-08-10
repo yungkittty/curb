@@ -23,8 +23,8 @@ const GroupListItemHeader = ({
   currentUserGroupsId
 }) => {
   const isCurrentUser = !!currentUserId;
-  const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
-  const isCurrentUserCreator = _.isEqual(currentUserId, groupCreatorId);
+  const isCurrentUserIn = groupId ? _.includes(currentUserGroupsId, groupId) : true;
+  const isCurrentUserCreator = groupCreatorId ? _.isEqual(currentUserId, groupCreatorId) : true;
   return (
     <HeaderContainer
       // eslint-disable-line
@@ -34,6 +34,7 @@ const GroupListItemHeader = ({
       <HeaderImage
         // eslint-disable-line
         groupId={groupId}
+        groupGradientColors={groupGradientColors}
       />
       <HeaderContentContainer>
         <HeaderTitle

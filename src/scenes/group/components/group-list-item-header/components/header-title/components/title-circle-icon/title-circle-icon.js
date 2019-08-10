@@ -15,7 +15,7 @@ const TitleCircleIcon = ({
     component={Icon}
     icon={groupStatus === "public" ? "users" : "lock"}
     size="extra-extra-small"
-    color={groupGradientColors[0]}
+    color={groupGradientColors[1]}
   />
 );
 

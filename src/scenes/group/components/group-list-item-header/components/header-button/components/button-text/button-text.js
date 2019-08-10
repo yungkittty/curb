@@ -6,7 +6,7 @@ const ButtonText = styled(Text)`
   ${props => {
     const { isCurrentUserIn, groupGradientColors } = props;
     const TextMarginRight = isCurrentUserIn ? 10 : 0;
-    const TextColor = isCurrentUserIn ? "white" : groupGradientColors[0];
+    const TextColor = isCurrentUserIn ? "white" : groupGradientColors[1];
     return `
       margin-right: ${TextMarginRight}px;
       color: ${TextColor};

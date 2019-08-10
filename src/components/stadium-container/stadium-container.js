@@ -44,6 +44,10 @@ class StadiumContainer extends React.Component {
         return 2;
       case "x4":
         return 4;
+      case "x6":
+        return 6;
+      case "x8":
+        return 8;
       default:
         return undefined;
     }
@@ -56,6 +60,9 @@ class StadiumContainer extends React.Component {
       children,
       radius,
       scale,
+      gradientAngle,
+      gradientColors,
+      backgroundColor,
       ...others
     } = this.props;
     const innerRadius = this.getInnerRadius(radius);
@@ -64,6 +71,8 @@ class StadiumContainer extends React.Component {
       <ContainerGradient
         // eslint-disable-line
         {...others}
+        gradientAngle={gradientAngle || 0}
+        gradientColors={gradientColors || [backgroundColor, backgroundColor]}
         style={{
           overflow: "hidden",
           ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
@@ -89,7 +98,10 @@ class StadiumContainer extends React.Component {
 
 StadiumContainer.defaultProps = {
   style: undefined,
-  scale: "x4"
+  scale: "x4",
+  gradientAngle: undefined,
+  gradientColors: undefined,
+  backgroundColor: undefined
 };
 
 StadiumContainer.propTypes = {
@@ -116,8 +128,13 @@ StadiumContainer.propTypes = {
   scale: PropTypes.oneOf([
     // eslint-disable-line
     "x2",
-    "x4"
-  ])
+    "x4",
+    "x6",
+    "x8"
+  ]),
+  gradientAngle: PropTypes.number,
+  gradientColors: PropTypes.arrayOf(PropTypes.string),
+  backgroundColor: PropTypes.string
 };
 
 export default StadiumContainer;

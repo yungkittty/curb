@@ -11,11 +11,10 @@ const withUser = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-        isFetchingUser,
         userId,
         getUser
       } = this.props;
-      if (shouldFetch && !isFetchingUser && userId) {
+      if (shouldFetch && userId) {
         getUser({ id: userId });
       }
     }
@@ -24,11 +23,10 @@ const withUser = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-        isFetchingUser,
         userId,
         getUser
       } = this.props;
-      if (shouldFetch && !isFetchingUser && userId && userId !== prevProps.userId) {
+      if (shouldFetch && userId && userId !== prevProps.userId) {
         getUser({ id: userId });
       }
     }
@@ -46,7 +44,6 @@ const withUser = WrappedComponent => {
     const user = usersSelectors.getUserById(state, userId);
     if (!user) return { userId };
     const {
-      isFetching: isFetchingUser,
       dateCreation: userDateCreation,
       name: userName,
       avatarUrl: userAvatar,
@@ -54,7 +51,6 @@ const withUser = WrappedComponent => {
       errorCode: userErrorCode
     } = user;
     return {
-      isFetchingUser,
       userId,
       userDateCreation,
       userName,
@@ -70,7 +66,6 @@ const withUser = WrappedComponent => {
 
   WithUser.defaultProps = {
     shouldFetch: true,
-    isFetchingUser: false,
     userId: "",
     userDateCreation: "",
     userName: "",
@@ -82,7 +77,6 @@ const withUser = WrappedComponent => {
   WithUser.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
     shouldFetch: PropTypes.bool,
-    isFetchingUser: PropTypes.bool,
     userId: PropTypes.string,
     userDateCreation: PropTypes.string,
     userName: PropTypes.string,

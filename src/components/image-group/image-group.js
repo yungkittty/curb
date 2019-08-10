@@ -9,7 +9,6 @@ import withGroup from "../../hocs/with-group";
 import emojiRegex from "./utils/emoji-regex";
 
 const ImageGroup = ({
-  isFetchingGroup,
   groupName,
   groupAvatar,
   groupTheme,
@@ -62,7 +61,6 @@ ImageGroup.defaultProps = {
 };
 
 ImageGroup.propTypes = {
-  isFetchingGroup: PropTypes.bool.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,

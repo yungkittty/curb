@@ -11,11 +11,11 @@ const withGroup = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-        isFetchingGroup,
+
         groupId,
         getGroup
       } = this.props;
-      if (shouldFetch && !isFetchingGroup && groupId) {
+      if (shouldFetch && groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -24,11 +24,10 @@ const withGroup = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-        isFetchingGroup,
         groupId,
         getGroup
       } = this.props;
-      if (shouldFetch && !isFetchingGroup && groupId && groupId !== prevProps.groupId) {
+      if (shouldFetch && groupId && groupId !== prevProps.groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -46,7 +45,6 @@ const withGroup = WrappedComponent => {
     const group = groupsSelectors.getGroupById(state, groupId);
     if (!group) return { groupId };
     const {
-      isFetching: isFetchingGroup,
       creatorId: groupCreatorId,
       dateCreation: groupDateCreation,
       name: groupName,
@@ -62,7 +60,6 @@ const withGroup = WrappedComponent => {
       errorCode: groupErrorCode
     } = group;
     return {
-      isFetchingGroup,
       groupId,
       groupCreatorId,
       groupDateCreation,
@@ -86,7 +83,6 @@ const withGroup = WrappedComponent => {
 
   WithGroup.defaultProps = {
     shouldFetch: true,
-    isFetchingGroup: false,
     groupId: "",
     groupCreatorId: "",
     groupDateCreation: "",
@@ -106,7 +102,6 @@ const withGroup = WrappedComponent => {
   WithGroup.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
     shouldFetch: PropTypes.bool,
-    isFetchingGroup: PropTypes.bool,
     groupId: PropTypes.string,
     groupCreatorId: PropTypes.string,
     groupDateCreation: PropTypes.string,
