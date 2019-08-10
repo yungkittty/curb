@@ -14,22 +14,28 @@ class Settings extends Component {
     const { t, setAppModalHeaderText } = this.props;
 
     setAppModalHeaderText({ text: t("settings") });
+
+    this.renderListItem = this.renderListItem.bind(this);
+  }
+
+  renderListItem({ item }) {
+    const { t, setAppModalScene } = this.props;
+    return (
+      <AppModalSceneListItem
+        title={t(`${item.id}.title`)}
+        description={t(`${item.id}.description`)}
+        onClick={() => setAppModalScene({ scene: item.scene, direction: 1 })}
+      />
+    );
   }
 
   render() {
-    const { t, setAppModalScene } = this.props;
-
     return (
       <AppModalSceneList
+        // eslint-disable-line
         data={settingsData}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <AppModalSceneListItem
-            title={t(`${item.id}.title`)}
-            description={t(`${item.id}.description`)}
-            onClick={() => setAppModalScene({ scene: item.scene, direction: 1 })}
-          />
-        )}
+        renderItem={this.renderListItem}
       />
     );
   }
