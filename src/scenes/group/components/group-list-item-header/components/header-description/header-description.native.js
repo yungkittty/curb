@@ -13,6 +13,7 @@ const HeaderDescription = styled(Text).attrs(() => {
     numberOfLines: descriptionNumberOfLines
   };
 })`
+  padding: 0px 20px;
   color: white;
 `;
 

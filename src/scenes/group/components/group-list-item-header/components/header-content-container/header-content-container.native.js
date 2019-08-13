@@ -4,15 +4,19 @@ import { windowDimensions } from "../../../../../../configurations/window";
 
 const HeaderContentContainer = styled(Container)`
   ${() => {
-    const containerMaxWidth = windowDimensions.getWidth() - 40;
+    // eslint-disable-next-line
+    const containerPadding = 40;
+    const containerWidth = windowDimensions.getWidth() - containerPadding;
     return `
       display: flex;
       position: relative;
-      flex-grow: 1;
-      flex-shrink: 1;
       flex-direction: column;
       align-items: center;
-      max-width: ${containerMaxWidth}px;
+      width: 100%;${containerWidth}px;
+      height: 300px;
+      max-width: ${containerWidth}px;
+      max-height: 300px;
+      margin: auto;
     `;
   }}
 `;

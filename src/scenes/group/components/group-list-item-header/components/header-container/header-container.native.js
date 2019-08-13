@@ -8,7 +8,6 @@ const HeaderContainer = styled(ContainerGradient)`
   height: 500px;
   min-width: 100%;
   min-height: 500px;
-  padding: 0px 40px;
   margin-bottom: 40px;
 `;
 

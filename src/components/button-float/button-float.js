@@ -19,6 +19,8 @@ const ButtonFloat = ({
   theme,
   ...others
 }) => {
+  const floatRight = platformBools.isWeb ? 30 : 15;
+  const floatBottom = platformBools.isWeb ? 30 : 15;
   const floatPosition = "absolute";
   const floatOverflow = "visible";
   return (
@@ -31,6 +33,8 @@ const ButtonFloat = ({
       size={!others.children ? size : undefined}
       color={!others.children ? theme.secondaryVariantColor : undefined}
       style={{
+        right: floatRight,
+        bottom: floatBottom,
         ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
         position: floatPosition,
         overflow: floatOverflow
@@ -43,10 +47,7 @@ ButtonFloat.defaultProps = {
   diameter: "medium",
   component: Icon,
   size: "small",
-  style: platformBools.isWeb
-    ? // eslint-disable-line
-      { right: 30, bottom: 30 }
-    : { right: 15, bottom: 15 }
+  style: {}
 };
 
 ButtonFloat.propTypes = {

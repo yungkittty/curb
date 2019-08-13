@@ -7,8 +7,8 @@ const ImageContainer = styled(Container)`
   align-items: center;
   width: 550px;
   height: 580px;
-  min-height: 580px;
   min-width: 550px;
+  min-height: 580px;
   margin-top: -80px;
 `;
 

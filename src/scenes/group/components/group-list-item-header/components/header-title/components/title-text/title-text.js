@@ -13,9 +13,15 @@ const TitleText = styled(Text).attrs(() => {
     numberOfLines: descriptionNumberOfLines
   };
 })`
-  margin-right: 20px;
-  text-align: start;
-  color: white;
+  ${() => {
+    const textMaxWidth = 740 - 40;
+    return `
+      max-width: ${textMaxWidth}px;
+      margin-right: 20px;
+      text-align: start;
+      color: white;
+    `;
+  }}
 `;
 
 export default TitleText;

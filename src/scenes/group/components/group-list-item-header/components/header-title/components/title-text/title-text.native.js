@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Text from "../../../../../../../../components/text";
+import { windowDimensions } from "../../../../../../../../configurations/window";
 
 const TitleText = styled(Text).attrs(() => {
   const descriptionType = "h2";
@@ -13,9 +14,15 @@ const TitleText = styled(Text).attrs(() => {
     numberOfLines: descriptionNumberOfLines
   };
 })`
-  margin-right: 10px;
-  text-align: center;
-  color: white;
+  ${() => {
+    const textMaxWidth = windowDimensions.getWidth() - 70;
+    return `
+      max-width: ${textMaxWidth}px;
+      margin-right: 10px;
+      text-align: center;
+      color: white;
+    `;
+  }}
 `;
 
 export default TitleText;
