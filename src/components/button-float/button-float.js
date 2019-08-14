@@ -55,7 +55,7 @@ ButtonFloat.propTypes = {
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   size: PropTypes.string,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  style: PropTypes.object // eslint-disable-line
+  style: PropTypes.oneOf([PropTypes.object, PropTypes.array]) // eslint-disable-line
 };
 
 export default _.flowRight([
