@@ -10,7 +10,7 @@ const FileSelector = ({ type, onSelect, theme }) => (
   <ButtonFloat
     // eslint-disable-line
     diameter="extra-small"
-    style={{ bottom: -20, right: "" }}
+    style={{ bottom: -20, right: undefined }}
   >
     <React.Fragment>
       <Icon

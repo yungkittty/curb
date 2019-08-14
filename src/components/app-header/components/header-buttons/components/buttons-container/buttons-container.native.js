@@ -8,6 +8,7 @@ const ButtonsContainer = styled(Container)`
     return `
       display: flex;
       position: absolute;
+      z-index: 6;
       flex-direction: row;
       height: 100%;
       min-height: 100%;

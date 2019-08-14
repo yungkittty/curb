@@ -7,6 +7,7 @@ const HeaderContainer = styled(Container)`
     return `
       display: flex;
       position: relative;
+      z-index: 4;
       flex-direction: row;
       width: 100%;
       height: 80px;
