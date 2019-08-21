@@ -9,6 +9,7 @@ import GroupCreate2 from "../group-create-2"; // eslint-disable-line
 import InputForm from "../../../../../../components/input-form";
 import inputRegex from "../../../../../../utils/input-regex";
 import withAppModal from "../../../../../../hocs/with-app-modal";
+import groupCreate1Data from "./group-create-1-data";
 
 class GroupCreate1 extends Component {
   constructor(props) {
@@ -30,15 +31,16 @@ class GroupCreate1 extends Component {
   }
 
   checkForm() {
-    const {
-      groupName: { value }
-    } = this.props;
-    return this.checkInput("groupName", value);
+    const { groupName, groupCategory } = this.props;
+    const groupNameCheck = this.checkInput("groupName", groupName.value);
+    const groupCategoryCheck = this.checkInput("groupCategory", groupCategory.value);
+    return groupNameCheck && groupCategoryCheck;
   }
 
   checkInput(id, value) {
     let error = value.length === 0 ? "missing" : undefined;
-    if (error === undefined) error = !RegExp(inputRegex.groupName).test(value) ? "invalid" : undefined;
+    if (id === "groupName" && error === undefined)
+      error = !RegExp(inputRegex.groupName).test(value) ? "invalid" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
@@ -50,7 +52,7 @@ class GroupCreate1 extends Component {
   }
 
   render() {
-    const { t, groupName, avatar } = this.props;
+    const { t, groupName, groupCategory, avatar } = this.props;
 
     return (
       <AppModalSceneContainer>
@@ -66,13 +68,22 @@ class GroupCreate1 extends Component {
           onSelect={this.handleChange}
         />
         <InputForm
-          containerStyle={{ marginTop: 60 }}
           size="modal"
           id="groupName"
           placeholder={t("groupName")}
           onChange={this.handleChange}
           value={groupName.value}
           error={groupName.error && t(`validation:groupName.${groupName.error}`)}
+        />
+        <InputForm
+          inputType="dropdown"
+          size="modal"
+          id="groupCategory"
+          placeholder={t("groupCategory")}
+          onChange={this.handleChange}
+          value={groupCategory.value}
+          error={groupCategory.error && t(`validation:groupCategory.${groupCategory.error}`)}
+          options={groupCreate1Data}
         />
       </AppModalSceneContainer>
     );
@@ -81,6 +92,7 @@ class GroupCreate1 extends Component {
 
 GroupCreate1.defaultProps = {
   groupName: { value: "", error: undefined },
+  groupCategory: { value: "", error: undefined },
   avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
 
@@ -90,6 +102,10 @@ GroupCreate1.propTypes = {
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   groupName: PropTypes.shape({
+    value: PropTypes.string,
+    error: PropTypes.string
+  }),
+  groupCategory: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),

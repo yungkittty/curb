@@ -19,6 +19,9 @@ const enValidation = {
     missing: "Missing group name",
     invalid: "Must be 4 to 30 characters long"
   },
+  groupCategory: {
+    missing: "Missing category"
+  },
   discoverability: {
     missing: "You must choose an option"
   },

@@ -19,6 +19,9 @@ const frValidation = {
     missing: "Nom du groupe manquant",
     invalid: "Doit être compris entre 4 à 30 caractères"
   },
+  groupCategory: {
+    missing: "Catégorie manquante"
+  },
   discoverability: {
     missing: "Vous devez choisir une option"
   },

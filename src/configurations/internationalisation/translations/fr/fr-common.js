@@ -20,6 +20,7 @@ const frCommon = {
   edit: "Modifier",
   reset: "Réinitialiser",
   post: "Publier",
+  selectOption: "Sélectionner une option",
   selectImage: "Choisir une imge",
   selectVideo: "Choisir une vidéo",
   takePhoto: "Prendre une photo",
