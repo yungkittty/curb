@@ -61,6 +61,7 @@ class GroupCreate4 extends Component {
       postGroup,
       history,
       groupName,
+      groupCategory,
       discoverability,
       modules,
       groupTheme,
@@ -70,6 +71,7 @@ class GroupCreate4 extends Component {
     postGroup({
       history,
       name: groupName.value,
+      category: groupCategory.value,
       status: discoverability.value,
       mediaTypes: modules.value,
       theme: groupTheme.value,
@@ -147,6 +149,7 @@ class GroupCreate4 extends Component {
 
 GroupCreate4.defaultProps = {
   groupName: { value: "", error: undefined },
+  groupCategory: { value: "", error: undefined },
   discoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
   groupTheme: { value: "", error: undefined },
@@ -169,6 +172,10 @@ GroupCreate4.propTypes = {
   // eslint-disable-next-line
   history: PropTypes.object.isRequired,
   groupName: PropTypes.shape({
+    value: PropTypes.string,
+    error: PropTypes.string
+  }),
+  groupCategory: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),
