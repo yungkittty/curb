@@ -18,19 +18,11 @@ const Loader = ({ size }) => (
 );
 
 Loader.defaultProps = {
-  size: "medium"
+  size: "small"
 };
 
 Loader.propTypes = {
-  size: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large",
-    "extra-large",
-    "extra-extra-large"
-  ])
+  size: PropTypes.string
 };
 
 export default Loader;

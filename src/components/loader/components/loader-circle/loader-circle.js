@@ -14,7 +14,8 @@ const LoaderCircle = ({ index, innerDiameter, mounted }) => (
 
 LoaderCircle.propTypes = {
   index: PropTypes.number.isRequired,
-  innerDiameter: PropTypes.number.isRequired
+  innerDiameter: PropTypes.number.isRequired,
+  mounted: PropTypes.bool.isRequired
 };
 
 export default LoaderCircle;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Animated, Easing } from "react-native";
-import CircleContainer from "../../../circle-container";
+import Circle from "../../../circle";
 
 class LoaderCircleContainer extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class LoaderCircleContainer extends Component {
 
     Animated.loop(
       Animated.timing(rotation, {
-        toValue: 1,
+        toValue: 360,
         easing: Easing.linear,
         duration: 5000,
         useNativeDriver: true
@@ -28,40 +28,31 @@ class LoaderCircleContainer extends Component {
   }
 
   render() {
-    const { diameter, children } = this.props;
+    const { children, ...others } = this.props;
     const { rotation, mounted } = this.state;
 
     return (
-      <Animated.View
+      <Circle
+        as={Animated.View}
         style={{
           transform: [
             {
               rotate: rotation.interpolate({
-                inputRange: [0, 1],
+                inputRange: [0, 360],
                 outputRange: ["0deg", "360deg"]
               })
             }
           ]
         }}
+        {...others}
       >
-        <CircleContainer diameter={diameter}>
-          {innerDiameter => children(innerDiameter, mounted)}
-        </CircleContainer>
-      </Animated.View>
+        {innerDiameter => children(innerDiameter, mounted)}
+      </Circle>
     );
   }
 }
 
 LoaderCircleContainer.propTypes = {
-  diameter: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large",
-    "extra-large",
-    "extra-extra-large"
-  ]).isRequired,
   children: PropTypes.func.isRequired
 };
 
