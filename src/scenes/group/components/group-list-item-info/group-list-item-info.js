@@ -8,8 +8,10 @@ import InfoListItemMediaType from "./components/info-list-item-media-type";
 
 const GroupListItemInfo = ({
   // eslint-disable-line
+  groupCreatorId,
   groupUsersId,
   groupMediaTypes,
+  groupGradientColors,
   theme,
   t
 }) => (
@@ -22,6 +24,8 @@ const GroupListItemInfo = ({
         <InfoListItemUser
           // eslint-disable-line
           userId={userId}
+          groupCreatorId={groupCreatorId}
+          groupGradientColors={groupGradientColors}
           theme={theme}
         />
       )}
@@ -42,8 +46,10 @@ const GroupListItemInfo = ({
 );
 
 GroupListItemInfo.propTypes = {
+  groupCreatorId: PropTypes.string.isRequired,
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
   groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
+  groupGradientColors: PropTypes.arrayOf(PropTypes.string).isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };

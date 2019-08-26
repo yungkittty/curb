@@ -11,6 +11,8 @@ const GroupListItemMedia = ({
   mediaDateCreation,
   mediaType,
   mediaData,
+  groupCreatorId,
+  groupGradientColors,
   theme
 }) => (
   <ItemContainer>
@@ -18,6 +20,8 @@ const GroupListItemMedia = ({
       // eslint-disable-line
       userId={mediaCreatorId}
       mediaDateCreation={mediaDateCreation}
+      groupCreatorId={groupCreatorId}
+      groupGradientColors={groupGradientColors}
       theme={theme}
     />
     <ItemMedia
@@ -33,6 +37,8 @@ GroupListItemMedia.propTypes = {
   mediaDateCreation: PropTypes.string.isRequired,
   mediaType: PropTypes.string.isRequired,
   mediaData: PropTypes.string.isRequired,
+  groupCreatorId: PropTypes.string.isRequired,
+  groupGradientColors: PropTypes.arrayOf(PropTypes.string).isRequired,
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 

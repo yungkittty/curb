@@ -113,11 +113,21 @@ class Group extends React.Component {
   }
 
   renderListItemMedia({ item: mediaId }) {
-    const { theme } = this.props;
+    const {
+      // eslint-disable-line
+      groupCreatorId,
+      theme
+    } = this.props;
+    const {
+      // eslint-disable-line
+      groupGradientColors
+    } = this.getGroupGradient();
     return (
       <GroupListItemMedia
         // eslint-disable-line
         mediaId={mediaId}
+        groupCreatorId={groupCreatorId}
+        groupGradientColors={groupGradientColors}
         theme={theme}
       />
     );
@@ -126,15 +136,22 @@ class Group extends React.Component {
   renderListItemInfo() {
     const {
       // eslint-disable-line
+      groupCreatorId,
       groupUsersId,
       groupMediaTypes,
       theme
     } = this.props;
+    const {
+      // eslint-disable-line
+      groupGradientColors
+    } = this.getGroupGradient();
     return (
       <GroupListItemInfo
         // eslint-disable-line
+        groupCreatorId={groupCreatorId}
         groupUsersId={groupUsersId}
         groupMediaTypes={groupMediaTypes}
+        groupGradientColors={groupGradientColors}
         theme={theme}
       />
     );

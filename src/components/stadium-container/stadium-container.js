@@ -15,23 +15,25 @@ class StadiumContainer extends React.Component {
   getInnerRadius(radius) {
     const innerRadius = platformBools.isWeb
       ? // eslint-disable-line
-        [30, 40, 60, 80, 100, 200, 300]
-      : [20, 35, 50, 60, 70, 150, 200];
+        [25, 30, 40, 60, 80, 100, 200, 300]
+      : [20, 20, 35, 50, 60, 70, 150, 200];
     switch (radius) {
-      case "extra-extra-small":
+      case "extra-extra-extra-small":
         return innerRadius[0];
-      case "extra-small":
+      case "extra-extra-small":
         return innerRadius[1];
-      case "small":
+      case "extra-small":
         return innerRadius[2];
-      case "medium":
+      case "small":
         return innerRadius[3];
-      case "large":
+      case "medium":
         return innerRadius[4];
-      case "extra-large":
+      case "large":
         return innerRadius[5];
-      case "extra-extra-large":
+      case "extra-large":
         return innerRadius[6];
+      case "extra-extra-large":
+        return innerRadius[7];
       default:
         return undefined;
     }
@@ -117,6 +119,7 @@ StadiumContainer.propTypes = {
   ]).isRequired,
   radius: PropTypes.oneOf([
     // eslint-disable-line
+    "extra-extra-extra-small",
     "extra-extra-small",
     "extra-small",
     "small",

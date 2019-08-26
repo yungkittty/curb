@@ -19,7 +19,7 @@ const ListItemCircleText = ({
         {...others}
         diameter="large"
         size="large"
-        style={{ marginBottom: platformBools.isWeb ? 20 : 10 }}
+        style={{ marginBottom: platformBools.isWeb ? 20 : 10, overflow: "visible" }}
       />
       {!text ? (
         <CircleTextPlaceholder />
