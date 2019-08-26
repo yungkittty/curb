@@ -20,7 +20,7 @@ const Icon = ({
       case "extra-extra-extra-small":
         return 10;
       case "extra-extra-small":
-        return 18;
+        return 17;
       case "extra-small":
         return 20;
       case "small":
