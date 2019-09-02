@@ -11,22 +11,13 @@ const FormDropdown = styled(
       <select
         className={className}
         value={selectedValue}
-        onChange={event => {
-          console.log(
-            _.map(options, item => ({
-              value: item.value,
-              key: item.value,
-              label: t(`groupCreate:groupCategoryOptions.${item.value}`)
-            }))
-          );
-          onChange({ target: { id, value: event.target.value } });
-        }}
+        onChange={event => onChange({ target: { id, value: event.target.value } })}
         {...others}
       >
         <option disabled defaultValue style={{ display: "none" }} />
-        {_.map(options, ({ value }, index) => (
-          <option key={index} value={value}>
-            {t(`groupCategoryOptions.${value}`)}
+        {_.map(options, (item, index) => (
+          <option key={index} value={item}>
+            {t(`groupCategoryOptions.${item}`)}
           </option>
         ))}
       </select>

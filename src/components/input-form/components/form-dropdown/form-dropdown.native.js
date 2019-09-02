@@ -24,9 +24,9 @@ const FormDropdown = ({ t, theme, id, options, onChange, value: selectedValue, .
       style={{ inputAndroid: { opacity: 0 }, inputIOS: { opacity: 0 } }}
       onValueChange={value => value && onChange({ target: { id, value } })}
       items={_.map(options, item => ({
-        value: item.value,
-        key: item.value,
-        label: t(`groupCreate:groupCategoryOptions.${item.value}`)
+        value: item,
+        key: item,
+        label: t(`groupCreate:groupCategoryOptions.${item}`)
       }))}
     />
     <Icon
