@@ -9,14 +9,14 @@ const GroupDiscoverability = ({ t, onClick, discoverability }) => (
     <DiscoverOption
       icon="globe"
       title={t("glossary:public")}
-      description={t("discoverabilityOptions.public")}
+      description={t("groupDiscoverabilityOptions.public")}
       selected={discoverability === undefined ? undefined : discoverability === "public"}
       onClick={() => onClick("public")}
     />
     <DiscoverOption
       icon="users"
       title={t("glossary:private")}
-      description={t("discoverabilityOptions.private")}
+      description={t("groupDiscoverabilityOptions.private")}
       selected={discoverability === undefined ? undefined : discoverability === "private"}
       onClick={() => onClick("private")}
     />
@@ -33,4 +33,4 @@ GroupDiscoverability.propTypes = {
   discoverability: PropTypes.string
 };
 
-export default withTranslation("groupSettings")(GroupDiscoverability);
+export default withTranslation("groupOptions")(GroupDiscoverability);

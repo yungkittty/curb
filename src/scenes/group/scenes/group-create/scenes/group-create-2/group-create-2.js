@@ -44,9 +44,9 @@ class GroupCreate2 extends Component {
 
   checkForm() {
     const {
-      discoverability: { value }
+      groupDiscoverability: { value }
     } = this.props;
-    return this.checkInput("discoverability", value);
+    return this.checkInput("groupDiscoverability", value);
   }
 
   checkInput(id, value) {
@@ -58,23 +58,23 @@ class GroupCreate2 extends Component {
 
   handleChange(clickValue) {
     const {
-      discoverability: { value }
+      groupDiscoverability: { value }
     } = this.props;
     const newValue = clickValue === value ? undefined : clickValue;
-    this.checkInput("discoverability", newValue);
+    this.checkInput("groupDiscoverability", newValue);
   }
 
   render() {
     const {
       t,
-      discoverability: { value, error }
+      groupDiscoverability: { value, error }
     } = this.props;
 
     return (
       <AppModalSceneContainer>
         <AppModalSceneTitle>
           {/* eslint-disable-line */}
-          {t("discoverability")}
+          {t("groupDiscoverability")}
         </AppModalSceneTitle>
         <AppModalSceneError>
           {/* eslint-disable-line */}
@@ -87,7 +87,7 @@ class GroupCreate2 extends Component {
 }
 
 GroupCreate2.defaultProps = {
-  discoverability: { value: undefined, error: undefined }
+  groupDiscoverability: { value: undefined, error: undefined }
 };
 
 GroupCreate2.propTypes = {
@@ -96,7 +96,7 @@ GroupCreate2.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  discoverability: PropTypes.shape({
+  groupDiscoverability: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),
@@ -106,5 +106,5 @@ GroupCreate2.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withTranslation("groupCreate")
+  withTranslation("groupOptions")
 ])(GroupCreate2);

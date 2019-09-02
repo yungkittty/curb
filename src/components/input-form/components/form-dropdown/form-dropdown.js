@@ -15,9 +15,9 @@ const FormDropdown = styled(
         {...others}
       >
         <option disabled defaultValue style={{ display: "none" }} />
-        {_.map(options, (item, index) => (
-          <option key={index} value={item}>
-            {t(`groupCategoryOptions.${item}`)}
+        {_.map(options, ({ key, value }, index) => (
+          <option key={index} value={key}>
+            {value}
           </option>
         ))}
       </select>

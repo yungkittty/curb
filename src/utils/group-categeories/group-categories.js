@@ -1,4 +1,4 @@
-const groupCreate1Data = [
+const groupCategories = [
   "business",
   "science",
   "games",
@@ -22,4 +22,4 @@ const groupCreate1Data = [
   "other"
 ];
 
-export default groupCreate1Data;
+export default groupCategories;

@@ -9,7 +9,7 @@ import GroupCreate2 from "../group-create-2"; // eslint-disable-line
 import InputForm from "../../../../../../components/input-form";
 import inputRegex from "../../../../../../utils/input-regex";
 import withAppModal from "../../../../../../hocs/with-app-modal";
-import groupCreate1Data from "./group-create-1-data";
+import groupCategories from "../../../../../../utils/group-categeories";
 
 class GroupCreate1 extends Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class GroupCreate1 extends Component {
       <AppModalSceneContainer>
         <AppModalSceneTitle style={{ marginBottom: 40 }}>
           {/* eslint-disable-line */}
-          {t("groupCreate")}
+          {t("groupCreate:groupCreate")}
         </AppModalSceneTitle>
         <ImageAvatarEditable
           editMode
@@ -83,7 +83,10 @@ class GroupCreate1 extends Component {
           onChange={this.handleChange}
           value={groupCategory.value}
           error={groupCategory.error && t(`validation:groupCategory.${groupCategory.error}`)}
-          options={groupCreate1Data}
+          options={_.map(groupCategories, item => ({
+            key: item,
+            value: t(`groupOptions:groupCategoryOptions.${item}`)
+          }))}
         />
       </AppModalSceneContainer>
     );
@@ -116,5 +119,5 @@ GroupCreate1.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withTranslation("groupCreate")
+  withTranslation("groupOptions")
 ])(GroupCreate1);

@@ -62,7 +62,7 @@ class GroupCreate4 extends Component {
       history,
       groupName,
       groupCategory,
-      discoverability,
+      groupDiscoverability,
       modules,
       groupTheme,
       avatar
@@ -72,7 +72,7 @@ class GroupCreate4 extends Component {
       history,
       name: groupName.value,
       category: groupCategory.value,
-      status: discoverability.value,
+      status: groupDiscoverability.value,
       mediaTypes: modules.value,
       theme: groupTheme.value,
       avatar: avatar.value
@@ -122,7 +122,7 @@ class GroupCreate4 extends Component {
           <React.Fragment>
             <AppModalSceneTitle>
               {/* eslint-disable-line */}
-              {t("theme")}
+              {t("groupTheme")}
             </AppModalSceneTitle>
             <AppModalSceneError>
               {/* eslint-disable-line */}
@@ -132,7 +132,7 @@ class GroupCreate4 extends Component {
         )}
         renderItem={({ item }) => (
           <AppModalSceneListItem
-            title={t(`themeList.${item.id}`)}
+            title={t(`groupThemeOptions.${item.id}`)}
             titleColor="#ffffff"
             backgroundColor={theme[item.themeColor]}
             normalHoverColor
@@ -150,7 +150,7 @@ class GroupCreate4 extends Component {
 GroupCreate4.defaultProps = {
   groupName: { value: "", error: undefined },
   groupCategory: { value: "", error: undefined },
-  discoverability: { value: undefined, error: undefined },
+  groupDiscoverability: { value: undefined, error: undefined },
   modules: { value: [], error: undefined },
   groupTheme: { value: "", error: undefined },
   avatar: { value: { data: undefined, file: undefined }, error: undefined }
@@ -179,7 +179,7 @@ GroupCreate4.propTypes = {
     value: PropTypes.string,
     error: PropTypes.string
   }),
-  discoverability: PropTypes.shape({
+  groupDiscoverability: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),
@@ -202,6 +202,6 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withRouter,
-  withTranslation("groupCreate"),
+  withTranslation("groupOptions"),
   withTheme
 ])(GroupCreate4);
