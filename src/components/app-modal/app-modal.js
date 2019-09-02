@@ -10,7 +10,6 @@ class AppModal extends Component {
   constructor(props) {
     super(props);
     this.appModalTransitionEnd = this.appModalTransitionEnd.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.state = { isShowed: false };
   }
 
@@ -19,18 +18,6 @@ class AppModal extends Component {
     if (prevProps.isAppModalShowed !== isAppModalShowed && isAppModalShowed) {
       disableAppModalButtons();
       this.setState({ isShowed: true }); // eslint-disable-line
-    }
-  }
-
-  handleKeyDown(event) {
-    const { appModalHide, appModalFooterOnClick } = this.props;
-    switch (event.keyCode) {
-      case 27:
-        return appModalHide();
-      case 13:
-        return appModalFooterOnClick ? appModalFooterOnClick() : null;
-      default:
-        return;
     }
   }
 
@@ -72,11 +59,10 @@ class AppModal extends Component {
         // eslint-disable-line
         isAppModalShowed={isAppModalShowed}
         appModalTransitionEnd={this.appModalTransitionEnd}
-        onClick={appModalHide}
-        onKeyDown={this.handleKeyDown}
-        tabIndex="0"
+        appModalHide={appModalHide}
+        appModalFooterOnClick={appModalFooterOnClick}
       >
-        <ModalContainer isAppModalShowed={isAppModalShowed} onClick={e => e.stopPropagation()}>
+        <ModalContainer isAppModalShowed={isAppModalShowed}>
           <ModalHeader
             text={appModalHeaderText}
             currentStep={appModalHeaderCurrentStep}
