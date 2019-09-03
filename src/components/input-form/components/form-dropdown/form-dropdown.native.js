@@ -11,8 +11,7 @@ import Icon from "../../../icon";
 const FormDropdown = ({ t, theme, id, options, onChange, value: selectedValue, ...others }) => (
   <DropdownContainer>
     <Text type="h4" weight={400} style={{ position: "absolute", padding: 16 }}>
-      {selectedValue !== "" &&
-        t(`groupCreate:groupCategoryOptions.${_.find(options, { value: selectedValue }).value}`)}
+      {selectedValue !== "" && selectedValue}
     </Text>
     <RNPickerSelect
       {...others}
@@ -23,10 +22,10 @@ const FormDropdown = ({ t, theme, id, options, onChange, value: selectedValue, .
       }}
       style={{ inputAndroid: { opacity: 0 }, inputIOS: { opacity: 0 } }}
       onValueChange={value => value && onChange({ target: { id, value } })}
-      items={_.map(options, item => ({
-        value: item,
-        key: item,
-        label: t(`groupCreate:groupCategoryOptions.${item}`)
+      items={_.map(options, ({ key, value }) => ({
+        key,
+        value,
+        label: value
       }))}
     />
     <Icon
