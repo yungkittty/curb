@@ -59,7 +59,7 @@ Circle.propTypes = {
   ]).isRequired,
   backgroundColor: PropTypes.string,
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  children: PropTypes.node,
   contentStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
 };

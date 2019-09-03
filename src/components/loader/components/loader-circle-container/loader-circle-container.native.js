@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Animated, Easing } from "react-native";
-import Circle from "../../../circle";
+import CircleContainer from "../../../circle-container";
 
 class LoaderCircleContainer extends Component {
   constructor(props) {
@@ -32,22 +32,24 @@ class LoaderCircleContainer extends Component {
     const { rotation, mounted } = this.state;
 
     return (
-      <Circle
-        as={Animated.View}
-        style={{
-          transform: [
-            {
-              rotate: rotation.interpolate({
-                inputRange: [0, 360],
-                outputRange: ["0deg", "360deg"]
-              })
-            }
-          ]
-        }}
-        {...others}
-      >
-        {innerDiameter => children(innerDiameter, mounted)}
-      </Circle>
+      <CircleContainer {...others}>
+        {innerDiameter => (
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  rotate: rotation.interpolate({
+                    inputRange: [0, 360],
+                    outputRange: ["0deg", "360deg"]
+                  })
+                }
+              ]
+            }}
+          >
+            {children(innerDiameter, mounted)}
+          </Animated.View>
+        )}
+      </CircleContainer>
     );
   }
 }
