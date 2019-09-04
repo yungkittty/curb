@@ -14,6 +14,7 @@
     "mobile-run-ios": "react-native run-ios",
     "mobile-eject": "react-native eject",
     "web-start:development": "eval \"$(paste -s -d ' ' .env.development) HTTPS=true react-scripts start\"",
+    "web-start-windows": "react-scripts start",
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
     "web-eject": "react-scripts eject"

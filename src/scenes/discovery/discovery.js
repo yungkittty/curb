@@ -2,14 +2,13 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import ListSection from "../../components/list-section";
 import DiscoveryHeader from "./components/discovery-header";
 import DiscoveryListSectionHeader from "./components/discovery-list-section-header";
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
-import ButtonFloat from "../../components/button-float";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
+import Card from "../../components/card";
 
 /* eslint-disable */
 
@@ -36,12 +35,16 @@ class Discovery extends React.Component {
     getDiscoverySectionGroupsId,
     isShowed = true
   ) {
-    return isShowed ? [{
-      isDiscoverySectionEnd,
-      discoverySectionTitle,
-      data: [{ key: discoverySectionTitle, discoverySectionGroupsId }],
-      getDiscoverySectionGroupsId
-    }] : [];
+    return isShowed
+      ? [
+          {
+            isDiscoverySectionEnd,
+            discoverySectionTitle,
+            data: [{ key: discoverySectionTitle, discoverySectionGroupsId }],
+            getDiscoverySectionGroupsId
+          }
+        ]
+      : [];
   }
 
   getSections() {
@@ -133,24 +136,7 @@ class Discovery extends React.Component {
   }
 
   render() {
-    const { showAppModal, currentUserId } = this.props;
-    return (
-      <React.Fragment>
-        <ListSection
-          sections={this.getSections()}
-          ListHeaderComponent={this.renderListHeader}
-          renderSectionHeader={this.renderListSectionHeader}
-          renderItem={this.renderListSectionItem}
-        />
-        {currentUserId ? (
-          <ButtonFloat
-            // eslint-disable-line
-            icon="plus"
-            onClick={() => showAppModal({ scene: GroupCreate })}
-          />
-        ) : null}
-      </React.Fragment>
-    );
+    return <Card userId="5d373369c8acd2001d90bf55" />;
   }
 }
 
