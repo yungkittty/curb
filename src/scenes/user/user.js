@@ -1,9 +1,10 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
 import UserContainer from "./components/user-container";
+import UserHeader from "./components/user-header";
 import UserNameForm from "./components/user-name-form";
 import ImageAvatarEditable from "../../components/image-avatar-editable";
 import ButtonFloat from "../../components/button-float";
@@ -12,7 +13,7 @@ import inputRegex from "../../utils/input-regex";
 import withUser from "../../hocs/with-user";
 import withCurrentUser from "../../hocs/with-current-user";
 
-class User extends Component {
+class User extends React.Component {
   constructor(props) {
     super(props);
 
@@ -119,10 +120,12 @@ class User extends Component {
     return (
       <React.Fragment>
         <UserContainer>
+          <UserHeader theme={theme} />
           <ImageAvatarEditable
             id="avatar"
             size="extra-extra-large"
             placeholderColor={theme.primaryVariantColor}
+            shouldFetch={false}
             userId={userId}
             editMode={editMode}
             data={avatarState.value.data}
@@ -135,7 +138,7 @@ class User extends Component {
             readOnly={!editMode}
             containerStyle={{ marginTop: 64, textAlign: "center" }}
             textStyle={{
-              fontSize: platformBools.isReact ? 36 : 32,
+              fontSize: platformBools.isWeb ? 36 : 32,
               fontFamily: "Montserrat-Bold",
               textAlign: "center"
             }}
@@ -149,7 +152,7 @@ class User extends Component {
           <ButtonFloat
             icon={editMode ? "check" : "pen"}
             onClick={this.handleSwapMode}
-            disabled={!isFetchingMedias && !isFetchingUsers}
+            disabled={isFetchingMedias || isFetchingUsers}
           />
         ) : null}
       </React.Fragment>
@@ -166,7 +169,6 @@ User.propTypes = {
   userName: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,
   patchUser: PropTypes.func.isRequired,
-  // postMediaAvatarUser: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };

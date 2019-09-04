@@ -16,7 +16,14 @@ import SignUp2 from "../sign-up-2";
 class SignUp1 extends Component {
   constructor(props) {
     super(props);
-    const { t, setAppModalHeaderSteps, setAppModalHeaderLeftButton, setAppModalFooterButton } = this.props;
+    const {
+      // eslint-disable-line
+      t,
+      setAppModalHeaderSteps,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
+      setAppModalFooterButton
+    } = this.props;
 
     this.goToPrev = this.goToPrev.bind(this);
     this.goToNext = this.goToNext.bind(this);
@@ -25,7 +32,8 @@ class SignUp1 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 1, steps: 2 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
@@ -108,22 +116,14 @@ SignUp1.defaultProps = {
 
 SignUp1.propTypes = {
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  name: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  }),
-  email: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    error: PropTypes.string
-  }),
-  avatar: PropTypes.shape({
-    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
-    error: PropTypes.string
-  }),
+  name: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  email: PropTypes.shape({ value: PropTypes.string.isRequired, error: PropTypes.string }),
+  avatar: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }), error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

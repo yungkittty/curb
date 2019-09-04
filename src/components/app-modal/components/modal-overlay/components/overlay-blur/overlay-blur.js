@@ -8,7 +8,7 @@ const OverlayBlur = WrappedComponent => {
       super(props);
 
       this.hideStyle = {
-        backgroundColor: "rgba(0, 0, 0, 0)"
+        backgroundColor: "transparent"
       };
       this.showStyle = {
         backgroundColor: props.theme.overlayColor

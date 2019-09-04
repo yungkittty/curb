@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import withAppModal from "../../../../../../hocs/with-app-modal";
 // eslint-disable-next-line
@@ -19,17 +19,16 @@ class GeneralLanguage extends Component {
         options: { fallbackLng }
       },
       setAppModalHeaderText,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalScene
     } = this.props;
 
     this.state = { key: language.substring(0, 2) || fallbackLng[0] };
 
     setAppModalHeaderText({ text: t("general.menu.language.title") });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 })
-    });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 }) });
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -52,7 +51,7 @@ class GeneralLanguage extends Component {
     } = this.props;
 
     return (
-      <ListFlat
+      <AppModalSceneList
         data={Object.keys(data)}
         keyExtractor={item => item}
         renderItem={({ item }) => (
@@ -77,7 +76,8 @@ GeneralLanguage.propTypes = {
     options: PropTypes.shape({ fallbackLng: PropTypes.arrayOf(PropTypes.string) }).isRequired
   }).isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired
 };
 

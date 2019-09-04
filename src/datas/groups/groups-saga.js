@@ -65,18 +65,43 @@ function* deleteGroupRequestSaga(action) {
   }
 }
 
-function* postGroupInviteTokenRequestSaga(action) {
+function* getGroupsRequestSaga(action) {
   try {
-    yield call(groupsApi.postGroupInviteToken, action.payload);
+    const { data: payload } = yield call(groupsApi.getGroups, action.payload);
+    yield put(groupsActions.getGroupsSuccess(payload));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(groupsActions.getGroupsFailure({ ids: action.payload.ids, errorCode }));
+  }
+}
+
+function* postGroupJoinRequestSaga(action) {
+  try {
+    yield call(groupsApi.postGroupJoin, action.payload);
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
-    yield put(groupsActions.postGroupInviteTokenSuccess({ ...action.payload, currentUserId }));
-    const successAlert = { type: "success", message: "postGroupInvite.groupInviteSuccess", icon: "check" };
+    yield put(groupsActions.postGroupJoinSuccess({ ...action.payload, currentUserId }));
+    const successAlert = { type: "success", message: "postGroupJoin.groupJoinSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(groupsActions.postGroupInviteTokenFailure({ errorCode }));
-    const successAlert = { type: "error", message: `postGroupInvite.UNKNOWN`, icon: "check" };
+    yield put(groupsActions.postGroupJoinFailure({ errorCode }));
+    const errorAlert = { type: "error", message: `postGroupJoin.UNKNOWN`, icon: "times" };
+    yield put(appAlertActions.pushAppAlert(errorAlert));
+  }
+}
+
+function* postGroupUnjoinRequestSaga(action) {
+  try {
+    yield call(groupsApi.postGroupUnjoin, action.payload);
+    const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
+    yield put(groupsActions.postGroupUnjoinSuccess({ ...action.payload, currentUserId }));
+    const successAlert = { type: "success", message: "postGroupUnjoin.groupUnjoinSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(groupsActions.postGroupUnjoinFailure({ errorCode }));
+    const errorAlert = { type: "error", message: `postGroupUnjoin.UNKNOWN`, icon: "times" };
+    yield put(appAlertActions.pushAppAlert(errorAlert));
   }
 }
 
@@ -92,10 +117,12 @@ function* getGroupInviteTokenRequestSaga(action) {
 
 const groupsSaga = all([
   takeLatest(groupsActionsTypes.POST_GROUP_REQUEST, postGroupRequestSaga),
-  takeLatest(groupsActionsTypes.DELETE_GROUP_REQUEST, deleteGroupRequestSaga),
-  takeLatest(groupsActionsTypes.PATCH_GROUP_REQUEST, patchGroupRequestSaga),
   takeNormalize(groupsActionsTypes.GET_GROUP_REQUEST, getGroupRequestSaga),
-  takeLatest(groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST, postGroupInviteTokenRequestSaga),
+  takeLatest(groupsActionsTypes.PATCH_GROUP_REQUEST, patchGroupRequestSaga),
+  takeLatest(groupsActionsTypes.DELETE_GROUP_REQUEST, deleteGroupRequestSaga),
+  takeNormalize(groupsActionsTypes.GET_GROUPS_REQUEST, getGroupsRequestSaga),
+  takeLatest(groupsActionsTypes.POST_GROUP_JOIN_REQUEST, postGroupJoinRequestSaga),
+  takeLatest(groupsActionsTypes.POST_GROUP_UNJOIN_REQUEST, postGroupUnjoinRequestSaga),
   takeLatest(groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)
 ]);
 

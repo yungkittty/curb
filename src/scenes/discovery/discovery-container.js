@@ -1,41 +1,26 @@
-import _ from "lodash";
-import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Discovery from "./discovery";
-import { discoveryActions, discoverySelectors } from "../../datas/discovery";
-import withCurrentUser from "../../hocs/with-current-user";
-
-class DiscoveryContainer extends React.Component {
-  componentDidMount() {
-    const { getDiscoverySections, currentUserId } = this.props;
-    getDiscoverySections({ id: currentUserId });
-  }
-
-  render() {
-    const { getDiscoverySections, ...others } = this.props;
-    return <Discovery {...others} />;
-  }
-}
+import { discoverySelectors, discoveryActions } from "../../datas/discovery";
 
 const mapStateToProps = state => ({
-  discoverySections: discoverySelectors.getDiscoverySections(state) || []
+  isDiscoveryGlobalSectionEnd: discoverySelectors.isDiscoveryGlobalSectionEnd(state),
+  isDiscoveryCustomSectionEnd: discoverySelectors.isDiscoveryCustomSectionEnd(state),
+  isDiscoveryRandomSectionEnd: discoverySelectors.isDiscoveryRandomSectionEnd(state),
+  discoveryGlobalSectionGroupsId: discoverySelectors.getDiscoveryGlobalSectionGroupsId(state),
+  discoveryCustomSectionGroupsId: discoverySelectors.getDiscoveryCustomSectionGroupsId(state),
+  discoveryRandomSectionGroupsId: discoverySelectors.getDiscoveryRandomSectionGroupsId(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  getDiscoverySections: payload => dispatch(discoveryActions.getDiscoverySectionsRequest(payload))
+  getDiscoveryGlobalSectionGroupsId: payload =>
+    dispatch(discoveryActions.getDiscoveryGlobalSectionGroupsIdRequest(payload)),
+  getDiscoveryCustomSectionGroupsId: payload =>
+    dispatch(discoveryActions.getDiscoveryCustomSectionGroupsIdRequest(payload)),
+  getDiscoveryRandomSectionGroupsId: payload =>
+    dispatch(discoveryActions.getDiscoveryRandomSectionGroupsIdRequest(payload))
 });
 
-DiscoveryContainer.propTypes = {
-  currentUserId: PropTypes.string.isRequired,
-  getDiscoverySections: PropTypes.func.isRequired
-};
-
-export default _.flowRight([
-  // eslint-disable-line
-  withCurrentUser,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-])(DiscoveryContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Discovery);

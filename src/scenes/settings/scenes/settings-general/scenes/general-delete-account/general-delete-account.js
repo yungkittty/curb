@@ -16,23 +16,17 @@ class GeneralDeleteAccount extends Component {
     const {
       t,
       setAppModalHeaderText,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalScene,
       setAppModalFooterButton,
       deleteAccount
     } = this.props;
 
-    setAppModalHeaderText({
-      text: t("general.menu.deleteAccount.title")
-    });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 })
-    });
-    setAppModalFooterButton({
-      text: t("general.menu.deleteAccount.buttonTitle"),
-      onClick: deleteAccount
-    });
+    setAppModalHeaderText({ text: t("general.menu.deleteAccount.title") });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: SettingsGeneral, direction: -1 }) });
+    setAppModalFooterButton({ text: t("general.menu.deleteAccount.buttonTitle"), onClick: deleteAccount });
   }
 
   componentDidUpdate(prevProps) {
@@ -61,13 +55,14 @@ class GeneralDeleteAccount extends Component {
 GeneralDeleteAccount.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   isFetchingAccount: PropTypes.bool.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-  setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired
 };
 
 export default _.flowRight([

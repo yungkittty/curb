@@ -5,7 +5,7 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import modulesList from "../../../../../../utils/modules-list";
 import withAppModal from "../../../../../../hocs/with-app-modal";
@@ -18,10 +18,11 @@ class SettingsModules extends Component {
     super(props);
     const {
       t,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalScene,
-      setAppModalFooterButton,
       setAppModalSceneData,
+      setAppModalFooterButton,
       groupMediaTypes
     } = this.props;
 
@@ -32,10 +33,8 @@ class SettingsModules extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
-    });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) });
     setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
     setAppModalSceneData({ newGroupMediaTypes: { value: [...groupMediaTypes], error: undefined } });
   }
@@ -99,9 +98,8 @@ class SettingsModules extends Component {
     return isFetchingGroups ? (
       <Loader />
     ) : (
-      <ListFlat
+      <AppModalSceneList
         ref={this.listFlat}
-        contentContainerStyle={{ position: "relative" }}
         data={modulesList}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
@@ -138,17 +136,15 @@ SettingsModules.defaultProps = {
 SettingsModules.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
-  newGroupMediaTypes: PropTypes.shape({
-    value: PropTypes.arrayOf(PropTypes.string),
-    error: PropTypes.string
-  }),
+  newGroupMediaTypes: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
   groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   t: PropTypes.func.isRequired
 };

@@ -7,7 +7,7 @@ import { withTheme } from "styled-components";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate3 from "../group-create-3"; // eslint-disable-line
 import groupCreate4ThemesData from "./group-create-4-themes-data";
@@ -19,7 +19,8 @@ class GroupCreate4 extends Component {
     const {
       // eslint-disble-line
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalFooterButton,
       t
     } = this.props;
@@ -33,7 +34,8 @@ class GroupCreate4 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
   }
 
@@ -110,11 +112,9 @@ class GroupCreate4 extends Component {
     return isFetchingGroups ? (
       <Loader />
     ) : (
-      <ListFlat
+      <AppModalSceneList
         ref={this.listFlat}
-        contentContainerStyle={{ position: "relative" }}
         data={groupCreate4ThemesData}
-        extraData={{ value }}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
@@ -157,37 +157,21 @@ GroupCreate4.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
   hideAppModal: PropTypes.func.isRequired,
-  postGroup: PropTypes.func.isRequired,
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired,
-  // eslint-disable-next-line
-  history: PropTypes.object.isRequired,
-  groupName: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  discoverability: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  modules: PropTypes.shape({
-    value: PropTypes.arrayOf(PropTypes.string),
-    error: PropTypes.string
-  }),
-  groupTheme: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  avatar: PropTypes.shape({
-    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
-    error: PropTypes.string
-  }),
+  postGroup: PropTypes.func.isRequired, 
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  history: PropTypes.object.isRequired, // eslint-disable-line
+  groupName: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  discoverability: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  modules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
+  groupTheme: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  avatar: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }), error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
