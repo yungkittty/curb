@@ -1,12 +1,7 @@
 import React from "react";
 
-const ContainerPropagation = WrappedComponent => {
-  // eslint-disable-next-line
-  const _ContainerPropagation = ({ ...others }) => (
-    <WrappedComponent {...others} onClick={event => event.stopPropagation()} />
-  );
-
-  return _ContainerPropagation;
-};
+const ContainerPropagation = WrappedComponent => props => (
+  <WrappedComponent {...props} onClick={event => event.stopPropagation()} />
+);
 
 export default ContainerPropagation;

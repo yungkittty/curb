@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const OverlayHide = WrappedComponent => {
   // eslint-disable-next-line
@@ -22,7 +23,10 @@ const OverlayHide = WrappedComponent => {
     />
   );
 
-  _OverlayHide.propTypes = {};
+  _OverlayHide.propTypes = {
+    appModalHide: PropTypes.func.isRequired,
+    appModalFooterOnClick: PropTypes.func.isRequired
+  };
 
   return _OverlayHide;
 };
