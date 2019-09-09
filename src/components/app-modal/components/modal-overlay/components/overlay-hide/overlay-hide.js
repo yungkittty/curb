@@ -23,9 +23,13 @@ const OverlayHide = WrappedComponent => {
     />
   );
 
+  _OverlayHide.defaultProps = {
+    appModalFooterOnClick: undefined
+  };
+
   _OverlayHide.propTypes = {
     appModalHide: PropTypes.func.isRequired,
-    appModalFooterOnClick: PropTypes.func.isRequired
+    appModalFooterOnClick: PropTypes.func
   };
 
   return _OverlayHide;
