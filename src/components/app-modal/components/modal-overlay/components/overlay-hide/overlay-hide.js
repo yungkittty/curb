@@ -8,6 +8,7 @@ const OverlayHide = WrappedComponent => {
       {...others}
       onClick={appModalHide}
       onKeyDown={event => {
+        console.log(event.keyCode);
         switch (event.keyCode) {
           case 27:
             appModalHide();

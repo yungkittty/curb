@@ -29,9 +29,14 @@ const OverlayBlur = WrappedComponent => {
     }
 
     componentDidUpdate(prevProps) {
-      const { isAppModalShowed } = this.props;
+      const { isAppModalShowed, isAppModalButtonsEnabled } = this.props;
       if (prevProps.isAppModalShowed !== isAppModalShowed) {
         this.startAnimation(isAppModalShowed);
+      } else if (
+        prevProps.isAppModalButtonsEnabled !== isAppModalButtonsEnabled &&
+        isAppModalButtonsEnabled
+      ) {
+        this.wrappedComponent.current.focus();
       }
     }
 
@@ -64,6 +69,7 @@ const OverlayBlur = WrappedComponent => {
 
   _OverlayBlur.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
+    isAppModalButtonsEnabled: PropTypes.bool.isRequired,
     appModalTransitionEnd: PropTypes.func.isRequired,
     // eslint-disable-next-line
     theme: PropTypes.object.isRequired
