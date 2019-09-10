@@ -15,7 +15,7 @@ class AppModal extends Component {
 
   componentDidUpdate(prevProps) {
     const { isAppModalShowed } = this.props;
-    if (isAppModalShowed && isAppModalShowed !== prevProps.isAppModalShowed) {
+    if (isAppModalShowed && prevProps.isAppModalShowed !== isAppModalShowed) {
       this.setState({ isShowed: true }); // eslint-disable-line
     }
   }
@@ -23,7 +23,7 @@ class AppModal extends Component {
   appModalTransitionEnd() {
     const { isAppModalShowed } = this.props;
     if (!isAppModalShowed) {
-      this.setState({ isShowed: false }); // eslint-disable-line
+      this.setState({ isShowed: false });
     }
   }
 
@@ -47,12 +47,15 @@ class AppModal extends Component {
       appModalSceneData,
       appModalFooterText,
       appModalFooterOnClick,
-      hideAppModal
+      appModalHide
     } = this.props;
     return isShowed ? (
       <ModalOverlay
         isAppModalShowed={isAppModalShowed}
-        appModalTransitionEnd={this.appModalTransitionEnd} // !
+        isAppModalButtonsEnabled={isAppModalButtonsEnabled}
+        appModalTransitionEnd={this.appModalTransitionEnd}
+        appModalFooterOnClick={isAppModalButtonsEnabled ? appModalFooterOnClick : undefined}
+        appModalHide={appModalHide}
       >
         <ModalContainer isAppModalShowed={isAppModalShowed}>
           <ModalHeader
@@ -102,7 +105,7 @@ AppModal.propTypes = {
   appModalSceneData: PropTypes.object.isRequired, // eslint-disable-line
   appModalFooterText: PropTypes.string.isRequired,
   appModalFooterOnClick: PropTypes.func,
-  hideAppModal: PropTypes.func.isRequired
+  appModalHide: PropTypes.func.isRequired
 };
 
 export default AppModal;
