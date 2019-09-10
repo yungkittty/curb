@@ -15,7 +15,6 @@ class ListFlat extends React.Component {
     this.isScrollable = _.throttle(this.isScrollable.bind(this), 10);
     this.scrollToLeft = this.scrollToLeft.bind(this);
     this.scrollToRight = this.scrollToRight.bind(this);
-    this.onScroll = this.onScroll.bind(this);
     this.state = { isScrollableToLeft: false, isScrollableToRight: false };
   }
 
@@ -74,19 +73,8 @@ class ListFlat extends React.Component {
     const itemsLength = itemsData.length;
     const scrollCurrentIndex = Math.round(scrollLeft / itemLength);
     const scrollCurrentOffset = Math.round(clientWidth / itemLength);
-    const scrollIndex = scrollCurrentIndex + scrollCurrentOffset;
-    if (scrollIndex < itemsLength) {
-      listFlat.scrollToIndex({ index: scrollIndex });
-    } else {
-      listFlat.scrollToEnd();
-    }
-  }
-
-  onScroll(event) {
-    // eslint-disable-next-line
-    const { onScroll, horizontal } = this.props;
-    if (onScroll) onScroll(event);
-    if (horizontal) this.isScrollable(event);
+    const scrollIndex = Math.min(scrollCurrentIndex + scrollCurrentOffset, itemsLength - scrollCurrentOffset);
+    listFlat.scrollToIndex({ index: scrollIndex });
   }
 
   render() {
@@ -125,7 +113,7 @@ class ListFlat extends React.Component {
           ref={this.listFlat}
           className={contentContainerClassName}
           style={contentContainerStyle}
-          onScroll={this.onScroll}
+          onScroll={horizontal ? this.isScrollable : undefined}
           horizontal={horizontal}
         />
         {horizontal && isScrollableToRight ? (

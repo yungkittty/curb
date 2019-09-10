@@ -11,11 +11,11 @@ const withGroup = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-
+        isFetchingGroup,
         groupId,
         getGroup
       } = this.props;
-      if (shouldFetch && groupId) {
+      if (shouldFetch && !isFetchingGroup && groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -24,10 +24,11 @@ const withGroup = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
+        isFetchingGroup,
         groupId,
         getGroup
       } = this.props;
-      if (shouldFetch && groupId && groupId !== prevProps.groupId) {
+      if (shouldFetch && !isFetchingGroup && groupId && groupId !== prevProps.groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -45,11 +46,10 @@ const withGroup = WrappedComponent => {
     const group = groupsSelectors.getGroupById(state, groupId);
     if (!group) return { groupId };
     const {
+      isFetching: isFetchingGroup,
       creatorId: groupCreatorId,
       dateCreation: groupDateCreation,
       name: groupName,
-      category: groupCategory,
-      description: groupDescription,
       avatarUrl: groupAvatar,
       status: groupStatus,
       theme: groupTheme,
@@ -83,12 +83,11 @@ const withGroup = WrappedComponent => {
 
   WithGroup.defaultProps = {
     shouldFetch: true,
+    isFetchingGroup: false,
     groupId: "",
     groupCreatorId: "",
     groupDateCreation: "",
     groupName: "",
-    groupCategory: `Sport`,
-    groupDescription: `Nous partageons sur ce groupe des plans ride localisés par la communauté sur toute la France. Vous pouvez également y partager vos photos et vidéos de vos tricks et suivre ceux des autres.`,
     groupAvatar: "",
     groupStatus: "",
     groupTheme: "",
@@ -102,12 +101,11 @@ const withGroup = WrappedComponent => {
   WithGroup.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
     shouldFetch: PropTypes.bool,
+    isFetchingGroup: PropTypes.bool,
     groupId: PropTypes.string,
     groupCreatorId: PropTypes.string,
     groupDateCreation: PropTypes.string,
     groupName: PropTypes.string,
-    groupCategory: PropTypes.string,
-    groupDescription: PropTypes.string,
     groupAvatar: PropTypes.string,
     groupStatus: PropTypes.string,
     groupTheme: PropTypes.string,

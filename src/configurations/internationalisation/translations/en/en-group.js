@@ -1,6 +1,7 @@
 const enGroup = {
-  headerButtonTextJoin: "Join",
-  headerButtonTextJoined: "Joined",
+  headerTitle: "You have been invited to this group",
+  headerTitleBis: "You may join this group",
+  headerButtonText: "Join",
   infosTitleUser: "Users",
   infosTitleModules: "Modules",
   infosSubtitle: "{{when}} ago"

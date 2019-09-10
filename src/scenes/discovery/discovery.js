@@ -18,14 +18,69 @@ import Video from "../../components/video";
 class Discovery extends React.Component {
   constructor(props) {
     super(props);
+    const sectionResolver = (...sectionArgs) => JSON.stringify(sectionArgs);
+    this.getSection = _.memoize(this.getSection.bind(this), sectionResolver);
+    this.getSections = _.memoize(this.getSections.bind(this), sectionResolver);
+    this.renderListHeader = this.renderListHeader.bind(this);
+    this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
+    this.renderListSectionItem = this.renderListSectionItem.bind(this);
+    this.renderListItem = this.renderListItem.bind(this);
+  }
 
-    this.state = { mediaList: {} };
+  // eslint-disable-next-line
+  getSection(
+    // eslint-disable-line
+    isDiscoverySectionEnd,
+    discoverySectionTitle,
+    discoverySectionGroupsId,
+    getDiscoverySectionGroupsId,
+    isShowed = true
+  ) {
+    return isShowed ? [{
+      isDiscoverySectionEnd,
+      discoverySectionTitle,
+      data: [{ key: discoverySectionTitle, discoverySectionGroupsId }],
+      getDiscoverySectionGroupsId
+    }] : [];
+  }
 
-    this.onChangeText = this.onChangeText.bind(this);
-    this.addImage = this.addImage.bind(this);
-    this.addVideo = this.addVideo.bind(this);
-
-    this.removeContent = this.removeContent.bind(this);
+  getSections(
+    // eslint-disable-line
+    currentUserId,
+    isDiscoveryGlobalSectionEnd,
+    isDiscoveryCustomSectionEnd,
+    isDiscoveryRandomSectionEnd,
+    discoveryGlobalSectionGroupsId,
+    discoveryCustomSectionGroupsId,
+    discoveryRandomSectionGroupsId,
+    getDiscoveryGlobalSectionGroupsId,
+    getDiscoveryCustomSectionGroupsId,
+    getDiscoveryRandomSectionGroupsId
+  ) {
+    return [
+      ...this.getSection(
+        // eslint-disable-line
+        isDiscoveryGlobalSectionEnd,
+        "global",
+        discoveryGlobalSectionGroupsId,
+        getDiscoveryGlobalSectionGroupsId
+      ),
+      ...this.getSection(
+        // eslint-disable-line
+        isDiscoveryCustomSectionEnd,
+        "custom",
+        discoveryCustomSectionGroupsId,
+        getDiscoveryCustomSectionGroupsId,
+        !!currentUserId
+      ),
+      ...this.getSection(
+        // eslint-disable-line
+        isDiscoveryRandomSectionEnd,
+        "random",
+        discoveryRandomSectionGroupsId,
+        getDiscoveryRandomSectionGroupsId
+      )
+    ];
   }
 
   onChangeText({ target: { value } }) {
@@ -35,58 +90,85 @@ class Discovery extends React.Component {
     });
   }
 
-  addImage(imageData) {
-    const {
-      mediaList,
-      mediaList: { image = [] }
-    } = this.state;
-    this.setState({
-      mediaList: { ...mediaList, image: [...image, imageData] }
-    });
+  renderListSectionHeader({ section: discoverySectionData }) {
+    const { t } = this.props;
+    return (
+      <DiscoveryListSectionHeader type="h3" weight={500}>
+        {t(`sections.${discoverySectionData.discoverySectionTitle}`)}
+      </DiscoveryListSectionHeader>
+    );
   }
 
-  addVideo(videoData) {
-    const { mediaList } = this.state;
-    //    console.log(mediaList);
-    this.setState({
-      mediaList: { ...mediaList, video: videoData }
-    });
+  renderListSectionItem({
+    // eslint-disable-line
+    item: discoveryItemData,
+    section: discoverySectionData
+  }) {
+    const { isDiscoverySectionEnd } = discoverySectionData;
+    const { discoverySectionGroupsId } = discoveryItemData;
+    const { getDiscoverySectionGroupsId } = discoverySectionData;
+    return (
+      <DiscoveryList
+        isDiscoverySectionEnd={isDiscoverySectionEnd}
+        discoverySectionGroupsId={discoverySectionGroupsId}
+        getDiscoverySectionGroupsId={getDiscoverySectionGroupsId}
+        keyExtractor={(discoveryGroupId, discoveryItemIndex) =>
+          // eslint-disable-line
+          `${discoveryGroupId}${discoveryItemIndex}`}
+        renderItem={this.renderListItem}
+      />
+    );
   }
 
-  removeContent(mediaType) {
-    const { mediaList } = this.state;
-    mediaList[mediaType].pop();
-    if (_.size(mediaList[mediaType]) === 0) delete mediaList[mediaType];
-    //    console.log(mediaList);
-    this.setState({ mediaList });
+  // eslint-disable-next-line
+  renderListItem({ item: discoveryItemId }) {
+    return (
+      // eslint-disable-line
+      <DiscoveryListItem
+        // eslint-disable-line
+        shouldFetch={false}
+        groupId={discoveryItemId}
+      />
+    );
   }
 
   render() {
+    const {
+      showAppModal,
+      currentUserId,
+      isDiscoveryGlobalSectionEnd,
+      isDiscoveryCustomSectionEnd,
+      isDiscoveryRandomSectionEnd,
+      discoveryGlobalSectionGroupsId,
+      discoveryCustomSectionGroupsId,
+      discoveryRandomSectionGroupsId,
+      getDiscoveryGlobalSectionGroupsId,
+      getDiscoveryCustomSectionGroupsId,
+      getDiscoveryRandomSectionGroupsId
+    } = this.props;
+    const getSectionsArgs = [
+      currentUserId,
+      isDiscoveryGlobalSectionEnd,
+      isDiscoveryCustomSectionEnd,
+      isDiscoveryRandomSectionEnd,
+      discoveryGlobalSectionGroupsId,
+      discoveryCustomSectionGroupsId,
+      discoveryRandomSectionGroupsId,
+      getDiscoveryGlobalSectionGroupsId,
+      getDiscoveryCustomSectionGroupsId,
+      getDiscoveryRandomSectionGroupsId
+    ];
     return (
-      <Container
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <Card
-          userId="5d373369c8acd2001d90bf55"
-          dropdownMenu={{
-            icon: "minus",
-            onClick: mediaType => console.log(`remove the ${mediaType} component`)
-          }}
-          postMediaTypes={[
-            { type: "text", onChange: () => console.log("text") },
-            {
-              type: "event",
-              onClick: () => console.log("add event to mediaList")
-            },
-            { type: "poll", onClick: () => console.log("add poll to mediaList") }
-          ]}
-          mediaList={{ event: <Loader />, poll: <Loader /> }}
+      <React.Fragment>
+        <DiscoveryContainer
+          sections={this.getSections(...getSectionsArgs)}
+          ListHeaderComponent={this.renderListHeader}
+          renderSectionHeader={this.renderListSectionHeader}
+          renderItem={this.renderListSectionItem}
+        />
+        <ButtonFloat
+          icon="plus"
+          onClick={() => showAppModal({ scene: currentUserId ? GroupCreate : SignIn })}
         />
       </Container>
     );

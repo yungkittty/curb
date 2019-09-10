@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import Container from "../container";
+import ContainerContainer from "./components/container-container";
 import { platformBools } from "../../configurations/platform";
 
 // https://react-native.canny.io/feature-requests/p/shadow-does-not-appear-if-overflow-hidden-is-set-on-ios
@@ -16,8 +16,8 @@ class CircleContainer extends React.Component {
   getInnerDiameter(diameter) {
     const innerDiameters = platformBools.isWeb
       ? // eslint-disable-line
-        [30, 40, 60, 80, 100, 200, 300]
-      : [20, 35, 50, 60, 70, 150, 200];
+        [40, 60, 80, 100, 200, 300]
+      : [40, 50, 60, 70, 150, 200];
     switch (diameter) {
       case "extra-extra-small":
         return innerDiameters[0];
@@ -41,46 +41,36 @@ class CircleContainer extends React.Component {
   render() {
     const {
       // eslint-disable-line
+      className,
       style,
       children,
       diameter,
-      backgroundColor,
       ...others
     } = this.props;
-    const innerDiameter = this.getInnerDiameter(diameter);
     return (
-      <Container
+      <ContainerContainer
         // eslint-disable-line
         {...others}
-        style={{
-          overflow: "hidden",
-          ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: innerDiameter,
-          height: innerDiameter,
-          minWidth: innerDiameter,
-          minHeight: innerDiameter,
-          borderRadius: innerDiameter / 2,
-          ...(backgroundColor ? { backgroundColor } : {})
-        }}
+        className={className}
+        style={style}
+        innerDiameter={this.getInnerDiameter(diameter)}
       >
         {typeof children === "function"
           ? // eslint-disable-line
-            children(innerDiameter)
+            children(this.getInnerDiameter(diameter))
           : children}
-      </Container>
+      </ContainerContainer>
     );
   }
 }
 
 CircleContainer.defaultProps = {
-  style: undefined,
-  backgroundColor: undefined
+  className: undefined,
+  style: undefined
 };
 
 CircleContainer.propTypes = {
+  className: PropTypes.string,
   style: PropTypes.oneOfType([
     // eslint-disable-line
     PropTypes.object,
@@ -100,8 +90,7 @@ CircleContainer.propTypes = {
     "large",
     "extra-large",
     "extra-extra-large"
-  ]).isRequired,
-  backgroundColor: PropTypes.string
+  ]).isRequired
 };
 
 export default CircleContainer;

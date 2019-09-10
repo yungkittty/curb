@@ -10,61 +10,48 @@ import withShadow from "../../../../hocs/with-shadow";
 
 import GroupQr from "../../scenes/group-qr";
 
-/* eslint-enable */
-
-class GroupListHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onBackClick = this.onBackClick.bind(this);
-  }
-
-  // eslint-disable-next-line
-  getLeftButtons() {
-    const leftButtons = [];
-    const leftButtonsFirstIcon = "arrow-left";
-    const leftButtonsFirstOnClick = this.onBackClick;
-    leftButtons[0] = { icon: leftButtonsFirstIcon, color: "white", onClick: leftButtonsFirstOnClick };
-    return leftButtons;
-  }
-
-  getRightButtons() {
-    const { isFeed, toggleFeed, showAppModal } = this.props;
-    const rightButtons = [];
-    const rightButtonsFirstIcon = "qrcode";
-    const rightButtonsFirstOnClick = () => showAppModal({ scene: GroupQr });
-    const rightButtonsSecondIcon = isFeed ? "info-circle" : "stream";
-    const rightButtonsSecondOnClick = toggleFeed;
-    rightButtons[0] = { icon: rightButtonsFirstIcon, color: "white", onClick: rightButtonsFirstOnClick };
-    rightButtons[1] = { icon: rightButtonsSecondIcon, color: "white", onClick: rightButtonsSecondOnClick };
-    return rightButtons;
-  }
-
-  onBackClick() {
-    const { history } = this.props;
-    history.goBack();
-  }
-
-  render() {
-    const {
-      // eslint-disable-line
-      groupGradientAngle,
-      groupGradientColors,
-      ...others
-    } = this.props;
-    return (
-      <AppHeader
-        // eslint-disable-line
-        {...others}
-        as={ContainerGradient}
-        leftButtons={this.getLeftButtons()}
-        rightButtons={this.getRightButtons()}
-        gradientAngle={groupGradientAngle}
-        gradientColors={groupGradientColors}
-        onBackClick={this.onBackClick}
-      />
-    );
-  }
-}
+const GroupListHeader = ({
+  isFeed,
+  toggleScene,
+  showAppModal,
+  groupId,
+  groupName,
+  groupStatus,
+  groupTheme,
+  currentUserGroupsId,
+  theme
+}) => (
+  <HeaderContainer groupTheme={groupTheme}>
+    {groupStatus === "public" || _.includes(currentUserGroupsId, groupId) ? (
+      <React.Fragment>
+        <HeaderButtonIcon
+          icon="qrcode"
+          size="small"
+          color={theme.backgroundColor}
+          onClick={() => showAppModal({ scene: GroupQr })}
+          style={{ right: platformBools.isWeb ? 40 : 20 }}
+        />
+        <HeaderButtonIcon
+          icon={isFeed ? "info-circle" : "stream"}
+          size="small"
+          color={theme.backgroundColor}
+          onClick={toggleScene}
+          style={{ right: platformBools.isWeb ? 95 : 60 }}
+        />
+      </React.Fragment>
+    ) : null}
+    <ImageGroup
+      shouldFetch={false}
+      groupId={groupId}
+      size="extra-extra-large"
+      placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}
+    />
+    <HeaderTitle type="h2" weight={700}>
+      {/* eslint-disable-line */}
+      {groupName}
+    </HeaderTitle>
+  </HeaderContainer>
+);
 
 GroupListHeader.propTypes = {
   isFeed: PropTypes.bool.isRequired,

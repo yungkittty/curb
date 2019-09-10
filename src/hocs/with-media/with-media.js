@@ -9,10 +9,11 @@ const withMedia = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
+        isFetchingMedia,
         mediaId,
         getMedia
       } = this.props;
-      if (shouldFetch && mediaId) {
+      if (shouldFetch && !isFetchingMedia && mediaId) {
         getMedia({ id: mediaId });
       }
     }
@@ -21,10 +22,11 @@ const withMedia = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
+        isFetchingMedia,
         mediaId,
         getMedia
       } = this.props;
-      if (shouldFetch && mediaId && mediaId !== prevProps.mediaId) {
+      if (shouldFetch && !isFetchingMedia && mediaId && mediaId !== prevProps.mediaId) {
         getMedia({ id: mediaId });
       }
     }
@@ -40,6 +42,7 @@ const withMedia = WrappedComponent => {
     const media = mediasSelectors.getMediaById(state, mediaId);
     if (!media) return { mediaId };
     const {
+      isFetching: isFetchingMedia,
       creatorId: mediaCreatorId,
       dateCreation: mediaDateCreation,
       type: mediaType,
@@ -64,6 +67,7 @@ const withMedia = WrappedComponent => {
 
   WithMedia.defaultProps = {
     shouldFetch: true,
+    isFetchingMedia: false,
     mediaId: "",
     mediaCreatorId: "",
     mediaDateCreation: "",
@@ -75,6 +79,7 @@ const withMedia = WrappedComponent => {
 
   WithMedia.propTypes = {
     shouldFetch: PropTypes.bool,
+    isFetchingMedia: PropTypes.bool,
     mediaId: PropTypes.string,
     mediaCreatorId: PropTypes.string,
     mediaDateCreation: PropTypes.string,

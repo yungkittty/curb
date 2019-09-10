@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import ListFlat from "../../components/list-flat";
+import ListSection from "../../components/list-section";
 import GroupListHeader from "./components/group-list-header";
 import GroupListItemHeader from "./components/group-list-item-header";
 import GroupListItemMedia from "./components/group-list-item-media";
@@ -173,11 +173,13 @@ class Group extends React.Component {
     const isButtonFloatShowed = isCurrentUser && ((isFeed && isCurrentUserIn) || isCurrentUserCreator);
     return (
       <React.Fragment>
-        <ListFlat
-          // eslint-disable-line
-          data={this.getData()}
-          keyExtractor={(itemId, itemIndex) => (_.isString(itemId) ? itemId : itemIndex.toString())}
-          stickyHeaderIndices={[0]}
+        <ListSection
+          sections={
+            !isFeed
+              ? [{ data: [{}], renderItem: this.renderListItemInfo }]
+              : [{ data: groupMediasId, renderItem: this.renderListItemMedia }]
+          }
+          keyExtractor={groupMediaId => groupMediaId}
           ListHeaderComponent={this.renderListHeader}
           renderItem={this.renderListItem}
           scrollEventThrottle={1}

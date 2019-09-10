@@ -75,6 +75,16 @@ function* getGroupsRequestSaga(action) {
   }
 }
 
+function* postGroupInviteTokenRequestSaga(action) {
+  try {
+    const { data: payload } = yield call(groupsApi.getGroups, action.payload);
+    yield put(groupsActions.getGroupsSuccess(payload));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(groupsActions.getGroupsFailure({ ids: action.payload.ids, errorCode }));
+  }
+}
+
 function* postGroupJoinRequestSaga(action) {
   try {
     yield call(groupsApi.postGroupJoin, action.payload);
@@ -121,8 +131,7 @@ const groupsSaga = all([
   takeLatest(groupsActionsTypes.PATCH_GROUP_REQUEST, patchGroupRequestSaga),
   takeLatest(groupsActionsTypes.DELETE_GROUP_REQUEST, deleteGroupRequestSaga),
   takeNormalize(groupsActionsTypes.GET_GROUPS_REQUEST, getGroupsRequestSaga),
-  takeLatest(groupsActionsTypes.POST_GROUP_JOIN_REQUEST, postGroupJoinRequestSaga),
-  takeLatest(groupsActionsTypes.POST_GROUP_UNJOIN_REQUEST, postGroupUnjoinRequestSaga),
+  takeLatest(groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST, postGroupInviteTokenRequestSaga),
   takeLatest(groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST, getGroupInviteTokenRequestSaga)
 ]);
 

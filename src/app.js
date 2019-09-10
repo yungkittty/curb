@@ -31,8 +31,8 @@ const App = () => {
             <AppNavigation />
             <Switch>
               <Route exact path="/" component={Discovery} />
-              <RouteNormalize path="/users/:id" component={User} />
-              <RouteNormalize path="/groups/:id" component={Group} />
+              <Route path="/users/:id" component={User} />
+              <Route path="/groups/:id" component={Group} />
               <Redirect to="/" />
             </Switch>
           </AppContainer>

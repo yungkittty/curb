@@ -18,36 +18,50 @@ const ButtonFloat = ({
   size,
   theme,
   ...others
-}) => {
-  const floatRight = platformBools.isWeb ? 30 : 15;
-  const floatBottom = platformBools.isWeb ? 30 : 15;
-  const floatPosition = "absolute";
-  const floatOverflow = "visible";
-  return (
-    <Circle
-      {...others}
-      as={Button}
-      diameter={diameter}
-      backgroundColor={theme.primaryColor}
-      component={!others.children ? component : undefined}
-      size={!others.children ? size : undefined}
-      color={!others.children ? theme.secondaryVariantColor : undefined}
-      style={{
-        right: floatRight,
-        bottom: floatBottom,
-        ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
-        position: floatPosition,
-        overflow: floatOverflow
-      }}
-    />
-  );
-};
+}) => (
+  <Circle
+    {...others}
+    as={Button}
+    diameter={diameter}
+    backgroundColor={theme.primaryColor}
+    component={!others.children ? component : undefined}
+    size={!others.children ? size : undefined}
+    color={!others.children ? theme.secondaryVariantColor : undefined}
+    style={{
+      ...style,
+      position: "absolute",
+      zIndex: 4,
+      ...(platformBools.isWeb
+        ? {
+            boxShadow: "0px 2.4px 2.16px 0px rgba(0, 0, 0, 0.186)"
+          }
+        : {}),
+      ...(platformBools.isNative
+        ? {
+            ...(platformBools.isAndroid
+              ? {
+                  elevation: 4
+                }
+              : {
+                  shadowOffset: { width: 0, height: 2.4 },
+                  shadowRadius: 2.16,
+                  shadowColor: "rgba(0, 0, 0, 1)",
+                  shadowOpacity: 0.186
+                })
+          }
+        : {})
+    }}
+  />
+);
 
 ButtonFloat.defaultProps = {
   diameter: "medium",
   component: Icon,
   size: "small",
-  style: {}
+  style: platformBools.isWeb
+    ? // eslint-disable-line
+      { right: 30, bottom: 30 }
+    : { right: 15, bottom: 15 }
 };
 
 ButtonFloat.propTypes = {

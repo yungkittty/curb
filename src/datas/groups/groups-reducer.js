@@ -75,12 +75,7 @@ const byId = (state = {}, action) => {
           (groups, groupId) => ({
             // eslint-disable-line
             ...groups,
-            [groupId]: {
-              // eslint-disable-line
-              ...state[groupId],
-              isFetching: true,
-              errorCode: ""
-            }
+            [groupId]: { ...state[groupId], isFetching: true, errorCode: "" }
           }),
           {}
         )
@@ -94,13 +89,7 @@ const byId = (state = {}, action) => {
           (groups, group) => ({
             // eslint-disable-line
             ...groups,
-            [group.id]: {
-              // eslint-disable-line
-              ...state[group.id],
-              ...group,
-              isFetching: false,
-              errorCode: ""
-            }
+            [group.id]: { ...state[group.id], ...group, isFetching: false, errorCode: "" }
           }),
           {}
         )
@@ -114,12 +103,7 @@ const byId = (state = {}, action) => {
           (groups, groupId) => ({
             // eslint-disable-line
             ...groups,
-            [groupId]: {
-              // eslint-disable-line
-              ...state[groupId],
-              isFetching: false,
-              errorCode: action.payload.errorCode
-            }
+            [groupId]: { ...state[groupId], isFetching: false, errorCode: action.payload.errorCode }
           }),
           {}
         )
