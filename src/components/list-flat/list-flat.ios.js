@@ -4,12 +4,8 @@ import { FlatList } from "react-native";
 
 const ListFlat = props => <FlatList {...props} />;
 
-ListFlat.defaultProps = {
-  bounces: false
-};
+ListFlat.defaultProps = { bounces: false };
 
-ListFlat.propTypes = {
-  bounces: PropTypes.bool
-};
+ListFlat.propTypes = { bounces: PropTypes.bool };
 
 export default ListFlat;

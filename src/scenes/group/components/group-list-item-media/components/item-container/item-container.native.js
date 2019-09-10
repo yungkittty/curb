@@ -7,8 +7,9 @@ const ItemContainer = styled(Container)`
   flex-direction: column;
   width: 100%;
   min-width: 100%;
-  padding: 0px 40px;
+  margin: auto;
   margin-bottom: 40px;
+  padding: 0px 40px;
 `;
 
 export default ItemContainer;

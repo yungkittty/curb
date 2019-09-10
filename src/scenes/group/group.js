@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import GroupList from "./components/group-list";
+import ListSection from "../../components/list-section";
 import GroupListHeader from "./components/group-list-header";
 import GroupListSectionHeader from "./components/group-list-section-header";
 import GroupListItemInfo from "./components/group-list-item-info";
@@ -135,8 +135,7 @@ class Group extends React.Component {
     const isCurrentUserCreator = groupCreatorId === currentUserId;
     return (
       <React.Fragment>
-        <GroupList
-          isFeed={isFeed}
+        <ListSection
           sections={
             !isFeed
               ? [{ data: [{}], renderItem: this.renderListItemInfo }]

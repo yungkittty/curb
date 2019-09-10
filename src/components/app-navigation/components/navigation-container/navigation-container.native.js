@@ -27,19 +27,22 @@ class NavigationContainer extends React.Component {
   moveContainer(event) {
     const { containerAnimated, isContainerShowed } = this.state;
     const { pageX } = event.nativeEvent;
-    if (!isContainerShowed) this.setState({ isContainerShowed: true });
+    if (!isContainerShowed)
+      // eslint-disable-line
+      this.setState({ isContainerShowed: true });
     containerAnimated.setValue(pageX > 70 ? 0 : pageX - 70);
   }
 
   moveContainerTo(toBegin) {
     const { containerAnimated, isContainerShowed } = this.state;
-    if (!isContainerShowed) this.setState({ isContainerShowed: true });
     Animated.spring(containerAnimated, {
       toValue: toBegin ? 0 : -70,
       easing: Easing.inOut(Easing.quad),
       useNativeDriver: true
     }).start();
-    this.setState({ isContainerShowed: toBegin });
+    if (isContainerShowed !== toBegin)
+      // eslint-disable-line
+      this.setState({ isContainerShowed: toBegin });
   }
 
   moveContainerToEnd(event) {

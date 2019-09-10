@@ -4,12 +4,8 @@ import { ScrollView } from "react-native";
 
 const ContainerScroll = props => <ScrollView {...props} />;
 
-ContainerScroll.defaultProps = {
-  bounces: false
-};
+ContainerScroll.defaultProps = { bounces: false };
 
-ContainerScroll.propTypes = {
-  bounces: PropTypes.bool
-};
+ContainerScroll.propTypes = { bounces: PropTypes.bool };
 
 export default ContainerScroll;

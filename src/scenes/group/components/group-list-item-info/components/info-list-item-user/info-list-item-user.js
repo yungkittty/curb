@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from "react";
 import PropTypes from "prop-types";
 import ListItemCircleText from "../../../../../../components/list-item-circle-text"; // !
@@ -12,11 +10,18 @@ const InfoListItemUser = ({ userId, userName, theme }) => (
     as={Button}
     onClick={`/users/${userId}`}
     component={ImageUser}
+    shouldFetch={false}
     userId={userId}
     size="large"
     placeholderColor={theme.primaryVariantColor}
     text={userName}
   />
 );
+
+InfoListItemUser.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired // eslint-disable-line
+};
 
 export default withUser(InfoListItemUser);

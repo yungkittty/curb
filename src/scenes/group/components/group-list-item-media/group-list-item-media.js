@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Container from "../../../../components/container";
 import ItemContainer from "./components/item-container";
 import ItemHeader from "./components/item-header";
 import ItemMedia from "./components/item-media";
 import withMedia from "../../../../hocs/with-media";
 
-const GroupListSectionMedia = ({
+const GroupListItemMedia = ({
   // eslint-disable-line
   mediaCreatorId,
   mediaDateCreation,
@@ -14,24 +13,22 @@ const GroupListSectionMedia = ({
   mediaData,
   theme
 }) => (
-  <Container>
-    <ItemContainer>
-      <ItemHeader
-        // eslint-disable-line
-        mediaCreatorId={mediaCreatorId}
-        mediaDateCreation={mediaDateCreation}
-        theme={theme}
-      />
-      <ItemMedia
-        // eslint-disable-line
-        mediaType={mediaType}
-        mediaData={mediaData}
-      />
-    </ItemContainer>
-  </Container>
+  <ItemContainer>
+    <ItemHeader
+      // eslint-disable-line
+      userId={mediaCreatorId}
+      mediaDateCreation={mediaDateCreation}
+      theme={theme}
+    />
+    <ItemMedia
+      // eslint-disable-line
+      mediaType={mediaType}
+      mediaData={mediaData}
+    />
+  </ItemContainer>
 );
 
-GroupListSectionMedia.propTypes = {
+GroupListItemMedia.propTypes = {
   mediaCreatorId: PropTypes.string.isRequired,
   mediaDateCreation: PropTypes.string.isRequired,
   mediaType: PropTypes.string.isRequired,
@@ -39,4 +36,4 @@ GroupListSectionMedia.propTypes = {
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default withMedia(GroupListSectionMedia);
+export default withMedia(GroupListItemMedia);
