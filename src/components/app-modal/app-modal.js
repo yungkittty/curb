@@ -51,8 +51,11 @@ class AppModal extends Component {
     } = this.props;
     return isShowed ? (
       <ModalOverlay
+        appModalTransitionEnd={this.appModalTransitionEnd}
         isAppModalShowed={isAppModalShowed}
-        appModalTransitionEnd={this.appModalTransitionEnd} // !
+        areAppModalButtonsDisabled={areAppModalButtonsDisabled}
+        appModalFooterOnClick={appModalFooterOnClick}
+        hideAppModal={hideAppModal}
       >
         <ModalContainer isAppModalShowed={isAppModalShowed}>
           <ModalHeader

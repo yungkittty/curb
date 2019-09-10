@@ -18,17 +18,22 @@ const OverlayBlur = WrappedComponent => {
 
       this.onTransitionEnd = this.onTransitionEnd.bind(this);
       this.startAnimation = this.startAnimation.bind(this);
+
+      this.wrappedComponent = React.createRef();
     }
 
     componentDidMount() {
       const { isAppModalShowed } = this.props;
       this.startAnimation(isAppModalShowed);
+      this.wrappedComponent.current.focus();
     }
 
     componentDidUpdate(prevProps) {
-      const { isAppModalShowed } = this.props;
+      const { isAppModalShowed, areAppModalButtonsDisabled } = this.props;
       if (prevProps.isAppModalShowed !== isAppModalShowed) {
         this.startAnimation(isAppModalShowed);
+      } else if (prevProps.areAppModalButtonsDisabled !== areAppModalButtonsDisabled) {
+        this.wrappedComponent.current.focus();
       }
     }
 
@@ -48,15 +53,22 @@ const OverlayBlur = WrappedComponent => {
 
     render() {
       const { style } = this.state;
-      return <WrappedComponent {...this.props} onTransitionEnd={this.onTransitionEnd} style={style} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          ref={this.wrappedComponent}
+          onTransitionEnd={this.onTransitionEnd}
+          style={style}
+        />
+      );
     }
   }
 
   _OverlayBlur.propTypes = {
-    isAppModalShowed: PropTypes.bool.isRequired,
     appModalTransitionEnd: PropTypes.func.isRequired,
-    // eslint-disable-next-line
-    theme: PropTypes.object.isRequired
+    isAppModalShowed: PropTypes.bool.isRequired,
+    areAppModalButtonsDisabled: PropTypes.bool.isRequired,
+    theme: PropTypes.object.isRequired // eslint-disable-line
   };
 
   return withTheme(_OverlayBlur);
