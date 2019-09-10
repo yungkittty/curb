@@ -65,9 +65,9 @@ const OverlayBlur = WrappedComponent => {
   }
 
   _OverlayBlur.propTypes = {
-    appModalTransitionEnd: PropTypes.func.isRequired,
     isAppModalShowed: PropTypes.bool.isRequired,
     areAppModalButtonsDisabled: PropTypes.bool.isRequired,
+    appModalTransitionEnd: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired // eslint-disable-line
   };
 
