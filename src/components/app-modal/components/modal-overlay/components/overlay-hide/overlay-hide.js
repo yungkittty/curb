@@ -5,7 +5,6 @@ const OverlayHide = WrappedComponent => {
   // eslint-disable-next-line
   const _OverlayHide = ({
     // eslint-disable-line
-    areAppModalButtonsDisabled,
     appModalFooterOnClick,
     hideAppModal,
     ...others
@@ -19,7 +18,7 @@ const OverlayHide = WrappedComponent => {
             hideAppModal();
             break;
           case 13:
-            if (appModalFooterOnClick && !areAppModalButtonsDisabled)
+            if (appModalFooterOnClick && !others.areAppModalButtonsDisabled)
               // eslint-disable-line
               appModalFooterOnClick();
             break;
