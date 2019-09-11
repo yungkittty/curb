@@ -19,7 +19,7 @@ class InputForm extends Component {
     return (
       <FormContainer style={containerStyle} size={size}>
         {placeholder && (
-          <FormPlaceholder weight={300} upper={value !== "" || focused}>
+          <FormPlaceholder weight={300} upper={(value && value !== "") || focused}>
             {placeholder}
           </FormPlaceholder>
         )}

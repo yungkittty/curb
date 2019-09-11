@@ -19,6 +19,9 @@ const frCommon = {
   cancel: "Annuler",
   edit: "Modifier",
   reset: "Réinitialiser",
+  delete: "Supprimer",
+  pin: "Épingler",
+  report: "Signaler",
   post: "Publier",
   selectImage: "Choisir une imge",
   selectVideo: "Choisir une vidéo",
@@ -28,7 +31,8 @@ const frCommon = {
   permissionDenied: "Permission non accordée",
   askCameraText:
     "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application à y accéder",
-  authorize: "Autoriser"
+  authorize: "Autoriser",
+  readMore: "lire la suite"
 };
 
 export default frCommon;

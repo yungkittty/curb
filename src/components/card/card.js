@@ -1,16 +1,83 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import withUser from "../../hocs/with-user";
+import withGroup from "../../hocs/with-group";
 import CardContainer from "./components/card-container";
+import CardContent from "./components/card-content";
+import CardAddMediaTypes from "./components/card-add-media-types";
 import CardFooter from "./components/card-footer";
+import CardFloatingButton from "./components/card-floating-button";
+import getCardSize from "./utils/get-card-size";
 
-const Card = ({ size, postId, userId, groupId, textDescription }) => (
-  <CardContainer size={size}>
-    <CardFooter userId={userId} textDescription={textDescription} />
-  </CardContainer>
-);
+const Card = ({
+  size,
+  postMediaTypes,
+  mediaList,
+  groupDescription,
+  onFloatingButtonClick,
+  groupId,
+  ...others
+}) => {
+  const cardSize = getCardSize({
+    size,
+    isCardExtended: _.size(_.omit(mediaList, "text")) > 0 || groupId,
+    isPostMode: !!postMediaTypes
+  });
+  return (
+    <CardContainer cardSize={cardSize} onClick={() => groupId && `/groups/${groupId}`}>
+      {cardSize.isCardExtended && (
+        <CardContent
+          mediaList={_.omit(mediaList, "text")}
+          cardSize={cardSize}
+          groupId={groupId}
+          {...others}
+        />
+      )}
+      {postMediaTypes && <CardAddMediaTypes postMediaTypes={postMediaTypes} />}
+      <CardFooter
+        cardSize={cardSize}
+        textDescription={groupDescription}
+        isPost={!!postMediaTypes}
+        postText={
+          _.find(postMediaTypes, { type: "text" }) && {
+            ..._.find(postMediaTypes, { type: "text" }),
+            value: mediaList.text
+          }
+        }
+        groupId={groupId}
+        {...others}
+      />
+      {onFloatingButtonClick && (
+        <CardFloatingButton
+          cardSize={cardSize}
+          postType={!!postMediaTypes && _.size(_.omit(mediaList, "text")) === 0}
+          onFloatingButtonClick={onFloatingButtonClick}
+          {...others}
+        />
+      )}
+    </CardContainer>
+  );
+};
 
-Card.defaultProps = { size: undefined, postId: undefined, groupId: undefined };
+Card.defaultProps = {
+  size: undefined,
+  postMediaTypes: undefined,
+  mediaList: undefined,
+  groupDescription: undefined,
+  onFloatingButtonClick: undefined,
+  groupId: undefined
+};
 
-Card.propTypes = { size: PropTypes.string, postId: PropTypes.string, groupId: PropTypes.string };
+Card.propTypes = {
+  size: PropTypes.string,
+  postMediaTypes: PropTypes.arrayOf(
+    PropTypes.shape({ type: PropTypes.string.isRequired, onClick: PropTypes.func, onSelect: PropTypes.func })
+  ),
+  mediaList: PropTypes.object, // eslint-disable-line
+  groupDescription: PropTypes.string,
+  onFloatingButtonClick: PropTypes.func,
+  groupId: PropTypes.string
+};
 
-export default Card;
+export default withGroup(withUser(Card));

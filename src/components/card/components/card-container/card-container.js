@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import Container from "../../../container";
 
+// https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 8
+
 const CardContainer = styled(Container)`
-  width: ${({ size }) => {
-    switch (size) {
-      case "small":
-        return 415;
-      default:
-        return 600;
-    }
-  }}px;
+  height: max-content;
+  width: ${({ cardSize }) => cardSize.width}px;
+  position: relative;
   border-radius: 12px;
-  background: red;
+  overflow: hidden;
+  box-shadow: 0px 4.8px 4.32px 0px rgba(0, 0, 0, 0.192);
 `;
 
 export default CardContainer;

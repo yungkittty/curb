@@ -1,3 +1,3 @@
-import Card from "./card";
+import CardContainer from "./card-container";
 
-export default Card;
+export default CardContainer;

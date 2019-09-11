@@ -1,28 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FooterContainer from "./components/footer-container";
-import FooterInfos from "./components/footer-infos";
-import FooterTextDescription from "./components/footer-text-description";
+import FooterOrigin from "./components/footer-origin";
+import FooterTextInput from "./components/footer-text-input";
+import FooterText from "./components/footer-text";
 
-const CardFooter = ({ size, userId, groupId, textDescription }) => (
-  <FooterContainer size={size}>
-    <FooterInfos userId={userId} />
-    <FooterTextDescription>{textDescription}</FooterTextDescription>
+const CardFooter = ({ cardSize, userId, textDescription, isPost, postText, ...others }) => (
+  <FooterContainer cardSize={cardSize}>
+    {userId && <FooterOrigin cardSize={cardSize} userId={userId} isPost={isPost} {...others} />}
+    {isPost ? (
+      postText && <FooterTextInput isMultiline {...postText} />
+    ) : (
+      <FooterText cardSize={cardSize} userId={userId} textDescription={textDescription} />
+    )}
   </FooterContainer>
 );
 
 CardFooter.defaultProps = {
-  size: undefined,
   userId: undefined,
-  groupId: undefined,
   textDescription: undefined
 };
 
 CardFooter.propTypes = {
-  size: PropTypes.string,
+  cardSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }).isRequired,
   userId: PropTypes.string,
-  groupId: PropTypes.string,
-  textDescription: PropTypes.string
+  textDescription: PropTypes.string,
+  isPost: PropTypes.bool.isRequired,
+  postText: PropTypes.shape({ value: PropTypes.string, onChange: PropTypes.func }).isRequired
 };
 
 export default CardFooter;
