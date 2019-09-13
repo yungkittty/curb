@@ -8,7 +8,7 @@ const MessageAnimation = WrappedComponent => {
     constructor(props) {
       super(props);
       // eslint-disable-next-line
-      this.initialTop = -(windowDimensions.statusBarHeight + 50);
+      this.initialTop = -(windowDimensions.getStatusBarHeight() + 50);
       this.state = { top: new Animated.Value(this.initialTop) };
       this.closeMessage = this.closeMessage.bind(this);
     }

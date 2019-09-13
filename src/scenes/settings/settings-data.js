@@ -5,6 +5,7 @@ import SettingsAbout from "./scenes/settings-about";
 
 const settingsData = [
   {
+    icon: "cogs",
     id: "general",
     scene: SettingsGeneral
   },

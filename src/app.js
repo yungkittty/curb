@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React from "react";
-import { isMobile } from "react-device-detect";
 import AppSplash from "./components/app-splash";
 import AppDeep from "./components/app-deep";
 import AppKeyboardAvoidingView from "./components/app-keyboard-avoiding-view";
@@ -16,29 +15,33 @@ import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
+import { platformBools } from "./configurations/platform";
 
-const App = () => (
-  <Router>
-    {isMobile ? (
-      <AppDownload />
-    ) : (
-      <React.Fragment>
-        <AppDeep />
-        <AppContainer>
-          <AppNavigation />
-          <Switch>
-            <Route exact path="/" component={Discovery} />
-            <Route path="/users/:id" component={User} />
-            <Route path="/groups/:id" component={Group} />
-            <Redirect to="/" />
-          </Switch>
-        </AppContainer>
-        <AppModal />
-        <AppAlert />
-      </React.Fragment>
-    )}
-  </Router>
-);
+const App = () => {
+  const { isWeb, isMobile } = platformBools;
+  return (
+    <Router>
+      {isWeb && isMobile ? (
+        <AppDownload />
+      ) : (
+        <React.Fragment>
+          <AppDeep />
+          <AppContainer>
+            <AppNavigation />
+            <Switch>
+              <Route exact path="/" component={Discovery} />
+              <Route path="/users/:id" component={User} />
+              <Route path="/groups/:id" component={Group} />
+              <Redirect to="/" />
+            </Switch>
+          </AppContainer>
+          <AppModal />
+          <AppAlert />
+        </React.Fragment>
+      )}
+    </Router>
+  );
+};
 
 export default _.flowRight([
   // eslint-disable-line

@@ -91,8 +91,13 @@ Map.propTypes = {
   longitude: PropTypes.number.isRequired
 };
 
-// eslint-disable-next-line
-export default React.forwardRef((props, forwardedRef) => (
+export default React.forwardRef(
   // eslint-disable-line
-  <Map {...props} forwardedRef={forwardedRef} />
-));
+  (props, forwardedRef) => (
+    <Map
+      // eslint-disable-line
+      {...props}
+      forwardedRef={forwardedRef}
+    />
+  )
+);
