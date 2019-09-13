@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withTheme } from "styled-components";
 import FormContainer from "./components/form-container";
 import FormPlaceholder from "./components/form-placeholder";
 import FormDropdown from "./components/form-dropdown";
 import FormInput from "./components/form-input";
+import FormValueMaxLength from "./components/form-value-max-length";
+import FormValueMaxLengthText from "./components/form-value-max-length-text";
 import FormError from "./components/form-error";
+import Icon from "../icon";
 
 class InputForm extends Component {
   constructor(props) {
@@ -15,22 +19,29 @@ class InputForm extends Component {
 
   render() {
     const {
+      theme,
       inputType,
       options,
       containerStyle,
       textStyle,
       placeholder,
+      isPlaceholderStatic,
       size,
       error,
       value,
+      valueMaxLength,
       ...others
     } = this.props;
     const { focused } = this.state;
-
+    const isFull = valueMaxLength && value.length >= valueMaxLength;
     return (
       <FormContainer style={containerStyle} size={size} error={error}>
-        {placeholder && (
-          <FormPlaceholder weight={300} upper={value !== "" || (inputType !== "dropdown" && focused)}>
+        {placeholder && ((isPlaceholderStatic && value === "") || !isPlaceholderStatic) && (
+          <FormPlaceholder
+            weight={300}
+            isPlaceholderStatic={isPlaceholderStatic}
+            upper={value !== "" || (inputType !== "dropdown" && focused)}
+          >
             {placeholder}
           </FormPlaceholder>
         )}
@@ -48,8 +59,20 @@ class InputForm extends Component {
             style={textStyle}
             onFocus={() => this.setState({ focused: true })}
             onBlur={() => this.setState({ focused: false })}
-            value={value}
+            value={!isFull ? value : value.substr(0, valueMaxLength)}
           />
+        )}
+        {valueMaxLength && (
+          <FormValueMaxLength>
+            <FormValueMaxLengthText type="h5" weight={700} isFull={isFull}>
+              {isFull ? 0 : valueMaxLength - value.length}
+            </FormValueMaxLengthText>
+            <Icon
+              icon="font"
+              color={!isFull ? theme.secondaryVariantColor : theme.errorColor}
+              size="extra-extra-small"
+            />
+          </FormValueMaxLength>
         )}
         {error && (
           <FormError type="h5" weight={300}>
@@ -68,22 +91,25 @@ InputForm.defaultProps = {
   textStyle: undefined,
   size: undefined,
   placeholder: undefined,
+  isPlaceholderStatic: false,
+  valueMaxLength: undefined,
   error: undefined
 };
 
 InputForm.propTypes = {
+  theme: PropTypes.object.isRequired, // eslint-disable-line
   inputType: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string.isRequired })),
-  // eslint-disable-next-line
-  containerStyle: PropTypes.object,
-  // eslint-disable-next-line
-  textStyle: PropTypes.object,
+  containerStyle: PropTypes.object, // eslint-disable-line
+  textStyle: PropTypes.object, // eslint-disable-line
   size: PropTypes.oneOf(["modal", "large"]),
   placeholder: PropTypes.string,
+  isPlaceholderStatic: PropTypes.bool,
   value: PropTypes.string.isRequired,
+  valueMaxLength: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   error: PropTypes.string
 };
 
-export default InputForm;
+export default withTheme(InputForm);

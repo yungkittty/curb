@@ -29,6 +29,7 @@ const enGroupOptions = {
     public: "Your group will be visible by everyone through the discovery",
     private: "Your group will only be accessible by invitation"
   },
+  groupDescription: "Description",
   groupModules: "Modules",
   groupTheme: "Theme",
   groupThemeOptions: {

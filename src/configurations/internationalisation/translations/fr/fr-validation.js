@@ -25,6 +25,9 @@ const frValidation = {
   discoverability: {
     missing: "Vous devez choisir une option"
   },
+  description: {
+    missing: "Vous devez entrer une courte description"
+  },
   modules: {
     missing: "Vous devez choisir au moins un module"
   },

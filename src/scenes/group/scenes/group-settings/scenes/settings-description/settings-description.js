@@ -2,51 +2,73 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import Loader from "../../../../../../components/loader";
 import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import GroupCreate2 from "../group-create-2"; // eslint-disable-line
-import GroupCreate4 from "../group-create-4"; // eslint-disable-line
 import withAppModal from "../../../../../../hocs/with-app-modal";
 import InputForm from "../../../../../../components/input-form";
+/* eslint-disable-next-line */
+import GroupSettings from "../../group-settings";
+import withGroup from "../../../../../../hocs/with-group";
 
-class GroupCreate3 extends Component {
+class SettingsDescription extends Component {
   constructor(props) {
     super(props);
     const {
-      // eslint-disable-line
-      setAppModalHeaderSteps,
+      t,
       setAppModalHeaderLeftButton,
+      setAppModalScene,
       setAppModalFooterButton,
-      t
+      setAppModalSceneData,
+      groupDescription
     } = this.props;
 
-    this.goToPrev = this.goToPrev.bind(this);
-    this.goToNext = this.goToNext.bind(this);
+    this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ currentStep: 3, steps: 5 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
-    setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
+    setAppModalHeaderLeftButton({
+      icon: "arrow-left",
+      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
+    });
+    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
+    setAppModalSceneData({ newGroupDescription: { value: groupDescription, error: undefined } });
   }
 
-  goToPrev() {
-    const { setAppModalScene } = this.props;
-    setAppModalScene({ scene: GroupCreate2, direction: -1 });
+  componentDidUpdate(prevProps) {
+    const {
+      // eslint-disable-line
+      isFetchingGroups,
+      enableAppModalButtons,
+      disableAppModalButtons
+    } = this.props;
+    if (prevProps.isFetchingGroups === isFetchingGroups) return;
+    if (isFetchingGroups) disableAppModalButtons();
+    else enableAppModalButtons();
   }
 
-  goToNext() {
-    const { setAppModalScene } = this.props;
-    if (this.checkForm()) setAppModalScene({ scene: GroupCreate4, direction: 1 });
+  submit() {
+    const {
+      patchGroup,
+      groupId,
+      newGroupDescription: { value },
+      groupDescription
+    } = this.props;
+    if (this.checkForm() && value !== groupDescription) {
+      patchGroup({
+        id: groupId,
+        description: value
+      });
+    }
   }
 
   checkForm() {
     const {
-      groupDescription: { value }
+      newGroupDescription: { value }
     } = this.props;
-    return this.checkInput("groupDescription", value);
+    return this.checkInput("newGroupDescription", value);
   }
 
   checkInput(id, value) {
@@ -64,9 +86,12 @@ class GroupCreate3 extends Component {
   render() {
     const {
       t,
-      groupDescription: { value, error }
+      isFetchingGroups,
+      newGroupDescription: { value, error }
     } = this.props;
-    return (
+    return isFetchingGroups ? (
+      <Loader />
+    ) : (
       <AppModalSceneContainer>
         <AppModalSceneTitle>
           {/* eslint-disable-line */}
@@ -77,7 +102,7 @@ class GroupCreate3 extends Component {
           {error && t(`validation:description.${error}`)}
         </AppModalSceneError>
         <InputForm
-          id="groupDescription"
+          id="newGroupDescription"
           placeholder={t("groupCreate:groupDescriptionPlaceholder")}
           isPlaceholderStatic
           value={value}
@@ -91,17 +116,23 @@ class GroupCreate3 extends Component {
   }
 }
 
-GroupCreate3.defaultProps = {
-  groupDescription: { value: "", error: undefined }
+SettingsDescription.defaultProps = {
+  newGroupDescription: { value: "", error: undefined }
 };
 
-GroupCreate3.propTypes = {
-  setAppModalHeaderSteps: PropTypes.func.isRequired,
+SettingsDescription.propTypes = {
+  enableAppModalButtons: PropTypes.func.isRequired,
+  disableAppModalButtons: PropTypes.func.isRequired,
+  setAppModalHeaderText: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  groupDescription: PropTypes.shape({
+  isFetchingGroups: PropTypes.bool.isRequired,
+  patchGroup: PropTypes.func.isRequired,
+  groupId: PropTypes.string.isRequired,
+  groupDescription: PropTypes.string.isRequired,
+  newGroupDescription: PropTypes.shape({
     value: PropTypes.string,
     error: PropTypes.string
   }),
@@ -111,5 +142,6 @@ GroupCreate3.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
+  withGroup,
   withTranslation("groupOptions")
-])(GroupCreate3);
+])(SettingsDescription);

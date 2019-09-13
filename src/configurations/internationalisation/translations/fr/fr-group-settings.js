@@ -5,6 +5,10 @@ const frGroupSettings = {
     title: "Découvrabilité",
     description: "Modifier la découvrabilité (public ou privé)"
   },
+  description: {
+    title: "Description",
+    description: "Modifier la description"
+  },
   modules: {
     title: "Modules",
     description: "Modifier les modules disponibles"

@@ -1,47 +1,50 @@
 import _ from "lodash";
 import React from "react";
-import styled, { withTheme } from "styled-components";
+import PropTypes from "prop-types";
+import { withTheme } from "styled-components";
 import { withTranslation } from "react-i18next";
-import DropdownContainer from "./components/dropdown-container/dropdown-container";
+import DropdownContainer from "./components/dropdown-container";
+import DropdownSelector from "./components/dropdown-selector";
 import Icon from "../../../icon";
 
-const FormDropdown = styled(
-  ({ className, t, tReady, theme, id, options, onChange, value: selectedValue, ...others }) => (
-    <DropdownContainer>
-      <select
-        className={className}
-        value={selectedValue}
-        onChange={event => onChange({ target: { id, value: event.target.value } })}
-        {...others}
-      >
-        <option disabled defaultValue style={{ display: "none" }} />
-        {_.map(options, ({ key, value }, index) => (
-          <option key={index} value={key}>
-            {value}
-          </option>
-        ))}
-      </select>
-      <Icon
-        icon="caret-down"
-        color={theme.secondaryVariantColor}
-        size="extra-small"
-        style={{ zIndex: -1, position: "absolute", right: 15 }}
-      />
-    </DropdownContainer>
-  )
-)`
-  font-family: "Montserrat-Regular";
-  background: transparent;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 18px;
-  color: ${({ theme }) => theme.fontColor};
-  width: 100%;
-  height: 100%;
-  border-width: 0px;
-  appearence: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-`;
+const FormDropdown = ({ t, theme, id, options, onChange, value: selectedValue, ...others }) => (
+  <DropdownContainer>
+    <DropdownSelector
+      {...others}
+      value={selectedValue}
+      onChange={({ target }) => onChange({ target: { id, value: target.value } })}
+    >
+      <option disabled defaultValue style={{ display: "none" }} />
+      {_.map(options, ({ key, value }, index) => (
+        <option key={index} value={key}>
+          {value}
+        </option>
+      ))}
+    </DropdownSelector>
+    <Icon
+      icon="caret-down"
+      color={theme.secondaryVariantColor}
+      size="extra-small"
+      style={{ zIndex: -1, position: "absolute", right: 15 }}
+    />
+  </DropdownContainer>
+);
 
-export default _.flowRight([withTranslation("groupCreate"), withTheme])(FormDropdown);
+FormDropdown.defaultProps = {
+  value: undefined
+};
+
+FormDropdown.propTypes = {
+  t: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  id: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.string.isRequired })).isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string
+};
+
+export default _.flowRight([
+  // estlint-disable-next-line
+  withTranslation("groupCreate"),
+  withTheme
+])(FormDropdown);

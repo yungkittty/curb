@@ -27,7 +27,7 @@ class GroupCreate2 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ currentStep: 2, steps: 4 });
+    setAppModalHeaderSteps({ currentStep: 2, steps: 5 });
     setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }

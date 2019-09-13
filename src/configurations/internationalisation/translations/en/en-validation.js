@@ -25,6 +25,9 @@ const enValidation = {
   discoverability: {
     missing: "You must choose an option"
   },
+  description: {
+    missing: "You must enter a short description"
+  },
   modules: {
     missing: "You must choose at least one module"
   },

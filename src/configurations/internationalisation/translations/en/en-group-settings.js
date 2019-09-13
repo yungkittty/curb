@@ -5,6 +5,10 @@ const enGroupSettings = {
     title: "Discoverability",
     description: "Edit the discoverability (public or private)"
   },
+  description: {
+    title: "Description",
+    description: "Edit the description"
+  },
   modules: {
     title: "Modules",
     description: "Edit the available modules"

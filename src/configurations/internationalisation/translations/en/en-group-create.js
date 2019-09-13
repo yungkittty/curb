@@ -1,5 +1,6 @@
 const enGroupCreate = {
-  groupCreate: "Create group"
+  groupCreate: "Create group",
+  groupDescriptionPlaceholder: "In this group we share about..."
 };
 
 export default enGroupCreate;
