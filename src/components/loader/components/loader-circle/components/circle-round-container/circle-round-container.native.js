@@ -13,9 +13,8 @@ class CircleRoundContainer extends Component {
     this.startAnimation = this.startAnimation.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    const { mounted } = this.props;
-    if (!prevProps.mounted && mounted) this.startAnimation();
+  componentDidMount() {
+    this.startAnimation();
   }
 
   startAnimation() {

@@ -8,7 +8,6 @@ class LoaderCircleContainer extends Component {
     super(props);
 
     this.state = {
-      mounted: false,
       rotation: new Animated.Value(0)
     };
   }
@@ -24,7 +23,6 @@ class LoaderCircleContainer extends Component {
         useNativeDriver: true
       })
     ).start();
-    this.setState({ mounted: true });
   }
 
   render() {
@@ -44,7 +42,7 @@ class LoaderCircleContainer extends Component {
           ]
         }}
       >
-        <CircleContainer {...others}>{innerDiameter => children(innerDiameter, mounted)}</CircleContainer>
+        <CircleContainer {...others}>{innerDiameter => children(innerDiameter)}</CircleContainer>
       </Animated.View>
     );
   }
