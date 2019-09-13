@@ -2,9 +2,11 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import SettingsAboutContainer from "./settings-about-container";
+import AboutLogo from "./components/about-logo";
+import AboutContainer from "./components/about-container";
+import AboutTitle from "./components/about-title";
+import AboutButton from "./components/about-button";
 import Text from "../../../../components/text";
-import Button from "../../../../components/button";
 import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable */
 import Settings from "../../../settings";
@@ -22,18 +24,20 @@ class SettingsAbout extends Component {
       onClick: () => setAppModalScene({ scene: Settings, direction: -1 })
     });
   }
+
   render() {
     const { t, setAppModalScene } = this.props;
     return (
-      <SettingsAboutContainer>
-        <Text type="h3" weight={700}>
+      <AboutContainer>
+        <AboutLogo />
+        <AboutTitle type="h2" weight={700} style={{ marginTop: 65, marginBottom: 27 }}>
           Curb
-        </Text>
-        <Text type="h5">Version</Text>
-        <Button onClick={() => setAppModalScene({ scene: AboutLegalNotices, direction: 1 })}>
-          {t("about.description")}
-        </Button>
-      </SettingsAboutContainer>
+        </AboutTitle>
+        <Text style={{ color: "#BDBDBD" }}>Version {process.env.CURB_Version}</Text>
+        <AboutButton onClick={() => setAppModalScene({ scene: AboutLegalNotices, direction: 1 })}>
+          <Text>{t("about.description")}</Text>
+        </AboutButton>
+      </AboutContainer>
     );
   }
 }

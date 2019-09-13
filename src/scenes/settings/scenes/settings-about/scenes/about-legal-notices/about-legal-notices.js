@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import AboutLegalNoticesContainer from "./about-legal-notices-container";
+import LegalNoticesContainer from "./components/legal-notices-container";
 import Text from "../../../../../../components/text";
 import withAppModal from "../../../../../../hocs/with-app-modal";
 /* eslint-disable */
@@ -20,14 +20,15 @@ class AboutLegalNotices extends Component {
       onClick: () => setAppModalScene({ scene: SettingsAbout, direction: -1 })
     });
   }
+
   render() {
     const { t } = this.props;
     return (
-      <AboutLegalNoticesContainer>
-        <Text type="h3" weight={700}>
+      <LegalNoticesContainer>
+        <Text type="h4" style={{ marginLeft: 40, marginRight: 40 }}>
           {t("about.legalNotices.content")}
         </Text>
-      </AboutLegalNoticesContainer>
+      </LegalNoticesContainer>
     );
   }
 }
