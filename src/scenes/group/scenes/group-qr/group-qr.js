@@ -31,9 +31,9 @@ class GroupQr extends React.Component {
       groupInviteToken,
       groupTheme
     } = this.props;
-    const qrCodeValue = `https://${
-      platformBools.isWeb ? window.location.host : "curb-app.com"
-    }/groups/${groupId}${groupInviteToken ? `?inviteToken=${groupInviteToken}` : ``}`;
+    const qrCodeValue = `https://curb-app.com/groups/${groupId}${
+      groupInviteToken ? `?inviteToken=${groupInviteToken}` : ``
+    }`;
     return isFetchingGroups || (groupStatus === "private" && !groupInviteToken) ? (
       <Loader />
     ) : (
@@ -52,9 +52,11 @@ class GroupQr extends React.Component {
         <QrCode value={qrCodeValue} size={platformBools.isWeb ? 240 : 200} />
         <ButtonPasteToClipboard
           style={{ marginTop: 40 }}
-          color={theme[`group${_.capitalize(groupTheme)}Color`]}
+          backgroundColor={theme[`group${_.capitalize(groupTheme)}Color`]}
           text={groupInviteToken ? t("copyInvitationLink") : t("copyGroupLink")}
-          valueToPaste={qrCodeValue}
+          valueToPaste={
+            platformBools.isWeb ? _.replace(qrCodeValue, "curb-app.com", window.location.host) : qrCodeValue
+          }
         />
       </QrContainer>
     );

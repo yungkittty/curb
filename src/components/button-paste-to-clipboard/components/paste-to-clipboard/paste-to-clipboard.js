@@ -8,26 +8,23 @@ const PasteToClipboard = WrappedComponent => {
       this.state = {
         isPasted: false
       };
+
+      this.onClick = this.onClick.bind(this);
+    }
+
+    onClick() {
+      const { isPasted } = this.state;
+      const { valueToPaste } = this.props;
+      if (!isPasted) {
+        navigator.clipboard.writeText(valueToPaste).then(() => {
+          this.setState({ isPasted: true });
+        });
+      }
     }
 
     render() {
-      const { valueToPaste } = this.props;
       const { isPasted } = this.state;
-      return (
-        <WrappedComponent
-          {...this.props}
-          isPasted={isPasted}
-          onClick={
-            !isPasted
-              ? () => {
-                  navigator.clipboard.writeText(valueToPaste).then(() => {
-                    this.setState({ isPasted: true });
-                  });
-                }
-              : undefined
-          }
-        />
-      );
+      return <WrappedComponent {...this.props} isPasted={isPasted} onClick={this.onClick} />;
     }
   }
 

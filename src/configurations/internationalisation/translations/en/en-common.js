@@ -32,7 +32,7 @@ const enCommon = {
   authorize: "Authorize",
   copyGroupLink: "Copy group link",
   copyInvitationLink: "Copy invitation link",
-  successfullyPastedToClipboard: "Copied to clipbaord"
+  successfullyPastedToClipboard: "Copied to clipboard"
 };
 
 export default enCommon;

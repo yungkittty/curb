@@ -20,7 +20,7 @@ class GroupListSectionHeader extends React.Component {
     if (!groupId || !groupStatus || prevState.isShowed === false) return {};
     const isGroupPublic = groupStatus === "public";
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
-    const { isInvited = false } = nextProps.location.state || {};
+    const isInvited = _.includes(nextProps.location.pathname, "?inviteToken=");
     const isShowed = !!currentUserId && !isCurrentUserIn && (isGroupPublic || isInvited) && !isFetchingGroups;
     return { isShowed, isInvited };
   }

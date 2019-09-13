@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ButtonContainer from "../../../button-container";
 
-const ButtonPasteToClipboardContainer = styled(ButtonContainer)`
+const ClipboardContainer = styled(ButtonContainer)`
   position: relative;
   padding: 20px 30px;
   padding-left: 60px;
@@ -9,4 +9,4 @@ const ButtonPasteToClipboardContainer = styled(ButtonContainer)`
   background: ${({ color }) => color};
 `;
 
-export default ButtonPasteToClipboardContainer;
+export default ClipboardContainer;
