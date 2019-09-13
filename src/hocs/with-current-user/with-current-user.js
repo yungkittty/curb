@@ -7,16 +7,28 @@ import { usersActions, usersSelectors } from "../../datas/users";
 const withCurrentUser = WrappedComponent => {
   class WithCurrentUser extends React.Component {
     componentDidMount() {
-      const { currentUserId, getUser } = this.props;
-      if (currentUserId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingCurrentUser,
+        currentUserId,
+        getUser
+      } = this.props;
+      if (shouldFetch && !isFetchingCurrentUser && currentUserId) {
         getUser({ id: currentUserId });
       }
     }
 
     componentDidUpdate(prevProps) {
-      const { currentUserId, getUser } = this.props;
-      if (currentUserId && currentUserId !== prevProps.currentUserId) {
-        getUser({ id: currentUserId || currentUserId });
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        isFetchingCurrentUser,
+        currentUserId,
+        getUser
+      } = this.props;
+      if (shouldFetch && !isFetchingCurrentUser && currentUserId && currentUserId !== prevProps.currentUserId) {
+        getUser({ id: currentUserId });
       }
     }
 
@@ -27,15 +39,18 @@ const withCurrentUser = WrappedComponent => {
   }
 
   const mapStateToProps = state => {
-    const currentUserId = currentUserSelectors.getCurrentUserId(state) || "";
+    const currentUserId = currentUserSelectors.getCurrentUserId(state);
+    if (!currentUserId) return {};
+    const currentUser = usersSelectors.getUserById(state, currentUserId);
+    if (!currentUser) return { currentUserId };
     const {
-      isFetching: isFetchingCurrentUser = false,
-      dateCreation: currentUserDateCreation = "",
-      name: currentUserName = "",
-      avatarUrl: currentUserAvatar = "",
-      groups: currentUserGroupsId = [],
-      errorCode: currentUserErrorCode = ""
-    } = usersSelectors.getUserById(state, currentUserId) || {};
+      isFetching: isFetchingCurrentUser,
+      dateCreation: currentUserDateCreation,
+      name: currentUserName,
+      avatarUrl: currentUserAvatar,
+      groups: currentUserGroupsId,
+      errorCode: currentUserErrorCode
+    } = currentUser;
     return {
       isFetchingCurrentUser,
       currentUserId,
@@ -51,8 +66,26 @@ const withCurrentUser = WrappedComponent => {
     getUser: payload => dispatch(usersActions.getUserRequest(payload))
   });
 
+  WithCurrentUser.defaultProps = {
+    shouldFetch: true,
+    isFetchingCurrentUser: false,
+    currentUserId: "",
+    currentUserDateCreation: "",
+    currentUserName: "",
+    currentUserAvatar: "",
+    currentUserGroupsId: [],
+    currentUserErrorCode: ""
+  };
+
   WithCurrentUser.propTypes = {
-    currentUserId: PropTypes.string.isRequired,
+    shouldFetch: PropTypes.bool,
+    isFetchingCurrentUser: PropTypes.bool,
+    currentUserId: PropTypes.string,
+    currentUserDateCreation: PropTypes.string,
+    currentUserName: PropTypes.string,
+    currentUserAvatar: PropTypes.string,
+    currentUserGroupsId: PropTypes.array, // eslint-disable-line
+    currentUserErrorCode: PropTypes.string,
     getUser: PropTypes.func.isRequired
   };
 

@@ -7,9 +7,10 @@ const windowQueries = _.reduce(
   windowBreakpoints,
   // eslint-disable-next-line
   (windowQueries, windowBreakpoint, windowType) => {
-    const { width: windowWidth } = windowDimensions;
+    const windowWidth = windowDimensions.getWidth();
     return _.assign({}, windowQueries, {
       [windowType]: (...windowQuerieArgs) =>
+        // eslint-disable-line
         windowWidth > windowBreakpoint ? css(...windowQuerieArgs) : ""
     });
   },

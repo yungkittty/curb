@@ -5,7 +5,7 @@ import { withTranslation } from "react-i18next";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import modulesList from "../../../../../../utils/modules-list";
 import withAppModal from "../../../../../../hocs/with-app-modal";
@@ -99,9 +99,8 @@ class SettingsModules extends Component {
     return isFetchingGroups ? (
       <Loader />
     ) : (
-      <ListFlat
+      <AppModalSceneList
         ref={this.listFlat}
-        contentContainerStyle={{ position: "relative" }}
         data={modulesList}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (

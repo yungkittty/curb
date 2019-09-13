@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import ListFlat from "../../../../components/list-flat";
+import AppModalSceneList from "../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 import withAppModal from "../../../../hocs/with-app-modal";
 import withCurrentUser from "../../../../hocs/with-current-user";
@@ -44,7 +44,7 @@ class SettingsGeneral extends Component {
     return isFetchingSignIn ? (
       <Loader />
     ) : (
-      <ListFlat
+      <AppModalSceneList
         data={settingsGeneralData}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (

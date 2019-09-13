@@ -28,18 +28,19 @@ const GroupListHeader = ({
           size="small"
           color={theme.backgroundColor}
           onClick={() => showAppModal({ scene: GroupQr })}
-          style={{ right: platformBools.isReact ? 40 : 20 }}
+          style={{ right: platformBools.isWeb ? 40 : 20 }}
         />
         <HeaderButtonIcon
           icon={isFeed ? "info-circle" : "stream"}
           size="small"
           color={theme.backgroundColor}
           onClick={toggleScene}
-          style={{ right: platformBools.isReact ? 95 : 60 }}
+          style={{ right: platformBools.isWeb ? 95 : 60 }}
         />
       </React.Fragment>
     ) : null}
     <ImageGroup
+      shouldFetch={false}
       groupId={groupId}
       size="extra-extra-large"
       placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}
