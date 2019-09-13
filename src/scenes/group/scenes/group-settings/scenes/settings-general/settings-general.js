@@ -12,7 +12,7 @@ import withAppModal from "../../../../../../hocs/with-app-modal";
 import withGroup from "../../../../../../hocs/with-group";
 /* eslint-disable-next-line */
 import GroupSettings from "../../group-settings";
-import groupCategories from "../../../../../../utils/group-categeories";
+import groupCategories from "../../../../utils/group-categories";
 
 class SettingsGeneral extends Component {
   constructor(props) {

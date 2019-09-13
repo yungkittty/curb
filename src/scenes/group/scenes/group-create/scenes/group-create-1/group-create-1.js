@@ -9,7 +9,7 @@ import GroupCreate2 from "../group-create-2"; // eslint-disable-line
 import InputForm from "../../../../../../components/input-form";
 import inputRegex from "../../../../../../utils/input-regex";
 import withAppModal from "../../../../../../hocs/with-app-modal";
-import groupCategories from "../../../../../../utils/group-categeories";
+import groupCategories from "../../../../utils/group-categories";
 
 class GroupCreate1 extends Component {
   constructor(props) {
