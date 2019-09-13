@@ -48,7 +48,7 @@ const withGroup = WrappedComponent => {
     const {
       isFetching: isFetchingGroup,
       creatorId: groupCreatorId,
-      dateCreation: groupDateCreation,,
+      dateCreation: groupDateCreation,
       name: groupName,
       category: groupCategory,
       avatarUrl: groupAvatar,

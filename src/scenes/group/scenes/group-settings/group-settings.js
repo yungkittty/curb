@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withAppModal from "../../../../hocs/with-app-modal";
+import AppModalSceneList from "../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 /* eslint-disable-next-line */
 import groupSettingsData from "./group-settings-data";

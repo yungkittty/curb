@@ -2,9 +2,9 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate3 from "../group-create-3"; // eslint-disable-line
 import GroupCreate5 from "../group-create-5"; // eslint-disable-line
