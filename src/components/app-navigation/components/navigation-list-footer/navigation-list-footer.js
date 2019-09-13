@@ -6,7 +6,7 @@ const NavigationListFooter = styled(NavigationButton)`
   border-width: 1px;
   border-style: solid;
   border-color: ${props => props.theme.secondaryVariantColor};
-  ${platformBools.isReact ? "box-sizing: border-box;" : ""}
+  ${platformBools.isWeb ? "box-sizing: border-box;" : ""}
 `;
 
 export default NavigationListFooter;

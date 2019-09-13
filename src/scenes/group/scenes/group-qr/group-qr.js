@@ -30,9 +30,10 @@ class GroupQr extends React.Component {
       <QrContainer>
         <QrHeader>
           <ImageGroup
+            // eslint-disable-line
             groupId={groupId}
             size="large"
-            style={{ marginRight: platformBools.isReact ? 40 : 20 }}
+            style={{ marginRight: platformBools.isWeb ? 40 : 20 }}
           />
           <QrTitle type="h2" weight={700}>
             {groupName}
@@ -40,7 +41,7 @@ class GroupQr extends React.Component {
         </QrHeader>
         <QrCode
           value={JSON.stringify({ id: groupId, inviteToken: groupInviteToken })}
-          size={platformBools.isReact ? 240 : 200}
+          size={platformBools.isWeb ? 240 : 200}
         />
       </QrContainer>
     );

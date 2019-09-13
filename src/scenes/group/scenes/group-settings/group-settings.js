@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withAppModal from "../../../../hocs/with-app-modal";
-import ListFlat from "../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 /* eslint-disable-next-line */
 import groupSettingsData from "./group-settings-data";
@@ -37,9 +36,8 @@ class GroupSettings extends Component {
 
   render() {
     return (
-      <ListFlat
+      <AppModalSceneList
         ref={this.listFlat}
-        contentContainerStyle={{ position: "relative" }}
         data={groupSettingsData}
         keyExtractor={item => item.id}
         renderItem={this.renderItem}

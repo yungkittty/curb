@@ -117,6 +117,7 @@ class SettingsGeneral extends Component {
           editMode
           id="avatar"
           size="extra-large"
+          shouldFetch={false}
           groupId={groupId}
           data={avatar.value.data}
           onSelect={this.handleChange}
