@@ -83,7 +83,13 @@ class GroupCreate3 extends Component {
           value={value}
           onChange={this.handleChange}
           valueMaxLength={300}
-          containerStyle={{ display: "flex", width: "100%", margin: 0, border: 0, flex: 1 }}
+          containerStyle={{
+            display: "flex",
+            width: "100%",
+            marginTop: 0,
+            borderBottomWidth: 0,
+            flex: 1
+          }}
           isMultiline
         />
       </AppModalSceneContainer>

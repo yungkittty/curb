@@ -5,7 +5,7 @@ const FormInput = styled(Input)`
   display: flex;
   align-content: center;
   justify-content: center;
-  width: 100%;
+  flex: 1;
 `;
 
 export default FormInput;

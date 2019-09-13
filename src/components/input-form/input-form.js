@@ -39,8 +39,7 @@ class InputForm extends Component {
         {placeholder && ((isPlaceholderStatic && value === "") || !isPlaceholderStatic) && (
           <FormPlaceholder
             weight={300}
-            isPlaceholderStatic={isPlaceholderStatic}
-            upper={value !== "" || (inputType !== "dropdown" && focused)}
+            upper={!isPlaceholderStatic && (value !== "" || (inputType !== "dropdown" && focused))}
           >
             {placeholder}
           </FormPlaceholder>

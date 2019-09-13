@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import Text from "../../../text";
+import Container from "../../../container";
 
-const FormValueMaxLength = styled(Text)`
+const FormValueMaxLength = styled(Container)`
+  display: flex;
+  flex-flow: row;
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+  align-items: center;
+  bottom: 20px;
+  right: 20px;
   color: ${({ theme }) => theme.secondaryVariantColor};
 `;
 
