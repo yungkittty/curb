@@ -6,7 +6,7 @@ const DiscoveryContainer = props => (
   <ListSection
     // eslint-disable-line
     {...props}
-    contentContainerStyle={{ paddingTop: windowDimensions.statusBarHeight }}
+    contentContainerStyle={{ paddingTop: windowDimensions.getStatusBarHeight() }}
   />
 );
 

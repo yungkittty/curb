@@ -1,16 +1,42 @@
 import discoveryActionsTypes from "./discovery-actions-types";
 
 const discoveryActions = {
-  getDiscoverySectionsRequest: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_SECTIONS_REQUEST,
+  getDiscoveryGlobalSectionGroupsIdRequest: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_REQUEST,
     payload
   }),
-  getDiscoverySectionsSuccess: payload => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_SECTIONS_SUCCESS,
+  getDiscoveryGlobalSectionGroupsIdSuccess: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS,
     payload
   }),
-  getDiscoverySectionsFailure: error => ({
-    type: discoveryActionsTypes.GET_DISCOVERY_SECTIONS_FAILURE,
+  getDiscoveryGlobalSectionGroupsIdFailure: error => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_FAILURE,
+    payload: error,
+    error: true
+  }),
+  getDiscoveryCustomSectionGroupsIdRequest: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_REQUEST,
+    payload
+  }),
+  getDiscoveryCustomSectionGroupsIdSuccess: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS,
+    payload
+  }),
+  getDiscoveryCustomSectionGroupsIdFailure: error => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_FAILURE,
+    payload: error,
+    error: true
+  }),
+  getDiscoveryRandomSectionGroupsIdRequest: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_REQUEST,
+    payload
+  }),
+  getDiscoveryRandomSectionGroupsIdSuccess: payload => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS,
+    payload
+  }),
+  getDiscoveryRandomSectionGroupsIdFailure: error => ({
+    type: discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_FAILURE,
     payload: error,
     error: true
   })
