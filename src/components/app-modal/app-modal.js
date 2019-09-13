@@ -14,23 +14,15 @@ class AppModal extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isAppModalShowed, disableAppModalButtons } = this.props;
-    if (prevProps.isAppModalShowed !== isAppModalShowed && isAppModalShowed) {
-      disableAppModalButtons();
+    const { isAppModalShowed } = this.props;
+    if (isAppModalShowed && prevProps.isAppModalShowed !== isAppModalShowed) {
       this.setState({ isShowed: true }); // eslint-disable-line
     }
   }
 
   appModalTransitionEnd() {
-    const {
-      // eslint-disable-line
-      isAppModalShowed,
-      isAppModalButtonsEnabled,
-      enableAppModalButtons
-    } = this.props;
-    if (isAppModalShowed && !isAppModalButtonsEnabled) {
-      enableAppModalButtons();
-    } else if (!isAppModalShowed) {
+    const { isAppModalShowed } = this.props;
+    if (!isAppModalShowed) {
       this.setState({ isShowed: false });
     }
   }
@@ -51,13 +43,17 @@ class AppModal extends Component {
       appModalSceneDirection,
       appModalSceneData,
       appModalFooterText,
-      appModalFooterOnClick
+      appModalFooterOnClick,
+      appModalHide
     } = this.props;
     return isShowed ? (
       <ModalOverlay
         // eslint-disable-line
         isAppModalShowed={isAppModalShowed}
+        isAppModalButtonsEnabled={isAppModalButtonsEnabled}
         appModalTransitionEnd={this.appModalTransitionEnd}
+        appModalFooterOnClick={isAppModalButtonsEnabled ? appModalFooterOnClick : undefined}
+        appModalHide={appModalHide}
       >
         <ModalContainer isAppModalShowed={isAppModalShowed}>
           <ModalHeader
@@ -117,8 +113,7 @@ AppModal.propTypes = {
   appModalSceneData: PropTypes.object, // eslint-disable-line
   appModalFooterText: PropTypes.string,
   appModalFooterOnClick: PropTypes.func,
-  enableAppModalButtons: PropTypes.func.isRequired,
-  disableAppModalButtons: PropTypes.func.isRequired
+  appModalHide: PropTypes.func.isRequired
 };
 
 export default AppModal;

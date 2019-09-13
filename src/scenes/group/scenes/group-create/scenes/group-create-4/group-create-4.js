@@ -7,7 +7,7 @@ import { withTheme } from "styled-components";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import ListFlat from "../../../../../../components/list-flat";
+import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate3 from "../group-create-3"; // eslint-disable-line
 import groupCreate4ThemesData from "./group-create-4-themes-data";
@@ -110,11 +110,9 @@ class GroupCreate4 extends Component {
     return isFetchingGroups ? (
       <Loader />
     ) : (
-      <ListFlat
+      <AppModalSceneList
         ref={this.listFlat}
-        contentContainerStyle={{ position: "relative" }}
         data={groupCreate4ThemesData}
-        extraData={{ value }}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>

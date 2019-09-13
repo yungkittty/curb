@@ -5,7 +5,7 @@ import { windowDimensions } from "../../../../../../configurations/window";
 
 const HeaderButtonIcon = styled(Button).attrs(() => ({ component: Icon }))`
   position: absolute;
-  top: ${windowDimensions.statusBarHeight + 20}px;
+  top: ${windowDimensions.getStatusBarHeight() + 20}px;
 `;
 
 export default HeaderButtonIcon;

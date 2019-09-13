@@ -21,7 +21,7 @@ const ModalContainer = styled(Container)`
     shadow-color: rgba(0, 0, 0, 1);
     shadow-opacity: 0.228;
   `}
-  padding-top: ${windowDimensions.statusBarHeight}px;
+  padding-top: ${windowDimensions.getStatusBarHeight()}px;
   flex-direction: column;
   background-color: ${({ theme }) => theme.backgroundColor};
   overflow: hidden;

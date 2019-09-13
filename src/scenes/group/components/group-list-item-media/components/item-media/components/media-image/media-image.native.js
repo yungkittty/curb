@@ -29,7 +29,7 @@ class MediaImage extends React.Component {
           // eslint-disable-line
           width,
           height,
-          windowDimensions.width - 80,
+          windowDimensions.getWidth() - 80,
           350
         );
         this.setState({

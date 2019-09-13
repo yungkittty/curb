@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import { isAndroid } from "react-device-detect";
 import ButtonContainer from "../../../button-container";
 import ButtonIcon from "./components/button-icon";
 import Text from "../../../text";
+import { platformBools } from "../../../../configurations/platform";
 
 const DownloadButton = ({ t, theme }) => (
   <ButtonContainer
-    onClick={`https://tsfr.io/curb-${isAndroid ? "android" : "ios"}`}
+    onClick={`https://tsfr.io/curb-${platformBools.isAndroid ? "android" : "ios"}`}
     style={{
       position: "relative",
       width: 220,
