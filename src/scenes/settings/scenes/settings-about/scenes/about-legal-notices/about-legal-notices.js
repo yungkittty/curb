@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import LegalNoticesContainer from "./components/legal-notices-container";
+import ContainerScroll from "../../../../../../components/container-scroll";
 import Text from "../../../../../../components/text";
 import withAppModal from "../../../../../../hocs/with-app-modal";
 /* eslint-disable */
@@ -24,11 +24,11 @@ class AboutLegalNotices extends Component {
   render() {
     const { t } = this.props;
     return (
-      <LegalNoticesContainer>
-        <Text type="h4" style={{ marginLeft: 40, marginRight: 40 }}>
+      <ContainerScroll showsVerticalScrollIndicator={false}>
+        <Text type="h4" style={{ marginLeft: 40, marginRight: 40, textAlign: "center" }}>
           {t("about.legalNotices.content")}
         </Text>
-      </LegalNoticesContainer>
+      </ContainerScroll>
     );
   }
 }

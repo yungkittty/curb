@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import Stadium from "../../../../components/stadium";
 import AboutLogo from "./components/about-logo";
 import AboutContainer from "./components/about-container";
 import AboutTitle from "./components/about-title";
@@ -35,7 +36,7 @@ class SettingsAbout extends Component {
         </AboutTitle>
         <Text style={{ color: "#BDBDBD" }}>Version {process.env.CURB_Version}</Text>
         <AboutButton onClick={() => setAppModalScene({ scene: AboutLegalNotices, direction: 1 })}>
-          <Text>{t("about.description")}</Text>
+          {t("about.description")}
         </AboutButton>
       </AboutContainer>
     );
