@@ -11,6 +11,7 @@ import CreateMediaImage from "./scenes/create-media-image";
 import CreateMediaLocation from "./scenes/create-media-location";
 import CreateMediaText from "./scenes/create-media-text";
 import CreateMediaVideo from "./scenes/create-media-video";
+import CreateMediaEvent from "./scenes/create-media-event";
 /* eslint-enable */
 
 class CreateMedia extends Component {
@@ -35,6 +36,8 @@ class CreateMedia extends Component {
           return CreateMediaText;
         case "video":
           return CreateMediaVideo;
+        case "event":
+          return CreateMediaEvent;
         default:
           return undefined;
       }
