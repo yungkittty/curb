@@ -5,12 +5,14 @@ import { withTranslation } from "react-i18next";
 import AboutLogo from "./components/about-logo";
 import AboutContainer from "./components/about-container";
 import AboutTitle from "./components/about-title";
-import AboutButton from "./components/about-button";
 import Text from "../../../../components/text";
+import Button from "../../../../components/button";
+import Stadium from "../../../../components/stadium";
 import withAppModal from "../../../../hocs/with-app-modal";
 /* eslint-disable */
 import Settings from "../../../settings";
 import AboutLegalNotices from "./scenes/about-legal-notices";
+import { platformBools } from "../../../../configurations/platform";
 /* eslint-enable */
 
 class SettingsAbout extends Component {
@@ -34,9 +36,18 @@ class SettingsAbout extends Component {
           Curb
         </AboutTitle>
         <Text style={{ color: "#BDBDBD" }}>Version {process.env.CURB_Version}</Text>
-        <AboutButton onClick={() => setAppModalScene({ scene: AboutLegalNotices, direction: 1 })}>
-          {t("about.description")}
-        </AboutButton>
+        <Stadium
+          as={Button}
+          onClick={() => setAppModalScene({ scene: AboutLegalNotices, direction: 1 })}
+          radius="small"
+          gradientAngle={90}
+          gradientColors={["#2F80ED", "#7B4BF3"]}
+          style={{ position: "absolute", bottom: platformBools.isNative ? 35 : 43 }}
+        >
+          <Text weight={700} style={{ color: "white" }}>
+            {t("about.description")}
+          </Text>
+        </Stadium>
       </AboutContainer>
     );
   }
