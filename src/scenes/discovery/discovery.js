@@ -14,6 +14,8 @@ import Card from "../../components/card";
 
 import GroupCreate from "../group/scenes/group-create";
 
+import CreateMediaEvent from "../create-media/scenes/create-media-event";
+
 /* eslint-enable */
 
 class Discovery extends React.Component {
@@ -136,7 +138,7 @@ class Discovery extends React.Component {
   }
 
   render() {
-    return <Card userId="5d373369c8acd2001d90bf55" />;
+    return <Card userId="5d373369c8acd2001d90bf55" mediaList={{ event: <CreateMediaEvent /> }} />;
   }
 }
 

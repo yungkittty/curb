@@ -9,6 +9,10 @@ const enModules = {
   location: {
     title: "Location",
     description: "Allows users to post localisation points"
+  },
+  event: {
+    title: "Event",
+    description: "Allows users to post events"
   }
 };
 
