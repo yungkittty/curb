@@ -5,6 +5,7 @@ import MediaItemContainer from "./components/media-item-container";
 import MediaGroupPreview from "./components/media-group-preview";
 import MediaPlaceholder from "./components/media-placeholder";
 import ListFlat from "../../../../../list-flat";
+import mediaRandomSlider from "./utils/media-random-slider";
 
 class ContentMedia extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class ContentMedia extends React.Component {
       const { mediaList, selectedIndex } = this.props;
       const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
       onIndexChange(newIndex);
-    }, 2000);
+    }, mediaRandomSlider(15000, 25000));
   }
 
   renderItem({ item: { component } }) {
