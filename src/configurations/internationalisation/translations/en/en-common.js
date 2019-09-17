@@ -33,7 +33,8 @@ const enCommon = {
   askCameraText:
     "To be able to take pictures with your camera and choose images from your library, you must authorize the app to access them",
   authorize: "Authorize",
-  readMore: "read more"
+  readMore: "read more",
+  writeSomething: "Write something"
 };
 
 export default enCommon;

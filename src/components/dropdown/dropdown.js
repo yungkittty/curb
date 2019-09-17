@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import DropdownCloser from "./components/dropdown-closer";
 import DropdownContainer from "./components/dropdown-container";
 import DropdownItem from "./components/dropdown-item";
 
@@ -8,31 +9,22 @@ class Dropdown extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleMouseClick = this.handleMouseClick.bind(this);
-  }
-
-  componentDidMount() {
-    document.body.addEventListener("click", this.handleMouseClick, true);
-  }
-
-  componentWillUnmount() {
-    document.body.removeEventListener("click", this.handleMouseClick, true);
-  }
-
-  handleMouseClick(e) {
-    e.preventDefault();
-    const { onClose } = this.props;
-    const event = e || window.event;
-    const button = event.which || event.button;
-    if (("buttons" in event && event.buttons !== 1) || button !== 1) setTimeout(() => onClose(), 0);
+    this.state = {};
   }
 
   render() {
-    const { style, optionsList } = this.props;
+    const { style, className, optionsList, onClose } = this.props;
     return (
-      <DropdownContainer style={style}>
-        {_.map(optionsList, (itemProps, index) => (
-          <DropdownItem key={index} {...itemProps} />
+      <DropdownContainer style={style} className={className}>
+        {_.map(optionsList, ({ onClick, ...others }, index) => (
+          <DropdownItem
+            key={index}
+            onClick={() => {
+              onClick();
+              onClose();
+            }}
+            {...others}
+          />
         ))}
       </DropdownContainer>
     );
@@ -40,15 +32,17 @@ class Dropdown extends React.Component {
 }
 
 Dropdown.defaultProps = {
-  style: undefined
+  style: undefined,
+  className: undefined
 };
 
 Dropdown.propTypes = {
-  style: PropTypes.object, // eslint-disable-line
-  onClose: PropTypes.func.isRequired,
+  style: PropTypes.array, // eslint-disable-line
+  className: PropTypes.string,
   optionsList: PropTypes.arrayOf(
     PropTypes.shape({ text: PropTypes.string, icon: PropTypes.string, onClick: PropTypes.func })
-  ).isRequired
+  ).isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
-export default Dropdown;
+export default DropdownCloser(Dropdown);
