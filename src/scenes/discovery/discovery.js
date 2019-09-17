@@ -75,12 +75,15 @@ class Discovery extends React.Component {
         <Card
           style={{ marginTop: 40 }}
           userId="5d373369c8acd2001d90bf55"
+          onFloatingButtonClick={() => console.log("toto")}
+          floatingButtonColor="rgb(86, 204, 242)"
+          floatingButtonDisabled={!mediaList.text || (mediaList.text && mediaList.text.length === 0)}
           dropdownMenu={{ icon: "minus", onClick: this.removeContent }}
           postMediaTypes={postMediaTypes}
           mediaList={mediaList}
         />
         <Card
-          style={{ marginTop: 40, marginBottom: 40 }}
+          style={{ marginTop: 40 }}
           userId="5d373369c8acd2001d90bf55"
           dropdownMenu={{
             icon: "ellipsis-v",
@@ -91,6 +94,8 @@ class Discovery extends React.Component {
             ]
           }}
           mediaList={{
+            text:
+              "Nous partageons sur ce groupe des plans ride localisés par la communauté sur toute la France. Vous pouvez également y partager vos photos et vidéos de vos tricks et suivre ceux des autres.",
             image: (
               <ImageGallery
                 imagesData={[
@@ -106,6 +111,9 @@ class Discovery extends React.Component {
         <Card
           style={{ marginTop: 40, marginBottom: 40 }}
           userId="5d373369c8acd2001d90bf55"
+          onFloatingButtonClick={() => console.log("toto")}
+          likeNumber={345}
+          floatingButtonColor="rgb(86, 204, 242)"
           dropdownMenu={{
             icon: "ellipsis-v",
             optionsList: [
