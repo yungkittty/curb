@@ -21,11 +21,10 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
     ? 70
     : 130;
   /* eslint-enable */
+  const isTextTrimmed = textDescription.length <= maxLength || isExtended;
   return textDescription ? (
-    <TextDescription>
-      {textDescription.length <= maxLength || isExtended
-        ? textDescription
-        : `${textDescription.substring(0, maxLength).trim()}... `}
+    <TextDescription isTextTrimmed={isTextTrimmed}>
+      {isTextTrimmed ? textDescription : `${textDescription.substring(0, maxLength).trim()}... `}
       {textDescription.length > maxLength && !isExtended && (
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
@@ -43,7 +42,6 @@ FooterText.defaultProps = {
 
 FooterText.propTypes = {
   t: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired, // eslint-disable-line
   cardSize: PropTypes.shape({
     size: PropTypes.string,
     isCardExtended: PropTypes.bool,
