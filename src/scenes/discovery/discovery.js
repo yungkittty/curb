@@ -9,8 +9,8 @@ import Loader from "../../components/loader";
 /* eslint-disable */
 
 import Container from "../../components/container";
-import Video from "../../components/video";
 import ImageGallery from "../../components/image-gallery";
+import Video from "../../components/video";
 
 /* eslint-enable */
 
@@ -49,7 +49,6 @@ class Discovery extends React.Component {
   }
 
   render() {
-    const { mediaList } = this.state;
     return (
       <Container
         style={{
@@ -62,29 +61,19 @@ class Discovery extends React.Component {
       >
         <Card
           userId="5d373369c8acd2001d90bf55"
-          onFloatingButtonClick={() => console.log("toto")}
-          floatingButtonDisabled={!mediaList.text || mediaList.text.length === 0}
-          floatingButtonColor="blue"
-          /*
-          dropdownMenu={{
-            icon: "ellipsis-v",
-            optionsList: [
-              { text: "Pin", icon: "thumbtack", onClick: () => console.log("report") },
-              { text: "Delete", icon: "trash", onClick: () => console.log("report") },
-              { text: "Report", icon: "flag", onClick: () => console.log("report") }
-            ]
-          }}
-          */
           dropdownMenu={{
             icon: "minus",
-            onClick: this.removeContent
+            onClick: mediaType => console.log(`remove the ${mediaType} component`)
           }}
           postMediaTypes={[
-            { type: "image", onSelect: this.addImage },
-            { type: "video", onSelect: this.addVideo },
-            { type: "text", onChange: this.onChangeText }
+            { type: "text", onChange: () => console.log("text") },
+            {
+              type: "event",
+              onClick: () => console.log("add event to mediaList")
+            },
+            { type: "poll", onClick: () => console.log("add poll to mediaList") }
           ]}
-          mediaList={mediaList}
+          mediaList={{ event: <Loader />, poll: <Loader /> }}
         />
       </Container>
     );
