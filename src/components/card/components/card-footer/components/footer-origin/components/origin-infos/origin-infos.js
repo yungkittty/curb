@@ -40,15 +40,11 @@ const OriginInfos = ({
       ) : (
         <Button
           // eslint-disable-line
-          style={{ justifyContent: "initial" }}
-          contentStyle={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}
           onClick={`/users/${userId}`}
           component={InfosTitle}
           shouldFetch={false}
-          userId={userId}
           size="extra-small"
           placeholderColor={theme.primaryVariantColor}
-          type="h5"
           weight={700}
         >
           {infosTitle}
@@ -59,7 +55,7 @@ const OriginInfos = ({
         (!mediaDateCreation ? (
           <InfosSubtitlePlaceholder />
         ) : (
-          <InfosSubtitle type="h5">
+          <InfosSubtitle type="h6">
             {/* eslint-disable-line */}
             {t("infosSubtitle", { when: dateDelta })}
           </InfosSubtitle>

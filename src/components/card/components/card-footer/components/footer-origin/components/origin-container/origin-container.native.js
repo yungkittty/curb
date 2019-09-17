@@ -2,10 +2,10 @@ import styled from "styled-components";
 import Container from "../../../../../../../container";
 
 const OriginContainer = styled(Container)`
-  display: flex;
-  height: 50px;
-  padding-right: 10px;
-  flex-shrink: 0;
+  margin-right: 6px;
+  width: 80px;
+  margin-top: ${({ isSubtitle }) => (isSubtitle ? 2 : 10)}px;
+  margin-right: 10px;
 `;
 
 export default OriginContainer;

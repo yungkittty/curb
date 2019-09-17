@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import Container from "../../../../../../../../../../components/container";
+import Container from "../../../../../../../../../container";
 
 const InfosContainer = styled(Container)`
-  display: flex;
-  flex: 1;
   flex-direction: column;
-  justify-content: space-around;
-  padding: 5px 0px;
-  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
 `;
 
 export default InfosContainer;

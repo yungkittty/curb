@@ -8,7 +8,7 @@ import ItemIcon from "./components/item-icon";
 const DropdownItem = ({ theme, text, icon, onClick }) => (
   <ItemContainer onClick={onClick} hoverColor={theme.primaryColor}>
     <ItemText weight={700}>{text}</ItemText>
-    <ItemIcon icon={icon} size="extra-extra-small" color={theme.secondaryVariantColor} />
+    <ItemIcon icon={icon} color={theme.secondaryVariantColor} />
   </ItemContainer>
 );
 

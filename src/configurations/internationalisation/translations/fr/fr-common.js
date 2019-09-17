@@ -32,7 +32,8 @@ const frCommon = {
   askCameraText:
     "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application à y accéder",
   authorize: "Autoriser",
-  readMore: "lire la suite"
+  readMore: "lire la suite",
+  writeSomething: "Écrivez quelque chose"
 };
 
 export default frCommon;

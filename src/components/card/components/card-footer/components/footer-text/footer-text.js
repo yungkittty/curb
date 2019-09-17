@@ -1,29 +1,33 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { withTheme } from "styled-components";
 import { withTranslation } from "react-i18next";
 import TextDescription from "./components/text-description";
 import TextDescriptionPlaceholder from "./components/text-description-placeholder";
-import Button from "../../../../../button";
-import Text from "../../../../../text";
+import TextReadMore from "./components/text-read-more";
+import { platformBools } from "../../../../../../configurations/platform";
 
-const FooterText = ({ t, theme, cardSize, userId, textDescription, onClick }) => {
-  // eslint-disable-next-line
-  const maxLength = cardSize.size === "small" ? (userId ? 50 : 130) : userId ? 130 : 220;
+const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended }) => {
+  /* eslint-disable */
+  const maxLength = platformBools.isWeb
+    ? cardSize.size === "small"
+      ? userId
+        ? 50
+        : 130
+      : userId
+      ? 130
+      : 220
+    : userId
+    ? 70
+    : 130;
+  /* eslint-enable */
   return textDescription ? (
     <TextDescription>
-      {textDescription.length <= maxLength
+      {textDescription.length <= maxLength || isExtended
         ? textDescription
-        : `${textDescription.substring(0, maxLength).trim()}...`}
-      {userId && textDescription.length > maxLength && (
-        <Button
-          as={Text}
-          onClick={onClick}
-          style={{ display: "initial", marginLeft: 5, color: theme.linkColor }}
-        >
-          {t("readMore")}
-        </Button>
+        : `${textDescription.substring(0, maxLength).trim()}... `}
+      {textDescription.length > maxLength && !isExtended && (
+        <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
     </TextDescription>
   ) : (
@@ -33,20 +37,25 @@ const FooterText = ({ t, theme, cardSize, userId, textDescription, onClick }) =>
 
 FooterText.defaultProps = {
   userId: undefined,
-  textDescription: undefined
+  textDescription: undefined,
+  isExtended: false
 };
 
 FooterText.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  cardSize: PropTypes.shape({ width: PropTypes.number, height: PropTypes.number }).isRequired,
+  cardSize: PropTypes.shape({
+    size: PropTypes.string,
+    isCardExtended: PropTypes.bool,
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    contentHeight: PropTypes.number,
+    footerHeight: PropTypes.number,
+    floatingTopPosition: PropTypes.number
+  }).isRequired,
   userId: PropTypes.string,
   textDescription: PropTypes.string,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  isExtended: PropTypes.bool
 };
 
-export default _.flowRight([
-  // eslint-disable-line
-  withTheme,
-  withTranslation("common")
-])(FooterText);
+export default withTranslation("common")(FooterText);

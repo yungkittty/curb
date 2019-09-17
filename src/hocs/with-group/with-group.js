@@ -11,7 +11,6 @@ const withGroup = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-
         groupId,
         getGroup
       } = this.props;

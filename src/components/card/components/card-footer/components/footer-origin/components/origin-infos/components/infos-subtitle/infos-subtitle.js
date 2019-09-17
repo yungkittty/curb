@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Text from "../../../../../../../../../../components/text";
+import Text from "../../../../../../../../../text";
 
 const InfosSubtitle = styled(Text)`
-  color: ${props => props.theme.secondaryVariantColor};
+  color: ${({ theme }) => theme.secondaryVariantColor};
 `;
 
 export default InfosSubtitle;
