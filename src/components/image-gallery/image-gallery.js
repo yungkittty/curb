@@ -9,11 +9,9 @@ const ImageGallery = ({ imagesData, ...others }) => {
     <GalleryImage
       {...others}
       key={index}
-      index={index}
       src={src}
       isOneImage={isOneImage}
       isLastImage={index !== imagesData.length - 1}
-      mediaDataLength={imagesData.length}
     />
   ));
 };

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Button from "../../../button";
 import Image from "../../../image";
 
-const GalleryImage = ({ src, cardSize, isOneImage, isLastImage, mediaDataLength, ...others }) => {
+const GalleryImage = ({ src, isOneImage, isLastImage, ...others }) => {
   const isImageFromApi = src.substr(0, 9) === "/contents";
   return (
     <Button
@@ -12,7 +12,12 @@ const GalleryImage = ({ src, cardSize, isOneImage, isLastImage, mediaDataLength,
       onClick={() => Linking.openURL(`${process.env.REACT_APP_API_URL}${src}`)}
       disabled={!isImageFromApi}
     >
-      <Image {...others} src={src} objectFit="cover" style={{ width: "100%", height: "100%" }} />
+      <Image
+        {...others}
+        src={src}
+        objectFit={isOneImage ? "contain" : "cover"}
+        style={{ width: "100%", height: "100%" }}
+      />
     </Button>
   );
 };
@@ -20,8 +25,7 @@ const GalleryImage = ({ src, cardSize, isOneImage, isLastImage, mediaDataLength,
 GalleryImage.propTypes = {
   src: PropTypes.string.isRequired,
   isOneImage: PropTypes.bool.isRequired,
-  isLastImage: PropTypes.bool.isRequired,
-  mediaDataLength: PropTypes.number.isRequired
+  isLastImage: PropTypes.bool.isRequired
 };
 
 export default GalleryImage;
