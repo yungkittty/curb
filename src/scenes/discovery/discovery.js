@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 import Card from "../../components/card";
+import { platformBools } from "../../configurations/platform";
 
 /* eslint-disable */
 
@@ -69,7 +70,7 @@ class Discovery extends React.Component {
     if (!mediaList.video) postMediaTypes.push({ type: "video", onSelect: this.addVideo });
     return (
       <ContainerScroll
-        style={{ flexFlow: "column", flex: 1 }}
+        style={{ flexDirection: "column", flex: 1 }}
         contentContainerStyle={{ alignItems: "center" }}
       >
         <Card
@@ -83,7 +84,7 @@ class Discovery extends React.Component {
           mediaList={mediaList}
         />
         <Card
-          style={{ marginTop: 40 }}
+          style={{ marginTop: platformBools.isWeb ? 40 : 30 }}
           userId="5d373369c8acd2001d90bf55"
           dropdownMenu={{
             icon: "ellipsis-v",
@@ -95,7 +96,7 @@ class Discovery extends React.Component {
           }}
           mediaList={{
             text:
-              "Nous partageons sur ce groupe des plans ride localisés par la communauté sur toute la France. Vous pouvez également y partager vos photos et vidéos de vos tricks et suivre ceux des autres.",
+              "Nous partageons sur ce post des plans ride localisés par la communauté sur toute la France. Vous pouvez également y partager vos photos et vidéos de vos tricks et suivre ceux des autres.",
             image: (
               <ImageGallery
                 imagesData={[
@@ -114,7 +115,7 @@ class Discovery extends React.Component {
           }}
         />
         <Card
-          style={{ marginTop: 40 }}
+          style={{ marginTop: platformBools.isWeb ? 40 : 30 }}
           userId="5d373369c8acd2001d90bf55"
           onFloatingButtonClick={() => console.log("toto")}
           likeNumber="2 K"
@@ -145,7 +146,7 @@ class Discovery extends React.Component {
           }}
         />
         <Card
-          style={{ marginTop: 40, marginBottom: 40 }}
+          style={{ marginTop: platformBools.isWeb ? 40 : 30 }}
           userId="5d373369c8acd2001d90bf55"
           onFloatingButtonClick={() => console.log("toto")}
           likeNumber="345"
@@ -168,6 +169,17 @@ class Discovery extends React.Component {
               />
             )
           }}
+        />
+        <Card
+          style={
+            platformBools.isWeb ? { marginTop: 40, marginBottom: 40 } : { marginTop: 30, marginBottom: 30 }
+          }
+          groupId="yes"
+          groupName="Boire de l'eau"
+          groupTheme="blue"
+          groupCategory="Food and Drink"
+          groupDescription="Notre groupe se centre sur la consommation d'eau, en effet, les experts de la santé recommendent de boire au minimum 1.5L d'eau chaque jour."
+          groupAvatar="https://images.unsplash.com/photo-1469827160215-9d29e96e72f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
         />
       </ContainerScroll>
     );
