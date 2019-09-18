@@ -45,10 +45,10 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { postType, onIndexChange } = this.props;
-    if (postType) return;
+    const { postType, mediaList, onIndexChange } = this.props;
+    if (postType || _.size(mediaList) === 0) return;
     this.setTimeoutFunc = setTimeout(() => {
-      const { mediaList, selectedIndex } = this.props;
+      const { selectedIndex } = this.props;
       const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
       onIndexChange(newIndex);
     }, mediaRandomSlider(15000, 30000));
