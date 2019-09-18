@@ -11,6 +11,7 @@ import Loader from "../../components/loader";
 import Container from "../../components/container";
 import ImageGallery from "../../components/image-gallery";
 import Video from "../../components/video";
+import Poll from "../../components/poll";
 
 /* eslint-enable */
 
@@ -38,6 +39,13 @@ class Discovery extends React.Component {
     const { mediaList } = this.state;
     this.setState({
       mediaList: { ...mediaList, video: <Video style={{ flex: 1 }} src={videoData} /> }
+    });
+  }
+
+  addPoll(pollData) {
+    const { mediaList } = this.state;
+    this.setState({
+      mediaList: { ...mediaList, poll: <Poll style={{ flex: 1 }} src={pollData} /> }
     });
   }
 
