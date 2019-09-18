@@ -30,7 +30,7 @@ const CardFloatingButton = ({
         style={!likeNumber && { position: "relative", left: -2, top: -1 }}
       />
       {likeNumber && (
-        <ButtonText weight={700} type="h5" color={contentColor}>
+        <ButtonText weight={700} color={contentColor}>
           {likeNumber}
         </ButtonText>
       )}

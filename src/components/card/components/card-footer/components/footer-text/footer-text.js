@@ -21,10 +21,12 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
     ? 70
     : 130;
   /* eslint-enable */
-  const isTextTrimmed = textDescription.length <= maxLength || isExtended;
+  const isTextTrimmed = textDescription.length <= maxLength;
   return textDescription ? (
-    <TextDescription isNotCentered={textDescription.length <= maxLength}>
-      {isTextTrimmed ? textDescription : `${textDescription.substring(0, maxLength).trim()}... `}
+    <TextDescription isTextTrimmed={isTextTrimmed}>
+      {isTextTrimmed || isExtended
+        ? textDescription
+        : `${textDescription.substring(0, maxLength).trim()}... `}
       {textDescription.length > maxLength && !isExtended && (
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
