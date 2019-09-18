@@ -5,7 +5,7 @@ const TextDescription = styled(Text).attrs(() => ({ type: "h5" }))`
   position: relative;
   line-height: 24px;
   flex: 1;
-  ${({ isTextTrimmed }) => (isTextTrimmed ? `align-self: center; top: -6px;` : "")}
+  ${({ isNotCentered }) => (isNotCentered ? `align-self: center; top: -6px;` : ``)}
 `;
 
 export default TextDescription;

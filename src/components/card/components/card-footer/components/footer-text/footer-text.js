@@ -23,7 +23,7 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
   /* eslint-enable */
   const isTextTrimmed = textDescription.length <= maxLength || isExtended;
   return textDescription ? (
-    <TextDescription isTextTrimmed={isTextTrimmed}>
+    <TextDescription isNotCentered={textDescription.length <= maxLength}>
       {isTextTrimmed ? textDescription : `${textDescription.substring(0, maxLength).trim()}... `}
       {textDescription.length > maxLength && !isExtended && (
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
