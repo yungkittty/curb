@@ -63,6 +63,7 @@ class Video extends React.Component {
             backgroundColor: "#000000"
           }}
           muted
+          loop
           controls
         >
           <source src={src} />
