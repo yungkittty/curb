@@ -3,9 +3,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import PreviewContainer from "./components/preview-container";
-import Image from "../../../../../../../image";
+import PreviewImage from "./components/preview-image";
+import PreviewText from "./components/preview-text";
 import Text from "../../../../../../../text";
 import Stadium from "../../../../../../../stadium";
+import { platformBools } from "../../../../../../../../configurations/platform";
 
 class MediaGroupPreview extends React.Component {
   constructor(props) {
@@ -15,49 +17,32 @@ class MediaGroupPreview extends React.Component {
   }
 
   render() {
-    const { theme, groupName, groupAvatar, groupTheme, groupCategory } = this.props;
+    const { theme, groupName, cardSize, groupAvatar, groupTheme, groupCategory } = this.props;
     const { isLoaded } = this.state;
     return (
       <PreviewContainer
         style={{ backgroundColor: !groupAvatar && theme[`group${_.capitalize(groupTheme)}Color`] }}
+        cardSize={cardSize}
       >
         {groupAvatar && (
-          <Image
-            // eslint-disable-next-line
+          <PreviewImage
             src={_.replace(groupAvatar, "medium", "large")}
             objectFit="cover"
             onLoad={() => this.setState({ isLoaded: true })}
-            style={{
-              filter: "brightness(75%)",
-              position: "absolute",
-              width: "100%",
-              height: "100%"
-            }}
           />
         )}
         {groupAvatar && isLoaded && (
           <React.Fragment>
-            <Text
-              weight={700}
-              style={{
-                marginTop: 20,
-                zIndex: 1,
-                paddingLeft: 30,
-                paddingRight: 30,
-                fontSize: 36,
-                textAlign: "center",
-                color: "#ffffff"
-              }}
-            >
+            <PreviewText type="h2" weight={700}>
               {groupName}
-            </Text>
+            </PreviewText>
             {groupTheme && (
               <Stadium
                 // eslint-disable-line
                 radius="extra-extra-small"
                 scale="x2"
                 backgroundColor="white"
-                style={{ marginTop: 10, zIndex: 1 }}
+                style={{ marginTop: platformBools.isWeb ? 10 : 8, zIndex: 1 }}
                 component={Text}
                 type="h5"
                 weight={700}
@@ -79,6 +64,14 @@ MediaGroupPreview.propTypes = {
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
+  cardSize: PropTypes.shape({
+    size: PropTypes.string,
+    isCardExtended: PropTypes.bool,
+    width: PropTypes.number,
+    contentHeight: PropTypes.number,
+    footerHeight: PropTypes.number,
+    floatingTopPosition: PropTypes.number
+  }).isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   groupCategory: PropTypes.string.isRequired
 };
