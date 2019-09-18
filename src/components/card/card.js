@@ -2,7 +2,6 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import withUser from "../../hocs/with-user";
-import withGroup from "../../hocs/with-group";
 import CardContainer from "./components/card-container";
 import CardBorderContainer from "./components/card-border-container";
 import CardContent from "./components/card-content";
@@ -99,4 +98,4 @@ Card.propTypes = {
   groupId: PropTypes.string
 };
 
-export default withGroup(withUser(Card));
+export default withUser(Card);
