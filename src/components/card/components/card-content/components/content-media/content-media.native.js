@@ -59,12 +59,16 @@ class ContentMedia extends React.Component {
         viewOffset: 0
       });
       onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1);
-    }, mediaRandomSlider(15000, 25000));
+    }, mediaRandomSlider(15000, 30000));
   }
 
-  renderItem({ item: { component } }) {
-    const { cardSize } = this.props;
-    return <MediaItemContainer cardSize={cardSize}>{component}</MediaItemContainer>;
+  renderItem({ item: { component }, index }) {
+    const { selectedIndex, cardSize } = this.props;
+    return (
+      <MediaItemContainer cardSize={cardSize}>
+        {React.cloneElement(component, { isShowedInCard: index === selectedIndex })}
+      </MediaItemContainer>
+    );
   }
 
   render() {

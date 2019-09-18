@@ -6,6 +6,22 @@ class Video extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isShowed: false };
+    this.videoRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const { isShowedInCard } = this.props;
+    if (isShowedInCard) this.videoRef.current.play();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isShowedInCard } = this.props;
+    if (prevProps.isShowedInCard === isShowedInCard) return;
+    if (isShowedInCard) this.videoRef.current.play();
+    if (!isShowedInCard) {
+      this.videoRef.current.pause();
+      this.videoRef.current.volume = 0;
+    }
   }
 
   render() {
@@ -28,6 +44,7 @@ class Video extends React.Component {
         {/* eslint-disable-next-line */}
         <video
           {...others}
+          ref={this.videoRef}
           src={isVideoFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src}
           onLoadStart={event => {
             // eslint-disable-next-line
@@ -45,6 +62,7 @@ class Video extends React.Component {
             objectFit,
             backgroundColor: "#000000"
           }}
+          muted
           controls
         >
           <source src={src} />
@@ -58,7 +76,8 @@ Video.defaultProps = {
   onLoadStart: undefined,
   onCanPlay: undefined,
   objectFit: undefined,
-  style: undefined
+  style: undefined,
+  isShowedInCard: undefined
 };
 
 Video.propTypes = {
@@ -66,7 +85,8 @@ Video.propTypes = {
   onLoadStart: PropTypes.func,
   onCanPlay: PropTypes.func,
   objectFit: PropTypes.oneOf(["cover", "contain"]),
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  isShowedInCard: PropTypes.bool
 };
 
 export default Video;
