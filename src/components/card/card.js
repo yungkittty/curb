@@ -27,7 +27,6 @@ const Card = ({
     isPostMode: !!postMediaTypes,
     isOnlyPostTextMode: !!postMediaTypes && postMediaTypes.length === 1 && postMediaTypes[0].type === "text"
   });
-  if (_.size(mediaList) === 0) console.log(others);
   return (
     <CardContainer
       style={style}
@@ -50,7 +49,7 @@ const Card = ({
         )}
         <CardFooter
           cardSize={cardSize}
-          textDescription={(mediaList && mediaList.text) || groupDescription}
+          textDescription={(_.size(mediaList) > 0 && mediaList.text) || groupDescription}
           isPost={!!postMediaTypes}
           postText={
             _.find(postMediaTypes, { type: "text" }) && {

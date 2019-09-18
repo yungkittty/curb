@@ -50,10 +50,10 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { postType, onIndexChange } = this.props;
-    if (postType) return;
+    const { postType, mediaList, onIndexChange } = this.props;
+    if (postType || _.size(mediaList) === 0) return;
     this.setTimeoutFunc = setTimeout(() => {
-      const { mediaList, selectedIndex } = this.props;
+      const { selectedIndex } = this.props;
       this.listFlatRef.current.scrollToIndex({
         index: _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1,
         viewOffset: 0
@@ -75,7 +75,7 @@ class ContentMedia extends React.Component {
     const { mediaList, cardSize, groupName, ...others } = this.props;
     const data = _.map(mediaList, (component, type) => ({ component, type }));
     // eslint-disable-next-line
-    return mediaList ? (
+    return _.size(mediaList) > 0 ? (
       <ListFlat
         horizontal
         pagingEnabled
@@ -91,7 +91,7 @@ class ContentMedia extends React.Component {
         renderItem={this.renderItem}
       />
     ) : groupName ? (
-      <MediaGroupPreview groupName={groupName} {...others} />
+      <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
       <MediaPlaceholder />
     );

@@ -68,7 +68,7 @@ class ContentMedia extends React.Component {
 
     const data = _.map(mediaList, (component, type) => ({ component, type }));
     // eslint-disable-next-line
-    return mediaList ? (
+    return _.size(mediaList) > 0 ? (
       <ListFlat
         horizontal
         ref={this.listFlatRef}
@@ -80,7 +80,7 @@ class ContentMedia extends React.Component {
         renderItem={this.renderItem}
       />
     ) : groupName ? (
-      <MediaGroupPreview groupName={groupName} {...others} />
+      <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
       <MediaPlaceholder />
     );
