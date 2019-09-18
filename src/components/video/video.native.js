@@ -71,6 +71,7 @@ class _Video extends React.Component {
           toggleResizeModeOnFullscreen={false}
           disableBack
           disableFullscreen
+          repeat
           showOnStart={false}
           paused={!isShowedInCard}
         />
