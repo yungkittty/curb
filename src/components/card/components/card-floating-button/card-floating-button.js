@@ -27,7 +27,7 @@ const CardFloatingButton = ({
         icon={likeNumber ? "heart" : "paper-plane"}
         size="extra-small"
         color={contentColor}
-        style={!likeNumber && { position: "relative", left: -2, top: -1 }}
+        style={!likeNumber ? { position: "relative", left: -2, top: -1 } : undefined}
       />
       {likeNumber && (
         <ButtonText weight={700} color={contentColor}>
