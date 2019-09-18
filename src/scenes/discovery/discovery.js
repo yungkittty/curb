@@ -99,25 +99,29 @@ class Discovery extends React.Component {
             image: (
               <ImageGallery
                 imagesData={[
-                  "http://livingplatform.co/wp/greenwich/wp-content/uploads/sites/2/2019/03/photo-1520045892732-304bc3ac5d8e.jpeg",
+                  "https://livingplatform.co/wp/greenwich/wp-content/uploads/sites/2/2019/03/photo-1520045892732-304bc3ac5d8e.jpeg",
                   "https://theboardr.blob.core.windows.net/eventsicons/1063.jpg",
                   "https://www.sitegallery.org/app/uploads/2019/08/NC-Sun-LR-@garryjonesphotography-84-1600x1066.jpg"
                 ]}
               />
             ),
-            video: <Video style={{ flex: 1 }} src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" />
+            video: (
+              <Video
+                style={{ height: "100%", width: "100%" }}
+                src="https://www.videvo.net/videvo_files/converted/2015_08/preview/Slowmotion_closeup_of_skateboard.mp442512.webm"
+              />
+            )
           }}
         />
         <Card
-          style={{ marginTop: 40, marginBottom: 40 }}
+          style={{ marginTop: 40 }}
           userId="5d373369c8acd2001d90bf55"
           onFloatingButtonClick={() => console.log("toto")}
-          likeNumber={345}
+          likeNumber="2 K"
           floatingButtonColor="rgb(86, 204, 242)"
           dropdownMenu={{
             icon: "ellipsis-v",
             optionsList: [
-              { text: t("pin"), icon: "thumbtack", onClick: () => console.log("pin") },
               { text: t("delete"), icon: "trash", onClick: () => console.log("pin") },
               { text: t("report"), icon: "flag", onClick: () => console.log("pin") }
             ]
@@ -132,7 +136,37 @@ class Discovery extends React.Component {
                 ]}
               />
             ),
-            video: <Video style={{ flex: 1 }} src="http://techslides.com/demos/sample-videos/small.mp4" />
+            video: (
+              <Video
+                style={{ height: "100%", width: "100%" }}
+                src="https://www.videvo.net/videvo_files/converted/2015_06/preview/Sacre_Coeur_am_WS_tilt_20150612_01_Videvo.mov38424.webm"
+              />
+            )
+          }}
+        />
+        <Card
+          style={{ marginTop: 40, marginBottom: 40 }}
+          userId="5d373369c8acd2001d90bf55"
+          onFloatingButtonClick={() => console.log("toto")}
+          likeNumber="345"
+          floatingButtonColor="rgb(86, 204, 242)"
+          dropdownMenu={{
+            icon: "ellipsis-v",
+            optionsList: [{ text: t("report"), icon: "flag", onClick: () => console.log("pin") }]
+          }}
+          mediaList={{
+            text: "We are back very soon...",
+            video: (
+              <Video
+                style={{ height: "100%", width: "100%" }}
+                src="https://raw.githubusercontent.com/mediaelement/mediaelement-files/master/echo-hereweare.mp4"
+              />
+            ),
+            image: (
+              <ImageGallery
+                imagesData={["https://johnmoyermusic.com/wp-content/uploads/2012/10/1-echo1-band.jpg"]}
+              />
+            )
           }}
         />
       </ContainerScroll>
