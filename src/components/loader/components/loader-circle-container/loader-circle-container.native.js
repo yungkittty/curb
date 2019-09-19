@@ -27,7 +27,7 @@ class LoaderCircleContainer extends Component {
 
   render() {
     const { children, ...others } = this.props;
-    const { rotation, mounted } = this.state;
+    const { rotation } = this.state;
 
     return (
       <Animated.View
