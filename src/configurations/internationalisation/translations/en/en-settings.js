@@ -39,7 +39,7 @@ const enSettings = {
         "The publication manager is a natural person or a legal person.\n" +
         "Webmaster: Curb Staff - curb_2020@labeip.epitech.eu\n" +
         "Host: Netlify - United States CA 610 22nd St # 315, San Francisco\n" +
-        "Credits: BACHELET Adrien COLLIN Quentin DEMNATI Elias DJABALI Jimmy LADINH Antoine TOUSSAINT Hugo WOIVRE Quentin\n" +
+        "Credits: BACHELET Adrien COLLIN Quentin DEMNATI Elias DJABALI Jimmy LADINH Antoine TOUSSAINT Hugo WOIVRÉ Quentin\n" +
         "The model of legal mentions is offered by Subdelirium.com Template of imprint\n" +
         "\n2 .General terms of use of the site and services offered.\n\n" +
         "The use of the www.curb-app.com website implies the full and complete acceptance of the general conditions of use described below.These conditions of use may be modified or supplemented at any time. www.curb-app.com are therefore invited to consult them on a regular basis.\n" +

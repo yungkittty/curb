@@ -24,8 +24,8 @@ class AboutLegalNotices extends Component {
   render() {
     const { t } = this.props;
     return (
-      <ContainerScroll showsVerticalScrollIndicator={false}>
-        <Text type="h4" style={{ marginLeft: 40, marginRight: 40, textAlign: "center" }}>
+      <ContainerScroll style={{ paddingRight: 40, paddingLeft: 40 }}>
+        <Text type="h4" style={{ textAlign: "center" }}>
           {t("about.legalNotices.content")}
         </Text>
       </ContainerScroll>

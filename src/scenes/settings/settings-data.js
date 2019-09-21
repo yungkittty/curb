@@ -9,7 +9,11 @@ const settingsData = [
     id: "general",
     scene: SettingsGeneral
   },
-  { id: "about", scene: SettingsAbout }
+  {
+    icon: "comment-dots",
+    id: "about",
+    scene: SettingsAbout
+  }
 ];
 
 export default settingsData;

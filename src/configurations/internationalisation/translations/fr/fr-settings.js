@@ -39,7 +39,7 @@ const frSettings = {
         "Le responsable publication est une personne physique ou une personne morale.\n" +
         "Webmaster : Curb Staff – curb_2020@labeip.epitech.eu\n" +
         "Hébergeur : Netlify – CA United States 610 22nd St #315, San Francisco\n" +
-        "Crédits : BACHELET Adrien COLLIN Quentin DEMNATI Elias DJABALI Jimmy LADINH Antoine TOUSSAINT Hugo WOIVRE Quentin\n" +
+        "Crédits : BACHELET Adrien COLLIN Quentin DEMNATI Elias DJABALI Jimmy LADINH Antoine TOUSSAINT Hugo WOIVRÉ Quentin\n" +
         "Le modèle de mentions légales est offert par Subdelirium.com Modèle de mentions légales\n" +
         "\n2. Conditions générales d’utilisation du site et des services proposés.\n\n" +
         "L’utilisation du site www.curb-app.com implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site www.curb-app.com sont donc invités à les consulter de manière régulière.\n" +
