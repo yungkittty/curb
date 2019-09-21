@@ -2,22 +2,21 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import ListFlat from "../../components/list-flat";
+import ListFlatLazy from "../../components/list-flat-lazy";
 import GroupListHeader from "./components/group-list-header";
 import GroupListItemHeader from "./components/group-list-item-header";
-import GroupListItemMedia from "./components/group-list-item-media";
 import GroupListItemInfo from "./components/group-list-item-info";
 import ButtonFloat from "../../components/button-float";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
-import withGroup from "../../hocs/with-group";
+// import withGroup from "../../hocs/with-group";
 
 /* eslint-disable */
 
 import CreateMedia from "../create-media"; /** @TODO !! */
 import GroupSettings from "./scenes/group-settings";
 
-/* eslint-enable */
+// eslint-enable
 
 class Group extends React.Component {
   constructor(props) {
@@ -48,8 +47,8 @@ class Group extends React.Component {
 
   getData() {
     const { isFeed } = this.state;
-    const { groupMediasId } = this.props;
-    return [{}, ...(isFeed ? groupMediasId : [{}])];
+    const { postsId } = this.props;
+    return [{}, ...(isFeed ? postsId : [{}])];
   }
 
   getGroupGradient() {
@@ -112,15 +111,8 @@ class Group extends React.Component {
     );
   }
 
-  renderListItemMedia({ item: mediaId }) {
-    const { theme } = this.props;
-    return (
-      <GroupListItemMedia
-        // eslint-disable-line
-        mediaId={mediaId}
-        theme={theme}
-      />
-    );
+  renderListItemMedia() {
+    return null;
   }
 
   renderListItemInfo() {
@@ -165,7 +157,9 @@ class Group extends React.Component {
       groupId,
       groupCreatorId,
       currentUserId,
-      currentUserGroupsId
+      currentUserGroupsId,
+      isPostsEnd,
+      getPosts
     } = this.props;
     const isCurrentUser = !!currentUserId;
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
@@ -173,14 +167,20 @@ class Group extends React.Component {
     const isButtonFloatShowed = isCurrentUser && ((isFeed && isCurrentUserIn) || isCurrentUserCreator);
     return (
       <React.Fragment>
-        <ListFlat
+        <ListFlatLazy
           // eslint-disable-line
           data={this.getData()}
           keyExtractor={(itemId, itemIndex) => (_.isString(itemId) ? itemId : itemIndex.toString())}
           stickyHeaderIndices={[0]}
           ListHeaderComponent={this.renderListHeader}
           renderItem={this.renderListItem}
-          scrollEventThrottle={1}
+          getItemLayout={(itemData, itemIndex) => ({
+            length: 140, // !
+            offset: 140 * itemIndex, // !
+            index: itemIndex
+          })}
+          isEndReached={isPostsEnd}
+          onEndReachedFetch={({ page, count }) => getPosts({ groupId, page, count })}
           onScroll={this.toggleSticky}
         />
         {isButtonFloatShowed ? (
@@ -206,9 +206,11 @@ Group.propTypes = {
   groupTheme: PropTypes.string.isRequired,
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
   groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
-  groupMediasId: PropTypes.array.isRequired, // eslint-disable-line
   currentUserId: PropTypes.string.isRequired,
   currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
+  isPostsEnd: PropTypes.bool.isRequired,
+  postsId: PropTypes.array.isRequired, // eslint-disable-line
+  getPosts: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired // eslint-disable-line
 };
 
@@ -216,6 +218,6 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withCurrentUser,
-  withGroup,
+  // withGroup,
   withTheme
 ])(Group);

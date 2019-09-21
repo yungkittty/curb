@@ -1,20 +1,8 @@
 import { all, takeLatest, call, put } from "redux-saga/effects";
-import { takeNormalize } from "../../configurations/store/saga-effects";
 import mediasActionsTypes from "./medias-actions-types";
 import mediasActions from "./medias-actions";
 import mediasApi from "./medias-api";
 import appAlertActions from "../app-alert/app-alert-actions";
-import appModalActions from "../app-modal/app-modal-actions";
-
-function* getMediaRequestSaga(action) {
-  try {
-    const { data: payload } = yield call(mediasApi.getMedia, action.payload);
-    yield put(mediasActions.getMediaSuccess(payload));
-  } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.getMediaFailure({ id: action.payload.id, errorCode }));
-  }
-}
 
 function* postMediaAvatarUserRequestSaga(action) {
   try {
@@ -44,66 +32,9 @@ function* postMediaAvatarGroupRequestSaga(action) {
   }
 }
 
-function* postMediaImageRequestSaga(action) {
-  try {
-    const { data: payload } = yield call(mediasApi.postMediaImage, action.payload);
-    yield put(mediasActions.postMediaImageSuccess({ id: action.payload.groupId, mediasId: payload.id }));
-    const successAlert = { type: "success", message: "createMedia.imagePosted", icon: "check" };
-    yield put(appAlertActions.pushAppAlert(successAlert));
-    yield put(appModalActions.hideAppModal());
-  } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaImageFailure({ errorCode }));
-  }
-}
-
-function* postMediaLocationRequestSaga(action) {
-  try {
-    const { data: payload } = yield call(mediasApi.postMediaLocation, action.payload);
-    yield put(mediasActions.postMediaLocationSuccess({ id: action.payload.groupId, mediasId: payload.id }));
-    const successAlert = { type: "success", message: "createMedia.locationPosted", icon: "check" };
-    yield put(appAlertActions.pushAppAlert(successAlert));
-    yield put(appModalActions.hideAppModal());
-  } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaLocationFailure({ errorCode }));
-  }
-}
-
-function* postMediaTextRequestSaga(action) {
-  try {
-    const { data: payload } = yield call(mediasApi.postMediaText, action.payload);
-    yield put(mediasActions.postMediaTextSuccess({ id: action.payload.groupId, mediasId: payload.id }));
-    const successAlert = { type: "success", message: "createMedia.textPosted", icon: "check" };
-    yield put(appAlertActions.pushAppAlert(successAlert));
-    yield put(appModalActions.hideAppModal());
-  } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaTextFailure({ errorCode }));
-  }
-}
-
-function* postMediaVideoRequestSaga(action) {
-  try {
-    const { data: payload } = yield call(mediasApi.postMediaVideo, action.payload);
-    yield put(mediasActions.postMediaVideoSuccess({ id: action.payload.groupId, mediasId: payload.id }));
-    const successAlert = { type: "success", message: "createMedia.videoPosted", icon: "check" };
-    yield put(appAlertActions.pushAppAlert(successAlert));
-    yield put(appModalActions.hideAppModal());
-  } catch (error) {
-    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaVideoFailure({ errorCode }));
-  }
-}
-
 const mediasSaga = all([
-  takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST, postMediaImageRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_LOCATION_REQUEST, postMediaLocationRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_TEXT_REQUEST, postMediaTextRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST, postMediaVideoRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga)
 ]);
 
 export default mediasSaga;

@@ -9,6 +9,7 @@ import { currentUserReducer as currentUser } from "../../datas/current-user";
 import { currentSettingsReducer as currentSettings } from "../../datas/current-settings";
 import { usersReducer as users } from "../../datas/users";
 import { groupsReducer as groups } from "../../datas/groups";
+import { postsReducer as posts } from "../../datas/posts";
 import { mediasReducer as medias } from "../../datas/medias";
 import { discoveryReducer as discovery } from "../../datas/discovery";
 
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   currentSettings,
   users,
   groups,
+  posts,
   medias,
   discovery
 });

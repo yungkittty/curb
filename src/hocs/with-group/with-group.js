@@ -53,9 +53,9 @@ const withGroup = WrappedComponent => {
       status: groupStatus,
       theme: groupTheme,
       inviteToken: groupInviteToken,
-      users: groupUsersId,
+      // users: groupUsersId,
       mediaTypes: groupMediaTypes,
-      medias: groupMediasId,
+      // medias: groupMediasId,
       errorCode: groupErrorCode
     } = group;
     return {
@@ -69,9 +69,9 @@ const withGroup = WrappedComponent => {
       groupStatus,
       groupTheme,
       groupInviteToken,
-      groupUsersId,
+      // groupUsersId,
       groupMediaTypes,
-      groupMediasId,
+      // groupMediasId,
       groupErrorCode
     };
   };
