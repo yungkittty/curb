@@ -11,7 +11,16 @@ import EventTimepicker from "./components/event-timepicker";
 const CreateMediaEvent = ({ groupTheme = "#56CCF2", t }) => (
   <EventContainer>
     <EventHeaderContainer style={{ backgroundColor: groupTheme }}>
-      <Input />
+      <Input
+        style={{
+          padding: 0,
+          height: 38,
+          textAlign: "center",
+          backgroundColor: "transparent",
+          color: "white",
+          placeholder: "Name of the event"
+        }}
+      />
       <hr style={{ width: 380, borderTop: 0 }} />
     </EventHeaderContainer>
     <EventContentContainer style={{ backgroundColor: "white" }}>
