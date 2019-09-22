@@ -3,8 +3,8 @@ import Text from "../../../../../../../text";
 
 const TextDescription = styled(Text).attrs(() => ({ type: "h5" }))`
   line-height: 24px;
-  align-self: center;
   flex: 1;
+  ${({ isTextTrimmed }) => (isTextTrimmed ? `align-self: center;` : ``)}
 `;
 
 export default TextDescription;

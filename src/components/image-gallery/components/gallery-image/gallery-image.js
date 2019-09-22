@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "../../../button";
 import Image from "../../../image";
 
-const GalleryImage = ({ src, isOneImage, isLastImage, mediaDataLength, ...others }) => {
+const GalleryImage = ({ src, isOneImage, isLastImage, ...others }) => {
   const isImageFromApi = src.substr(0, 9) === "/contents";
   return (
     <Button
@@ -11,7 +11,12 @@ const GalleryImage = ({ src, isOneImage, isLastImage, mediaDataLength, ...others
       onClick={() => window.open(`${process.env.REACT_APP_API_URL}${src}`)}
       disabled={!isImageFromApi}
     >
-      <Image {...others} src={src} objectFit="cover" style={{ width: "100%", height: "100%" }} />
+      <Image
+        {...others}
+        src={src}
+        objectFit={isOneImage ? "contain" : "cover"}
+        style={{ width: "100%", height: "100%" }}
+      />
     </Button>
   );
 };
@@ -19,8 +24,7 @@ const GalleryImage = ({ src, isOneImage, isLastImage, mediaDataLength, ...others
 GalleryImage.propTypes = {
   src: PropTypes.string.isRequired,
   isOneImage: PropTypes.bool.isRequired,
-  isLastImage: PropTypes.bool.isRequired,
-  mediaDataLength: PropTypes.number.isRequired
+  isLastImage: PropTypes.bool.isRequired
 };
 
 export default GalleryImage;

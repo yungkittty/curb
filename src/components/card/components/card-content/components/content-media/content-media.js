@@ -5,6 +5,7 @@ import MediaItemContainer from "./components/media-item-container";
 import MediaGroupPreview from "./components/media-group-preview";
 import MediaPlaceholder from "./components/media-placeholder";
 import ListFlat from "../../../../../list-flat";
+import mediaRandomSlider from "./utils/media-random-slider";
 
 class ContentMedia extends React.Component {
   constructor(props) {
@@ -44,18 +45,22 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { postType, onIndexChange } = this.props;
-    if (postType) return;
+    const { postType, mediaList, onIndexChange } = this.props;
+    if (postType || _.size(mediaList) === 0) return;
     this.setTimeoutFunc = setTimeout(() => {
-      const { mediaList, selectedIndex } = this.props;
+      const { selectedIndex } = this.props;
       const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
       onIndexChange(newIndex);
-    }, 2000);
+    }, mediaRandomSlider(15000, 30000));
   }
 
-  renderItem({ item: { component } }) {
-    const { cardSize } = this.props;
-    return <MediaItemContainer cardSize={cardSize}>{component}</MediaItemContainer>;
+  renderItem({ item: { component }, index }) {
+    const { selectedIndex, cardSize } = this.props;
+    return (
+      <MediaItemContainer cardSize={cardSize}>
+        {React.cloneElement(component, { isShowedInCard: index === selectedIndex })}
+      </MediaItemContainer>
+    );
   }
 
   render() {
@@ -63,7 +68,7 @@ class ContentMedia extends React.Component {
 
     const data = _.map(mediaList, (component, type) => ({ component, type }));
     // eslint-disable-next-line
-    return mediaList ? (
+    return _.size(mediaList) > 0 ? (
       <ListFlat
         horizontal
         ref={this.listFlatRef}
@@ -75,7 +80,7 @@ class ContentMedia extends React.Component {
         renderItem={this.renderItem}
       />
     ) : groupName ? (
-      <MediaGroupPreview groupName={groupName} {...others} />
+      <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
       <MediaPlaceholder />
     );

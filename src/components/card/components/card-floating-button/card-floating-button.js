@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import ButtonContainer from "./components/button-container";
 import CircleContainer from "../../../circle-container";
-import Text from "../../../text";
+import ButtonText from "./components/button-text";
 import Icon from "../../../icon";
 
 const CardFloatingButton = ({
@@ -27,12 +27,12 @@ const CardFloatingButton = ({
         icon={likeNumber ? "heart" : "paper-plane"}
         size="extra-small"
         color={contentColor}
-        style={!likeNumber && { position: "relative", left: -2, top: -1 }}
+        style={!likeNumber ? { position: "relative", left: -2, top: -1 } : undefined}
       />
       {likeNumber && (
-        <Text weight={700} type="h6" style={{ color: contentColor, marginTop: 2 }}>
+        <ButtonText weight={700} color={contentColor}>
           {likeNumber}
-        </Text>
+        </ButtonText>
       )}
     </CircleContainer>
   );

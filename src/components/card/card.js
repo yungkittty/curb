@@ -26,7 +26,7 @@ const Card = ({
     size,
     isCardExtended: !!_.size(_.omit(mediaList, "text")) > 0 || !!groupId,
     isPostMode: !!postMediaTypes,
-    isOnlyPostTextMode: postMediaTypes.length === 1 && postMediaTypes[0].type === "text"
+    isOnlyPostTextMode: !!postMediaTypes && postMediaTypes.length === 1 && postMediaTypes[0].type === "text"
   });
   return (
     <CardContainer
@@ -50,7 +50,7 @@ const Card = ({
         )}
         <CardFooter
           cardSize={cardSize}
-          textDescription={groupDescription}
+          textDescription={(_.size(mediaList) > 0 && mediaList.text) || groupDescription}
           isPost={!!postMediaTypes}
           postText={
             _.find(postMediaTypes, { type: "text" }) && {
@@ -86,7 +86,7 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
-  style: PropTypes.array, // eslint-disable-line
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   className: PropTypes.string,
   size: PropTypes.string,
   postMediaTypes: PropTypes.arrayOf(
