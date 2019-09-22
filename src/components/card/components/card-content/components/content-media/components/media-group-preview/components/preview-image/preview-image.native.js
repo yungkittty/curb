@@ -3,10 +3,17 @@ import styled from "styled-components";
 import Image from "../../../../../../../../../image";
 import Container from "../../../../../../../../../container";
 
-const PreviewImage = styled(({ style, ...others }) => (
+const PreviewImage = styled(({ ...others }) => (
   <React.Fragment>
-    <Image style={style} {...others} />
-    <Container style={{ ...style, backgroundColor: "rgba(0, 0, 0, 0.25)" }} />
+    <Image {...others} />
+    <Container
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.25)"
+      }}
+    />
   </React.Fragment>
 ))`
   position: absolute;
