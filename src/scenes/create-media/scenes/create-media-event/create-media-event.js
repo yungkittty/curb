@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
@@ -6,6 +7,7 @@ import Input from "../../../../components/input";
 import EventContainer from "./components/event-container";
 import EventHeaderContainer from "./components/event-header-container";
 import EventContentContainer from "./components/event-content-container";
+import EventDatepicker from "./components/event-datepicker";
 import EventTimepicker from "./components/event-timepicker";
 
 const CreateMediaEvent = ({ groupTheme = "#56CCF2", t }) => (
@@ -24,6 +26,7 @@ const CreateMediaEvent = ({ groupTheme = "#56CCF2", t }) => (
       <hr style={{ width: 380, borderTop: 0 }} />
     </EventHeaderContainer>
     <EventContentContainer style={{ backgroundColor: "white" }}>
+      <EventDatepicker />
       <EventTimepicker />
     </EventContentContainer>
   </EventContainer>
@@ -34,4 +37,4 @@ CreateMediaEvent.propTypes = {
   groupTheme: PropTypes.string.isRequired
 };
 
-export default CreateMediaEvent;
+export default _.flowRight([withTranslation()])(CreateMediaEvent);
