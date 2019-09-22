@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { withTranslation } from "react-i18next";
 import Input from "../../../../../input";
 import countLineNumber from "./utils/count-line-number";
 
-const InputContainer = styled(Input).attrs(() => ({
-  placeholder: "Écrivez quelque chose"
+const InputContainer = styled(Input).attrs(({ t }) => ({
+  placeholder: t("writeSomething")
 }))`
   padding: 0px;
   font-size: 14px;
@@ -16,4 +17,4 @@ const InputContainer = styled(Input).attrs(() => ({
   }}px;
 `;
 
-export default InputContainer;
+export default withTranslation("common")(InputContainer);

@@ -16,7 +16,7 @@ const CardAddMediaTypes = ({ theme, postMediaTypes }) => (
       postMediaTypes,
       ({ type, onClick, onSelect }, index) =>
         type !== "text" && (
-          <MediaTypesIcon key={index} style={{ height: "min-content" }}>
+          <MediaTypesIcon key={index}>
             <Icon icon={mediaTypeToIcon(type)} size="small" color={theme.primaryColor} />
             {/* eslint-disable-next-line */}
             {type === "image" ? (

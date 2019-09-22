@@ -4,9 +4,9 @@ import Container from "../../../../../../../container";
 const MediaListContainer = styled(Container)`
   position: absolute;
   display: flex;
+  flex-flow: row;
   background: rgba(0, 0, 0, 0.4);
-  padding: 0px 6px;
-  height: 35px;
+  padding: 8px 4px;
   align-items: center;
   justify-content: center;
   z-index: 2;
