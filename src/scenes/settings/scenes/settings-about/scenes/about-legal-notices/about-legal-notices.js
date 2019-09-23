@@ -40,4 +40,8 @@ AboutLegalNotices.propTypes = {
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default _.flowRight([withAppModal, withTranslation("settings")])(AboutLegalNotices);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("settings")
+])(AboutLegalNotices);
