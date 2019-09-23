@@ -67,19 +67,7 @@ class Discovery extends React.Component {
       >
         <Card
           userId="5d373369c8acd2001d90bf55"
-          dropdownMenu={{
-            icon: "minus",
-            onClick: mediaType => console.log(`remove the ${mediaType} component`)
-          }}
-          postMediaTypes={[
-            { type: "text", onChange: () => console.log("text") },
-            {
-              type: "event",
-              onClick: () => console.log("add event to mediaList")
-            },
-            { type: "poll", onClick: () => console.log("add poll to mediaList") }
-          ]}
-          mediaList={{ event: <CreateMediaEvent />, poll: <Loader /> }}
+          mediaList={{ event: <CreateMediaEvent groupTheme="#56CCF2" /> }}
         />
       </Container>
     );

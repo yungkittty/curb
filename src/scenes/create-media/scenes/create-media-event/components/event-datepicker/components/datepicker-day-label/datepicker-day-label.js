@@ -1,5 +1,6 @@
 import React from "react";
+import Container from "../../../../../../../../components/container";
 
-const DatepickerDayLabel = () => <div />;
+const DatepickerDayLabel = () => <Container />;
 
 export default DatepickerDayLabel;

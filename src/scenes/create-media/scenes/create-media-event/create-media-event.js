@@ -10,7 +10,7 @@ import EventContentContainer from "./components/event-content-container";
 import EventDatepicker from "./components/event-datepicker";
 import EventTimepicker from "./components/event-timepicker";
 
-const CreateMediaEvent = ({ groupTheme = "#56CCF2", t }) => (
+const CreateMediaEvent = ({ groupTheme, t }) => (
   <EventContainer>
     <EventHeaderContainer style={{ backgroundColor: groupTheme }}>
       <Input
@@ -23,10 +23,9 @@ const CreateMediaEvent = ({ groupTheme = "#56CCF2", t }) => (
           placeholder: "Name of the event"
         }}
       />
-      <hr style={{ width: 380, borderTop: 0 }} />
     </EventHeaderContainer>
     <EventContentContainer style={{ backgroundColor: "white" }}>
-      <EventDatepicker />
+      <EventDatepicker color={groupTheme} />
       <EventTimepicker />
     </EventContentContainer>
   </EventContainer>
@@ -38,3 +37,5 @@ CreateMediaEvent.propTypes = {
 };
 
 export default _.flowRight([withTranslation()])(CreateMediaEvent);
+
+//     web only  <hr style={{ width: 380, borderTop: 0 }} />
