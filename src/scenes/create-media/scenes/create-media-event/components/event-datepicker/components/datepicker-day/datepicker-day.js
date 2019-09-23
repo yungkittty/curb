@@ -4,7 +4,7 @@ import Container from "../../../../../../../../components/container";
 import Day from "./components/day";
 
 const DatepickerDay = ({ dayList, color, today }) => (
-  <Container>
+  <Container style={{ flexDirection: "row", flexWrap: "wrap" }}>
     {dayList &&
       dayList.map((day, index) => {
         const tmpDay = new Date(day);
@@ -12,7 +12,9 @@ const DatepickerDay = ({ dayList, color, today }) => (
           <Day
             key={index}
             day={tmpDay.getDate()}
-            style={tmpDay.getDate() === today ? { borderRadius: 4, border: `1px solid ${color}` } : null}
+            style={
+              tmpDay.getDate() === today.getDate() ? { borderRadius: 4, border: `1px solid ${color}` } : null
+            }
           />
         );
       })}

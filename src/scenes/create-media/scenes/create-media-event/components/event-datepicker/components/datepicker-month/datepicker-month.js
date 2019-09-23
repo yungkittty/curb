@@ -6,13 +6,25 @@ import Icon from "../../../../../../../../components/icon";
 import Text from "../../../../../../../../components/text";
 
 const DatepickerMonth = ({ onPrevMonth, onNextMonth, currentDate, color }) => (
-  <Container style={{ display: "flex", flexDirection: "row", height: 100, width: "100%" }}>
-    <Button onClick={onPrevMonth}>
+  <Container
+    style={{
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      height: 25,
+      width: 7 * 12 + 6 * 5
+    }}
+  >
+    <Button onClick={onPrevMonth} style={{ position: "absolute", left: 0 }}>
       <Icon icon={"chevron-left"} size="extra-small" color={color} />
     </Button>
-    <Text>{currentDate.getMonth() + 1}</Text>
-    <Button onClick={onNextMonth}>
-      <Icon icon={"chevron-right"} size="extra-small" color={color} />{" "}
+    <Text weight={700} type="h6" style={{ color: `${color}` }}>
+      {currentDate.getMonth() + 1}
+      {currentDate.getFullYear()}
+    </Text>
+    <Button onClick={onNextMonth} style={{ position: "absolute", right: 0 }}>
+      <Icon icon={"chevron-right"} size="extra-small" color={color} />
     </Button>
   </Container>
 );

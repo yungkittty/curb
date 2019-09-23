@@ -61,14 +61,14 @@ class EventDatepicker extends React.Component {
     const { currentDate, dayList } = this.state;
     const { color } = this.props;
     return (
-      <Container style={{ widht: "100%", height: "100%" }}>
+      <Container style={{ display: "flex", alignItems: "center", width: 7 * 12 + 6 * 5 }}>
         <DatepickerMonth
           onPrevMonth={this.onPrevMonth}
           onNextMonth={this.onNextMonth}
           currentDate={currentDate}
           color={color}
         />
-        <DatepickerDay dayList={dayList} color={color} />
+        <DatepickerDay dayList={dayList} color={color} today={new Date()} />
       </Container>
     );
   }
