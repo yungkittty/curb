@@ -13,9 +13,24 @@ function* getPostsRequest(action) {
   }
 }
 
+// function* postPostReactionRequest() {}
+
+// function* postPostReportRequest() {}
+
+function* deletePostRequest(action) {
+  try {
+    const { data: payload } = yield call(postsApi.deletePost, action.payload);
+    yield put(postsActions.deletePostSuccess({ ...payload, postId: action.payload.postId }));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(postsActions.deletePostFailure({ errorCode }));
+  }
+}
+
 const postsSaga = all([
   // eslint-disable-line
-  takeLatest(postsActionsTypes.GET_POSTS_REQUEST, getPostsRequest)
+  takeLatest(postsActionsTypes.GET_POSTS_REQUEST, getPostsRequest),
+  takeLatest(postsActionsTypes.DELETE_POST_REQUEST, deletePostRequest)
 ]);
 
 export default postsSaga;

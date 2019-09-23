@@ -6,10 +6,10 @@ import ListFlatLazy from "../../components/list-flat-lazy";
 import GroupListHeader from "./components/group-list-header";
 import GroupListItemHeader from "./components/group-list-item-header";
 import GroupListItemInfo from "./components/group-list-item-info";
+import GroupListItemPost from "./components/group-list-item-post";
 import ButtonFloat from "../../components/button-float";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
-// import withGroup from "../../hocs/with-group";
 
 /* eslint-disable */
 
@@ -111,8 +111,17 @@ class Group extends React.Component {
     );
   }
 
-  renderListItemMedia() {
-    return null;
+  renderListItemMedia({ item: postId }) {
+    const { groupId } = this.props;
+    const { groupGradientColors } = this.getGroupGradient();
+    return (
+      <GroupListItemPost
+        // eslint-disable-line
+        postId={postId}
+        groupId={groupId}
+        groupGradientColors={groupGradientColors}
+      />
+    );
   }
 
   renderListItemInfo() {
@@ -170,7 +179,7 @@ class Group extends React.Component {
         <ListFlatLazy
           // eslint-disable-line
           data={this.getData()}
-          keyExtractor={(itemId, itemIndex) => (_.isString(itemId) ? itemId : itemIndex.toString())}
+          keyExtractor={(itemId, itemIndex) => (_.isString(itemId) ? itemId : itemIndex.toString())} // !
           stickyHeaderIndices={[0]}
           ListHeaderComponent={this.renderListHeader}
           renderItem={this.renderListItem}

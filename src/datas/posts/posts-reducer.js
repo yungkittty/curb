@@ -23,17 +23,16 @@ const byId = (state = {}, action) => {
   switch (action.type) {
     case postsActionsTypes.GET_POSTS_SUCCESS:
       return {
-        // eslint-disable-line
         ...(action.payload.page !== 1 ? state : {}),
         ..._.reduce(
           action.payload.data,
           // eslint-disable-line
-          (postsById, post) =>
-            // eslint-disable-line
-            ({ ...postsById, [post.id]: post }),
+          (postsById, post) => ({ ...postsById, [post.id]: post }),
           {}
         )
       };
+    case postsActionsTypes.DELETE_POST_SUCCESS:
+      return { ...state, [action.payload.postId]: undefined };
     default:
       return state;
   }
@@ -43,17 +42,16 @@ const allIds = (state = [], action) => {
   switch (action.type) {
     case postsActionsTypes.GET_POSTS_SUCCESS:
       return [
-        // eslint-disable-line
         ...(action.payload.page !== 1 ? state : []),
         ..._.reduce(
           action.payload.data,
           // eslint-disable-line
-          (allPostsIds, post) =>
-            // eslint-disable-line
-            [...allPostsIds, post.id],
+          (allPostsIds, post) => [...allPostsIds, post.id],
           []
         )
       ];
+    case postsActionsTypes.DELETE_POST_SUCCESS:
+      return _.without(state, action.payload.postId);
     default:
       return state;
   }
