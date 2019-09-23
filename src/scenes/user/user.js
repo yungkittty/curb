@@ -123,6 +123,7 @@ class User extends Component {
             id="avatar"
             size="extra-extra-large"
             placeholderColor={theme.primaryVariantColor}
+            shouldFetch={false}
             userId={userId}
             editMode={editMode}
             data={avatarState.value.data}
@@ -135,7 +136,7 @@ class User extends Component {
             readOnly={!editMode}
             containerStyle={{ marginTop: 64, textAlign: "center" }}
             textStyle={{
-              fontSize: platformBools.isReact ? 36 : 32,
+              fontSize: platformBools.isWeb ? 36 : 32,
               fontFamily: "Montserrat-Bold",
               textAlign: "center"
             }}
@@ -166,7 +167,6 @@ User.propTypes = {
   userName: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,
   patchUser: PropTypes.func.isRequired,
-  // postMediaAvatarUser: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };

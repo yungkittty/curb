@@ -29,8 +29,8 @@ class DiscoveryScanQr extends React.Component {
     const { hideAppModal, theme } = this.props;
     const { isFlashModeOn } = this.state;
     const { FlashMode } = RNCamera.Constants;
-    const modalWidth = windowDimensions.width;
-    const modalHeight = windowDimensions.height - windowDimensions.statusBarHeight - 75;
+    const modalWidth = windowDimensions.getWidth();
+    const modalHeight = windowDimensions.getHeight() - windowDimensions.getStatusBarHeight() - 75;
     const modalWidthOffset = (modalWidth - 250) / 2;
     const modalHeightOffset = (modalHeight - 250) / 2;
     return (

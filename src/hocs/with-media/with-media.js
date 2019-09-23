@@ -6,15 +6,25 @@ import { mediasActions, mediasSelectors } from "../../datas/medias";
 const withMedia = WrappedComponent => {
   class WithMedia extends React.Component {
     componentDidMount() {
-      const { mediaId, getMedia } = this.props;
-      if (mediaId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        mediaId,
+        getMedia
+      } = this.props;
+      if (shouldFetch && mediaId) {
         getMedia({ id: mediaId });
       }
     }
 
     componentDidUpdate(prevProps) {
-      const { mediaId, getMedia } = this.props;
-      if (mediaId && mediaId !== prevProps.mediaId) {
+      const {
+        // eslint-disable-line
+        shouldFetch,
+        mediaId,
+        getMedia
+      } = this.props;
+      if (shouldFetch && mediaId && mediaId !== prevProps.mediaId) {
         getMedia({ id: mediaId });
       }
     }
@@ -27,15 +37,17 @@ const withMedia = WrappedComponent => {
 
   const mapStateToProps = (state, ownProps) => {
     const mediaId = ownProps.mediaId; // eslint-disable-line
+    const media = mediasSelectors.getMediaById(state, mediaId);
+    if (!media) return { mediaId };
     const {
-      isFetching: isFetchingMedia = false,
-      creatorId: mediaCreatorId = "",
-      dateCreation: mediaDateCreation = "",
-      type: mediaType = "",
-      data: mediaData = "",
-      groupId: mediaGroupId = "",
-      errorCode: mediaErrorCode = ""
-    } = mediasSelectors.getMediaById(state, mediaId) || {};
+      isFetching: isFetchingMedia,
+      creatorId: mediaCreatorId,
+      dateCreation: mediaDateCreation,
+      type: mediaType,
+      data: mediaData,
+      groupId: mediaGroupId,
+      errorCode: mediaErrorCode
+    } = media;
     return {
       isFetchingMedia,
       mediaId,
@@ -52,8 +64,28 @@ const withMedia = WrappedComponent => {
     getMedia: payload => dispatch(mediasActions.getMediaRequest(payload))
   });
 
+  WithMedia.defaultProps = {
+    shouldFetch: true,
+    isFetchingMedia: false,
+    mediaId: "",
+    mediaCreatorId: "",
+    mediaDateCreation: "",
+    mediaType: "",
+    mediaData: "",
+    mediaGroupId: "",
+    mediaErrorCode: ""
+  };
+
   WithMedia.propTypes = {
-    mediaId: PropTypes.string.isRequired,
+    shouldFetch: PropTypes.bool,
+    isFetchingMedia: PropTypes.bool,
+    mediaId: PropTypes.string,
+    mediaCreatorId: PropTypes.string,
+    mediaDateCreation: PropTypes.string,
+    mediaType: PropTypes.string,
+    mediaData: PropTypes.string,
+    mediaGroupId: PropTypes.string,
+    mediaErrorCode: PropTypes.string,
     getMedia: PropTypes.func.isRequired
   };
 

@@ -1,7 +1,8 @@
-import { osName } from "react-device-detect";
+import { Dimensions } from "react-native-web";
 
-const scrollBarWidth = osName === "Windows" ? 17 : 15;
-
-const windowDimensions = { scrollBarWidth };
+const windowDimensions = {
+  getWidth: () => Dimensions.get("window").width,
+  getHeight: () => Dimensions.get("window").height
+};
 
 export default windowDimensions;

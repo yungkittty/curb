@@ -4,6 +4,7 @@ import SettingsFeedback from "./scenes/settings-feedback";
 
 const settingsData = [
   {
+    icon: "cogs",
     id: "general",
     scene: SettingsGeneral
   },

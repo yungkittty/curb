@@ -1,6 +1,8 @@
+import _ from "lodash";
 import styled from "styled-components";
-import ContainerAnimation from "./components/container-animation";
 import Container from "../../../container";
+import ContainerPropagation from "./components/container-propagation";
+import ContainerAnimation from "./components/container-animation";
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 32
 
@@ -21,4 +23,8 @@ const ModalContainer = styled(Container)`
   overflow: hidden;
 `;
 
-export default ContainerAnimation(ModalContainer);
+export default _.flowRight([
+  // eslint-disable-line
+  ContainerPropagation,
+  ContainerAnimation
+])(ModalContainer);
