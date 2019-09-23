@@ -28,7 +28,7 @@ class GroupListSectionHeader extends React.Component {
   render() {
     const { isShowed, isInvited } = this.state;
     const { location, groupId, groupTheme, postGroupInviteToken, theme, t } = this.props;
-    const { inviteToken: token } = location.state || {};
+    const { inviteToken } = location.state || {};
     return isShowed ? (
       <HeaderContainer>
         <HeaderButtonIcon
@@ -45,7 +45,7 @@ class GroupListSectionHeader extends React.Component {
           weight={700}
           groupTheme={groupTheme}
           contentStyle={{ color: theme.backgroundColor }}
-          onClick={() => postGroupInviteToken({ id: groupId, token })}
+          onClick={() => postGroupInviteToken({ id: groupId, token: inviteToken })}
         >
           {t("headerButtonText")}
         </HeaderButtonText>
