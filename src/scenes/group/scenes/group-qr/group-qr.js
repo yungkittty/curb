@@ -64,6 +64,7 @@ class GroupQr extends React.Component {
 }
 
 GroupQr.propTypes = {
+  t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   setAppModalHeaderText: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
