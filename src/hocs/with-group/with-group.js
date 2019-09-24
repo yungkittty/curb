@@ -11,11 +11,10 @@ const withGroup = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-        isFetchingGroup,
         groupId,
         getGroup
       } = this.props;
-      if (shouldFetch && !isFetchingGroup && groupId) {
+      if (shouldFetch && groupId) {
         getGroup({ id: groupId });
       }
     }
@@ -24,11 +23,10 @@ const withGroup = WrappedComponent => {
       const {
         // eslint-disable-line
         shouldFetch,
-        isFetchingGroup,
         groupId,
         getGroup
       } = this.props;
-      if (shouldFetch && !isFetchingGroup && groupId && groupId !== prevProps.groupId) {
+      if (shouldFetch && groupId && groupId !== prevProps.groupId) {
         getGroup({ id: groupId });
       }
     }

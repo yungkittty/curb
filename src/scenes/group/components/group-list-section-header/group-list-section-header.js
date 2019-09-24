@@ -45,7 +45,7 @@ class GroupListSectionHeader extends React.Component {
           weight={700}
           groupTheme={groupTheme}
           contentStyle={{ color: theme.backgroundColor }}
-          onClick={() => postGroupInviteToken({ id: groupId, inviteToken })}
+          onClick={() => postGroupInviteToken({ id: groupId, token: inviteToken })}
         >
           {t("headerButtonText")}
         </HeaderButtonText>
