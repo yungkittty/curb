@@ -57,7 +57,7 @@ Image.defaultProps = {
 };
 
 Image.propTypes = {
-  src: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.object]).isRequired,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   onLoadStart: PropTypes.func,
   onLoad: PropTypes.func,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
