@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Input = styled.input.attrs(({ isMultiline }) => ({ as: isMultiline ? "textarea" : undefined }))`
   box-sizing: border-box;
-  padding: 20px;
+  padding: 18px;
   border: 0;
   font-family: "Montserrat-Regular";
   font-size: 18px;

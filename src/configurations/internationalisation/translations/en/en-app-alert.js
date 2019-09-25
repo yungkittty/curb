@@ -15,7 +15,7 @@ const enAppAlert = {
   },
   feedback : {
     Success: "Your feedback have been sended",
-    UNKNOWN: "An error eccored while sending your feedback"
+    UNKNOWN: "An error occured while sending your feedback"
   },
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",
