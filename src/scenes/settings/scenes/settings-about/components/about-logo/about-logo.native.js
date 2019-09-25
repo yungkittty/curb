@@ -4,7 +4,7 @@ import Image from "../../../../../../components/image";
 const AboutLogo = () => (
   <Image
     // eslint-disable-next-line
-    src={require("../../../../../../assets/images/logo-curb-220.png")}
+    src={require("./logo-curb-130.png")}
     style={{ height: 130, width: 130 }}
   />
 );
