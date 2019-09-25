@@ -8,7 +8,6 @@ import FeedbackTitle from "./components/feedback-title"
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import Settings from "../../../settings"; // eslint-disable-line
 import withAppModal from "../../../../hocs/with-app-modal";
-import withCurrentUser from "../../../../hocs/with-current-user";
 
 class SettingsFeedback extends Component {
   constructor(props) {
