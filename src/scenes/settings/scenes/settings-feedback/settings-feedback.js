@@ -109,7 +109,6 @@ SettingsFeedback.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   isFetchingFeedback: PropTypes.bool.isRequired,
-  currentUserId: PropTypes.string.isRequired,
   text: PropTypes.shape({ value: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
@@ -117,6 +116,5 @@ SettingsFeedback.propTypes = {
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withCurrentUser,
   withTranslation("settings")
 ])(SettingsFeedback);
