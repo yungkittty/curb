@@ -3,6 +3,7 @@ import Container from "../../../../../../components/container";
 
 const EventContentContainer = styled(Container)`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   align-items: center;

@@ -1,20 +1,37 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Icon from "../../../../../../components/icon";
 import Text from "../../../../../../components/text";
-import TimePickerContainer from "./components/timepicker-container";
-import NumberPicker from "./components/number-picker";
+import TimepickerContainer from "./components/timepicker-container";
+import TimepickerNumber from "./components/timepicker-number";
 
-const EventTimepicker = () => (
-  <TimePickerContainer style={{ fontSize: 12, fontWeight: "bold", color: "#4F4F4F" }}>
-    <Icon size="extra-extra-small" icon="clock" color="#E0E0E0" style={{ marginRight: 14 }} />
-    <NumberPicker
-      style={{ width: 25, height: 25, padding: 0, textAlign: "center", fontSize: 12, fontWeight: "bold" }}
-    />
-    <Text style={{ padding: 5, fontSize: 12, fontWeight: "bold" }}>:</Text>
-    <NumberPicker
-      style={{ width: 25, height: 25, padding: 0, textAlign: "center", fontSize: 12, fontWeight: "bold" }}
-    />
-  </TimePickerContainer>
-);
+const EventTimepicker = ({ hours, minutes, onChangeHours, onChangeMinutes }) => {
+  return (
+    <TimepickerContainer style={{ fontSize: 12, fontWeight: "bold", color: "#4F4F4F" }}>
+      <Icon size="extra-extra-small" icon="clock" color="#E0E0E0" style={{ marginRight: 14 }} />
+      <TimepickerNumber
+        type="number-pad"
+        value={hours}
+        onChange={text => onChangeHours(text.target.value)}
+        maxLength={2}
+      />
+      <Text style={{ padding: 5, fontSize: 12, fontWeight: "bold" }}>:</Text>
+      <TimepickerNumber
+        type="number-pad"
+        value={minutes}
+        onChange={text => onChangeMinutes(text.target.value)}
+        maxLength={2}
+      />
+    </TimepickerContainer>
+  );
+};
+
+EventTimepicker.propTypes = {
+  hours: PropTypes.string.isRequired,
+  minutes: PropTypes.string.isRequired,
+  onChangeHours: PropTypes.func.isRequired,
+  onChangeMinutes: PropTypes.func.isRequired
+};
 
 export default EventTimepicker;
+//      <TimepickerNumber type="number-pad" defaultValue={time.getMinutes()} />

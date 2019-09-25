@@ -4,7 +4,6 @@ import { withTranslation } from "react-i18next";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 import Card from "../../components/card";
-import Loader from "../../components/loader";
 
 /* eslint-disable */
 
