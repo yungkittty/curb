@@ -25,7 +25,7 @@ class AboutLegalNotices extends Component {
     const { t } = this.props;
     return (
       <ContainerScroll style={{ paddingRight: 40, paddingLeft: 40 }}>
-        <Text type="h4" style={{ textAlign: "center" }}>
+        <Text type="h4" style={{ textAlign: "center" }} isIndented>
           {t("about.legalNotices.content")}
         </Text>
       </ContainerScroll>

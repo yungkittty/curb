@@ -35,7 +35,10 @@ class SettingsAbout extends Component {
         <AboutTitle type="h2" weight={700} style={{ marginTop: 65, marginBottom: 27 }}>
           Curb
         </AboutTitle>
-        <Text style={{ color: "#BDBDBD" }}>Version {process.env.CURB_Version}</Text>
+        <Text style={{ color: "#BDBDBD" }}>
+          {/* eslint-disable-line */}
+          {`Version ${process.env.CURB_VERSION}`}
+        </Text>
         <Stadium
           as={Button}
           onClick={() => setAppModalScene({ scene: AboutLegalNotices, direction: 1 })}
