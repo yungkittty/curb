@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -46,10 +47,12 @@
 		49DBAAD782FC4BAFA43458E8 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED0B6C37A7F4BAFACC18360 /* libRNCamera.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8F1607EC22549B8E00C4BCFC /* Montserrat-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = C18832ED45A44D24995DA7A5 /* Montserrat-Light.woff */; };
+		8FE02556233CEEAF00DAE3C0 /* app-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FE02555233CEEAF00DAE3C0 /* app-icon.png */; };
 		A3D839700F03432D950623D2 /* Montserrat-ExtraBold.woff in Resources */ = {isa = PBXBuildFile; fileRef = F6CB94128E5343FB88DAB102 /* Montserrat-ExtraBold.woff */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B160EDE26967400AA197E937 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED398C85F3C406391884614 /* libRNSVG.a */; };
 		BF4C248422BBCC0700CA6C1F /* curb.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 8FC9446E2257B79A00E0088D /* curb.entitlements */; };
+		C7B95F8EEC4A4AEEA3FF0440 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 126656DCD92C4E5B85CC8B1D /* libBVLinearGradient.a */; };
 		D5291407D3764AEAA0416AD8 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F7B4F3245F4666A4EF9EC8 /* libRCTVideo.a */; };
 		D699A28B0D2849BEA703EDA6 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD1227BB1E5A44D9845646FC /* libRNImagePicker.a */; };
 		E52139B60EC345A991D8CAE3 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 888BE31DD8474426A16E3DCE /* libRNVectorIcons-tvOS.a */; };
@@ -58,7 +61,6 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		EE827BC63BC047BCBD58DBC9 /* Montserrat-SemiBold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 93EDF17156F846CE97F48690 /* Montserrat-SemiBold.woff */; };
 		F565119B5D7F4258A2386C01 /* Montserrat-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 94E8058361A84C6FA987E591 /* Montserrat-Regular.woff */; };
-		C7B95F8EEC4A4AEEA3FF0440 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 126656DCD92C4E5B85CC8B1D /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -419,6 +421,20 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
+		8FE02551233CEE4400DAE3C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCCC70BA8D11493DB8266302 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
+		8FE02553233CEE4400DAE3C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCCC70BA8D11493DB8266302 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64AA15081EF7F30100718508;
+			remoteInfo = "BVLinearGradient-tvOS";
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -441,6 +457,7 @@
 		01F15A8229A943FB8852B605 /* Montserrat-Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.woff"; path = "../src/assets/fonts/Montserrat-Bold.woff"; sourceTree = "<group>"; };
 		05D0B695B5774A769CED347E /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
 		0A78043FFF3D40CFBDEC4E35 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		126656DCD92C4E5B85CC8B1D /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* curb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = curb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -477,6 +494,7 @@
 		8A9A097222B443CFB1ED7173 /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
 		8B1C2B47F56D4EE2AC010E8D /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		8FC9446E2257B79A00E0088D /* curb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = curb.entitlements; path = curb/curb.entitlements; sourceTree = "<group>"; };
+		8FE02555233CEEAF00DAE3C0 /* app-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon.png"; path = "../src/assets/images/app-icon.png"; sourceTree = "<group>"; };
 		8FE353A0F70C41FDB91358CA /* ReactNativeTestFairy.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeTestFairy.xcodeproj; path = "../node_modules/react-native-testfairy/ios/ReactNativeTestFairy.xcodeproj"; sourceTree = "<group>"; };
 		93587FCB8A3D43548D5DB8B9 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		93EDF17156F846CE97F48690 /* Montserrat-SemiBold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.woff"; path = "../src/assets/fonts/Montserrat-SemiBold.woff"; sourceTree = "<group>"; };
@@ -493,14 +511,13 @@
 		C3758D9230444F15AA715564 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		C5FED33F817D4E7DA980C810 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		D89EB00E701F4F1EB8226FCF /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
+		DCCC70BA8D11493DB8266302 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		DCEA116D78504E68AA24084E /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		EA9E7AF148D64C40B69E1D58 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F6CB94128E5343FB88DAB102 /* Montserrat-ExtraBold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.woff"; path = "../src/assets/fonts/Montserrat-ExtraBold.woff"; sourceTree = "<group>"; };
 		F8902427C65844B8AC8B7211 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		DCCC70BA8D11493DB8266302 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		126656DCD92C4E5B85CC8B1D /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -784,6 +801,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8FE02555233CEEAF00DAE3C0 /* app-icon.png */,
 				13B07FAE1A68108700A75B9A /* curb */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* curbTests */,
@@ -841,6 +859,7 @@
 				6132DD93416C4DC291D448C7 /* libAirMaps.a */,
 				1ED398C85F3C406391884614 /* libRNSVG.a */,
 				D89EB00E701F4F1EB8226FCF /* libRNSVG-tvOS.a */,
+				126656DCD92C4E5B85CC8B1D /* libBVLinearGradient.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -899,6 +918,15 @@
 			isa = PBXGroup;
 			children = (
 				8FC6EE7D2296623200C10260 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FE0254D233CEE4400DAE3C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FE02552233CEE4400DAE3C0 /* libBVLinearGradient.a */,
+				8FE02554233CEE4400DAE3C0 /* libBVLinearGradient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1029,6 +1057,10 @@
 				{
 					ProductGroup = 8FC6EE672296623200C10260 /* Products */;
 					ProjectRef = BCF1A933F7ED48D484BC4BC9 /* AirMaps.xcodeproj */;
+				},
+				{
+					ProductGroup = 8FE0254D233CEE4400DAE3C0 /* Products */;
+					ProjectRef = DCCC70BA8D11493DB8266302 /* BVLinearGradient.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1465,6 +1497,20 @@
 			remoteRef = 8FC6EE7C2296623200C10260 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8FE02552233CEE4400DAE3C0 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = 8FE02551233CEE4400DAE3C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8FE02554233CEE4400DAE3C0 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = 8FE02553233CEE4400DAE3C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1496,6 +1542,7 @@
 				F565119B5D7F4258A2386C01 /* Montserrat-Regular.woff in Resources */,
 				8F1607EC22549B8E00C4BCFC /* Montserrat-Light.woff in Resources */,
 				27AA7EC79F0343589E31115F /* FontAwesome5_Solid.ttf in Resources */,
+				8FE02556233CEEAF00DAE3C0 /* app-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1630,7 +1677,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = curbTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1669,7 +1716,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = curbTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1711,7 +1758,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = curb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1745,7 +1792,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = curb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1784,7 +1831,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = "curb-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1831,7 +1878,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = "curb-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1877,7 +1924,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = "curb-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1923,7 +1970,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
-					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
+					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 				);
 				INFOPLIST_FILE = "curb-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

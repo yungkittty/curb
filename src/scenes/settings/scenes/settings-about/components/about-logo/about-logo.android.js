@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "../../../../../../components/image";
-import appIcon from "../../../../../../assets/images/app-icon.png";
+
+// https://facebook.github.io/react-native/docs/images
 
 const AboutLogo = () => (
   <Image
     // eslint-disable-next-line
-    src={appIcon}
-    style={{ width: 200, height: 200 }}
+    src="asset:/images/app-icon.png"
+    style={{ height: 130, width: 130 }}
   />
 );
 
