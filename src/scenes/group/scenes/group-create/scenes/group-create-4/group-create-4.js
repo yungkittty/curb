@@ -16,6 +16,7 @@ class GroupCreate4 extends Component {
     super(props);
     const {
       // eslint-disable-line
+      enableAppModalEnterEvent,
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
       setAppModalFooterButton,
@@ -30,6 +31,7 @@ class GroupCreate4 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
+    enableAppModalEnterEvent();
     setAppModalHeaderSteps({ currentStep: 4, steps: 5 });
     setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
@@ -117,15 +119,13 @@ GroupCreate4.defaultProps = {
 };
 
 GroupCreate4.propTypes = {
+  enableAppModalEnterEvent: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  modules: PropTypes.shape({
-    value: PropTypes.arrayOf(PropTypes.string),
-    error: PropTypes.string
-  }),
+  modules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
