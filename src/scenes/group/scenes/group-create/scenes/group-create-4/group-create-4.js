@@ -36,7 +36,7 @@ class GroupCreate4 extends Component {
     setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
     setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
     setAppModalHeaderBackButton({ onClick: this.goToPrev });
-    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.goToNext });
   }
 
   goToPrev() {
@@ -54,9 +54,9 @@ class GroupCreate4 extends Component {
 
   checkForm() {
     const {
-      modules: { value }
+      groupModules: { value }
     } = this.props;
-    return this.checkInput("modules", value);
+    return this.checkInput("groupModules", value);
   }
 
   checkInput(id, value) {
@@ -68,18 +68,18 @@ class GroupCreate4 extends Component {
 
   handleChange(clickValue) {
     const {
-      modules: { value }
+      groupModules: { value }
     } = this.props;
     const newValue = value;
     if (_.includes(newValue, clickValue)) _.pull(newValue, clickValue);
     else newValue.push(clickValue);
-    this.checkInput("modules", newValue);
+    this.checkInput("groupModules", newValue);
   }
 
   render() {
     const {
       t,
-      modules: { value, error }
+      groupModules: { value, error }
     } = this.props;
 
     return (
@@ -117,7 +117,7 @@ class GroupCreate4 extends Component {
 }
 
 GroupCreate4.defaultProps = {
-  modules: { value: [], error: undefined }
+  groupModules: { value: [], error: undefined }
 };
 
 GroupCreate4.propTypes = {
@@ -128,7 +128,7 @@ GroupCreate4.propTypes = {
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  modules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
+  groupModules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

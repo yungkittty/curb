@@ -31,7 +31,7 @@ class GroupCreate2 extends Component {
 
     enableAppModalEnterEvent();
     setAppModalHeaderSteps({ currentStep: 2, steps: 5 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
     setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
