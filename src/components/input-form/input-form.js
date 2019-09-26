@@ -29,11 +29,11 @@ class InputForm extends Component {
       size,
       error,
       value,
-      valueMaxLength,
+      maxLength,
       ...others
     } = this.props;
     const { focused } = this.state;
-    const isFull = valueMaxLength && value.length >= valueMaxLength;
+    const isFull = maxLength && value.length >= maxLength;
     return (
       <FormContainer style={containerStyle} size={size} error={error}>
         {placeholder && ((isPlaceholderStatic && value === "") || !isPlaceholderStatic) && (
@@ -58,13 +58,13 @@ class InputForm extends Component {
             style={textStyle}
             onFocus={() => this.setState({ focused: true })}
             onBlur={() => this.setState({ focused: false })}
-            value={!isFull ? value : value.substr(0, valueMaxLength)}
+            maxLength={maxLength}
           />
         )}
-        {valueMaxLength && (
+        {maxLength && (
           <FormValueMaxLength>
             <FormValueMaxLengthText type="h5" weight={700} isFull={isFull}>
-              {isFull ? 0 : valueMaxLength - value.length}
+              {isFull ? 0 : maxLength - value.length}
             </FormValueMaxLengthText>
             <Icon
               icon="font"
@@ -91,7 +91,7 @@ InputForm.defaultProps = {
   size: undefined,
   placeholder: undefined,
   isPlaceholderStatic: false,
-  valueMaxLength: undefined,
+  maxLength: undefined,
   error: undefined
 };
 
@@ -105,7 +105,7 @@ InputForm.propTypes = {
   placeholder: PropTypes.string,
   isPlaceholderStatic: PropTypes.bool,
   value: PropTypes.string.isRequired,
-  valueMaxLength: PropTypes.number,
+  maxLength: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   error: PropTypes.string

@@ -11,7 +11,7 @@ import Icon from "../../../icon";
 const FormDropdown = ({ t, theme, id, options, onChange, value: selectedValue, ...others }) => (
   <DropdownContainer>
     <Text type="h4" weight={400} style={{ position: "absolute", padding: 16 }}>
-      {selectedValue !== "" && selectedValue}
+      {selectedValue !== "" && options[_.findIndex(options, { key: selectedValue })].value}
     </Text>
     <RNPickerSelect
       {...others}
@@ -24,7 +24,7 @@ const FormDropdown = ({ t, theme, id, options, onChange, value: selectedValue, .
       onValueChange={value => value && onChange({ target: { id, value } })}
       items={_.map(options, ({ key, value }) => ({
         key,
-        value,
+        value: key,
         label: value
       }))}
     />

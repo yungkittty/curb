@@ -14,7 +14,6 @@ class GroupCreate3 extends Component {
   constructor(props) {
     super(props);
     const {
-      // eslint-disable-line
       disableAppModalEnterEvent,
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButton,
@@ -84,7 +83,7 @@ class GroupCreate3 extends Component {
           isPlaceholderStatic
           value={value}
           onChange={this.handleChange}
-          valueMaxLength={300}
+          maxLength={100}
           containerStyle={{
             display: "flex",
             width: "100%",

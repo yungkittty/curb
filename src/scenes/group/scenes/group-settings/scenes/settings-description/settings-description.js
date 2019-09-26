@@ -109,7 +109,7 @@ class SettingsDescription extends Component {
           isPlaceholderStatic
           value={value}
           onChange={this.handleChange}
-          valueMaxLength={300}
+          valueMaxLength={100}
           containerStyle={{ display: "flex", width: "100%", margin: 0, border: 0, flex: 1 }}
           isMultiline
         />

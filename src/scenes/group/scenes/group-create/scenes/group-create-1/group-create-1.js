@@ -53,7 +53,6 @@ class GroupCreate1 extends Component {
 
   render() {
     const { t, groupName, groupCategory, avatar } = this.props;
-
     return (
       <AppModalSceneContainer>
         <AppModalSceneTitle style={{ marginBottom: 40 }}>
