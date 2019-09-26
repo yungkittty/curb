@@ -5,6 +5,7 @@ const withAppModal = WrappedComponent => {
   const mapDispatchToProps = dispatch => ({
     showAppModal: payload => dispatch(appModalActions.showAppModal(payload)),
     enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
+    enableAppModalEnterEvent: () => dispatch(appModalActions.enableAppModalEnterEvent()),
     setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
     setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
     setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
@@ -13,6 +14,7 @@ const withAppModal = WrappedComponent => {
     setAppModalSceneData: payload => dispatch(appModalActions.setAppModalSceneData(payload)),
     setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
     disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
+    disableAppModalEnterEvent: () => dispatch(appModalActions.disableAppModalEnterEvent()),
     hideAppModal: () => dispatch(appModalActions.hideAppModal())
   });
 

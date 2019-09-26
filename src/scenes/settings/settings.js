@@ -22,6 +22,7 @@ class Settings extends Component {
     const { t, setAppModalScene } = this.props;
     return (
       <AppModalSceneListItem
+        icon={item.icon}
         title={t(`${item.id}.title`)}
         description={t(`${item.id}.description`)}
         onClick={() => setAppModalScene({ scene: item.scene, direction: 1 })}

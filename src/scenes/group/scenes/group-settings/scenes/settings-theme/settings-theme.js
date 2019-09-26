@@ -108,7 +108,7 @@ class SettingsTheme extends Component {
           <React.Fragment>
             <AppModalSceneTitle>
               {/* eslint-disable-line */}
-              {t("theme.title")}
+              {t("groupSettings:theme.title")}
             </AppModalSceneTitle>
             <AppModalSceneError>
               {/* eslint-disable-line */}
@@ -118,7 +118,7 @@ class SettingsTheme extends Component {
         )}
         renderItem={({ item }) => (
           <AppModalSceneListItem
-            title={t(`themeList.${item.id}`)}
+            title={t(`groupThemeOptions.${item.id}`)}
             titleColor="#ffffff"
             backgroundColor={theme[`group${_.capitalize(item.id)}Color`]}
             selected={item.id === value}
@@ -163,5 +163,5 @@ export default _.flowRight([
   withAppModal,
   withGroup,
   withTheme,
-  withTranslation("groupSettings")
+  withTranslation("groupOptions")
 ])(SettingsTheme);

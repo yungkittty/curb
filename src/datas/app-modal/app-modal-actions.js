@@ -9,6 +9,10 @@ const appModalActions = {
     type: appModalActionsTypes.ENABLE_APP_MODAL_BUTTONS,
     payload: undefined
   }),
+  enableAppModalEnterEvent: () => ({
+    type: appModalActionsTypes.ENABLE_APP_MODAL_ENTER_EVENT,
+    payload: undefined
+  }),
   setAppModalHeaderText: payload => ({
     type: appModalActionsTypes.SET_APP_MODAL_HEADER_TEXT,
     payload
@@ -39,6 +43,10 @@ const appModalActions = {
   }),
   disableAppModalButtons: () => ({
     type: appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS,
+    payload: undefined
+  }),
+  disableAppModalEnterEvent: () => ({
+    type: appModalActionsTypes.DISABLE_APP_MODAL_ENTER_EVENT,
     payload: undefined
   }),
   hideAppModal: () => ({

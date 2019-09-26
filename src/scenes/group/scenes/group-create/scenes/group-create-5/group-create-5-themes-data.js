@@ -1,4 +1,4 @@
-const groupCreate4ThemesData = [
+const groupCreate5ThemesData = [
   {
     id: "blue",
     themeColor: "groupBlueColor"
@@ -25,4 +25,4 @@ const groupCreate4ThemesData = [
   }
 ];
 
-export default groupCreate4ThemesData;
+export default groupCreate5ThemesData;

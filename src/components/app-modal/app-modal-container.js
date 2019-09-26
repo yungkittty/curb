@@ -5,6 +5,7 @@ import { appModalActions, appModalSelectors } from "../../datas/app-modal";
 const mapStateToProps = state => ({
   isAppModalShowed: appModalSelectors.isAppModalShowed(state),
   isAppModalButtonsEnabled: appModalSelectors.isAppModalButtonsEnabled(state),
+  isAppModalEnterEventEnabled: appModalSelectors.isAppModalEnterEventEnabled(state),
   appModalHeaderText: appModalSelectors.getAppModalHeaderText(state),
   appModalHeaderCurrentStep: appModalSelectors.getAppModalHeaderCurrentStep(state),
   appModalHeaderSteps: appModalSelectors.getAppModalHeaderSteps(state),
@@ -23,6 +24,8 @@ const mapDispatchToProps = dispatch => ({
   appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal()),
   enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
   disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
+  enableAppModalEventEnter: () => dispatch(appModalActions.enableAppModalEventEnter()),
+  disableAppModalEventEnter: () => dispatch(appModalActions.disableAppModalEventEnter()),
   appModalHide: () => dispatch(appModalActions.hideAppModal())
 });
 

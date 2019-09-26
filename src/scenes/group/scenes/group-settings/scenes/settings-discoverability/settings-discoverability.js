@@ -98,7 +98,7 @@ class SettingsDiscoverability extends Component {
       <AppModalSceneContainer>
         <AppModalSceneTitle>
           {/* eslint-disable-line */}
-          {t("discoverability.title")}
+          {t("groupSettings:discoverability.title")}
         </AppModalSceneTitle>
         <AppModalSceneError>
           {/* eslint-disable-line */}
@@ -137,5 +137,5 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withGroup,
-  withTranslation("groupSettings")
+  withTranslation("groupOptions")
 ])(SettingsDiscoverability);

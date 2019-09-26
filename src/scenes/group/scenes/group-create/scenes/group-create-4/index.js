@@ -1,3 +1,3 @@
-import GroupCreate4Container from "./group-create-4-container"; // eslint-disable-line
+import GroupCreate4 from "./group-create-4"; // eslint-disable-line
 
-export default GroupCreate4Container;
+export default GroupCreate4;

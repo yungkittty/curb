@@ -32,6 +32,7 @@ class AppModal extends Component {
     const {
       isAppModalShowed,
       isAppModalButtonsEnabled,
+      isAppModalEnterEventEnabled,
       appModalHeaderText,
       appModalHeaderCurrentStep,
       appModalHeaderSteps,
@@ -51,6 +52,7 @@ class AppModal extends Component {
         // eslint-disable-line
         isAppModalShowed={isAppModalShowed}
         isAppModalButtonsEnabled={isAppModalButtonsEnabled}
+        isAppModalEnterEventEnabled={isAppModalEnterEventEnabled}
         appModalTransitionEnd={this.appModalTransitionEnd}
         appModalFooterOnClick={isAppModalButtonsEnabled ? appModalFooterOnClick : undefined}
         appModalHide={appModalHide}
@@ -101,6 +103,7 @@ AppModal.defaultProps = {
 AppModal.propTypes = {
   isAppModalShowed: PropTypes.bool.isRequired,
   isAppModalButtonsEnabled: PropTypes.bool.isRequired,
+  isAppModalEnterEventEnabled: PropTypes.bool.isRequired,
   appModalHeaderText: PropTypes.string,
   appModalHeaderCurrentStep: PropTypes.number,
   appModalHeaderSteps: PropTypes.number,

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,11 +9,18 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 
 library.add(fas);
 
-const Icon = ({ size, style, ...others }) => {
-  const X = (() => {
+const Icon = ({
+  // eslint-disable-line
+  style,
+  size,
+  ...others
+}) => {
+  const innerSize = (() => {
     switch (size) {
+      case "extra-extra-small":
+        return 18;
       case "extra-small":
-        return 20;
+        return 25;
       case "small":
         return 35;
       case "medium":
@@ -27,15 +35,30 @@ const Icon = ({ size, style, ...others }) => {
         return undefined;
     }
   })();
-  return <FontAwesomeIcon {...others} style={{ ...style, width: `${X}px`, height: `${X}px` }} />;
+  return (
+    <FontAwesomeIcon
+      // eslint-disable-line
+      {...others}
+      style={{
+        ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
+        width: `${innerSize}px`,
+        height: `${innerSize}px`
+      }}
+    />
+  );
 };
 
 Icon.defaultProps = { style: undefined };
 
 Icon.propTypes = {
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  style: PropTypes.oneOfType([
+    // eslint-disable-line
+    PropTypes.object,
+    PropTypes.array
+  ]),
   size: PropTypes.oneOf([
     // eslint-disable-line
+    "extra-extra-small",
     "extra-small",
     "small",
     "medium",
