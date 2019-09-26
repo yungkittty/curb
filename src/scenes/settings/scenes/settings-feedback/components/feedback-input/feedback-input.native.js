@@ -4,7 +4,7 @@ import Input from "../../../../../../components/input";
 const FeedbackInput = styled(Input)`
   width: 100%;
   height: 100%;
-  padding: 20px 20px 0px 20px;
+  padding: 0px 20px;
   margin-top: 25px;
 `;
 
