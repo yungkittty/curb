@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { withTranslation } from "react-i18next";
 import Container from "../../../../components/container";
 import EventContainer from "./components/event-container";
 import EventHeaderContainer from "./components/event-header-container";
@@ -13,7 +12,6 @@ import EventTimepicker from "./components/event-timepicker";
 class CreateMediaEvent extends React.Component {
   constructor(props) {
     super(props);
-    const { groupTheme, t } = this.props;
 
     this.state = { hours: String(new Date().getHours()), minutes: String(new Date().getMinutes()) };
 
@@ -77,4 +75,4 @@ CreateMediaEvent.propTypes = {
   groupTheme: PropTypes.string.isRequired
 };
 
-export default _.flowRight([withTranslation()])(CreateMediaEvent);
+export default CreateMediaEvent;

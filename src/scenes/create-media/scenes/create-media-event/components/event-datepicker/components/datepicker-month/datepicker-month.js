@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Button from "../../../../../../../../components/button";
 import Icon from "../../../../../../../../components/icon";
-import Text from "../../../../../../../../components/text";
 import MonthContainer from "./components/month-container";
 import MonthText from "./components/month-text";
 
