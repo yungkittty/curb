@@ -24,8 +24,9 @@ const OverlayBlur = WrappedComponent => {
 
     componentDidMount() {
       const { isAppModalShowed } = this.props;
+      const { current: wrappedComponent } = this.wrappedComponent;
+      wrappedComponent.focus();
       this.startAnimation(isAppModalShowed);
-      this.wrappedComponent.current.focus();
     }
 
     componentDidUpdate(prevProps) {

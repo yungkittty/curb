@@ -6,6 +6,7 @@ const OverlayHide = WrappedComponent => {
   const _OverlayHide = ({
     // eslint-disable-line
     appModalFooterOnClick,
+    isAppModalEnterEventEnabled,
     hideAppModal,
     ...others
   }) => (
@@ -18,7 +19,7 @@ const OverlayHide = WrappedComponent => {
             hideAppModal();
             break;
           case 13:
-            if (appModalFooterOnClick && !others.areAppModalButtonsDisabled)
+            if (appModalFooterOnClick && isAppModalEnterEventEnabled && !others.areAppModalButtonsDisabled)
               // eslint-disable-line
               appModalFooterOnClick();
             break;
@@ -36,6 +37,7 @@ const OverlayHide = WrappedComponent => {
 
   _OverlayHide.propTypes = {
     areAppModalButtonsDisabled: PropTypes.bool.isRequired,
+    isAppModalEnterEventEnabled: PropTypes.bool.isRequired,
     appModalFooterOnClick: PropTypes.func,
     hideAppModal: PropTypes.func.isRequired
   };

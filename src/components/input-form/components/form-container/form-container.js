@@ -13,7 +13,12 @@ const FormContainer = styled(Container)`
     }
   }}px;
   position: relative;
-  margin-bottom: 52px;
+  justify-content: center;
+  height: 59px;
+  margin-top: 52px;
+  border-width: 0px 0px 1px 0px;
+  border-style: solid;
+  border-bottom-color: ${({ theme, error }) => (error ? theme.errorColor : theme.primaryColor)};
 `;
 
 export default FormContainer;

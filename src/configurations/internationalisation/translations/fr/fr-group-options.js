@@ -29,6 +29,7 @@ const frGroupOptions = {
     public: "Votre groupe sera disponible à tous via l'écran de découverte",
     private: "Votre groupe sera accessible uniquement sur invitation"
   },
+  groupDescription: "Description",
   groupModules: "Modules",
   groupTheme: "Thème",
   groupThemeOptions: {

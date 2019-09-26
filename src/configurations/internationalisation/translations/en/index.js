@@ -11,7 +11,7 @@ import settings from "./en-settings";
 import modules from "./en-modules";
 import groupCreate from "./en-group-create";
 import group from "./en-group";
-import groupOptions from "./en-group-options"
+import groupOptions from "./en-group-options";
 import groupSettings from "./en-group-settings";
 import errorCode from "./en-error-code";
 
