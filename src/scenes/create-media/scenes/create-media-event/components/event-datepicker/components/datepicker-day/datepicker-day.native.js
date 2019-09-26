@@ -16,7 +16,7 @@ const DatepickerDay = ({ dayList, currentMonth, selectedDate, onSelect, color, t
           tmpDay.getMonth() === today.getMonth() &&
           tmpDay.getFullYear() === today.getFullYear()
         )
-          style = { ...style, borderRadius: 4, border: "1px solid", borderColor: color };
+          style = { ...style, borderRadius: 4, borderColor: color, borderWidth: 1 };
         if (tmpDay.getMonth() !== currentMonth.getMonth()) textStyle = { color: "#E0E0E0" };
         if (index === selectedDate) {
           textStyle = { color: "#FFFFFF" };
