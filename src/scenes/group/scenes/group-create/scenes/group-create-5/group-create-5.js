@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
+import ListFlat from "../../../../../../components/list-flat";
 import Loader from "../../../../../../components/loader";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate4 from "../group-create-4"; // eslint-disable-line
 import groupCreate5ThemesData from "./group-create-5-themes-data";
@@ -19,7 +19,8 @@ class GroupCreate5 extends Component {
     const {
       // eslint-disble-line
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalFooterButton,
       t
     } = this.props;
@@ -33,7 +34,8 @@ class GroupCreate5 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     setAppModalHeaderSteps({ currentStep: 5, steps: 5 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
   }
 
@@ -64,7 +66,7 @@ class GroupCreate5 extends Component {
       groupCategory,
       groupDiscoverability,
       groupDescription,
-      modules,
+      groupModules,
       groupTheme,
       avatar
     } = this.props;
@@ -75,7 +77,7 @@ class GroupCreate5 extends Component {
       category: groupCategory.value,
       status: groupDiscoverability.value,
       description: groupDescription.value,
-      mediaTypes: modules.value,
+      mediaTypes: groupModules.value,
       theme: groupTheme.value,
       avatar: avatar.value
     });
@@ -154,7 +156,7 @@ GroupCreate5.defaultProps = {
   groupCategory: { value: "", error: undefined },
   groupDiscoverability: { value: undefined, error: undefined },
   groupDescription: { value: "", error: undefined },
-  modules: { value: [], error: undefined },
+  groupModules: { value: [], error: undefined },
   groupTheme: { value: "", error: undefined },
   avatar: { value: { data: undefined, file: undefined }, error: undefined }
 };
@@ -163,45 +165,23 @@ GroupCreate5.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
   hideAppModal: PropTypes.func.isRequired,
   postGroup: PropTypes.func.isRequired,
-  // eslint-disable-next-line
-  theme: PropTypes.object.isRequired,
-  // eslint-disable-next-line
-  history: PropTypes.object.isRequired,
-  groupName: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  groupCategory: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  groupDiscoverability: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  groupDescription: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  modules: PropTypes.shape({
-    value: PropTypes.arrayOf(PropTypes.string),
-    error: PropTypes.string
-  }),
-  groupTheme: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
-  avatar: PropTypes.shape({
-    value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }),
-    error: PropTypes.string
-  }),
+  theme: PropTypes.object.isRequired, // eslint-disable-line
+  history: PropTypes.object.isRequired, // eslint-disable-line
+  groupName: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  groupCategory: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  groupDiscoverability: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  groupDescription: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  groupModules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
+  groupTheme: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
+  avatar: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }), error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

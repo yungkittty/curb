@@ -2,88 +2,122 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
-import ListSection from "../../components/list-section";
+import ListFlat from "../../components/list-flat";
 import GroupListHeader from "./components/group-list-header";
-import GroupListSectionHeader from "./components/group-list-section-header";
-import GroupListItemInfo from "./components/group-list-item-info";
+import GroupListItemHeader from "./components/group-list-item-header";
 import GroupListItemMedia from "./components/group-list-item-media";
+import GroupListItemInfo from "./components/group-list-item-info";
 import ButtonFloat from "../../components/button-float";
-import CreateMedia from "../create-media"; /** @TODO ... */
-import GroupSettings from "./scenes/group-settings";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 import withGroup from "../../hocs/with-group";
 
+/* eslint-disable */
+
+import CreateMedia from "../create-media"; /** @TODO !! */
+import GroupSettings from "./scenes/group-settings";
+
+/* eslint-enable */
+
 class Group extends React.Component {
   constructor(props) {
     super(props);
-    this.toggleScene = this.toggleScene.bind(this);
+    this.toggleFeed = this.toggleFeed.bind(this);
+    this.toggleSticky = this.toggleSticky.bind(this);
     this.renderListHeader = this.renderListHeader.bind(this);
-    this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
-    this.renderListItemInfo = this.renderListItemInfo.bind(this);
+    this.renderListItem = this.renderListItem.bind(this);
+    this.renderListItemHeader = this.renderListItemHeader.bind(this);
     this.renderListItemMedia = this.renderListItemMedia.bind(this);
-    this.state = { isFeed: true };
+    this.renderListItemInfo = this.renderListItemInfo.bind(this);
+    this.state = { isFeed: true, isSticky: false };
   }
 
-  componentDidUpdate(prevProps) {
-    const { groupId } = this.props;
-    if (groupId === prevProps.groupId) return;
-    this.setState({ isFeed: true }); // eslint-disable-line
-  }
-
-  toggleScene() {
+  // eslint-disable-next-line
+  toggleFeed() {
     const { isFeed } = this.state;
     this.setState({ isFeed: !isFeed });
   }
 
+  toggleSticky(event) {
+    const { contentOffset } = event.nativeEvent;
+    const { isSticky } = this.state;
+    if ((contentOffset.y !== 0) !== isSticky) {
+      this.setState({ isSticky: !isSticky });
+    }
+  }
+
+  getData() {
+    const { isFeed } = this.state;
+    const { groupMediasId } = this.props;
+    return [{}, ...(isFeed ? groupMediasId : [{}])];
+  }
+
+  getGroupGradient() {
+    const { groupTheme, theme } = this.props;
+    const groupGradientAngle = 90;
+    const groupGradientColorsFirst = theme[`group${_.capitalize(groupTheme)}VariantColor`] || "transparent";
+    const groupGradientColorsSecond = theme[`group${_.capitalize(groupTheme)}Color`] || "transparent";
+    const groupGradientColors = [groupGradientColorsFirst, groupGradientColorsSecond];
+    return { groupGradientAngle, groupGradientColors };
+  }
+
   renderListHeader() {
-    const {
-      // eslint-disable-line
-      isFeed
-    } = this.state;
-    const {
-      isFetchingGroup,
-      groupId,
-      groupName,
-      groupAvatar,
-      groupStatus,
-      groupTheme,
-      currentUserGroupsId,
-      theme
-    } = this.props;
+    const { isFeed, isSticky } = this.state;
+    const { showAppModal } = this.props;
+    const { groupGradientAngle, groupGradientColors } = this.getGroupGradient();
     return (
       <GroupListHeader
+        // eslint-disable-line
         isFeed={isFeed}
-        toggleScene={this.toggleScene}
-        isFetchingGroup={isFetchingGroup}
-        groupId={groupId}
-        groupName={groupName}
-        groupAvatar={groupAvatar}
-        groupStatus={groupStatus}
-        groupTheme={groupTheme}
-        currentUserGroupsId={currentUserGroupsId}
-        theme={theme}
+        isShadowShowed={isSticky}
+        toggleFeed={this.toggleFeed}
+        showAppModal={showAppModal}
+        groupGradientAngle={groupGradientAngle}
+        groupGradientColors={groupGradientColors}
       />
     );
   }
 
-  renderListSectionHeader() {
+  renderListItemHeader() {
     const {
       // eslint-disable-line
       groupId,
+      groupCreatorId,
+      groupName,
+      groupCategory,
+      groupDescription,
       groupStatus,
-      groupTheme,
       currentUserId,
-      currentUserGroupsId,
-      theme
+      currentUserGroupsId
     } = this.props;
+    const {
+      // eslint-disable-line
+      groupGradientAngle,
+      groupGradientColors
+    } = this.getGroupGradient();
     return (
-      <GroupListSectionHeader
+      <GroupListItemHeader
+        // eslint-disable-line
         groupId={groupId}
+        groupCreatorId={groupCreatorId}
+        groupName={groupName}
+        groupCategory={groupCategory}
+        groupDescription={groupDescription}
         groupStatus={groupStatus}
-        groupTheme={groupTheme}
+        groupGradientAngle={groupGradientAngle}
+        groupGradientColors={groupGradientColors}
         currentUserId={currentUserId}
         currentUserGroupsId={currentUserGroupsId}
+      />
+    );
+  }
+
+  renderListItemMedia({ item: mediaId }) {
+    const { theme } = this.props;
+    return (
+      <GroupListItemMedia
+        // eslint-disable-line
+        mediaId={mediaId}
         theme={theme}
       />
     );
@@ -106,15 +140,18 @@ class Group extends React.Component {
     );
   }
 
-  renderListItemMedia({ item: mediaId }) {
-    const { theme } = this.props;
-    return (
-      <GroupListItemMedia
-        // eslint-disable-line
-        mediaId={mediaId}
-        theme={theme}
-      />
-    );
+  renderListItem(itemData) {
+    const { isFeed } = this.state;
+    const { index: itemIndex } = itemData;
+    if (!itemIndex) {
+      /* eslint-disable */
+      return this.renderListItemHeader(itemData);
+    } else if (isFeed) {
+      return this.renderListItemMedia(itemData);
+    } else {
+      return this.renderListItemInfo(itemData);
+      /* eslint-enable */
+    }
   }
 
   render() {
@@ -127,25 +164,26 @@ class Group extends React.Component {
       showAppModal,
       groupId,
       groupCreatorId,
-      groupMediasId,
       currentUserId,
       currentUserGroupsId
     } = this.props;
+    const isCurrentUser = !!currentUserId;
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
-    const isCurrentUserCreator = groupCreatorId === currentUserId;
+    const isCurrentUserCreator = _.isEqual(currentUserId, groupCreatorId);
+    const isButtonFloatShowed = isCurrentUser && ((isFeed && isCurrentUserIn) || isCurrentUserCreator);
     return (
       <React.Fragment>
-        <ListSection
-          sections={
-            !isFeed
-              ? [{ data: [{}], renderItem: this.renderListItemInfo }]
-              : [{ data: groupMediasId, renderItem: this.renderListItemMedia }]
-          }
-          keyExtractor={groupMediaId => groupMediaId}
+        <ListFlat
+          // eslint-disable-line
+          data={this.getData()}
+          keyExtractor={(itemId, itemIndex) => (_.isString(itemId) ? itemId : itemIndex.toString())}
+          stickyHeaderIndices={[0]}
           ListHeaderComponent={this.renderListHeader}
-          renderSectionHeader={this.renderListSectionHeader}
+          renderItem={this.renderListItem}
+          scrollEventThrottle={1}
+          onScroll={this.toggleSticky}
         />
-        {isCurrentUserIn && (isFeed || isCurrentUserCreator) ? (
+        {isButtonFloatShowed ? (
           <ButtonFloat
             // eslint-disable-line
             icon={isFeed ? "plus" : "sliders-h"}
@@ -159,11 +197,11 @@ class Group extends React.Component {
 
 Group.propTypes = {
   showAppModal: PropTypes.func.isRequired,
-  isFetchingGroup: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   groupCreatorId: PropTypes.string.isRequired,
   groupName: PropTypes.string.isRequired,
-  groupAvatar: PropTypes.string.isRequired,
+  groupDescription: PropTypes.string.isRequired,
+  groupCategory: PropTypes.string.isRequired,
   groupStatus: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line

@@ -4,15 +4,14 @@ import { appModalActions, appModalSelectors } from "../../datas/app-modal";
 
 const mapStateToProps = state => ({
   isAppModalShowed: appModalSelectors.isAppModalShowed(state),
-  isAppModalButtonsEnabled: appModalSelectors.isAppModalButtonsEnabled(state),
+  areAppModalButtonsDisabled: appModalSelectors.areAppModalButtonsDisabled(state),
   isAppModalEnterEventEnabled: appModalSelectors.isAppModalEnterEventEnabled(state),
   appModalHeaderText: appModalSelectors.getAppModalHeaderText(state),
   appModalHeaderCurrentStep: appModalSelectors.getAppModalHeaderCurrentStep(state),
   appModalHeaderSteps: appModalSelectors.getAppModalHeaderSteps(state),
-  appModalHeaderLeftIcon: appModalSelectors.getAppModalHeaderLeftIcon(state),
-  appModalHeaderLeftOnClick: appModalSelectors.getAppModalHeaderLeftOnClick(state),
-  appModalHeaderRightIcon: appModalSelectors.getAppModalHeaderRightIcon(state) || "times",
-  appModalHeaderRightOnClick: appModalSelectors.getAppModalHeaderRightOnClick(state),
+  appModalHeaderLeftButtons: appModalSelectors.getAppModalHeaderLeftButtons(state),
+  appModalHeaderRightButtons: appModalSelectors.getAppModalHeaderRightButtons(state),
+  appModalHeaderBackButton: appModalSelectors.getAppModalHeaderBackButton(state),
   appModalScene: appModalSelectors.getAppModalScene(state),
   appModalSceneDirection: appModalSelectors.getAppModalSceneDirection(state),
   appModalSceneData: appModalSelectors.getAppModalSceneData(state),
@@ -21,21 +20,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  appModalHeaderRightOnClick: () => dispatch(appModalActions.hideAppModal()),
-  enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
-  disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
-  enableAppModalEventEnter: () => dispatch(appModalActions.enableAppModalEventEnter()),
-  disableAppModalEventEnter: () => dispatch(appModalActions.disableAppModalEventEnter()),
-  appModalHide: () => dispatch(appModalActions.hideAppModal())
-});
-
-const mergeProps = (stateProps, dispatchProps) => ({
-  ...stateProps,
-  ...(!stateProps.appModalHeaderRightOnClick ? dispatchProps : {})
+  hideAppModal: () => dispatch(appModalActions.hideAppModal())
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-  mergeProps
+  mapDispatchToProps
 )(AppModal);

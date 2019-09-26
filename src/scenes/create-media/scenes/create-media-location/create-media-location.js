@@ -18,17 +18,19 @@ class CreateMediaLocation extends Component {
       // eslint-disable-line
       t,
       setAppModalHeaderText,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
+      setAppModalScene,
       setAppModalFooterButton
     } = props;
 
     this.locationMap = React.createRef();
 
-    this.goToPrev = this.goToPrev.bind(this);
     this.submit = this.submit.bind(this);
 
     setAppModalHeaderText({ text: t("modules:location.title") });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: createMedia, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: createMedia, direction: -1 }) })
     setAppModalFooterButton({ text: t("common:post"), onClick: this.submit });
 
     this.state = {
@@ -72,11 +74,6 @@ class CreateMediaLocation extends Component {
       // eslint-disable-next-line
       enableAppModalButtons();
     }
-  }
-
-  goToPrev() {
-    const { setAppModalScene } = this.props;
-    setAppModalScene({ scene: createMedia, direction: -1 });
   }
 
   submit() {
@@ -137,9 +134,10 @@ CreateMediaLocation.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingMedias: PropTypes.bool.isRequired,
   groupId: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,

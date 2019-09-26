@@ -9,7 +9,6 @@ import withGroup from "../../hocs/with-group";
 import emojiRegex from "./utils/emoji-regex";
 
 const ImageGroup = ({
-  isFetchingGroup,
   groupName,
   groupAvatar,
   groupTheme,
@@ -25,7 +24,7 @@ const ImageGroup = ({
     backgroundColor={
       !groupName || groupAvatar // eslint-disable-line
         ? placeholderColor
-        : theme[`group${_.capitalize(groupTheme)}VariantColor`]
+        : theme[`group${_.capitalize(groupTheme)}Color`]
     }
   >
     {innerDiameter =>
@@ -62,20 +61,11 @@ ImageGroup.defaultProps = {
 };
 
 ImageGroup.propTypes = {
-  isFetchingGroup: PropTypes.bool.isRequired,
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large",
-    "extra-large",
-    "extra-extra-large"
-  ]).isRequired,
+  size: PropTypes.string.isRequired,
   placeholderColor: PropTypes.string
 };
 

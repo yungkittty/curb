@@ -7,14 +7,14 @@ import DiscoverOption from "./components/discover-option";
 const GroupDiscoverability = ({ t, onClick, discoverability }) => (
   <DiscoverContainer>
     <DiscoverOption
-      icon="globe"
+      icon="users"
       title={t("glossary:public")}
       description={t("groupDiscoverabilityOptions.public")}
       selected={discoverability === undefined ? undefined : discoverability === "public"}
       onClick={() => onClick("public")}
     />
     <DiscoverOption
-      icon="users"
+      icon="lock"
       title={t("glossary:private")}
       description={t("groupDiscoverabilityOptions.private")}
       selected={discoverability === undefined ? undefined : discoverability === "private"}

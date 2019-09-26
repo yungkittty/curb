@@ -18,7 +18,8 @@ class GroupCreate4 extends Component {
       // eslint-disable-line
       enableAppModalEnterEvent,
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalFooterButton,
       t
     } = this.props;
@@ -32,9 +33,10 @@ class GroupCreate4 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     enableAppModalEnterEvent();
-    setAppModalHeaderSteps({ currentStep: 4, steps: 5 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
-    setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
+    setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.goToNext });
   }
 
   goToPrev() {
@@ -52,9 +54,9 @@ class GroupCreate4 extends Component {
 
   checkForm() {
     const {
-      modules: { value }
+      groupModules: { value }
     } = this.props;
-    return this.checkInput("modules", value);
+    return this.checkInput("groupModules", value);
   }
 
   checkInput(id, value) {
@@ -66,18 +68,18 @@ class GroupCreate4 extends Component {
 
   handleChange(clickValue) {
     const {
-      modules: { value }
+      groupModules: { value }
     } = this.props;
     const newValue = value;
     if (_.includes(newValue, clickValue)) _.pull(newValue, clickValue);
     else newValue.push(clickValue);
-    this.checkInput("modules", newValue);
+    this.checkInput("groupModules", newValue);
   }
 
   render() {
     const {
       t,
-      modules: { value, error }
+      groupModules: { value, error }
     } = this.props;
 
     return (
@@ -115,17 +117,18 @@ class GroupCreate4 extends Component {
 }
 
 GroupCreate4.defaultProps = {
-  modules: { value: [], error: undefined }
+  groupModules: { value: [], error: undefined }
 };
 
 GroupCreate4.propTypes = {
   enableAppModalEnterEvent: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  modules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
+  setAppModalFooterButton: PropTypes.func.isRequired,
+  groupModules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 

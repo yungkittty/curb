@@ -4,18 +4,19 @@ import { appModalActions } from "../../datas/app-modal";
 const withAppModal = WrappedComponent => {
   const mapDispatchToProps = dispatch => ({
     showAppModal: payload => dispatch(appModalActions.showAppModal(payload)),
+    hideAppModal: () => dispatch(appModalActions.hideAppModal()),
     enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
+    disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
     enableAppModalEnterEvent: () => dispatch(appModalActions.enableAppModalEnterEvent()),
+    disableAppModalEnterEvent: () => dispatch(appModalActions.disableAppModalEnterEvent()),
     setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
     setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
-    setAppModalHeaderLeftButton: payload => dispatch(appModalActions.setAppModalHeaderLeftButton(payload)),
-    setAppModalHeaderRightButton: payload => dispatch(appModalActions.setAppModalHeaderRightButton(payload)),
+    setAppModalHeaderLeftButtons: payload => dispatch(appModalActions.setAppModalHeaderLeftButtons(payload)),
+    setAppModalHeaderRightButtons: payload => dispatch(appModalActions.setAppModalHeaderRightButtons(payload)),
+    setAppModalHeaderBackButton: payload => dispatch(appModalActions.setAppModalHeaderBackButton(payload)),
     setAppModalScene: payload => dispatch(appModalActions.setAppModalScene(payload)),
     setAppModalSceneData: payload => dispatch(appModalActions.setAppModalSceneData(payload)),
     setAppModalFooterButton: payload => dispatch(appModalActions.setAppModalFooterButton(payload)),
-    disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
-    disableAppModalEnterEvent: () => dispatch(appModalActions.disableAppModalEnterEvent()),
-    hideAppModal: () => dispatch(appModalActions.hideAppModal())
   });
 
   return connect(

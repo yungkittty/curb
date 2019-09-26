@@ -58,6 +58,7 @@ class InputForm extends Component {
             style={textStyle}
             onFocus={() => this.setState({ focused: true })}
             onBlur={() => this.setState({ focused: false })}
+            value={value}
             maxLength={maxLength}
           />
         )}

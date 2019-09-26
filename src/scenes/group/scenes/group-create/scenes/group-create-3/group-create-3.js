@@ -16,7 +16,8 @@ class GroupCreate3 extends Component {
     const {
       disableAppModalEnterEvent,
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalFooterButton,
       t
     } = this.props;
@@ -29,7 +30,8 @@ class GroupCreate3 extends Component {
 
     disableAppModalEnterEvent();
     setAppModalHeaderSteps({ currentStep: 3, steps: 5 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
@@ -83,7 +85,7 @@ class GroupCreate3 extends Component {
           isPlaceholderStatic
           value={value}
           onChange={this.handleChange}
-          maxLength={100}
+          maxLength={250}
           containerStyle={{
             display: "flex",
             width: "100%",
@@ -105,10 +107,11 @@ GroupCreate3.defaultProps = {
 GroupCreate3.propTypes = {
   disableAppModalEnterEvent: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   groupDescription: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };

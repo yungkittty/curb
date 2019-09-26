@@ -1,12 +1,12 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import MapView, { Marker } from "react-native-maps";
 import Container from "../container";
 
 // https://github.com/react-native-community/react-native-maps/issues/705#issuecomment-343781344
 
-class Map extends Component {
+class Map extends React.Component {
   constructor(props) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);

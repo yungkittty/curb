@@ -19,10 +19,11 @@ class SettingsGeneral extends Component {
     super(props);
     const {
       t,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalScene,
-      setAppModalFooterButton,
       setAppModalSceneData,
+      setAppModalFooterButton,
       groupName
     } = this.props;
 
@@ -31,12 +32,10 @@ class SettingsGeneral extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
-    });
-    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) });
     setAppModalSceneData({ newGroupName: { value: groupName, error: undefined } });
+    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
   }
 
   componentDidUpdate(prevProps) {
@@ -158,10 +157,11 @@ SettingsGeneral.defaultProps = {
 SettingsGeneral.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,

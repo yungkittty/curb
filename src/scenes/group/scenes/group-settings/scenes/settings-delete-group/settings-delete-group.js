@@ -17,7 +17,8 @@ class SettingsDeleteGroup extends Component {
     super(props);
     const {
       t,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalScene,
       setAppModalFooterButton,
       deleteGroup,
@@ -25,14 +26,9 @@ class SettingsDeleteGroup extends Component {
       history
     } = this.props;
 
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
-    });
-    setAppModalFooterButton({
-      text: t("deleteGroup.buttonTitle"),
-      onClick: () => deleteGroup({ id: groupId, history })
-    });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) });
+    setAppModalFooterButton({ text: t("deleteGroup.buttonTitle"), onClick: () => deleteGroup({ id: groupId, history }) });
   }
 
   componentDidUpdate(prevProps) {
@@ -70,7 +66,8 @@ class SettingsDeleteGroup extends Component {
 SettingsDeleteGroup.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,

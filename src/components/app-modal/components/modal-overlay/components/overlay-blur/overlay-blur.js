@@ -8,7 +8,7 @@ const OverlayBlur = WrappedComponent => {
       super(props);
 
       this.hideStyle = {
-        backgroundColor: "rgba(0, 0, 0, 0)"
+        backgroundColor: "transparent"
       };
       this.showStyle = {
         backgroundColor: props.theme.overlayColor
@@ -30,10 +30,12 @@ const OverlayBlur = WrappedComponent => {
     }
 
     componentDidUpdate(prevProps) {
-      const { isAppModalShowed } = this.props;
-      if (prevProps.isAppModalShowed !== isAppModalShowed)
-        // eslint-disable-line
+      const { isAppModalShowed, areAppModalButtonsDisabled } = this.props;
+      if (prevProps.isAppModalShowed !== isAppModalShowed) {
         this.startAnimation(isAppModalShowed);
+      } else if (prevProps.areAppModalButtonsDisabled !== areAppModalButtonsDisabled) {
+        this.wrappedComponent.current.focus();
+      }
     }
 
     onTransitionEnd() {
@@ -65,6 +67,7 @@ const OverlayBlur = WrappedComponent => {
 
   _OverlayBlur.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
+    areAppModalButtonsDisabled: PropTypes.bool.isRequired,
     appModalTransitionEnd: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired // eslint-disable-line
   };
