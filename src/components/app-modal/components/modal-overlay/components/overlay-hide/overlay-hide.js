@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const OverlayHide = WrappedComponent => {
   // eslint-disable-next-line
-  const _OverlayHide = ({ appModalHide, appModalFooterOnClick, ...others }) => (
+  const _OverlayHide = ({ appModalHide, isAppModalEnterEventEnabled, appModalFooterOnClick, ...others }) => (
     <WrappedComponent
       {...others}
       onClick={appModalHide}
@@ -13,7 +13,7 @@ const OverlayHide = WrappedComponent => {
             appModalHide();
             break;
           case 13:
-            if (appModalFooterOnClick) appModalFooterOnClick();
+            if (isAppModalEnterEventEnabled && appModalFooterOnClick) appModalFooterOnClick();
             break;
           default:
             break;
@@ -29,6 +29,7 @@ const OverlayHide = WrappedComponent => {
 
   _OverlayHide.propTypes = {
     appModalHide: PropTypes.func.isRequired,
+    isAppModalEnterEventEnabled: PropTypes.bool.isRequired,
     appModalFooterOnClick: PropTypes.func
   };
 

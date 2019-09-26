@@ -4,6 +4,8 @@ appModalSelectors.isAppModalShowed = state => state.appModal.isShowed;
 
 appModalSelectors.isAppModalButtonsEnabled = state => state.appModal.isButtonsEnabled;
 
+appModalSelectors.isAppModalEnterEventEnabled = state => state.appModal.isEnterEventEnabled;
+
 appModalSelectors.getAppModalHeaderText = state => state.appModal.headerText;
 
 appModalSelectors.getAppModalHeaderCurrentStep = state => state.appModal.headerCurrentStep;

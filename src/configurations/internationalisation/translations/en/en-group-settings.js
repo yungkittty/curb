@@ -1,6 +1,6 @@
 const enGroupSettings = {
   groupSettings: "Group settings",
-  general: { title: "General", description: "Icon  ·  Name" },
+  general: { title: "General", description: "Icon  ·  Name  ·  Category" },
   discoverability: {
     title: "Discoverability",
     description: "Edit the discoverability (public or private)"

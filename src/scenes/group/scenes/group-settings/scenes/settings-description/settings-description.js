@@ -17,6 +17,7 @@ class SettingsDescription extends Component {
     super(props);
     const {
       t,
+      disableAppModalEnterEvent,
       setAppModalHeaderLeftButton,
       setAppModalScene,
       setAppModalFooterButton,
@@ -29,6 +30,7 @@ class SettingsDescription extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
+    disableAppModalEnterEvent();
     setAppModalHeaderLeftButton({
       icon: "arrow-left",
       onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
