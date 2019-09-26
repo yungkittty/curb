@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
 import FeedbackInput from "./components/feedback-input";
-import FeedbackTitle from "./components/feedback-title"
+import FeedbackTitle from "./components/feedback-title";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
 import Settings from "../../../settings"; // eslint-disable-line
 import withAppModal from "../../../../hocs/with-app-modal";
@@ -43,7 +43,7 @@ class SettingsFeedback extends Component {
 
   checkForm() {
     const { text } = this.props;
-    return this.checkInput("text", text.value)
+    return this.checkInput("text", text.value);
   }
 
   checkInput(id, value) {
@@ -65,10 +65,10 @@ class SettingsFeedback extends Component {
       text,
       disableAppModalButtons
     } = this.props;
-    if (!this.checkForm()){
+    if (!this.checkForm()) {
       disableAppModalButtons();
       return;
-    } 
+    }
     postFeedback({ text: text.value });
   }
 
@@ -78,7 +78,7 @@ class SettingsFeedback extends Component {
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <FeedbackTitle type="h3" weight={700} >
+        <FeedbackTitle type="h3" weight={700}>
           {t("feedback.contentTitle")}
         </FeedbackTitle>
         <FeedbackInput

@@ -7,8 +7,8 @@ import appModalActions from "../app-modal/app-modal-actions";
 
 function* postFeedbackRequestSaga(action) {
   try {
-    const { data: payload } = yield call(feedbackApi.postFeedback, action.payload);
-    yield put(feedbackActions.postFeedbackSuccess({ feedbackId: payload.id }));
+    yield call(feedbackApi.postFeedback, action.payload);
+    yield put(feedbackActions.postFeedbackSuccess());
     const successAlert = { type: "success", message: `feedback.Success`, icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(appModalActions.hideAppModal());
@@ -18,11 +18,11 @@ function* postFeedbackRequestSaga(action) {
     const errorAlert = { type: "error", message: `feedback.${errorCode}`, icon: "times" };
     yield put(appAlertActions.pushAppAlert(errorAlert));
     yield put(appModalActions.hideAppModal());
-
   }
 }
 
 const feedbackSaga = all([
+  // eslint-disable-line
   takeLatest(feedbackActionsTypes.POST_FEEDBACK_REQUEST, postFeedbackRequestSaga)
 ]);
 
