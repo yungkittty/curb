@@ -11,6 +11,7 @@ import AppAlert from "./components/app-alert";
 import Router from "./components/router";
 import Switch from "./components/switch";
 import Route from "./components/route";
+import RouteNormalize from "./components/route-normalize";
 import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
@@ -30,8 +31,8 @@ const App = () => {
             <AppNavigation />
             <Switch>
               <Route exact path="/" component={Discovery} />
-              <Route path="/users/:id" component={User} />
-              <Route path="/groups/:id" component={Group} />
+              <RouteNormalize path="/users/:id" component={User} />
+              <RouteNormalize path="/groups/:id" component={Group} />
               <Redirect to="/" />
             </Switch>
           </AppContainer>

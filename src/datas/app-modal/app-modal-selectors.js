@@ -2,7 +2,9 @@ const appModalSelectors = {};
 
 appModalSelectors.isAppModalShowed = state => state.appModal.isShowed;
 
-appModalSelectors.isAppModalButtonsEnabled = state => state.appModal.isButtonsEnabled;
+appModalSelectors.areAppModalButtonsDisabled = state => state.appModal.areButtonsDisabled;
+
+appModalSelectors.isAppModalEnterEventEnabled = state => state.appModal.isEnterEventEnabled;
 
 appModalSelectors.getAppModalHeaderText = state => state.appModal.headerText;
 
@@ -10,13 +12,11 @@ appModalSelectors.getAppModalHeaderCurrentStep = state => state.appModal.headerC
 
 appModalSelectors.getAppModalHeaderSteps = state => state.appModal.headerSteps;
 
-appModalSelectors.getAppModalHeaderLeftIcon = state => state.appModal.headerLeftIcon;
+appModalSelectors.getAppModalHeaderLeftButtons = state => state.appModal.headerLeftButtons;
 
-appModalSelectors.getAppModalHeaderLeftOnClick = state => state.appModal.headerLeftOnClick;
+appModalSelectors.getAppModalHeaderRightButtons = state => state.appModal.headerRightButtons;
 
-appModalSelectors.getAppModalHeaderRightIcon = state => state.appModal.headerRightIcon;
-
-appModalSelectors.getAppModalHeaderRightOnClick = state => state.appModal.headerRightOnClick;
+appModalSelectors.getAppModalHeaderBackButton = state => state.appModal.headerBackButton;
 
 appModalSelectors.getAppModalScene = state => state.appModal.scene;
 

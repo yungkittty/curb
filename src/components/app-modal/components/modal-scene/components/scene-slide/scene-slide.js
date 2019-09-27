@@ -44,7 +44,14 @@ const SceneSlide = WrappedComponent => {
     }
 
     render() {
-      const { sceneAlt, sceneLeftKey, sceneLeft, sceneRightKey, sceneRight } = this.state;
+      const {
+        // eslint-disable-line
+        sceneAlt,
+        sceneLeftKey,
+        sceneLeft,
+        sceneRightKey,
+        sceneRight
+      } = this.state;
       return (
         <WrappedComponent
           {...this.props}

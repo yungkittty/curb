@@ -3,9 +3,13 @@ const enAppAlert = {
     userSuccess: "Your profile has been updated",
     USERS_DUPLICATE_NAME: "This username is already taken"
   },
-  postGroupInvite: {
-    groupInviteSuccess: "You have joined this group",
+  postGroupJoin: {
+    groupJoinSuccess: "You have joined this group",
     UNKNOWN: "An error occured while joining this group"
+  },
+  postGroupUnjoin: {
+    groupUnjoinSuccess: "You have unjoined this group",
+    UNKNOWN: "An error occured while unjoining this group"
   },
   createMedia: {
     imagePosted: "Your image has been posted",

@@ -2,9 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-const Icon = ({ size, icon, ...others }) => {
-  const X = (() => {
+const Icon = ({
+  // eslint-disable-line
+  icon,
+  size,
+  ...others
+}) => {
+  const innerSize = (() => {
     switch (size) {
+      case "extra-extra-small":
+        return 10;
       case "extra-small":
         return 20;
       case "small":
@@ -21,13 +28,22 @@ const Icon = ({ size, icon, ...others }) => {
         return undefined;
     }
   })();
-  return <FontAwesome5 {...others} name={icon} size={X} solid />;
+  return (
+    <FontAwesome5
+      // eslint-disable-line
+      {...others}
+      name={icon}
+      size={innerSize}
+      solid
+    />
+  );
 };
 
 Icon.propTypes = {
   icon: PropTypes.string.isRequired,
   size: PropTypes.oneOf([
     // eslint-disable-line
+    "extra-extra-small",
     "extra-small",
     "small",
     "medium",

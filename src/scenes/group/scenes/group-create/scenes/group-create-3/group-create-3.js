@@ -2,27 +2,25 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
+import AppModalSceneContainer from "../../../../../../components/app-modal-scene-container";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
-import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate2 from "../group-create-2"; // eslint-disable-line
 import GroupCreate4 from "../group-create-4"; // eslint-disable-line
-import modulesList from "../../../../../../utils/modules-list/modules-list";
 import withAppModal from "../../../../../../hocs/with-app-modal";
+import InputForm from "../../../../../../components/input-form";
 
 class GroupCreate3 extends Component {
   constructor(props) {
     super(props);
     const {
-      // eslint-disable-line
+      disableAppModalEnterEvent,
       setAppModalHeaderSteps,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalFooterButton,
       t
     } = this.props;
-
-    this.listFlat = React.createRef();
 
     this.goToPrev = this.goToPrev.bind(this);
     this.goToNext = this.goToNext.bind(this);
@@ -30,8 +28,10 @@ class GroupCreate3 extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ currentStep: 3, steps: 4 });
-    setAppModalHeaderLeftButton({ icon: "arrow-left", onClick: this.goToPrev });
+    disableAppModalEnterEvent();
+    setAppModalHeaderSteps({ currentStep: 3, steps: 5 });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:next"), onClick: this.goToNext });
   }
 
@@ -42,17 +42,14 @@ class GroupCreate3 extends Component {
 
   goToNext() {
     const { setAppModalScene } = this.props;
-    if (!this.checkForm()) {
-      const { current: listFlat } = this.listFlat;
-      listFlat.scrollToOffset({ offset: 0 });
-    } else setAppModalScene({ scene: GroupCreate4, direction: 1 });
+    if (this.checkForm()) setAppModalScene({ scene: GroupCreate4, direction: 1 });
   }
 
   checkForm() {
     const {
-      modules: { value }
+      groupDescription: { value }
     } = this.props;
-    return this.checkInput("modules", value);
+    return this.checkInput("groupDescription", value);
   }
 
   checkInput(id, value) {
@@ -62,73 +59,65 @@ class GroupCreate3 extends Component {
     return error === undefined;
   }
 
-  handleChange(clickValue) {
-    const {
-      modules: { value }
-    } = this.props;
-    const newValue = value;
-    if (_.includes(newValue, clickValue)) _.pull(newValue, clickValue);
-    else newValue.push(clickValue);
-    this.checkInput("modules", newValue);
+  handleChange(event) {
+    const { id, value } = event.target;
+    this.checkInput(id, value);
   }
 
   render() {
     const {
       t,
-      modules: { value, error }
+      groupDescription: { value, error }
     } = this.props;
-
     return (
-      <AppModalSceneList
-        ref={this.listFlat}
-        data={modulesList}
-        keyExtractor={item => item.id}
-        ListHeaderComponent={() => (
-          <React.Fragment>
-            <AppModalSceneTitle>
-              {/* eslint-disable-line */}
-              {t("modules")}
-            </AppModalSceneTitle>
-            <AppModalSceneError>
-              {/* eslint-disable-line */}
-              {error && t(`validation:modules.${error}`)}
-            </AppModalSceneError>
-          </React.Fragment>
-        )}
-        renderItem={({ item }) => (
-          <AppModalSceneListItem
-            icon={item.icon}
-            title={t(`modules:${item.id}.title`)}
-            description={t(`modules:${item.id}.description`)}
-            selected={_.includes(value, item.id)}
-            selectionType={false}
-            onClick={() => this.handleChange(item.id)}
-          />
-        )}
-      />
+      <AppModalSceneContainer>
+        <AppModalSceneTitle>
+          {/* eslint-disable-line */}
+          {t("groupDescription")}
+        </AppModalSceneTitle>
+        <AppModalSceneError>
+          {/* eslint-disable-line */}
+          {error && t(`validation:description.${error}`)}
+        </AppModalSceneError>
+        <InputForm
+          id="groupDescription"
+          placeholder={t("groupCreate:groupDescriptionPlaceholder")}
+          isPlaceholderStatic
+          value={value}
+          onChange={this.handleChange}
+          maxLength={250}
+          containerStyle={{
+            display: "flex",
+            flex: 1,
+            width: "100%",
+            marginTop: 0,
+            borderBottomWidth: 0
+          }}
+          isMultiline
+        />
+      </AppModalSceneContainer>
     );
   }
 }
 
 GroupCreate3.defaultProps = {
-  modules: { value: [], error: undefined }
+  groupDescription: { value: "", error: undefined }
 };
 
 GroupCreate3.propTypes = {
+  disableAppModalEnterEvent: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
-  modules: PropTypes.shape({
-    value: PropTypes.arrayOf(PropTypes.string),
-    error: PropTypes.string
-  }),
+  setAppModalFooterButton: PropTypes.func.isRequired,
+  groupDescription: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withTranslation("groupCreate")
+  withTranslation("groupOptions")
 ])(GroupCreate3);

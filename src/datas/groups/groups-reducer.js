@@ -8,7 +8,8 @@ const isFetching = (state = false, action) => {
     case groupsActionsTypes.POST_GROUP_REQUEST:
     case groupsActionsTypes.PATCH_GROUP_REQUEST:
     case groupsActionsTypes.DELETE_GROUP_REQUEST:
-    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST:
+    case groupsActionsTypes.POST_GROUP_JOIN_REQUEST:
+    case groupsActionsTypes.POST_GROUP_UNJOIN_REQUEST:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST:
       return true;
     case groupsActionsTypes.POST_GROUP_SUCCESS:
@@ -17,8 +18,10 @@ const isFetching = (state = false, action) => {
     case groupsActionsTypes.PATCH_GROUP_FAILURE:
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
     case groupsActionsTypes.DELETE_GROUP_FAILURE:
-    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
-    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE:
+    case groupsActionsTypes.POST_GROUP_JOIN_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_JOIN_FAILURE:
+    case groupsActionsTypes.POST_GROUP_UNJOIN_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_UNJOIN_FAILURE:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_FAILURE:
       return false;
@@ -72,7 +75,12 @@ const byId = (state = {}, action) => {
           (groups, groupId) => ({
             // eslint-disable-line
             ...groups,
-            [groupId]: { ...state[groupId], isFetching: true, errorCode: "" }
+            [groupId]: {
+              // eslint-disable-line
+              ...state[groupId],
+              isFetching: true,
+              errorCode: ""
+            }
           }),
           {}
         )
@@ -86,7 +94,13 @@ const byId = (state = {}, action) => {
           (groups, group) => ({
             // eslint-disable-line
             ...groups,
-            [group.id]: { ...state[group.id], ...group, isFetching: false, errorCode: "" }
+            [group.id]: {
+              // eslint-disable-line
+              ...state[group.id],
+              ...group,
+              isFetching: false,
+              errorCode: ""
+            }
           }),
           {}
         )
@@ -100,7 +114,12 @@ const byId = (state = {}, action) => {
           (groups, groupId) => ({
             // eslint-disable-line
             ...groups,
-            [groupId]: { ...state[groupId], isFetching: false, errorCode: action.payload.errorCode }
+            [groupId]: {
+              // eslint-disable-line
+              ...state[groupId],
+              isFetching: false,
+              errorCode: action.payload.errorCode
+            }
           }),
           {}
         )
@@ -164,15 +183,18 @@ const errorCode = (state = "", action) => {
     case groupsActionsTypes.PATCH_GROUP_SUCCESS:
     case groupsActionsTypes.DELETE_GROUP_REQUEST:
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
-    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST:
-    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_JOIN_REQUEST:
+    case groupsActionsTypes.POST_GROUP_JOIN_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_UNJOIN_REQUEST:
+    case groupsActionsTypes.POST_GROUP_UNJOIN_SUCCESS:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_REQUEST:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_SUCCESS:
       return "";
     case groupsActionsTypes.POST_GROUP_FAILURE:
     case groupsActionsTypes.PATCH_GROUP_FAILURE:
     case groupsActionsTypes.DELETE_GROUP_FAILURE:
-    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE:
+    case groupsActionsTypes.POST_GROUP_JOIN_FAILURE:
+    case groupsActionsTypes.POST_GROUP_UNJOIN_FAILURE:
     case groupsActionsTypes.GET_GROUP_INVITE_TOKEN_FAILURE:
       return action.payload.errorCode;
     default:

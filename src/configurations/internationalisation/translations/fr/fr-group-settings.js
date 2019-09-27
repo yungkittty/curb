@@ -1,9 +1,13 @@
 const frGroupSettings = {
   groupSettings: "Paramètres du groupe",
-  general: { title: "Général", description: "Icône  ·  Nom" },
+  general: { title: "Général", description: "Icône  ·  Nom  ·  Catégorie" },
   discoverability: {
     title: "Découvrabilité",
     description: "Modifier la découvrabilité (public ou privé)"
+  },
+  description: {
+    title: "Description",
+    description: "Modifier la description"
   },
   modules: {
     title: "Modules",
@@ -21,19 +25,6 @@ const frGroupSettings = {
     contentDescription:
       "Il sera impossible de récupérer votre groupe, Et tout le contenu posté par les utilisateurs va être effacé.\n\n" +
       "Si vous acceptez cela, vous pouvez cliquer sur le bouton ci-dessous :"
-  },
-  groupName: "Nom du groupe",
-  discoverabilityOptions: {
-    public: "Votre groupe sera disponible à tous via l'écran de découverte",
-    private: "Votre groupe sera accessible uniquement sur invitation"
-  },
-  themeList: {
-    blue: "Bleu",
-    red: "Rouge",
-    green: "Vert",
-    yellow: "Jaune",
-    violet: "Magenta",
-    black: "Noir"
   }
 };
 

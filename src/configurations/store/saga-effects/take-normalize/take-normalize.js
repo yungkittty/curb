@@ -14,7 +14,7 @@ const takeNormalize = (patternOrChannel, saga, ...sagaArgs) =>
         const sagaActionHasIds = _.has(sagaAction.payload, "ids");
         if (!sagaActionHasId && !sagaActionHasIds)
           // eslint-disable-next-line
-          throw "takeNormalize only accept actions of normalized reducer.";
+          throw "takeNormalize only accept actions of normalized reducers.";
         const sagaActionIds = sagaActionHasIds ? sagaAction.payload.ids : [sagaAction.payload.id];
         const sagaActionIdsFiltered = _.filter(sagaActionIds, sagaFilter);
         if (!sagaActionIdsFiltered.length) {

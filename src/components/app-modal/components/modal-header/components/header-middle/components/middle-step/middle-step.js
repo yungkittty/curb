@@ -6,8 +6,7 @@ const MiddleStep = styled(Container)`
   height: 10px;
   margin: 0px 9px;
   border-radius: 5px;
-  background-color: ${({ enabled, theme }) =>
-    enabled ? theme.secondaryColor : theme.primaryColor};
+  background-color: ${({ isEnabled, theme }) => (isEnabled ? theme.secondaryColor : theme.primaryColor)};
 `;
 
 export default MiddleStep;

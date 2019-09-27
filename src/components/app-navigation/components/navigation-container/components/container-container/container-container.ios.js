@@ -4,7 +4,7 @@ import styled from "styled-components";
 const ContainerContainer = styled(Animated.View)`
   position: absolute;
   z-index: 8;
-  width: 110px;
+  width: 100px;
   height: 100%;
 `;
 
