@@ -21,19 +21,19 @@ class SettingsGeneral extends Component {
       t,
       setAppModalHeaderLeftButtons,
       setAppModalHeaderBackButton,
-      setAppModalScene,
       setAppModalSceneData,
       setAppModalFooterButton,
       groupName
     } = this.props;
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) }]);
-    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalSceneData({ newGroupName: { value: groupName, error: undefined } });
     setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
   }
@@ -48,6 +48,11 @@ class SettingsGeneral extends Component {
     if (prevProps.isFetchingGroups === isFetchingGroups) return;
     if (isFetchingGroups) disableAppModalButtons();
     else enableAppModalButtons();
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: GroupSettings, direction: -1 });
   }
 
   submit() {
