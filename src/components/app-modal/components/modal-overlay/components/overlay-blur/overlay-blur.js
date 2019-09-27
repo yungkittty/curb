@@ -8,7 +8,7 @@ const OverlayBlur = WrappedComponent => {
       super(props);
 
       this.hideStyle = {
-        backgroundColor: "rgba(0, 0, 0, 0)"
+        backgroundColor: "transparent"
       };
       this.showStyle = {
         backgroundColor: props.theme.overlayColor
@@ -24,18 +24,16 @@ const OverlayBlur = WrappedComponent => {
 
     componentDidMount() {
       const { isAppModalShowed } = this.props;
-      this.wrappedComponent.current.focus();
+      const { current: wrappedComponent } = this.wrappedComponent;
+      wrappedComponent.focus();
       this.startAnimation(isAppModalShowed);
     }
 
     componentDidUpdate(prevProps) {
-      const { isAppModalShowed, isAppModalButtonsEnabled } = this.props;
+      const { isAppModalShowed, areAppModalButtonsDisabled } = this.props;
       if (prevProps.isAppModalShowed !== isAppModalShowed) {
         this.startAnimation(isAppModalShowed);
-      } else if (
-        prevProps.isAppModalButtonsEnabled !== isAppModalButtonsEnabled &&
-        isAppModalButtonsEnabled
-      ) {
+      } else if (prevProps.areAppModalButtonsDisabled !== areAppModalButtonsDisabled) {
         this.wrappedComponent.current.focus();
       }
     }
@@ -69,10 +67,9 @@ const OverlayBlur = WrappedComponent => {
 
   _OverlayBlur.propTypes = {
     isAppModalShowed: PropTypes.bool.isRequired,
-    isAppModalButtonsEnabled: PropTypes.bool.isRequired,
+    areAppModalButtonsDisabled: PropTypes.bool.isRequired,
     appModalTransitionEnd: PropTypes.func.isRequired,
-    // eslint-disable-next-line
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired // eslint-disable-line
   };
 
   return withTheme(_OverlayBlur);

@@ -5,8 +5,24 @@ const appModalActions = {
     type: appModalActionsTypes.SHOW_APP_MODAL,
     payload
   }),
+  hideAppModal: () => ({
+    type: appModalActionsTypes.HIDE_APP_MODAL,
+    payload: undefined
+  }),
   enableAppModalButtons: () => ({
     type: appModalActionsTypes.ENABLE_APP_MODAL_BUTTONS,
+    payload: undefined
+  }),
+  disableAppModalButtons: () => ({
+    type: appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS,
+    payload: undefined
+  }),
+  enableAppModalEnterEvent: () => ({
+    type: appModalActionsTypes.ENABLE_APP_MODAL_ENTER_EVENT,
+    payload: undefined
+  }),
+  disableAppModalEnterEvent: () => ({
+    type: appModalActionsTypes.DISABLE_APP_MODAL_ENTER_EVENT,
     payload: undefined
   }),
   setAppModalHeaderText: payload => ({
@@ -17,12 +33,16 @@ const appModalActions = {
     type: appModalActionsTypes.SET_APP_MODAL_HEADER_STEPS,
     payload
   }),
-  setAppModalHeaderLeftButton: payload => ({
-    type: appModalActionsTypes.SET_APP_MODAL_HEADER_LEFT_BUTTON,
+  setAppModalHeaderLeftButtons: payload => ({
+    type: appModalActionsTypes.SET_APP_MODAL_HEADER_LEFT_BUTTONS,
     payload
   }),
-  setAppModalHeaderRightButton: payload => ({
-    type: appModalActionsTypes.SET_APP_MODAL_HEADER_RIGHT_BUTTON,
+  setAppModalHeaderRightButtons: payload => ({
+    type: appModalActionsTypes.SET_APP_MODAL_HEADER_RIGHT_BUTTONS,
+    payload
+  }),
+  setAppModalHeaderBackButton: payload => ({
+    type: appModalActionsTypes.SET_APP_MODAL_HEADER_BACK_BUTTON,
     payload
   }),
   setAppModalScene: payload => ({
@@ -36,14 +56,6 @@ const appModalActions = {
   setAppModalFooterButton: payload => ({
     type: appModalActionsTypes.SET_APP_MODAL_FOOTER_BUTTON,
     payload
-  }),
-  disableAppModalButtons: () => ({
-    type: appModalActionsTypes.DISABLE_APP_MODAL_BUTTONS,
-    payload: undefined
-  }),
-  hideAppModal: () => ({
-    type: appModalActionsTypes.HIDE_APP_MODAL,
-    payload: undefined
   })
 };
 

@@ -8,7 +8,6 @@ import Icon from "../icon";
 import withUser from "../../hocs/with-user";
 
 const ImageUser = ({
-  isFetchingUser,
   userName,
   userAvatar,
   theme: { secondaryVariantColor, primaryColor },
@@ -56,19 +55,10 @@ ImageUser.defaultProps = {
 };
 
 ImageUser.propTypes = {
-  isFetchingUser: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  size: PropTypes.oneOf([
-    // eslint-disable-line
-    "extra-small",
-    "small",
-    "medium",
-    "large",
-    "extra-large",
-    "extra-extra-large"
-  ]).isRequired,
+  size: PropTypes.string.isRequired,
   placeholderColor: PropTypes.string
 };
 

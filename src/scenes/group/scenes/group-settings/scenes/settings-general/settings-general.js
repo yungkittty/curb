@@ -12,30 +12,30 @@ import withAppModal from "../../../../../../hocs/with-app-modal";
 import withGroup from "../../../../../../hocs/with-group";
 /* eslint-disable-next-line */
 import GroupSettings from "../../group-settings";
+import groupCategories from "../../../../utils/group-categories";
 
 class SettingsGeneral extends Component {
   constructor(props) {
     super(props);
     const {
       t,
-      setAppModalHeaderLeftButton,
-      setAppModalScene,
-      setAppModalFooterButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalSceneData,
+      setAppModalFooterButton,
       groupName
     } = this.props;
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
-    });
-    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalSceneData({ newGroupName: { value: groupName, error: undefined } });
+    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
   }
 
   componentDidUpdate(prevProps) {
@@ -50,20 +50,28 @@ class SettingsGeneral extends Component {
     else enableAppModalButtons();
   }
 
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: GroupSettings, direction: -1 });
+  }
+
   submit() {
     const {
       // eslint-disable-line
       patchGroup,
       groupId,
       avatar,
+      groupName,
       newGroupName,
-      groupName
+      groupCategory,
+      newGroupCategory
     } = this.props;
-    if (this.checkForm() && (newGroupName.value !== groupName || avatar.value.file)) {
+    if (this.checkForm()) {
       patchGroup({
         id: groupId,
-        avatar: avatar.value,
-        name: newGroupName.value
+        avatar: avatar.value.file && avatar.value,
+        name: newGroupName.value !== groupName ? newGroupName.value : undefined,
+        category: newGroupCategory.value !== groupCategory ? newGroupCategory.value : undefined
       });
     }
   }
@@ -76,8 +84,9 @@ class SettingsGeneral extends Component {
   }
 
   checkInput(id, value) {
-    let error = value && value.length === 0 ? "missing" : undefined;
-    if (error === undefined) error = !RegExp(inputRegex.groupName).test(value) ? "invalid" : undefined;
+    let error = value.length === 0 ? "missing" : undefined;
+    if (id === "newGroupName" && error === undefined)
+      error = !RegExp(inputRegex.groupName).test(value) ? "invalid" : undefined;
     const { setAppModalSceneData, [id]: Y } = this.props;
     setAppModalSceneData({ [id]: { ...Y, value, error } });
     return error === undefined;
@@ -94,9 +103,11 @@ class SettingsGeneral extends Component {
       t,
       isFetchingGroups,
       groupId,
-      newGroupName,
+      avatar,
       groupName,
-      avatar
+      newGroupName,
+      groupCategory,
+      newGroupCategory
     } = this.props;
     return isFetchingGroups ? (
       <Loader />
@@ -104,7 +115,7 @@ class SettingsGeneral extends Component {
       <AppModalSceneContainer>
         <AppModalSceneTitle>
           {/* eslint-disable-line */}
-          {t("general.title")}
+          {t("groupSettings:general.title")}
         </AppModalSceneTitle>
         <ImageAvatarEditable
           editMode
@@ -124,29 +135,46 @@ class SettingsGeneral extends Component {
           value={newGroupName.value !== undefined ? newGroupName.value : groupName}
           error={newGroupName.error && t(`validation:groupName.${newGroupName.error}`)}
         />
+        <InputForm
+          inputType="dropdown"
+          size="modal"
+          id="newGroupCategory"
+          placeholder={t("groupCategory")}
+          onChange={this.handleChange}
+          value={newGroupCategory.value !== undefined ? newGroupCategory.value : groupCategory}
+          error={newGroupCategory.error && t(`validation:groupCategory.${newGroupCategory.error}`)}
+          options={_.map(groupCategories, item => ({
+            key: item,
+            value: t(`groupCategoryOptions.${item}`)
+          }))}
+        />
       </AppModalSceneContainer>
     );
   }
 }
 
 SettingsGeneral.defaultProps = {
+  avatar: { value: { data: undefined, file: undefined }, error: undefined },
   newGroupName: { value: undefined, error: undefined },
-  avatar: { value: { data: undefined, file: undefined }, error: undefined }
+  newGroupCategory: { value: undefined, error: undefined }
 };
 
 SettingsGeneral.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
+  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
   groupName: PropTypes.string.isRequired,
   newGroupName: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
-  avatar: PropTypes.shape({ value: PropTypes.object, error: PropTypes.string }),
+  groupCategory: PropTypes.string.isRequired,
+  newGroupCategory: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
@@ -154,5 +182,5 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withGroup,
-  withTranslation("groupSettings")
+  withTranslation("groupOptions")
 ])(SettingsGeneral);

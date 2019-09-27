@@ -2,25 +2,26 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
-import DiscoveryContainer from "./components/discovery-container";
+import ListSection from "../../components/list-section";
 import DiscoveryHeader from "./components/discovery-header";
-import DiscoveryTitle from "./components/discovery-title";
-import DiscoverySubtitle from "./components/discovery-subtitle";
 import DiscoveryListSectionHeader from "./components/discovery-list-section-header";
 import DiscoveryList from "./components/discovery-list";
 import DiscoveryListItem from "./components/discovery-list-item";
 import ButtonFloat from "../../components/button-float";
-import SignIn from "../sign-in";
-import GroupCreate from "../group/scenes/group-create";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
+
+/* eslint-disable */
+
+import GroupCreate from "../group/scenes/group-create";
+
+/* eslint-enable */
 
 class Discovery extends React.Component {
   constructor(props) {
     super(props);
-    const sectionResolver = (...sectionArgs) => JSON.stringify(sectionArgs);
-    this.getSection = _.memoize(this.getSection.bind(this), sectionResolver);
-    this.getSections = _.memoize(this.getSections.bind(this), sectionResolver);
+    this.getSection = this.getSection.bind(this);
+    this.getSections = this.getSections.bind(this);
     this.renderListHeader = this.renderListHeader.bind(this);
     this.renderListSectionHeader = this.renderListSectionHeader.bind(this);
     this.renderListSectionItem = this.renderListSectionItem.bind(this);
@@ -29,7 +30,6 @@ class Discovery extends React.Component {
 
   // eslint-disable-next-line
   getSection(
-    // eslint-disable-line
     isDiscoverySectionEnd,
     discoverySectionTitle,
     discoverySectionGroupsId,
@@ -44,19 +44,20 @@ class Discovery extends React.Component {
     }] : [];
   }
 
-  getSections(
-    // eslint-disable-line
-    currentUserId,
-    isDiscoveryGlobalSectionEnd,
-    isDiscoveryCustomSectionEnd,
-    isDiscoveryRandomSectionEnd,
-    discoveryGlobalSectionGroupsId,
-    discoveryCustomSectionGroupsId,
-    discoveryRandomSectionGroupsId,
-    getDiscoveryGlobalSectionGroupsId,
-    getDiscoveryCustomSectionGroupsId,
-    getDiscoveryRandomSectionGroupsId
-  ) {
+  getSections() {
+    const {
+      // eslint-disable-line
+      currentUserId,
+      isDiscoveryGlobalSectionEnd,
+      isDiscoveryCustomSectionEnd,
+      isDiscoveryRandomSectionEnd,
+      discoveryGlobalSectionGroupsId,
+      discoveryCustomSectionGroupsId,
+      discoveryRandomSectionGroupsId,
+      getDiscoveryGlobalSectionGroupsId,
+      getDiscoveryCustomSectionGroupsId,
+      getDiscoveryRandomSectionGroupsId
+    } = this.props;
     return [
       ...this.getSection(
         // eslint-disable-line
@@ -86,15 +87,10 @@ class Discovery extends React.Component {
   renderListHeader() {
     const { t } = this.props;
     return (
-      <DiscoveryHeader>
-        <DiscoveryTitle type="h1" weight={700}>
-          {t("title")}
-        </DiscoveryTitle>
-        <DiscoverySubtitle type="h4">
-          {/* eslint-disable-line */}
-          {t("subtitle")}
-        </DiscoverySubtitle>
-      </DiscoveryHeader>
+      <DiscoveryHeader
+        // eslint-disable-line
+        t={t}
+      />
     );
   }
 
@@ -112,17 +108,14 @@ class Discovery extends React.Component {
     item: discoveryItemData,
     section: discoverySectionData
   }) {
-    const { isDiscoverySectionEnd } = discoverySectionData;
     const { discoverySectionGroupsId } = discoveryItemData;
-    const { getDiscoverySectionGroupsId } = discoverySectionData;
+    const { isDiscoverySectionEnd, getDiscoverySectionGroupsId } = discoverySectionData;
     return (
       <DiscoveryList
         isDiscoverySectionEnd={isDiscoverySectionEnd}
         discoverySectionGroupsId={discoverySectionGroupsId}
         getDiscoverySectionGroupsId={getDiscoverySectionGroupsId}
-        keyExtractor={(discoveryGroupId, discoveryItemIndex) =>
-          // eslint-disable-line
-          `${discoveryGroupId}${discoveryItemIndex}`}
+        keyExtractor={discoverySectionGroupId => discoverySectionGroupId}
         renderItem={this.renderListItem}
       />
     );
@@ -131,7 +124,6 @@ class Discovery extends React.Component {
   // eslint-disable-next-line
   renderListItem({ item: discoveryItemId }) {
     return (
-      // eslint-disable-line
       <DiscoveryListItem
         // eslint-disable-line
         shouldFetch={false}
@@ -141,43 +133,22 @@ class Discovery extends React.Component {
   }
 
   render() {
-    const {
-      showAppModal,
-      currentUserId,
-      isDiscoveryGlobalSectionEnd,
-      isDiscoveryCustomSectionEnd,
-      isDiscoveryRandomSectionEnd,
-      discoveryGlobalSectionGroupsId,
-      discoveryCustomSectionGroupsId,
-      discoveryRandomSectionGroupsId,
-      getDiscoveryGlobalSectionGroupsId,
-      getDiscoveryCustomSectionGroupsId,
-      getDiscoveryRandomSectionGroupsId
-    } = this.props;
-    const getSectionsArgs = [
-      currentUserId,
-      isDiscoveryGlobalSectionEnd,
-      isDiscoveryCustomSectionEnd,
-      isDiscoveryRandomSectionEnd,
-      discoveryGlobalSectionGroupsId,
-      discoveryCustomSectionGroupsId,
-      discoveryRandomSectionGroupsId,
-      getDiscoveryGlobalSectionGroupsId,
-      getDiscoveryCustomSectionGroupsId,
-      getDiscoveryRandomSectionGroupsId
-    ];
+    const { showAppModal, currentUserId } = this.props;
     return (
       <React.Fragment>
-        <DiscoveryContainer
-          sections={this.getSections(...getSectionsArgs)}
+        <ListSection
+          sections={this.getSections()}
           ListHeaderComponent={this.renderListHeader}
           renderSectionHeader={this.renderListSectionHeader}
           renderItem={this.renderListSectionItem}
         />
-        <ButtonFloat
-          icon="plus"
-          onClick={() => showAppModal({ scene: currentUserId ? GroupCreate : SignIn })}
-        />
+        {currentUserId ? (
+          <ButtonFloat
+            // eslint-disable-line
+            icon="plus"
+            onClick={() => showAppModal({ scene: GroupCreate })}
+          />
+        ) : null}
       </React.Fragment>
     );
   }

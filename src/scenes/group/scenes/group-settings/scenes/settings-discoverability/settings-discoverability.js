@@ -17,10 +17,11 @@ class SettingsDiscoverability extends Component {
     super(props);
     const {
       t,
-      setAppModalHeaderLeftButton,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalScene,
-      setAppModalFooterButton,
       setAppModalSceneData,
+      setAppModalFooterButton,
       groupStatus
     } = this.props;
 
@@ -29,12 +30,10 @@ class SettingsDiscoverability extends Component {
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
-    });
-    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) }]);
+    setAppModalHeaderBackButton({ onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 }) });
     setAppModalSceneData({ newGroupStatus: { value: groupStatus, error: undefined } });
+    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
   }
 
   componentDidUpdate(prevProps) {
@@ -98,7 +97,7 @@ class SettingsDiscoverability extends Component {
       <AppModalSceneContainer>
         <AppModalSceneTitle>
           {/* eslint-disable-line */}
-          {t("discoverability.title")}
+          {t("groupSettings:discoverability.title")}
         </AppModalSceneTitle>
         <AppModalSceneError>
           {/* eslint-disable-line */}
@@ -121,10 +120,11 @@ SettingsDiscoverability.defaultProps = {
 SettingsDiscoverability.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
@@ -137,5 +137,5 @@ export default _.flowRight([
   // eslint-disable-line
   withAppModal,
   withGroup,
-  withTranslation("groupSettings")
+  withTranslation("groupOptions")
 ])(SettingsDiscoverability);

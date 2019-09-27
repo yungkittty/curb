@@ -1,9 +1,13 @@
 const enGroupSettings = {
   groupSettings: "Group settings",
-  general: { title: "General", description: "Icon  ·  Name" },
+  general: { title: "General", description: "Icon  ·  Name  ·  Category" },
   discoverability: {
     title: "Discoverability",
     description: "Edit the discoverability (public or private)"
+  },
+  description: {
+    title: "Description",
+    description: "Edit the description"
   },
   modules: {
     title: "Modules",
@@ -21,19 +25,6 @@ const enGroupSettings = {
     contentDescription:
       "You’ll never be able to recover your group, and all of the content posted by users will be deleted.\n\n" +
       "If you agree with that, you can confirm this action by clicking the button below:"
-  },
-  groupName: "Group name",
-  discoverabilityOptions: {
-    public: "Your group will be visible by everyone through the discovery",
-    private: "Your group will only be accessible by invitation"
-  },
-  themeList: {
-    blue: "Blue",
-    red: "Red",
-    green: "Green",
-    yellow: "Yellow",
-    violet: "Violet",
-    black: "Black"
   }
 };
 

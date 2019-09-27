@@ -66,16 +66,29 @@ const groupsActions = {
     payload: error,
     error: true
   }),
-  postGroupInviteTokenRequest: payload => ({
-    type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_REQUEST,
+  postGroupJoinRequest: payload => ({
+    type: groupsActionsTypes.POST_GROUP_JOIN_REQUEST,
     payload
   }),
-  postGroupInviteTokenSuccess: payload => ({
-    type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS,
+  postGroupJoinSuccess: payload => ({
+    type: groupsActionsTypes.POST_GROUP_JOIN_SUCCESS,
     payload
   }),
-  postGroupInviteTokenFailure: error => ({
-    type: groupsActionsTypes.POST_GROUP_INVITE_TOKEN_FAILURE,
+  postGroupJoinFailure: error => ({
+    type: groupsActionsTypes.POST_GROUP_JOIN_FAILURE,
+    payload: error,
+    error: true
+  }),
+  postGroupUnjoinRequest: payload => ({
+    type: groupsActionsTypes.POST_GROUP_UNJOIN_REQUEST,
+    payload
+  }),
+  postGroupUnjoinSuccess: payload => ({
+    type: groupsActionsTypes.POST_GROUP_UNJOIN_SUCCESS,
+    payload
+  }),
+  postGroupUnjoinFailure: error => ({
+    type: groupsActionsTypes.POST_GROUP_UNJOIN_FAILURE,
     payload: error,
     error: true
   }),

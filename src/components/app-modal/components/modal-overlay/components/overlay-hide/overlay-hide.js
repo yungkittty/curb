@@ -3,17 +3,25 @@ import PropTypes from "prop-types";
 
 const OverlayHide = WrappedComponent => {
   // eslint-disable-next-line
-  const _OverlayHide = ({ appModalHide, appModalFooterOnClick, ...others }) => (
+  const _OverlayHide = ({
+    // eslint-disable-line
+    appModalFooterOnClick,
+    isAppModalEnterEventEnabled,
+    hideAppModal,
+    ...others
+  }) => (
     <WrappedComponent
       {...others}
-      onClick={appModalHide}
+      onClick={hideAppModal}
       onKeyDown={event => {
         switch (event.keyCode) {
           case 27:
-            appModalHide();
+            hideAppModal();
             break;
           case 13:
-            if (appModalFooterOnClick) appModalFooterOnClick();
+            if (appModalFooterOnClick && isAppModalEnterEventEnabled && !others.areAppModalButtonsDisabled)
+              // eslint-disable-line
+              appModalFooterOnClick();
             break;
           default:
             break;
@@ -28,8 +36,10 @@ const OverlayHide = WrappedComponent => {
   };
 
   _OverlayHide.propTypes = {
-    appModalHide: PropTypes.func.isRequired,
-    appModalFooterOnClick: PropTypes.func
+    areAppModalButtonsDisabled: PropTypes.bool.isRequired,
+    isAppModalEnterEventEnabled: PropTypes.bool.isRequired,
+    appModalFooterOnClick: PropTypes.func,
+    hideAppModal: PropTypes.func.isRequired
   };
 
   return _OverlayHide;

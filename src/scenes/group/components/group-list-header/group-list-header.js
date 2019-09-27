@@ -1,67 +1,82 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import HeaderContainer from "./components/header-container";
-import HeaderButtonIcon from "./components/header-button-icon";
-import ImageGroup from "../../../../components/image-group";
-import HeaderTitle from "./components/header-title";
-import GroupQr from "../../scenes/group-qr";
-import { platformBools } from "../../../../configurations/platform";
-import withAppModal from "../../../../hocs/with-app-modal";
+import { withRouter } from "react-router";
+import AppHeader from "../../../../components/app-header";
+import ContainerGradient from "../../../../components/container-gradient";
+import withShadow from "../../../../hocs/with-shadow";
 
-const GroupListHeader = ({
-  isFeed,
-  toggleScene,
-  showAppModal,
-  groupId,
-  groupName,
-  groupStatus,
-  groupTheme,
-  currentUserGroupsId,
-  theme
-}) => (
-  <HeaderContainer groupTheme={groupTheme}>
-    {groupStatus === "public" || _.includes(currentUserGroupsId, groupId) ? (
-      <React.Fragment>
-        <HeaderButtonIcon
-          icon="user-plus"
-          size="small"
-          color={theme.backgroundColor}
-          onClick={() => showAppModal({ scene: GroupQr })}
-          style={{ right: platformBools.isWeb ? 40 : 20 }}
-        />
-        <HeaderButtonIcon
-          icon={isFeed ? "info-circle" : "stream"}
-          size="small"
-          color={theme.backgroundColor}
-          onClick={toggleScene}
-          style={{ right: platformBools.isWeb ? 95 : 60 }}
-        />
-      </React.Fragment>
-    ) : null}
-    <ImageGroup
-      shouldFetch={false}
-      groupId={groupId}
-      size="extra-extra-large"
-      placeholderColor={theme[`group${_.capitalize(groupTheme)}VariantColor`]}
-    />
-    <HeaderTitle type="h2" weight={700}>
-      {/* eslint-disable-line */}
-      {groupName}
-    </HeaderTitle>
-  </HeaderContainer>
-);
+/* eslint-disable */
+
+import GroupQr from "../../scenes/group-qr";
+
+/* eslint-enable */
+
+class GroupListHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onBackClick = this.onBackClick.bind(this);
+  }
+
+  // eslint-disable-next-line
+  getLeftButtons() {
+    const leftButtons = [];
+    const leftButtonsFirstIcon = "arrow-left";
+    const leftButtonsFirstOnClick = this.onBackClick;
+    leftButtons[0] = { icon: leftButtonsFirstIcon, color: "white", onClick: leftButtonsFirstOnClick };
+    return leftButtons;
+  }
+
+  getRightButtons() {
+    const { isFeed, toggleFeed, showAppModal } = this.props;
+    const rightButtons = [];
+    const rightButtonsFirstIcon = "qrcode";
+    const rightButtonsFirstOnClick = () => showAppModal({ scene: GroupQr });
+    const rightButtonsSecondIcon = isFeed ? "info-circle" : "stream";
+    const rightButtonsSecondOnClick = toggleFeed;
+    rightButtons[0] = { icon: rightButtonsFirstIcon, color: "white", onClick: rightButtonsFirstOnClick };
+    rightButtons[1] = { icon: rightButtonsSecondIcon, color: "white", onClick: rightButtonsSecondOnClick };
+    return rightButtons;
+  }
+
+  onBackClick() {
+    const { history } = this.props;
+    history.goBack();
+  }
+
+  render() {
+    const {
+      // eslint-disable-line
+      groupGradientAngle,
+      groupGradientColors,
+      ...others
+    } = this.props;
+    return (
+      <AppHeader
+        // eslint-disable-line
+        {...others}
+        as={ContainerGradient}
+        leftButtons={this.getLeftButtons()}
+        rightButtons={this.getRightButtons()}
+        gradientAngle={groupGradientAngle}
+        gradientColors={groupGradientColors}
+        onBackClick={this.onBackClick}
+      />
+    );
+  }
+}
 
 GroupListHeader.propTypes = {
-  showAppModal: PropTypes.func.isRequired,
   isFeed: PropTypes.bool.isRequired,
-  toggleScene: PropTypes.func.isRequired,
-  groupId: PropTypes.string.isRequired,
-  groupName: PropTypes.string.isRequired,
-  groupStatus: PropTypes.string.isRequired,
-  groupTheme: PropTypes.string.isRequired,
-  currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
-  theme: PropTypes.object.isRequired // eslint-disable-line
+  toggleFeed: PropTypes.func.isRequired,
+  showAppModal: PropTypes.func.isRequired,
+  groupGradientAngle: PropTypes.number.isRequired,
+  groupGradientColors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  history: PropTypes.object.isRequired // eslint-disable-line
 };
 
-export default withAppModal(GroupListHeader);
+export default _.flowRight([
+  // eslint-disable-line
+  withShadow(4),
+  withRouter
+])(GroupListHeader);

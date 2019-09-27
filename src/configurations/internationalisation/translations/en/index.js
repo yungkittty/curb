@@ -3,14 +3,15 @@ import glossary from "./en-glossary";
 import validation from "./en-validation";
 import signIn from "./en-sign-in";
 import signUp from "./en-sign-up";
+import appDownload from "./en-app-download";
+import appAlert from "./en-app-alert";
 import discovery from "./en-discovery";
 import resetPassword from "./en-reset-password";
-import appDownload from "./en-app-download";
 import settings from "./en-settings";
-import group from "./en-group";
 import modules from "./en-modules";
-import appAlert from "./en-app-alert";
 import groupCreate from "./en-group-create";
+import group from "./en-group";
+import groupOptions from "./en-group-options";
 import groupSettings from "./en-group-settings";
 import errorCode from "./en-error-code";
 
@@ -19,15 +20,16 @@ export default {
   glossary,
   validation,
   signIn,
-  appDownload,
   signUp,
+  appDownload,
+  appAlert,
   discovery,
   resetPassword,
   settings,
-  group,
   modules,
-  appAlert,
   groupCreate,
+  group,
+  groupOptions,
   groupSettings,
   errorCode
 };

@@ -46,24 +46,29 @@ const byId = (state = {}, action) => {
         }
       };
     case groupsActionsTypes.POST_GROUP_SUCCESS:
-    case groupsActionsTypes.POST_GROUP_INVITE_TOKEN_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_JOIN_SUCCESS:
       return {
         ...state,
         [action.payload.currentUserId]: {
           ...state[action.payload.currentUserId],
-          groups: [
+          groups: _.union(
             // eslint-disable-line
-            ...state[action.payload.currentUserId].groups,
-            action.payload.id
-          ]
+            state[action.payload.currentUserId].groups,
+            [action.payload.id]
+          )
         }
       };
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
+    case groupsActionsTypes.POST_GROUP_UNJOIN_SUCCESS:
       return {
         ...state,
         [action.payload.currentUserId]: {
           ...state[action.payload.currentUserId],
-          groups: _.without(state[action.payload.currentUserId].groups, action.payload.id)
+          groups: _.without(
+            // eslint-disable-line
+            state[action.payload.currentUserId].groups,
+            action.payload.id
+          )
         }
       };
     case mediasActionsTypes.POST_MEDIA_AVATAR_USER_SUCCESS:

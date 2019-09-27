@@ -44,10 +44,11 @@ const withGroup = WrappedComponent => {
     const group = groupsSelectors.getGroupById(state, groupId);
     if (!group) return { groupId };
     const {
-      isFetching: isFetchingGroup,
       creatorId: groupCreatorId,
       dateCreation: groupDateCreation,
       name: groupName,
+      category: groupCategory,
+      description: groupDescription,
       avatarUrl: groupAvatar,
       status: groupStatus,
       theme: groupTheme,
@@ -58,11 +59,12 @@ const withGroup = WrappedComponent => {
       errorCode: groupErrorCode
     } = group;
     return {
-      isFetchingGroup,
       groupId,
       groupCreatorId,
       groupDateCreation,
       groupName,
+      groupCategory,
+      groupDescription,
       groupAvatar,
       groupStatus,
       groupTheme,
@@ -80,11 +82,12 @@ const withGroup = WrappedComponent => {
 
   WithGroup.defaultProps = {
     shouldFetch: true,
-    isFetchingGroup: false,
     groupId: "",
     groupCreatorId: "",
     groupDateCreation: "",
     groupName: "",
+    groupCategory: "",
+    groupDescription: "",
     groupAvatar: "",
     groupStatus: "",
     groupTheme: "",
@@ -98,11 +101,12 @@ const withGroup = WrappedComponent => {
   WithGroup.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
     shouldFetch: PropTypes.bool,
-    isFetchingGroup: PropTypes.bool,
     groupId: PropTypes.string,
     groupCreatorId: PropTypes.string,
     groupDateCreation: PropTypes.string,
     groupName: PropTypes.string,
+    groupCategory: PropTypes.string,
+    groupDescription: PropTypes.string,
     groupAvatar: PropTypes.string,
     groupStatus: PropTypes.string,
     groupTheme: PropTypes.string,

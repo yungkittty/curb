@@ -21,6 +21,7 @@ const enCommon = {
   edit: "Edit",
   reset: "Reset",
   post: "Post",
+  selectOption: "Select an option",
   selectImage: "Select an image",
   selectVideo: "Select a video",
   takePhoto: "Take a photo",

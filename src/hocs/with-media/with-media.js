@@ -40,7 +40,6 @@ const withMedia = WrappedComponent => {
     const media = mediasSelectors.getMediaById(state, mediaId);
     if (!media) return { mediaId };
     const {
-      isFetching: isFetchingMedia,
       creatorId: mediaCreatorId,
       dateCreation: mediaDateCreation,
       type: mediaType,
@@ -49,7 +48,6 @@ const withMedia = WrappedComponent => {
       errorCode: mediaErrorCode
     } = media;
     return {
-      isFetchingMedia,
       mediaId,
       mediaCreatorId,
       mediaDateCreation,
@@ -66,7 +64,6 @@ const withMedia = WrappedComponent => {
 
   WithMedia.defaultProps = {
     shouldFetch: true,
-    isFetchingMedia: false,
     mediaId: "",
     mediaCreatorId: "",
     mediaDateCreation: "",
@@ -78,7 +75,6 @@ const withMedia = WrappedComponent => {
 
   WithMedia.propTypes = {
     shouldFetch: PropTypes.bool,
-    isFetchingMedia: PropTypes.bool,
     mediaId: PropTypes.string,
     mediaCreatorId: PropTypes.string,
     mediaDateCreation: PropTypes.string,
