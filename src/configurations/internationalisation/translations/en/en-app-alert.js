@@ -17,6 +17,10 @@ const enAppAlert = {
     textPosted: "Your text has been posted",
     videoPosted: "Your video has been posted"
   },
+  feedback: {
+    Success: "Your feedback have been sent",
+    UNKNOWN: "An error occured while sending your feedback"
+  },
   accountCreated: "Your account have been created",
   groupCreated: "Your group have been created",
   groupPatched: "Your group have been updated",

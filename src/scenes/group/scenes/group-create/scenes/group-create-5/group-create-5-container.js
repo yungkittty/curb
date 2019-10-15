@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import GroupCreate4 from "./group-create-4"; // eslint-disable-line
+import GroupCreate5 from "./group-create-5"; // eslint-disable-line
 import { groupsActions, groupsSelectors } from "../../../../../../datas/groups";
 
 const mapStateToProps = state => ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GroupCreate4);
+)(GroupCreate5);

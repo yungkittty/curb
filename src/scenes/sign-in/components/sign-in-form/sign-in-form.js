@@ -7,6 +7,7 @@ import InputForm from "../../../../components/input-form";
 const SignInForm = ({ onChange, email, password, t }) => (
   <FormContainer>
     <InputForm
+      containerStyle={{ marginTop: 0 }}
       size="modal"
       id="email"
       type="email"
