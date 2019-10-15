@@ -23,7 +23,7 @@ class CircleRoundContainer extends Component {
 
     Animated.loop(
       Animated.timing(rotation, {
-        toValue: 1,
+        toValue: 360,
         delay: (8 - index) * 36,
         easing: Easing.bezier(0.5, 0, 0.5, 1),
         duration: 1200,
@@ -42,7 +42,7 @@ class CircleRoundContainer extends Component {
           transform: [
             {
               rotate: rotation.interpolate({
-                inputRange: [0, 1],
+                inputRange: [0, 360],
                 outputRange: ["0deg", "360deg"]
               })
             }

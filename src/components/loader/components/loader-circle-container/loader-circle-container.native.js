@@ -30,20 +30,26 @@ class LoaderCircleContainer extends Component {
     const { rotation } = this.state;
 
     return (
-      <Animated.View
-        style={{
-          transform: [
-            {
-              rotate: rotation.interpolate({
-                inputRange: [0, 360],
-                outputRange: ["0deg", "360deg"]
-              })
-            }
-          ]
-        }}
-      >
-        <CircleContainer {...others}>{innerDiameter => children(innerDiameter)}</CircleContainer>
-      </Animated.View>
+      <CircleContainer {...others}>
+        {innerDiameter => (
+          <Animated.View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              transform: [
+                {
+                  rotate: rotation.interpolate({
+                    inputRange: [0, 360],
+                    outputRange: ["0deg", "360deg"]
+                  })
+                }
+              ]
+            }}
+          >
+            {children(innerDiameter)}
+          </Animated.View>
+        )}
+      </CircleContainer>
     );
   }
 }
