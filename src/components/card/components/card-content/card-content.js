@@ -22,7 +22,7 @@ class CardContent extends React.Component {
   }
 
   render() {
-    const { mediaList, dropdownMenu, postType, ...others } = this.props;
+    const { mediaList, contentMenuButton, postType, ...others } = this.props;
     const { selectedIndex, isMenuShowed } = this.state;
     return (
       <React.Fragment>
@@ -40,16 +40,16 @@ class CardContent extends React.Component {
             onClick={index => this.setState({ selectedIndex: index })}
           />
         )}
-        {dropdownMenu && (
+        {contentMenuButton && (
           <ContentMenu
-            dropdownMenu={dropdownMenu}
+            contentMenuButton={contentMenuButton}
             onMenuClick={() => this.setState({ isMenuShowed: true })}
             selectedMediaType={_.keys(mediaList)[selectedIndex]}
           />
         )}
         {isMenuShowed && (
           <ContentDropdown
-            optionsList={dropdownMenu.optionsList}
+            optionsList={contentMenuButton.optionsList}
             onClose={() => this.setState({ isMenuShowed: false })}
           />
         )}
@@ -59,14 +59,14 @@ class CardContent extends React.Component {
 }
 
 CardContent.defaultProps = {
-  dropdownMenu: undefined
+  contentMenuButton: undefined
 };
 
 CardContent.propTypes = {
   mediaList: PropTypes.object.isRequired, // eslint-disable-line
-  dropdownMenu: PropTypes.shape({
+  contentMenuButton: PropTypes.shape({
     icon: PropTypes.string,
-    optionsList: PropTypes.array
+    onClick: PropTypes.func
   }),
   postType: PropTypes.bool.isRequired
 };

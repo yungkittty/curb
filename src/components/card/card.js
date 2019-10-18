@@ -7,71 +7,89 @@ import CardBorderContainer from "./components/card-border-container";
 import CardContent from "./components/card-content";
 import CardAddMediaTypes from "./components/card-add-media-types";
 import CardFooter from "./components/card-footer";
+import CardMenu from "./components/card-menu";
 import CardFloatingButton from "./components/card-floating-button";
 import getCardSize from "./utils/get-card-size";
 
-const Card = ({
-  style,
-  className,
-  size,
-  postMediaTypes,
-  mediaList,
-  groupDescription,
-  onFloatingButtonClick,
-  groupId,
-  ...others
-}) => {
-  const cardSize = getCardSize({
-    size,
-    isCardExtended: !!_.size(_.omit(mediaList, "text")) > 0 || !!groupId,
-    isPostMode: !!postMediaTypes,
-    isOnlyPostTextMode: !!postMediaTypes && postMediaTypes.length === 1 && postMediaTypes[0].type === "text"
-  });
-  return (
-    <CardContainer
-      style={style}
-      className={className}
-      cardSize={cardSize}
-      onClick={() => groupId && `/groups/${groupId}`}
-    >
-      <CardBorderContainer>
-        {cardSize.isCardExtended && (
-          <CardContent
-            mediaList={_.omit(mediaList, "text")}
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isMenuShowed: false };
+  }
+
+  render() {
+    const { isMenuShowed } = this.state;
+    const {
+      style,
+      className,
+      size,
+      postMediaTypes,
+      mediaList,
+      groupDescription,
+      onFloatingButtonClick,
+      groupId,
+      cardMenu,
+      ...others
+    } = this.props;
+
+    const cardSize = getCardSize({
+      size,
+      isCardExtended: !!_.size(_.omit(mediaList, "text")) > 0 || !!groupId,
+      isPostMode: !!postMediaTypes,
+      isOnlyPostTextMode: !!postMediaTypes && postMediaTypes.length === 1 && postMediaTypes[0].type === "text"
+    });
+    return (
+      <CardContainer
+        style={style}
+        className={className}
+        cardSize={cardSize}
+        onClick={() => groupId && `/groups/${groupId}`}
+      >
+        <CardBorderContainer>
+          {cardSize.isCardExtended && (
+            <CardContent
+              mediaList={_.omit(mediaList, "text")}
+              cardSize={cardSize}
+              groupId={groupId}
+              postType={!!postMediaTypes}
+              {...others}
+            />
+          )}
+          {!!postMediaTypes && !cardSize.isOnlyPostTextMode && (
+            <CardAddMediaTypes postMediaTypes={postMediaTypes} />
+          )}
+          <CardFooter
             cardSize={cardSize}
+            textDescription={(_.size(mediaList) > 0 && mediaList.text) || groupDescription}
+            isPost={!!postMediaTypes}
+            postText={
+              _.find(postMediaTypes, { type: "text" }) && {
+                ..._.find(postMediaTypes, { type: "text" }),
+                value: mediaList.text
+              }
+            }
             groupId={groupId}
-            postType={!!postMediaTypes}
+            haveMenu={_.size(cardMenu) > 0}
+            onMenuClick={() => this.setState({ isMenuShowed: true })}
+            {...others}
+          />
+          {isMenuShowed && (
+            <CardMenu optionsList={cardMenu} onClose={() => this.setState({ isMenuShowed: false })} />
+          )}
+        </CardBorderContainer>
+        {onFloatingButtonClick && (
+          <CardFloatingButton
+            cardSize={cardSize}
+            postType={!!postMediaTypes && _.size(_.omit(mediaList, "text")) === 0}
+            onFloatingButtonClick={onFloatingButtonClick}
             {...others}
           />
         )}
-        {!!postMediaTypes && !cardSize.isOnlyPostTextMode && (
-          <CardAddMediaTypes postMediaTypes={postMediaTypes} />
-        )}
-        <CardFooter
-          cardSize={cardSize}
-          textDescription={(_.size(mediaList) > 0 && mediaList.text) || groupDescription}
-          isPost={!!postMediaTypes}
-          postText={
-            _.find(postMediaTypes, { type: "text" }) && {
-              ..._.find(postMediaTypes, { type: "text" }),
-              value: mediaList.text
-            }
-          }
-          groupId={groupId}
-          {...others}
-        />
-      </CardBorderContainer>
-      {onFloatingButtonClick && (
-        <CardFloatingButton
-          cardSize={cardSize}
-          postType={!!postMediaTypes && _.size(_.omit(mediaList, "text")) === 0}
-          onFloatingButtonClick={onFloatingButtonClick}
-          {...others}
-        />
-      )}
-    </CardContainer>
-  );
-};
+      </CardContainer>
+    );
+  }
+}
 
 Card.defaultProps = {
   style: undefined,
@@ -81,7 +99,8 @@ Card.defaultProps = {
   mediaList: undefined,
   groupDescription: undefined,
   onFloatingButtonClick: undefined,
-  groupId: undefined
+  groupId: undefined,
+  cardMenu: undefined
 };
 
 Card.propTypes = {
@@ -94,7 +113,10 @@ Card.propTypes = {
   mediaList: PropTypes.object, // eslint-disable-line
   groupDescription: PropTypes.string,
   onFloatingButtonClick: PropTypes.func,
-  groupId: PropTypes.string
+  groupId: PropTypes.string,
+  cardMenu: PropTypes.arrayOf(
+    PropTypes.shape({ text: PropTypes.string, icon: PropTypes.icon, onClick: PropTypes.func })
+  )
 };
 
 export default withUser(Card);

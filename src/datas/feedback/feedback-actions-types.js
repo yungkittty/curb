@@ -1,0 +1,7 @@
+const feedbackActionsTypes = {
+  POST_FEEDBACK_REQUEST: "POST_FEEDBACK_REQUEST",
+  POST_FEEDBACK_SUCCESS: "POST_FEEDBACK_SUCCESS",
+  POST_FEEDBACK_FAILURE: "POST_FEEDBACK_FAILURE"
+};
+
+export default feedbackActionsTypes;

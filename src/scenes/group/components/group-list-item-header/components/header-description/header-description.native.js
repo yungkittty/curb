@@ -14,6 +14,7 @@ const HeaderDescription = styled(Text).attrs(() => {
   };
 })`
   padding: 0px 20px;
+  text-align: center;
   color: white;
 `;
 

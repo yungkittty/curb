@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import Stadium from "../../../../../../components/stadium";
 import Text from "../../../../../../components/text";
 import { platformBools } from "../../../../../../configurations/platform";
@@ -7,7 +8,8 @@ import { platformBools } from "../../../../../../configurations/platform";
 const HeaderCategory = ({
   // eslint-disable-line
   groupCategory,
-  groupGradientColors
+  groupGradientColors,
+  t
 }) => {
   const categoryMarginBottom = platformBools.isWeb ? 20 : 10;
   const categoryTextColor = groupGradientColors[1];
@@ -24,14 +26,15 @@ const HeaderCategory = ({
       contentStyle={{ color: categoryTextColor }}
     >
       {/* eslint-disable-line */}
-      {groupCategory}
+      {t(`groupCategoryOptions.${groupCategory}`)}
     </Stadium>
   );
 };
 
 HeaderCategory.propTypes = {
   groupCategory: PropTypes.string.isRequired,
-  groupGradientColors: PropTypes.arrayOf(PropTypes.string).isRequired
+  groupGradientColors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  t: PropTypes.func.isRequired
 };
 
-export default HeaderCategory;
+export default withTranslation("groupOptions")(HeaderCategory);

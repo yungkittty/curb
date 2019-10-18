@@ -7,10 +7,11 @@ import Text from "../../../text";
 class FormPlaceholder extends React.Component {
   constructor(props) {
     super(props);
+    const { upper } = props;
     this.state = {
-      placeholderScale: new Animated.Value(props.upper ? 0.75 : 1),
-      placeholderTranslateY: new Animated.Value(props.upper ? -18 : 20),
-      placeholderTranslateX: new Animated.Value(props.upper ? -46 : 16)
+      placeholderScale: new Animated.Value(upper ? 0.75 : 1),
+      placeholderTranslateY: new Animated.Value(upper ? -22 : 16),
+      placeholderTranslateX: new Animated.Value(upper ? -46 : 16)
     };
 
     this.AnimatedWrappedComponent = Animated.createAnimatedComponent(Text);
