@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import Button from "../../../../../button";
+import Button from "../../../../../../../button";
 
 const ItemContainer = styled(Button)`
+  flex-direction: row;
   justify-content: space-between;
-  padding: 0px 20px;
-  height: 60px;
+  padding: 0px 100px;
+  height: 50px;
   width: 100%;
 `;
 

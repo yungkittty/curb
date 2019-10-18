@@ -5,18 +5,18 @@ import ItemContainer from "./components/item-container";
 import ItemText from "./components/item-text";
 import ItemIcon from "./components/item-icon";
 
-const DropdownItem = ({ theme, text, icon, onClick }) => (
+const MenuItem = ({ theme, text, icon, onClick }) => (
   <ItemContainer onClick={onClick} hoverColor={theme.primaryColor}>
     <ItemText weight={700}>{text}</ItemText>
     <ItemIcon icon={icon} color={theme.secondaryColor} />
   </ItemContainer>
 );
 
-DropdownItem.propTypes = {
+MenuItem.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
   text: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };
 
-export default withTheme(DropdownItem);
+export default withTheme(MenuItem);
