@@ -79,21 +79,17 @@ class Discovery extends React.Component {
           onFloatingButtonClick={() => console.log("toto")}
           floatingButtonColor="rgb(86, 204, 242)"
           floatingButtonDisabled={!mediaList.text || (mediaList.text && mediaList.text.length === 0)}
-          dropdownMenu={{ icon: "minus", onClick: this.removeContent }}
+          contentMenuButton={{ icon: "minus", onClick: this.removeContent }}
           postMediaTypes={postMediaTypes}
           mediaList={mediaList}
         />
         <Card
           style={{ marginTop: platformBools.isWeb ? 40 : 30 }}
           userId="5d373369c8acd2001d90bf55"
-          dropdownMenu={{
-            icon: "ellipsis-v",
-            optionsList: [
-              { text: t("pin"), icon: "thumbtack", onClick: () => console.log("pin") },
-              { text: t("delete"), icon: "trash", onClick: () => console.log("pin") },
-              { text: t("report"), icon: "flag", onClick: () => console.log("pin") }
-            ]
-          }}
+          cardMenu={[
+            { text: t("common:delete"), icon: "trash", onClick: () => console.log("pin") },
+            { text: t("common:report"), icon: "flag", onClick: () => console.log("pin") }
+          ]}
           mediaList={{
             text:
               "Nous partageons sur ce post des plans ride localisés par la communauté sur toute la France. Vous pouvez également y partager vos photos et vidéos de vos tricks et suivre ceux des autres.",
@@ -120,13 +116,11 @@ class Discovery extends React.Component {
           onFloatingButtonClick={() => console.log("toto")}
           likeNumber="2 K"
           floatingButtonColor="rgb(86, 204, 242)"
-          dropdownMenu={{
-            icon: "ellipsis-v",
-            optionsList: [
-              { text: t("delete"), icon: "trash", onClick: () => console.log("pin") },
-              { text: t("report"), icon: "flag", onClick: () => console.log("pin") }
-            ]
-          }}
+          cardMenu={[
+            { text: t("common:pin"), icon: "thumbtack", onClick: () => console.log("pin") },
+            { text: t("common:delete"), icon: "trash", onClick: () => console.log("pin") },
+            { text: t("common:report"), icon: "flag", onClick: () => console.log("pin") }
+          ]}
           mediaList={{
             text: "J'ai adoré Paris. C'était vraiment magnifique !",
             image: (
@@ -151,10 +145,7 @@ class Discovery extends React.Component {
           onFloatingButtonClick={() => console.log("toto")}
           likeNumber="345"
           floatingButtonColor="rgb(86, 204, 242)"
-          dropdownMenu={{
-            icon: "ellipsis-v",
-            optionsList: [{ text: t("report"), icon: "flag", onClick: () => console.log("pin") }]
-          }}
+          cardMenu={[{ text: t("common:report"), icon: "flag", onClick: () => console.log("pin") }]}
           mediaList={{
             text: "We are back very soon...",
             video: (
