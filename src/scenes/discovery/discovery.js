@@ -114,6 +114,22 @@ class Discovery extends React.Component {
           style={{ marginTop: platformBools.isWeb ? 40 : 30 }}
           userId="5d373369c8acd2001d90bf55"
           onFloatingButtonClick={() => console.log("toto")}
+          likeNumber="3 K"
+          floatingButtonColor="rgb(86, 204, 242)"
+          cardMenu={[
+            { text: t("common:pin"), icon: "thumbtack", onClick: () => console.log("pin") },
+            { text: t("common:delete"), icon: "trash", onClick: () => console.log("pin") },
+            { text: t("common:report"), icon: "flag", onClick: () => console.log("pin") }
+          ]}
+          mediaList={{
+            text:
+              "J'ai adoré Paris. C'était vraiment magnifique ! Il y a pleins de musées, de belles avenues, et de shopping à faire."
+          }}
+        />
+        <Card
+          style={{ marginTop: platformBools.isWeb ? 40 : 30 }}
+          userId="5d373369c8acd2001d90bf55"
+          onFloatingButtonClick={() => console.log("toto")}
           likeNumber="2 K"
           floatingButtonColor="rgb(86, 204, 242)"
           cardMenu={[
