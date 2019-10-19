@@ -16,7 +16,7 @@ const settingsData = [
     scene: SettingsFeedback
   },
   {
-    icon: "comment-dots",
+    icon: "info-circle",
     id: "about",
     scene: SettingsAbout
   }

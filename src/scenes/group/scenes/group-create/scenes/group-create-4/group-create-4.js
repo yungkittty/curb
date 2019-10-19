@@ -33,7 +33,7 @@ class GroupCreate4 extends Component {
     this.handleChange = this.handleChange.bind(this);
 
     enableAppModalEnterEvent();
-    setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
+    setAppModalHeaderSteps({ currentStep: 4, steps: 5 });
     setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
     setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("common:finish"), onClick: this.goToNext });

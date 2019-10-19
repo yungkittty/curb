@@ -24,6 +24,13 @@ const enSettings = {
       }
     }
   },
+  feedback: {
+    title: "Feedback",
+    contentTitle: "Thanks to help us to build a better app!",
+    buttonTitle: "Send",
+    description: "Give us your feedback about Curb",
+    placeholder: "What should we improve?"
+  },
   about: {
     title: "About",
     description: "Legal notices",

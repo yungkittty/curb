@@ -24,6 +24,13 @@ const frSettings = {
       }
     }
   },
+  feedback: {
+    title: "Retour",
+    contentTitle: "Merci de nous aider à construire une meilleure application !",
+    buttonTitle: "Envoyer",
+    description: "Donnez-nous votre retour sur Curb",
+    placeholder: "Que devrions-nous améliorer ?"
+  },
   about: {
     title: "À propos",
     description: "Mentions légales",
