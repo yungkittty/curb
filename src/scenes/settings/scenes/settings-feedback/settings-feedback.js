@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import Loader from "../../../../components/loader";
-import FeedbackInput from "./components/feedback-input";
-import FeedbackTitle from "./components/feedback-title";
 import AppModalSceneContainer from "../../../../components/app-modal-scene-container";
+import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
+import FeedbackInput from "./components/feedback-input";
 import Settings from "../../../settings"; // eslint-disable-line
 import withAppModal from "../../../../hocs/with-app-modal";
 
@@ -14,31 +14,35 @@ class SettingsFeedback extends Component {
     super(props);
 
     const {
-      t,
+      // eslint-disable-line
       setAppModalHeaderText,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalFooterButton,
-      setAppModalHeaderLeftButton,
-      setAppModalScene
+      t
     } = this.props;
 
     this.handleChange = this.handleChange.bind(this);
+    this.goToPrev = this.goToPrev.bind(this);
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
 
     setAppModalHeaderText({ text: t("feedback.title") });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalFooterButton({ text: t("feedback.buttonTitle"), onClick: this.submit });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: Settings, direction: -1 })
-    });
   }
 
   componentDidUpdate(prevProps) {
-    const { enableAppModalButtons, isFetchingFeedback } = this.props;
-    if (prevProps.isFetchingFeedback && !isFetchingFeedback) {
-      // eslint-disable-next-line
-      enableAppModalButtons();
-    }
+    const { isFetchingFeedback, enableAppModalButtons, disableAppModalButtons } = this.props;
+    if (prevProps.isFetchingFeedback === isFetchingFeedback) return;
+    if (isFetchingFeedback) disableAppModalButtons();
+    else enableAppModalButtons();
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: Settings, direction: -1 });
   }
 
   checkForm() {
@@ -78,9 +82,10 @@ class SettingsFeedback extends Component {
       <Loader />
     ) : (
       <AppModalSceneContainer>
-        <FeedbackTitle type="h3" weight={700}>
+        <AppModalSceneTitle>
+          {/* eslint-disable-line */}
           {t("feedback.contentTitle")}
-        </FeedbackTitle>
+        </AppModalSceneTitle>
         <FeedbackInput
           id="text"
           placeholder={t("feedback.placeholder")}
@@ -103,7 +108,8 @@ SettingsFeedback.propTypes = {
   enableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalButtons: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,

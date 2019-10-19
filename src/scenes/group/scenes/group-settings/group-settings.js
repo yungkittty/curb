@@ -12,10 +12,16 @@ class GroupSettings extends Component {
   constructor(props) {
     super(props);
 
-    const { t, setAppModalHeaderText } = this.props;
+    const {
+      // eslint-disable-line
+      enableAppModalEnterEvent,
+      setAppModalHeaderText,
+      t
+    } = this.props;
 
     this.renderItem = this.renderItem.bind(this);
 
+    enableAppModalEnterEvent();
     setAppModalHeaderText({ text: t("groupSettings") });
   }
 
@@ -48,9 +54,10 @@ class GroupSettings extends Component {
 }
 
 GroupSettings.propTypes = {
-  t: PropTypes.func.isRequired,
+  enableAppModalEnterEvent: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalScene: PropTypes.func.isRequired
+  setAppModalScene: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default _.flowRight([

@@ -12,13 +12,24 @@ import SettingsAbout from "../../../settings-about";
 class AboutLegalNotices extends Component {
   constructor(props) {
     super(props);
-    const { t, setAppModalHeaderText, setAppModalHeaderLeftButton, setAppModalScene } = this.props;
+    const {
+      // eslint-disable-line
+      setAppModalHeaderText,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
+      t
+    } = this.props;
+
+    this.goToPrev = this.goToPrev.bind(this);
 
     setAppModalHeaderText({ text: t("about.legalNotices.title") });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: SettingsAbout, direction: -1 })
-    });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: SettingsAbout, direction: -1 });
   }
 
   render() {
@@ -36,7 +47,8 @@ class AboutLegalNotices extends Component {
 AboutLegalNotices.propTypes = {
   t: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired
 };
 

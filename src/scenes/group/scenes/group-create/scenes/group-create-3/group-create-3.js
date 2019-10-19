@@ -88,10 +88,10 @@ class GroupCreate3 extends Component {
           maxLength={250}
           containerStyle={{
             display: "flex",
+            flex: 1,
             width: "100%",
             marginTop: 0,
-            borderBottomWidth: 0,
-            flex: 1
+            borderBottomWidth: 0
           }}
           isMultiline
         />

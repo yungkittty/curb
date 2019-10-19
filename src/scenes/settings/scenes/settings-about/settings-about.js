@@ -18,13 +18,24 @@ import { platformBools } from "../../../../configurations/platform";
 class SettingsAbout extends Component {
   constructor(props) {
     super(props);
-    const { t, setAppModalHeaderText, setAppModalHeaderLeftButton, setAppModalScene } = this.props;
+    const {
+      // eslint-disable-line
+      setAppModalHeaderText,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
+      t
+    } = this.props;
+
+    this.goToPrev = this.goToPrev.bind(this);
 
     setAppModalHeaderText({ text: t("about.title") });
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: Settings, direction: -1 })
-    });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: Settings, direction: -1 });
   }
 
   render() {
@@ -59,8 +70,13 @@ class SettingsAbout extends Component {
 SettingsAbout.propTypes = {
   t: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired
 };
 
-export default _.flowRight([withAppModal, withTranslation("settings")])(SettingsAbout);
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withTranslation("settings")
+])(SettingsAbout);

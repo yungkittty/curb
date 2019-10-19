@@ -18,25 +18,24 @@ class SettingsDescription extends Component {
     const {
       t,
       disableAppModalEnterEvent,
-      setAppModalHeaderLeftButton,
-      setAppModalScene,
+      setAppModalHeaderLeftButtons,
+      setAppModalHeaderBackButton,
       setAppModalFooterButton,
       setAppModalSceneData,
       groupDescription
     } = this.props;
 
+    this.goToPrev = this.goToPrev.bind(this);
     this.submit = this.submit.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
     disableAppModalEnterEvent();
-    setAppModalHeaderLeftButton({
-      icon: "arrow-left",
-      onClick: () => setAppModalScene({ scene: GroupSettings, direction: -1 })
-    });
-    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
+    setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
+    setAppModalHeaderBackButton({ onClick: this.goToPrev });
     setAppModalSceneData({ newGroupDescription: { value: groupDescription, error: undefined } });
+    setAppModalFooterButton({ text: t("common:edit"), onClick: this.submit });
   }
 
   componentDidUpdate(prevProps) {
@@ -49,6 +48,11 @@ class SettingsDescription extends Component {
     if (prevProps.isFetchingGroups === isFetchingGroups) return;
     if (isFetchingGroups) disableAppModalButtons();
     else enableAppModalButtons();
+  }
+
+  goToPrev() {
+    const { setAppModalScene } = this.props;
+    setAppModalScene({ scene: GroupSettings, direction: -1 });
   }
 
   submit() {
@@ -127,18 +131,16 @@ SettingsDescription.propTypes = {
   disableAppModalButtons: PropTypes.func.isRequired,
   disableAppModalEnterEvent: PropTypes.func.isRequired,
   setAppModalHeaderText: PropTypes.func.isRequired,
-  setAppModalHeaderLeftButton: PropTypes.func.isRequired,
+  setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
+  setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
-  setAppModalFooterButton: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
+  setAppModalFooterButton: PropTypes.func.isRequired,
   isFetchingGroups: PropTypes.bool.isRequired,
   patchGroup: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
   groupDescription: PropTypes.string.isRequired,
-  newGroupDescription: PropTypes.shape({
-    value: PropTypes.string,
-    error: PropTypes.string
-  }),
+  newGroupDescription: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
