@@ -16,7 +16,7 @@ class CardMenu extends React.Component {
     const { optionsList, onClose } = this.props;
     return (
       <React.Fragment>
-        <MenuContainer>
+        <MenuContainer nestedScrollEnabled>
           {_.map(optionsList, ({ onClick, ...others }, index) => (
             <MenuItem
               key={index}
