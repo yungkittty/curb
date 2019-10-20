@@ -10,7 +10,7 @@ class CardContent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedIndex: 0, isMenuShowed: false };
+    this.state = { selectedIndex: 0, isContentMenuShowed: false };
   }
 
   componentDidUpdate(prevProps) {
@@ -23,7 +23,7 @@ class CardContent extends React.Component {
 
   render() {
     const { mediaList, contentMenuButton, postType, ...others } = this.props;
-    const { selectedIndex, isMenuShowed } = this.state;
+    const { selectedIndex, isContentMenuShowed } = this.state;
     return (
       <React.Fragment>
         <ContentMedia
@@ -43,14 +43,14 @@ class CardContent extends React.Component {
         {contentMenuButton && (
           <ContentMenu
             contentMenuButton={contentMenuButton}
-            onMenuClick={() => this.setState({ isMenuShowed: true })}
+            onMenuClick={() => this.setState({ isContentMenuShowed: true })}
             selectedMediaType={_.keys(mediaList)[selectedIndex]}
           />
         )}
-        {isMenuShowed && (
+        {isContentMenuShowed && (
           <ContentDropdown
             optionsList={contentMenuButton.optionsList}
-            onClose={() => this.setState({ isMenuShowed: false })}
+            onClose={() => this.setState({ isContentMenuShowed: false })}
           />
         )}
       </React.Fragment>

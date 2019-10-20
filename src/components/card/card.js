@@ -10,6 +10,7 @@ import CardFooter from "./components/card-footer";
 import CardMenu from "./components/card-menu";
 import CardFloatingButton from "./components/card-floating-button";
 import getCardSize from "./utils/get-card-size";
+import Button from "../button";
 
 class Card extends React.Component {
   constructor(props) {
@@ -37,14 +38,17 @@ class Card extends React.Component {
       size,
       isCardExtended: !!_.size(_.omit(mediaList, "text")) > 0 || !!groupId,
       isPostMode: !!postMediaTypes,
-      isOnlyPostTextMode: !!postMediaTypes && postMediaTypes.length === 1 && postMediaTypes[0].type === "text"
+      isOnlyPostTextMode:
+        (!!postMediaTypes && _.size(_.omit(postMediaTypes, "text")) === 0) ||
+        (!postMediaTypes && !!mediaList && _.size(_.omit(mediaList, "text")) === 0)
     });
     return (
       <CardContainer
         style={style}
         className={className}
         cardSize={cardSize}
-        onClick={() => groupId && `/groups/${groupId}`}
+        as={groupId && Button}
+        onClick={groupId && `/groups/${groupId}`}
       >
         <CardBorderContainer>
           {cardSize.isCardExtended && (
@@ -70,7 +74,7 @@ class Card extends React.Component {
               }
             }
             groupId={groupId}
-            haveMenu={_.size(cardMenu) > 0}
+            haveMenu={!!cardMenu}
             onMenuClick={() => this.setState({ isMenuShowed: true })}
             {...others}
           />
@@ -78,7 +82,7 @@ class Card extends React.Component {
             <CardMenu optionsList={cardMenu} onClose={() => this.setState({ isMenuShowed: false })} />
           )}
         </CardBorderContainer>
-        {onFloatingButtonClick && (
+        {onFloatingButtonClick && !isMenuShowed && (
           <CardFloatingButton
             cardSize={cardSize}
             postType={!!postMediaTypes && _.size(_.omit(mediaList, "text")) === 0}
@@ -119,4 +123,8 @@ Card.propTypes = {
   )
 };
 
-export default withUser(Card);
+export default _.flowRight([
+  // eslint-disable-line
+  withUser,
+  withGroup
+])(Card);
