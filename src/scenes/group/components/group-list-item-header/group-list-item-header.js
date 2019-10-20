@@ -23,8 +23,8 @@ const GroupListItemHeader = ({
   currentUserGroupsId
 }) => {
   const isCurrentUser = !!currentUserId;
-  const isCurrentUserIn = groupId ? _.includes(currentUserGroupsId, groupId) : true;
-  const isCurrentUserCreator = groupCreatorId ? _.isEqual(currentUserId, groupCreatorId) : true;
+  const isCurrentUserIn = groupId ? _.includes(currentUserGroupsId, groupId) : false;
+  const isCurrentUserCreator = groupCreatorId ? _.isEqual(currentUserId, groupCreatorId) : false;
   return (
     <HeaderContainer
       // eslint-disable-line
