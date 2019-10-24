@@ -10,4 +10,4 @@ const ButtonContainer = styled(Button)`
   background: white;
 `;
 
-export default withShadow(4)(ButtonContainer);
+export default withShadow(6)(ButtonContainer);
