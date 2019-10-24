@@ -6,7 +6,6 @@ const CardBorderContainer = styled(Container)`
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  flex: 1;
   background-color: white;
 `;
 
