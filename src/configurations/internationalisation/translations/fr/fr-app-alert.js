@@ -22,7 +22,7 @@ const frAppAlert = {
     UNKNOWN: "Une erreur est survenue en envoyant votre feedback"
   },
   accountDuplicatedName: "Votre nom d'utilisateur est déjà pris",
-  accountDuplicatedEmail: "Votre adresse mail est déja pris",
+  accountDuplicatedEmail: "Votre adresse mail est déja prise",
   accountCreated: "Votre compte a été créé",
   groupCreated: "Votre groupe a été créé",
   groupPatched: "Votre groupe a été mis à jour",
