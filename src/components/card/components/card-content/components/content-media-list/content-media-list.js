@@ -16,7 +16,7 @@ const ContentMediaList = ({ theme, mediaList, selectedIndex, onClick }) => (
         component={MediaListIcon}
         icon={mediaTypeToIcon(mediaType)}
         size="extra-extra-small"
-        color={selectedIndex === _.indexOf(_.keys(mediaList), mediaType) ? "white" : theme.fontVariantColor}
+        color={selectedIndex === _.indexOf(_.keys(mediaList), mediaType) ? "white" : theme.secondaryColor}
         onClick={() => onClick(_.indexOf(_.keys(mediaList), mediaType))}
         disabled={platformBools.isNative}
       />
