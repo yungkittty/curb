@@ -1,4 +1,4 @@
-const getCardSize = ({ size, isCardExtended, isPostMode, isOnlyPostTextMode }) => {
+const getCardSize = ({ size, isCardExtended, isOnlyPostTextMode }) => {
   switch (size) {
     case "small":
       return {
@@ -7,8 +7,7 @@ const getCardSize = ({ size, isCardExtended, isPostMode, isOnlyPostTextMode }) =
         isOnlyPostTextMode,
         width: 415,
         contentHeight: 233,
-        footerHeight: 120,
-        floatingTopPosition: isOnlyPostTextMode ? -30 : isPostMode && !isCardExtended ? 55 : 203 // eslint-disable-line
+        footerHeight: 136
       };
     default:
       return {
@@ -17,8 +16,7 @@ const getCardSize = ({ size, isCardExtended, isPostMode, isOnlyPostTextMode }) =
         isOnlyPostTextMode,
         width: 600,
         contentHeight: 338,
-        footerHeight: 130,
-        floatingTopPosition: isOnlyPostTextMode ? -30 : isPostMode && !isCardExtended ? 55 : 308 // eslint-disable-line
+        footerHeight: 146
       };
   }
 };
