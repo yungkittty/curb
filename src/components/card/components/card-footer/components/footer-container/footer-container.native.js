@@ -6,7 +6,7 @@ const FooterContainer = styled(Container)`
   min-height: ${({ cardSize }) => cardSize.footerHeight}px;
   display: flex;
   flex-flow: row;
-  padding: 12px 14px;
+  padding: 22px 14px;
   background: white;
 `;
 

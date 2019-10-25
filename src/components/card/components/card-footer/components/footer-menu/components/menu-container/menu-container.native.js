@@ -4,7 +4,7 @@ import Button from "../../../../../../../button";
 const MenuContainer = styled(Button)`
   position: absolute;
   top: 0px;
-  left: 0px;
+  right: 0px;
   width: 35px;
   height: 35px;
 `;

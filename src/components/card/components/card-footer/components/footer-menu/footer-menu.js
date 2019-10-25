@@ -7,7 +7,7 @@ import Icon from "../../../../../icon";
 
 const FooterMenu = ({ theme, onMenuClick }) => (
   <Button as={MenuContainer} diameter="extra-extra-small" onClick={onMenuClick}>
-    <Icon color={theme.primaryColor} size="extra-extra-small" icon="ellipsis-v" />
+    <Icon color={theme.primaryColor} size="extra-extra-small" icon="ellipsis-h" />
   </Button>
 );
 

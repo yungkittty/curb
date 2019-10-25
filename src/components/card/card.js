@@ -38,7 +38,6 @@ class Card extends React.Component {
     const cardSize = getCardSize({
       size,
       isCardExtended: !!_.size(_.omit(mediaList, "text")) > 0 || !!groupId,
-      isPostMode: !!postMediaTypes,
       isOnlyPostTextMode:
         (!!postMediaTypes && _.size(_.omit(postMediaTypes, "text")) === 0) ||
         (!postMediaTypes && !!mediaList && _.size(_.omit(mediaList, "text")) === 0)
@@ -85,7 +84,6 @@ class Card extends React.Component {
         </CardBorderContainer>
         {onFloatingButtonClick && !isMenuShowed && (
           <CardFloatingButton
-            cardSize={cardSize}
             postType={!!postMediaTypes && _.size(_.omit(mediaList, "text")) === 0}
             onFloatingButtonClick={onFloatingButtonClick}
             {...others}

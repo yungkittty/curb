@@ -8,7 +8,6 @@ import Icon from "../../../icon";
 
 const CardFloatingButton = ({
   theme,
-  cardSize,
   likeNumber,
   floatingButtonColor,
   onFloatingButtonClick,
@@ -19,7 +18,6 @@ const CardFloatingButton = ({
     <CircleContainer
       diameter="small"
       as={ButtonContainer}
-      cardSize={cardSize}
       onClick={onFloatingButtonClick}
       disabled={floatingButtonDisabled}
     >
@@ -46,14 +44,6 @@ CardFloatingButton.defaultProps = {
 
 CardFloatingButton.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  cardSize: PropTypes.shape({
-    size: PropTypes.string,
-    isCardExtended: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    contentHeight: PropTypes.number,
-    footerHeight: PropTypes.number,
-    floatingTopPosition: PropTypes.number
-  }).isRequired,
   likeNumber: PropTypes.string,
   floatingButtonColor: PropTypes.string,
   onFloatingButtonClick: PropTypes.func.isRequired,

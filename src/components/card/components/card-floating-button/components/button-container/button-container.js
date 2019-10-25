@@ -4,7 +4,7 @@ import Button from "../../../../../button";
 
 const ButtonContainer = styled(Button)`
   position: absolute;
-  top: ${({ cardSize: { floatingTopPosition } }) => floatingTopPosition}px;
+  bottom: -30px;
   right: 25px;
   flex-flow: column;
   background: white;
