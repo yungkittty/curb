@@ -105,15 +105,13 @@ class Discovery extends React.Component {
                   "https://www.sitegallery.org/app/uploads/2019/08/NC-Sun-LR-@garryjonesphotography-84-1600x1066.jpg"
                 ]}
               />
-            )
-            /*
+            ),
             video: (
               <Video
-                style={{ height: "100%", width: "100%" }}
+                style={{ flex: 1 }}
                 src="https://www.videvo.net/videvo_files/converted/2015_08/preview/Slowmotion_closeup_of_skateboard.mp442512.webm"
               />
             )
-            */
           }}
         />
         <Card
@@ -154,15 +152,13 @@ class Discovery extends React.Component {
                   "https://www.parisinfo.com/var/otcp/sites/images/_aliases/article_full/node_43/arc-de-triomphe-au-soleil-couchant-%7C-630x405-%7C-%C2%A9-willian-west/18130652-1-fre-FR/Arc-de-Triomphe-au-soleil-couchant-%7C-630x405-%7C-%C2%A9-Willian-West.jpg"
                 ]}
               />
-            )
-            /*
+            ),
             video: (
               <Video
-                style={{ height: "100%", width: "100%" }}
+                style={{ flex: 1 }}
                 src="https://www.videvo.net/videvo_files/converted/2015_06/preview/Sacre_Coeur_am_WS_tilt_20150612_01_Videvo.mov38424.webm"
               />
             )
-            */
           }}
         />
         <Card
@@ -174,14 +170,12 @@ class Discovery extends React.Component {
           cardMenu={[{ text: t("common:report"), icon: "flag", onClick: () => console.log("pin") }]}
           mediaList={{
             text: "We are back very soon...",
-            /*
             video: (
               <Video
-                style={{ height: "100%", width: "100%" }}
+                style={{ flex: 1 }}
                 src="https://raw.githubusercontent.com/mediaelement/mediaelement-files/master/echo-hereweare.mp4"
               />
             ),
-            */
             image: (
               <ImageGallery
                 imagesData={["https://johnmoyermusic.com/wp-content/uploads/2012/10/1-echo1-band.jpg"]}
