@@ -32,7 +32,7 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
       )}
     </TextDescription>
   ) : (
-    _.times(3, () => <TextDescriptionPlaceholder />)
+    _.times(3, index => <TextDescriptionPlaceholder key={index} />)
   );
 };
 

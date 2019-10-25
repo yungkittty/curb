@@ -23,11 +23,14 @@ class ContentMedia extends React.Component {
   }
 
   componentDidMount() {
+    const { mediaList } = this.props;
+    if (_.size(mediaList) <= 1) return;
     this.startTimer();
   }
 
   componentDidUpdate(prevProps) {
-    const { selectedIndex } = this.props;
+    const { mediaList, selectedIndex } = this.props;
+    if (_.size(mediaList) <= 1) return;
     if (selectedIndex !== prevProps.selectedIndex) {
       this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 });
       clearTimeout(this.setTimeoutFunc);
@@ -45,12 +48,10 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { postType, mediaList, onIndexChange } = this.props;
-    if (postType || _.size(mediaList) === 0) return;
+    const { mediaList, onIndexChange } = this.props;
     this.setTimeoutFunc = setTimeout(() => {
       const { selectedIndex } = this.props;
-      const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
-      onIndexChange(newIndex);
+      onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1);
     }, mediaRandomSlider(15000, 30000));
   }
 
@@ -97,7 +98,6 @@ ContentMedia.defaultProps = {
 };
 
 ContentMedia.propTypes = {
-  postType: PropTypes.bool.isRequired,
   onIndexChange: PropTypes.func.isRequired,
   mediaList: PropTypes.object, // eslint-disable-line
   selectedIndex: PropTypes.number,
