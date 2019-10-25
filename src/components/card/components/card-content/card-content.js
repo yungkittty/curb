@@ -16,13 +16,12 @@ class CardContent extends React.Component {
   componentDidUpdate(prevProps) {
     const { mediaList } = this.props;
     const { selectedIndex } = this.state;
-    if (_.size(mediaList) === 0) return;
     if (selectedIndex >= _.size(mediaList) || _.size(mediaList) > _.size(prevProps.mediaList))
       this.setState({ selectedIndex: _.size(mediaList) - 1 }); // eslint-disable-line
   }
 
   render() {
-    const { mediaList, contentMenuButton, postType, ...others } = this.props;
+    const { mediaList, contentMenuButton, ...others } = this.props;
     const { selectedIndex, isContentMenuShowed } = this.state;
     return (
       <React.Fragment>
@@ -30,7 +29,6 @@ class CardContent extends React.Component {
           mediaList={mediaList}
           selectedIndex={selectedIndex}
           onIndexChange={index => this.setState({ selectedIndex: index })}
-          postType={postType}
           {...others}
         />
         {_.size(mediaList) > 0 && (
@@ -67,8 +65,7 @@ CardContent.propTypes = {
   contentMenuButton: PropTypes.shape({
     icon: PropTypes.string,
     onClick: PropTypes.func
-  }),
-  postType: PropTypes.bool.isRequired
+  })
 };
 
 export default CardContent;

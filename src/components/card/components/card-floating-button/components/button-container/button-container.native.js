@@ -7,7 +7,7 @@ const ButtonContainer = styled(Button)`
   bottom: -25px;
   right: 20px;
   flex-flow: column;
-  background: white;
+  background-color: white;
 `;
 
 export default withShadow(6)(ButtonContainer);

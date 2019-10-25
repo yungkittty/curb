@@ -24,12 +24,15 @@ class ContentMedia extends React.Component {
   }
 
   componentDidMount() {
+    const { mediaList } = this.props;
+    if (_.size(mediaList) <= 1) return;
     this.startTimer();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { selectedIndex } = this.props;
+    const { mediaList, selectedIndex } = this.props;
     const { isDragging } = this.state;
+    if (_.size(mediaList) <= 1) return;
     if (!prevState.isDragging && prevState.isDragging !== isDragging) clearTimeout(this.setTimeoutFunc);
     if (selectedIndex !== prevProps.selectedIndex) this.startTimer();
   }
@@ -50,15 +53,15 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { postType, mediaList, onIndexChange } = this.props;
-    if (postType || _.size(mediaList) === 0) return;
+    const { mediaList, onIndexChange } = this.props;
     this.setTimeoutFunc = setTimeout(() => {
       const { selectedIndex } = this.props;
+      const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
       this.listFlatRef.current.scrollToIndex({
-        index: _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1,
+        index: newIndex,
         viewOffset: 0
       });
-      onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1);
+      onIndexChange(newIndex);
     }, mediaRandomSlider(15000, 30000));
   }
 
@@ -108,7 +111,6 @@ ContentMedia.defaultProps = {
 };
 
 ContentMedia.propTypes = {
-  postType: PropTypes.bool.isRequired,
   onIndexChange: PropTypes.func.isRequired,
   mediaList: PropTypes.object, // eslint-disable-line
   selectedIndex: PropTypes.number,

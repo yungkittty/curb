@@ -56,7 +56,6 @@ class Card extends React.Component {
               mediaList={_.omit(mediaList, "text")}
               cardSize={cardSize}
               groupId={groupId}
-              postType={!!postMediaTypes}
               {...others}
             />
           )}
