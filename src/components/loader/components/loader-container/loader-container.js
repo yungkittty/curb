@@ -3,7 +3,6 @@ import Container from "../../../container";
 
 const LoaderContainer = styled(Container)`
   display: flex;
-  position: absolute;
   z-index: 2;
   align-items: center;
   justify-content: center;
