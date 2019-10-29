@@ -16,6 +16,7 @@ import Redirect from "./components/redirect";
 import Discovery from "./scenes/discovery";
 import User from "./scenes/user";
 import Group from "./scenes/group";
+import Chat from "./scenes/chat";
 import { platformBools } from "./configurations/platform";
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
               <Route exact path="/" component={Discovery} />
               <RouteNormalize path="/users/:id" component={User} />
               <RouteNormalize path="/groups/:id" component={Group} />
+              <RouteNormalize path="/chats/:id" component={Chat} />
               <Redirect to="/" />
             </Switch>
           </AppContainer>

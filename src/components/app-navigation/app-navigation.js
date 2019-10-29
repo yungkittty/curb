@@ -36,15 +36,26 @@ const AppNavigation = ({
             hideContainer={hideContainer}
           />
         ) : (
-          <NavigationButton
-            component={ImageUser}
-            shouldFetch={false}
-            userId={currentUserId}
-            size="small"
-            placeholderColor={secondaryVariantColor}
-            onClick={`/users/${currentUserId}`}
-            hideContainer={hideContainer}
-          />
+          <>
+            <NavigationButton
+              component={ImageUser}
+              shouldFetch={false}
+              userId={currentUserId}
+              size="small"
+              placeholderColor={secondaryVariantColor}
+              onClick={`/users/${currentUserId}`}
+              hideContainer={hideContainer}
+            />
+            <NavigationButton
+              component={Icon}
+              icon="comment"
+              size="small"
+              color={primaryColor}
+              backgroundColor={secondaryVariantColor}
+              onClick={`/chats/${undefined}`}
+              hideContainer={hideContainer}
+            />
+          </>
         )}
         <NavigationRule />
         <NavigationList
