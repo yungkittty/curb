@@ -34,7 +34,7 @@ const App = () => {
               <Route exact path="/" component={Discovery} />
               <RouteNormalize path="/users/:id" component={User} />
               <RouteNormalize path="/groups/:id" component={Group} />
-              <RouteNormalize path="/chats/:id" component={Chat} />
+              <Route path="/chats" component={Chat} />
               <Redirect to="/" />
             </Switch>
           </AppContainer>
