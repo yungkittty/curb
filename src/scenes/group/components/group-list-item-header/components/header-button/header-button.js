@@ -25,7 +25,6 @@ class HeaderButton extends React.Component {
       location: { search = "" }
     } = this.props;
     const { inviteToken } = queryString.parse(search);
-    console.log(inviteToken);
     if (!isCurrentUserIn) {
       postGroupJoin({ id: groupId, token: inviteToken });
     } else {
