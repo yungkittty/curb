@@ -17,12 +17,11 @@ const HeaderUserNumber = ({
     scale="x1"
     backgroundColor="white"
     style={{ marginLeft: 10 }}
-    component={Text}
-    type="h5"
-    weight={700}
     contentStyle={{ color: stadiumContentColor, alignItems: "center", display: "flex" }}
   >
-    {shortNumberFormatter(groupUsersIdNumber)}
+    <Text type="h5" weight={700} style={{ color: stadiumContentColor }}>
+      {shortNumberFormatter(groupUsersIdNumber)}
+    </Text>
     <Icon
       icon="users"
       color={stadiumContentColor}
