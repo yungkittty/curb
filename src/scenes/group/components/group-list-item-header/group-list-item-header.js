@@ -5,7 +5,9 @@ import HeaderContainer from "./components/header-container";
 import HeaderImage from "./components/header-image";
 import HeaderContentContainer from "./components/header-content-container";
 import HeaderTitle from "./components/header-title";
+import HeaderStadiumsContainer from "./components/header-stadiums-container";
 import HeaderCategory from "./components/header-category";
+import HeaderUserNumber from "./components/header-user-number";
 import HeaderDescription from "./components/header-description";
 import HeaderButton from "./components/header-button";
 
@@ -19,12 +21,14 @@ const GroupListItemHeader = ({
   groupStatus,
   groupGradientAngle,
   groupGradientColors,
+  groupUsersId,
   currentUserId,
   currentUserGroupsId
 }) => {
   const isCurrentUser = !!currentUserId;
   const isCurrentUserIn = groupId ? _.includes(currentUserGroupsId, groupId) : false;
   const isCurrentUserCreator = groupCreatorId ? _.isEqual(currentUserId, groupCreatorId) : false;
+  const stadiumContentColor = groupGradientColors[1];
   return (
     <HeaderContainer
       // eslint-disable-line
@@ -43,11 +47,18 @@ const GroupListItemHeader = ({
           groupStatus={groupStatus}
           groupGradientColors={groupGradientColors}
         />
-        <HeaderCategory
-          // eslint-disable-line
-          groupCategory={groupCategory}
-          groupGradientColors={groupGradientColors}
-        />
+        <HeaderStadiumsContainer>
+          <HeaderCategory
+            // eslint-disable-line
+            groupCategory={groupCategory}
+            stadiumContentColor={stadiumContentColor}
+          />
+          <HeaderUserNumber
+            // eslint-disable-line
+            groupUsersIdNumber={(groupUsersId || []).length}
+            stadiumContentColor={stadiumContentColor}
+          />
+        </HeaderStadiumsContainer>
         <HeaderDescription isIndented>
           {/* eslint-disable-line */}
           {groupDescription}
@@ -76,6 +87,7 @@ GroupListItemHeader.propTypes = {
   groupStatus: PropTypes.string.isRequired,
   groupGradientAngle: PropTypes.number.isRequired,
   groupGradientColors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  groupUsersId: PropTypes.arrayOf(PropTypes.string).isRequired,
   currentUserId: PropTypes.string.isRequired,
   currentUserGroupsId: PropTypes.arrayOf(PropTypes.string).isRequired
 };
