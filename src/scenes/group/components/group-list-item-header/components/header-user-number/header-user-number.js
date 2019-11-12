@@ -8,7 +8,7 @@ import { platformBools } from "../../../../../../configurations/platform";
 
 const HeaderUserNumber = ({
   // eslint-disable-line
-  groupUsersIdNumber,
+  groupUsersId,
   stadiumContentColor
 }) => (
   <Stadium
@@ -20,7 +20,7 @@ const HeaderUserNumber = ({
     contentStyle={{ color: stadiumContentColor, alignItems: "center", display: "flex" }}
   >
     <Text type="h5" weight={700} style={{ color: stadiumContentColor }}>
-      {shortNumberFormatter(groupUsersIdNumber)}
+      {shortNumberFormatter(groupUsersId.length)}
     </Text>
     <Icon
       icon="users"
@@ -32,7 +32,7 @@ const HeaderUserNumber = ({
 );
 
 HeaderUserNumber.propTypes = {
-  groupUsersIdNumber: PropTypes.number.isRequired,
+  groupUsersId: PropTypes.arrayOf(PropTypes.string).isRequired,
   stadiumContentColor: PropTypes.string.isRequired
 };
 

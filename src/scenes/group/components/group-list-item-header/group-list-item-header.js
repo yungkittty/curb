@@ -55,7 +55,7 @@ const GroupListItemHeader = ({
           />
           <HeaderUserNumber
             // eslint-disable-line
-            groupUsersIdNumber={(groupUsersId || []).length}
+            groupUsersId={groupUsersId}
             stadiumContentColor={stadiumContentColor}
           />
         </HeaderStadiumsContainer>
