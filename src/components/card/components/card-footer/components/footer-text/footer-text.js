@@ -38,7 +38,7 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
 
 FooterText.defaultProps = {
   userId: undefined,
-  textDescription: undefined,
+  textDescription: "",
   isExtended: false
 };
 

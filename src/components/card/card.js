@@ -2,7 +2,6 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import withUser from "../../hocs/with-user";
-import withGroup from "../../hocs/with-group";
 import CardContainer from "./components/card-container";
 import CardBorderContainer from "./components/card-border-container";
 import CardContent from "./components/card-content";
@@ -54,6 +53,7 @@ class Card extends React.Component {
           {cardSize.isCardExtended && (
             <CardContent
               mediaList={_.omit(mediaList, "text")}
+              isPost={!!postMediaTypes}
               cardSize={cardSize}
               groupId={groupId}
               {...others}
@@ -64,12 +64,14 @@ class Card extends React.Component {
           )}
           <CardFooter
             cardSize={cardSize}
-            textDescription={(_.size(mediaList) > 0 && mediaList.text) || groupDescription}
+            textDescription={
+              (_.size(mediaList) > 0 && mediaList.text && mediaList.text.value) || groupDescription
+            }
             isPost={!!postMediaTypes}
             postText={
               _.find(postMediaTypes, { type: "text" }) && {
                 ..._.find(postMediaTypes, { type: "text" }),
-                value: mediaList.text
+                value: mediaList.text ? mediaList.text.value : undefined
               }
             }
             groupId={groupId}
@@ -110,7 +112,12 @@ Card.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
   postMediaTypes: PropTypes.arrayOf(
-    PropTypes.shape({ type: PropTypes.string.isRequired, onClick: PropTypes.func, onSelect: PropTypes.func })
+    PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      onChange: PropTypes.func,
+      onSelect: PropTypes.func,
+      onClick: PropTypes.func
+    })
   ),
   mediaList: PropTypes.object, // eslint-disable-line
   groupDescription: PropTypes.string,
@@ -123,6 +130,5 @@ Card.propTypes = {
 
 export default _.flowRight([
   // eslint-disable-line
-  withUser,
-  withGroup
+  withUser
 ])(Card);

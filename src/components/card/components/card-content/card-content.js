@@ -16,6 +16,7 @@ class CardContent extends React.Component {
   componentDidUpdate(prevProps) {
     const { mediaList } = this.props;
     const { selectedIndex } = this.state;
+    if (_.size(mediaList) <= 1) return;
     if (selectedIndex >= _.size(mediaList) || _.size(mediaList) > _.size(prevProps.mediaList))
       this.setState({ selectedIndex: _.size(mediaList) - 1 }); // eslint-disable-line
   }

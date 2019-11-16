@@ -23,16 +23,16 @@ class ContentMedia extends React.Component {
   }
 
   componentDidMount() {
-    const { mediaList } = this.props;
-    if (_.size(mediaList) <= 1) return;
+    const { mediaList, isPost } = this.props;
+    if (_.size(mediaList) <= 1 || isPost) return;
     this.startTimer();
   }
 
   componentDidUpdate(prevProps) {
-    const { mediaList, selectedIndex } = this.props;
-    if (_.size(mediaList) <= 1) return;
+    const { mediaList, isPost, selectedIndex } = this.props;
     if (selectedIndex !== prevProps.selectedIndex) {
       this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 });
+      if (_.size(mediaList) <= 1 || isPost) return;
       clearTimeout(this.setTimeoutFunc);
       this.startTimer();
     }
@@ -67,7 +67,7 @@ class ContentMedia extends React.Component {
   render() {
     const { mediaList, cardSize, groupName, ...others } = this.props;
 
-    const data = _.map(mediaList, (component, type) => ({ component, type }));
+    const data = _.map(mediaList, (mediaData, type) => ({ component: mediaData.component, type }));
     // eslint-disable-next-line
     return _.size(mediaList) > 0 ? (
       <ListFlat
@@ -100,6 +100,7 @@ ContentMedia.defaultProps = {
 ContentMedia.propTypes = {
   onIndexChange: PropTypes.func.isRequired,
   mediaList: PropTypes.object, // eslint-disable-line
+  isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
     size: PropTypes.string,
