@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import Icon from "../../../../../../components/icon";
 import Text from "../../../../../../components/text";
-import TimepickerContainer from "./components/timepicker-container";
+import PickerContainer from "../picker-container";
 import TimepickerNumber from "./components/timepicker-number";
 
 const EventTimepicker = ({ hours, minutes, onChangeHours, onChangeMinutes }) => {
   return (
-    <TimepickerContainer style={{ fontSize: 12, fontWeight: "bold", color: "#4F4F4F" }}>
+    <PickerContainer style={{ fontSize: 12, fontWeight: "bold", color: "#4F4F4F" }}>
       <Icon size="extra-extra-small" icon="clock" color="#E0E0E0" style={{ marginRight: 14 }} />
       <TimepickerNumber
         type="number-pad"
@@ -22,7 +22,7 @@ const EventTimepicker = ({ hours, minutes, onChangeHours, onChangeMinutes }) => 
         onChange={text => onChangeMinutes(text.target.value)}
         maxLength={2}
       />
-    </TimepickerContainer>
+    </PickerContainer>
   );
 };
 

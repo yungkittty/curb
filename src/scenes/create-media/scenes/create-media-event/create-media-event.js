@@ -1,77 +1,54 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import Container from "../../../../components/container";
 import EventContainer from "./components/event-container";
-import EventHeaderContainer from "./components/event-header-container";
-import EventHeaderTitle from "./components/event-header-title";
+import EventHeader from "./components/event-header";
 import EventContentContainer from "./components/event-content-container";
 import EventDatepicker from "./components/event-datepicker";
 import EventTimepicker from "./components/event-timepicker";
 
-class CreateMediaEvent extends React.Component {
-  constructor(props) {
-    super(props);
+const CreateMediaEvent = ({ groupTheme }) => {
+  const eventHeaderTitleRef = useRef(null);
+  const eventDatepickerRef = useRef(null);
+  const [hours, setHours] = useState(new Date().getHours());
+  const [minutes, setMinutes] = useState(new Date().getMinutes());
 
-    this.state = { hours: String(new Date().getHours()), minutes: String(new Date().getMinutes()) };
-
-    this.onChangeHours = this.onChangeHours.bind(this);
-    this.onChangeMinutes = this.onChangeMinutes.bind(this);
-  }
-
-  onChangeHours(text) {
-    const num = parseInt(text);
-
-    if (!isNaN(num) && num >= 0 && num < 24) {
-      this.setState({ hours: text });
-    } else if (isNaN(num)) {
-      this.setState({ hours: "" });
+  const onChange = (setField, limit, value) => {
+    if ((!Number.isNaN(value) && value >= 0 && value < limit) || value === "") {
+      setField(value);
     }
-  }
+  };
 
-  onChangeMinutes(text) {
-    const num = parseInt(text);
+  const onSubmitEvent = () => {
+    console.log(eventHeaderTitleRef.current.value);
+    console.log(eventDatepickerRef.current.value);
+  };
 
-    if (!isNaN(num) && num >= 0 && num < 60) {
-      this.setState({ minutes: text });
-    } else if (isNaN(num)) {
-      this.setState({ minutes: "" });
-    }
-  }
+  //get child state component on validate post
+  return (
+    <EventContainer>
+      <EventHeader color={groupTheme} ref={eventHeaderTitleRef} />
+      <EventContentContainer>
+        <EventDatepicker color={groupTheme} ref={eventDatepickerRef} />
+        <EventTimepicker
+          hours={hours}
+          minutes={minutes}
+          onChangeHours={text => onChange(setHours, 24, text)}
+          onChangeMinutes={text => onChange(setMinutes, 60, text)}
+        />
+      </EventContentContainer>
+      <button onClick={onSubmitEvent}>Console.log data</button>
+    </EventContainer>
+  );
+};
 
-  render() {
-    const { hours, minutes } = this.state;
-    const { groupTheme } = this.props;
-    return (
-      <EventContainer>
-        <EventHeaderContainer style={{ backgroundColor: groupTheme }}>
-          <EventHeaderTitle placeholder="Name of the event" />
-          <Container
-            style={{
-              backgroundColor: "white",
-              marginLeft: "auto",
-              marginRight: "auto",
-              height: 1,
-              width: "70%"
-            }}
-          />
-        </EventHeaderContainer>
-        <EventContentContainer>
-          <EventDatepicker color={groupTheme} />
-          <EventTimepicker
-            hours={hours}
-            minutes={minutes}
-            onChangeHours={text => this.onChangeHours(text)}
-            onChangeMinutes={text => this.onChangeMinutes(text)}
-          />
-        </EventContentContainer>
-      </EventContainer>
-    );
-  }
-}
+//delete default props
+CreateMediaEvent.defaultProps = {
+  groupTheme: "#56CCF2"
+};
 
 CreateMediaEvent.propTypes = {
   t: PropTypes.func.isRequired,
-  groupTheme: PropTypes.string.isRequired
+  groupTheme: PropTypes.string
 };
 
 export default CreateMediaEvent;

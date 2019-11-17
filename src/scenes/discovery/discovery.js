@@ -12,6 +12,7 @@ import ImageGallery from "../../components/image-gallery";
 import Video from "../../components/video";
 
 import CreateMediaEvent from "../create-media/scenes/create-media-event";
+import MediaEvent from "../group/components/group-list-item-media/components/item-media/components/media-event";
 
 /* eslint-enable */
 
@@ -67,6 +68,19 @@ class Discovery extends React.Component {
         <Card
           userId="5d373369c8acd2001d90bf55"
           mediaList={{ event: <CreateMediaEvent groupTheme="#56CCF2" /> }}
+        />
+        <Card
+          userId="5d373369c8acd2001d90bf55"
+          mediaList={{
+            event: (
+              <MediaEvent
+                groupTheme="#56CCF2"
+                eventTitle="Ride competition"
+                eventDate={new Date()}
+                userList={["usr1", "usr2"]}
+              />
+            )
+          }}
         />
       </Container>
     );

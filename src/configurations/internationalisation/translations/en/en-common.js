@@ -1,4 +1,5 @@
 const enCommon = {
+  today: "today",
   second: "{{count}} second",
   second_plural: "{{count}} seconds",
   minute: "{{count}} minute",

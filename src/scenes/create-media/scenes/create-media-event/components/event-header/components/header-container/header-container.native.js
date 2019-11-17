@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import Container from "../../../../../../../../components/container";
 
-const TimepickerContainer = styled(Container)`
+const HeaderContainer = styled(Container)`
   display: flex;
-  flex-direction: row;
-  height: 25px;
   justify-content: center;
-  align-items: center;
+  align-items; center;
+  width: 100%;
+  height: 60px;
 `;
 
-export default TimepickerContainer;
+export default HeaderContainer;

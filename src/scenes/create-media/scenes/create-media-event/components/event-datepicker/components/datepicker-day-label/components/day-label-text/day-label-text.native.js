@@ -1,10 +1,16 @@
-import styled from "styled-components";
+import React from "react";
+import PropTypes from "prop-types";
 import Text from "../../../../../../../../../../components/text";
 
-const DayLabelText = styled(Text)`
-  width: 20px;
-  text-align: center;
-  color: ${props => props.color};
-`;
+const DayLabelText = ({ color, index, ...others }) => {
+  let style = { width: 20, height: 14, textAlign: "center", color };
+  if (index !== 6) style = { ...style, marginRight: 5 };
+  return <Text {...others} style={style} />;
+};
+
+DayLabelText.propTypes = {
+  color: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired
+};
 
 export default DayLabelText;

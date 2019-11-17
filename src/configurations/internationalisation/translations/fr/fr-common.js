@@ -1,4 +1,5 @@
 const frCommon = {
+  today: "aujourd'hui",
   second: "{{count}} seconde",
   second_plural: "{{count}} secondes",
   minute: "{{count}} minute",

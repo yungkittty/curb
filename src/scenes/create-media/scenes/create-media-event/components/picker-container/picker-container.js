@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import Container from "../../../../../../components/container";
 
-const EventHeaderContainer = styled(Container)`
+const PickerContainer = styled(Container)`
   display: flex;
+  flex-direction: row;
+  height: 25px;
   justify-content: center;
-  align-items; center;
-  width: 100%;
-  height: 60px;
+  align-items: center;
 `;
 
-export default EventHeaderContainer;
+export default PickerContainer;
