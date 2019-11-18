@@ -23,7 +23,6 @@ const mediasApi = {
     });
   },
   postMediaVideo: ({ postId, data, onUploadProgress }) => {
-    console.log(data);
     const fromData = new FormData();
     fromData.append("file", data.file);
     return axios.post(`/contents/videos/${postId}`, fromData, {

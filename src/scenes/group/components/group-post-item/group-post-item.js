@@ -48,7 +48,10 @@ class GroupPostItem extends React.Component {
   }
 
   onClickLocation() {
-    this.pushToMediaList({ key: "location", component: <CardMap /> });
+    this.pushToMediaList({
+      key: "location",
+      component: <CardMap onPositionChange={value => this.pushToMediaList({ key: "location", value })} />
+    });
   }
 
   getPostMediaTypes(groupMediaTypes) {
@@ -78,9 +81,12 @@ class GroupPostItem extends React.Component {
   }
 
   pushToMediaList({ key, ...others }) {
-    const { mediaList } = this.state;
+    const {
+      mediaList,
+      mediaList: { [key]: Y = {} }
+    } = this.state;
     this.setState({
-      mediaList: { ...mediaList, [key]: others }
+      mediaList: { ...mediaList, [key]: { ...Y, ...others } }
     });
   }
 
@@ -92,7 +98,7 @@ class GroupPostItem extends React.Component {
   }
 
   submitPost() {
-    const { mediaList, imageList } = this.state;
+    const { mediaList } = this.state;
     const { postPost, groupId } = this.props;
     postPost({ groupId, mediaList });
   }
@@ -102,13 +108,12 @@ class GroupPostItem extends React.Component {
     // console.log(mediaList);
     const {
       // eslint-disable-line
-      theme,
       currentUserId,
-      groupId,
       groupTheme,
       groupMediaTypes
     } = this.props;
     const isPostValid = _.size(mediaList) > 0;
+    console.log(mediaList);
     return (
       <React.Fragment>
         <GroupCardContainer
@@ -127,7 +132,11 @@ class GroupPostItem extends React.Component {
 }
 
 GroupPostItem.propTypes = {
-  theme: PropTypes.object.isRequired // eslint-disable-line
+  postPost: PropTypes.func.isRequired,
+  currentUserId: PropTypes.string.isRequired,
+  groupId: PropTypes.string.isRequired,
+  groupTheme: PropTypes.string.isRequired,
+  groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default GroupPostItem;
