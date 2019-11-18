@@ -124,7 +124,6 @@ class GroupPostItem extends React.Component {
 
   render() {
     const { mediaList } = this.state;
-    // console.log(mediaList);
     const {
       // eslint-disable-line
       currentUserId,

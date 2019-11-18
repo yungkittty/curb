@@ -55,7 +55,7 @@ const withGroup = WrappedComponent => {
       inviteToken: groupInviteToken,
       users: groupUsersId,
       mediaTypes: groupMediaTypes,
-      medias: groupMediasId,
+      posts: groupPostsId,
       errorCode: groupErrorCode
     } = group;
     return {
@@ -71,7 +71,7 @@ const withGroup = WrappedComponent => {
       groupInviteToken,
       groupUsersId,
       groupMediaTypes,
-      groupMediasId,
+      groupPostsId,
       groupErrorCode
     };
   };
@@ -94,7 +94,7 @@ const withGroup = WrappedComponent => {
     groupInviteToken: "",
     groupUsersId: [],
     groupMediaTypes: [],
-    groupMediasId: [],
+    groupPostsId: [],
     groupErrorCode: ""
   };
 
@@ -113,7 +113,7 @@ const withGroup = WrappedComponent => {
     groupInviteToken: PropTypes.string,
     groupUsersId: PropTypes.array, // eslint-disable-line
     groupMediaTypes: PropTypes.array, // eslint-disable-line
-    groupMediasId: PropTypes.array, // eslint-disable-line
+    groupPostsId: PropTypes.array, // eslint-disable-line
     groupErrorCode: PropTypes.string,
     getGroup: PropTypes.func.isRequired
   };

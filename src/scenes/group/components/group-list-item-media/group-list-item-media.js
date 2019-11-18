@@ -1,21 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import GroupCardContainer from "../group-card-container";
-import withMedia from "../../../../hocs/with-media";
+import withPost from "../../../../hocs/with-post";
 
 const GroupListItemMedia = ({
   // eslint-disable-line
-  mediaCreatorId,
-  mediaDateCreation,
-  mediaType,
-  mediaData
-}) => <GroupCardContainer userId={mediaCreatorId} />;
-
-GroupListItemMedia.propTypes = {
-  mediaCreatorId: PropTypes.string.isRequired,
-  mediaDateCreation: PropTypes.string.isRequired,
-  mediaType: PropTypes.string.isRequired,
-  mediaData: PropTypes.string.isRequired
+  postCreatorId,
+  ...others
+}) => {
+  console.log(others);
+  return <GroupCardContainer {...others} userId={postCreatorId} />;
 };
 
-export default withMedia(GroupListItemMedia);
+GroupListItemMedia.propTypes = {
+  postCreatorId: PropTypes.string.isRequired
+};
+
+export default withPost(GroupListItemMedia);

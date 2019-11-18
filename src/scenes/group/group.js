@@ -48,8 +48,8 @@ class Group extends React.Component {
 
   getData({ isGroupPostShowed }) {
     const { isFeed } = this.state;
-    const { groupMediasId } = this.props;
-    return [{}, ...(isGroupPostShowed ? [0] : []), ...(isFeed ? groupMediasId : [])];
+    const { groupPostsId } = this.props;
+    return [{}, ...(isGroupPostShowed ? [0] : []), ...(isFeed ? groupPostsId : [])];
   }
 
   getGroupGradient() {
@@ -212,7 +212,7 @@ Group.propTypes = {
   groupTheme: PropTypes.string.isRequired,
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
   groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
-  groupMediasId: PropTypes.array.isRequired, // eslint-disable-line
+  groupPostsId: PropTypes.array.isRequired, // eslint-disable-line
   currentUserId: PropTypes.string.isRequired,
   currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line

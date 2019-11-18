@@ -14,14 +14,14 @@ const OriginInfos = ({
   theme,
   userId,
   infosTitle,
-  mediaDateCreation,
+  postDateCreation,
   isPost
 }) => {
   const dateDelta = (() => {
     // eslint-disable-next-line
     let dateDelta = 0;
     const date = new Date();
-    const dateMedia = new Date(mediaDateCreation);
+    const dateMedia = new Date(postDateCreation);
     const dateApi = ["FullYear", "Month", "Date", "Hours", "Minutes", "Seconds"];
     const dateTrans = ["year", "month", "day", "hour", "minute", "second"];
     let i = 0;
@@ -52,7 +52,7 @@ const OriginInfos = ({
       )}
       {/* eslint-disable-next-line */}
       {!isPost &&
-        (!mediaDateCreation ? (
+        (!postDateCreation ? (
           <InfosSubtitlePlaceholder />
         ) : (
           <InfosSubtitle type="h6">
@@ -69,7 +69,7 @@ OriginInfos.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
   userId: PropTypes.string.isRequired,
   infosTitle: PropTypes.string.isRequired,
-  mediaDateCreation: PropTypes.string.isRequired,
+  postDateCreation: PropTypes.string.isRequired,
   isPost: PropTypes.bool.isRequired
 };
 
