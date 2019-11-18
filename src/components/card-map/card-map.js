@@ -24,7 +24,7 @@ class CardMap extends React.Component {
       const { isShowed } = this.state;
       if (isShowed) return;
       this.setInitialPosition({ latitude: 48.8566, longitude: 2.3522 });
-    }, 500);
+    }, 5000);
     geolocation.getCurrentPosition(
       // eslint-disable-line
       currentPosition => {
@@ -67,7 +67,6 @@ class CardMap extends React.Component {
             mapTypeControl: false
           }
         }}
-        draggable
       />
     );
   }

@@ -22,6 +22,7 @@ class GroupPostItem extends React.Component {
     this.onSelectVideo = this.onSelectVideo.bind(this);
     this.onClickLocation = this.onClickLocation.bind(this);
     this.submitPost = this.submitPost.bind(this);
+    this.checkIsPostValid = this.checkIsPostValid.bind(this);
   }
 
   onChangeText({ target: { value } }) {
@@ -50,7 +51,9 @@ class GroupPostItem extends React.Component {
   onClickLocation() {
     this.pushToMediaList({
       key: "location",
-      component: <CardMap onPositionChange={value => this.pushToMediaList({ key: "location", value })} />
+      component: (
+        <CardMap draggable onPositionChange={value => this.pushToMediaList({ key: "location", value })} />
+      )
     });
   }
 
@@ -103,6 +106,15 @@ class GroupPostItem extends React.Component {
     postPost({ groupId, mediaList });
   }
 
+  checkIsPostValid() {
+    const { mediaList } = this.state;
+    let isValid = false;
+    _.forEach(mediaList, media => {
+      if (!_.isEmpty(media.value)) isValid = true;
+    });
+    return isValid;
+  }
+
   render() {
     const { mediaList } = this.state;
     // console.log(mediaList);
@@ -112,8 +124,6 @@ class GroupPostItem extends React.Component {
       groupTheme,
       groupMediaTypes
     } = this.props;
-    const isPostValid = _.size(mediaList) > 0;
-    console.log(mediaList);
     return (
       <React.Fragment>
         <GroupCardContainer
@@ -122,7 +132,7 @@ class GroupPostItem extends React.Component {
           mediaList={mediaList}
           onFloatingButtonClick={this.submitPost}
           floatingButtonColor={groupTheme}
-          floatingButtonDisabled={!isPostValid}
+          floatingButtonDisabled={!this.checkIsPostValid()}
           contentMenuButton={{ icon: "minus", onClick: this.removeContent }}
         />
         <PostItemRule />

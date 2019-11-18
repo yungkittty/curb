@@ -70,8 +70,7 @@ const Map = ({ className, style, forwardedRef, googleMapProps, ...others }) => {
 Map.defaultProps = {
   className: undefined,
   style: undefined,
-  forwardedRef: undefined,
-  onPositionChange: () => null
+  forwardedRef: undefined
 };
 
 Map.propTypes = {
@@ -79,7 +78,7 @@ Map.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   forwardedRef: PropTypes.object, // eslint-disable-line
   googleMapProps: PropTypes.object, // eslint-disable-line
-  onPositionChange: PropTypes.func,
+  onPositionChange: PropTypes.func.isRequired,
   latitude: PropTypes.number.isRequired,
   longitude: PropTypes.number.isRequired
 };
