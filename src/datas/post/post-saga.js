@@ -37,7 +37,7 @@ function* postPostRequestSaga(action) {
       );
     if (mediaList.location)
       yield put(
-        mediasActions.postMediaLocationRequest({ postId: responsePayload.id, data: mediaList.location })
+        mediasActions.postMediaLocationRequest({ postId: responsePayload.id, data: mediaList.location.value })
       );
     yield put(postActions.postPostSuccess(responsePayload));
   } catch (error) {

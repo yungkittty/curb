@@ -20,12 +20,12 @@ class CardMap extends React.Component {
       return;
     }
     const { geolocation } = navigator;
-    setTimeout(() => {
+    this.defaultPositionTimeout = setTimeout(() => {
       const { isShowed } = this.state;
       if (isShowed) return;
       this.setInitialPosition({ latitude: 48.8566, longitude: 2.3522 });
     }, 5000);
-    geolocation.getCurrentPosition(
+    this.watchId = geolocation.watchPosition(
       // eslint-disable-line
       currentPosition => {
         const {
@@ -40,6 +40,12 @@ class CardMap extends React.Component {
 
   shouldComponentUpdate(prevProps, prevState) {
     return !_.isEqual(prevState, this.state);
+  }
+
+  componentWillUnmount() {
+    const { geolocation } = navigator;
+    clearTimeout(this.defaultPositionTimeout);
+    geolocation.clearWatch(this.watchId);
   }
 
   setInitialPosition({ latitude, longitude }) {

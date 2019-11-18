@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import Container from "../container";
 
-const Map = ({ className, style, forwardedRef, googleMapProps, ...others }) => {
+const Map = ({ className, style, googleMapProps, ...others }) => {
   // eslint-disable-next-line
   const _Map = _.flowRight([
     // eslint-disable-line
@@ -53,7 +53,7 @@ const Map = ({ className, style, forwardedRef, googleMapProps, ...others }) => {
       }
     }
     // eslint-disable-next-line
-    return <__Map {...others} ref={forwardedRef} />;
+    return <__Map {...others} />;
   });
   return (
     // eslint-disable-next-line
@@ -83,13 +83,4 @@ Map.propTypes = {
   longitude: PropTypes.number.isRequired
 };
 
-export default React.forwardRef(
-  // eslint-disable-line
-  (props, forwardedRef) => (
-    <Map
-      // eslint-disable-line
-      {...props}
-      forwardedRef={forwardedRef}
-    />
-  )
-);
+export default Map;

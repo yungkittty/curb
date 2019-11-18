@@ -52,7 +52,12 @@ class GroupPostItem extends React.Component {
     this.pushToMediaList({
       key: "location",
       component: (
-        <CardMap draggable onPositionChange={value => this.pushToMediaList({ key: "location", value })} />
+        <CardMap
+          draggable
+          onPositionChange={coords =>
+            this.pushToMediaList({ key: "location", value: JSON.stringify(coords) })
+          }
+        />
       )
     });
   }
@@ -109,10 +114,12 @@ class GroupPostItem extends React.Component {
   checkIsPostValid() {
     const { mediaList } = this.state;
     let isValid = false;
+    let isWaitingValue = false;
     _.forEach(mediaList, media => {
       if (!_.isEmpty(media.value)) isValid = true;
+      if (_.isEmpty(media.value)) isWaitingValue = true;
     });
-    return isValid;
+    return isValid && !isWaitingValue;
   }
 
   render() {
