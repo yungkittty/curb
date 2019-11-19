@@ -5,9 +5,21 @@ import postActionsTypes from "./post-actions-types";
 const isFetching = (state = false, action) => {
   switch (action.type) {
     case postActionsTypes.POST_POST_REQUEST:
+    case postActionsTypes.POST_PIN_POST_REQUEST:
+    case postActionsTypes.POST_REPORT_POST_REQUEST:
+    case postActionsTypes.DELETE_POST_REQUEST:
+    case postActionsTypes.POST_LIKE_POST_REQUEST:
       return true;
     case postActionsTypes.POST_POST_SUCCESS:
     case postActionsTypes.POST_POST_FAILURE:
+    case postActionsTypes.POST_PIN_POST_SUCCESS:
+    case postActionsTypes.POST_PIN_POST_FAILURE:
+    case postActionsTypes.POST_REPORT_POST_SUCCESS:
+    case postActionsTypes.POST_REPORT_POST_FAILURE:
+    case postActionsTypes.POST_DELETE_POST_SUCCESS:
+    case postActionsTypes.POST_DELETE_POST_FAILURE:
+    case postActionsTypes.POST_LIKE_POST_SUCCESS:
+    case postActionsTypes.POST_LIKE_POST_FAILURE:
       return false;
     default:
       return state;

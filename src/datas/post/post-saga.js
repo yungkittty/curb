@@ -1,10 +1,17 @@
 import _ from "lodash";
-import { all, takeLatest, call, put } from "redux-saga/effects";
+import { all, take, fork, join, takeLatest, call, put } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import postActionsTypes from "./post-actions-types";
 import postActions from "./post-actions";
 import postApi from "./post-api";
-import mediasActions from "../medias/medias-actions";
+import appAlertActions from "../app-alert/app-alert-actions";
+import { mediasActions, mediasApi, mediasActionsTypes } from "../medias";
+import {
+  postMediaTextRequestSaga,
+  postMediaImageRequestSaga,
+  postMediaVideoRequestSaga,
+  postMediaLocationRequestSaga
+} from "../medias/medias-saga";
 
 function* getPostRequestSaga(action) {
   try {
@@ -16,39 +23,103 @@ function* getPostRequestSaga(action) {
   }
 }
 
-function* postPostRequestSaga(action) {
+function* postPinPostRequestSaga(action) {
   try {
-    const { groupId, mediaList } = action.payload;
-    const { data: responsePayload } = yield call(postApi.postPost, { groupId });
-    if (mediaList.text)
-      yield put(
-        mediasActions.postMediaTextRequest({ postId: responsePayload.id, data: mediaList.text.value })
-      );
-    for (let i = 0; mediaList.image && i < _.size(mediaList.image.value); i += 1)
-      yield put(
-        mediasActions.postMediaImageRequest({
-          postId: responsePayload.id,
+    yield call(postApi.postPinPost, action.payload);
+    yield put(postActions.postPinPostSuccess());
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(postActions.getPostFailure({ id: action.payload.id, errorCode }));
+  }
+}
+
+function* postReportPostRequestSaga(action) {
+  try {
+    yield call(postApi.postReportPost, action.payload);
+    yield put(postActions.postReportPostSuccess());
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(postActions.getPostFailure({ id: action.payload.id, errorCode }));
+  }
+}
+
+function* deletePostRequestSaga(action) {
+  try {
+    yield call(postApi.deletePost, action.payload);
+    yield put(postActions.deletePostSuccess());
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(postActions.getPostFailure({ id: action.payload.id, errorCode }));
+  }
+}
+
+function* postLikePostRequestSaga(action) {
+  try {
+    yield call(postApi.postLikePost, action.payload);
+    yield put(postActions.postLikePostSuccess());
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(postActions.getPostFailure({ id: action.payload.id, errorCode }));
+  }
+}
+
+function* postMediasRequestSaga(payload) {
+  try {
+    const { postId, mediaList } = payload;
+    const mediaActionsToWait = [];
+    if (mediaList.text) {
+      mediaActionsToWait.push(yield fork(postMediaTextRequestSaga, { postId, data: mediaList.text.value }));
+    }
+    for (let i = 0; mediaList.image && i < _.size(mediaList.image.value); i += 1) {
+      mediaActionsToWait.push(
+        yield fork(postMediaImageRequestSaga, {
+          postId,
           data: mediaList.image.value[i]
         })
       );
-    if (mediaList.video)
-      yield put(
-        mediasActions.postMediaVideoRequest({ postId: responsePayload.id, data: mediaList.video.value })
+    }
+    if (mediaList.video) {
+      mediaActionsToWait.push(yield fork(postMediaVideoRequestSaga, { postId, data: mediaList.video.value }));
+    }
+    if (mediaList.location) {
+      mediaActionsToWait.push(
+        yield fork(postMediaLocationRequestSaga, { postId, data: mediaList.location.value })
       );
-    if (mediaList.location)
-      yield put(
-        mediasActions.postMediaLocationRequest({ postId: responsePayload.id, data: mediaList.location.value })
-      );
-    yield put(postActions.postPostSuccess(responsePayload));
+    }
+    for (let i = 0; i < mediaActionsToWait.length; i += 1) yield join(mediaActionsToWait[i]);
+    yield put(postActions.postMediasSuccess({ postId }));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(postActions.postMediasFailure({ id: payload.id, errorCode }));
+  }
+}
+
+function* postPostRequestSaga(action) {
+  try {
+    const { groupId, mediaList } = action.payload;
+    const {
+      data: { id: postId }
+    } = yield call(postApi.postPost, { groupId });
+    yield call(postMediasRequestSaga, { postId, mediaList });
+    const successAlert = { type: "success", message: "postPosted", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
+    yield put(postActions.postPostSuccess({ groupId, postId }));
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    const errorAlert = { type: "error", message: "postError", icon: "times" };
+    yield put(appAlertActions.pushAppAlert(errorAlert));
     yield put(postActions.postPostFailure({ id: action.payload.id, errorCode }));
   }
 }
 
 const postSaga = all([
   takeNormalize(postActionsTypes.GET_POST_REQUEST, getPostRequestSaga),
-  takeLatest(postActionsTypes.POST_POST_REQUEST, postPostRequestSaga)
+  takeLatest(postActionsTypes.POST_PIN_POST_REQUEST, postPinPostRequestSaga),
+  takeLatest(postActionsTypes.POST_REPORT_POST_REQUEST, postReportPostRequestSaga),
+  takeLatest(postActionsTypes.DELETE_POST_REQUEST, deletePostRequestSaga),
+  takeLatest(postActionsTypes.POST_LIKE_POST_REQUEST, postLikePostRequestSaga),
+  takeLatest(postActionsTypes.POST_POST_REQUEST, postPostRequestSaga),
+  takeLatest(postActionsTypes.POST_MEDIAS_REQUEST, postMediasRequestSaga)
 ]);
 
 export default postSaga;

@@ -43,40 +43,36 @@ function* postMediaAvatarGroupRequestSaga(action) {
   }
 }
 
-function* postMediaTextRequestSaga(action) {
+function* postMediaTextRequestSaga(payload) {
   try {
-    const { data: payload } = yield call(mediasApi.postMediaText, action.payload);
-    yield put(mediasActions.postMediaTextSuccess({ id: action.payload.postId, mediasId: payload.id }));
+    yield call(mediasApi.postMediaText, payload);
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postMediaTextFailure({ errorCode }));
   }
 }
 
-function* postMediaImageRequestSaga(action) {
+function* postMediaImageRequestSaga(payload) {
   try {
-    const { data: payload } = yield call(mediasApi.postMediaImage, action.payload);
-    yield put(mediasActions.postMediaImageSuccess({ id: action.payload.postId, mediasId: payload.id }));
+    yield call(mediasApi.postMediaImage, payload);
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postMediaImageFailure({ errorCode }));
   }
 }
 
-function* postMediaVideoRequestSaga(action) {
+function* postMediaVideoRequestSaga(payload) {
   try {
-    const { data: payload } = yield call(mediasApi.postMediaVideo, action.payload);
-    yield put(mediasActions.postMediaVideoSuccess({ id: action.payload.postId, mediasId: payload.id }));
+    yield call(mediasApi.postMediaVideo, payload);
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postMediaVideoFailure({ errorCode }));
   }
 }
 
-function* postMediaLocationRequestSaga(action) {
+function* postMediaLocationRequestSaga(payload) {
   try {
-    const { data: payload } = yield call(mediasApi.postMediaLocation, action.payload);
-    yield put(mediasActions.postMediaLocationSuccess({ id: action.payload.postId, mediasId: payload.id }));
+    yield call(mediasApi.postMediaLocation, payload);
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postMediaLocationFailure({ errorCode }));
@@ -86,11 +82,14 @@ function* postMediaLocationRequestSaga(action) {
 const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_TEXT_REQUEST, postMediaTextRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST, postMediaImageRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST, postMediaVideoRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_LOCATION_REQUEST, postMediaLocationRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga)
 ]);
+
+export {
+  postMediaTextRequestSaga,
+  postMediaImageRequestSaga,
+  postMediaVideoRequestSaga,
+  postMediaLocationRequestSaga
+};
 
 export default mediasSaga;

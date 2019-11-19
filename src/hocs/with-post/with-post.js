@@ -53,7 +53,11 @@ const withPost = WrappedComponent => {
   };
 
   const mapDispatchToProps = dispatch => ({
-    getPost: payload => dispatch(postActions.getPostRequest(payload))
+    getPost: payload => dispatch(postActions.getPostRequest(payload)),
+    postPinPost: payload => dispatch(postActions.postPinPostRequest(payload)),
+    postReportPost: payload => dispatch(postActions.postReportPostRequest(payload)),
+    deletePost: payload => dispatch(postActions.deletePostRequest(payload)),
+    postLikePost: payload => dispatch(postActions.postLikePostRequest(payload))
   });
 
   WithPost.defaultProps = {

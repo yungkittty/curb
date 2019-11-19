@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
 import ListFlat from "../../components/list-flat";
 import GroupPostItem from "./components/group-post-item";
@@ -113,7 +114,7 @@ class Group extends React.Component {
   }
 
   renderListItemMedia({ item: postId }) {
-    const { currentUserId, groupId, groupTheme, groupMediaTypes } = this.props;
+    const { t, currentUserId, groupCreatorId, groupId, groupTheme, groupMediaTypes } = this.props;
     return postId === 0 ? (
       <GroupPostItem
         currentUserId={currentUserId}
@@ -124,6 +125,9 @@ class Group extends React.Component {
     ) : (
       <GroupListItemMedia
         // eslint-disable-line
+        t={t}
+        currentUserId={currentUserId}
+        groupCreatorId={groupCreatorId}
         postId={postId}
       />
     );
@@ -202,6 +206,7 @@ class Group extends React.Component {
 }
 
 Group.propTypes = {
+  t: PropTypes.func.isRequired,
   showAppModal: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
   groupCreatorId: PropTypes.string.isRequired,
@@ -220,6 +225,7 @@ Group.propTypes = {
 
 export default _.flowRight([
   // eslint-disable-line
+  withTranslation("common"),
   withAppModal,
   withCurrentUser,
   withGroup,

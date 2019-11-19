@@ -143,18 +143,6 @@ const byId = (state = {}, action) => {
           avatarUrl: action.payload.avatar.data
         }
       };
-    case postActionsTypes.POST_POST_SUCCESS:
-      return {
-        ...state,
-        [action.payload.id]: {
-          ...state[action.payload.id],
-          posts: [
-            // eslint-disable-line
-            action.payload.postId,
-            ...state[action.payload.id].posts
-          ]
-        }
-      };
     default:
       return state;
   }
