@@ -25,6 +25,14 @@ class GroupPostItem extends React.Component {
     this.checkIsPostValid = this.checkIsPostValid.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { isPostFetching } = this.props;
+
+    if (prevProps.isPostFetching && !isPostFetching)
+      // eslint-disable-next-line
+      this.setState({ mediaList: {} });
+  }
+
   onChangeText({ target: { value } }) {
     if (value !== "") this.pushToMediaList({ key: "text", value });
     else this.removeMediaListKey({ key: "text" });
@@ -150,6 +158,7 @@ class GroupPostItem extends React.Component {
 }
 
 GroupPostItem.propTypes = {
+  isPostFetching: PropTypes.bool.isRequired,
   postPost: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
   groupId: PropTypes.string.isRequired,

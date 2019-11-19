@@ -1,9 +1,10 @@
 import _ from "lodash";
-import { all, fork, join, takeLatest, call, put } from "redux-saga/effects";
+import { all, fork, join, select, takeLatest, call, put } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import postActionsTypes from "./post-actions-types";
 import postActions from "./post-actions";
 import postApi from "./post-api";
+import postSelectors from "./post-selectors";
 import appAlertActions from "../app-alert/app-alert-actions";
 import {
   postMediaTextRequestSaga,
@@ -44,8 +45,12 @@ function* postReportPostRequestSaga(action) {
 
 function* deletePostRequestSaga(action) {
   try {
-    yield call(postApi.deletePost, action.payload);
-    yield put(postActions.deletePostSuccess());
+    const { id } = action.payload;
+    const { groupId } = yield select(postSelectors.getPostById, id);
+    yield call(postApi.deletePost, { id });
+    const successAlert = { type: "success", message: "postDeleted", icon: "check" };
+    yield put(appAlertActions.pushAppAlert(successAlert));
+    yield put(postActions.deletePostSuccess({ postId: id, groupId }));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(postActions.getPostFailure({ id: action.payload.id, errorCode }));
