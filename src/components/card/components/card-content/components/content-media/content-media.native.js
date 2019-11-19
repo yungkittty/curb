@@ -76,7 +76,7 @@ class ContentMedia extends React.Component {
 
   render() {
     const { mediaList, cardSize, groupName, ...others } = this.props;
-    const data = _.map(mediaList, (component, type) => ({ component, type }));
+    const data = _.map(mediaList, (mediaData, type) => ({ component: mediaData.component, type }));
     // eslint-disable-next-line
     return _.size(mediaList) > 0 ? (
       <ListFlat

@@ -7,10 +7,7 @@ const GroupListItemMedia = ({
   // eslint-disable-line
   postCreatorId,
   ...others
-}) => {
-  console.log(others);
-  return <GroupCardContainer {...others} userId={postCreatorId} />;
-};
+}) => <GroupCardContainer {...others} userId={postCreatorId} />;
 
 GroupListItemMedia.propTypes = {
   postCreatorId: PropTypes.string.isRequired

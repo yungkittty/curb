@@ -4,8 +4,10 @@ import { windowDimensions } from "../../../../../../configurations/window";
 
 const PostItemRule = styled(Container)`
   align-self: center;
-  width: ${windowDimensions.getWidth() - 20}px;
-  border: 1px solid ${({ theme }) => theme.primaryVariantColor};
+  width: ${windowDimensions.getWidth() - 60}px;
+  border-bottom-width: 1px;
+  border-bottom-color: ${({ theme }) => theme.primaryVariantColor};
+  margin-bottom: 40px;
 `;
 
 export default PostItemRule;

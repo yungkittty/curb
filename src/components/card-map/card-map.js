@@ -87,8 +87,8 @@ CardMap.defaultProps = {
 
 CardMap.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  latitude: PropTypes.string,
-  longitude: PropTypes.string,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
   onPositionChange: PropTypes.func
 };
 

@@ -65,8 +65,9 @@ class Card extends React.Component {
           <CardFooter
             cardSize={cardSize}
             textDescription={
-              (_.size(mediaList) > 0 && mediaList.text && mediaList.text.value) || groupDescription
+              groupDescription || (_.size(mediaList) > 0 ? mediaList.text && mediaList.text.value : undefined)
             }
+            isNoTextDescriptionPlaceholder={_.size(mediaList) > 0 && _.isUndefined(mediaList.text)}
             isPost={!!postMediaTypes}
             postText={
               _.find(postMediaTypes, { type: "text" }) && {

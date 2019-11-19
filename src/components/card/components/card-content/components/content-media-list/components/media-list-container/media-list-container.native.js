@@ -5,7 +5,7 @@ const MediaListContainer = styled(Container)`
   position: absolute;
   display: flex;
   flex-flow: row;
-  background: rgba(242, 242, 242, 0.75);
+  background: rgba(0, 0, 0, 0.4);
   padding: 4px 2px;
   align-items: center;
   justify-content: center;

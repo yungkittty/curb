@@ -39,10 +39,9 @@ const withPost = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const postId = ownProps.postId; // eslint-disable-line
     const post = postSelectors.getPostById(state, postId);
-    if (!post) return;
+    if (!post) return { postId };
     const mediaList = setMediaTypesProperties(post.medias);
     const { creatorId: postCreatorId, createdAt: postDateCreation, errorCode: postErrorCode } = post;
-    console.log(postDateCreation);
     // eslint-disable-next-line
     return {
       postId,

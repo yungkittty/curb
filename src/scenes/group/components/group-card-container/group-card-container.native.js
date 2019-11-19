@@ -3,7 +3,7 @@ import Card from "../../../../components/card";
 
 const GroupCardContainer = styled(Card)`
   align-self: center;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
 `;
 
 export default GroupCardContainer;

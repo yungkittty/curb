@@ -31,7 +31,9 @@ class GroupPostItem extends React.Component {
   }
 
   onSelectImage({ data, file }) {
-    const { image: { value = [] } = {} } = this.state;
+    const {
+      mediaList: { image: { value = [] } = {} }
+    } = this.state;
     const newImageList = [...value, { data, file }];
     this.pushToMediaList({
       key: "image",

@@ -17,7 +17,7 @@ const CardImageGallery = ({ imagesData, ...others }) => {
 };
 
 CardImageGallery.propTypes = {
-  imagesData: PropTypes.arrayOf(PropTypes.string).isRequired
+  imagesData: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default CardImageGallery;

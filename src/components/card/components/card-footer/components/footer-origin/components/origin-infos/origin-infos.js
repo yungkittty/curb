@@ -64,12 +64,16 @@ const OriginInfos = ({
   );
 };
 
+OriginInfos.defaultProps = {
+  postDateCreation: undefined
+};
+
 OriginInfos.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   userId: PropTypes.string.isRequired,
   infosTitle: PropTypes.string.isRequired,
-  postDateCreation: PropTypes.string.isRequired,
+  postDateCreation: PropTypes.string,
   isPost: PropTypes.bool.isRequired
 };
 
