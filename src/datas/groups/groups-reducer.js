@@ -2,7 +2,6 @@ import _ from "lodash";
 import { combineReducers } from "redux";
 import groupsActionsTypes from "./groups-actions-types";
 import mediasActionsTypes from "../medias/medias-actions-types";
-import postActionsTypes from "../post/post-actions-types";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {

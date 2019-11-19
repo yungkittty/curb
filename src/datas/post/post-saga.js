@@ -1,11 +1,10 @@
 import _ from "lodash";
-import { all, take, fork, join, takeLatest, call, put } from "redux-saga/effects";
+import { all, fork, join, takeLatest, call, put } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import postActionsTypes from "./post-actions-types";
 import postActions from "./post-actions";
 import postApi from "./post-api";
 import appAlertActions from "../app-alert/app-alert-actions";
-import { mediasActions, mediasApi, mediasActionsTypes } from "../medias";
 import {
   postMediaTextRequestSaga,
   postMediaImageRequestSaga,
