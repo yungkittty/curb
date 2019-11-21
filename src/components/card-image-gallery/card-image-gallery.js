@@ -6,29 +6,29 @@ import CurbModule from "../curb-module";
 
 class CardImageGallery extends CurbModule {
   getData() {
-    const { imagesData } = this.props;
+    const { imageList: imageListProps } = this.props;
     const imageList = [];
-    _.forEach(imagesData, ({ file }) => imageList.push(file));
+    _.forEach(imageListProps, ({ file }) => imageList.push(file));
     return imageList;
   }
 
   render() {
-    const { imagesData, ...others } = this.props;
-    const isOneImage = imagesData.length === 1;
-    return _.map(imagesData, ({ data }, index) => (
+    const { imageList, ...others } = this.props;
+    const isOneImage = imageList.length === 1;
+    return _.map(imageList, ({ data }, index) => (
       <GalleryImage
         {...others}
         key={index}
         src={data}
         isOneImage={isOneImage}
-        isLastImage={index !== imagesData.length - 1}
+        isLastImage={index !== imageList.length - 1}
       />
     ));
   }
 }
 
 CardImageGallery.propTypes = {
-  imagesData: PropTypes.arrayOf(PropTypes.object).isRequired
+  imageList: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default CardImageGallery;

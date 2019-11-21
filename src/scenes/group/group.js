@@ -114,12 +114,12 @@ class Group extends React.Component {
   }
 
   renderListItemMedia({ item: postId }) {
-    const { t, currentUserId, groupCreatorId, groupId, groupTheme, groupMediaTypes } = this.props;
+    const { t, theme, currentUserId, groupCreatorId, groupId, groupTheme, groupMediaTypes } = this.props;
     return postId === 0 ? (
       <GroupPostItem
         currentUserId={currentUserId}
         groupId={groupId}
-        groupTheme={groupTheme}
+        groupThemeColor={theme[`group${_.capitalize(groupTheme)}Color`] || "transparent"}
         groupMediaTypes={groupMediaTypes}
       />
     ) : (

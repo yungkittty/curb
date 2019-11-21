@@ -47,7 +47,7 @@ class GroupPostItem extends React.Component {
     const newImageList = [...imageList, props];
     this.pushToMediaList({
       key: "image",
-      component: <CardImageGallery imagesData={newImageList} />,
+      component: <CardImageGallery imageList={newImageList} />,
       imageList: newImageList
     });
   }
@@ -170,7 +170,7 @@ class GroupPostItem extends React.Component {
     const {
       // eslint-disable-line
       currentUserId,
-      groupTheme,
+      groupThemeColor,
       groupMediaTypes
     } = this.props;
     return (
@@ -180,7 +180,7 @@ class GroupPostItem extends React.Component {
           postMediaTypes={this.getPostMediaTypes(groupMediaTypes)}
           mediaList={mediaList}
           onFloatingButtonClick={this.submitPost}
-          floatingButtonColor={groupTheme}
+          floatingButtonColor={groupThemeColor}
           floatingButtonDisabled={!this.checkIsPostValid()}
           contentMenuButton={{ icon: "minus", onClick: this.removeContent }}
         />
@@ -195,7 +195,7 @@ GroupPostItem.propTypes = {
   postPost: PropTypes.func.isRequired,
   currentUserId: PropTypes.string.isRequired,
   groupId: PropTypes.string.isRequired,
-  groupTheme: PropTypes.string.isRequired,
+  groupThemeColor: PropTypes.string.isRequired,
   groupMediaTypes: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
