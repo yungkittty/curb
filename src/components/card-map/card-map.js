@@ -3,12 +3,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import Loader from "../loader";
 import MapContainer from "./components/map-container";
+import CurbModule from "../curb-module";
 
-class CardMap extends React.Component {
+class CardMap extends CurbModule {
   constructor(props) {
     super(props);
 
-    this.state = { isShowed: false, initialLatitude: undefined, initialLongitude: undefined };
+    this.state = { isShowed: false, latitude: undefined, longitude: undefined };
     this.setInitialPosition = this.setInitialPosition.bind(this);
     this.locationMap = React.createRef();
   }
@@ -38,6 +39,11 @@ class CardMap extends React.Component {
     );
   }
 
+  getData() {
+    const { latitude, longitude } = this.state;
+    return JSON.stringify({ latitude, longitude });
+  }
+
   shouldComponentUpdate(prevProps, prevState) {
     return !_.isEqual(prevState, this.state);
   }
@@ -49,22 +55,22 @@ class CardMap extends React.Component {
   }
 
   setInitialPosition({ latitude, longitude }) {
-    const { onPositionChange } = this.props;
-    this.setState({ isShowed: true, initialLatitude: latitude, initialLongitude: longitude });
-    onPositionChange({ latitude, longitude });
+    const { onModuleIsValid } = this.props;
+    this.setState({ isShowed: true, latitude, longitude });
+    onModuleIsValid({ isValid: true });
   }
 
   render() {
     const { style, ...others } = this.props;
-    const { isShowed, initialLatitude, initialLongitude } = this.state;
+    const { isShowed, latitude, longitude } = this.state;
     return !isShowed ? (
       <Loader />
     ) : (
       <MapContainer
         {...others}
         ref={this.locationMap}
-        latitude={initialLatitude}
-        longitude={initialLongitude}
+        latitude={latitude}
+        longitude={longitude}
         googleMapProps={{
           defaultOptions: {
             gestureHandling: "cooperative",
@@ -82,14 +88,14 @@ CardMap.defaultProps = {
   style: undefined,
   latitude: undefined,
   longitude: undefined,
-  onPositionChange: () => null
+  onModuleIsValid: () => null
 };
 
 CardMap.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   latitude: PropTypes.number,
   longitude: PropTypes.number,
-  onPositionChange: PropTypes.func
+  onModuleIsValid: PropTypes.func
 };
 
 export default CardMap;

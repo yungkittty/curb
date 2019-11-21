@@ -17,14 +17,14 @@ const mediasApi = {
   postMediaText: ({ postId, data }) => axios.post(`/contents/texts/${postId}`, { data }),
   postMediaImage: ({ postId, data, onUploadProgress }) => {
     const fromData = new FormData();
-    fromData.append("file", data.file);
+    fromData.append("file", data);
     return axios.post(`/contents/images/${postId}`, fromData, {
       onUploadProgress
     });
   },
   postMediaVideo: ({ postId, data, onUploadProgress }) => {
     const fromData = new FormData();
-    fromData.append("file", data.file);
+    fromData.append("file", data);
     return axios.post(`/contents/videos/${postId}`, fromData, {
       onUploadProgress
     });

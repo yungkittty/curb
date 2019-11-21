@@ -13,6 +13,7 @@ class GroupPostItem extends React.Component {
 
     this.state = { mediaList: {} };
 
+    this.onModuleIsValid = this.onModuleIsValid.bind(this);
     this.getPostMediaTypes = this.getPostMediaTypes.bind(this);
     this.pushToMediaList = this.pushToMediaList.bind(this);
     this.removeMediaListKey = this.removeMediaListKey.bind(this);
@@ -27,8 +28,9 @@ class GroupPostItem extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { isPostFetching } = this.props;
-
     if (prevProps.isPostFetching && !isPostFetching)
+      // call all refs with clear();
+
       // eslint-disable-next-line
       this.setState({ mediaList: {} });
   }
@@ -38,23 +40,22 @@ class GroupPostItem extends React.Component {
     else this.removeMediaListKey({ key: "text" });
   }
 
-  onSelectImage({ data, file }) {
+  onSelectImage(props) {
     const {
-      mediaList: { image: { value = [] } = {} }
+      mediaList: { image: { imageList = [] } = {} }
     } = this.state;
-    const newImageList = [...value, { data, file }];
+    const newImageList = [...imageList, props];
     this.pushToMediaList({
       key: "image",
       component: <CardImageGallery imagesData={newImageList} />,
-      value: newImageList
+      imageList: newImageList
     });
   }
 
-  onSelectVideo({ data, file }) {
+  onSelectVideo(props) {
     this.pushToMediaList({
       key: "video",
-      component: <CardVideo src={data} />,
-      value: { data, file }
+      component: <CardVideo {...props} />
     });
   }
 
@@ -63,37 +64,47 @@ class GroupPostItem extends React.Component {
       key: "location",
       component: (
         <CardMap
+          onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key: "location", isValid })}
           draggable
-          onPositionChange={coords =>
-            this.pushToMediaList({ key: "location", value: JSON.stringify(coords) })
-          }
         />
-      )
+      ),
+      isValid: false
     });
   }
 
+  onModuleIsValid({ key, isValid }) {
+    const {
+      mediaList,
+      mediaList: { [key]: Y }
+    } = this.state;
+    this.setState({ mediaList: { ...mediaList, [key]: { ...Y, isValid } } });
+  }
+
   getPostMediaTypes(groupMediaTypes) {
-    const { mediaList } = this.state;
+    const {
+      mediaList: { video, location }
+    } = this.state;
     const postMediaTypes = [];
     if (_.includes(groupMediaTypes, "text"))
       postMediaTypes.push({ type: "text", onChange: this.onChangeText });
     if (_.includes(groupMediaTypes, "image"))
       postMediaTypes.push({ type: "image", onSelect: this.onSelectImage });
-    if (_.includes(groupMediaTypes, "video") && !mediaList.video)
+    if (_.includes(groupMediaTypes, "video") && !video)
       postMediaTypes.push({ type: "video", onSelect: this.onSelectVideo });
-    if (_.includes(groupMediaTypes, "location") && !mediaList.location)
+    if (_.includes(groupMediaTypes, "location") && !location)
       postMediaTypes.push({ type: "location", onClick: this.onClickLocation });
     return postMediaTypes;
   }
 
   removeContent(mediaType) {
-    const {
-      mediaList: { image }
-    } = this.state;
     if (mediaType === "image") {
-      image.value.pop();
-      this.setState({ mediaList: { image: { ...image } } });
-      if (_.size(image.value) > 0) return;
+      const {
+        mediaList,
+        mediaList: { image }
+      } = this.state;
+      image.imageList.pop();
+      this.setState({ mediaList: { ...mediaList, image: { ...image } } });
+      if (_.size(image.imageList) > 0) return;
     }
     this.removeMediaListKey({ key: mediaType });
   }
@@ -103,8 +114,18 @@ class GroupPostItem extends React.Component {
       mediaList,
       mediaList: { [key]: Y = {} }
     } = this.state;
+    const { component, ...mediaOthers } = others;
+    let componentWithRef;
+    let componentRef;
+    if (component) {
+      componentRef = React.createRef();
+      componentWithRef = React.cloneElement(component, { ref: componentRef });
+    }
     this.setState({
-      mediaList: { ...mediaList, [key]: { ...Y, ...others } }
+      mediaList: {
+        ...mediaList,
+        [key]: { ...Y, ...mediaOthers, component: componentWithRef, ref: componentRef }
+      }
     });
   }
 
@@ -118,18 +139,30 @@ class GroupPostItem extends React.Component {
   submitPost() {
     const { mediaList } = this.state;
     const { postPost, groupId } = this.props;
-    postPost({ groupId, mediaList });
+    const mediaListData = {};
+    _.forEach(_.keys(mediaList), key => {
+      const {
+        mediaList: {
+          [key]: { value, ref: { current: moduleRef } = {} }
+        }
+      } = this.state;
+      _.merge(mediaListData, { [key]: value || moduleRef.getData() });
+    });
+    postPost({ groupId, mediaListData });
   }
 
   checkIsPostValid() {
     const { mediaList } = this.state;
-    let isValid = false;
-    let isWaitingValue = false;
-    _.forEach(mediaList, media => {
-      if (!_.isEmpty(media.value)) isValid = true;
-      if (_.isEmpty(media.value)) isWaitingValue = true;
+    let isPostValid = true;
+    _.forEach(_.keys(mediaList), key => {
+      const {
+        mediaList: {
+          [key]: { isValid = true }
+        }
+      } = this.state;
+      if (!isValid) isPostValid = false;
     });
-    return isValid && !isWaitingValue;
+    return isPostValid;
   }
 
   render() {

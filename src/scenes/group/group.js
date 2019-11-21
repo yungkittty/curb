@@ -50,7 +50,7 @@ class Group extends React.Component {
   getData({ isGroupPostShowed }) {
     const { isFeed } = this.state;
     const { groupPostsId } = this.props;
-    return [{}, ...(isGroupPostShowed ? [0] : []), ...(isFeed ? groupPostsId : [])];
+    return [{}, ...(isGroupPostShowed ? [0] : []), ...(isFeed ? groupPostsId : [{}])];
   }
 
   getGroupGradient() {

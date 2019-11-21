@@ -18,7 +18,7 @@ const GroupListItemInfo = ({
       text={t("infosTitleUser")}
       data={groupUsersId}
       keyExtractor={groupUserId => groupUserId}
-      renderItem={({ item: userId }) => (
+      renderItem={({ item: { userId } }) => (
         <InfoListItemUser
           // eslint-disable-line
           userId={userId}

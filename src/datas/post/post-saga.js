@@ -69,25 +69,25 @@ function* postLikePostRequestSaga(action) {
 
 function* postMediasRequestSaga(payload) {
   try {
-    const { postId, mediaList } = payload;
+    const { postId, mediaListData } = payload;
     const mediaActionsToWait = [];
-    if (mediaList.text) {
-      mediaActionsToWait.push(yield fork(postMediaTextRequestSaga, { postId, data: mediaList.text.value }));
+    if (mediaListData.text) {
+      mediaActionsToWait.push(yield fork(postMediaTextRequestSaga, { postId, data: mediaListData.text }));
     }
-    for (let i = 0; mediaList.image && i < _.size(mediaList.image.value); i += 1) {
+    for (let i = 0; mediaListData.image && i < _.size(mediaListData.image); i += 1) {
       mediaActionsToWait.push(
         yield fork(postMediaImageRequestSaga, {
           postId,
-          data: mediaList.image.value[i]
+          data: mediaListData.image[i]
         })
       );
     }
-    if (mediaList.video) {
-      mediaActionsToWait.push(yield fork(postMediaVideoRequestSaga, { postId, data: mediaList.video.value }));
+    if (mediaListData.video) {
+      mediaActionsToWait.push(yield fork(postMediaVideoRequestSaga, { postId, data: mediaListData.video }));
     }
-    if (mediaList.location) {
+    if (mediaListData.location) {
       mediaActionsToWait.push(
-        yield fork(postMediaLocationRequestSaga, { postId, data: mediaList.location.value })
+        yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location })
       );
     }
     for (let i = 0; i < mediaActionsToWait.length; i += 1) yield join(mediaActionsToWait[i]);
@@ -100,11 +100,11 @@ function* postMediasRequestSaga(payload) {
 
 function* postPostRequestSaga(action) {
   try {
-    const { groupId, mediaList } = action.payload;
+    const { groupId, mediaListData } = action.payload;
     const {
       data: { id: postId }
     } = yield call(postApi.postPost, { groupId });
-    yield call(postMediasRequestSaga, { postId, mediaList });
+    yield call(postMediasRequestSaga, { postId, mediaListData });
     const successAlert = { type: "success", message: "postPosted", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
     yield put(postActions.postPostSuccess({ groupId, postId }));
