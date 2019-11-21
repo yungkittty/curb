@@ -61,10 +61,13 @@ class Discovery extends React.Component {
       >
         <Card
           userId="5d373369c8acd2001d90bf55"
-          dropdownMenu={{
-            icon: "minus",
-            onClick: mediaType => console.log(`remove the ${mediaType} component`)
-          }}
+          cardMenu={[
+            {
+              icon: "trash",
+              text: "delete",
+              onClick: mediaType => console.log(`remove the ${mediaType} component`)
+            }
+          ]}
           postMediaTypes={[
             { type: "text", onChange: () => console.log("text") },
             {
@@ -73,7 +76,7 @@ class Discovery extends React.Component {
             },
             { type: "poll", onClick: () => console.log("add poll to mediaList") }
           ]}
-          mediaList={{ event: <Loader />, poll: <Loader /> }}
+          mediaList={{ event: { component: <Loader /> }, poll: { component: <Loader /> } }}
         />
       </Container>
     );
