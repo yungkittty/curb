@@ -7,8 +7,8 @@ import ImageUser from "../../../../../image-user";
 import OriginInfos from "./components/origin-infos";
 import withUser from "../../../../../../hocs/with-user";
 
-const FooterOrigin = ({ cardSize, userId, userName, mediaDateCreation, isPost, theme }) => (
-  <OriginContainer cardSize={cardSize} isSubtitle={!!mediaDateCreation}>
+const FooterOrigin = ({ cardSize, userId, userName, postDateCreation, isPost, theme }) => (
+  <OriginContainer cardSize={cardSize} isSubtitle={!!postDateCreation}>
     <Button
       // eslint-disable-line
       onClick={`/users/${userId}`}
@@ -23,7 +23,7 @@ const FooterOrigin = ({ cardSize, userId, userName, mediaDateCreation, isPost, t
       theme={theme}
       userId={userId}
       infosTitle={userName}
-      mediaDateCreation={mediaDateCreation}
+      postDateCreation={postDateCreation}
       isPost={isPost}
     />
   </OriginContainer>
@@ -32,7 +32,7 @@ const FooterOrigin = ({ cardSize, userId, userName, mediaDateCreation, isPost, t
 FooterOrigin.defaultProps = {
   userId: undefined,
   userName: undefined,
-  mediaDateCreation: undefined
+  postDateCreation: undefined
 };
 
 FooterOrigin.propTypes = {
@@ -47,7 +47,7 @@ FooterOrigin.propTypes = {
   }).isRequired,
   userId: PropTypes.string,
   userName: PropTypes.string,
-  mediaDateCreation: PropTypes.string,
+  postDateCreation: PropTypes.string,
   isPost: PropTypes.bool.isRequired
 };
 

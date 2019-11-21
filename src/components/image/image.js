@@ -22,12 +22,13 @@ class Image extends React.Component {
       objectFit,
       ...others
     } = this.props;
-    const isImageFromApi = src.substr(0, 9) === "/contents";
+    const isImageString = typeof src === "string";
+    const isImageApi = isImageString && src.substr(0, 9) === "/contents";
     return (
       /* eslint-disable-next-line */
       <img
         {...others}
-        src={isImageFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src}
+        src={isImageApi ? `${process.env.REACT_APP_API_URL}${src}` : src}
         onLoadStart={event => {
           // eslint-disable-next-line
           onLoadStart && onLoadStart(event);
@@ -56,7 +57,7 @@ Image.defaultProps = {
 };
 
 Image.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   onLoadStart: PropTypes.func,
   onLoad: PropTypes.func,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),

@@ -37,7 +37,7 @@ Dropdown.defaultProps = {
 };
 
 Dropdown.propTypes = {
-  style: PropTypes.array, // eslint-disable-line
+  style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]), // eslint-disable-line
   className: PropTypes.string,
   optionsList: PropTypes.arrayOf(
     PropTypes.shape({ text: PropTypes.string, icon: PropTypes.string, onClick: PropTypes.func })

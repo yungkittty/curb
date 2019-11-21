@@ -1,23 +1,22 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
-import { withTheme } from "styled-components";
-import Loader from "../../../../../../components/loader";
+import ListFlat from "../../../../../../components/list-flat";
 import AppModalSceneTitle from "../../../../../../components/app-modal-scene-title";
 import AppModalSceneError from "../../../../../../components/app-modal-scene-error";
-import AppModalSceneList from "../../../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../../../components/app-modal-scene-list-item";
 import GroupCreate3 from "../group-create-3"; // eslint-disable-line
-import groupCreate4ThemesData from "./group-create-4-themes-data";
+import GroupCreate5 from "../group-create-5"; // eslint-disable-line
+import modulesList from "../../../../../../utils/modules-list/modules-list";
 import withAppModal from "../../../../../../hocs/with-app-modal";
 
 class GroupCreate4 extends Component {
   constructor(props) {
     super(props);
     const {
-      // eslint-disble-line
+      // eslint-disable-line
+      enableAppModalEnterEvent,
       setAppModalHeaderSteps,
       setAppModalHeaderLeftButtons,
       setAppModalHeaderBackButton,
@@ -28,22 +27,16 @@ class GroupCreate4 extends Component {
     this.listFlat = React.createRef();
 
     this.goToPrev = this.goToPrev.bind(this);
-    this.submit = this.submit.bind(this);
+    this.goToNext = this.goToNext.bind(this);
     this.checkForm = this.checkForm.bind(this);
     this.checkInput = this.checkInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
-    setAppModalHeaderSteps({ currentStep: 4, steps: 4 });
+    enableAppModalEnterEvent();
+    setAppModalHeaderSteps({ currentStep: 4, steps: 5 });
     setAppModalHeaderLeftButtons([{ icon: "arrow-left", onClick: this.goToPrev }]);
     setAppModalHeaderBackButton({ onClick: this.goToPrev });
-    setAppModalFooterButton({ text: t("common:finish"), onClick: this.submit });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { isFetchingGroups, enableAppModalButtons, disableAppModalButtons } = this.props;
-    if (prevProps.isFetchingGroups === isFetchingGroups) return;
-    if (isFetchingGroups) disableAppModalButtons();
-    else enableAppModalButtons();
+    setAppModalFooterButton({ text: t("common:finish"), onClick: this.goToNext });
   }
 
   goToPrev() {
@@ -51,39 +44,19 @@ class GroupCreate4 extends Component {
     setAppModalScene({ scene: GroupCreate3, direction: -1 });
   }
 
-  submit() {
+  goToNext() {
+    const { setAppModalScene } = this.props;
     if (!this.checkForm()) {
       const { current: listFlat } = this.listFlat;
       listFlat.scrollToOffset({ offset: 0 });
-      return;
-    }
-
-    const {
-      // eslint-disable-line
-      postGroup,
-      history,
-      groupName,
-      discoverability,
-      modules,
-      groupTheme,
-      avatar
-    } = this.props;
-
-    postGroup({
-      history,
-      name: groupName.value,
-      status: discoverability.value,
-      mediaTypes: modules.value,
-      theme: groupTheme.value,
-      avatar: avatar.value
-    });
+    } else setAppModalScene({ scene: GroupCreate5, direction: 1 });
   }
 
   checkForm() {
     const {
-      groupTheme: { value }
+      groupModules: { value }
     } = this.props;
-    return this.checkInput("groupTheme", value);
+    return this.checkInput("groupModules", value);
   }
 
   checkInput(id, value) {
@@ -95,48 +68,46 @@ class GroupCreate4 extends Component {
 
   handleChange(clickValue) {
     const {
-      groupTheme: { value }
+      groupModules: { value }
     } = this.props;
-    const newValue = clickValue === value ? "" : clickValue;
-    this.checkInput("groupTheme", newValue);
+    const newValue = value;
+    if (_.includes(newValue, clickValue)) _.pull(newValue, clickValue);
+    else newValue.push(clickValue);
+    this.checkInput("groupModules", newValue);
   }
 
   render() {
     const {
       t,
-      theme,
-      isFetchingGroups,
-      groupTheme: { value, error }
+      groupModules: { value, error }
     } = this.props;
 
-    return isFetchingGroups ? (
-      <Loader />
-    ) : (
-      <AppModalSceneList
+    return (
+      <ListFlat
         ref={this.listFlat}
-        data={groupCreate4ThemesData}
+        contentContainerStyle={{ position: "relative" }}
+        data={modulesList}
+        extraData={{ value }}
         keyExtractor={item => item.id}
         ListHeaderComponent={() => (
           <React.Fragment>
             <AppModalSceneTitle>
               {/* eslint-disable-line */}
-              {t("theme")}
+              {t("groupModules")}
             </AppModalSceneTitle>
             <AppModalSceneError>
               {/* eslint-disable-line */}
-              {error && t(`validation:theme.${error}`)}
+              {error && t(`validation:modules.${error}`)}
             </AppModalSceneError>
           </React.Fragment>
         )}
         renderItem={({ item }) => (
           <AppModalSceneListItem
-            title={t(`themeList.${item.id}`)}
-            titleColor="#ffffff"
-            backgroundColor={theme[item.themeColor]}
-            normalHoverColor
-            selected={item.id === value}
-            selectionType
-            selectedColorAlternate
+            icon={item.icon}
+            title={t(`modules:${item.id}.title`)}
+            description={t(`modules:${item.id}.description`)}
+            selected={_.includes(value, item.id)}
+            selectionType={false}
             onClick={() => this.handleChange(item.id)}
           />
         )}
@@ -146,39 +117,23 @@ class GroupCreate4 extends Component {
 }
 
 GroupCreate4.defaultProps = {
-  groupName: { value: "", error: undefined },
-  discoverability: { value: undefined, error: undefined },
-  modules: { value: [], error: undefined },
-  groupTheme: { value: "", error: undefined },
-  avatar: { value: { data: undefined, file: undefined }, error: undefined }
+  groupModules: { value: [], error: undefined }
 };
 
 GroupCreate4.propTypes = {
-  enableAppModalButtons: PropTypes.func.isRequired,
-  disableAppModalButtons: PropTypes.func.isRequired,
+  enableAppModalEnterEvent: PropTypes.func.isRequired,
   setAppModalHeaderSteps: PropTypes.func.isRequired,
   setAppModalHeaderLeftButtons: PropTypes.func.isRequired,
   setAppModalHeaderBackButton: PropTypes.func.isRequired,
   setAppModalScene: PropTypes.func.isRequired,
   setAppModalSceneData: PropTypes.func.isRequired,
   setAppModalFooterButton: PropTypes.func.isRequired,
-  isFetchingGroups: PropTypes.bool.isRequired,
-  hideAppModal: PropTypes.func.isRequired,
-  postGroup: PropTypes.func.isRequired, 
-  theme: PropTypes.object.isRequired, // eslint-disable-line
-  history: PropTypes.object.isRequired, // eslint-disable-line
-  groupName: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
-  discoverability: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
-  modules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
-  groupTheme: PropTypes.shape({ value: PropTypes.string, error: PropTypes.string }),
-  avatar: PropTypes.shape({ value: PropTypes.shape({ data: PropTypes.string, file: PropTypes.object }), error: PropTypes.string }),
+  groupModules: PropTypes.shape({ value: PropTypes.arrayOf(PropTypes.string), error: PropTypes.string }),
   t: PropTypes.func.isRequired
 };
 
 export default _.flowRight([
   // eslint-disable-line
   withAppModal,
-  withRouter,
-  withTranslation("groupCreate"),
-  withTheme
+  withTranslation("groupOptions")
 ])(GroupCreate4);

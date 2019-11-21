@@ -24,7 +24,7 @@ class HeaderButton extends React.Component {
       location: { state: { inviteToken } = {} }
     } = this.props;
     if (!isCurrentUserIn) {
-      postGroupJoin({ id: groupId, inviteToken });
+      postGroupJoin({ id: groupId, token: inviteToken });
     } else {
       postGroupUnjoin({ id: groupId });
     }

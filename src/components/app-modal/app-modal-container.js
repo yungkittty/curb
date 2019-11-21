@@ -5,6 +5,7 @@ import { appModalActions, appModalSelectors } from "../../datas/app-modal";
 const mapStateToProps = state => ({
   isAppModalShowed: appModalSelectors.isAppModalShowed(state),
   areAppModalButtonsDisabled: appModalSelectors.areAppModalButtonsDisabled(state),
+  isAppModalEnterEventEnabled: appModalSelectors.isAppModalEnterEventEnabled(state),
   appModalHeaderText: appModalSelectors.getAppModalHeaderText(state),
   appModalHeaderCurrentStep: appModalSelectors.getAppModalHeaderCurrentStep(state),
   appModalHeaderSteps: appModalSelectors.getAppModalHeaderSteps(state),

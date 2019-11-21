@@ -5,7 +5,7 @@ const OriginContainer = styled(Container)`
   display: flex;
   flex-flow: row;
   height: 60px;
-  margin-top: ${({ cardSize }) => (cardSize.size === "small" ? 10 : 15)}px;
+  margin-top: ${({ cardSize }) => (cardSize.size === "small" ? 8 : 13)}px;
   margin-right: 15px;
 `;
 

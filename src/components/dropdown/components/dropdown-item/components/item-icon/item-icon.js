@@ -1,9 +1,6 @@
-import styled from "styled-components";
+import React from "react";
 import Icon from "../../../../../icon";
 
-const ItemIcon = styled(Icon).attrs(() => ({ size: "extra-extra-small" }))`
-  position: absolute;
-  right: 20px;
-`;
+const ItemIcon = props => <Icon {...props} size="extra-extra-small" />;
 
 export default ItemIcon;

@@ -11,6 +11,7 @@ import { usersReducer as users } from "../../datas/users";
 import { groupsReducer as groups } from "../../datas/groups";
 import { mediasReducer as medias } from "../../datas/medias";
 import { discoveryReducer as discovery } from "../../datas/discovery";
+import { feedbackReducer as feedback } from "../../datas/feedback";
 
 const rootReducer = combineReducers({
   appModal,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   users,
   groups,
   medias,
-  discovery
+  discovery,
+  feedback
 });
 
 export default rootReducer;

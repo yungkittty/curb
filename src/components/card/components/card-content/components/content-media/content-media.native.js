@@ -24,12 +24,15 @@ class ContentMedia extends React.Component {
   }
 
   componentDidMount() {
+    const { mediaList, isPost } = this.props;
+    if (_.size(mediaList) <= 1 || isPost) return;
     this.startTimer();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { selectedIndex } = this.props;
+    const { mediaList, isPost, selectedIndex } = this.props;
     const { isDragging } = this.state;
+    if (_.size(mediaList) <= 1 || isPost) return;
     if (!prevState.isDragging && prevState.isDragging !== isDragging) clearTimeout(this.setTimeoutFunc);
     if (selectedIndex !== prevProps.selectedIndex) this.startTimer();
   }
@@ -50,15 +53,15 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { postType, mediaList, onIndexChange } = this.props;
-    if (postType || _.size(mediaList) === 0) return;
+    const { mediaList, onIndexChange } = this.props;
     this.setTimeoutFunc = setTimeout(() => {
       const { selectedIndex } = this.props;
+      const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
       this.listFlatRef.current.scrollToIndex({
-        index: _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1,
+        index: newIndex,
         viewOffset: 0
       });
-      onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1);
+      onIndexChange(newIndex);
     }, mediaRandomSlider(15000, 30000));
   }
 
@@ -73,7 +76,7 @@ class ContentMedia extends React.Component {
 
   render() {
     const { mediaList, cardSize, groupName, ...others } = this.props;
-    const data = _.map(mediaList, (component, type) => ({ component, type }));
+    const data = _.map(mediaList, (mediaData, type) => ({ component: mediaData.component, type }));
     // eslint-disable-next-line
     return _.size(mediaList) > 0 ? (
       <ListFlat
@@ -108,9 +111,9 @@ ContentMedia.defaultProps = {
 };
 
 ContentMedia.propTypes = {
-  postType: PropTypes.bool.isRequired,
   onIndexChange: PropTypes.func.isRequired,
   mediaList: PropTypes.object, // eslint-disable-line
+  isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
     size: PropTypes.string,

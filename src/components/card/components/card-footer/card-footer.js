@@ -4,6 +4,7 @@ import FooterContainer from "./components/footer-container";
 import FooterOrigin from "./components/footer-origin";
 import FooterTextInput from "./components/footer-text-input";
 import FooterText from "./components/footer-text";
+import FooterMenu from "./components/footer-menu";
 
 class CardFooter extends React.Component {
   constructor(props) {
@@ -14,12 +15,22 @@ class CardFooter extends React.Component {
 
   render() {
     const { isExtended } = this.state;
-    const { cardSize, userId, textDescription, isPost, postText, ...others } = this.props;
+    const {
+      cardSize,
+      userId,
+      textDescription,
+      isNoTextDescriptionPlaceholder,
+      isPost,
+      postText,
+      haveMenu,
+      onMenuClick,
+      ...others
+    } = this.props;
     return (
       <FooterContainer cardSize={cardSize}>
-        {!!userId && <FooterOrigin cardSize={cardSize} userId={userId} isPost={isPost} {...others} />}
+        {!!userId && <FooterOrigin {...others} cardSize={cardSize} userId={userId} isPost={isPost} />}
         {isPost ? (
-          postText && <FooterTextInput isMultiline {...postText} />
+          postText && <FooterTextInput {...postText} isMultiline />
         ) : (
           <FooterText
             cardSize={cardSize}
@@ -29,6 +40,7 @@ class CardFooter extends React.Component {
             isExtended={isExtended}
           />
         )}
+        {haveMenu && <FooterMenu onMenuClick={onMenuClick} />}
       </FooterContainer>
     );
   }
@@ -37,6 +49,7 @@ class CardFooter extends React.Component {
 CardFooter.defaultProps = {
   userId: undefined,
   textDescription: undefined,
+  isNoTextDescriptionPlaceholder: undefined,
   postText: undefined
 };
 
@@ -51,8 +64,11 @@ CardFooter.propTypes = {
   }).isRequired,
   userId: PropTypes.string,
   textDescription: PropTypes.string,
+  isNoTextDescriptionPlaceholder: PropTypes.bool,
   isPost: PropTypes.bool.isRequired,
-  postText: PropTypes.shape({ value: PropTypes.string, onChange: PropTypes.func })
+  postText: PropTypes.shape({ value: PropTypes.string, onChange: PropTypes.func }),
+  haveMenu: PropTypes.bool.isRequired,
+  onMenuClick: PropTypes.func.isRequired
 };
 
 export default CardFooter;
