@@ -3,11 +3,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import TextDescription from "./components/text-description";
+import TextDescriptionPlaceholderContainer from "./components/text-description-placeholder-container";
 import TextDescriptionPlaceholder from "./components/text-description-placeholder";
 import TextReadMore from "./components/text-read-more";
 import { platformBools } from "../../../../../../configurations/platform";
 
-const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended }) => {
+const FooterText = ({
+  t,
+  cardSize,
+  userId,
+  textDescription,
+  isNoTextDescriptionPlaceholder,
+  onClick,
+  isExtended
+}) => {
   /* eslint-disable */
   const maxLength = platformBools.isWeb
     ? cardSize.size === "small"
@@ -22,6 +31,7 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
     : 130;
   /* eslint-enable */
   const isTextTrimmed = textDescription.length <= maxLength;
+  // eslint-disable-next-line
   return textDescription ? (
     <TextDescription isTextTrimmed={isTextTrimmed}>
       {isTextTrimmed || isExtended
@@ -31,14 +41,19 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
     </TextDescription>
-  ) : (
-    _.times(3, index => <TextDescriptionPlaceholder key={index} />)
-  );
+  ) : isNoTextDescriptionPlaceholder ? (
+    <TextDescriptionPlaceholderContainer>
+      {_.times(3, index => (
+        <TextDescriptionPlaceholder key={index} />
+      ))}
+    </TextDescriptionPlaceholderContainer>
+  ) : null;
 };
 
 FooterText.defaultProps = {
   userId: undefined,
-  textDescription: undefined,
+  textDescription: "",
+  isNoTextDescriptionPlaceholder: false,
   isExtended: false
 };
 
@@ -54,6 +69,7 @@ FooterText.propTypes = {
   }).isRequired,
   userId: PropTypes.string,
   textDescription: PropTypes.string,
+  isNoTextDescriptionPlaceholder: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   isExtended: PropTypes.bool
 };

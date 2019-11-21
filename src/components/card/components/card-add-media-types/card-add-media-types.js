@@ -21,7 +21,7 @@ const CardAddMediaTypes = ({ theme, postMediaTypes }) => (
             {/* eslint-disable-next-line */}
             {type === "image" ? (
               <InputImage
-                onSelect={onSelect}
+                onSelect={(data, file) => onSelect({ type, data, file })}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -33,7 +33,7 @@ const CardAddMediaTypes = ({ theme, postMediaTypes }) => (
             ) : /* eslint-disable-next-line */
             type === "video" ? (
               <InputVideo
-                onSelect={onSelect}
+                onSelect={(data, file) => onSelect({ type, data, file })}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -44,7 +44,7 @@ const CardAddMediaTypes = ({ theme, postMediaTypes }) => (
               />
             ) : onClick ? (
               <Button
-                onClick={onClick}
+                onClick={() => onClick({ type })}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -63,7 +63,7 @@ const CardAddMediaTypes = ({ theme, postMediaTypes }) => (
 CardAddMediaTypes.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
   postMediaTypes: PropTypes.arrayOf(
-    PropTypes.shape({ type: PropTypes.string.isRequired, onClick: PropTypes.func, onSelect: PropTypes.func })
+    PropTypes.shape({ type: PropTypes.string.isRequired, onSelect: PropTypes.func, onClick: PropTypes.func })
   ).isRequired
 };
 
