@@ -19,6 +19,7 @@ class CardFooter extends React.Component {
       cardSize,
       userId,
       textDescription,
+      isNoTextDescriptionPlaceholder,
       isPost,
       postText,
       haveMenu,
@@ -27,9 +28,9 @@ class CardFooter extends React.Component {
     } = this.props;
     return (
       <FooterContainer cardSize={cardSize}>
-        {!!userId && <FooterOrigin cardSize={cardSize} userId={userId} isPost={isPost} {...others} />}
+        {!!userId && <FooterOrigin {...others} cardSize={cardSize} userId={userId} isPost={isPost} />}
         {isPost ? (
-          postText && <FooterTextInput isMultiline {...postText} />
+          postText && <FooterTextInput {...postText} isMultiline />
         ) : (
           <FooterText
             cardSize={cardSize}
@@ -48,6 +49,7 @@ class CardFooter extends React.Component {
 CardFooter.defaultProps = {
   userId: undefined,
   textDescription: undefined,
+  isNoTextDescriptionPlaceholder: undefined,
   postText: undefined
 };
 
@@ -62,6 +64,7 @@ CardFooter.propTypes = {
   }).isRequired,
   userId: PropTypes.string,
   textDescription: PropTypes.string,
+  isNoTextDescriptionPlaceholder: PropTypes.bool,
   isPost: PropTypes.bool.isRequired,
   postText: PropTypes.shape({ value: PropTypes.string, onChange: PropTypes.func }),
   haveMenu: PropTypes.bool.isRequired,

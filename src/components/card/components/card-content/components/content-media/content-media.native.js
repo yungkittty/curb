@@ -24,15 +24,15 @@ class ContentMedia extends React.Component {
   }
 
   componentDidMount() {
-    const { mediaList } = this.props;
-    if (_.size(mediaList) <= 1) return;
+    const { mediaList, isPost } = this.props;
+    if (_.size(mediaList) <= 1 || isPost) return;
     this.startTimer();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { mediaList, selectedIndex } = this.props;
+    const { mediaList, isPost, selectedIndex } = this.props;
     const { isDragging } = this.state;
-    if (_.size(mediaList) <= 1) return;
+    if (_.size(mediaList) <= 1 || isPost) return;
     if (!prevState.isDragging && prevState.isDragging !== isDragging) clearTimeout(this.setTimeoutFunc);
     if (selectedIndex !== prevProps.selectedIndex) this.startTimer();
   }
@@ -76,7 +76,7 @@ class ContentMedia extends React.Component {
 
   render() {
     const { mediaList, cardSize, groupName, ...others } = this.props;
-    const data = _.map(mediaList, (component, type) => ({ component, type }));
+    const data = _.map(mediaList, (mediaData, type) => ({ component: mediaData.component, type }));
     // eslint-disable-next-line
     return _.size(mediaList) > 0 ? (
       <ListFlat
@@ -113,6 +113,7 @@ ContentMedia.defaultProps = {
 ContentMedia.propTypes = {
   onIndexChange: PropTypes.func.isRequired,
   mediaList: PropTypes.object, // eslint-disable-line
+  isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
     size: PropTypes.string,
