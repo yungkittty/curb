@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import withAppModal from "../../../../hocs/with-app-modal";
-import AppModalSceneTitle from "../../../../components/app-modal-scene-title";
 import AppModalSceneList from "../../../../components/app-modal-scene-list";
 import AppModalSceneListItem from "../../../../components/app-modal-scene-list-item";
 /* eslint-disable-next-line */
@@ -12,18 +11,18 @@ import groupSettingsData from "./group-settings-data";
 class GroupSettings extends Component {
   constructor(props) {
     super(props);
-    this.renderListHeader = this.renderListHeader.bind(this);
-    this.renderItem = this.renderItem.bind(this);
-  }
 
-  renderListHeader() {
-    const { t } = this.props;
-    return (
-      <AppModalSceneTitle>
-        {/* eslint-disable-line */}
-        {t("groupSettings")}
-      </AppModalSceneTitle>
-    );
+    const {
+      // eslint-disable-line
+      enableAppModalEnterEvent,
+      setAppModalHeaderText,
+      t
+    } = this.props;
+
+    this.renderItem = this.renderItem.bind(this);
+
+    enableAppModalEnterEvent();
+    setAppModalHeaderText({ text: t("groupSettings") });
   }
 
   renderItem({ item }) {
@@ -48,7 +47,6 @@ class GroupSettings extends Component {
         ref={this.listFlat}
         data={groupSettingsData}
         keyExtractor={item => item.id}
-        ListHeaderComponent={this.renderListHeader}
         renderItem={this.renderItem}
       />
     );
@@ -56,8 +54,10 @@ class GroupSettings extends Component {
 }
 
 GroupSettings.propTypes = {
-  t: PropTypes.func.isRequired,
-  setAppModalScene: PropTypes.func.isRequired
+  enableAppModalEnterEvent: PropTypes.func.isRequired,
+  setAppModalHeaderText: PropTypes.func.isRequired,
+  setAppModalScene: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default _.flowRight([

@@ -7,6 +7,8 @@ const withAppModal = WrappedComponent => {
     hideAppModal: () => dispatch(appModalActions.hideAppModal()),
     enableAppModalButtons: () => dispatch(appModalActions.enableAppModalButtons()),
     disableAppModalButtons: () => dispatch(appModalActions.disableAppModalButtons()),
+    enableAppModalEnterEvent: () => dispatch(appModalActions.enableAppModalEnterEvent()),
+    disableAppModalEnterEvent: () => dispatch(appModalActions.disableAppModalEnterEvent()),
     setAppModalHeaderText: payload => dispatch(appModalActions.setAppModalHeaderText(payload)),
     setAppModalHeaderSteps: payload => dispatch(appModalActions.setAppModalHeaderSteps(payload)),
     setAppModalHeaderLeftButtons: payload => dispatch(appModalActions.setAppModalHeaderLeftButtons(payload)),

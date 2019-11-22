@@ -10,7 +10,7 @@ class CardContent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedIndex: 0, isMenuShowed: false };
+    this.state = { selectedIndex: 0, isContentMenuShowed: false };
   }
 
   componentDidUpdate(prevProps) {
@@ -21,35 +21,34 @@ class CardContent extends React.Component {
   }
 
   render() {
-    const { mediaList, dropdownMenu, postType, ...others } = this.props;
-    const { selectedIndex, isMenuShowed } = this.state;
+    const { mediaList, contentMenuButton, ...others } = this.props;
+    const { selectedIndex, isContentMenuShowed } = this.state;
     return (
       <React.Fragment>
         <ContentMedia
           mediaList={mediaList}
           selectedIndex={selectedIndex}
           onIndexChange={index => this.setState({ selectedIndex: index })}
-          postType={postType}
           {...others}
         />
-        {mediaList && (
+        {_.size(mediaList) > 0 && (
           <ContentMediaList
             mediaList={mediaList}
             selectedIndex={selectedIndex}
             onClick={index => this.setState({ selectedIndex: index })}
           />
         )}
-        {dropdownMenu && (
+        {contentMenuButton && (
           <ContentMenu
-            dropdownMenu={dropdownMenu}
-            onMenuClick={() => this.setState({ isMenuShowed: true })}
+            contentMenuButton={contentMenuButton}
+            onMenuClick={() => this.setState({ isContentMenuShowed: true })}
             selectedMediaType={_.keys(mediaList)[selectedIndex]}
           />
         )}
-        {isMenuShowed && (
+        {isContentMenuShowed && (
           <ContentDropdown
-            optionsList={dropdownMenu.optionsList}
-            onClose={() => this.setState({ isMenuShowed: false })}
+            optionsList={contentMenuButton.optionsList}
+            onClose={() => this.setState({ isContentMenuShowed: false })}
           />
         )}
       </React.Fragment>
@@ -58,16 +57,15 @@ class CardContent extends React.Component {
 }
 
 CardContent.defaultProps = {
-  dropdownMenu: undefined
+  contentMenuButton: undefined
 };
 
 CardContent.propTypes = {
   mediaList: PropTypes.object.isRequired, // eslint-disable-line
-  dropdownMenu: PropTypes.shape({
+  contentMenuButton: PropTypes.shape({
     icon: PropTypes.string,
-    optionsList: PropTypes.array
-  }),
-  postType: PropTypes.bool.isRequired
+    onClick: PropTypes.func
+  })
 };
 
 export default CardContent;

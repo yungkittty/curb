@@ -1,18 +1,26 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { withTheme } from "styled-components";
 import LoaderContainer from "./components/loader-container";
-import LoaderIcon from "./components/loader-icon";
+import LoaderCircle from "./components/loader-circle";
+import LoaderCircleContainer from "./components/loader-circle-container";
 
-const Loader = ({ theme }) => (
+const Loader = ({ size }) => (
   <LoaderContainer>
-    <LoaderIcon icon="spinner" size="small" color={theme.secondaryColor} />
+    <LoaderCircleContainer diameter={size}>
+      {innerDiameter =>
+        _.times(8, index => <LoaderCircle key={index} index={index} innerDiameter={innerDiameter} />)
+      }
+    </LoaderCircleContainer>
   </LoaderContainer>
 );
 
-Loader.propTypes = {
-  /* eslint-disable-next-line */
-  theme: PropTypes.object.isRequired
+Loader.defaultProps = {
+  size: "small"
 };
 
-export default withTheme(Loader);
+Loader.propTypes = {
+  size: PropTypes.string
+};
+
+export default Loader;

@@ -5,6 +5,7 @@ import MediaItemContainer from "./components/media-item-container";
 import MediaGroupPreview from "./components/media-group-preview";
 import MediaPlaceholder from "./components/media-placeholder";
 import ListFlat from "../../../../../list-flat";
+import mediaRandomSlider from "./utils/media-random-slider";
 
 class ContentMedia extends React.Component {
   constructor(props) {
@@ -22,13 +23,16 @@ class ContentMedia extends React.Component {
   }
 
   componentDidMount() {
+    const { mediaList, isPost } = this.props;
+    if (_.size(mediaList) <= 1 || isPost) return;
     this.startTimer();
   }
 
   componentDidUpdate(prevProps) {
-    const { selectedIndex } = this.props;
+    const { mediaList, isPost, selectedIndex } = this.props;
     if (selectedIndex !== prevProps.selectedIndex) {
       this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 });
+      if (_.size(mediaList) <= 1 || isPost) return;
       clearTimeout(this.setTimeoutFunc);
       this.startTimer();
     }
@@ -44,26 +48,28 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { postType, onIndexChange } = this.props;
-    if (postType) return;
+    const { mediaList, onIndexChange } = this.props;
     this.setTimeoutFunc = setTimeout(() => {
-      const { mediaList, selectedIndex } = this.props;
-      const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
-      onIndexChange(newIndex);
-    }, 2000);
+      const { selectedIndex } = this.props;
+      onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1);
+    }, mediaRandomSlider(15000, 30000));
   }
 
-  renderItem({ item: { component } }) {
-    const { cardSize } = this.props;
-    return <MediaItemContainer cardSize={cardSize}>{component}</MediaItemContainer>;
+  renderItem({ item: { component }, index }) {
+    const { selectedIndex, cardSize } = this.props;
+    return (
+      <MediaItemContainer cardSize={cardSize}>
+        {React.cloneElement(component, { isShowedInCard: index === selectedIndex })}
+      </MediaItemContainer>
+    );
   }
 
   render() {
     const { mediaList, cardSize, groupName, ...others } = this.props;
 
-    const data = _.map(mediaList, (component, type) => ({ component, type }));
+    const data = _.map(mediaList, (mediaData, type) => ({ component: mediaData.component, type }));
     // eslint-disable-next-line
-    return mediaList ? (
+    return _.size(mediaList) > 0 ? (
       <ListFlat
         horizontal
         ref={this.listFlatRef}
@@ -75,7 +81,7 @@ class ContentMedia extends React.Component {
         renderItem={this.renderItem}
       />
     ) : groupName ? (
-      <MediaGroupPreview groupName={groupName} {...others} />
+      <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
       <MediaPlaceholder />
     );
@@ -92,9 +98,9 @@ ContentMedia.defaultProps = {
 };
 
 ContentMedia.propTypes = {
-  postType: PropTypes.bool.isRequired,
   onIndexChange: PropTypes.func.isRequired,
   mediaList: PropTypes.object, // eslint-disable-line
+  isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
     size: PropTypes.string,

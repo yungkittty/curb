@@ -3,11 +3,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTranslation } from "react-i18next";
 import TextDescription from "./components/text-description";
+import TextDescriptionPlaceholderContainer from "./components/text-description-placeholder-container";
 import TextDescriptionPlaceholder from "./components/text-description-placeholder";
 import TextReadMore from "./components/text-read-more";
 import { platformBools } from "../../../../../../configurations/platform";
 
-const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended }) => {
+const FooterText = ({
+  t,
+  cardSize,
+  userId,
+  textDescription,
+  isNoTextDescriptionPlaceholder,
+  onClick,
+  isExtended
+}) => {
   /* eslint-disable */
   const maxLength = platformBools.isWeb
     ? cardSize.size === "small"
@@ -21,29 +30,35 @@ const FooterText = ({ t, cardSize, userId, textDescription, onClick, isExtended 
     ? 70
     : 130;
   /* eslint-enable */
+  const isTextTrimmed = textDescription.length <= maxLength;
+  // eslint-disable-next-line
   return textDescription ? (
-    <TextDescription>
-      {textDescription.length <= maxLength || isExtended
+    <TextDescription isTextTrimmed={isTextTrimmed}>
+      {isTextTrimmed || isExtended
         ? textDescription
         : `${textDescription.substring(0, maxLength).trim()}... `}
       {textDescription.length > maxLength && !isExtended && (
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
     </TextDescription>
-  ) : (
-    _.times(3, () => <TextDescriptionPlaceholder />)
-  );
+  ) : isNoTextDescriptionPlaceholder ? (
+    <TextDescriptionPlaceholderContainer>
+      {_.times(3, index => (
+        <TextDescriptionPlaceholder key={index} />
+      ))}
+    </TextDescriptionPlaceholderContainer>
+  ) : null;
 };
 
 FooterText.defaultProps = {
   userId: undefined,
-  textDescription: undefined,
+  textDescription: "",
+  isNoTextDescriptionPlaceholder: false,
   isExtended: false
 };
 
 FooterText.propTypes = {
   t: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired, // eslint-disable-line
   cardSize: PropTypes.shape({
     size: PropTypes.string,
     isCardExtended: PropTypes.bool,
@@ -54,6 +69,7 @@ FooterText.propTypes = {
   }).isRequired,
   userId: PropTypes.string,
   textDescription: PropTypes.string,
+  isNoTextDescriptionPlaceholder: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   isExtended: PropTypes.bool
 };

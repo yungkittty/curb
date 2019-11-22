@@ -24,6 +24,7 @@ const enCommon = {
   pin: "Pin",
   report: "Report",
   post: "Post",
+  selectOption: "Select an option",
   selectImage: "Select an image",
   selectVideo: "Select a video",
   takePhoto: "Take a photo",

@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import ButtonContainer from "./components/button-container";
 import CircleContainer from "../../../circle-container";
-import Text from "../../../text";
+import ButtonText from "./components/button-text";
 import Icon from "../../../icon";
 
 const CardFloatingButton = ({
   theme,
-  cardSize,
   likeNumber,
   floatingButtonColor,
   onFloatingButtonClick,
@@ -19,7 +18,6 @@ const CardFloatingButton = ({
     <CircleContainer
       diameter="small"
       as={ButtonContainer}
-      cardSize={cardSize}
       onClick={onFloatingButtonClick}
       disabled={floatingButtonDisabled}
     >
@@ -27,12 +25,12 @@ const CardFloatingButton = ({
         icon={likeNumber ? "heart" : "paper-plane"}
         size="extra-small"
         color={contentColor}
-        style={!likeNumber && { position: "relative", left: -2, top: -1 }}
+        style={!likeNumber ? { position: "relative", left: -2, top: -1 } : undefined}
       />
       {likeNumber && (
-        <Text weight={700} type="h6" style={{ color: contentColor, marginTop: 2 }}>
+        <ButtonText weight={700} color={contentColor}>
           {likeNumber}
-        </Text>
+        </ButtonText>
       )}
     </CircleContainer>
   );
@@ -46,14 +44,6 @@ CardFloatingButton.defaultProps = {
 
 CardFloatingButton.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  cardSize: PropTypes.shape({
-    size: PropTypes.string,
-    isCardExtended: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    contentHeight: PropTypes.number,
-    footerHeight: PropTypes.number,
-    floatingTopPosition: PropTypes.number
-  }).isRequired,
   likeNumber: PropTypes.string,
   floatingButtonColor: PropTypes.string,
   onFloatingButtonClick: PropTypes.func.isRequired,

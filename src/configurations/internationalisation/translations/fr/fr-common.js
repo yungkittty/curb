@@ -23,6 +23,7 @@ const frCommon = {
   pin: "Épingler",
   report: "Signaler",
   post: "Publier",
+  selectOption: "Sélectionner une option",
   selectImage: "Choisir une imge",
   selectVideo: "Choisir une vidéo",
   takePhoto: "Prendre une photo",

@@ -17,12 +17,19 @@ const frAppAlert = {
     textPosted: "Votre texte a été posté",
     videoPosted: "Votre video a été postée"
   },
+  feedback: {
+    Success: "Votre feedback a été envoyé",
+    UNKNOWN: "Une erreur est survenue en envoyant votre feedback"
+  },
+  accountDuplicatedName: "Votre nom d'utilisateur est déjà pris",
+  accountDuplicatedEmail: "Votre adresse mail est déja prise",
   accountCreated: "Votre compte a été créé",
   groupCreated: "Votre groupe a été créé",
   groupPatched: "Votre groupe a été mis à jour",
   groupDeleted: "Votre groupe a été supprimé",
   signOutSuccess: "Vous avez été déconnecté",
-  signOutFailure: "Une erreur est survenue lors de la déconnexion"
+  signOutFailure: "Une erreur est survenue lors de la déconnexion",
+  others: "Il y a eu un problème !"
 };
 
 export default frAppAlert;

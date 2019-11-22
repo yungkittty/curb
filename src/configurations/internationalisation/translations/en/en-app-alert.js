@@ -17,12 +17,19 @@ const enAppAlert = {
     textPosted: "Your text has been posted",
     videoPosted: "Your video has been posted"
   },
-  accountCreated: "Your account have been created",
-  groupCreated: "Your group have been created",
-  groupPatched: "Your group have been updated",
-  groupDeleted: "Your group have been deleted",
-  signOutSuccess: "You have been disconnected",
-  signOutFailure: "An error has occured while signing out"
+  feedback: {
+    Success: "Your feedback has been sent",
+    UNKNOWN: "An error occured while sending your feedback"
+  },
+  accountDuplicatedName: "Your account username is already taken",
+  accountDuplicatedEmail: "Your account mail address is already taken",
+  accountCreated: "Your account has been created",
+  groupCreated: "Your group has been created",
+  groupPatched: "Your group has been updated",
+  groupDeleted: "Your group has been deleted",
+  signOutSuccess: "You has been disconnected",
+  signOutFailure: "An error has occured while signing out",
+  other: "Something went wrong!"
 };
 
 export default enAppAlert;

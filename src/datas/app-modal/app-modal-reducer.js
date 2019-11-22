@@ -25,6 +25,19 @@ const areButtonsDisabled = (state = false, action) => {
   }
 };
 
+const isEnterEventEnabled = (state = true, action) => {
+  switch (action.type) {
+    case appModalActionsTypes.SHOW_APP_MODAL:
+    case appModalActionsTypes.ENABLE_APP_MODAL_ENTER_EVENT:
+    case appModalActionsTypes.SET_APP_MODAL_SCENE:
+      return true;
+    case appModalActionsTypes.DISABLE_APP_MODAL_ENTER_EVENT:
+      return false;
+    default:
+      return state;
+  }
+};
+
 const headerText = (state = "", action) => {
   switch (action.type) {
     case appModalActionsTypes.SHOW_APP_MODAL:
@@ -156,6 +169,7 @@ const footerOnClick = (state = null, action) => {
 const appModalReducer = combineReducers({
   isShowed,
   areButtonsDisabled,
+  isEnterEventEnabled,
   headerText,
   headerCurrentStep,
   headerSteps,
