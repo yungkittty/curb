@@ -6,6 +6,7 @@ import CardVideo from "../../../../components/card-video";
 import CardMap from "../../../../components/card-map";
 import GroupCardContainer from "../group-card-container";
 import PostItemRule from "./components/post-item-rule";
+import Loader from "../../../../components/loader";
 
 class GroupPostItem extends React.Component {
   constructor(props) {
@@ -186,6 +187,7 @@ class GroupPostItem extends React.Component {
           onFloatingButtonClick={this.submitPost}
           floatingButtonColor={groupThemeColor}
           floatingButtonDisabled={!this.checkIsPostValid() || isPostFetching}
+          floatingButtonComponent={isPostFetching && <Loader size="extra-small" />}
           contentMenuButton={{ icon: "minus", onClick: this.removeContent }}
         />
         <PostItemRule />

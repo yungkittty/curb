@@ -4,9 +4,11 @@ import { TextInput, Platform } from "react-native";
 
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.native.js
 
-const InputContainer = styled(({ type, onChange, id, isMultiline, ...others }) => (
+const InputContainer = styled(({ forwardedRef, type, onChange, id, isMultiline, ...others }) => (
+  // console.log(forwardedRef);
   <TextInput
     {...others}
+    ref={forwardedRef}
     textAlignVertical="top"
     keyboardType={type === "email" ? "email-address" : undefined}
     secureTextEntry={type === "password"}
@@ -22,4 +24,16 @@ const InputContainer = styled(({ type, onChange, id, isMultiline, ...others }) =
   color: ${({ theme }) => theme.fontColor};
 `;
 
-export default InputContainer;
+export default React.forwardRef(
+  // eslint-disable-line
+  (props, forwardedRef) => {
+    console.log(forwardedRef);
+    return (
+      <InputContainer
+        // eslint-disable-line
+        {...props}
+        forwardedRef={forwardedRef}
+      />
+    );
+  }
+);

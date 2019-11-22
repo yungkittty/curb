@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { all, fork, join, select, takeLatest, call, put } from "redux-saga/effects";
+import { all, fork, join, select, takeLatest, call, put, takeEvery } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import postActionsTypes from "./post-actions-types";
 import postActions from "./post-actions";
@@ -120,7 +120,7 @@ const postSaga = all([
   takeNormalize(postActionsTypes.GET_POST_REQUEST, getPostRequestSaga),
   takeLatest(postActionsTypes.POST_PIN_POST_REQUEST, postPinPostRequestSaga),
   takeLatest(postActionsTypes.POST_REPORT_POST_REQUEST, postReportPostRequestSaga),
-  takeLatest(postActionsTypes.DELETE_POST_REQUEST, deletePostRequestSaga),
+  takeEvery(postActionsTypes.DELETE_POST_REQUEST, deletePostRequestSaga),
   takeLatest(postActionsTypes.POST_LIKE_POST_REQUEST, postLikePostRequestSaga),
   takeLatest(postActionsTypes.POST_POST_REQUEST, postPostRequestSaga),
   takeLatest(postActionsTypes.POST_MEDIAS_REQUEST, postMediasRequestSaga)

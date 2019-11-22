@@ -11,6 +11,7 @@ const CardFloatingButton = ({
   likeNumber,
   floatingButtonColor,
   onFloatingButtonClick,
+  floatingButtonComponent,
   floatingButtonDisabled
 }) => {
   const contentColor = floatingButtonDisabled ? theme.primaryColor : floatingButtonColor;
@@ -21,16 +22,22 @@ const CardFloatingButton = ({
       onClick={onFloatingButtonClick}
       disabled={floatingButtonDisabled}
     >
-      <Icon
-        icon={likeNumber ? "heart" : "paper-plane"}
-        size="extra-small"
-        color={contentColor}
-        style={!likeNumber ? { position: "relative", left: -2, top: -1 } : undefined}
-      />
-      {likeNumber && (
-        <ButtonText weight={700} color={contentColor}>
-          {likeNumber}
-        </ButtonText>
+      {floatingButtonComponent ? (
+        React.cloneElement(floatingButtonComponent)
+      ) : (
+        <React.Fragment>
+          <Icon
+            icon={likeNumber ? "heart" : "paper-plane"}
+            size="extra-small"
+            color={contentColor}
+            style={!likeNumber ? { position: "relative", left: -2, top: -1 } : undefined}
+          />
+          {likeNumber && (
+            <ButtonText weight={700} color={contentColor}>
+              {likeNumber}
+            </ButtonText>
+          )}
+        </React.Fragment>
       )}
     </CircleContainer>
   );
@@ -39,6 +46,7 @@ const CardFloatingButton = ({
 CardFloatingButton.defaultProps = {
   likeNumber: undefined,
   floatingButtonColor: undefined,
+  floatingButtonComponent: undefined,
   floatingButtonDisabled: false
 };
 
@@ -47,6 +55,7 @@ CardFloatingButton.propTypes = {
   likeNumber: PropTypes.string,
   floatingButtonColor: PropTypes.string,
   onFloatingButtonClick: PropTypes.func.isRequired,
+  floatingButtonComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   floatingButtonDisabled: PropTypes.bool
 };
 
