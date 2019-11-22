@@ -11,7 +11,9 @@ import Loader from "../../components/loader";
 import Container from "../../components/container";
 import ImageGallery from "../../components/image-gallery";
 import Video from "../../components/video";
-import Poll from "../../components/poll";
+//import Poll from "../../components/poll";
+
+import CreateMediaPoll from "../create-media/scenes/create-media-poll";
 
 /* eslint-enable */
 
@@ -42,12 +44,12 @@ class Discovery extends React.Component {
     });
   }
 
-  addPoll(pollData) {
+  /* addPoll(pollData) {
     const { mediaList } = this.state;
     this.setState({
       mediaList: { ...mediaList, poll: <Poll style={{ flex: 1 }} src={pollData} /> }
     });
-  }
+  } */
 
   removeContent(mediaType) {
     const { mediaList, imageList } = this.state;
@@ -85,7 +87,7 @@ class Discovery extends React.Component {
             },
             { type: "poll", onClick: () => console.log("add poll to mediaList") }
           ]}
-          mediaList={{ event: <Loader />, poll: <Loader /> }}
+          mediaList={{ event: {component: <Loader />}, poll: {component: <CreateMediaPoll />} }}
         />
       </Container>
     );
