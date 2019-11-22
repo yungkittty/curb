@@ -31,9 +31,8 @@ class GroupPostItem extends React.Component {
   componentDidUpdate(prevProps) {
     const { isPostFetching } = this.props;
     if (prevProps.isPostFetching && !isPostFetching) {
+      this.setState({ mediaList: {} }); // eslint-disable-line
       this.cardRef.current.clearTextInput();
-      // eslint-disable-next-line
-      this.setState({ mediaList: {} });
     }
   }
 
@@ -172,6 +171,7 @@ class GroupPostItem extends React.Component {
     const { mediaList } = this.state;
     const {
       // eslint-disable-line
+      isPostFetching,
       currentUserId,
       groupThemeColor,
       groupMediaTypes
@@ -185,7 +185,7 @@ class GroupPostItem extends React.Component {
           mediaList={mediaList}
           onFloatingButtonClick={this.submitPost}
           floatingButtonColor={groupThemeColor}
-          floatingButtonDisabled={!this.checkIsPostValid()}
+          floatingButtonDisabled={!this.checkIsPostValid() || isPostFetching}
           contentMenuButton={{ icon: "minus", onClick: this.removeContent }}
         />
         <PostItemRule />
