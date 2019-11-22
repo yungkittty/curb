@@ -1,21 +1,23 @@
 import React from "react";
+import PropTypes from "prop-types";
+import inputClear from "./components/input-clear";
 import InputContainer from "./components/input-container";
 
-// https://github.com/yungkittty/curb/blob/develop/src/components/text/text.js
+const Input = ({ forwardedRef, ...others }) => <InputContainer {...others} ref={forwardedRef} />;
 
-class Input extends React.Component {
-  constructor(props) {
-    super(props);
-    this.inputRef = React.createRef();
-  }
+Input.propTypes = {
+  forwardedRef: PropTypes.object.isRequired // eslint-disable-line
+};
 
-  clear() {
-    this.inputRef.current.value = "";
-  }
-
-  render() {
-    return <InputContainer {...this.props} ref={this.inputRef} />;
-  }
-}
-
-export default Input;
+export default inputClear(
+  React.forwardRef(
+    // eslint-disable-line
+    (props, forwardedRef) => (
+      <Input
+        // eslint-disable-line
+        {...props}
+        forwardedRef={forwardedRef}
+      />
+    )
+  )
+);

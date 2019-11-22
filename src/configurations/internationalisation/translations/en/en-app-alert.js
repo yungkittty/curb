@@ -29,6 +29,8 @@ const enAppAlert = {
   groupDeleted: "Your group has been deleted",
   signOutSuccess: "You has been disconnected",
   signOutFailure: "An error has occured while signing out",
+  postPosted: "Your post has been posted",
+  postDeleted: "Your post has been deleted",
   other: "Something went wrong!"
 };
 

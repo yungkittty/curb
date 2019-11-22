@@ -29,6 +29,8 @@ const frAppAlert = {
   groupDeleted: "Votre groupe a été supprimé",
   signOutSuccess: "Vous avez été déconnecté",
   signOutFailure: "Une erreur est survenue lors de la déconnexion",
+  postPosted: "Votre post a été posté",
+  postDeleted: "Votre post a été supprimé",
   others: "Il y a eu un problème !"
 };
 
