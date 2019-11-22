@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
@@ -51,4 +52,8 @@ FooterOrigin.propTypes = {
   isPost: PropTypes.bool.isRequired
 };
 
-export default withTheme(withUser(FooterOrigin));
+export default _.flowRight([
+  // eslint-disable-next-line
+  withTheme,
+  withUser
+])(FooterOrigin);

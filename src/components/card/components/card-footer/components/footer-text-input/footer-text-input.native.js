@@ -17,4 +17,4 @@ const InputContainer = styled(Input).attrs(({ t }) => ({
   }}px;
 `;
 
-export default withTranslation("common")(InputContainer);
+export default withTranslation("common", { withRef: true })(InputContainer);

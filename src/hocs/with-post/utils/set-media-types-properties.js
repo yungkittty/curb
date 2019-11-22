@@ -15,7 +15,7 @@ const setMediaTypesProperties = mediaTypesList => {
         const { image: { value = [] } = {} } = mediaList;
         const newImageList = [...value, { data }];
         _.assign(mediaList, {
-          [type]: { component: <CardImageGallery imagesData={newImageList} />, value: newImageList }
+          [type]: { component: <CardImageGallery imageList={newImageList} />, value: newImageList }
         });
         break;
       }

@@ -11,7 +11,6 @@ class CardMap extends CurbModule {
 
     this.state = { isShowed: false, latitude: undefined, longitude: undefined };
     this.setInitialPosition = this.setInitialPosition.bind(this);
-    this.locationMap = React.createRef();
   }
 
   componentDidMount() {
@@ -68,7 +67,6 @@ class CardMap extends CurbModule {
     ) : (
       <MapContainer
         {...others}
-        ref={this.locationMap}
         latitude={latitude}
         longitude={longitude}
         googleMapProps={{

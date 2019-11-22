@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import withUser from "../../hocs/with-user";
 import CardContainer from "./components/card-container";
 import CardBorderContainer from "./components/card-border-container";
 import CardContent from "./components/card-content";
@@ -9,14 +8,18 @@ import CardAddMediaTypes from "./components/card-add-media-types";
 import CardFooter from "./components/card-footer";
 import CardMenu from "./components/card-menu";
 import CardFloatingButton from "./components/card-floating-button";
-import getCardSize from "./utils/get-card-size";
 import Button from "../button";
+import getCardSize from "./utils/get-card-size";
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { isMenuShowed: false };
+    this.textInputRef = React.createRef();
+  }
+
+  clearTextInput() {
+    this.textInputRef.current.clear();
   }
 
   render() {
@@ -63,6 +66,7 @@ class Card extends React.Component {
             <CardAddMediaTypes postMediaTypes={postMediaTypes} />
           )}
           <CardFooter
+            ref={this.textInputRef}
             cardSize={cardSize}
             textDescription={
               groupDescription || (_.size(mediaList) > 0 ? mediaList.text && mediaList.text.value : undefined)
@@ -129,7 +133,4 @@ Card.propTypes = {
   )
 };
 
-export default _.flowRight([
-  // eslint-disable-line
-  withUser
-])(Card);
+export default Card;

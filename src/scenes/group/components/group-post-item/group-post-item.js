@@ -13,6 +13,8 @@ class GroupPostItem extends React.Component {
 
     this.state = { mediaList: {} };
 
+    this.cardRef = React.createRef();
+
     this.onModuleIsValid = this.onModuleIsValid.bind(this);
     this.getPostMediaTypes = this.getPostMediaTypes.bind(this);
     this.pushToMediaList = this.pushToMediaList.bind(this);
@@ -28,11 +30,11 @@ class GroupPostItem extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { isPostFetching } = this.props;
-    if (prevProps.isPostFetching && !isPostFetching)
-      // call all refs with clear();
-
+    if (prevProps.isPostFetching && !isPostFetching) {
+      this.cardRef.current.clearTextInput();
       // eslint-disable-next-line
       this.setState({ mediaList: {} });
+    }
   }
 
   onChangeText({ target: { value } }) {
@@ -154,6 +156,7 @@ class GroupPostItem extends React.Component {
   checkIsPostValid() {
     const { mediaList } = this.state;
     let isPostValid = true;
+    if (_.size(mediaList) === 0) return false;
     _.forEach(_.keys(mediaList), key => {
       const {
         mediaList: {
@@ -176,6 +179,7 @@ class GroupPostItem extends React.Component {
     return (
       <React.Fragment>
         <GroupCardContainer
+          ref={this.cardRef}
           userId={currentUserId}
           postMediaTypes={this.getPostMediaTypes(groupMediaTypes)}
           mediaList={mediaList}
