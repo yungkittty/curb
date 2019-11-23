@@ -8,7 +8,6 @@ const InputClear = WrappedComponent =>
     }
 
     clear() {
-      console.log(this.inputRef.current);
       this.inputRef.current.clear();
     }
 
