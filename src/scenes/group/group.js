@@ -115,19 +115,22 @@ class Group extends React.Component {
 
   renderListItemMedia({ item: postId }) {
     const { t, theme, currentUserId, groupCreatorId, groupId, groupTheme, groupMediaTypes } = this.props;
+    const groupThemeColor = theme[`group${_.capitalize(groupTheme)}Color`] || "transparent";
     return postId === 0 ? (
       <GroupPostItem
         currentUserId={currentUserId}
         groupId={groupId}
-        groupThemeColor={theme[`group${_.capitalize(groupTheme)}Color`] || "transparent"}
+        groupThemeColor={groupThemeColor}
         groupMediaTypes={groupMediaTypes}
       />
     ) : (
       <GroupListItemMedia
         // eslint-disable-line
         t={t}
+        theme={theme}
         currentUserId={currentUserId}
         groupCreatorId={groupCreatorId}
+        groupThemeColor={groupThemeColor}
         postId={postId}
       />
     );

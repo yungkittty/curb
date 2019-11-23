@@ -1,7 +1,9 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { postActions, postSelectors } from "../../datas/post";
+import { currentUserSelectors } from "../../datas/current-user";
 import setMediaTypesProperties from "./utils/set-media-types-properties";
 
 const withPost = WrappedComponent => {
@@ -39,14 +41,24 @@ const withPost = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const postId = ownProps.postId; // eslint-disable-line
     const post = postSelectors.getPostById(state, postId);
+    const currentUserId = currentUserSelectors.getCurrentUserId(state);
     if (!post) return { postId };
     const mediaList = setMediaTypesProperties(post.medias);
-    const { creatorId: postCreatorId, createdAt: postDateCreation, errorCode: postErrorCode } = post;
+    const {
+      isFetching: isPostFetching,
+      creatorId: postCreatorId,
+      createdAt: postDateCreation,
+      reaction: postReaction,
+      errorCode: postErrorCode
+    } = post;
     // eslint-disable-next-line
     return {
       postId,
+      isPostFetching,
       postCreatorId,
       postDateCreation,
+      postReactionsNumber: _.size(postReaction),
+      isCurrentUserLiked: _.includes(postReaction, currentUserId),
       postErrorCode,
       mediaList
     };
@@ -65,6 +77,8 @@ const withPost = WrappedComponent => {
     postId: "",
     postCreatorId: "",
     postDateCreation: "",
+    postReactionsNumber: 0,
+    isCurrentUserLiked: false,
     mediaList: {},
     postErrorCode: ""
   };
@@ -74,6 +88,8 @@ const withPost = WrappedComponent => {
     postId: PropTypes.string,
     postCreatorId: PropTypes.string,
     postDateCreation: PropTypes.string,
+    postReactionsNumber: PropTypes.number,
+    isCurrentUserLiked: PropTypes.bool,
     mediaList: PropTypes.object, // eslint-disable-line
     postErrorCode: PropTypes.string,
     getPost: PropTypes.func.isRequired

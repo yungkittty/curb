@@ -43,6 +43,16 @@ const byId = (state = {}, action) => {
           errorCode: action.payload.errorCode
         }
       };
+    case postActionsTypes.POST_LIKE_POST_REQUEST:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          reaction: _.includes(state[action.payload.id].reaction, action.payload.currentUserId)
+            ? _.without(state[action.payload.id].reaction, action.payload.currentUserId)
+            : [...state[action.payload.id].reaction, action.payload.currentUserId]
+        }
+      };
     default:
       return state;
   }

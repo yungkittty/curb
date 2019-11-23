@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
@@ -15,6 +16,7 @@ const CardFloatingButton = ({
   floatingButtonDisabled
 }) => {
   const contentColor = floatingButtonDisabled ? theme.primaryColor : floatingButtonColor;
+  const isLike = !_.isUndefined(likeNumber);
   return (
     <CircleContainer
       diameter="small"
@@ -27,12 +29,12 @@ const CardFloatingButton = ({
       ) : (
         <React.Fragment>
           <Icon
-            icon={likeNumber ? "heart" : "paper-plane"}
+            icon={isLike ? "heart" : "paper-plane"}
             size="extra-small"
             color={contentColor}
-            style={!likeNumber ? { position: "relative", left: -2, top: -1 } : undefined}
+            style={!isLike ? { position: "relative", left: -2, top: -1 } : undefined}
           />
-          {likeNumber && (
+          {isLike && (
             <ButtonText weight={700} color={contentColor}>
               {likeNumber}
             </ButtonText>
