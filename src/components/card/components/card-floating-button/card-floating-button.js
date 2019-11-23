@@ -54,7 +54,7 @@ CardFloatingButton.defaultProps = {
 
 CardFloatingButton.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  likeNumber: PropTypes.string,
+  likeNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   floatingButtonColor: PropTypes.string,
   onFloatingButtonClick: PropTypes.func.isRequired,
   floatingButtonComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
