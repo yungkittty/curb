@@ -34,6 +34,8 @@ class Card extends React.Component {
       onFloatingButtonClick,
       groupId,
       cardMenu,
+      HeaderComponent,
+      FooterComponent,
       ...others
     } = this.props;
 
@@ -52,6 +54,7 @@ class Card extends React.Component {
         as={groupId && Button}
         onClick={groupId && `/groups/${groupId}`}
       >
+        {HeaderComponent && React.cloneElement(HeaderComponent)}
         <CardBorderContainer>
           {cardSize.isCardExtended && (
             <CardContent
@@ -95,6 +98,7 @@ class Card extends React.Component {
             {...others}
           />
         )}
+        {FooterComponent && React.cloneElement(FooterComponent)}
       </CardContainer>
     );
   }
@@ -109,7 +113,9 @@ Card.defaultProps = {
   groupDescription: undefined,
   onFloatingButtonClick: undefined,
   groupId: undefined,
-  cardMenu: undefined
+  cardMenu: undefined,
+  HeaderComponent: undefined,
+  FooterComponent: undefined
 };
 
 Card.propTypes = {
@@ -130,7 +136,9 @@ Card.propTypes = {
   groupId: PropTypes.string,
   cardMenu: PropTypes.arrayOf(
     PropTypes.shape({ text: PropTypes.string, icon: PropTypes.icon, onClick: PropTypes.func })
-  )
+  ),
+  HeaderComponent: PropTypes.object, // eslint-disable-line
+  FooterComponent: PropTypes.object // eslint-disable-line
 };
 
 export default Card;

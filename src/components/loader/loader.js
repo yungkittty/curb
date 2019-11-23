@@ -5,8 +5,8 @@ import LoaderContainer from "./components/loader-container";
 import LoaderCircle from "./components/loader-circle";
 import LoaderCircleContainer from "./components/loader-circle-container";
 
-const Loader = ({ size }) => (
-  <LoaderContainer>
+const Loader = ({ size, noFlex }) => (
+  <LoaderContainer noFlex={noFlex}>
     <LoaderCircleContainer diameter={size}>
       {innerDiameter =>
         _.times(8, index => <LoaderCircle key={index} index={index} innerDiameter={innerDiameter} />)
@@ -16,11 +16,13 @@ const Loader = ({ size }) => (
 );
 
 Loader.defaultProps = {
-  size: "small"
+  size: "small",
+  noFlex: false
 };
 
 Loader.propTypes = {
-  size: PropTypes.string
+  size: PropTypes.string,
+  noFlex: PropTypes.bool
 };
 
 export default Loader;

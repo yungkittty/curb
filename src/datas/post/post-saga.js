@@ -50,7 +50,7 @@ function* deletePostRequestSaga(action) {
     yield call(postApi.deletePost, { id });
     const successAlert = { type: "success", message: "postDeleted", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
-    yield put(postActions.deletePostSuccess({ postId: id, groupId }));
+    yield put(postActions.deletePostSuccess({ id, groupId }));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(postActions.getPostFailure({ id: action.payload.id, errorCode }));

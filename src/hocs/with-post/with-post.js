@@ -41,6 +41,7 @@ const withPost = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const postId = ownProps.postId; // eslint-disable-line
     const post = postSelectors.getPostById(state, postId);
+    const deletingPosts = postSelectors.deletingPosts(state);
     const currentUserId = currentUserSelectors.getCurrentUserId(state);
     if (!post) return { postId };
     const mediaList = setMediaTypesProperties(post.medias);
@@ -60,6 +61,7 @@ const withPost = WrappedComponent => {
       postReactionsNumber: _.size(postReaction),
       isCurrentUserLiked: _.includes(postReaction, currentUserId),
       postErrorCode,
+      deletingPosts,
       mediaList
     };
   };
@@ -79,8 +81,9 @@ const withPost = WrappedComponent => {
     postDateCreation: "",
     postReactionsNumber: 0,
     isCurrentUserLiked: false,
-    mediaList: {},
-    postErrorCode: ""
+    postErrorCode: "",
+    deletingPosts: [],
+    mediaList: {}
   };
 
   WithPost.propTypes = {
@@ -90,8 +93,9 @@ const withPost = WrappedComponent => {
     postDateCreation: PropTypes.string,
     postReactionsNumber: PropTypes.number,
     isCurrentUserLiked: PropTypes.bool,
-    mediaList: PropTypes.object, // eslint-disable-line
     postErrorCode: PropTypes.string,
+    deletingPosts: PropTypes.arrayOf(PropTypes.string),
+    mediaList: PropTypes.object, // eslint-disable-line
     getPost: PropTypes.func.isRequired
   };
 

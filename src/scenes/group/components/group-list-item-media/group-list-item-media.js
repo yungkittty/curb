@@ -1,5 +1,9 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import Loader from "../../../../components/loader";
+import MediaHeaderContainer from "./components/media-header-container";
+import MediaHeaderText from "./components/media-header-text";
 import GroupCardContainer from "../group-card-container";
 import withPost from "../../../../hocs/with-post";
 import shortNumberFormatter from "../../../../utils/short-number-formatter";
@@ -13,6 +17,7 @@ class GroupListItemMedia extends React.Component {
     this.onReport = this.onReport.bind(this);
     this.onLike = this.onLike.bind(this);
     this.getCardMenuOptions = this.getCardMenuOptions.bind(this);
+    this.getHeaderComponent = this.getHeaderComponent.bind(this);
   }
 
   onPin() {
@@ -46,6 +51,19 @@ class GroupListItemMedia extends React.Component {
     return cardMenu;
   }
 
+  getHeaderComponent() {
+    const { t, deletingPosts, postId } = this.props;
+
+    return _.includes(deletingPosts, postId) ? (
+      <MediaHeaderContainer>
+        <Loader size="extra-extra-small" noFlex />
+        <MediaHeaderText>{t("deletingPost")}</MediaHeaderText>
+      </MediaHeaderContainer>
+    ) : (
+      undefined
+    );
+  }
+
   render() {
     const {
       theme,
@@ -58,6 +76,7 @@ class GroupListItemMedia extends React.Component {
     return (
       <GroupCardContainer
         {...others}
+        HeaderComponent={this.getHeaderComponent()}
         userId={postCreatorId}
         cardMenu={this.getCardMenuOptions()}
         onFloatingButtonClick={this.onLike}
@@ -71,6 +90,7 @@ class GroupListItemMedia extends React.Component {
 GroupListItemMedia.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
+  postId: PropTypes.string.isRequired,
   postPinPost: PropTypes.func.isRequired,
   postReportPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
@@ -81,7 +101,7 @@ GroupListItemMedia.propTypes = {
   groupThemeColor: PropTypes.string.isRequired,
   postReactionsNumber: PropTypes.number.isRequired,
   isCurrentUserLiked: PropTypes.bool.isRequired,
-  postId: PropTypes.string.isRequired
+  deletingPosts: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default withPost(GroupListItemMedia);

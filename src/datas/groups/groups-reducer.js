@@ -160,7 +160,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.groupId]: {
           ...state[action.payload.groupId],
-          posts: _.without(state[action.payload.groupId].posts, action.payload.postId)
+          posts: _.without(state[action.payload.groupId].posts, action.payload.id)
         }
       };
     default:

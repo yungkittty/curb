@@ -14,6 +14,18 @@ const isFetching = (state = false, action) => {
   }
 };
 
+const deletingPosts = (state = [], action) => {
+  switch (action.type) {
+    case postActionsTypes.DELETE_POST_REQUEST:
+      return [...state, action.payload.id];
+    case postActionsTypes.DELETE_POST_SUCCESS:
+    case postActionsTypes.DELETE_POST_FAILURE:
+      return _.without(state, action.payload.id);
+    default:
+      return state;
+  }
+};
+
 const byId = (state = {}, action) => {
   switch (action.type) {
     case postActionsTypes.GET_POST_REQUEST:
@@ -82,6 +94,7 @@ const errorCode = (state = "", action) => {
 const postReducer = combineReducers({
   // eslint-disable-line
   isFetching,
+  deletingPosts,
   byId,
   allIds,
   errorCode
