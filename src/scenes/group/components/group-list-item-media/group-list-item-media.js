@@ -53,7 +53,6 @@ class GroupListItemMedia extends React.Component {
 
   getHeaderComponent() {
     const { t, deletingPosts, postId } = this.props;
-
     return _.includes(deletingPosts, postId) ? (
       <MediaHeaderContainer>
         <Loader size="extra-extra-small" noFlex />

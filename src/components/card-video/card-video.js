@@ -20,7 +20,7 @@ CardVideo.defaultProps = {
 };
 
 CardVideo.propTypes = {
-  file: PropTypes.string.isRequired,
+  file: PropTypes.object.isRequired, // eslint-disable-line
   data: PropTypes.string.isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };

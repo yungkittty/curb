@@ -32,9 +32,14 @@ class ContentMedia extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     const { mediaList, isPost, selectedIndex } = this.props;
     const { isDragging } = this.state;
-    if (_.size(mediaList) <= 1 || isPost) return;
+    if (_.size(mediaList) <= 1) return;
     if (!prevState.isDragging && prevState.isDragging !== isDragging) clearTimeout(this.setTimeoutFunc);
-    if (selectedIndex !== prevProps.selectedIndex) this.startTimer();
+    if (selectedIndex !== prevProps.selectedIndex) {
+      setTimeout(() => this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 }));
+      if (_.size(mediaList) <= 1 || isPost) return;
+      clearTimeout(this.setTimeoutFunc);
+      this.startTimer();
+    }
   }
 
   onViewableItemsChanged(value) {
