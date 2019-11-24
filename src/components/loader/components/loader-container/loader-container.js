@@ -4,9 +4,9 @@ import Container from "../../../container";
 const LoaderContainer = styled(Container)`
   display: flex;
   z-index: 2;
-  ${({ noFlex }) => (noFlex ? undefined : "align-items: center;")}
+  align-items: center;
   justify-content: center;
-  flex: ${({ noFlex }) => (noFlex ? 0 : 1)};
+  flex: 1;
 `;
 
 export default LoaderContainer;

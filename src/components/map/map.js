@@ -29,11 +29,13 @@ const Map = ({ className, style, googleMapProps, ...others }) => {
         const {
           // eslint-disable-line
           latitude,
-          longitude
+          longitude,
+          onMapLoaded
         } = this.props;
         return (
           <GoogleMap
             {...googleMapProps}
+            onTilesLoaded={() => onMapLoaded()}
             defaultZoom={15}
             defaultCenter={{
               lat: latitude,
@@ -70,7 +72,8 @@ const Map = ({ className, style, googleMapProps, ...others }) => {
 Map.defaultProps = {
   className: undefined,
   style: undefined,
-  forwardedRef: undefined
+  forwardedRef: undefined,
+  onMapLoaded: () => null
 };
 
 Map.propTypes = {
@@ -80,7 +83,8 @@ Map.propTypes = {
   googleMapProps: PropTypes.object, // eslint-disable-line
   onPositionChange: PropTypes.func.isRequired,
   latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired
+  longitude: PropTypes.number.isRequired,
+  onMapLoaded: PropTypes.func
 };
 
 export default Map;

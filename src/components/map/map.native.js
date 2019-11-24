@@ -28,6 +28,7 @@ class Map extends React.Component {
       style,
       latitude,
       longitude,
+      onMapLoaded,
       ...others
     } = this.props;
     return (
@@ -39,6 +40,7 @@ class Map extends React.Component {
       >
         <MapView
           {...others}
+          onMapReady={() => onMapLoaded()}
           style={{ width: "100%", height: "100%" }}
           zoomEnabled
           showsUserLocation
@@ -64,14 +66,16 @@ class Map extends React.Component {
 }
 
 Map.defaultProps = {
-  style: undefined
+  style: undefined,
+  onMapLoaded: () => null
 };
 
 Map.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   onPositionChange: PropTypes.func.isRequired,
   latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired
+  longitude: PropTypes.number.isRequired,
+  onMapLoaded: PropTypes.func
 };
 
 export default Map;

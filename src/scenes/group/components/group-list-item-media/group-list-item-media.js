@@ -1,8 +1,8 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import Loader from "../../../../components/loader";
 import MediaHeaderContainer from "./components/media-header-container";
+import MediaHeaderLoader from "./components/media-header-loader";
 import MediaHeaderText from "./components/media-header-text";
 import GroupCardContainer from "../group-card-container";
 import withPost from "../../../../hocs/with-post";
@@ -55,12 +55,10 @@ class GroupListItemMedia extends React.Component {
     const { t, deletingPosts, postId } = this.props;
     return _.includes(deletingPosts, postId) ? (
       <MediaHeaderContainer>
-        <Loader size="extra-extra-small" noFlex />
+        <MediaHeaderLoader size="extra-extra-small" />
         <MediaHeaderText>{t("deletingPost")}</MediaHeaderText>
       </MediaHeaderContainer>
-    ) : (
-      undefined
-    );
+    ) : null;
   }
 
   render() {

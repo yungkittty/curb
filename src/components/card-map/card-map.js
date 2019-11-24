@@ -2,8 +2,9 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import Geolocation from "react-native-geolocation-service";
-import Loader from "../loader";
+import MapLoader from "./components/map-loader";
 import MapContainer from "./components/map-container";
+import MapSidePadding from "./components/map-side-padding";
 import CurbModule from "../curb-module";
 import { platformBools } from "../../configurations/platform";
 import requestLocation from "../../utils/request-location";
@@ -14,6 +15,7 @@ class CardMap extends CurbModule {
 
     this.state = { isShowed: false, latitude: undefined, longitude: undefined };
     this.setPosition = this.setPosition.bind(this);
+    this.onMapLoaded = this.onMapLoaded.bind(this);
   }
 
   componentDidMount() {
@@ -46,33 +48,42 @@ class CardMap extends CurbModule {
   }
 
   setPosition({ latitude, longitude }) {
-    const { isShowed } = this.state;
-    const { onModuleIsValid } = this.props;
     clearTimeout(this.defaultPositionTimeout);
-    this.setState({ isShowed: true, latitude, longitude });
-    if (!isShowed) onModuleIsValid({ isValid: true });
+    this.setState({ latitude, longitude });
+  }
+
+  onMapLoaded() {
+    const { onModuleIsValid } = this.props;
+    this.setState({ isShowed: true });
+    onModuleIsValid({ isValid: true });
   }
 
   render() {
     const { style, ...others } = this.props;
     const { isShowed, latitude, longitude } = this.state;
-    return !isShowed ? (
-      <Loader />
-    ) : (
-      <MapContainer
-        {...others}
-        latitude={latitude}
-        longitude={longitude}
-        onPositionChange={this.setPosition}
-        googleMapProps={{
-          defaultOptions: {
-            gestureHandling: "cooperative",
-            fullscreenControl: false,
-            streetViewControl: false,
-            mapTypeControl: false
-          }
-        }}
-      />
+    return (
+      <React.Fragment>
+        {!isShowed && <MapLoader />}
+        {latitude && longitude && (
+          <MapContainer
+            {...others}
+            latitude={latitude}
+            longitude={longitude}
+            onPositionChange={this.setPosition}
+            onMapLoaded={this.onMapLoaded}
+            style={{ opacity: +isShowed }}
+            googleMapProps={{
+              defaultOptions: {
+                gestureHandling: "cooperative",
+                fullscreenControl: false,
+                streetViewControl: false,
+                mapTypeControl: false
+              }
+            }}
+          />
+        )}
+        <MapSidePadding />
+      </React.Fragment>
     );
   }
 }
