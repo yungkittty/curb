@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "../../../../../../../../../components/button";
 import Text from "../../../../../../../../../components/text";
 
-const Day = ({ index, day, style, textStyle, onClick }) => (
+const Day = ({ day, style, textStyle, onClick }) => (
   <Button
     style={{
       ...style,
@@ -12,17 +12,16 @@ const Day = ({ index, day, style, textStyle, onClick }) => (
       marginTop: 1,
       textAlign: "center"
     }}
-    onClick={() => onClick(index)}
+    onClick={() => onClick(day)}
   >
     <Text type="h6" weight={700} style={{ ...textStyle }}>
-      {day}
+      {day.getDate()}
     </Text>
   </Button>
 );
 
 Day.propTypes = {
-  index: PropTypes.number.isRequired,
-  day: PropTypes.number.isRequired,
+  day: PropTypes.instanceOf(Date).isRequired,
   onClick: PropTypes.func.isRequired
 };
 

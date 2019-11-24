@@ -10,7 +10,8 @@ const EventHeader = React.forwardRef(({ color }, ref) => (
 ));
 
 EventHeader.propTypes = {
-  color: PropTypes.string.isRequired
+  color: PropTypes.string.isRequired,
+  ref: PropTypes.node.isRequired
 };
 
 export default EventHeader;

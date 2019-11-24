@@ -37,7 +37,7 @@ const MediaEvent = ({ t, eventTitle, eventDate, userList, groupTheme }) => {
         }}
       >
         <Text type="h2" weight={700} style={{ color: "white" }}>
-          {Math.round(Math.abs(eventDate - new Date()) / 8640000)} dqys left
+          {Math.round(Math.abs(eventDate - new Date()) / 8640000)} days left
         </Text>
         <Container
           style={{

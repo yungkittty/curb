@@ -9,18 +9,12 @@ const EventTimepicker = ({ hours, minutes, onChangeHours, onChangeMinutes }) => 
   return (
     <PickerContainer style={{ fontSize: 12, fontWeight: "bold", color: "#4F4F4F" }}>
       <Icon size="extra-extra-small" icon="clock" color="#E0E0E0" style={{ marginRight: 14 }} />
-      <TimepickerNumber
-        type="number-pad"
-        value={hours}
-        onChange={text => onChangeHours(text.target.value)}
-        maxLength={2}
-      />
+      <TimepickerNumber type="number-pad" value={hours} onChange={text => onChangeHours(text.target.value)} />
       <Text style={{ padding: 5, fontSize: 12, fontWeight: "bold" }}>:</Text>
       <TimepickerNumber
         type="number-pad"
         value={minutes}
         onChange={text => onChangeMinutes(text.target.value)}
-        maxLength={2}
       />
     </PickerContainer>
   );

@@ -4,11 +4,12 @@ import { withTranslation } from "react-i18next";
 import withAppModal from "../../hocs/with-app-modal";
 import withCurrentUser from "../../hocs/with-current-user";
 import Card from "../../components/card";
-import CreateMediaEvent from "../../scenes/create-media/scenes/create-media-event";
 // import Loader from "../../components/loader";
 
 /* eslint-disable */
 
+import CreateMediaEvent from "../../scenes/create-media/scenes/create-media-event";
+import MediaEvent from "../group/components/group-list-item-media/components/item-media/components/media-event";
 import Container from "../../components/container";
 import ImageGallery from "../../components/image-gallery";
 import Video from "../../components/video";
@@ -20,6 +21,7 @@ class Discovery extends React.Component {
     super(props);
 
     this.state = { mediaList: {} };
+    this.myRef = React.createRef();
   }
 
   addImage(imageData) {
@@ -39,14 +41,7 @@ class Discovery extends React.Component {
   }
 
   removeContent(mediaType) {
-    const { mediaList, imageList } = this.state;
-
-    if (mediaType === "image") {
-      imageList.pop();
-      this.setState({ imageList });
-      if (_.size(imageList) === 0) delete mediaList.image;
-    } else delete mediaList[mediaType];
-    this.setState({ mediaList });
+    console.log(this.myRef.current.getData());
   }
 
   render() {
@@ -66,7 +61,7 @@ class Discovery extends React.Component {
             {
               icon: "trash",
               text: "delete",
-              onClick: mediaType => console.log(`remove the ${mediaType} component`)
+              onClick: this.removeContent
             }
           ]}
           postMediaTypes={[
@@ -77,7 +72,11 @@ class Discovery extends React.Component {
             },
             { type: "poll", onClick: () => console.log("add poll to mediaList") }
           ]}
-          mediaList={{ event: { component: <CreateMediaEvent onEvenChange={data => console.log(data)} /> } }}
+          mediaList={{
+            event: {
+              component: <CreateMediaEvent ref={this.myRef} onEvenChange={data => console.log(data)} />
+            }
+          }}
         />
         <Card
           userId="5d373369c8acd2001d90bf55"
@@ -96,7 +95,18 @@ class Discovery extends React.Component {
             },
             { type: "poll", onClick: () => console.log("add poll to mediaList") }
           ]}
-          mediaList={{ event: { component: <CreateMediaEvent /> } }}
+          mediaList={{
+            event: {
+              component: (
+                <MediaEvent
+                  eventTitle="My event"
+                  eventDate={new Date()}
+                  userList={["", ""]}
+                  groupTheme="#56CCF2"
+                />
+              )
+            }
+          }}
         />
       </Container>
     );
