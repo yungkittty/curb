@@ -6,7 +6,7 @@ import Loader from "../loader";
 import MapContainer from "./components/map-container";
 import CurbModule from "../curb-module";
 import { platformBools } from "../../configurations/platform";
-import requestLocationPermission from "../../utils/permissions/request-location-permission";
+import requestLocation from "../../utils/request-location";
 
 class CardMap extends CurbModule {
   constructor(props) {
@@ -26,13 +26,7 @@ class CardMap extends CurbModule {
       () => this.setPosition({ latitude: 48.8566, longitude: 2.3522 }),
       5000
     );
-    const { geolocation } = navigator;
-    if (platformBools.isWeb)
-      this.watchId = geolocation.getCurrentPosition(({ coords }) => this.setPosition(coords));
-    else {
-      if (!requestLocationPermission()) return;
-      this.watchId = Geolocation.getCurrentPosition(({ coords }) => this.setPosition(coords));
-    }
+    this.watchId = requestLocation(({ coords }) => this.setPosition(coords));
   }
 
   shouldComponentUpdate(prevProps, prevState) {
