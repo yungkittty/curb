@@ -37,7 +37,6 @@ class ContentMedia extends React.Component {
     if (selectedIndex !== prevProps.selectedIndex) {
       setTimeout(() => this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 }));
       if (_.size(mediaList) <= 1 || isPost) return;
-      clearTimeout(this.setTimeoutFunc);
       this.startTimer();
     }
   }
@@ -58,16 +57,12 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { mediaList, onIndexChange } = this.props;
-    this.setTimeoutFunc = setTimeout(() => {
-      const { selectedIndex } = this.props;
-      const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
-      this.listFlatRef.current.scrollToIndex({
-        index: newIndex,
-        viewOffset: 0
-      });
-      onIndexChange(newIndex);
-    }, mediaRandomSlider(15000, 30000));
+    const { mediaList, selectedIndex, onIndexChange } = this.props;
+    clearTimeout(this.setTimeoutFunc);
+    this.setTimeoutFunc = setTimeout(
+      () => onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1),
+      mediaRandomSlider(15000, 30000)
+    );
   }
 
   renderItem({ item: { component }, index }) {
