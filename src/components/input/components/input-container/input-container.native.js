@@ -21,7 +21,7 @@ const InputContainer = styled(({ forwardRef, type, id, onChange, isMultiline, ..
   font-family: Montserrat-Regular;
   font-size: 16px;
   ${Platform.OS === "android" ? "font-weight: normal;" : ""}
-  ${props => (props.isMultiline ? `line-height: ${16 * 1.5}px;` : "")}
+  ${props => (props.isMultiline ? `line-height: 24px;` : "")}
   color: ${({ theme }) => theme.fontColor};
 `;
 

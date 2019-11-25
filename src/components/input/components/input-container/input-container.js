@@ -10,7 +10,7 @@ const InputContainer = styled.input.attrs(({ isMultiline }) => ({
   border: 0;
   font-family: "Montserrat-Regular";
   font-size: 18px;
-  ${props => (props.isMultiline ? `line-height: ${18 * 1.5}px;` : "")}
+  ${props => (props.isMultiline ? `line-height: 30px;` : "")}
   box-shadow: none;
   color: ${({ theme }) => theme.fontColor};
   resize: none;

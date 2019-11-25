@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import inputClear from "./components/input-clear";
+import inputFunc from "./components/input-func";
 import InputContainer from "./components/input-container";
 
 const Input = ({ forwardedRef, ...others }) => <InputContainer {...others} ref={forwardedRef} />;
@@ -12,7 +12,7 @@ Input.propTypes = {
 
 export default _.flowRight([
   // eslint-disable-line
-  inputClear,
+  inputFunc,
   React.forwardRef
 ])(
   // eslint-disable-line

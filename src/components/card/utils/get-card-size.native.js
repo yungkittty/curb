@@ -9,7 +9,7 @@ const getCardSize = ({ size, isCardExtended, isOnlyPostTextMode }) => {
     isOnlyPostTextMode,
     width,
     contentHeight,
-    footerHeight: 123
+    footerHeight: 111
   };
 };
 

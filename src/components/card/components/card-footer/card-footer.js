@@ -31,7 +31,7 @@ class CardFooter extends React.Component {
       <FooterContainer cardSize={cardSize}>
         {!!userId && <FooterOrigin {...others} cardSize={cardSize} userId={userId} isPost={isPost} />}
         {isPost ? (
-          postText && <FooterTextInput {...postText} ref={forwardedRef} isMultiline />
+          postText && <FooterTextInput {...postText} ref={forwardedRef} isMultiline autoResize />
         ) : (
           <FooterText
             cardSize={cardSize}

@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputClear = WrappedComponent =>
+const InputFunc = WrappedComponent =>
   class extends React.Component {
     constructor(props) {
       super(props);
@@ -8,7 +8,7 @@ const InputClear = WrappedComponent =>
     }
 
     clear() {
-      this.inputRef.current.value = "";
+      this.inputRef.current.clear();
     }
 
     render() {
@@ -16,4 +16,4 @@ const InputClear = WrappedComponent =>
     }
   };
 
-export default InputClear;
+export default InputFunc;

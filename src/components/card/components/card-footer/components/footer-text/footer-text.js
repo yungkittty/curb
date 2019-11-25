@@ -41,7 +41,7 @@ const FooterText = ({
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
     </TextDescription>
-  ) : isNoTextDescriptionPlaceholder ? (
+  ) : !isNoTextDescriptionPlaceholder ? (
     <TextDescriptionPlaceholderContainer>
       {_.times(3, index => (
         <TextDescriptionPlaceholder key={index} />
