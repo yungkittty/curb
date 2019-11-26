@@ -1,4 +1,4 @@
-import Geolocation from "react-native-geolocation-service";
+import Geolocation from "@react-native-community/geolocation";
 
 const requestLocation = callback => {
   Geolocation.setRNConfiguration({ authorizationLevel: "always" });

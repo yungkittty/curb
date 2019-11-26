@@ -1,13 +1,13 @@
 import { PermissionsAndroid } from "react-native";
-import Geolocation from "react-native-geolocation-service";
+import Geolocation from "@react-native-community/geolocation";
 
 async function requestLocation(callback) {
   try {
     const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
     if (!granted === PermissionsAndroid.RESULTS.GRANTED) return;
-    return Geolocation.getCurrentPosition(callback);
+    return Geolocation.getCurrentPosition(callback); // eslint-disable-line
   } catch (err) {
-    return false;
+    return false; // eslint-disable-line
   }
 }
 

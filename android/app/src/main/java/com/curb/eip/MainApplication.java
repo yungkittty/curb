@@ -3,7 +3,7 @@ package com.curb.eip;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
+import com.reactnativecommunity.geolocation.GeolocationPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.horcrux.svg.SvgPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -34,7 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNFusedLocationPackage(),
+            new GeolocationPackage(),
             new LinearGradientPackage(),
             new SvgPackage(),
             new MapsPackage(),
