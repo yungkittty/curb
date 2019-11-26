@@ -67,7 +67,6 @@
   },
   "devDependencies": {
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "eslint": "^6.5.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-import": "^2.14.0",
