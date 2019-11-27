@@ -25,6 +25,7 @@ public class MainApplication extends Application implements ReactApplication {
       List<ReactPackage> packages = new PackageList(this).getPackages();
       // Manually add any missing packages like this
       // packages.add(new PostsnapPackage());
+      packages.add(new ReactNativeI18n());
       return packages;
     }
 

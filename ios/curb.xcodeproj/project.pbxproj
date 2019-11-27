@@ -47,8 +47,8 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		EE827BC63BC047BCBD58DBC9 /* Montserrat-SemiBold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 93EDF17156F846CE97F48690 /* Montserrat-SemiBold.woff */; };
 		F565119B5D7F4258A2386C01 /* Montserrat-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 94E8058361A84C6FA987E591 /* Montserrat-Regular.woff */; };
-		6B4B6D1A977C4876BA345FDB /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C86FFDB80A84432E8BCF0328 /* libRNI18n.a */; };
-		860831EFB2AF4122B06067B3 /* RNI18nTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1E7AB8EB04DD48BEACFC8 /* RNI18nTests.xctest */; };
+		A23CCF1CCB8C426F9EE78C37 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60A2BEA703134B00A4BAE278 /* libRNI18n.a */; };
+		3955EA68DD8B4E54B1EC2445 /* RNI18nTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = ACF2C7B9EDF8465FA1493C00 /* RNI18nTests.xctest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,9 +378,9 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F6CB94128E5343FB88DAB102 /* Montserrat-ExtraBold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.woff"; path = "../src/assets/fonts/Montserrat-ExtraBold.woff"; sourceTree = "<group>"; };
-		551105D7491747D49C7614E6 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-locale-detector/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C86FFDB80A84432E8BCF0328 /* libRNI18n.a */ = {isa = PBXFileReference; name = "libRNI18n.a"; path = "libRNI18n.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		0CB1E7AB8EB04DD48BEACFC8 /* RNI18nTests.xctest */ = {isa = PBXFileReference; name = "RNI18nTests.xctest"; path = "RNI18nTests.xctest"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.cfbundle; explicitFileType = undefined; includeInIndex = 0; };
+		B9A37B56727E41C9B01216F1 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-locale-detector/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		60A2BEA703134B00A4BAE278 /* libRNI18n.a */ = {isa = PBXFileReference; name = "libRNI18n.a"; path = "libRNI18n.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		ACF2C7B9EDF8465FA1493C00 /* RNI18nTests.xctest */ = {isa = PBXFileReference; name = "RNI18nTests.xctest"; path = "RNI18nTests.xctest"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.cfbundle; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,8 +409,8 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				6B4B6D1A977C4876BA345FDB /* libRNI18n.a in Frameworks */,
-				860831EFB2AF4122B06067B3 /* RNI18nTests.xctest in Resources */,
+				A23CCF1CCB8C426F9EE78C37 /* libRNI18n.a in Frameworks */,
+				3955EA68DD8B4E54B1EC2445 /* RNI18nTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,7 +615,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				551105D7491747D49C7614E6 /* RNI18n.xcodeproj */,
+				B9A37B56727E41C9B01216F1 /* RNI18n.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
