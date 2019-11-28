@@ -18,7 +18,7 @@
     "web-start-windows:development": "set REACT_APP_API_URL=https://api-staging.curb-app.com&&set HTTPS=true&&react-scripts start",
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
-    "web-eject": "react-scripts eject",
+    "web-eject": "react-scripts eject"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
