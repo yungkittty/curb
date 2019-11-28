@@ -41,7 +41,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    // initializeFlipper(this); // Remove this line if you don't want Flipper
+    initializeFlipper(this); // Remove this line if you don't want Flipper
     // enabled
   }
 
