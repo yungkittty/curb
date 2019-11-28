@@ -23,7 +23,7 @@ const MessageAnimation = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { index } = this.props;
-      const { style } = this.wrappedComponent.current;
+      const { style } = this.wrappedComponentRef.current;
       if (prevProps.index !== index) style.top = `${30 + index * 80}px`;
     }
 
@@ -36,7 +36,7 @@ const MessageAnimation = WrappedComponent => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} forwardedRef={this.wrappedComponent} />;
+      return <WrappedComponent {...this.props} forwardRef={this.wrappedComponent} />;
     }
   }
 
