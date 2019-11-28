@@ -27,6 +27,9 @@ security set-key-partition-list -S apple-tool:,apple: -s -k "$CUSTOM_KEYCHAIN_PA
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
+# Podfile
+pod install
+
 # Builds .xcarchive using `Release` configuration, then create .ipa from it.
 xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive
 xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath "export"
