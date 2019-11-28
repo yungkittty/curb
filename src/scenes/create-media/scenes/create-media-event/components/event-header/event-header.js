@@ -3,15 +3,21 @@ import PropTypes from "prop-types";
 import HeaderContainer from "./components/header-container";
 import HeaderTitle from "./components/header-title";
 
-const EventHeader = React.forwardRef(({ color }, ref) => (
+const EventHeader = ({ color, value, onChange }) => (
   <HeaderContainer backgroundColor={color}>
-    <HeaderTitle ref={ref} placeholder="Name of the event" />
+    <HeaderTitle
+      value={value}
+      onChange={onChange}
+      placeholder="Name of the event"
+      placeholderTextColor="rgba(255,255,255,0.3)"
+    />
   </HeaderContainer>
-));
+);
 
 EventHeader.propTypes = {
   color: PropTypes.string.isRequired,
-  ref: PropTypes.node.isRequired
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 export default EventHeader;

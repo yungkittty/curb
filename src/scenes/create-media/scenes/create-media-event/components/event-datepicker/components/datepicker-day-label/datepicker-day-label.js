@@ -10,7 +10,7 @@ const DatepickerDayLabel = ({ t, color }) => {
   return (
     <DayLabelContainer>
       {days.map((day, index) => (
-        <DayLabelText color={color} index={index}>
+        <DayLabelText color={color} key={day} index={index}>
           {t(day)[0]}
         </DayLabelText>
       ))}

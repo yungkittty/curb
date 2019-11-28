@@ -6,7 +6,8 @@ const EventContainer = styled(Container)`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  text-align: center;
+  align-items: center;
+  background-color: white;
 `;
 
 export default EventContainer;

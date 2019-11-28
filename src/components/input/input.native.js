@@ -11,7 +11,7 @@ const Input = styled(({ type, onChange, id, isMultiline, ...others }) => (
     textAlignVertical="top"
     keyboardType={type === "email" ? "email-address" : type}
     secureTextEntry={type === "password"}
-    onChangeText={value => onChange({ target: { id, value } })}
+    onChangeText={value => onChange && onChange({ target: { id, value } })}
     multiline={isMultiline}
   />
 ))`

@@ -69,7 +69,7 @@ _Text.defaultProps = {
 };
 
 _Text.propTypes = {
-  type: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5"]),
+  type: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5", "h6"]),
   weight: PropTypes.oneOf([300, 400, 500, 600, 700, 800]),
   isIndented: PropTypes.bool
 };

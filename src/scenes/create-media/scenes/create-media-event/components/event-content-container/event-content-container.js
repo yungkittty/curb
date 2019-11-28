@@ -4,10 +4,10 @@ import Container from "../../../../../../components/container";
 const EventContentContainer = styled(Container)`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  justify-content: space-evenly;
+  width: 50%;
   height: 100%;
   align-items: center;
-  background-color: white;
 `;
 
 export default EventContentContainer;

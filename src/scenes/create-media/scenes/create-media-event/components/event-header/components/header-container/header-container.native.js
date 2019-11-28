@@ -2,11 +2,12 @@ import styled from "styled-components";
 import Container from "../../../../../../../../components/container";
 
 const HeaderContainer = styled(Container)`
-  display: flex;
   justify-content: center;
-  align-items; center;
+  align-items: center;
   width: 100%;
   height: 60px;
+  padding-left: 15%;
+  padding-right: 15%;
 `;
 
 export default HeaderContainer;

@@ -1,4 +1,4 @@
-const initDatepickerDay = date => {
+function initDatepickerDay(date) {
   let tmpDate = new Date(date);
   const tmpList = [];
 
@@ -16,6 +16,6 @@ const initDatepickerDay = date => {
     tmpDate.setDate(tmpDate.getDate() + 1);
   }
   return tmpList;
-};
+}
 
 export default initDatepickerDay;

@@ -25,16 +25,20 @@ const DatepickerDay = ({ dayList, currentMonth, selectedDate, onSelect, color })
             textStyle = { color: "#FFFFFF" };
             style = { ...style, backgroundColor: color, borderRadius: 4 };
           }
-          return <Day index={index} day={tmpDay} style={style} textStyle={textStyle} onClick={onSelect} />;
+          return <Day key={index} day={tmpDay} style={style} textStyle={textStyle} onClick={onSelect} />;
         })}
     </Container>
   );
 };
 
+DatepickerDay.defaultProps = {
+  selectedDate: undefined
+};
+
 DatepickerDay.propTypes = {
   dayList: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
-  currentMonth: PropTypes.instanceOf(Date).isRequired,
-  selectedDate: PropTypes.number.isRequired,
+  currentMonth: PropTypes.number.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
   onSelect: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired
 };

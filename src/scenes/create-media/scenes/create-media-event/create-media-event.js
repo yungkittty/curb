@@ -15,12 +15,11 @@ class CreateMediaEvent extends React.Component {
     super(props);
 
     this.state = {
-      name: "",
       currentDate: new Date(),
       selectedDate: undefined,
       dayList: initDatepickerDay(new Date()),
-      hours: initTimepickerField(new Date().getHours(), 24),
-      minutes: initTimepickerField(new Date().getMinutes(), 60)
+      hours: initTimepickerField(new Date().getHours(), 24, 0),
+      minutes: initTimepickerField(new Date().getMinutes(), 60, 0)
     };
 
     this.titleInputRef = React.createRef();
@@ -48,7 +47,7 @@ class CreateMediaEvent extends React.Component {
 
   render() {
     const { groupTheme } = this.props;
-    const { name, currentDate, dayList, selectedDate, hours, minutes } = this.state;
+    const { currentDate, dayList, selectedDate, hours, minutes } = this.state;
 
     return (
       <EventContainer>
@@ -69,37 +68,11 @@ class CreateMediaEvent extends React.Component {
             onChangeMinutes={text => this.setState({ minutes: initTimepickerField(text, 60, minutes) })}
           />
         </EventContentContainer>
-        <button onClick={this.handleSubmit}>Console.log data</button>
       </EventContainer>
     );
   }
 }
-/**
-const CreateMediaEvent = ({ groupTheme }) => {
-  const eventHeaderTitleRef = useRef(null);
-  const eventDatepickerRef = useRef(null);
-  const [hours, setHours] = useState(new Date().getHours());
-  const [minutes, setMinutes] = useState(new Date().getMinutes());
 
-  const onChange = (setField, limit, value) => {
-    if ((!Number.isNaN(value) && value >= 0 && value < limit) || value === "") {
-      setField(value);
-    }
-  };
-
-  const getData = () => {
-    console.log(eventHeaderTitleRef.current.value);
-    console.log(eventDatepickerRef.current.value);
-    return "coucou";
-  };
-
-  // get child state component on validate post
-  // add 0 on minutes picker if minutes < 10
-  return (
-    
-  );
-};
-*/
 //delete default props
 CreateMediaEvent.defaultProps = {
   groupTheme: "#56CCF2"

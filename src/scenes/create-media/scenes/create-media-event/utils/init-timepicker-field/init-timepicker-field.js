@@ -3,7 +3,7 @@ function initDatepickerField(date, limit, prevValue) {
 
   if (value < limit) {
     if (value < 10) return `0${value}`;
-    return value;
+    return value.toString();
   }
   return prevValue;
 }
