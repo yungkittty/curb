@@ -31,5 +31,5 @@ cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 pod install
 
 # Builds .xcarchive using `Release` configuration, then create .ipa from it.
-xcodebuild -quiet archive -project curb.xcodeproj -scheme curb -configuration Release -archivePath curb.xcarchive
+xcodebuild -quiet archive -workspace curb.xcworkspace -scheme curb -configuration Release -archivePath curb.xcarchive
 xcodebuild -quiet -exportArchive -archivePath curb.xcarchive -exportOptionsPlist exportOptions.plist -exportPath "export"
