@@ -19,7 +19,8 @@
     "web-start:development": "eval \"$(paste -s -d ' ' .env.development) HTTPS=true react-scripts start\"",
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
-    "web-eject": "react-scripts eject"
+    "web-eject": "react-scripts eject",
+    "postinstall": "npx jetify"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -72,6 +73,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "jetifier": "^1.6.4",
     "prettier": "^1.14.2"
   }
 }
