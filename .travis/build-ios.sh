@@ -28,7 +28,6 @@ mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp curb.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
 # Podfile
-sudo gem install cocoapods
 pod install
 
 # Builds .xcarchive using `Release` configuration, then create .ipa from it.

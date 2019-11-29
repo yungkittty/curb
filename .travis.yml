@@ -62,7 +62,6 @@ jobs:
       before_script:
         - npm run mobile-bundle-ios:${CURB_BUILD} || travis_terminate 1
       script:
-        - react-native link
         - cd ios
         - bash ../.travis/build-ios.sh || travis_terminate 1
         - bash ../.travis/deploy-ios.sh || travis_terminate 1
