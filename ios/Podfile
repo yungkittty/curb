@@ -38,14 +38,13 @@ end
   end
 
   use_native_modules!
-end
 
-target 'curb-tvOS' do
-  # Pods for RnDiffApp-tvOS
+  target 'curb-tvOS' do
+    # Pods for RnDiffApp-tvOS
 
-  target 'curb-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-  
+    target 'curb-tvOSTests' do
+      inherit! :search_paths
+      # Pods for testing
+    end
+
 end
