@@ -5,7 +5,7 @@ const HeaderContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60px;
+  height: 25%;
   padding-left: 15%;
   padding-right: 15%;
 `;

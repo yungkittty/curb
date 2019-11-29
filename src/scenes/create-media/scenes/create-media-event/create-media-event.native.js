@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import EventContainer from "./components/event-container";
 import EventHeader from "./components/event-header";
-import EventContentContainer from "./components/event-content-container";
 import EventDatepicker from "./components/event-datepicker";
 
 // {date: '', name: ''}
@@ -24,13 +23,11 @@ class CreateMediaEvent extends React.Component {
     return (
       <EventContainer>
         <EventHeader color={groupTheme} value={title} onChange={value => this.setState({ title: value })} />
-        <EventContentContainer>
-          <EventDatepicker
-            color={groupTheme}
-            selectedDate={selectedDate}
-            onSelectDate={date => this.setState({ selectedDate: date })}
-          />
-        </EventContentContainer>
+        <EventDatepicker
+          color={groupTheme}
+          selectedDate={selectedDate}
+          onSelectDate={date => this.setState({ selectedDate: date })}
+        />
       </EventContainer>
     );
   }

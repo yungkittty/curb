@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import DateTimePicker from "react-native-modal-datetime-picker";
-import Container from "../../../../../../components/container";
+import DatepickerContainer from "./components/datepicker-container";
+import DatepickerDataContainer from "./components/datepicker-data-container";
+import DatepickerDataDay from "./components/datepicker-data-day";
+import DatepickerDataTime from "./components/datepicker-data-time";
 import DatepickerStadiumButton from "./components/datepicker-stadium-button";
 
 const EventDatepicker = ({ color, selectedDate, onSelectDate }) => {
   const [isDateTimePickerVisible, setDateTimePickerVisibility] = useState(true);
-  const [dateTimePickerMode, setDateTimePickerMode] = useState("datetime");
-
-  const handleButtonClick = mode => {
-    setDateTimePickerMode(mode);
-    setDateTimePickerVisibility(true);
-  };
 
   const handleDatePickerConfirm = date => {
     setDateTimePickerVisibility(false);
@@ -19,39 +16,37 @@ const EventDatepicker = ({ color, selectedDate, onSelectDate }) => {
   };
 
   return (
-    <Container>
-      <DatepickerStadiumButton
-        color={color}
-        text="selectDate"
-        icon="calendar-alt"
-        onClick={() => handleButtonClick("date")}
-      />
-      <DatepickerStadiumButton
-        color={color}
-        text="selectDate"
-        icon="calendar-alt"
-        onClick={() => handleButtonClick("time")}
-      />
+    <DatepickerContainer>
+      <DatepickerDataContainer>
+        {selectedDate && (
+          <>
+            <DatepickerDataDay date={selectedDate} />
+            <DatepickerDataTime date={selectedDate} />
+          </>
+        )}
+        <DatepickerStadiumButton
+          color={color}
+          text="selectDate"
+          icon="calendar-alt"
+          onClick={() => setDateTimePickerVisibility(true)}
+        />
+      </DatepickerDataContainer>
       <DateTimePicker
         isVisible={isDateTimePickerVisible}
-        mode={dateTimePickerMode}
+        mode="datetime"
         onConfirm={date => handleDatePickerConfirm(date)}
         onCancel={() => setDateTimePickerVisibility(false)}
         is24Hour
-        date={selectedDate}
+        date={selectedDate || new Date()}
         minimumDate={new Date()}
       />
-    </Container>
+    </DatepickerContainer>
   );
-};
-
-EventDatepicker.defaultProps = {
-  selectedDate: new Date()
 };
 
 EventDatepicker.propTypes = {
   color: PropTypes.string.isRequired,
-  selectedDate: PropTypes.instanceOf(Date),
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
   onSelectDate: PropTypes.func.isRequired
 };
 

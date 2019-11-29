@@ -3,7 +3,9 @@ import Container from "../../../../../../../../components/container";
 
 const EventHeaderContainer = styled(Container)`
   display: flex;
-  justify-content: center;
+  min-width: 50%;
+  height: 75%;
+  justify-content: space-evenly;
   align-items; center;
 `;
 

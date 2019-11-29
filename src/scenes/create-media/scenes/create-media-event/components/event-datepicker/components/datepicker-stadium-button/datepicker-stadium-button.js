@@ -13,8 +13,8 @@ const DatepickerStadiumButton = ({ color, text, icon, onClick }) => (
     onClick={() => onClick()}
     style={{ flexDirection: "row" }}
   >
-    <Icon icon={icon} style={{ color: "white" }} />
-    <Text type="h6" weight={700} style={{ width: 70, textAlign: "center", color: "white" }}>
+    <Icon size="extra-small" icon={icon} style={{ color: "white" }} />
+    <Text type="h6" weight={700} style={{ textAlign: "center", color: "white" }}>
       {text}
     </Text>
   </Stadium>

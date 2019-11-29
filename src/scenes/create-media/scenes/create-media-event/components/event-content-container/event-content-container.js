@@ -6,7 +6,7 @@ const EventContentContainer = styled(Container)`
   flex-direction: column;
   justify-content: space-evenly;
   width: 50%;
-  height: 100%;
+  height: 75%;
   align-items: center;
 `;
 

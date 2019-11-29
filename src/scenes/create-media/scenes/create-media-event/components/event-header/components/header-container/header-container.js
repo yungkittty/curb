@@ -5,7 +5,7 @@ const HeaderContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 110px;
+  min-eight: 25%;
   background-color: ${props => props.backgroundColor};
 `;
 
