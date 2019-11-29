@@ -10,8 +10,8 @@ class Video extends React.Component {
   }
 
   componentDidMount() {
-    const { isShowedInCard } = this.props;
-    if (isShowedInCard) this.videoRef.current.play();
+    const { isShowedInCard, autoplay } = this.props;
+    if (isShowedInCard || autoplay) this.videoRef.current.play();
   }
 
   componentDidUpdate(prevProps) {
@@ -78,7 +78,8 @@ Video.defaultProps = {
   onCanPlay: undefined,
   objectFit: undefined,
   style: undefined,
-  isShowedInCard: undefined
+  isShowedInCard: false,
+  autoplay: false
 };
 
 Video.propTypes = {
@@ -87,7 +88,8 @@ Video.propTypes = {
   onCanPlay: PropTypes.func,
   objectFit: PropTypes.oneOf(["cover", "contain"]),
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  isShowedInCard: PropTypes.bool
+  isShowedInCard: PropTypes.bool,
+  autoplay: PropTypes.bool
 };
 
 export default Video;

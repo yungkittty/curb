@@ -11,7 +11,7 @@ class CardVideo extends CurbModule {
 
   render() {
     const { data, style, ...others } = this.props;
-    return <Video {...others} src={data} style={{ ...style, width: "100%", height: "100%" }} />;
+    return <Video {...others} src={data} style={{ ...style, width: "100%", height: "100%" }} autoplay />;
   }
 }
 
