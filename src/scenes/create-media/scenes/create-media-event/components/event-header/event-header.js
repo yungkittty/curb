@@ -7,7 +7,7 @@ const EventHeader = ({ color, value, onChange }) => (
   <HeaderContainer backgroundColor={color}>
     <HeaderTitle
       value={value}
-      onChange={onChange}
+      onChange={event => onChange(event.target.value)}
       placeholder="Name of the event"
       placeholderTextColor="rgba(255,255,255,0.3)"
     />

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Input from "../../../../../../../../components/input";
+import Input from "../../../../../../../../../../components/input";
 
 const TimepickerNumber = styled(Input)`
   width: 25px;

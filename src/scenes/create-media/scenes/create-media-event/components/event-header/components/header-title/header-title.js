@@ -7,7 +7,6 @@ const HeaderTitle = styled(Input)`
   height: 46px;
   text-align: center;
   border-bottom: 1px solid white;
-  margin: 34px auto 8px auto;
   color: white;
   ::placeholder {
     font-weight: bold;

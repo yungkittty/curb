@@ -4,8 +4,10 @@ import Container from "../../../../../../../../components/container";
 const HeaderContainer = styled(Container)`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  min-eight: 25%;
+  height: 25%;
   background-color: ${props => props.backgroundColor};
 `;
 
