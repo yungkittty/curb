@@ -9,19 +9,27 @@ import Container from "../container";
 class _Video extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isShowed: false };
+    this.state = { isShowed: false, isMuted: true };
     this.videoRef = React.createRef();
+    this.onMuteToggle = this.onMuteToggle.bind(this);
   }
 
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
+    const { isMuted } = this.state;
     const { isShowedInCard } = this.props;
-    this.videoRef.current.resume();
+    if (prevProps.isShowedInCard === isShowedInCard) return;
+    if (isShowedInCard) {
+      this.videoRef.current.resume();
+    }
+    if (!isShowedInCard) {
+      this.videoRef.current.pause();
+      if (!isMuted) this.videoRef.current.onMutePress();
+    }
   }
 
-  componentDidUpdate() {
-    const { isShowedInCard } = this.props;
-    if (isShowedInCard) this.videoRef.current.resume();
-    if (!isShowedInCard) this.videoRef.current.pause();
+  onMuteToggle() {
+    const { isMuted } = this.state;
+    this.setState({ isMuted: !isMuted });
   }
 
   render() {
@@ -63,9 +71,10 @@ class _Video extends React.Component {
             seekBarBackground: { backgroundColor: "rgba(0, 0, 0, 0.2)" },
             controls: { backgroundColor: "rgba(0, 0, 0, 0.4)" }
           }}
+          onMutePress={this.onMuteToggle}
           resizeMode={objectFit}
-          repeat
           defaultMuted
+          repeat
           pauseOnPress
           hideControlsOnStart
         />
