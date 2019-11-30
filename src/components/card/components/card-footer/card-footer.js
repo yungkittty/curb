@@ -39,6 +39,7 @@ class CardFooter extends React.Component {
             textDescription={textDescription}
             onClick={() => this.setState({ isExtended: true })}
             isExtended={isExtended}
+            isNoTextDescriptionPlaceholder={isNoTextDescriptionPlaceholder}
           />
         )}
         {haveMenu && <FooterMenu onMenuClick={onMenuClick} />}

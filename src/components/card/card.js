@@ -36,6 +36,7 @@ class Card extends React.Component {
       cardMenu,
       HeaderComponent,
       FooterComponent,
+      OverlayComponent,
       ...others
     } = this.props;
 
@@ -56,6 +57,7 @@ class Card extends React.Component {
       >
         {HeaderComponent && React.cloneElement(HeaderComponent)}
         <CardBorderContainer>
+          {OverlayComponent && React.cloneElement(OverlayComponent)}
           {cardSize.isCardExtended && (
             <CardContent
               mediaList={_.omit(mediaList, "text")}
@@ -138,7 +140,8 @@ Card.propTypes = {
     PropTypes.shape({ text: PropTypes.string, icon: PropTypes.icon, onClick: PropTypes.func })
   ),
   HeaderComponent: PropTypes.object, // eslint-disable-line
-  FooterComponent: PropTypes.object // eslint-disable-line
+  FooterComponent: PropTypes.object, // eslint-disable-line
+  OverlayComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
 };
 
 export default Card;

@@ -75,7 +75,6 @@ class _Video extends React.Component {
           resizeMode={objectFit}
           defaultMuted
           repeat
-          pauseOnPress
           hideControlsOnStart
         />
       </Container>
