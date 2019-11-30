@@ -1,6 +1,6 @@
 {
   "env": { "browser": true },
-  "extends": ["airbnb", "prettier", "@react-native-community"],
+  "extends": ["airbnb", "prettier"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
