@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Container from "../../../../../../components/container";
 import Loader from "../../../../../../components/loader";
 
 const PostItemOverlay = styled(Loader)`
