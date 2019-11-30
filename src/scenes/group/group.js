@@ -183,7 +183,7 @@ class Group extends React.Component {
     const isCurrentUser = !!currentUserId;
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
     const isCurrentUserCreator = _.isEqual(currentUserId, groupCreatorId);
-    const isGroupPostShowed = isCurrentUser && (isFeed && isCurrentUserIn);
+    const isGroupPostShowed = isCurrentUser && isFeed && isCurrentUserIn;
     return (
       <React.Fragment>
         <ListFlat
