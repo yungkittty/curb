@@ -30,6 +30,7 @@ class ContentMedia extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { mediaList, isPost, selectedIndex } = this.props;
+    if (_.size(mediaList) <= 1) return;
     if (selectedIndex !== prevProps.selectedIndex) {
       this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 });
       if (_.size(mediaList) <= 1 || isPost) return;
