@@ -16,7 +16,7 @@ NOTIFY="on"
 TESTERS_GROUPS="echo $([[ $CURB_VERSION == "develop" ]] && echo "develop" || echo "team")"
 
 # If AUTO_UPDATE is "on" users of older versions will be prompt to update to this build next time they run the app
-AUTO_UPDATE="on"
+AUTO_UPDATE="echo $([[ $CURB_VERSION == "develop" ]] && echo "on" || echo "off")"
 
 # Use comment field to add release notes. Text will be included in the email sent to testers and in landing pages.
 COMMENT=
