@@ -1,32 +1,9 @@
-import _ from "lodash";
-import React from "react";
-import PropTypes from "prop-types";
-import { withTheme } from "styled-components";
-import ListItemCircleText from "../../../../components/list-item-circle-text";
-import Button from "../../../../components/button";
-import ImageGroup from "../../../../components/image-group";
+import styled from "styled-components";
+import Card from "../../../../components/card";
 import withGroup from "../../../../hocs/with-group";
 
-const DiscoveryListItem = ({ groupId, groupName, theme }) => (
-  <ListItemCircleText
-    as={Button}
-    onClick={`/groups/${groupId}`}
-    component={ImageGroup}
-    shouldFetch={false}
-    groupId={groupId}
-    placeholderColor={theme.primaryVariantColor}
-    text={groupName}
-  />
-);
+const DiscoveryListItem = styled(Card)`
+  margin-right: 30px;
+`;
 
-DiscoveryListItem.propTypes = {
-  groupId: PropTypes.string.isRequired,
-  groupName: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired // eslint-disable-line
-};
-
-export default _.flowRight([
-  // eslint-disable-line
-  withGroup,
-  withTheme
-])(DiscoveryListItem);
+export default withGroup(DiscoveryListItem);
