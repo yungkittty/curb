@@ -3,9 +3,8 @@ import Container from "../../../../../../../container";
 
 const OriginContainer = styled(Container)`
   margin-right: 6px;
-  width: 80px;
-  margin-top: ${({ isSubtitle }) => (isSubtitle ? 2 : 10)}px;
-  margin-right: 10px;
+  width: 90px;
+  margin-top: ${({ isSubtitle }) => (isSubtitle ? 4 : 12)}px;
 `;
 
 export default OriginContainer;

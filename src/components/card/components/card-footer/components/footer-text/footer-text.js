@@ -11,7 +11,7 @@ import { platformBools } from "../../../../../../configurations/platform";
 const FooterText = ({
   t,
   cardSize,
-  userId,
+  isUser,
   textDescription,
   isNoTextDescriptionPlaceholder,
   onClick,
@@ -20,13 +20,13 @@ const FooterText = ({
   /* eslint-disable */
   const maxLength = platformBools.isWeb
     ? cardSize.size === "small"
-      ? userId
+      ? isUser
         ? 50
         : 130
-      : userId
+      : isUser
       ? 130
       : 220
-    : userId
+    : isUser
     ? 70
     : 130;
   /* eslint-enable */
@@ -41,7 +41,7 @@ const FooterText = ({
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
     </TextDescription>
-  ) : isNoTextDescriptionPlaceholder ? (
+  ) : !isNoTextDescriptionPlaceholder ? (
     <TextDescriptionPlaceholderContainer>
       {_.times(3, index => (
         <TextDescriptionPlaceholder key={index} />
@@ -51,7 +51,6 @@ const FooterText = ({
 };
 
 FooterText.defaultProps = {
-  userId: undefined,
   textDescription: "",
   isNoTextDescriptionPlaceholder: false,
   isExtended: false
@@ -67,7 +66,7 @@ FooterText.propTypes = {
     footerHeight: PropTypes.number,
     floatingTopPosition: PropTypes.number
   }).isRequired,
-  userId: PropTypes.string,
+  isUser: PropTypes.bool.isRequired,
   textDescription: PropTypes.string,
   isNoTextDescriptionPlaceholder: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
