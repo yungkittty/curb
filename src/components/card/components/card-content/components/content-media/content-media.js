@@ -84,7 +84,7 @@ class ContentMedia extends React.Component {
     ) : groupName ? (
       <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
-      <MediaPlaceholder />
+      <MediaPlaceholder contentHeight={cardSize.contentHeight} />
     );
   }
 }
