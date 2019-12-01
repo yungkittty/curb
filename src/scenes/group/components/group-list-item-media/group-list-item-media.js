@@ -68,6 +68,7 @@ class GroupListItemMedia extends React.Component {
       groupThemeColor,
       postReactionsNumber,
       isCurrentUserLiked,
+      currentUserId,
       ...others
     } = this.props;
     return (
@@ -78,6 +79,7 @@ class GroupListItemMedia extends React.Component {
         cardMenu={this.getCardMenuOptions()}
         onFloatingButtonClick={this.onLike}
         floatingButtonColor={isCurrentUserLiked ? groupThemeColor : theme.primaryColor}
+        floatingButtonDisabled={!currentUserId}
         likeNumber={shortNumberFormatter(postReactionsNumber, 1, true)}
       />
     );
