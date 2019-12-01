@@ -6,8 +6,8 @@ const ListCard = props => (
     {...props}
     style={{ marginBottom: 80, justifyContent: "center" }}
     getItemLayout={(_, itemIndex) => ({
-      length: 415,
-      offset: 415 * itemIndex,
+      length: 460,
+      offset: 460 * itemIndex,
       index: itemIndex
     })}
     showsHorizontalScrollIndicator={false}

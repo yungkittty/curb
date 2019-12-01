@@ -39,7 +39,7 @@ FooterOrigin.defaultProps = {
 FooterOrigin.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     contentHeight: PropTypes.number,

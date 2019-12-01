@@ -70,7 +70,7 @@ MediaGroupPreview.propTypes = {
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,

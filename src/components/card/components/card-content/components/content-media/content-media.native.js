@@ -116,7 +116,7 @@ ContentMedia.propTypes = {
   isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,

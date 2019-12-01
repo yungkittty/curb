@@ -10,7 +10,7 @@ import { platformBools } from "../../../../../../configurations/platform";
 
 const FooterText = ({
   t,
-  cardSize,
+  isCardSmall,
   isUser,
   textDescription,
   isNoTextDescriptionPlaceholder,
@@ -19,7 +19,7 @@ const FooterText = ({
 }) => {
   /* eslint-disable */
   const maxLength = platformBools.isWeb
-    ? cardSize.size === "small"
+    ? isCardSmall
       ? isUser
         ? 50
         : 130
@@ -33,7 +33,7 @@ const FooterText = ({
   const isTextTrimmed = textDescription.length <= maxLength;
   // eslint-disable-next-line
   return textDescription ? (
-    <TextDescription isTextTrimmed={isTextTrimmed}>
+    <TextDescription isCardSmall={isCardSmall} isTextTrimmed={isTextTrimmed}>
       {isTextTrimmed || isExtended
         ? textDescription
         : `${textDescription.substring(0, maxLength).trim()}... `}
@@ -58,14 +58,7 @@ FooterText.defaultProps = {
 
 FooterText.propTypes = {
   t: PropTypes.func.isRequired,
-  cardSize: PropTypes.shape({
-    size: PropTypes.string,
-    isCardExtended: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    contentHeight: PropTypes.number,
-    footerHeight: PropTypes.number,
-    floatingTopPosition: PropTypes.number
-  }).isRequired,
+  isCardSmall: PropTypes.bool.isRequired,
   isUser: PropTypes.bool.isRequired,
   textDescription: PropTypes.string,
   isNoTextDescriptionPlaceholder: PropTypes.bool,
