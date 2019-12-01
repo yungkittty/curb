@@ -35,7 +35,6 @@ class CardFooter extends React.Component {
         ) : (
           <FooterText
             isCardSmall={cardSize.isSmall}
-            isUser={!!userId}
             textDescription={textDescription}
             onClick={() => this.setState({ isExtended: true })}
             isExtended={isExtended}

@@ -9,7 +9,7 @@ const FooterContainer = styled(Container)`
   padding: ${({ isCardSmall }) =>
     // eslint-disable-line
     `${isCardSmall ? 10 : 16}px 
-    ${isCardSmall ? 8 : 10}px;`}
+    ${isCardSmall ? 10 : 10}px;`}
   background: white;
 `;
 

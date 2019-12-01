@@ -10,34 +10,21 @@ import { platformBools } from "../../../../../../configurations/platform";
 
 const FooterText = ({
   t,
-  isCardSmall,
-  isUser,
   textDescription,
+  isCardSmall,
   isNoTextDescriptionPlaceholder,
   onClick,
   isExtended
 }) => {
-  /* eslint-disable */
-  const maxLength = platformBools.isWeb
-    ? isCardSmall
-      ? isUser
-        ? 50
-        : 130
-      : isUser
-      ? 130
-      : 220
-    : isUser
-    ? 70
-    : 130;
-  /* eslint-enable */
-  const isTextTrimmed = textDescription.length <= maxLength;
+  const maxLength = !isCardSmall && (platformBools.isWeb ? 130 : 70);
+  const isTextTrimmed = textDescription.length > maxLength;
   // eslint-disable-next-line
   return textDescription ? (
-    <TextDescription isCardSmall={isCardSmall} isTextTrimmed={isTextTrimmed}>
-      {isTextTrimmed || isExtended
+    <TextDescription isCardSmall={isCardSmall}>
+      {!isTextTrimmed || isExtended || isCardSmall
         ? textDescription
         : `${textDescription.substring(0, maxLength).trim()}... `}
-      {textDescription.length > maxLength && !isExtended && (
+      {isTextTrimmed && !isExtended && !isCardSmall && (
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
     </TextDescription>
@@ -59,7 +46,6 @@ FooterText.defaultProps = {
 FooterText.propTypes = {
   t: PropTypes.func.isRequired,
   isCardSmall: PropTypes.bool.isRequired,
-  isUser: PropTypes.bool.isRequired,
   textDescription: PropTypes.string,
   isNoTextDescriptionPlaceholder: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
