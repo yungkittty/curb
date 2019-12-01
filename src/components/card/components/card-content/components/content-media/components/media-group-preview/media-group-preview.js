@@ -45,7 +45,7 @@ class MediaGroupPreview extends React.Component {
                 radius="extra-extra-small"
                 scale="x2"
                 backgroundColor="white"
-                style={{ marginTop: platformBools.isWeb ? 10 : 8, zIndex: 1 }}
+                style={{ marginTop: platformBools.isWeb ? 12 : 6, zIndex: 1 }}
                 component={Text}
                 type="h5"
                 weight={700}
@@ -70,7 +70,7 @@ MediaGroupPreview.propTypes = {
   groupAvatar: PropTypes.string.isRequired,
   groupTheme: PropTypes.string.isRequired,
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,

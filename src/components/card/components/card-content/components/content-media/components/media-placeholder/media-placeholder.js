@@ -3,7 +3,7 @@ import Container from "../../../../../../../container";
 
 const MediaPlaceholder = styled(Container)`
   width: 100%;
-  height: 100%;
+  height: ${({ contentHeight }) => contentHeight}px;
   background: ${({ theme }) => theme.primaryVariantColor};
 `;
 
