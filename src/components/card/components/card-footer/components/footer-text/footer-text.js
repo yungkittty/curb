@@ -20,7 +20,7 @@ const FooterText = ({
   const isTextTrimmed = textDescription.length > maxLength;
   // eslint-disable-next-line
   return textDescription ? (
-    <TextDescription isCardSmall={isCardSmall}>
+    <TextDescription weight={600} isCardSmall={isCardSmall}>
       {!isTextTrimmed || isExtended || isCardSmall
         ? textDescription
         : `${textDescription.substring(0, maxLength).trim()}... `}
