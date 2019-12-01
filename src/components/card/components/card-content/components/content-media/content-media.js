@@ -84,7 +84,7 @@ class ContentMedia extends React.Component {
     ) : groupName ? (
       <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
-      <MediaPlaceholder />
+      <MediaPlaceholder contentHeight={cardSize.contentHeight} />
     );
   }
 }
@@ -104,7 +104,7 @@ ContentMedia.propTypes = {
   isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,

@@ -28,14 +28,13 @@ class CardFooter extends React.Component {
       ...others
     } = this.props;
     return (
-      <FooterContainer cardSize={cardSize}>
+      <FooterContainer isCardSmall={cardSize.isSmall}>
         {!!userId && <FooterOrigin {...others} cardSize={cardSize} userId={userId} isPost={isPost} />}
         {isPost ? (
           postText && <FooterTextInput {...postText} ref={forwardedRef} isMultiline autoResize />
         ) : (
           <FooterText
-            cardSize={cardSize}
-            isUser={!!userId}
+            isCardSmall={cardSize.isSmall}
             textDescription={textDescription}
             onClick={() => this.setState({ isExtended: true })}
             isExtended={isExtended}
@@ -58,7 +57,7 @@ CardFooter.defaultProps = {
 CardFooter.propTypes = {
   forwardedRef: PropTypes.object, // eslint-disable-line
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,

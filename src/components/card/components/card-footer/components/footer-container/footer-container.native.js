@@ -3,10 +3,13 @@ import Container from "../../../../../container";
 
 const FooterContainer = styled(Container)`
   position: relative;
-  min-height: ${({ cardSize }) => cardSize.footerHeight}px;
+  min-height: ${({ isCardSmall }) => (isCardSmall ? 86 : 111)}px;
   display: flex;
   flex-flow: row;
-  padding: 16px 10px;
+  padding: ${({ isCardSmall }) =>
+    // eslint-disable-line
+    `${isCardSmall ? 10 : 16}px 
+    ${isCardSmall ? 10 : 10}px;`}
   background: white;
 `;
 
