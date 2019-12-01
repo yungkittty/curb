@@ -14,7 +14,7 @@
     "mobile-run-android": "react-native run-android",
     "mobile-run-ios": "react-native run-ios",
     "mobile-eject": "react-native eject",
-    "web-start:development": "eval \"$(paste -s -d ' ' .env.development) HTTPS=true react-scripts start\"",
+    "web-start:development": "react-scripts start\"",
     "web-start-windows:development": "set REACT_APP_API_URL=https://api-staging.curb-app.com&&set HTTPS=true&&react-scripts start",
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
@@ -68,7 +68,6 @@
   },
   "devDependencies": {
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "eslint": "^5.12.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-import": "^2.14.0",

@@ -19,9 +19,26 @@ const EventDatepicker = React.memo(({ color, selectedDate, onSelectDate }) => {
     setDayList(initDatepickerDay(tmpDate));
   };
 
+  const handleSelectDate = date => {
+    if (selectedDate && date) {
+      date.setHours(selectedDate.getHours());
+      date.setMinutes(selectedDate.getMinutes());
+    } else if (date) {
+      date.setHours(currentDate.getHours());
+      date.setMinutes(currentDate.getMinutes());
+    }
+    onSelectDate(date);
+  };
+
   const handleTimeChange = date => {
-    setCurrentDate(date);
-    setDayList(initDatepickerDay(date));
+    if (selectedDate) {
+      selectedDate.setHours(date.getHours());
+      selectedDate.setMinutes(Date.getMinutes());
+      onSelectDate(selectedDate);
+    } else {
+      setCurrentDate(date);
+      setDayList(initDatepickerDay(date));
+    }
   };
 
   return (
@@ -36,7 +53,7 @@ const EventDatepicker = React.memo(({ color, selectedDate, onSelectDate }) => {
         dayList={dayList}
         currentMonth={currentDate.getMonth()}
         selectedDate={selectedDate}
-        onSelect={onSelectDate}
+        onSelect={date => handleSelectDate(date)}
         color={color}
       />
       <DatepickerTime date={currentDate} onChange={handleTimeChange} />

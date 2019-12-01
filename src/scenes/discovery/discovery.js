@@ -78,19 +78,7 @@ class Discovery extends React.Component {
             }
           }}
         />
-      </Container>
-    );
-  }
-}
-
-export default _.flowRight([
-  // eslint-disable-line
-  withAppModal,
-  withCurrentUser,
-  withTranslation("discovery")
-])(Discovery);
-
-/**  <Card
+        <Card
           userId="5d373369c8acd2001d90bf55"
           cardMenu={[
             {
@@ -119,4 +107,15 @@ export default _.flowRight([
               )
             }
           }}
-        /> */
+        />
+      </Container>
+    );
+  }
+}
+
+export default _.flowRight([
+  // eslint-disable-line
+  withAppModal,
+  withCurrentUser,
+  withTranslation("discovery")
+])(Discovery);

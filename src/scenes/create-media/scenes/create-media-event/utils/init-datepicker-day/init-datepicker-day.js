@@ -1,5 +1,7 @@
 function initDatepickerDay(date) {
   let tmpDate = new Date(date);
+  let i;
+  const weekList = [];
   const tmpList = [];
 
   while (tmpDate.getMonth() === date.getMonth()) {
@@ -15,7 +17,10 @@ function initDatepickerDay(date) {
     tmpList.push(new Date(tmpDate));
     tmpDate.setDate(tmpDate.getDate() + 1);
   }
-  return tmpList;
+  for (i = 0; i < 6; i += 1) {
+    weekList[i] = tmpList.slice(i * 7, i * 7 + 7);
+  }
+  return weekList;
 }
 
 export default initDatepickerDay;

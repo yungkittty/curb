@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Container from "../../../../../../../../../../components/container";
 
-const MonthContainer = styled(Container)`
+const DatepickerDayContainer = styled(Container)`
+  height: 60%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  height: 20px;
 `;
 
-export default MonthContainer;
+export default DatepickerDayContainer;
