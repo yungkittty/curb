@@ -39,13 +39,13 @@ class Card extends React.Component {
       OverlayComponent,
       ...others
     } = this.props;
-    const mediaTypesWithoutText = _.omit(mediaList, "text");
+    const mediaListWithoutText = _.omit(mediaList, "text");
     const cardSize = getCardSize({
       size,
-      isCardExtended: !!_.size(mediaTypesWithoutText) > 0 || !!groupId,
+      isCardExtended: !!_.size(mediaListWithoutText) > 0 || !!groupId,
       isOnlyPostTextMode:
-        (!!postMediaTypes && _.size(mediaTypesWithoutText) === 0) ||
-        (!postMediaTypes && !!mediaList && _.size(mediaTypesWithoutText) === 0)
+        (!!postMediaTypes && _.size(_.omit(postMediaTypes, "text")) === 0) ||
+        (!postMediaTypes && !!mediaList && _.size(mediaListWithoutText) === 0)
     });
     return (
       <CardContainer
@@ -60,7 +60,7 @@ class Card extends React.Component {
           {OverlayComponent && React.cloneElement(OverlayComponent)}
           {cardSize.isCardExtended && (
             <CardContent
-              mediaList={mediaTypesWithoutText}
+              mediaList={mediaListWithoutText}
               isPost={!!postMediaTypes}
               cardSize={cardSize}
               groupId={groupId}
@@ -95,7 +95,7 @@ class Card extends React.Component {
         </CardBorderContainer>
         {onFloatingButtonClick && !isMenuShowed && (
           <CardFloatingButton
-            postType={!!postMediaTypes && _.size(mediaTypesWithoutText) === 0}
+            postType={!!postMediaTypes && _.size(mediaListWithoutText) === 0}
             onFloatingButtonClick={onFloatingButtonClick}
             {...others}
           />
