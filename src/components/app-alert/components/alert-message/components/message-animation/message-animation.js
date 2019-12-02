@@ -23,7 +23,7 @@ const MessageAnimation = WrappedComponent => {
 
     componentDidUpdate(prevProps) {
       const { index } = this.props;
-      const { style } = this.wrappedComponentRef.current;
+      const { style } = this.wrappedComponent.current;
       if (prevProps.index !== index) style.top = `${30 + index * 80}px`;
     }
 
