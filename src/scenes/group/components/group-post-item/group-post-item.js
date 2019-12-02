@@ -33,7 +33,7 @@ class GroupPostItem extends React.Component {
     const { isPostFetching, groupMediaTypes } = this.props;
     if (prevProps.isPostFetching && !isPostFetching) {
       this.setState({ mediaList: {} }); // eslint-disable-line
-      if (_.includes(groupMediaTypes, "text")) this.cardRef.current.clearTextInput();
+      if (_.has(groupMediaTypes, "text")) this.cardRef.current.clearTextInput();
     }
   }
 
@@ -86,15 +86,15 @@ class GroupPostItem extends React.Component {
     const {
       mediaList: { video, location }
     } = this.state;
-    const postMediaTypes = [];
+    const postMediaTypes = {};
     if (_.includes(groupMediaTypes, "text"))
-      postMediaTypes.push({ type: "text", onChange: this.onChangeText });
+      _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
     if (_.includes(groupMediaTypes, "image"))
-      postMediaTypes.push({ type: "image", onSelect: this.onSelectImage });
+      _.merge(postMediaTypes, { image: { onSelect: this.onSelectImage } });
     if (_.includes(groupMediaTypes, "video") && !video)
-      postMediaTypes.push({ type: "video", onSelect: this.onSelectVideo });
+      _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)
-      postMediaTypes.push({ type: "location", onClick: this.onClickLocation });
+      _.merge(postMediaTypes, { location: { onClick: this.onClickLocation } });
     return postMediaTypes;
   }
 

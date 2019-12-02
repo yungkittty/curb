@@ -6,7 +6,7 @@ const PostItemOverlay = styled(Loader)`
   width: 100%;
   height: 100%;
   background-color: white;
-  z-index: 1;
+  z-index: 2;
 `;
 
 export default PostItemOverlay;
