@@ -16,6 +16,16 @@ class Card extends React.Component {
     super(props);
     this.state = { isMenuShowed: false };
     this.textInputRef = React.createRef();
+    this.onMenuOpen = this.onMenuOpen.bind(this);
+    this.onMenuClose = this.onMenuClose.bind(this);
+  }
+
+  onMenuOpen() {
+    this.setState({ isMenuShowed: true });
+  }
+
+  onMenuClose() {
+    this.setState({ isMenuShowed: false });
   }
 
   clearTextInput() {
@@ -40,12 +50,13 @@ class Card extends React.Component {
       ...others
     } = this.props;
     const mediaListWithoutText = _.omit(mediaList, "text");
+    const postMediaTypesWithoutText = _.omit(postMediaTypes, "text");
+    const isOnlyPostTextMode =
+      (!!postMediaTypes && _.size(postMediaTypesWithoutText) === 0) ||
+      (!postMediaTypes && !!mediaList && _.size(mediaListWithoutText) === 0);
     const cardSize = getCardSize({
       size,
-      isCardExtended: !!_.size(mediaListWithoutText) > 0 || !!groupId,
-      isOnlyPostTextMode:
-        (!!postMediaTypes && _.size(_.omit(postMediaTypes, "text")) === 0) ||
-        (!postMediaTypes && !!mediaList && _.size(mediaListWithoutText) === 0)
+      isCardExtended: !!_.size(mediaListWithoutText) > 0 || !!groupId
     });
     return (
       <CardContainer
@@ -67,8 +78,8 @@ class Card extends React.Component {
               {...others}
             />
           )}
-          {!!postMediaTypes && !cardSize.isOnlyPostTextMode && (
-            <CardAddMediaTypes postMediaTypes={postMediaTypes} />
+          {!!postMediaTypes && !isOnlyPostTextMode && (
+            <CardAddMediaTypes postMediaTypes={postMediaTypesWithoutText} />
           )}
           <CardFooter
             ref={this.textInputRef}
@@ -79,19 +90,17 @@ class Card extends React.Component {
             isNoTextDescriptionPlaceholder={_.size(mediaList) > 0 && _.isUndefined(mediaList.text)}
             isPost={!!postMediaTypes}
             postText={
-              _.find(postMediaTypes, { type: "text" }) && {
-                ..._.find(postMediaTypes, { type: "text" }),
-                value: mediaList.text ? mediaList.text.value : undefined
+              _.has(postMediaTypes, "text") && {
+                ...postMediaTypes.text,
+                value: _.has(mediaList, "text") ? mediaList.text.value : undefined
               }
             }
             groupId={groupId}
             haveMenu={!!cardMenu}
-            onMenuClick={() => this.setState({ isMenuShowed: true })}
+            onMenuClick={this.onMenuOpen}
             {...others}
           />
-          {isMenuShowed && (
-            <CardMenu optionsList={cardMenu} onClose={() => this.setState({ isMenuShowed: false })} />
-          )}
+          {isMenuShowed && <CardMenu optionsList={cardMenu} onClose={this.onMenuClose} />}
         </CardBorderContainer>
         {onFloatingButtonClick && !isMenuShowed && (
           <CardFloatingButton
