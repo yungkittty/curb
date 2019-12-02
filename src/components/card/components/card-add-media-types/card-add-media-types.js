@@ -12,59 +12,58 @@ import mediaTypeToIcon from "../../../../utils/media-type-to-icon";
 
 const CardAddMediaTypes = ({ theme, postMediaTypes }) => (
   <MediaTypesContainer>
-    {_.map(
+    {_.reduce(
       postMediaTypes,
-      ({ type, onClick, onSelect }, index) =>
-        type !== "text" && (
-          <MediaTypesIcon key={index}>
-            <Icon icon={mediaTypeToIcon(type)} size="small" color={theme.primaryColor} />
-            {/* eslint-disable-next-line */}
-            {type === "image" ? (
-              <InputImage
-                onSelect={(data, file) => onSelect({ type, data, file })}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%"
-                }}
-              />
-            ) : /* eslint-disable-next-line */
-            type === "video" ? (
-              <InputVideo
-                onSelect={(data, file) => onSelect({ type, data, file })}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%"
-                }}
-              />
-            ) : onClick ? (
-              <Button
-                onClick={() => onClick({ type })}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%"
-                }}
-              />
-            ) : null}
-          </MediaTypesIcon>
-        )
+      (result, { onClick, onSelect }, type) => [
+        ...result,
+        <MediaTypesIcon key={type}>
+          <Icon icon={mediaTypeToIcon(type)} size="small" color={theme.primaryColor} />
+          {/* eslint-disable-next-line */}
+          {type === "image" ? (
+            <InputImage
+              onSelect={(data, file) => onSelect({ type, data, file })}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%"
+              }}
+            />
+          ) : /* eslint-disable-next-line */
+          type === "video" ? (
+            <InputVideo
+              onSelect={(data, file) => onSelect({ type, data, file })}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%"
+              }}
+            />
+          ) : onClick ? (
+            <Button
+              onClick={() => onClick({ type })}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%"
+              }}
+            />
+          ) : null}
+        </MediaTypesIcon>
+      ],
+      []
     )}
   </MediaTypesContainer>
 );
 
 CardAddMediaTypes.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  postMediaTypes: PropTypes.arrayOf(
-    PropTypes.shape({ type: PropTypes.string.isRequired, onSelect: PropTypes.func, onClick: PropTypes.func })
-  ).isRequired
+  postMediaTypes: PropTypes.object.isRequired // eslint-disable-line
 };
 
 export default withTheme(CardAddMediaTypes);

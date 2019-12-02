@@ -1,6 +1,6 @@
 import { windowDimensions } from "../../../configurations/window";
 
-const getCardSize = ({ size, isCardExtended, isOnlyPostTextMode }) => {
+const getCardSize = ({ size, isCardExtended }) => {
   const width = windowDimensions.getWidth() - (size === "small" ? 90 : 20);
   const contentHeight = width * (9 / 16);
   switch (size) {
@@ -8,7 +8,6 @@ const getCardSize = ({ size, isCardExtended, isOnlyPostTextMode }) => {
       return {
         isSmall: true,
         isCardExtended,
-        isOnlyPostTextMode,
         width,
         contentHeight
       };
@@ -16,7 +15,6 @@ const getCardSize = ({ size, isCardExtended, isOnlyPostTextMode }) => {
       return {
         isSmall: false,
         isCardExtended,
-        isOnlyPostTextMode,
         width,
         contentHeight
       };
