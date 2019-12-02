@@ -4,7 +4,7 @@ import Button from "../../../../../button";
 
 const ButtonContainer = styled(Button)`
   position: absolute;
-  bottom: -25px;
+  bottom: -18px;
   right: 20px;
   flex-flow: column;
   background-color: white;
