@@ -30,10 +30,10 @@ class GroupPostItem extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { isPostFetching } = this.props;
+    const { isPostFetching, groupMediaTypes } = this.props;
     if (prevProps.isPostFetching && !isPostFetching) {
       this.setState({ mediaList: {} }); // eslint-disable-line
-      this.cardRef.current.clearTextInput();
+      if (_.includes(groupMediaTypes, "text")) this.cardRef.current.clearTextInput();
     }
   }
 
