@@ -47,7 +47,7 @@ class MediaGroupPreview extends React.Component {
                 backgroundColor="white"
                 style={{ marginTop: platformBools.isWeb ? 12 : 6, zIndex: 1 }}
                 component={Text}
-                type="h5"
+                type={platformBools.isWeb ? "h5" : "h6"}
                 weight={700}
                 contentStyle={{
                   color: groupAvatar ? theme.fontColor : theme[`group${_.capitalize(groupTheme)}Color`]
