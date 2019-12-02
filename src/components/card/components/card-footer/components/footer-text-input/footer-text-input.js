@@ -4,6 +4,7 @@ import Input from "../../../../../input";
 
 const InputContainer = styled(Input).attrs(({ t }) => ({ placeholder: t("writeSomething") }))`
   width: 100%;
+  min-height: 90px;
   padding: 0px;
   margin: 0px;
   font-size: 14px;
