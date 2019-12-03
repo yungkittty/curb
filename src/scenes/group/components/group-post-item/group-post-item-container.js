@@ -11,7 +11,4 @@ const mapDispatchToProps = dispatch => ({
   postPost: payload => dispatch(postActions.postPostRequest(payload))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GroupPostItem);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupPostItem);
