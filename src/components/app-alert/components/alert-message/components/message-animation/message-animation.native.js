@@ -44,7 +44,7 @@ const MessageAnimation = WrappedComponent => {
       return (
         <WrappedComponent
           {...this.props}
-          ref={this.wrappedComponent}
+          forwardRef={this.wrappedComponent}
           style={{ transform: [{ translateY: top }] }}
         />
       );

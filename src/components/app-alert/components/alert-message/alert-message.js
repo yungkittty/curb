@@ -7,15 +7,15 @@ import MessageContainer from "./components/message-container";
 import MessageIcon from "./components/message-icon";
 import MessageText from "./components/message-text";
 
-const AlertMessage = ({ t, forwardedRef, style, type, message, icon }) => (
-  <MessageContainer style={style} type={type} ref={forwardedRef}>
+const AlertMessage = ({ t, forwardRef, style, type, message, icon }) => (
+  <MessageContainer style={style} type={type} ref={forwardRef}>
     {icon && <MessageIcon icon={icon} />}
     <MessageText weight={600}>{t(message)}</MessageText>
   </MessageContainer>
 );
 
 AlertMessage.defaultProps = {
-  forwardedRef: undefined,
+  forwardRef: undefined,
   icon: undefined
 };
 
@@ -27,7 +27,7 @@ AlertMessage.propTypes = {
   message: PropTypes.string.isRequired,
   icon: PropTypes.string,
   // eslint-disable-next-line
-  forwardedRef: PropTypes.object
+  forwardRef: PropTypes.object
 };
 
 export default _.flow([

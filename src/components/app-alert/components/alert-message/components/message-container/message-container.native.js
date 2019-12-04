@@ -6,21 +6,25 @@ import { windowDimensions } from "../../../../../../configurations/window";
 
 const MessageContainer = styled(Animated.View)`
   display: flex;
+  flex-flow: rown;
   position: absolute;
   z-index: 8;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: ${windowDimensions.getStatusBarHeight() + 50}px;
   padding-top: ${windowDimensions.getStatusBarHeight()}px;
-  ${Platform.OS === "android" ? `
+  ${
+    Platform.OS === "android"
+      ? `
     elevation: 8;
-  ` : `
+  `
+      : `
     shadow-offset: 0px 4.8px;
     shadow-radius: 4.32px;
     shadow-color: rgba(0, 0, 0, 1);
     shadow-opacity: 0.192;
-  `}
+  `
+  }
   background-color: ${({ type, theme }) => {
     switch (type) {
       case "success":
