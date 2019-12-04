@@ -6,7 +6,7 @@ import { windowDimensions } from "../../../../../../configurations/window";
 
 const MessageContainer = styled(Animated.View)`
   display: flex;
-  flex-flow: rown;
+  flex-flow: row;
   position: absolute;
   z-index: 8;
   align-items: center;
