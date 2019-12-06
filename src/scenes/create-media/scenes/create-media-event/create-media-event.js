@@ -16,6 +16,12 @@ class CreateMediaEvent extends React.Component {
     };
   }
 
+  getData() {
+    const { title, selectedDate } = this.state;
+
+    return { date: selectedDate, name: title };
+  }
+
   render() {
     const { groupTheme } = this.props;
     const { title, selectedDate } = this.state;
