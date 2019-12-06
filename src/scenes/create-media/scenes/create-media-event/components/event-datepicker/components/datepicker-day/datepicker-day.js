@@ -24,7 +24,7 @@ DatepickerDay.defaultProps = {
 };
 
 DatepickerDay.propTypes = {
-  dayList: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
+  dayList: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.instanceOf(Date))).isRequired,
   currentMonth: PropTypes.number.isRequired,
   selectedDate: PropTypes.instanceOf(Date),
   onSelect: PropTypes.func.isRequired,

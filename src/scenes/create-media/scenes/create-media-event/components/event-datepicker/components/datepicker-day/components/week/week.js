@@ -16,6 +16,7 @@ const Week = ({ dayList, currentMonth, selectedDate, onSelect, color }) => {
             day.getFullYear() === selectedDate.getFullYear();
           return (
             <Day
+              key={index}
               day={day}
               today={today}
               currentMonth={currentMonth}

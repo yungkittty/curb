@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import Container from "../../../../../../../../../../components/container";
+import Container from "../../../../../../../../../../../../components/container";
 
 const EventTitleContainer = styled(Container)`
+  display: flex;
   width: 100%;
   height: 25%;
   background-color: white;

@@ -51,11 +51,15 @@ const Day = ({ day, today, currentMonth, isSelected, onClick, color }) => {
   );
 };
 
+Day.defaultProps = {
+  isSelected: undefined
+};
+
 Day.propTypes = {
   day: PropTypes.instanceOf(Date).isRequired,
   today: PropTypes.instanceOf(Date).isRequired,
   currentMonth: PropTypes.number.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired
 };
