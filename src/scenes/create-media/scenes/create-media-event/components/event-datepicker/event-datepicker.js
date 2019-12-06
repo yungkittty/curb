@@ -61,9 +61,13 @@ const EventDatepicker = React.memo(({ color, selectedDate, onSelectDate }) => {
   );
 });
 
+EventDatepicker.defaultProps = {
+  selectedDate: undefined
+};
+
 EventDatepicker.propTypes = {
   color: PropTypes.string.isRequired,
-  selectedDate: PropTypes.instanceOf(Date).isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
   onSelectDate: PropTypes.func.isRequired
 };
 

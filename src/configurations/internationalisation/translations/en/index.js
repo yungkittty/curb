@@ -14,7 +14,7 @@ import group from "./en-group";
 import groupOptions from "./en-group-options";
 import groupSettings from "./en-group-settings";
 import errorCode from "./en-error-code";
-import eventCreate from "./en-event-create";
+import event from "./en-event";
 
 export default {
   common,
@@ -33,5 +33,5 @@ export default {
   groupOptions,
   groupSettings,
   errorCode,
-  eventCreate
+  event
 };

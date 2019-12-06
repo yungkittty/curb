@@ -100,7 +100,7 @@ class Discovery extends React.Component {
               component: (
                 <MediaEvent
                   eventTitle="My event"
-                  eventDate={new Date()}
+                  eventDate={new Date("December 6, 2019 23:24:00")}
                   userList={["", ""]}
                   groupTheme="#56CCF2"
                 />

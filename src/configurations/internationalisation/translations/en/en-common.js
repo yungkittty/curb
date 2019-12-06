@@ -55,7 +55,17 @@ const enCommon = {
     "To be able to take pictures with your camera and choose images from your library, you must authorize the app to access them",
   authorize: "Authorize",
   readMore: "read more",
-  writeSomething: "Write something"
+  writeSomething: "Write something",
+  pastEvent: "Past event",
+  futureEvent: "More than 1 year left",
+  and: "and",
+  left: "{{remaining}} left",
+  join: "Join",
+  date: "{{day}}, {{month}} {{date}}{{ordinalIndicator}}",
+  ordinalIndicatorFirst: "st",
+  ordinalIndicatorSecond: "nd",
+  ordinalIndicatorThird: "rd",
+  ordinalIndicatorOthers: "th"
 };
 
 export default enCommon;

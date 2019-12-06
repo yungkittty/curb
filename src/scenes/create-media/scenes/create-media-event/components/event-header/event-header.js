@@ -23,4 +23,4 @@ EventHeader.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default _.flowRight([withTranslation("eventCreate")])(EventHeader);
+export default _.flowRight([withTranslation("event")])(EventHeader);

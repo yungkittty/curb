@@ -9,6 +9,7 @@ const frCommon = {
   day: "{{count}} jour",
   day_plural: "{{count}} jours",
   month: "{{count}} mois",
+  month_plural: "{{count}} mois",
   year: "{{count}} année",
   year_plural: "{{count}} années",
   january: "Janvier",
@@ -54,7 +55,17 @@ const frCommon = {
     "Pour pouvoir prendre des photos avec votre caméra et choisir des images depuis votre galerie, vous devez autoriser l'application à y accéder",
   authorize: "Autoriser",
   readMore: "lire la suite",
-  writeSomething: "Écrivez quelque chose"
+  writeSomething: "Écrivez quelque chose",
+  pastEvent: "Événement passé",
+  futureEvent: "Dans plus d'un an",
+  and: "et",
+  left: "Dans {{remaining}}",
+  join: "Rejoindre",
+  date: "{{day}}, {{date}}{{ordinalIndicator}} {{month}}",
+  ordinalIndicatorFirst: "er",
+  ordinalIndicatorSecond: "",
+  ordinalIndicatorThird: "",
+  ordinalIndicatorOthers: ""
 };
 
 export default frCommon;
