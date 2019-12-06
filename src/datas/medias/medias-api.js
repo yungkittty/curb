@@ -29,7 +29,8 @@ const mediasApi = {
       onUploadProgress
     });
   },
-  postMediaLocation: ({ postId, data }) => axios.post(`/contents/locations/${postId}`, { data })
+  postMediaLocation: ({ postId, data }) => axios.post(`/contents/locations/${postId}`, { data }),
+  postMediaEvent: ({ postId, data }) => axios.post(`/contents/events/${postId}`, { data })
 };
 
 export default mediasApi;
