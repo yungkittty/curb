@@ -30,10 +30,10 @@ class ContentMedia extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { mediaList, isPost, selectedIndex } = this.props;
+    if (_.size(mediaList) <= 1) return;
     if (selectedIndex !== prevProps.selectedIndex) {
       this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 });
       if (_.size(mediaList) <= 1 || isPost) return;
-      clearTimeout(this.setTimeoutFunc);
       this.startTimer();
     }
   }
@@ -48,11 +48,12 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { mediaList, onIndexChange } = this.props;
-    this.setTimeoutFunc = setTimeout(() => {
-      const { selectedIndex } = this.props;
-      onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1);
-    }, mediaRandomSlider(15000, 30000));
+    const { mediaList, onIndexChange, selectedIndex } = this.props;
+    clearTimeout(this.setTimeoutFunc);
+    this.setTimeoutFunc = setTimeout(
+      () => onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1),
+      mediaRandomSlider(15000, 30000)
+    );
   }
 
   renderItem({ item: { component }, index }) {
@@ -83,7 +84,7 @@ class ContentMedia extends React.Component {
     ) : groupName ? (
       <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
-      <MediaPlaceholder />
+      <MediaPlaceholder contentHeight={cardSize.contentHeight} />
     );
   }
 }
@@ -103,7 +104,7 @@ ContentMedia.propTypes = {
   isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,

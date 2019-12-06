@@ -10,38 +10,25 @@ import { platformBools } from "../../../../../../configurations/platform";
 
 const FooterText = ({
   t,
-  cardSize,
-  userId,
   textDescription,
+  isCardSmall,
   isNoTextDescriptionPlaceholder,
   onClick,
   isExtended
 }) => {
-  /* eslint-disable */
-  const maxLength = platformBools.isWeb
-    ? cardSize.size === "small"
-      ? userId
-        ? 50
-        : 130
-      : userId
-      ? 130
-      : 220
-    : userId
-    ? 70
-    : 130;
-  /* eslint-enable */
-  const isTextTrimmed = textDescription.length <= maxLength;
+  const maxLength = !isCardSmall && (platformBools.isWeb ? 130 : 70);
+  const isTextTrimmed = textDescription.length > maxLength;
   // eslint-disable-next-line
   return textDescription ? (
-    <TextDescription isTextTrimmed={isTextTrimmed}>
-      {isTextTrimmed || isExtended
+    <TextDescription isCardSmall={isCardSmall}>
+      {!isTextTrimmed || isExtended || isCardSmall
         ? textDescription
         : `${textDescription.substring(0, maxLength).trim()}... `}
-      {textDescription.length > maxLength && !isExtended && (
+      {isTextTrimmed && !isExtended && !isCardSmall && (
         <TextReadMore onClick={onClick}>{t("readMore")}</TextReadMore>
       )}
     </TextDescription>
-  ) : isNoTextDescriptionPlaceholder ? (
+  ) : !isNoTextDescriptionPlaceholder ? (
     <TextDescriptionPlaceholderContainer>
       {_.times(3, index => (
         <TextDescriptionPlaceholder key={index} />
@@ -51,7 +38,6 @@ const FooterText = ({
 };
 
 FooterText.defaultProps = {
-  userId: undefined,
   textDescription: "",
   isNoTextDescriptionPlaceholder: false,
   isExtended: false
@@ -59,15 +45,7 @@ FooterText.defaultProps = {
 
 FooterText.propTypes = {
   t: PropTypes.func.isRequired,
-  cardSize: PropTypes.shape({
-    size: PropTypes.string,
-    isCardExtended: PropTypes.bool,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    contentHeight: PropTypes.number,
-    footerHeight: PropTypes.number,
-    floatingTopPosition: PropTypes.number
-  }).isRequired,
-  userId: PropTypes.string,
+  isCardSmall: PropTypes.bool.isRequired,
   textDescription: PropTypes.string,
   isNoTextDescriptionPlaceholder: PropTypes.bool,
   onClick: PropTypes.func.isRequired,

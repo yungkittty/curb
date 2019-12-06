@@ -1,24 +1,20 @@
-const getCardSize = ({ size, isCardExtended, isOnlyPostTextMode }) => {
-  const width = size === "small" ? 415 : 600;
+const getCardSize = ({ size, isCardExtended }) => {
+  const width = size === "small" ? 460 : 600;
   const contentHeight = width * (9 / 16);
   switch (size) {
     case "small":
       return {
-        size,
+        isSmall: true,
         isCardExtended,
-        isOnlyPostTextMode,
         width,
-        contentHeight,
-        footerHeight: 136
+        contentHeight
       };
     default:
       return {
-        size,
+        isSmall: false,
         isCardExtended,
-        isOnlyPostTextMode,
         width,
-        contentHeight,
-        footerHeight: 146
+        contentHeight
       };
   }
 };

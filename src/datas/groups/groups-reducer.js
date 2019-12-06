@@ -2,6 +2,7 @@ import _ from "lodash";
 import { combineReducers } from "redux";
 import groupsActionsTypes from "./groups-actions-types";
 import mediasActionsTypes from "../medias/medias-actions-types";
+import postActionsTypes from "../post/post-actions-types";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -142,19 +143,24 @@ const byId = (state = {}, action) => {
           avatarUrl: action.payload.avatar.data
         }
       };
-    case mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_LOCATION_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS:
+    case postActionsTypes.POST_POST_SUCCESS:
       return {
         ...state,
-        [action.payload.id]: {
-          ...state[action.payload.id],
-          medias: [
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          posts: [
             // eslint-disable-line
-            action.payload.mediasId,
-            ...state[action.payload.id].medias
+            action.payload.postId,
+            ...state[action.payload.groupId].posts
           ]
+        }
+      };
+    case postActionsTypes.DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          posts: _.without(state[action.payload.groupId].posts, action.payload.id)
         }
       };
     default:

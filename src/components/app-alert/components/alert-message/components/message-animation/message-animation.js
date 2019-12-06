@@ -36,7 +36,7 @@ const MessageAnimation = WrappedComponent => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} forwardedRef={this.wrappedComponent} />;
+      return <WrappedComponent {...this.props} forwardRef={this.wrappedComponent} />;
     }
   }
 

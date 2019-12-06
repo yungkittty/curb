@@ -65,7 +65,8 @@ const enCommon = {
   ordinalIndicatorFirst: "st",
   ordinalIndicatorSecond: "nd",
   ordinalIndicatorThird: "rd",
-  ordinalIndicatorOthers: "th"
+  ordinalIndicatorOthers: "th",
+  deletingPost: "Deleting"
 };
 
 export default enCommon;

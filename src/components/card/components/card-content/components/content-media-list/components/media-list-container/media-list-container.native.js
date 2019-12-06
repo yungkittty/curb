@@ -9,7 +9,7 @@ const MediaListContainer = styled(Container)`
   padding: 4px 2px;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 1;
   top: 0px;
   left: 0px;
   border-bottom-right-radius: 8px;

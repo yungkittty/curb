@@ -16,6 +16,7 @@ class CardFooter extends React.Component {
   render() {
     const { isExtended } = this.state;
     const {
+      forwardedRef,
       cardSize,
       userId,
       textDescription,
@@ -27,20 +28,22 @@ class CardFooter extends React.Component {
       ...others
     } = this.props;
     return (
-      <FooterContainer cardSize={cardSize}>
+      <FooterContainer isCardSmall={cardSize.isSmall}>
         {!!userId && <FooterOrigin {...others} cardSize={cardSize} userId={userId} isPost={isPost} />}
         {isPost ? (
-          postText && <FooterTextInput {...postText} isMultiline />
+          postText && <FooterTextInput {...postText} ref={forwardedRef} isMultiline autoResize />
         ) : (
           <FooterText
-            cardSize={cardSize}
-            userId={userId}
+            isCardSmall={cardSize.isSmall}
             textDescription={textDescription}
             onClick={() => this.setState({ isExtended: true })}
             isExtended={isExtended}
+            isNoTextDescriptionPlaceholder={isNoTextDescriptionPlaceholder}
           />
         )}
-        {haveMenu && <FooterMenu onMenuClick={onMenuClick} />}
+        {haveMenu && (textDescription || isNoTextDescriptionPlaceholder) && (
+          <FooterMenu onMenuClick={onMenuClick} />
+        )}
       </FooterContainer>
     );
   }
@@ -54,8 +57,9 @@ CardFooter.defaultProps = {
 };
 
 CardFooter.propTypes = {
+  forwardedRef: PropTypes.object, // eslint-disable-line
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,
@@ -71,4 +75,13 @@ CardFooter.propTypes = {
   onMenuClick: PropTypes.func.isRequired
 };
 
-export default CardFooter;
+export default React.forwardRef(
+  // eslint-disable-line
+  (props, forwardedRef) => (
+    <CardFooter
+      // eslint-disable-line
+      {...props}
+      forwardedRef={forwardedRef}
+    />
+  )
+);

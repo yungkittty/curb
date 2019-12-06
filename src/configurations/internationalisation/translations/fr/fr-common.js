@@ -65,7 +65,8 @@ const frCommon = {
   ordinalIndicatorFirst: "er",
   ordinalIndicatorSecond: "",
   ordinalIndicatorThird: "",
-  ordinalIndicatorOthers: ""
+  ordinalIndicatorOthers: "",
+  deletingPost: "Suppression..."
 };
 
 export default frCommon;
