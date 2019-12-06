@@ -55,10 +55,10 @@ class GroupPostItem extends React.Component {
     });
   }
 
-  onSelectVideo(props) {
+  onSelectVideo({ data, ...others }) {
     this.pushToMediaList({
       key: "video",
-      component: <CardVideo {...props} />
+      component: <CardVideo src={data} {...others} />
     });
   }
 
