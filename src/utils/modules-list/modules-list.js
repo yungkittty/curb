@@ -3,7 +3,7 @@ const modulesList = [
   { id: "image", icon: "image" },
   { id: "video", icon: "video" },
   { id: "location", icon: "map-marker-alt" },
-  { id: "event", icon: "video" }
+  { id: "events", icon: "calendar-alt" }
 ];
 
 export default modulesList;

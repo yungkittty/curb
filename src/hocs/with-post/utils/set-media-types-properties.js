@@ -3,6 +3,7 @@ import React from "react";
 import CardVideo from "../../../components/card-video";
 import CardMap from "../../../components/card-map";
 import CardImageGallery from "../../../components/card-image-gallery";
+import CardEvent from "../../../components/card-event";
 
 const setMediaTypesProperties = mediaTypesList => {
   const mediaList = {};
@@ -24,6 +25,9 @@ const setMediaTypesProperties = mediaTypesList => {
         break;
       case "location":
         _.assign(mediaList, { [type]: { component: <CardMap {...JSON.parse(data)} /> } });
+        break;
+      case "events":
+        _.assign(mediaList, { [type]: { component: <CardEvent {...data} /> } });
         break;
       default:
     }

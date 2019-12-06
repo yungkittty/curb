@@ -16,7 +16,7 @@ const frModules = {
     title: "Localisation",
     description: "Permet aux utilisateurs de publier une localisation géographique"
   },
-  event: {
+  events: {
     title: "Evénement",
     description: "Permet aux utilisateurs de publier un événement"
   }
