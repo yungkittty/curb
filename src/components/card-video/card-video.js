@@ -10,8 +10,8 @@ class CardVideo extends CurbModule {
   }
 
   render() {
-    const { data, style, ...others } = this.props;
-    return <Video {...others} src={data} style={{ ...style, width: "100%", height: "100%" }} autoplay />;
+    const { style, ...others } = this.props;
+    return <Video {...others} style={{ ...style, width: "100%", height: "100%" }} autoplay />;
   }
 }
 
@@ -21,7 +21,6 @@ CardVideo.defaultProps = {
 
 CardVideo.propTypes = {
   file: PropTypes.object.isRequired, // eslint-disable-line
-  data: PropTypes.string.isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
