@@ -14,14 +14,16 @@ const DatepickerTime = ({ date, onChange }) => {
   };
 
   return (
-    <PickerContainer style={{ fontSize: 12, fontWeight: "bold", color: "#4F4F4F" }}>
+    <PickerContainer style={{ fontSize: 12, color: "#4F4F4F" }}>
       <Icon size="extra-extra-small" icon="clock" color="#E0E0E0" style={{ marginRight: 14 }} />
       <TimepickerNumber
         type="number-pad"
         value={date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}
         onChange={({ target: { value } }) => checkValue(value, 24)}
       />
-      <Text style={{ padding: 5, fontSize: 12, fontWeight: "bold" }}>:</Text>
+      <Text weight={700} style={{ padding: 5, fontSize: 12 }}>
+        :
+      </Text>
       <TimepickerNumber
         type="number-pad"
         value={date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}

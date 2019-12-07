@@ -33,7 +33,7 @@ const EventDatepicker = React.memo(({ color, selectedDate, onSelectDate }) => {
   const handleTimeChange = date => {
     if (selectedDate) {
       selectedDate.setHours(date.getHours());
-      selectedDate.setMinutes(Date.getMinutes());
+      selectedDate.setMinutes(date.getMinutes());
       onSelectDate(selectedDate);
     } else {
       setCurrentDate(date);

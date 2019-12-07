@@ -4,8 +4,6 @@ import EventContainer from "./components/event-container";
 import EventHeader from "./components/event-header";
 import EventDatepicker from "./components/event-datepicker";
 
-// {date: '', name: ''}
-
 class EventCreate extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +12,9 @@ class EventCreate extends React.Component {
       title: "",
       selectedDate: undefined
     };
+
+    this.handleOnTitleChange = this.handleOnTitleChange.bind(this);
+    this.handleSelectDate = this.handleSelectDate.bind(this);
   }
 
   getData() {
@@ -22,30 +23,42 @@ class EventCreate extends React.Component {
     return { date: selectedDate, name: title };
   }
 
+  handleOnTitleChange(value) {
+    const { selectedDate } = this.state;
+    const { onModuleIsValid } = this.props;
+
+    onModuleIsValid({ isValid: value !== "" && selectedDate });
+    this.setState({ title: value });
+  }
+
+  handleSelectDate(date) {
+    const { title } = this.state;
+    const { onModuleIsValid } = this.props;
+
+    onModuleIsValid({ isValid: date && title !== "" });
+    this.setState({ selectedDate: date });
+  }
+
   render() {
-    const { groupTheme } = this.props;
+    const { groupThemeColor } = this.props;
     const { title, selectedDate } = this.state;
 
     return (
       <EventContainer>
-        <EventHeader color={groupTheme} value={title} onChange={value => this.setState({ title: value })} />
+        <EventHeader color={groupThemeColor} value={title} onChange={this.handleOnTitleChange} />
         <EventDatepicker
-          color={groupTheme}
+          color={groupThemeColor}
           selectedDate={selectedDate}
-          onSelectDate={date => this.setState({ selectedDate: date })}
+          onSelectDate={this.handleSelectDate}
         />
       </EventContainer>
     );
   }
 }
 
-// delete default props
-EventCreate.defaultProps = {
-  groupTheme: "#56CCF2"
-};
-
 EventCreate.propTypes = {
-  groupTheme: PropTypes.string
+  onModuleIsValid: PropTypes.func.isRequired,
+  groupThemeColor: PropTypes.string.isRequired
 };
 
 export default EventCreate;
