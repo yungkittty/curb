@@ -39,4 +39,3 @@ DatepickerTime.propTypes = {
 };
 
 export default DatepickerTime;
-//      <TimepickerNumber type="number-pad" defaultValue={time.getMinutes()} />
