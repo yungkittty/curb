@@ -91,8 +91,8 @@ function* postMediasRequestSaga(payload) {
         yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location })
       );
     }
-    if (mediaListData.events)
-      mediaActionsToWait.push(yield fork(postMediaEventRequestSaga, { postId, data: mediaListData.events }));
+    if (mediaListData.event)
+      mediaActionsToWait.push(yield fork(postMediaEventRequestSaga, { postId, data: mediaListData.event }));
     for (let i = 0; i < mediaActionsToWait.length; i += 1) yield join(mediaActionsToWait[i]);
     yield put(postActions.postMediasSuccess({ postId }));
   } catch (error) {

@@ -26,7 +26,7 @@ const setMediaTypesProperties = mediaTypesList => {
       case "location":
         _.assign(mediaList, { [type]: { component: <CardMap {...JSON.parse(data)} /> } });
         break;
-      case "events":
+      case "event":
         _.assign(mediaList, { [type]: { component: <CardEvent {...JSON.parse(data)} /> } });
         break;
       default:
