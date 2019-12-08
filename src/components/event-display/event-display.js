@@ -4,10 +4,10 @@ import EventContainer from "./components/event-container";
 import EventHeader from "./components/event-header";
 import EventContent from "./components/event-content";
 
-const EventDisplay = ({ name, date, userList = [], groupTheme }) => (
+const EventDisplay = ({ name, date, userList = [], groupThemeColor }) => (
   <EventContainer>
-    <EventHeader color={groupTheme} title={name} />
-    <EventContent eventDate={new Date(date)} userList={userList} color={groupTheme} />
+    <EventHeader color={groupThemeColor} title={name} />
+    <EventContent eventDate={new Date(date)} userList={userList} color={groupThemeColor} />
   </EventContainer>
 );
 
@@ -15,7 +15,7 @@ EventDisplay.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   userList: PropTypes.arrayOf(PropTypes.string).isRequired,
-  groupTheme: PropTypes.string.isRequired
+  groupThemeColor: PropTypes.string.isRequired
 };
 
 export default EventDisplay;
