@@ -79,7 +79,7 @@ class GroupPostItem extends React.Component {
 
   onClickEvent() {
     const { groupThemeColor } = this.props;
-    const key = "events";
+    const key = "event";
     this.pushToMediaList({
       key,
       component: (
@@ -102,7 +102,7 @@ class GroupPostItem extends React.Component {
 
   getPostMediaTypes(groupMediaTypes) {
     const {
-      mediaList: { video, location, events }
+      mediaList: { video, location, event }
     } = this.state;
     const postMediaTypes = {};
     if (_.includes(groupMediaTypes, "text"))
@@ -113,8 +113,8 @@ class GroupPostItem extends React.Component {
       _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)
       _.merge(postMediaTypes, { location: { onClick: this.onClickLocation } });
-    if (_.includes(groupMediaTypes, "events") && !events)
-      _.merge(postMediaTypes, { events: { onClick: this.onClickEvent } });
+    if (_.includes(groupMediaTypes, "event") && !event)
+      _.merge(postMediaTypes, { event: { onClick: this.onClickEvent } });
     return postMediaTypes;
   }
 
