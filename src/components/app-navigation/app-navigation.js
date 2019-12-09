@@ -59,6 +59,7 @@ const AppNavigation = ({
               placeholderColor={secondaryVariantColor}
               onClick={`/groups/${userGroupId}`}
               hideContainer={hideContainer}
+              compressLevel="high"
             />
           )}
           ListFooterComponent={() => (
