@@ -10,6 +10,7 @@ import withUser from "../../hocs/with-user";
 const ImageUser = ({
   userName,
   userAvatar,
+  compressLevel,
   theme: { secondaryVariantColor, primaryColor },
   size,
   placeholderColor,
@@ -29,8 +30,11 @@ const ImageUser = ({
       userAvatar ? (
         <Image
           // eslint-disable-next-line
-          // eslint-disable-next-line
-          src={_.replace(userAvatar, "medium", size.substr(0, 5) === "extra" ? "large" : size)}
+          src={_.replace(
+            _.replace(userAvatar, "-compress-high", compressLevel ? `-compress-${compressLevel}` : ""),
+            "medium",
+            size
+          )}
           objectFit="cover"
           style={{
             width: innerDiameter,
@@ -51,12 +55,14 @@ const ImageUser = ({
 );
 
 ImageUser.defaultProps = {
+  compressLevel: undefined,
   placeholderColor: undefined
 };
 
 ImageUser.propTypes = {
   userName: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
+  compressLevel: PropTypes.oneOf(["low", "medium", "high"]),
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.string.isRequired,
   placeholderColor: PropTypes.string
