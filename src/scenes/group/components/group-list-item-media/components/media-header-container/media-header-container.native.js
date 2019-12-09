@@ -5,8 +5,8 @@ const MediaHeaderContainer = styled(Container)`
   display: flex;
   flex-flow: row;
   position: absolute;
-  top: -25px;
-  left: 5px;
+  top: -30px;
+  left: 15px;
 `;
 
 export default MediaHeaderContainer;

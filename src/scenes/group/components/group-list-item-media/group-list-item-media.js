@@ -7,6 +7,7 @@ import GroupCardLoadingOverlay from "../group-card-loading-overlay";
 import Icon from "../../../../components/icon";
 import withPost from "../../../../hocs/with-post";
 import shortNumberFormatter from "../../../../utils/short-number-formatter";
+import { platformBools } from "../../../../configurations/platform";
 
 class GroupListItemMedia extends React.Component {
   constructor(props) {
@@ -53,11 +54,14 @@ class GroupListItemMedia extends React.Component {
 
   getHeaderComponent() {
     const { t, isPinned, groupThemeColor } = this.props;
-    // eslint-disable-next-line
     return isPinned ? (
       <MediaHeaderContainer color={groupThemeColor}>
         <Icon size="extra-small" icon="thumbtack" color={groupThemeColor} />
-        <MediaHeaderText type="h4" weight={600} style={{ color: groupThemeColor }}>
+        <MediaHeaderText
+          type={platformBools.isWeb ? "h4" : undefined}
+          weight={600}
+          style={{ color: groupThemeColor }}
+        >
           {t("pinnedPost")}
         </MediaHeaderText>
       </MediaHeaderContainer>
@@ -82,7 +86,7 @@ class GroupListItemMedia extends React.Component {
         OverlayComponent={isPostLoading && <GroupCardLoadingOverlay />}
         userId={postCreatorId}
         cardMenu={this.getCardMenuOptions()}
-        onFloatingButtonClick={!isPostLoading && this.onLike}
+        onFloatingButtonClick={!isPostLoading ? this.onLike : undefined}
         floatingButtonColor={isCurrentUserLiked ? groupThemeColor : theme.primaryColor}
         floatingButtonDisabled={!currentUserId}
         likeNumber={shortNumberFormatter(postReactionsNumber, 1, true)}
