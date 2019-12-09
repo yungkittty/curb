@@ -6,7 +6,7 @@ import CardBorderContainer from "./components/card-border-container";
 import CardContent from "./components/card-content";
 import CardAddMediaTypes from "./components/card-add-media-types";
 import CardFooter from "./components/card-footer";
-import CardMenu from "./components/card-menu";
+import CardOverlay from "./components/card-overlay";
 import CardFloatingButton from "./components/card-floating-button";
 import Button from "../button";
 import getCardSize from "./utils/get-card-size";
@@ -68,7 +68,6 @@ class Card extends React.Component {
       >
         {HeaderComponent && React.cloneElement(HeaderComponent)}
         <CardBorderContainer>
-          {OverlayComponent && React.cloneElement(OverlayComponent)}
           {cardSize.isCardExtended && (
             <CardContent
               mediaList={mediaListWithoutText}
@@ -100,7 +99,13 @@ class Card extends React.Component {
             onMenuClick={this.onMenuOpen}
             {...others}
           />
-          {isMenuShowed && <CardMenu optionsList={cardMenu} onClose={this.onMenuClose} />}
+          {(OverlayComponent || isMenuShowed) && (
+            <CardOverlay
+              OverlayComponent={OverlayComponent}
+              optionsList={cardMenu}
+              onClose={this.onMenuClose}
+            />
+          )}
         </CardBorderContainer>
         {onFloatingButtonClick && !isMenuShowed && (
           <CardFloatingButton
@@ -149,8 +154,8 @@ Card.propTypes = {
   cardMenu: PropTypes.arrayOf(
     PropTypes.shape({ text: PropTypes.string, icon: PropTypes.icon, onClick: PropTypes.func })
   ),
-  HeaderComponent: PropTypes.object, // eslint-disable-line
-  FooterComponent: PropTypes.object, // eslint-disable-line
+  HeaderComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  FooterComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   OverlayComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
 };
 
