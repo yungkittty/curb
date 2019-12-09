@@ -13,6 +13,23 @@ import {
   postMediaLocationRequestSaga
 } from "../medias/medias-saga";
 
+function* getPostListRequestSaga(action) {
+  try {
+    const { groupId } = action.payload;
+    const { data: pinnedPayload } = yield call(postApi.getPostList, { groupId, pinned: true });
+    const { data: unpinnedPayload } = yield call(postApi.getPostList, { groupId, pinned: false });
+    yield put(
+      postActions.getPostListSuccess({
+        groupId,
+        filterdPosts: _.concat(pinnedPayload.data, unpinnedPayload.data)
+      })
+    );
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(postActions.getPostListFailure({ id: action.payload.id, errorCode }));
+  }
+}
+
 function* getPostRequestSaga(action) {
   try {
     const { data: payload } = yield call(postApi.getPost, action.payload);
@@ -25,8 +42,16 @@ function* getPostRequestSaga(action) {
 
 function* postPinPostRequestSaga(action) {
   try {
-    yield call(postApi.postPinPost, action.payload);
-    yield put(postActions.postPinPostSuccess());
+    const { id, isPinned } = action.payload;
+    const { groupId } = yield select(postSelectors.getPostById, id);
+    yield call(postApi.postPinPost, { id });
+    const successAlert = {
+      type: "success",
+      message: isPinned ? "postUnpinned" : "postPinned",
+      icon: "check"
+    };
+    yield put(appAlertActions.pushAppAlert(successAlert));
+    yield put(postActions.postPinPostSuccess({ id, groupId, isPinned }));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(postActions.getPostFailure({ id: action.payload.id, errorCode }));
@@ -117,6 +142,7 @@ function* postPostRequestSaga(action) {
 }
 
 const postSaga = all([
+  takeLatest(postActionsTypes.GET_POST_LIST_REQUEST, getPostListRequestSaga),
   takeNormalize(postActionsTypes.GET_POST_REQUEST, getPostRequestSaga),
   takeLatest(postActionsTypes.POST_PIN_POST_REQUEST, postPinPostRequestSaga),
   takeLatest(postActionsTypes.POST_REPORT_POST_REQUEST, postReportPostRequestSaga),

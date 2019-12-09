@@ -113,10 +113,10 @@ class Group extends React.Component {
     );
   }
 
-  renderListItemMedia({ item: postId }) {
+  renderListItemMedia({ item: post }) {
     const { t, theme, currentUserId, groupCreatorId, groupId, groupTheme, groupMediaTypes } = this.props;
     const groupThemeColor = theme[`group${_.capitalize(groupTheme)}Color`] || "transparent";
-    return postId === 0 ? (
+    return post === 0 ? (
       <GroupPostItem
         currentUserId={currentUserId}
         groupId={groupId}
@@ -131,7 +131,8 @@ class Group extends React.Component {
         currentUserId={currentUserId}
         groupCreatorId={groupCreatorId}
         groupThemeColor={groupThemeColor}
-        postId={postId}
+        postId={post.id}
+        isPinned={post.pinned}
       />
     );
   }

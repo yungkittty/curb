@@ -22,6 +22,7 @@ const enCommon = {
   reset: "Reset",
   delete: "Delete",
   pin: "Pin",
+  unpin: "Unpin",
   report: "Report",
   post: "Post",
   selectOption: "Select an option",
@@ -36,7 +37,7 @@ const enCommon = {
   authorize: "Authorize",
   readMore: "read more",
   writeSomething: "Write something",
-  deletingPost: "Deleting"
+  pinnedPost: "Pinned post"
 };
 
 export default enCommon;

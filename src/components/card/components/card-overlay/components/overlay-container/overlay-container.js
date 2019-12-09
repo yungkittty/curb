@@ -1,7 +1,10 @@
 import styled from "styled-components";
+import Container from "../../../../../container";
 import ContainerScroll from "../../../../../container-scroll";
 
-const MenuContainer = styled(ContainerScroll)`
+const OverlayContainer = styled(Container).attrs(({ isMenu }) => ({
+  as: isMenu ? ContainerScroll : undefined
+}))`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -10,4 +13,4 @@ const MenuContainer = styled(ContainerScroll)`
   z-index: 2;
 `;
 
-export default MenuContainer;
+export default OverlayContainer;

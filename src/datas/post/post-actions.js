@@ -1,6 +1,19 @@
 import postActionsTypes from "./post-actions-types";
 
 const postActions = {
+  getPostListRequest: payload => ({
+    type: postActionsTypes.GET_POST_LIST_REQUEST,
+    payload
+  }),
+  getPostListSuccess: payload => ({
+    type: postActionsTypes.GET_POST_LIST_SUCCESS,
+    payload
+  }),
+  getPostListFailure: error => ({
+    type: postActionsTypes.GET_POST_LIST_FAILURE,
+    payload: error,
+    error: true
+  }),
   getPostRequest: payload => ({
     type: postActionsTypes.GET_POST_REQUEST,
     payload

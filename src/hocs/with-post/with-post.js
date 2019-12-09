@@ -41,12 +41,11 @@ const withPost = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const postId = ownProps.postId; // eslint-disable-line
     const post = postSelectors.getPostById(state, postId);
-    const deletingPosts = postSelectors.deletingPosts(state);
     const currentUserId = currentUserSelectors.getCurrentUserId(state);
     if (!post) return { postId };
     const mediaList = setMediaTypesProperties(post.medias);
     const {
-      isFetching: isPostFetching,
+      isLoading: isPostLoading,
       creatorId: postCreatorId,
       createdAt: postDateCreation,
       reaction: postReaction,
@@ -55,13 +54,12 @@ const withPost = WrappedComponent => {
     // eslint-disable-next-line
     return {
       postId,
-      isPostFetching,
+      isPostLoading,
       postCreatorId,
       postDateCreation,
       postReactionsNumber: _.size(postReaction),
       isCurrentUserLiked: _.includes(postReaction, currentUserId),
       postErrorCode,
-      deletingPosts,
       mediaList
     };
   };
@@ -77,32 +75,29 @@ const withPost = WrappedComponent => {
   WithPost.defaultProps = {
     shouldFetch: true,
     postId: "",
+    isPostLoading: false,
     postCreatorId: "",
     postDateCreation: "",
     postReactionsNumber: 0,
     isCurrentUserLiked: false,
     postErrorCode: "",
-    deletingPosts: [],
     mediaList: {}
   };
 
   WithPost.propTypes = {
     shouldFetch: PropTypes.bool,
     postId: PropTypes.string,
+    isPostLoading: PropTypes.bool,
     postCreatorId: PropTypes.string,
     postDateCreation: PropTypes.string,
     postReactionsNumber: PropTypes.number,
     isCurrentUserLiked: PropTypes.bool,
     postErrorCode: PropTypes.string,
-    deletingPosts: PropTypes.arrayOf(PropTypes.string),
     mediaList: PropTypes.object, // eslint-disable-line
     getPost: PropTypes.func.isRequired
   };
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(WithPost);
+  return connect(mapStateToProps, mapDispatchToProps)(WithPost);
 };
 
 export default withPost;

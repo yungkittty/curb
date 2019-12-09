@@ -4,15 +4,15 @@ import PropTypes from "prop-types";
 import CloseContainer from "./components/close-container";
 import CloseIcon from "./components/close-icon";
 
-const MenuClose = ({ theme, onClose }) => (
+const OverlayClose = ({ theme, onClose }) => (
   <CloseContainer onClick={onClose} hoverColor={theme.primaryColor}>
     <CloseIcon icon="times" color={theme.secondaryVariantColor} />
   </CloseContainer>
 );
 
-MenuClose.propTypes = {
+OverlayClose.propTypes = {
   theme: PropTypes.object.isRequired, // eslint-disable-line
   onClose: PropTypes.func.isRequired
 };
 
-export default withTheme(MenuClose);
+export default withTheme(OverlayClose);

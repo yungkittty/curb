@@ -21,6 +21,7 @@ const frCommon = {
   reset: "Réinitialiser",
   delete: "Supprimer",
   pin: "Épingler",
+  unpin: "Désépingler",
   report: "Signaler",
   post: "Publier",
   selectOption: "Sélectionner une option",
@@ -35,7 +36,7 @@ const frCommon = {
   authorize: "Autoriser",
   readMore: "lire la suite",
   writeSomething: "Écrivez quelque chose",
-  deletingPost: "Suppression..."
+  pinnedPost: "Post épinglé"
 };
 
 export default frCommon;
