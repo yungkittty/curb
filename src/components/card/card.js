@@ -89,10 +89,12 @@ class Card extends React.Component {
             isNoTextDescriptionPlaceholder={_.size(mediaList) > 0 && _.isUndefined(mediaList.text)}
             isPost={!!postMediaTypes}
             postText={
-              _.has(postMediaTypes, "text") && {
-                ...postMediaTypes.text,
-                value: _.has(mediaList, "text") ? mediaList.text.value : undefined
-              }
+              _.has(postMediaTypes, "text")
+                ? {
+                    ...postMediaTypes.text,
+                    value: _.has(mediaList, "text") ? mediaList.text.value : undefined
+                  }
+                : undefined
             }
             groupId={groupId}
             haveMenu={!!cardMenu}
@@ -139,14 +141,7 @@ Card.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   className: PropTypes.string,
   size: PropTypes.string,
-  postMediaTypes: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      onChange: PropTypes.func,
-      onSelect: PropTypes.func,
-      onClick: PropTypes.func
-    })
-  ),
+  postMediaTypes: PropTypes.object, // eslint-disable-line
   mediaList: PropTypes.object, // eslint-disable-line
   groupDescription: PropTypes.string,
   onFloatingButtonClick: PropTypes.func,
