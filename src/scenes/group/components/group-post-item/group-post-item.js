@@ -6,7 +6,7 @@ import CardVideo from "../../../../components/card-video";
 import CardMap from "../../../../components/card-map";
 import CardEvent from "../../../../components/card-event";
 import GroupCardContainer from "../group-card-container";
-import PostItemOverlay from "./components/post-item-overlay";
+import GroupCardLoadingOverlay from "../group-card-loading-overlay";
 import PostItemRule from "./components/post-item-rule";
 
 class GroupPostItem extends React.Component {
@@ -208,7 +208,7 @@ class GroupPostItem extends React.Component {
           floatingButtonColor={groupThemeColor}
           floatingButtonDisabled={!this.checkIsPostValid() || isPostFetching}
           contentMenuButton={{ icon: "minus", onClick: this.removeContent }}
-          OverlayComponent={isPostFetching && <PostItemOverlay />}
+          OverlayComponent={isPostFetching && <GroupCardLoadingOverlay />}
         />
         <PostItemRule />
       </React.Fragment>

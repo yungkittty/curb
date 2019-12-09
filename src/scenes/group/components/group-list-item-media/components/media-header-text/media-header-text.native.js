@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import Text from "../../../../../../components/text";
 
-const MediaHeaderText = styled(Text).attrs(() => ({ weight: 600 }))`
+const MediaHeaderText = styled(Text)`
   display: flex;
-  color: ${({ theme }) => theme.secondaryVariantColor};
   align-items: center;
-  margin-left: 25px;
+  margin-left: 10px;
 `;
 
 export default MediaHeaderText;

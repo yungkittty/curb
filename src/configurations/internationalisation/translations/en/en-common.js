@@ -42,6 +42,7 @@ const enCommon = {
   reset: "Reset",
   delete: "Delete",
   pin: "Pin",
+  unpin: "Unpin",
   report: "Report",
   post: "Post",
   selectOption: "Select an option",
@@ -66,7 +67,7 @@ const enCommon = {
   ordinalIndicatorSecond: "nd",
   ordinalIndicatorThird: "rd",
   ordinalIndicatorOthers: "th",
-  deletingPost: "Deleting"
+  pinnedPost: "Pinned post"
 };
 
 export default enCommon;

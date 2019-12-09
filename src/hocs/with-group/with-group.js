@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, matchPath } from "react-router";
 import { groupsActions, groupsSelectors } from "../../datas/groups";
+import { postActions } from "../../datas/post";
 
 const withGroup = WrappedComponent => {
   class WithGroup extends React.Component {
@@ -12,10 +13,11 @@ const withGroup = WrappedComponent => {
         // eslint-disable-line
         shouldFetch,
         groupId,
-        getGroup
+        getGroup,
+        shouldFetchPostList
       } = this.props;
-      if (shouldFetch && groupId) {
-        getGroup({ id: groupId });
+      if ((shouldFetch || shouldFetchPostList) && groupId) {
+        getGroup({ id: groupId, fetchPostList: shouldFetchPostList });
       }
     }
 
@@ -24,10 +26,11 @@ const withGroup = WrappedComponent => {
         // eslint-disable-line
         shouldFetch,
         groupId,
-        getGroup
+        getGroup,
+        shouldFetchPostList
       } = this.props;
-      if (shouldFetch && groupId && groupId !== prevProps.groupId) {
-        getGroup({ id: groupId });
+      if ((shouldFetch || shouldFetchPostList) && groupId && groupId !== prevProps.groupId) {
+        getGroup({ id: groupId, fetchPostList: shouldFetchPostList });
       }
     }
 
@@ -55,7 +58,7 @@ const withGroup = WrappedComponent => {
       inviteToken: groupInviteToken,
       users: groupUsersId,
       mediaTypes: groupMediaTypes,
-      posts: groupPostsId,
+      filterdPosts: groupPostsId,
       errorCode: groupErrorCode
     } = group;
     return {
@@ -72,16 +75,19 @@ const withGroup = WrappedComponent => {
       groupUsersId,
       groupMediaTypes,
       groupPostsId,
-      groupErrorCode
+      groupErrorCode,
+      shouldFetchPostList: groupId === groupParamsId
     };
   };
 
   const mapDispatchToProps = dispatch => ({
-    getGroup: payload => dispatch(groupsActions.getGroupRequest(payload))
+    getGroup: payload => dispatch(groupsActions.getGroupRequest(payload)),
+    getGroupPostList: payload => dispatch(postActions.getPostListRequest(payload))
   });
 
   WithGroup.defaultProps = {
     shouldFetch: true,
+    shouldFetchPostList: false,
     groupId: "",
     groupCreatorId: "",
     groupDateCreation: "",
@@ -101,6 +107,7 @@ const withGroup = WrappedComponent => {
   WithGroup.propTypes = {
     location: PropTypes.object.isRequired, // eslint-disable-line
     shouldFetch: PropTypes.bool,
+    shouldFetchPostList: PropTypes.bool,
     groupId: PropTypes.string,
     groupCreatorId: PropTypes.string,
     groupDateCreation: PropTypes.string,
@@ -115,16 +122,14 @@ const withGroup = WrappedComponent => {
     groupMediaTypes: PropTypes.array, // eslint-disable-line
     groupPostsId: PropTypes.array, // eslint-disable-line
     groupErrorCode: PropTypes.string,
-    getGroup: PropTypes.func.isRequired
+    getGroup: PropTypes.func.isRequired,
+    getGroupPostList: PropTypes.func.isRequired
   };
 
   return _.flowRight([
     // eslint-disable-line
     withRouter,
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )
+    connect(mapStateToProps, mapDispatchToProps)
   ])(WithGroup);
 };
 

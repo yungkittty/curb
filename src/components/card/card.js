@@ -6,7 +6,7 @@ import CardBorderContainer from "./components/card-border-container";
 import CardContent from "./components/card-content";
 import CardAddMediaTypes from "./components/card-add-media-types";
 import CardFooter from "./components/card-footer";
-import CardMenu from "./components/card-menu";
+import CardOverlay from "./components/card-overlay";
 import CardFloatingButton from "./components/card-floating-button";
 import Button from "../button";
 import getCardSize from "./utils/get-card-size";
@@ -68,7 +68,6 @@ class Card extends React.Component {
       >
         {HeaderComponent && React.cloneElement(HeaderComponent)}
         <CardBorderContainer>
-          {OverlayComponent && React.cloneElement(OverlayComponent)}
           {cardSize.isCardExtended && (
             <CardContent
               mediaList={mediaListWithoutText}
@@ -90,17 +89,25 @@ class Card extends React.Component {
             isNoTextDescriptionPlaceholder={_.size(mediaList) > 0 && _.isUndefined(mediaList.text)}
             isPost={!!postMediaTypes}
             postText={
-              _.has(postMediaTypes, "text") && {
-                ...postMediaTypes.text,
-                value: _.has(mediaList, "text") ? mediaList.text.value : undefined
-              }
+              _.has(postMediaTypes, "text")
+                ? {
+                    ...postMediaTypes.text,
+                    value: _.has(mediaList, "text") ? mediaList.text.value : undefined
+                  }
+                : undefined
             }
             groupId={groupId}
             haveMenu={!!cardMenu}
             onMenuClick={this.onMenuOpen}
             {...others}
           />
-          {isMenuShowed && <CardMenu optionsList={cardMenu} onClose={this.onMenuClose} />}
+          {(OverlayComponent || isMenuShowed) && (
+            <CardOverlay
+              OverlayComponent={OverlayComponent}
+              optionsList={cardMenu}
+              onClose={this.onMenuClose}
+            />
+          )}
         </CardBorderContainer>
         {onFloatingButtonClick && !isMenuShowed && (
           <CardFloatingButton
@@ -134,14 +141,7 @@ Card.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   className: PropTypes.string,
   size: PropTypes.string,
-  postMediaTypes: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      onChange: PropTypes.func,
-      onSelect: PropTypes.func,
-      onClick: PropTypes.func
-    })
-  ),
+  postMediaTypes: PropTypes.object, // eslint-disable-line
   mediaList: PropTypes.object, // eslint-disable-line
   groupDescription: PropTypes.string,
   onFloatingButtonClick: PropTypes.func,
@@ -149,8 +149,8 @@ Card.propTypes = {
   cardMenu: PropTypes.arrayOf(
     PropTypes.shape({ text: PropTypes.string, icon: PropTypes.icon, onClick: PropTypes.func })
   ),
-  HeaderComponent: PropTypes.object, // eslint-disable-line
-  FooterComponent: PropTypes.object, // eslint-disable-line
+  HeaderComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  FooterComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   OverlayComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
 };
 

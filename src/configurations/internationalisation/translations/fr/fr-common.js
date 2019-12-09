@@ -42,6 +42,7 @@ const frCommon = {
   reset: "Réinitialiser",
   delete: "Supprimer",
   pin: "Épingler",
+  unpin: "Désépingler",
   report: "Signaler",
   post: "Publier",
   selectOption: "Sélectionner une option",
@@ -66,7 +67,7 @@ const frCommon = {
   ordinalIndicatorSecond: "",
   ordinalIndicatorThird: "",
   ordinalIndicatorOthers: "",
-  deletingPost: "Suppression..."
+  pinnedPost: "Post épinglé"
 };
 
 export default frCommon;

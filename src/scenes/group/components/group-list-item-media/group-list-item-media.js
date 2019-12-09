@@ -1,12 +1,13 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import MediaHeaderContainer from "./components/media-header-container";
-import MediaHeaderLoader from "./components/media-header-loader";
 import MediaHeaderText from "./components/media-header-text";
 import GroupCardContainer from "../group-card-container";
+import GroupCardLoadingOverlay from "../group-card-loading-overlay";
+import Icon from "../../../../components/icon";
 import withPost from "../../../../hocs/with-post";
 import shortNumberFormatter from "../../../../utils/short-number-formatter";
+import { platformBools } from "../../../../configurations/platform";
 
 class GroupListItemMedia extends React.Component {
   constructor(props) {
@@ -21,8 +22,8 @@ class GroupListItemMedia extends React.Component {
   }
 
   onPin() {
-    const { postPinPost, postId } = this.props;
-    postPinPost({ id: postId });
+    const { postPinPost, postId, isPinned } = this.props;
+    postPinPost({ id: postId, isPinned });
   }
 
   onDelete() {
@@ -41,10 +42,10 @@ class GroupListItemMedia extends React.Component {
   }
 
   getCardMenuOptions() {
-    const { t, currentUserId, groupCreatorId, postCreatorId } = this.props;
+    const { t, isPinned, currentUserId, groupCreatorId, postCreatorId } = this.props;
     const cardMenu = [];
     if (currentUserId === groupCreatorId)
-      cardMenu.push({ text: t("pin"), icon: "thumbtack", onClick: this.onPin });
+      cardMenu.push({ text: t(isPinned ? "unpin" : "pin"), icon: "thumbtack", onClick: this.onPin });
     if (currentUserId === postCreatorId || currentUserId === groupCreatorId)
       cardMenu.push({ text: t("delete"), icon: "trash", onClick: this.onDelete });
     else cardMenu.push({ text: t("report"), icon: "flag", onClick: this.onReport });
@@ -52,11 +53,17 @@ class GroupListItemMedia extends React.Component {
   }
 
   getHeaderComponent() {
-    const { t, deletingPosts, postId } = this.props;
-    return _.includes(deletingPosts, postId) ? (
-      <MediaHeaderContainer>
-        <MediaHeaderLoader size="extra-extra-small" />
-        <MediaHeaderText>{t("deletingPost")}</MediaHeaderText>
+    const { t, isPinned, groupThemeColor } = this.props;
+    return isPinned ? (
+      <MediaHeaderContainer color={groupThemeColor}>
+        <Icon size="extra-small" icon="thumbtack" color={groupThemeColor} />
+        <MediaHeaderText
+          type={platformBools.isWeb ? "h4" : undefined}
+          weight={600}
+          style={{ color: groupThemeColor }}
+        >
+          {t("pinnedPost")}
+        </MediaHeaderText>
       </MediaHeaderContainer>
     ) : null;
   }
@@ -69,15 +76,17 @@ class GroupListItemMedia extends React.Component {
       postReactionsNumber,
       isCurrentUserLiked,
       currentUserId,
+      isPostLoading,
       ...others
     } = this.props;
     return (
       <GroupCardContainer
         {...others}
         HeaderComponent={this.getHeaderComponent()}
+        OverlayComponent={isPostLoading && <GroupCardLoadingOverlay />}
         userId={postCreatorId}
         cardMenu={this.getCardMenuOptions()}
-        onFloatingButtonClick={this.onLike}
+        onFloatingButtonClick={!isPostLoading ? this.onLike : undefined}
         floatingButtonColor={isCurrentUserLiked ? groupThemeColor : theme.primaryColor}
         floatingButtonDisabled={!currentUserId}
         likeNumber={shortNumberFormatter(postReactionsNumber, 1, true)}
@@ -100,7 +109,8 @@ GroupListItemMedia.propTypes = {
   groupThemeColor: PropTypes.string.isRequired,
   postReactionsNumber: PropTypes.number.isRequired,
   isCurrentUserLiked: PropTypes.bool.isRequired,
-  deletingPosts: PropTypes.arrayOf(PropTypes.string).isRequired
+  isPinned: PropTypes.bool.isRequired,
+  isPostLoading: PropTypes.bool.isRequired
 };
 
 export default withPost(GroupListItemMedia);

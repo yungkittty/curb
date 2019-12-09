@@ -143,15 +143,45 @@ const byId = (state = {}, action) => {
           avatarUrl: action.payload.avatar.data
         }
       };
+    case postActionsTypes.GET_POST_LIST_SUCCESS:
+      return {
+        ...state,
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          filterdPosts: action.payload.filterdPosts
+        }
+      };
     case postActionsTypes.POST_POST_SUCCESS:
       return {
         ...state,
         [action.payload.groupId]: {
           ...state[action.payload.groupId],
-          posts: [
+          filterdPosts: [
             // eslint-disable-line
-            action.payload.postId,
-            ...state[action.payload.groupId].posts
+            ..._.filter(state[action.payload.groupId].filterdPosts, ({ pinned }) => pinned),
+            { id: action.payload.postId, pinned: false },
+            ..._.filter(state[action.payload.groupId].filterdPosts, ({ pinned }) => !pinned)
+          ]
+        }
+      };
+    case postActionsTypes.POST_PIN_POST_SUCCESS:
+      return {
+        ...state,
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          filterdPosts: [
+            ..._.filter(
+              state[action.payload.groupId].filterdPosts,
+              ({ id, pinned }) => pinned && id !== action.payload.id
+            ),
+            {
+              ..._.find(state[action.payload.groupId].filterdPosts, ({ id }) => id === action.payload.id),
+              pinned: !action.payload.isPinned
+            },
+            ..._.filter(
+              state[action.payload.groupId].filterdPosts,
+              ({ id, pinned }) => !pinned && id !== action.payload.id
+            )
           ]
         }
       };
@@ -160,7 +190,10 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.groupId]: {
           ...state[action.payload.groupId],
-          posts: _.without(state[action.payload.groupId].posts, action.payload.id)
+          filterdPosts: _.remove(
+            state[action.payload.groupId].filterdPosts,
+            ({ id }) => id !== action.payload.id
+          )
         }
       };
     default:
