@@ -19,6 +19,9 @@ const frModules = {
   event: {
     title: "Evénement",
     description: "Permet aux utilisateurs de publier un événement"
+  },
+  unknown: {
+    title: "Inconnu"
   }
 };
 

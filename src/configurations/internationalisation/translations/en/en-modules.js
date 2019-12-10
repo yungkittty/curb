@@ -13,6 +13,9 @@ const enModules = {
   event: {
     title: "Event",
     description: "Allows users to post events"
+  },
+  unknown: {
+    title: "Unknown"
   }
 };
 
