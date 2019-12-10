@@ -66,10 +66,10 @@ class ContentMedia extends React.Component {
   }
 
   renderItem({ item: { component }, index }) {
-    const { selectedIndex, cardSize } = this.props;
+    const { selectedIndex, cardSize, moduleComponentProps } = this.props;
     return (
       <MediaItemContainer cardSize={cardSize}>
-        {React.cloneElement(component, { isShowedInCard: index === selectedIndex })}
+        {React.cloneElement(component, { isShowedInCard: index === selectedIndex, ...moduleComponentProps })}
       </MediaItemContainer>
     );
   }
@@ -107,7 +107,8 @@ ContentMedia.defaultProps = {
   groupId: undefined,
   groupName: undefined,
   mediaType: undefined,
-  mediaData: undefined
+  mediaData: undefined,
+  moduleComponentProps: undefined
 };
 
 ContentMedia.propTypes = {
@@ -126,7 +127,8 @@ ContentMedia.propTypes = {
   groupId: PropTypes.string,
   groupName: PropTypes.string,
   mediaType: PropTypes.string,
-  mediaData: PropTypes.string
+  mediaData: PropTypes.string,
+  moduleComponentProps: PropTypes.object // eslint-disable-line
 };
 
 export default ContentMedia;
