@@ -3,6 +3,7 @@ import React from "react";
 import CardVideo from "../../../components/card-video";
 import CardMap from "../../../components/card-map";
 import CardImageGallery from "../../../components/card-image-gallery";
+import CardUnknown from "../../../components/card-unknown";
 
 const setMediaTypesProperties = mediaTypesList => {
   const mediaList = {};
@@ -26,6 +27,8 @@ const setMediaTypesProperties = mediaTypesList => {
         _.assign(mediaList, { [type]: { component: <CardMap {...JSON.parse(data)} /> } });
         break;
       default:
+        _.assign(mediaList, { [type]: { component: <CardUnknown /> } });
+        break;
     }
   });
   return mediaList;

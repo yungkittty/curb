@@ -9,11 +9,13 @@ import { platformBools } from "../../configurations/platform";
 const ListItemCircleText = ({
   // eslint-disable-line
   as,
+  className,
+  style,
   onClick,
   text,
   ...others
 }) => (
-  <CircleTextContainer as={as} onClick={onClick}>
+  <CircleTextContainer as={as} className={className} style={style} onClick={onClick}>
     <React.Fragment>
       <Circle
         {...others}
@@ -35,12 +37,16 @@ const ListItemCircleText = ({
 
 ListItemCircleText.defaultProps = {
   as: undefined,
+  className: undefined,
+  style: undefined,
   onClick: undefined,
   text: undefined
 };
 
 ListItemCircleText.propTypes = {
-  as: PropTypes.func,
+  as: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  className: PropTypes.string,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
   text: PropTypes.string
 };
