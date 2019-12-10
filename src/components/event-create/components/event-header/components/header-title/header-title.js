@@ -8,10 +8,7 @@ const HeaderTitle = styled(Input)`
   text-align: center;
   border-bottom: 1px solid white;
   color: white;
-  ::placeholder {
-    font-weight: bold;
-    color: rgba(255, 255, 255, 0.3);
-  }
+  font-family: "Montserrat-Bold";
 `;
 
 export default HeaderTitle;

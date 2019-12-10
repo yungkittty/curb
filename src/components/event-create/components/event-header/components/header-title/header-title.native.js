@@ -6,7 +6,7 @@ const HeaderTitle = styled(Input)`
   height: 30px;
   padding: 6px 0 6px 0;
   text-align: center;
-  font-weight: bold;
+  font-family: "Montserrat-Bold";
   color: white;
   border-color: white;
   border-bottom-width: 1px;

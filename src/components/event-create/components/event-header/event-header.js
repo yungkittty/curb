@@ -12,6 +12,7 @@ const EventHeader = ({ t, color, value, onChange }) => (
       onChange={event => onChange(event.target.value)}
       placeholder={t("title")}
       placeholderTextColor="rgba(255,255,255,0.3)"
+      maxLength={40}
     />
   </HeaderContainer>
 );

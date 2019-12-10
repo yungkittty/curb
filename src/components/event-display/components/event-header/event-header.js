@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import EventHeaderContainer from "./components/event-header-container";
-import Text from "../../../text";
+import EventHeaderText from "./components/event-header-text";
+import { platformBools } from "../../../../configurations/platform";
 
 const EventHeader = ({ color, title }) => (
   <EventHeaderContainer>
-    <Text type="h1" weight={700} style={{ color }}>
+    <EventHeaderText type={platformBools.isWeb ? "h1" : "h2"} weight={700} style={{ color }}>
       {title}
-    </Text>
+    </EventHeaderText>
   </EventHeaderContainer>
 );
 

@@ -16,7 +16,7 @@ class StadiumContainer extends React.Component {
     const innerRadius = platformBools.isWeb
       ? // eslint-disable-line
         [30, 40, 60, 80, 100, 200, 300]
-      : [20, 35, 50, 60, 70, 150, 200];
+      : [20, 30, 50, 60, 70, 150, 200];
     switch (radius) {
       case "extra-extra-small":
         return innerRadius[0];
