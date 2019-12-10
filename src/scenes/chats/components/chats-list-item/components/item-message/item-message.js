@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from "react";
 import PropTypes from "prop-types";
 import MessageContainer from "./components/message-container";
@@ -33,6 +31,10 @@ const ItemMessage = ({
   </MessageContainer>
 );
 
-ItemMessage.propTypes = {};
+ItemMessage.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  messageData: PropTypes.string.isRequired
+};
 
 export default withUser(ItemMessage);
