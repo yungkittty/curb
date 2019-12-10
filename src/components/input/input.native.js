@@ -5,13 +5,14 @@ import { TextInput, Platform } from "react-native";
 
 // https://github.com/yungkittty/curb/blob/develop/src/components/text/text.native.js
 
-const Input = styled(({ type, onChange, id, isMultiline, ...others }) => (
+const Input = styled(({ id, type, onChange, style, isMultiline, ...others }) => (
   <TextInput
     {...others}
-    textAlignVertical="top"
+    textAlignVertical={isMultiline ? "top" : "center"}
     keyboardType={type === "email" ? "email-address" : undefined}
     secureTextEntry={type === "password"}
     onChangeText={value => onChange({ target: { id, value } })}
+    style={style}
     multiline={isMultiline}
   />
 ))`

@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import Container from "../../../../components/container";
+import Container from "../../../../../../components/container";
 
 const ChatContainer = styled(Container)`
   display: flex;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  flex: 1;
+  flex-direction: column;
 `;
 
 export default ChatContainer;
