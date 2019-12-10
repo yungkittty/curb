@@ -90,6 +90,7 @@ class GroupListItemMedia extends React.Component {
         floatingButtonColor={isCurrentUserLiked ? groupThemeColor : theme.primaryColor}
         floatingButtonDisabled={!currentUserId}
         likeNumber={shortNumberFormatter(postReactionsNumber, 1, true)}
+        moduleComponentProps={{ groupThemeColor }}
       />
     );
   }
