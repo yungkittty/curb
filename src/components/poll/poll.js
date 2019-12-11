@@ -27,8 +27,8 @@ class Poll extends React.Component {
   }
 
   checkIsModuleValid() {
-    const { question } = this.state;
-    return question !== "";
+    const { question, options } = this.state;
+    return question !== "" && options != null;
   }
 
   handleOnQuestionChange({ target: { value } }) {
@@ -43,11 +43,11 @@ class Poll extends React.Component {
   }
 
   render() {
-    const { groupTheme, onModuleIsValid } = this.props;
+    const { groupThemeColor, onModuleIsValid } = this.props;
     const { options } = this.state;
     return (
       <PollContainer>
-        <PollHeaderContainer style={{ backgroundColor: groupTheme }}>
+        <PollHeaderContainer style={{ backgroundColor: groupThemeColor }}>
           <PollHeaderTitle onChange={this.handleOnQuestionChange} placeholder="Type your question" />
           {
             <Container
@@ -61,7 +61,7 @@ class Poll extends React.Component {
             />
           }
         </PollHeaderContainer>
-        <PollContentContainer>
+        <PollContentContainer style={{ backgroundColor: groupThemeColor }}>
           <ListFlat renderItem={this.renderItem} data={options} style={{ width: "100%" }} />
           <PollButton
             onClick={() => {
@@ -69,7 +69,7 @@ class Poll extends React.Component {
               this.setState(prevState => ({ options: [...prevState.options, ""] }));
             }}
           >
-            <Icon icon="plus" />
+            <Icon icon="plus" color="white" />
           </PollButton>
         </PollContentContainer>
       </PollContainer>

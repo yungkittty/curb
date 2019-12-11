@@ -4,6 +4,7 @@ import Input from "../../../input";
 const PollOptions = styled(Input)`
   background-color: transparent;
   border: 2px solid;
+  border-color: white;
   height: 38px;
   width: 80%;
   text-align: center;
