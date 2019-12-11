@@ -4,10 +4,10 @@ import ListFlat from "../list-flat";
 const ListCard = props => (
   <ListFlat
     {...props}
-    style={{ marginBottom: 80, justifyContent: "center" }}
+    style={{ marginBottom: 80 }}
     getItemLayout={(_, itemIndex) => ({
-      length: 460,
-      offset: 460 * itemIndex,
+      length: 460 + 60,
+      offset: (460 + 60) * itemIndex,
       index: itemIndex
     })}
     showsHorizontalScrollIndicator={false}
