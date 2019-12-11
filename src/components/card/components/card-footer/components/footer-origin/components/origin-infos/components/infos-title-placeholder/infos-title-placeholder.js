@@ -5,7 +5,8 @@ const InfosTitlePlaceholder = styled(Container)`
   width: 90px;
   height: 14px;
   border-radius: 5px;
-  background-color: ${props => props.theme.primaryVariantColor};
+  margin-bottom: 5px;
+  background-color: ${({ theme }) => theme.primaryVariantColor};
 `;
 
 export default InfosTitlePlaceholder;
