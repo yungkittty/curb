@@ -6,10 +6,10 @@ import { windowDimensions } from "../../../../../../configurations/window";
 
 const MessageContainer = styled(Animated.View)`
   display: flex;
+  flex-flow: row;
   position: absolute;
   z-index: 8;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: ${windowDimensions.getStatusBarHeight() + 50}px;
   padding-top: ${windowDimensions.getStatusBarHeight()}px;
