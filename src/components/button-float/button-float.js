@@ -22,7 +22,7 @@ const ButtonFloat = ({
   const floatRight = platformBools.isWeb ? 30 : 15;
   const floatBottom = platformBools.isWeb ? 30 : 15;
   const floatPosition = "absolute";
-  const floatOverflow = "visible";
+  const floatOverflow = platformBools.isIos ? "visible" : "hidden";
   return (
     <Circle
       {...others}

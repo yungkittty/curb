@@ -3,17 +3,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import OriginContainer from "./components/origin-container";
-import Button from "../../../../../button";
 import ImageUser from "../../../../../image-user";
 import OriginInfos from "./components/origin-infos";
 import withUser from "../../../../../../hocs/with-user";
 
 const FooterOrigin = ({ cardSize, userId, userName, postDateCreation, isPost, theme }) => (
-  <OriginContainer cardSize={cardSize} isSubtitle={!!postDateCreation}>
-    <Button
+  <OriginContainer onClick={`/users/${userId}`} cardSize={cardSize} isSubtitle={!!postDateCreation}>
+    <ImageUser
       // eslint-disable-line
-      onClick={`/users/${userId}`}
-      component={ImageUser}
       shouldFetch={false}
       userId={userId}
       size="extra-small"
@@ -21,8 +18,6 @@ const FooterOrigin = ({ cardSize, userId, userName, postDateCreation, isPost, th
     />
     <OriginInfos
       // eslint-disable-line
-      theme={theme}
-      userId={userId}
       infosTitle={userName}
       postDateCreation={postDateCreation}
       isPost={isPost}

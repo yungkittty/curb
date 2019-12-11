@@ -2,14 +2,9 @@ import styled from "styled-components";
 import Container from "../../../../../../../container";
 
 const IconContainer = styled(Container)`
-  position: absolute;
   display: flex;
-  left: 0px;
-  bottom: 0px;
-  width: 58px;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+  padding-left: 30px;
+  padding-right: 20px;
 `;
 
 export default IconContainer;

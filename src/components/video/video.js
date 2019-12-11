@@ -10,7 +10,8 @@ class Video extends React.Component {
   }
 
   componentDidMount() {
-    const { autoplay } = this.props;
+    const { isShowedInCard, autoplay } = this.props;
+    if (isShowedInCard) this.videoRef.current.play();
     if (autoplay) this.videoRef.current.play();
   }
 
