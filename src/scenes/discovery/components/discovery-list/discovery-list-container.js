@@ -28,7 +28,7 @@ class DiscoveryListContainer extends React.Component {
     const windowWidth = windowDimensions.getWidth();
     const windowWidthOffset = platformBools.isWeb ? 70 : 0;
     const discoveryListWidth = windowWidth - windowWidthOffset;
-    const discoveryListItemWidth = platformBools.isWeb ? 140 : 90;
+    const discoveryListItemWidth = platformBools.isWeb ? 460 + 60 : windowDimensions.getWidth() - 90 + 8;
     return Math.round(discoveryListWidth / discoveryListItemWidth);
   }
 
