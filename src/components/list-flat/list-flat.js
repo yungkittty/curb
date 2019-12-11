@@ -117,7 +117,7 @@ class ListFlat extends React.Component {
             // eslint-disable-line
             icon="angle-left"
             onClick={this.scrollToLeft}
-            style={{ top: 30, left: 20 }}
+            style={{ left: 20, bottom: undefined }}
           />
         ) : null}
         <FlatList
@@ -134,7 +134,7 @@ class ListFlat extends React.Component {
             // eslint-disable-line
             icon="angle-right"
             onClick={this.scrollToRight}
-            style={{ top: 30, right: 20 }}
+            style={{ right: 20, bottom: undefined }}
           />
         ) : null}
       </FlatContainer>

@@ -86,7 +86,9 @@ class Card extends React.Component {
             textDescription={
               groupDescription || (_.size(mediaList) > 0 ? mediaList.text && mediaList.text.value : undefined)
             }
-            isNoTextDescriptionPlaceholder={_.size(mediaList) > 0 && _.isUndefined(mediaList.text)}
+            isNoTextDescriptionPlaceholder={
+              (_.size(mediaList) > 0 && _.isUndefined(mediaList.text)) || !groupDescription
+            }
             isPost={!!postMediaTypes}
             postText={
               _.has(postMediaTypes, "text")

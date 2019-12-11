@@ -22,11 +22,13 @@ class DiscoveryHeader extends React.Component {
     const rightButtonsFirstIcon = "qrcode";
     const rightButtonsFirstColor = theme.primaryColor;
     const rightButtonsFirstOnClick = () => showAppModal({ scene: DiscoveryScanQr });
-    return [{
-      icon: rightButtonsFirstIcon,
-      color: rightButtonsFirstColor,
-      onClick: rightButtonsFirstOnClick
-    }];
+    return [
+      {
+        icon: rightButtonsFirstIcon,
+        color: rightButtonsFirstColor,
+        onClick: rightButtonsFirstOnClick
+      }
+    ];
   }
 
   render() {
