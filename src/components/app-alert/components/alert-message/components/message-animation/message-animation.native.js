@@ -43,6 +43,7 @@ const MessageAnimation = WrappedComponent => {
       const { top } = this.state;
       return (
         <WrappedComponent
+          // eslint-disable-line
           {...this.props}
           ref={this.wrappedComponent}
           style={{ transform: [{ translateY: top }] }}

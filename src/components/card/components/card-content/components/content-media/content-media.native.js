@@ -32,9 +32,13 @@ class ContentMedia extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     const { mediaList, isPost, selectedIndex } = this.props;
     const { isDragging } = this.state;
-    if (_.size(mediaList) <= 1 || isPost) return;
-    if (!prevState.isDragging && prevState.isDragging !== isDragging) clearTimeout(this.setTimeoutFunc);
-    if (selectedIndex !== prevProps.selectedIndex) this.startTimer();
+    if (_.size(mediaList) <= 1) return;
+    if (!prevState.isDragging && isDragging) clearTimeout(this.setTimeoutFunc);
+    if (selectedIndex !== prevProps.selectedIndex) {
+      setTimeout(() => this.listFlatRef.current.scrollToIndex({ index: selectedIndex, viewOffset: 0 }));
+      if (_.size(mediaList) <= 1 || isPost) return;
+      this.startTimer();
+    }
   }
 
   onViewableItemsChanged(value) {
@@ -53,23 +57,19 @@ class ContentMedia extends React.Component {
   }
 
   startTimer() {
-    const { mediaList, onIndexChange } = this.props;
-    this.setTimeoutFunc = setTimeout(() => {
-      const { selectedIndex } = this.props;
-      const newIndex = _.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1;
-      this.listFlatRef.current.scrollToIndex({
-        index: newIndex,
-        viewOffset: 0
-      });
-      onIndexChange(newIndex);
-    }, mediaRandomSlider(15000, 30000));
+    const { mediaList, selectedIndex, onIndexChange } = this.props;
+    clearTimeout(this.setTimeoutFunc);
+    this.setTimeoutFunc = setTimeout(
+      () => onIndexChange(_.size(mediaList) - 1 === selectedIndex ? 0 : selectedIndex + 1),
+      mediaRandomSlider(15000, 30000)
+    );
   }
 
   renderItem({ item: { component }, index }) {
-    const { selectedIndex, cardSize } = this.props;
+    const { selectedIndex, cardSize, moduleComponentProps } = this.props;
     return (
       <MediaItemContainer cardSize={cardSize}>
-        {React.cloneElement(component, { isShowedInCard: index === selectedIndex })}
+        {React.cloneElement(component, { isShowedInCard: index === selectedIndex, ...moduleComponentProps })}
       </MediaItemContainer>
     );
   }
@@ -96,7 +96,7 @@ class ContentMedia extends React.Component {
     ) : groupName ? (
       <MediaGroupPreview groupName={groupName} cardSize={cardSize} {...others} />
     ) : (
-      <MediaPlaceholder />
+      <MediaPlaceholder contentHeight={cardSize.contentHeight} />
     );
   }
 }
@@ -107,7 +107,8 @@ ContentMedia.defaultProps = {
   groupId: undefined,
   groupName: undefined,
   mediaType: undefined,
-  mediaData: undefined
+  mediaData: undefined,
+  moduleComponentProps: undefined
 };
 
 ContentMedia.propTypes = {
@@ -116,7 +117,7 @@ ContentMedia.propTypes = {
   isPost: PropTypes.bool.isRequired,
   selectedIndex: PropTypes.number,
   cardSize: PropTypes.shape({
-    size: PropTypes.string,
+    isSmall: PropTypes.bool,
     isCardExtended: PropTypes.bool,
     width: PropTypes.number,
     contentHeight: PropTypes.number,
@@ -126,7 +127,8 @@ ContentMedia.propTypes = {
   groupId: PropTypes.string,
   groupName: PropTypes.string,
   mediaType: PropTypes.string,
-  mediaData: PropTypes.string
+  mediaData: PropTypes.string,
+  moduleComponentProps: PropTypes.object // eslint-disable-line
 };
 
 export default ContentMedia;

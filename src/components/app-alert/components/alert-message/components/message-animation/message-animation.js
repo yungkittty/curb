@@ -18,7 +18,7 @@ const MessageAnimation = WrappedComponent => {
       setTimeout(() => {
         style.right = `30px`;
       });
-      setTimeout(() => this.closeMessage(), 3500);
+      setTimeout(this.closeMessage, 3500);
     }
 
     componentDidUpdate(prevProps) {
@@ -36,7 +36,13 @@ const MessageAnimation = WrappedComponent => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} forwardedRef={this.wrappedComponent} />;
+      return (
+        <WrappedComponent
+          // eslint-disable-line
+          {...this.props}
+          ref={this.wrappedComponent}
+        />
+      );
     }
   }
 

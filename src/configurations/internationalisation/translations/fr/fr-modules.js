@@ -15,6 +15,9 @@ const frModules = {
   location: {
     title: "Localisation",
     description: "Permet aux utilisateurs de publier une localisation géographique"
+  },
+  unknown: {
+    title: "Inconnu"
   }
 };
 

@@ -22,6 +22,7 @@ const enCommon = {
   reset: "Reset",
   delete: "Delete",
   pin: "Pin",
+  unpin: "Unpin",
   report: "Report",
   post: "Post",
   selectOption: "Select an option",
@@ -35,7 +36,8 @@ const enCommon = {
     "To be able to take pictures with your camera and choose images from your library, you must authorize the app to access them",
   authorize: "Authorize",
   readMore: "read more",
-  writeSomething: "Write something"
+  writeSomething: "Write something",
+  pinnedPost: "Pinned post"
 };
 
 export default enCommon;

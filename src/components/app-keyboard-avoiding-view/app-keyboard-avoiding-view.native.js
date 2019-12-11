@@ -2,7 +2,7 @@ import React from "react";
 import { KeyboardAvoidingView } from "react-native";
 
 const AppKeyboardAvoidingView = WrappedComponent => props => (
-  <KeyboardAvoidingView behavior="padding">
+  <KeyboardAvoidingView behavior="height">
     <WrappedComponent {...props} />
   </KeyboardAvoidingView>
 );
