@@ -61,7 +61,7 @@ const frCommon = {
   futureEvent: "Dans plus d'un an",
   and: "et",
   left: "Dans {{remaining}}",
-  join: "Rejoindre",
+  join: "Participer",
   date: "{{day}}, {{date}}{{ordinalIndicator}} {{month}}",
   ordinalIndicatorFirst: "er",
   ordinalIndicatorSecond: "",

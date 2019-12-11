@@ -33,8 +33,12 @@ const DatepickerTime = ({ date, onChange }) => {
   );
 };
 
+DatepickerTime.defaultProps = {
+  date: new Date()
+};
+
 DatepickerTime.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Date),
   onChange: PropTypes.func.isRequired
 };
 
