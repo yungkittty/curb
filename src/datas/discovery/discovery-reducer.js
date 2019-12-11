@@ -24,7 +24,7 @@ const isFetching = (state = false, action) => {
 const isGlobalSectionEnd = (state = false, action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS:
-      return !action.payload.groups.length;
+      return !action.payload.data.length;
     default:
       return state;
   }
@@ -33,7 +33,7 @@ const isGlobalSectionEnd = (state = false, action) => {
 const isCustomSectionEnd = (state = false, action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS:
-      return !action.payload.groups.length;
+      return !action.payload.data.length;
     default:
       return state;
   }
@@ -42,7 +42,7 @@ const isCustomSectionEnd = (state = false, action) => {
 const isRandomSectionEnd = (state = false, action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS:
-      return !action.payload.groups.length;
+      return !action.payload.data.length;
     default:
       return state;
   }
@@ -51,7 +51,7 @@ const isRandomSectionEnd = (state = false, action) => {
 const globalSectionGroupsId = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_GLOBAL_SECTION_GROUPS_ID_SUCCESS:
-      return [...(action.payload.page !== 1 ? state : []), ...action.payload.groups];
+      return [...(action.payload.page !== 1 ? state : []), ...action.payload.data];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
     default:
@@ -62,7 +62,7 @@ const globalSectionGroupsId = (state = [], action) => {
 const customSectionGroupsId = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_CUSTOM_SECTION_GROUPS_ID_SUCCESS:
-      return [...(action.payload.page !== 1 ? state : []), ...action.payload.groups];
+      return [...(action.payload.page !== 1 ? state : []), ...action.payload.data];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
     default:
@@ -73,7 +73,7 @@ const customSectionGroupsId = (state = [], action) => {
 const randomSectionGroupsId = (state = [], action) => {
   switch (action.type) {
     case discoveryActionsTypes.GET_DISCOVERY_RANDOM_SECTION_GROUPS_ID_SUCCESS:
-      return [...(action.payload.page !== 1 ? state : []), ...action.payload.groups];
+      return [...(action.payload.page !== 1 ? state : []), ...action.payload.data];
     case groupsActionsTypes.DELETE_GROUP_SUCCESS:
       return _.without(state, action.payload.id);
     default:
