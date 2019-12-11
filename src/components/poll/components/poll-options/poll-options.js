@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Input from "../../../../../../components/input";
+import Input from "../../../input";
 
 const PollOptions = styled(Input)`
   background-color: transparent;
-  border: 2px solid ;
+  border: 2px solid;
   height: 38px;
   width: 80%;
   text-align: center;

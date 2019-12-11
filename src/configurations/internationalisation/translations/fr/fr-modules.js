@@ -16,6 +16,10 @@ const frModules = {
     title: "Localisation",
     description: "Permet aux utilisateurs de publier une localisation géographique"
   },
+  poll: {
+    title: "Sondage",
+    description: "Permet aux utilisateurs de publier des sondages"
+  },
   unknown: {
     title: "Inconnu"
   }

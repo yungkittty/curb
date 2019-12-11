@@ -10,7 +10,8 @@ import {
   postMediaTextRequestSaga,
   postMediaImageRequestSaga,
   postMediaVideoRequestSaga,
-  postMediaLocationRequestSaga
+  postMediaLocationRequestSaga,
+  postMediaPollRequestSaga
 } from "../medias/medias-saga";
 
 function* getPostListRequestSaga(action) {
@@ -114,6 +115,9 @@ function* postMediasRequestSaga(payload) {
       mediaActionsToWait.push(
         yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location })
       );
+    }
+    if (mediaListData.poll) {
+      mediaActionsToWait.push(yield fork(postMediaPollRequestSaga, { postId, data: mediaListData.poll }));
     }
     for (let i = 0; i < mediaActionsToWait.length; i += 1) yield join(mediaActionsToWait[i]);
     yield put(postActions.postMediasSuccess({ postId }));

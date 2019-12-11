@@ -8,6 +8,8 @@ const mediaTypeToIcon = mediaType => {
       return "video";
     case "location":
       return "map-marker-alt";
+    case "poll":
+      return "poll-h";
     default:
       return "exclamation-triangle";
   }

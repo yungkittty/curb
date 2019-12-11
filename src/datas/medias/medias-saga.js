@@ -79,6 +79,15 @@ function* postMediaLocationRequestSaga(payload) {
   }
 }
 
+function* postMediaPollRequestSaga(payload) {
+  try {
+    yield call(mediasApi.postMediaPoll, payload);
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postMediaPollFailure({ errorCode }));
+  }
+}
+
 const mediasSaga = all([
   takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
   takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
@@ -89,7 +98,8 @@ export {
   postMediaTextRequestSaga,
   postMediaImageRequestSaga,
   postMediaVideoRequestSaga,
-  postMediaLocationRequestSaga
+  postMediaLocationRequestSaga,
+  postMediaPollRequestSaga
 };
 
 export default mediasSaga;

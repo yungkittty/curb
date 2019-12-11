@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Button from "../../../../../../components/button";
+import Button from "../../../button";
 
 const PollButton = styled(Button)`
   background-color: transparent;
-  border: 2px solid ${({theme})=>theme.groupBlackColor};
+  border: 2px solid ${({ theme }) => theme.groupBlackColor};
   height: 38px;
   width: 80%;
   text-align: center;

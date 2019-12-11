@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import CardImageGallery from "../../../../components/card-image-gallery";
 import CardVideo from "../../../../components/card-video";
 import CardMap from "../../../../components/card-map";
+import CardPoll from "../../../../components/card-poll";
 import GroupCardContainer from "../group-card-container";
 import GroupCardLoadingOverlay from "../group-card-loading-overlay";
 import PostItemRule from "./components/post-item-rule";
@@ -25,6 +26,7 @@ class GroupPostItem extends React.Component {
     this.onSelectImage = this.onSelectImage.bind(this);
     this.onSelectVideo = this.onSelectVideo.bind(this);
     this.onClickLocation = this.onClickLocation.bind(this);
+    this.onClickPoll = this.onClickPoll.bind(this);
     this.submitPost = this.submitPost.bind(this);
     this.checkIsPostValid = this.checkIsPostValid.bind(this);
   }
@@ -75,6 +77,15 @@ class GroupPostItem extends React.Component {
     });
   }
 
+  onClickPoll() {
+    const key = "poll";
+    this.pushToMediaList({
+      key,
+      component: <CardPoll onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key, isValid })} />,
+      isValid: false
+    });
+  }
+
   onModuleIsValid({ key, isValid }) {
     const {
       mediaList,
@@ -85,7 +96,7 @@ class GroupPostItem extends React.Component {
 
   getPostMediaTypes(groupMediaTypes) {
     const {
-      mediaList: { video, location }
+      mediaList: { video, location, poll }
     } = this.state;
     const postMediaTypes = {};
     if (_.includes(groupMediaTypes, "text"))
@@ -96,6 +107,8 @@ class GroupPostItem extends React.Component {
       _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)
       _.merge(postMediaTypes, { location: { onClick: this.onClickLocation } });
+    if (_.includes(groupMediaTypes, "poll") && !poll)
+      _.merge(postMediaTypes, { poll: { onClick: this.onClickPoll } });
     return postMediaTypes;
   }
 

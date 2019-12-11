@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import CardVideo from "../../../components/card-video";
 import CardMap from "../../../components/card-map";
+import CardPoll from "../../../components/card-poll";
 import CardImageGallery from "../../../components/card-image-gallery";
 import CardUnknown from "../../../components/card-unknown";
 
@@ -25,6 +26,9 @@ const setMediaTypesProperties = mediaTypesList => {
         break;
       case "location":
         _.assign(mediaList, { [type]: { component: <CardMap {...JSON.parse(data)} /> } });
+        break;
+      case "poll":
+        _.assign(mediaList, { [type]: { component: <CardPoll {...JSON.parse(data)} /> } });
         break;
       default:
         _.assign(mediaList, { [type]: { component: <CardUnknown /> } });

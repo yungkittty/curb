@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Container from "../../../../../../components/container";
+import Container from "../../../container";
 
 const PollContainer = styled(Container)`
   display: flex;
