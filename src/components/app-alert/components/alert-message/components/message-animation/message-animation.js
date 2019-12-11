@@ -36,7 +36,13 @@ const MessageAnimation = WrappedComponent => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} forwardRef={this.wrappedComponent} />;
+      return (
+        <WrappedComponent
+          // eslint-disable-line
+          {...this.props}
+          ref={this.wrappedComponent}
+        />
+      );
     }
   }
 
