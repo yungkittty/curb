@@ -76,7 +76,7 @@ class ListFlat extends React.Component {
     const scrollCurrentOffset = Math.round(clientWidth / itemLength);
     const scrollIndex = scrollCurrentIndex + scrollCurrentOffset;
     if (scrollIndex < itemsLength) {
-      listFlat.scrollToIndex({ index: scrollIndex });
+      listFlat.scrollToIndex({ index: scrollIndex - 1 });
     } else {
       listFlat.scrollToEnd();
     }
