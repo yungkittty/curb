@@ -3,7 +3,7 @@ import ListFlat from "../list-flat";
 import { windowDimensions } from "../../configurations/window";
 
 const ListCard = props => {
-  const width = windowDimensions.getWidth() - 90 + 8;
+  const width = windowDimensions.getWidth() - 90 + 25;
   return (
     <ListFlat
       {...props}
