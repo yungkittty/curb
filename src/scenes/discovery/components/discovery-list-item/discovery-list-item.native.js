@@ -3,8 +3,7 @@ import Card from "../../../../components/card";
 import withGroup from "../../../../hocs/with-group";
 
 const DiscoveryListItem = styled(Card)`
-  margin-right: 60px;
-  margin-bottom: 3px;
+  margin-right: 25px;
 `;
 
 export default withGroup(DiscoveryListItem);
