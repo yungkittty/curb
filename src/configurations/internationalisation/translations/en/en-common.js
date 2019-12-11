@@ -20,6 +20,9 @@ const enCommon = {
   cancel: "Cancel",
   edit: "Edit",
   reset: "Reset",
+  delete: "Delete",
+  pin: "Pin",
+  report: "Report",
   post: "Post",
   selectOption: "Select an option",
   selectImage: "Select an image",
@@ -30,7 +33,9 @@ const enCommon = {
   permissionDenied: "Permission denied",
   askCameraText:
     "To be able to take pictures with your camera and choose images from your library, you must authorize the app to access them",
-  authorize: "Authorize"
+  authorize: "Authorize",
+  readMore: "read more",
+  writeSomething: "Write something"
 };
 
 export default enCommon;

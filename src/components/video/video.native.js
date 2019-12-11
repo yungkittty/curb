@@ -10,6 +10,24 @@ class _Video extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isShowed: false };
+    this.videoRef = React.createRef();
+    this.muteVideo = this.muteVideo.bind(this);
+  }
+
+  componentDidMount() {
+    this.muteVideo();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isShowedInCard } = this.props;
+
+    if (prevProps.isShowedInCard === isShowedInCard && !isShowedInCard) this.muteVideo();
+  }
+
+  muteVideo() {
+    this.videoRef.current.state.volume = 0;
+    this.videoRef.current.state.volumePosition = 0;
+    this.videoRef.current.state.volumeOffset = 0;
   }
 
   render() {
@@ -24,6 +42,7 @@ class _Video extends React.Component {
       onCanPlay,
       objectFit,
       style,
+      isShowedInCard,
       ...others
     } = this.props;
     const isVideoFromApi = src.substr(0, 9) === "/contents";
@@ -32,6 +51,7 @@ class _Video extends React.Component {
         {/* eslint-disable-next-line */}
         <Video
           {...others}
+          ref={this.videoRef}
           source={{ uri: isVideoFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src }}
           onLoadStart={event => {
             // eslint-disable-next-line
@@ -50,9 +70,10 @@ class _Video extends React.Component {
           }}
           toggleResizeModeOnFullscreen={false}
           disableBack
-          disableVolume
           disableFullscreen
-          paused
+          repeat
+          showOnStart={false}
+          paused={!isShowedInCard}
         />
       </Container>
     );
@@ -63,7 +84,8 @@ _Video.defaultProps = {
   onLoadStart: undefined,
   onCanPlay: undefined,
   objectFit: undefined,
-  style: undefined
+  style: undefined,
+  isShowedInCard: undefined
 };
 
 _Video.propTypes = {
@@ -71,7 +93,8 @@ _Video.propTypes = {
   onLoadStart: PropTypes.func,
   onCanPlay: PropTypes.func,
   objectFit: PropTypes.oneOf(["cover", "contain"]),
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  isShowedInCard: PropTypes.bool
 };
 
 export default _Video;

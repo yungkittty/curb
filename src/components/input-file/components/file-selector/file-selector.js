@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import ButtonFloat from "../../../button-float";
 import Icon from "../../../icon";
-import SelectorInputImage from "./components/selector-input-image";
-import SelectorInputVideo from "./components/selector-input-video";
+import InputImage from "../../../input-image";
+import InputVideo from "../../../input-video";
 
 const FileSelector = ({ type, onSelect, theme }) => (
   <ButtonFloat
@@ -21,7 +21,7 @@ const FileSelector = ({ type, onSelect, theme }) => (
       />
       {/* eslint-disable-next-line */}
       {type === "image" ? (
-        <SelectorInputImage
+        <InputImage
           onSelect={onSelect}
           style={{
             position: "absolute",
@@ -30,7 +30,7 @@ const FileSelector = ({ type, onSelect, theme }) => (
           }}
         />
       ) : type === "video" ? (
-        <SelectorInputVideo
+        <InputVideo
           onSelect={onSelect}
           style={{
             position: "absolute",
