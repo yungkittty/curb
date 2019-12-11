@@ -2,10 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FlatList } from "react-native";
 
-const ListFlat = props => <FlatList {...props} />;
+class ListFlat extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-ListFlat.defaultProps = { overScrollMode: "never" };
+  render() {
+    const { forwardedRef, ...props } = this.props;
+    return <FlatList ref={forwardedRef} {...props} />;
+  }
+}
 
-ListFlat.propTypes = { overScrollMode: PropTypes.string };
+ListFlat.defaultProps = { forwardedRef: undefined, overScrollMode: "never" };
 
-export default ListFlat;
+ListFlat.propTypes = {
+  forwardedRef: PropTypes.object, // eslint-disable-line
+  overScrollMode: PropTypes.string
+};
+
+export default React.forwardRef(
+  // eslint-disable-line
+  (props, forwardedRef) => (
+    <ListFlat
+      // eslint-disable-line
+      {...props}
+      forwardedRef={forwardedRef}
+    />
+  )
+);

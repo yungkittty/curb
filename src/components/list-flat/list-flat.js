@@ -97,6 +97,7 @@ class ListFlat extends React.Component {
       contentContainerClassName,
       contentContainerStyle,
       horizontal,
+      isManuallyScrollable,
       ...others
     } = this.props;
     const {
@@ -111,12 +112,12 @@ class ListFlat extends React.Component {
         style={style}
         horizontal={horizontal}
       >
-        {horizontal && isScrollableToLeft ? (
+        {horizontal && isScrollableToLeft && isManuallyScrollable ? (
           <FlatButtonFloat
             // eslint-disable-line
             icon="angle-left"
             onClick={this.scrollToLeft}
-            style={{ top: 30, left: 20 }}
+            style={{ left: 20, bottom: undefined }}
           />
         ) : null}
         <FlatList
@@ -128,12 +129,12 @@ class ListFlat extends React.Component {
           onScroll={this.onScroll}
           horizontal={horizontal}
         />
-        {horizontal && isScrollableToRight ? (
+        {horizontal && isScrollableToRight && isManuallyScrollable ? (
           <FlatButtonFloat
             // eslint-disable-line
             icon="angle-right"
             onClick={this.scrollToRight}
-            style={{ top: 30, right: 20 }}
+            style={{ right: 20, bottom: undefined }}
           />
         ) : null}
       </FlatContainer>
@@ -147,7 +148,8 @@ ListFlat.defaultProps = {
   style: undefined,
   contentContainerClassName: undefined,
   contentContainerStyle: undefined,
-  horizontal: false
+  horizontal: false,
+  isManuallyScrollable: true
 };
 
 ListFlat.propTypes = {
@@ -157,6 +159,7 @@ ListFlat.propTypes = {
   contentContainerClassName: PropTypes.string,
   contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   horizontal: PropTypes.bool,
+  isManuallyScrollable: PropTypes.bool,
   data: PropTypes.array.isRequired, // eslint-disable-line
   getItemLayout: PropTypes.func.isRequired
 };

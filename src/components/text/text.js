@@ -47,6 +47,11 @@ const _Text = styled(Text)`
           font-size: 12px;
           ${props.isIndented ? `line-height: ${12 * 1.6}px;` : ""}
         `; // -2
+      case "h6":
+        return `
+            font-size: 10px;
+            ${props.isIndented ? `line-height: ${10 * 1.6}px;` : ""}
+          `; // -2
       default:
         return `
           font-size: 14px;
