@@ -20,6 +20,9 @@ const enCommon = {
   cancel: "Cancel",
   edit: "Edit",
   reset: "Reset",
+  delete: "Delete",
+  pin: "Pin",
+  report: "Report",
   post: "Post",
   selectOption: "Select an option",
   selectImage: "Select an image",
@@ -33,7 +36,9 @@ const enCommon = {
   authorize: "Authorize",
   copyGroupLink: "Copy group link",
   copyInvitationLink: "Copy invitation link",
-  successfullyPastedToClipboard: "Copied to clipboard"
+  successfullyPastedToClipboard: "Copied to clipboard",
+  readMore: "read more",
+  writeSomething: "Write something"
 };
 
 export default enCommon;

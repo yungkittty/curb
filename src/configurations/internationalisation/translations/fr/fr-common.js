@@ -19,6 +19,9 @@ const frCommon = {
   cancel: "Annuler",
   edit: "Modifier",
   reset: "Réinitialiser",
+  delete: "Supprimer",
+  pin: "Épingler",
+  report: "Signaler",
   post: "Publier",
   selectOption: "Sélectionner une option",
   selectImage: "Choisir une imge",
@@ -32,7 +35,9 @@ const frCommon = {
   authorize: "Autoriser",
   copyGroupLink: "Copier le lien du groupe",
   copyInvitationLink: "Copier le lien d'invitation",
-  successfullyPastedToClipboard: "Copié dans le presse-papier"
+  successfullyPastedToClipboard: "Copié dans le presse-papier",
+  readMore: "lire la suite",
+  writeSomething: "Écrivez quelque chose"
 };
 
 export default frCommon;
