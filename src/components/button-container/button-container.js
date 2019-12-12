@@ -17,6 +17,7 @@ const ButtonContainer = styled(({ onClick, ...others }) =>
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   padding: 0px;
   outline: initial;
   border-width: initial;

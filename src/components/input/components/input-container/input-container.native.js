@@ -5,7 +5,7 @@ import { TextInput, Platform } from "react-native";
 
 const InputContainer = styled(TextInput).attrs(({ type, id, onChange, isMultiline, ...others }) => ({
   ...others,
-  textAlignVertical: "top",
+  textAlignVertical: isMultiline ? "top" : "center",
   keyboardType: type === "email" ? "email-address" : undefined,
   secureTextEntry: type === "password",
   onChange: undefined,

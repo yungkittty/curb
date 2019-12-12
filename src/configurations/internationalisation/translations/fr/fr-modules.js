@@ -16,6 +16,10 @@ const frModules = {
     title: "Localisation",
     description: "Permet aux utilisateurs de publier une localisation géographique"
   },
+  chat: {
+    title: "Chat",
+    description: "Permet aux utilisateurs de discuter entre eux"
+  },
   unknown: {
     title: "Inconnu"
   }

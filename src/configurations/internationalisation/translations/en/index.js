@@ -13,6 +13,7 @@ import groupCreate from "./en-group-create";
 import group from "./en-group";
 import groupOptions from "./en-group-options";
 import groupSettings from "./en-group-settings";
+import chat from "./en-chat";
 import errorCode from "./en-error-code";
 
 export default {
@@ -31,5 +32,6 @@ export default {
   group,
   groupOptions,
   groupSettings,
+  chat,
   errorCode
 };
