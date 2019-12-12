@@ -114,9 +114,7 @@ function* postMediasRequestSaga(payload) {
       mediaActionsToWait.push(yield fork(postMediaVideoRequestSaga, { postId, data: mediaListData.video }));
     }
     if (mediaListData.location) {
-      mediaActionsToWait.push(
-        yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location })
-      );
+      mediaActionsToWait.push(yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location }));
     }
     if (mediaListData.event)
       mediaActionsToWait.push(yield fork(postMediaEventRequestSaga, { postId, data: mediaListData.event }));

@@ -14,6 +14,7 @@ import group from "./fr-group";
 import groupOptions from "./fr-group-options";
 import groupSettings from "./fr-group-settings";
 import errorCode from "./fr-error-code";
+import chat from "./fr-chat";
 import event from "./fr-event";
 
 export default {
@@ -33,5 +34,6 @@ export default {
   groupOptions,
   groupSettings,
   errorCode,
-  event
+  event,
+  chat
 };
