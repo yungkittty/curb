@@ -10,10 +10,7 @@ const Day = ({ day, today, currentMonth, isSelected, onClick, color }) => {
     day.getFullYear() === today.getFullYear();
 
   const isClickable = date => {
-    if (
-      (date > new Date() && date.getMonth() === currentMonth) ||
-      (isToday && today.getMonth() === currentMonth)
-    )
+    if ((date > new Date() && date.getMonth() === currentMonth) || (isToday && today.getMonth() === currentMonth))
       return true;
     return false;
   };
@@ -36,7 +33,7 @@ const Day = ({ day, today, currentMonth, isSelected, onClick, color }) => {
         borderRadius: 4,
         margin: 1
       }}
-      onClick={() => (isClickable(day) ? onClick(day) : onClick(null))}
+      onClick={() => (isClickable(day) ? onClick(day) : null)}
     >
       <Text
         type="h6"
