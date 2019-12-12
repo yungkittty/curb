@@ -28,13 +28,13 @@ const InputVideo = ({ t, onSelect, ...others }) => (
           }
         },
         response => {
+          TestFairy.log(response);
           if (!response.didCancel && !response.error && !response.customButton) {
             const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
             const type =
               Platform.OS === "android"
                 ? response.path.substr(response.path.lastIndexOf(".") + 1)
                 : uri.substr(uri.lastIndexOf(".") + 1);
-            TestFairy.log(response);
             onSelect(uri, {
               uri,
               type: `video/${type}`,
