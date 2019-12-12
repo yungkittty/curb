@@ -14,7 +14,7 @@ const HeaderUserNumber = ({
   <Stadium
     // eslint-disable-line
     radius="extra-extra-small"
-    scale="x1"
+    scale="x2"
     backgroundColor="white"
     style={{ marginLeft: 10 }}
     contentStyle={{ color: stadiumContentColor, alignItems: "center", display: "flex" }}
