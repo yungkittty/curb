@@ -53,7 +53,6 @@ class PollDisplay extends React.Component {
           <ListFlat renderItem={this.renderItem} data={options} style={{ width: "100%" }} />
           <PollButton
             onClick={() => {
-              onModuleIsValid({ isValid: true });
               this.setState(prevState => ({ options: [...prevState.options, ""] }));
             }}
           >
