@@ -72,11 +72,13 @@ class GroupListItemMedia extends React.Component {
     const {
       theme,
       postCreatorId,
+      postId,
       groupThemeColor,
       postReactionsNumber,
       isCurrentUserLiked,
       currentUserId,
       isPostLoading,
+      isCurrentUserJoinnedGroup,
       ...others
     } = this.props;
     return (
@@ -90,7 +92,7 @@ class GroupListItemMedia extends React.Component {
         floatingButtonColor={isCurrentUserLiked ? groupThemeColor : theme.primaryColor}
         floatingButtonDisabled={!currentUserId}
         likeNumber={shortNumberFormatter(postReactionsNumber, 1, true)}
-        moduleComponentProps={{ groupThemeColor }}
+        moduleComponentProps={{ groupThemeColor, postId, isCurrentUserJoinnedGroup }}
       />
     );
   }
@@ -111,7 +113,8 @@ GroupListItemMedia.propTypes = {
   postReactionsNumber: PropTypes.number.isRequired,
   isCurrentUserLiked: PropTypes.bool.isRequired,
   isPinned: PropTypes.bool.isRequired,
-  isPostLoading: PropTypes.bool.isRequired
+  isPostLoading: PropTypes.bool.isRequired,
+  isCurrentUserJoinnedGroup: PropTypes.bool.isRequired
 };
 
 export default withPost(GroupListItemMedia);
