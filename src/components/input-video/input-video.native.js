@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import TestFairy from "react-native-testfairy";
 import { Platform } from "react-native";
 import { withTranslation } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
@@ -33,6 +34,7 @@ const InputVideo = ({ t, onSelect, ...others }) => (
               Platform.OS === "android"
                 ? response.path.substr(response.path.lastIndexOf(".") + 1)
                 : uri.substr(uri.lastIndexOf(".") + 1);
+            TestFairy.log(response);
             onSelect(uri, {
               uri,
               type: `video/${type}`,
