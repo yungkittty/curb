@@ -56,10 +56,8 @@ class User extends React.Component {
         id: userId,
         avatar: avatar.value,
         name: username.value,
-        onUploadProgress: ({ loaded, total }) => {
-          console.log("uploadprogress");
-          this.setState({ avatar: { ...avatar, loadingProgress: loaded / total } });
-        }
+        onUploadProgress: ({ loaded, total }) =>
+          this.setState({ avatar: { ...avatar, loadingProgress: loaded / total } })
       });
     }
   }
