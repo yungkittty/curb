@@ -19,7 +19,6 @@ class EventCreate extends React.Component {
 
   getData() {
     const { title, selectedDate } = this.state;
-    console.log("create", selectedDate.toUTCString(), selectedDate.toString());
     return JSON.stringify({ date: selectedDate.toUTCString(), name: title });
   }
 
