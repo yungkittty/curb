@@ -68,10 +68,7 @@ class GroupPostItem extends React.Component {
     this.pushToMediaList({
       key: "location",
       component: (
-        <CardMap
-          onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key: "location", isValid })}
-          draggable
-        />
+        <CardMap onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key: "location", isValid })} draggable />
       ),
       isValid: false
     });
@@ -105,10 +102,8 @@ class GroupPostItem extends React.Component {
       mediaList: { video, location, event }
     } = this.state;
     const postMediaTypes = {};
-    if (_.includes(groupMediaTypes, "text"))
-      _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
-    if (_.includes(groupMediaTypes, "image"))
-      _.merge(postMediaTypes, { image: { onSelect: this.onSelectImage } });
+    if (_.includes(groupMediaTypes, "text")) _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
+    if (_.includes(groupMediaTypes, "image")) _.merge(postMediaTypes, { image: { onSelect: this.onSelectImage } });
     if (_.includes(groupMediaTypes, "video") && !video)
       _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)

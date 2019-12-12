@@ -96,6 +96,7 @@ class ListFlat extends React.Component {
       style,
       contentContainerClassName,
       contentContainerStyle,
+      contentInnerContainerStyle,
       horizontal,
       isManuallyScrollable,
       ...others
@@ -126,6 +127,7 @@ class ListFlat extends React.Component {
           ref={this.listFlat}
           className={contentContainerClassName}
           style={contentContainerStyle}
+          contentContainerStyle={contentInnerContainerStyle}
           onScroll={this.onScroll}
           horizontal={horizontal}
         />
@@ -148,6 +150,7 @@ ListFlat.defaultProps = {
   style: undefined,
   contentContainerClassName: undefined,
   contentContainerStyle: undefined,
+  contentInnerContainerStyle: undefined,
   horizontal: false,
   isManuallyScrollable: true
 };
@@ -158,6 +161,7 @@ ListFlat.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   contentContainerClassName: PropTypes.string,
   contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  contentInnerContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   horizontal: PropTypes.bool,
   isManuallyScrollable: PropTypes.bool,
   data: PropTypes.array.isRequired, // eslint-disable-line

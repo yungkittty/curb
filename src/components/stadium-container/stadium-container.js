@@ -74,8 +74,6 @@ class StadiumContainer extends React.Component {
         gradientAngle={gradientAngle || 0}
         gradientColors={gradientColors || [backgroundColor, backgroundColor]}
         style={{
-          overflow: "hidden",
-          ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style),
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -84,7 +82,9 @@ class StadiumContainer extends React.Component {
           minHeight: innerRadius,
           paddingLeft: innerRadius / 2,
           paddingRight: innerRadius / 2,
-          borderRadius: innerRadius / 2
+          borderRadius: innerRadius / 2,
+          overflow: "hidden",
+          ...(_.isArray(style) ? _.reduce(style, _.extend, {}) : style)
         }}
       >
         {typeof children === "function"

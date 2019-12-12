@@ -20,6 +20,10 @@ const frModules = {
     title: "Evénement",
     description: "Permet aux utilisateurs de publier un événement"
   },
+  chat: {
+    title: "Chat",
+    description: "Permet aux utilisateurs de discuter entre eux"
+  },
   unknown: {
     title: "Inconnu"
   }

@@ -89,7 +89,8 @@ class Group extends React.Component {
       groupDescription,
       groupStatus,
       currentUserId,
-      currentUserGroupsId
+      currentUserGroupsId,
+      groupUsersId
     } = this.props;
     const {
       // eslint-disable-line
@@ -107,6 +108,7 @@ class Group extends React.Component {
         groupStatus={groupStatus}
         groupGradientAngle={groupGradientAngle}
         groupGradientColors={groupGradientColors}
+        groupUsersId={groupUsersId}
         currentUserId={currentUserId}
         currentUserGroupsId={currentUserGroupsId}
       />
@@ -114,16 +116,7 @@ class Group extends React.Component {
   }
 
   renderListItemMedia({ item: post }) {
-    const {
-      t,
-      theme,
-      currentUserId,
-      groupCreatorId,
-      groupUsersId,
-      groupId,
-      groupTheme,
-      groupMediaTypes
-    } = this.props;
+    const { t, theme, currentUserId, groupCreatorId, groupUsersId, groupId, groupTheme, groupMediaTypes } = this.props;
     const groupThemeColor = theme[`group${_.capitalize(groupTheme)}Color`] || "transparent";
     return post === 0 ? (
       <GroupPostItem

@@ -75,10 +75,7 @@ const byId = (state = {}, action) => {
         }
       };
     case mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST: {
-      const mediaOthers = _.remove(
-        state[action.payload.postId].medias,
-        item => item.id === action.payload.contentId
-      );
+      const mediaOthers = _.remove(state[action.payload.postId].medias, item => item.id === action.payload.contentId);
       return {
         ...state,
         [action.payload.postId]: {
