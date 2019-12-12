@@ -33,7 +33,8 @@ const Day = ({ day, today, currentMonth, isSelected, onClick, color }) => {
         borderRadius: 4,
         margin: 1
       }}
-      onClick={() => (isClickable(day) ? onClick(day) : null)}
+      onClick={() => onClick(day)}
+      disabled={!isClickable(day)}
     >
       <Text
         type="h6"
