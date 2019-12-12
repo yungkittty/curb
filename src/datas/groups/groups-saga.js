@@ -1,4 +1,4 @@
-import { all, takeLatest, call, put, select } from "redux-saga/effects";
+import { all, takeLatest, call, put, join, fork, select } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import groupsActionsTypes from "./groups-actions-types";
 import groupsActions from "./groups-actions";
@@ -6,13 +6,16 @@ import groupsApi from "./groups-api";
 import appModalActions from "../app-modal/app-modal-actions";
 import appAlertActions from "../app-alert/app-alert-actions";
 import currentUserSelectors from "../current-user/current-user-selectors";
-import mediasActions from "../medias/medias-actions";
+import { postMediaAvatarGroupRequestSaga } from "../medias/medias-saga";
 
 function* postGroupRequestSaga(action) {
   try {
     const { history, avatar = {}, ...others } = action.payload;
     const { data: payload } = yield call(groupsApi.postGroup, others);
-    if (avatar.file) yield put(mediasActions.postMediaAvatarGroupRequest({ id: payload.id, avatar }));
+    if (avatar.file)
+      yield join(
+        yield fork(postMediaAvatarGroupRequestSaga, { payload: { ...others, id: payload.id, avatar } })
+      );
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
     const successAlert = { type: "success", message: "groupCreated", icon: "check" };
@@ -38,8 +41,13 @@ function* getGroupRequestSaga(action) {
 function* patchGroupRequestSaga(action) {
   try {
     const { id, avatar = {}, ...others } = action.payload;
-    yield call(groupsApi.patchGroup, { ...others, id });
-    if (avatar.file) yield put(mediasActions.postMediaAvatarGroupRequest({ id, avatar }));
+    const groupActionsToWait = [];
+    groupActionsToWait.push(yield fork(groupsApi.patchGroup, { ...others, id }));
+    if (avatar.file)
+      groupActionsToWait.push(
+        yield fork(postMediaAvatarGroupRequestSaga, { payload: { ...others, id, avatar } })
+      );
+    for (let i = 0; i < groupActionsToWait.length; i += 1) yield join(groupActionsToWait[i]);
     yield put(groupsActions.patchGroupSuccess({ ...others, id }));
     const successAlert = { type: "success", message: "groupPatched", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));
