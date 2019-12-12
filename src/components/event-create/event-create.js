@@ -26,8 +26,6 @@ class EventCreate extends React.Component {
     const { selectedDate } = this.state;
     const { onModuleIsValid } = this.props;
 
-    console.log(selectedDate);
-
     onModuleIsValid({ isValid: value !== "" && selectedDate !== undefined });
     this.setState({ title: value });
   }
@@ -47,11 +45,7 @@ class EventCreate extends React.Component {
     return (
       <EventContainer>
         <EventHeader color={groupThemeColor} value={title} onChange={this.handleOnTitleChange} />
-        <EventDatepicker
-          color={groupThemeColor}
-          selectedDate={selectedDate}
-          onSelectDate={this.handleSelectDate}
-        />
+        <EventDatepicker color={groupThemeColor} selectedDate={selectedDate} onSelectDate={this.handleSelectDate} />
       </EventContainer>
     );
   }
