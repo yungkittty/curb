@@ -100,7 +100,6 @@ class User extends React.Component {
     const {
       // eslint-disable-line
       isFetchingUsers,
-      isFetchingMedias,
       userId,
       userName: usernameProps,
       currentUserId,
@@ -142,7 +141,7 @@ class User extends React.Component {
           <ButtonFloat
             icon={editMode ? "check" : "pen"}
             onClick={this.handleSwapMode}
-            disabled={isFetchingMedias || isFetchingUsers}
+            disabled={isFetchingUsers}
           />
         ) : null}
       </React.Fragment>
@@ -153,7 +152,6 @@ class User extends React.Component {
 User.propTypes = {
   isFetchingUsers: PropTypes.bool.isRequired,
   userErrorCode: PropTypes.string.isRequired,
-  isFetchingMedias: PropTypes.bool.isRequired,
   userId: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,
