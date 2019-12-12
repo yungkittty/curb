@@ -26,7 +26,9 @@ class EventCreate extends React.Component {
     const { selectedDate } = this.state;
     const { onModuleIsValid } = this.props;
 
-    onModuleIsValid({ isValid: value !== "" && selectedDate });
+    console.log(selectedDate);
+
+    onModuleIsValid({ isValid: value !== "" && selectedDate !== undefined });
     this.setState({ title: value });
   }
 
