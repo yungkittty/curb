@@ -89,7 +89,8 @@ class Group extends React.Component {
       groupDescription,
       groupStatus,
       currentUserId,
-      currentUserGroupsId
+      currentUserGroupsId,
+      groupUsersId
     } = this.props;
     const {
       // eslint-disable-line
@@ -107,6 +108,7 @@ class Group extends React.Component {
         groupStatus={groupStatus}
         groupGradientAngle={groupGradientAngle}
         groupGradientColors={groupGradientColors}
+        groupUsersId={groupUsersId}
         currentUserId={currentUserId}
         currentUserGroupsId={currentUserGroupsId}
       />
