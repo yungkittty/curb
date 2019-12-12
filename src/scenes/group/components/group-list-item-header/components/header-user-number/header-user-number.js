@@ -14,10 +14,10 @@ const HeaderUserNumber = ({
   <Stadium
     // eslint-disable-line
     radius="extra-extra-small"
-    scale="x1"
+    scale="x2"
     backgroundColor="white"
-    style={{ marginLeft: 10 }}
-    contentStyle={{ color: stadiumContentColor, alignItems: "center", display: "flex" }}
+    style={{ marginLeft: 10, flexDirection: "row" }}
+    contentStyle={{ color: stadiumContentColor }}
   >
     <Text type="h5" weight={700} style={{ color: stadiumContentColor }}>
       {shortNumberFormatter(groupUsersId.length)}
