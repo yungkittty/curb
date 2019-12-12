@@ -20,11 +20,13 @@ class PollCreate extends React.Component {
     };
     this.checkIsModuleValid = this.checkIsModuleValid.bind(this);
     this.handleOnQuestionChange = this.handleOnQuestionChange.bind(this);
+    this.handleOnOptionChange = this.handleOnQuestionChange.bind(this);
     this.renderItem = this.renderItem.bind(this);
   }
 
   getData() {
     const { question, options } = this.state;
+    console.log(options);
     return JSON.stringify({ question, options });
   }
 
@@ -34,14 +36,26 @@ class PollCreate extends React.Component {
   }
 
   handleOnQuestionChange({ target: { value } }) {
+    console.log(value)
     const { onModuleIsValid } = this.props;
     onModuleIsValid({ isValid: this.checkIsModuleValid() });
-    this.setState({ question: value });
+    //this.setState({ question: value });
   }
 
-  renderItem() {
+  handleOnChangeOption(optionIndex) {
+    return ({  target: { value } }) => {
+      const { onModuleIsValid } = this.props;
+      onModuleIsValid({ isValid: this.checkIsModuleValid() });
+      const blabla = this.state.options
+      blabla[optionIndex] = value; 
+      this.setState({options: blabla});
+    }
+  }
+
+  renderItem({index}) {
     const { groupThemeColor } = this.props;
-    return <PollOptions placeholder="Reponses" />;
+    console.log(index);
+    return <PollOptions onChange={this.handleOnOptionChange(index)} placeholder="Reponses" />;
   }
 
   render() {

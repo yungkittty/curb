@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Input from "../../../input";
+import Input from "../../../text";
 
 const PollHeaderTitle = styled(Input)`
   background-color: transparent;
