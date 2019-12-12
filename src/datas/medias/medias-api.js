@@ -14,28 +14,22 @@ const mediasApi = {
       onUploadProgress
     });
   },
-  postMediaImage: ({ groupId, userId, image, onUploadProgress }) => {
-    const data = new FormData();
-    data.append("file", image.file);
-    return axios.post(`/contents/images/${groupId}/${userId}`, data, {
+  postMediaText: ({ postId, data }) => axios.post(`/contents/texts/${postId}`, { data }),
+  postMediaImage: ({ postId, data, onUploadProgress }) => {
+    const fromData = new FormData();
+    fromData.append("file", data);
+    return axios.post(`/contents/images/${postId}`, fromData, {
       onUploadProgress
     });
   },
-  postMediaLocation: ({ groupId, userId, location }) => {
-    const data = { data: location };
-    return axios.post(`/contents/locations/${groupId}/${userId}`, data);
-  },
-  postMediaText: ({ groupId, userId, text }) => {
-    const data = { data: text };
-    return axios.post(`/contents/texts/${groupId}/${userId}`, data);
-  },
-  postMediaVideo: ({ groupId, userId, video, onUploadProgress }) => {
-    const data = new FormData();
-    data.append("file", video.file);
-    return axios.post(`/contents/videos/${groupId}/${userId}`, data, {
+  postMediaVideo: ({ postId, data, onUploadProgress }) => {
+    const fromData = new FormData();
+    fromData.append("file", data);
+    return axios.post(`/contents/videos/${postId}`, fromData, {
       onUploadProgress
     });
-  }
+  },
+  postMediaLocation: ({ postId, data }) => axios.post(`/contents/locations/${postId}`, { data })
 };
 
 export default mediasApi;

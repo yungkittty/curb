@@ -7,6 +7,7 @@ import { usersSaga } from "../../datas/users";
 import { groupsSaga } from "../../datas/groups";
 import { chatsSaga } from "../../datas/chats";
 import { mediasSaga } from "../../datas/medias";
+import { postSaga } from "../../datas/post";
 import { discoverySaga } from "../../datas/discovery";
 import { feedbackSaga } from "../../datas/feedback";
 
@@ -20,6 +21,7 @@ function* rootSaga() {
     groupsSaga,
     chatsSaga,
     mediasSaga,
+    postSaga,
     discoverySaga,
     feedbackSaga
   ]);

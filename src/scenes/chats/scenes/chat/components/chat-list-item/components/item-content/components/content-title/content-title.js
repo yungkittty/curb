@@ -2,7 +2,7 @@ import _ from "lodash";
 import styled from "styled-components";
 import Text from "../../../../../../../../../../components/text";
 
-const ContentTitle = styled(Text).attrs(() => ({ type: "h6" }))`
+const ContentTitle = styled(Text).attrs(() => ({ type: "h5" }))`
   ${props => {
     const { inverted, groupTheme, theme } = props;
     const backgroundColor =

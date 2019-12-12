@@ -11,6 +11,7 @@ import { usersReducer as users } from "../../datas/users";
 import { groupsReducer as groups } from "../../datas/groups";
 import { chatsReducer as chats } from "../../datas/chats";
 import { mediasReducer as medias } from "../../datas/medias";
+import { postReducer as post } from "../../datas/post";
 import { discoveryReducer as discovery } from "../../datas/discovery";
 import { feedbackReducer as feedback } from "../../datas/feedback";
 
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   groups,
   chats,
   medias,
+  post,
   discovery,
   feedback
 });

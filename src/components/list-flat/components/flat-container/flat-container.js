@@ -9,6 +9,7 @@ const FlatContainer = styled(Container)`
   flex-shrink: 1;
   flex-direction: ${props => (props.horizontal ? "column" : "row")};
   overflow: hidden;
+  ${props => (props.horizontal ? "justify-content: center;" : "")}
 `;
 
 FlatContainer.propTypes = { horizontal: PropTypes.bool.isRequired };

@@ -18,7 +18,10 @@ const enModules = {
   },
   chat: {
     title: "Chat",
-    description: "Allows users to chat between them"
+    description: "Allows users to chat between them" 
+  },
+  unknown: {
+    title: "Unknown"
   }
 };
 

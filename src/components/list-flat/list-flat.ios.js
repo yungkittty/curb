@@ -4,7 +4,7 @@ import { FlatList } from "react-native";
 
 const ListFlat = forwardRef((props, forwardedRef) => <FlatList {...props} ref={forwardedRef} />);
 
-ListFlat.defaultProps = { bounces: false };
+ListFlat.defaultProps = {bounces: false };
 
 ListFlat.propTypes = { bounces: PropTypes.bool };
 
