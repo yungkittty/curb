@@ -26,7 +26,7 @@ const HeaderUserNumber = ({
       icon="users"
       color={stadiumContentColor}
       size="extra-extra-small"
-      style={{ marginLeft: platformBools.isWeb ? 6 : 3 }}
+      style={{ marginLeft: platformBools.isWeb ? 6 : 4 }}
     />
   </Stadium>
 );
