@@ -2,6 +2,7 @@ import _ from "lodash";
 import { combineReducers } from "redux";
 import groupsActionsTypes from "./groups-actions-types";
 import mediasActionsTypes from "../medias/medias-actions-types";
+import postActionsTypes from "../post/post-actions-types";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -142,19 +143,57 @@ const byId = (state = {}, action) => {
           avatarUrl: action.payload.avatar.data
         }
       };
-    case mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_LOCATION_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS:
-    case mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS:
+    case postActionsTypes.GET_POST_LIST_SUCCESS:
       return {
         ...state,
-        [action.payload.id]: {
-          ...state[action.payload.id],
-          medias: [
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          filterdPosts: action.payload.filterdPosts
+        }
+      };
+    case postActionsTypes.POST_POST_SUCCESS:
+      return {
+        ...state,
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          filterdPosts: [
             // eslint-disable-line
-            action.payload.mediasId,
-            ...state[action.payload.id].medias
+            ..._.filter(state[action.payload.groupId].filterdPosts, ({ pinned }) => pinned),
+            { id: action.payload.postId, pinned: false },
+            ..._.filter(state[action.payload.groupId].filterdPosts, ({ pinned }) => !pinned)
           ]
+        }
+      };
+    case postActionsTypes.POST_PIN_POST_SUCCESS:
+      return {
+        ...state,
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          filterdPosts: [
+            ..._.filter(
+              state[action.payload.groupId].filterdPosts,
+              ({ id, pinned }) => pinned && id !== action.payload.id
+            ),
+            {
+              ..._.find(state[action.payload.groupId].filterdPosts, ({ id }) => id === action.payload.id),
+              pinned: !action.payload.isPinned
+            },
+            ..._.filter(
+              state[action.payload.groupId].filterdPosts,
+              ({ id, pinned }) => !pinned && id !== action.payload.id
+            )
+          ]
+        }
+      };
+    case postActionsTypes.DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        [action.payload.groupId]: {
+          ...state[action.payload.groupId],
+          filterdPosts: _.remove(
+            state[action.payload.groupId].filterdPosts,
+            ({ id }) => id !== action.payload.id
+          )
         }
       };
     default:

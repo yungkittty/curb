@@ -1,15 +1,17 @@
 import i18next from "i18next";
 import { initReactI18next as i18nextInit } from "react-i18next";
-import i18nextLanguageDetector from "./i18next-language-detector";
+import * as RNLocalize from "react-native-localize";
 import translations from "./translations";
 import { currentSettingsSelectors } from "../../datas/current-settings";
 
 const configureWithStoreI18n = ({ getState }) => {
-  const lng = currentSettingsSelectors.getCurrentSettingsLanguage(getState()) || "";
+  const lng =
+    currentSettingsSelectors.getCurrentSettingsLanguage(getState()) ||
+    (RNLocalize.findBestAvailableLanguage(Object.keys(translations)) || {}).languageTag ||
+    "";
   return i18next
     .createInstance()
     .use(i18nextInit)
-    .use(i18nextLanguageDetector)
     .init({
       resources: translations,
       lng,

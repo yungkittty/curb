@@ -6,8 +6,7 @@ const LoaderContainer = styled(Container)`
   z-index: 2;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  flex: 1;
 `;
 
 export default LoaderContainer;

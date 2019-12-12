@@ -17,7 +17,7 @@ const NavigationButton = ({
     {...others}
     as={Button}
     diameter="small"
-    style={[...style, { marginBottom: 10 }]}
+    style={[_.isArray(style) ? _.reduce(style, _.extend, {}) : style, { marginBottom: 10 }]}
     onClick={() => {
       hideContainer();
       // eslint-disable-next-line

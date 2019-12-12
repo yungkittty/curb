@@ -36,12 +36,16 @@ class Discovery extends React.Component {
     getDiscoverySectionGroupsId,
     isShowed = true
   ) {
-    return isShowed ? [{
-      isDiscoverySectionEnd,
-      discoverySectionTitle,
-      data: [{ key: discoverySectionTitle, discoverySectionGroupsId }],
-      getDiscoverySectionGroupsId
-    }] : [];
+    return isShowed
+      ? [
+          {
+            isDiscoverySectionEnd,
+            discoverySectionTitle,
+            data: [{ key: discoverySectionTitle, discoverySectionGroupsId }],
+            getDiscoverySectionGroupsId
+          }
+        ]
+      : [];
   }
 
   getSections() {
@@ -128,6 +132,7 @@ class Discovery extends React.Component {
         // eslint-disable-line
         shouldFetch={false}
         groupId={discoveryItemId}
+        size="small"
       />
     );
   }
