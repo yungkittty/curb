@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { combineReducers } from "redux";
 import postActionsTypes from "./post-actions-types";
+import mediasActionsTypes from "../medias/medias-actions-types";
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
@@ -73,6 +74,32 @@ const byId = (state = {}, action) => {
             : [...state[action.payload.id].reaction, action.payload.currentUserId]
         }
       };
+    case mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST: {
+      const mediaOthers = _.remove(
+        state[action.payload.postId].medias,
+        item => item.id === action.payload.contentId
+      );
+      return {
+        ...state,
+        [action.payload.postId]: {
+          ...state[action.payload.postId],
+          medias: [
+            ...state[action.payload.postId].medias,
+            {
+              ...mediaOthers,
+              data: {
+                ...mediaOthers.data,
+                participants: [
+                  //
+                  ...mediaOthers.data.participants,
+                  action.payload.currentUserId
+                ]
+              }
+            }
+          ]
+        }
+      };
+    }
     default:
       return state;
   }

@@ -19,7 +19,8 @@ class EventCreate extends React.Component {
 
   getData() {
     const { title, selectedDate } = this.state;
-    return JSON.stringify({ date: selectedDate, name: title });
+    console.log("create", selectedDate.toUTCString(), selectedDate.toString());
+    return JSON.stringify({ date: selectedDate.toUTCString(), name: title });
   }
 
   handleOnTitleChange(value) {

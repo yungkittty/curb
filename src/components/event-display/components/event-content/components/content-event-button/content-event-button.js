@@ -8,26 +8,44 @@ import Button from "../../../../../button";
 import EventButtonContainer from "./components/event-button-container";
 import EventInfo from "../event-info";
 
-const ContentEventButton = ({ t, color, userList }) => (
+const ContentEventButton = ({
+  t,
+  color,
+  userList,
+  joinEvent,
+  postId,
+  contentId,
+  isCurrentUserJoinnedGroup
+}) => (
   <EventButtonContainer>
-    <Stadium
-      as={Button}
-      backgroundColor="white"
-      radius="extra-small"
-      onClick={() => console.log("join group")}
-    >
-      <Text type="h4" weight={700} style={{ color }}>
-        {t("join")}
-      </Text>
-    </Stadium>
+    {isCurrentUserJoinnedGroup && (
+      <Stadium
+        as={Button}
+        backgroundColor="white"
+        radius="extra-small"
+        onClick={() => joinEvent({ contentId, postId })}
+      >
+        <Text type="h4" weight={700} style={{ color }}>
+          {t("join")}
+        </Text>
+      </Stadium>
+    )}
     <EventInfo icon="user-friends" text={`${userList.length}`} />
   </EventButtonContainer>
 );
 
+ContentEventButton.defaultProps = {
+  userList: []
+};
+
 ContentEventButton.propTypes = {
   t: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired,
-  userList: PropTypes.arrayOf(PropTypes.string).isRequired
+  userList: PropTypes.arrayOf(PropTypes.string),
+  contentId: PropTypes.string.isRequired,
+  postId: PropTypes.string.isRequired,
+  joinEvent: PropTypes.func.isRequired,
+  isCurrentUserJoinnedGroup: PropTypes.bool.isRequired
 };
 
 export default _.flowRight([withTranslation("common")])(ContentEventButton);

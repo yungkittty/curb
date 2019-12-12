@@ -10,6 +10,7 @@ const ContentRemainingTime = ({ t, eventDate }) => {
   useEffect(() => {
     const offset = new Date(eventDate - new Date());
 
+    offset.setHours(offset.getHours() - 1);
     if (offset.getFullYear() < 1970) setRemainingTime(t("pastEvent"));
     else if (offset.getFullYear() > 1970) setRemainingTime(t("futureEvent"));
     else if (offset.getMonth() > 0)

@@ -39,6 +39,32 @@ const mediasActions = {
     type: mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_FAILURE,
     payload: error,
     error: true
+  }),
+  postMediaEventJoinRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST,
+    payload
+  }),
+  postMediaEventJoinSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_JOIN_SUCCESS,
+    payload
+  }),
+  postMediaEventJoinFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_JOIN_FAILURE,
+    payload: error,
+    error: true
+  }),
+  postMediaEventLeaveRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_LEAVE_REQUEST,
+    payload
+  }),
+  postMediaEventLeaveSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_LEAVE_SUCCESS,
+    payload
+  }),
+  postMediaEventLeaveFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_LEAVE_FAILURE,
+    payload: error,
+    error: true
   })
 };
 
