@@ -1,14 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-native";
-import { TouchableOpacity } from "react-native";
+import { TouchableNativeFeedback, View } from "react-native";
 import styled from "styled-components";
 
-const ButtonContainer = styled(({ onClick, ...others }) =>
+const ButtonContainer = styled(({ onClick, children, style, ...others }) =>
   typeof onClick === "string" || onClick === "object" ? (
-    <Link {...others} component={TouchableOpacity} to={onClick} />
+    <Link {...others} component={TouchableNativeFeedback} to={onClick} useForeground>
+      <View style={style}>{children}</View>
+    </Link>
   ) : (
-    <TouchableOpacity {...others} onPress={onClick} activeOpacity={1} />
+    <TouchableNativeFeedback
+      {...others}
+      onPress={onClick}
+      background={TouchableNativeFeedback.SelectableBackground()}
+      useForeground
+    >
+      <View style={style}>{children}</View>
+    </TouchableNativeFeedback>
   )
 )`
   display: flex;

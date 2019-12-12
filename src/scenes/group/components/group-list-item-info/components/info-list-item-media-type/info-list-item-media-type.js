@@ -21,7 +21,7 @@ const InfoListItemMediaType = ({ groupMediaType, theme, t }) => {
 };
 
 InfoListItemMediaType.propTypes = {
-  groupMediaType: PropTypes.array.isRequired, // eslint-disable-line
+  groupMediaType: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   t: PropTypes.func.isRequired
 };

@@ -8,7 +8,7 @@ import CardUnknown from "../../../components/card-unknown";
 
 const setMediaTypesProperties = mediaTypesList => {
   const mediaList = {};
-  _.forEach(mediaTypesList, ({ type, data }) => {
+  _.forEach(mediaTypesList, ({ id: contentId, type, data }) => {
     switch (type) {
       case "text":
         _.assign(mediaList, { [type]: { value: data } });
@@ -28,7 +28,7 @@ const setMediaTypesProperties = mediaTypesList => {
         _.assign(mediaList, { [type]: { component: <CardMap {...JSON.parse(data)} /> } });
         break;
       case "poll":
-        _.assign(mediaList, { [type]: { component: <CardPoll {...JSON.parse(data)} /> } });
+        _.assign(mediaList, { [type]: { component: <CardPoll {...JSON.parse(data)} contentId={contentId} /> } });
         break;
       default:
         _.assign(mediaList, { [type]: { component: <CardUnknown /> } });

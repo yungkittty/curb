@@ -57,7 +57,7 @@ function* postMediaImageRequestSaga(payload) {
     yield call(mediasApi.postMediaImage, payload);
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaImageFailure({ errorCode }));
+    yield put(mediasActions.postMediaTextFailure({ errorCode }));
   }
 }
 

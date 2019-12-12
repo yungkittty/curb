@@ -57,11 +57,7 @@ class GroupListItemMedia extends React.Component {
     return isPinned ? (
       <MediaHeaderContainer color={groupThemeColor}>
         <Icon size="extra-small" icon="thumbtack" color={groupThemeColor} />
-        <MediaHeaderText
-          type={platformBools.isWeb ? "h4" : undefined}
-          weight={600}
-          style={{ color: groupThemeColor }}
-        >
+        <MediaHeaderText type={platformBools.isWeb ? "h4" : undefined} weight={600} style={{ color: groupThemeColor }}>
           {t("pinnedPost")}
         </MediaHeaderText>
       </MediaHeaderContainer>

@@ -59,15 +59,9 @@ class Card extends React.Component {
       isCardExtended: !!_.size(mediaListWithoutText) > 0 || !!groupId
     });
     return (
-      <CardContainer
-        style={style}
-        className={className}
-        cardSize={cardSize}
-        as={groupId && Button}
-        onClick={groupId && `/groups/${groupId}`}
-      >
+      <CardContainer style={style} className={className} cardSize={cardSize}>
         {HeaderComponent && React.cloneElement(HeaderComponent)}
-        <CardBorderContainer>
+        <CardBorderContainer as={groupId && Button} onClick={groupId && `/groups/${groupId}`}>
           {cardSize.isCardExtended && (
             <CardContent
               mediaList={mediaListWithoutText}
@@ -86,7 +80,9 @@ class Card extends React.Component {
             textDescription={
               groupDescription || (_.size(mediaList) > 0 ? mediaList.text && mediaList.text.value : undefined)
             }
-            isNoTextDescriptionPlaceholder={_.size(mediaList) > 0 && _.isUndefined(mediaList.text)}
+            isNoTextDescriptionPlaceholder={
+              (_.size(mediaList) > 0 && _.isUndefined(mediaList.text)) || !groupDescription
+            }
             isPost={!!postMediaTypes}
             postText={
               _.has(postMediaTypes, "text")

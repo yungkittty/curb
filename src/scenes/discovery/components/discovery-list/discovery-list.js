@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListCircleText from "../../../../components/list-circle-text";
+import ListCard from "../../../../components/list-card";
 import { platformBools } from "../../../../configurations/platform";
 import withGroups from "../../../../hocs/with-groups";
 
 const DiscoveryList = ({ groupsId, ...others }) => (
-  <ListCircleText
+  <ListCard
     // eslint-disable-line
     {...others}
     data={groupsId}

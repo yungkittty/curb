@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Container from "../../../../../../../container";
+import Button from "../../../../../../../button";
 
-const OriginContainer = styled(Container)`
+const OriginContainer = styled(Button)`
   display: flex;
   flex-flow: row;
   height: 60px;
