@@ -8,7 +8,7 @@ const ButtonContainer = styled(({ onClick, ...others }) =>
   typeof onClick === "string" || onClick === "object" ? (
     <Link {...others} component={TouchableOpacity} to={onClick} />
   ) : (
-    <TouchableOpacity {...others} onPress={onClick} activeOpacity={1} />
+    <TouchableOpacity {...others} onPress={onClick} activeOpacity={0.2} />
   )
 )`
   display: flex;
