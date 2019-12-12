@@ -1,3 +1,3 @@
-import Poll from "./poll";
+import PollCreate from "./poll-create";
 
-export default Poll;
+export default PollCreate;

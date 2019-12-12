@@ -11,30 +11,18 @@ import PollContentContainer from "./components/poll-content-container";
 import PollOptions from "./components/poll-options";
 import PollButton from "./components/poll-button";
 
-class Poll extends React.Component {
+class PollDisplay extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = { question: "", options: [] };
-    this.checkIsModuleValid = this.checkIsModuleValid.bind(this);
-    this.handleOnQuestionChange = this.handleOnQuestionChange.bind(this);
+    
     this.renderItem = this.renderItem.bind(this);
   }
 
   getData() {
     const { question, options } = this.state;
     return JSON.stringify({ question, options });
-  }
-
-  checkIsModuleValid() {
-    const { question, options } = this.state;
-    return question !== "" && options != null;
-  }
-
-  handleOnQuestionChange({ target: { value } }) {
-    const { onModuleIsValid } = this.props;
-    onModuleIsValid({ isValid: this.checkIsModuleValid() });
-    this.setState({ question: value });
   }
 
   renderItem() {
@@ -77,10 +65,9 @@ class Poll extends React.Component {
   }
 }
 
-Poll.propTypes = {
-  onModuleIsValid: PropTypes.func.isRequired,
+PollDisplay.propTypes = {
   t: PropTypes.func.isRequired,
   groupTheme: PropTypes.string.isRequired
 };
 
-export default Poll;
+export default PollDisplay;

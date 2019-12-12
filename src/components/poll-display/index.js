@@ -1,3 +1,3 @@
-import Poll from "./poll";
+import PollDisplay from "./poll-display";
 
-export default Poll;
+export default PollDisplay;

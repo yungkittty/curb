@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import Container from "../container";
@@ -11,11 +10,14 @@ import PollContentContainer from "./components/poll-content-container";
 import PollOptions from "./components/poll-options";
 import PollButton from "./components/poll-button";
 
-class Poll extends React.Component {
+class PollCreate extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { question: "", options: [] };
+    this.state = { 
+      question: "", 
+      options: [] 
+    };
     this.checkIsModuleValid = this.checkIsModuleValid.bind(this);
     this.handleOnQuestionChange = this.handleOnQuestionChange.bind(this);
     this.renderItem = this.renderItem.bind(this);
@@ -28,7 +30,7 @@ class Poll extends React.Component {
 
   checkIsModuleValid() {
     const { question, options } = this.state;
-    return question !== "" && options != null;
+    return question !== "" && options.length !== 0;
   }
 
   handleOnQuestionChange({ target: { value } }) {
@@ -38,7 +40,7 @@ class Poll extends React.Component {
   }
 
   renderItem() {
-    const { theme } = this.props;
+    const { groupThemeColor } = this.props;
     return <PollOptions placeholder="Reponses" />;
   }
 
@@ -77,10 +79,10 @@ class Poll extends React.Component {
   }
 }
 
-Poll.propTypes = {
+PollCreate.propTypes = {
   onModuleIsValid: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   groupTheme: PropTypes.string.isRequired
 };
 
-export default Poll;
+export default PollCreate;
