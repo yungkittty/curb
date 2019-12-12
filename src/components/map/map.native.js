@@ -10,22 +10,16 @@ class Map extends React.Component {
   constructor(props) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
-    this.getCurrentPosition = this.getCurrentPosition.bind(this);
-    this.state = { latitude: props.latitude, longitude: props.longitude };
   }
 
   onDragEnd(event) {
+    const { onPositionChange } = this.props;
     const {
       // eslint-disable-line
       latitude,
       longitude
     } = event.nativeEvent.coordinate;
-    this.setState({ latitude, longitude });
-  }
-
-  getCurrentPosition() {
-    const { latitude, longitude } = this.state;
-    return { latitude, longitude };
+    onPositionChange({ latitude, longitude });
   }
 
   render() {
@@ -34,13 +28,9 @@ class Map extends React.Component {
       style,
       latitude,
       longitude,
+      onMapLoaded,
       ...others
     } = this.props;
-    const {
-      // eslint-disable-line
-      latitude: currentLatitude,
-      longitude: currentLongitude
-    } = this.state;
     return (
       <Container
         style={{
@@ -50,12 +40,13 @@ class Map extends React.Component {
       >
         <MapView
           {...others}
+          onMapReady={() => onMapLoaded()}
           style={{ width: "100%", height: "100%" }}
           zoomEnabled
           showsUserLocation
           region={{
-            latitude: currentLatitude || latitude,
-            longitude: currentLongitude || longitude,
+            latitude,
+            longitude,
             latitudeDelta: 0,
             longitudeDelta: 0.01 // 15
           }}
@@ -64,8 +55,8 @@ class Map extends React.Component {
             {...others}
             onDragEnd={this.onDragEnd}
             coordinate={{
-              latitude: currentLatitude || latitude,
-              longitude: currentLongitude || longitude
+              latitude,
+              longitude
             }}
           />
         </MapView>
@@ -75,13 +66,16 @@ class Map extends React.Component {
 }
 
 Map.defaultProps = {
-  style: undefined
+  style: undefined,
+  onMapLoaded: () => null
 };
 
 Map.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  onPositionChange: PropTypes.func.isRequired,
   latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired
+  longitude: PropTypes.number.isRequired,
+  onMapLoaded: PropTypes.func
 };
 
 export default Map;

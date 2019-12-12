@@ -22,7 +22,7 @@ const ButtonFloat = ({
   const floatRight = platformBools.isWeb ? 30 : 15;
   const floatBottom = platformBools.isWeb ? 30 : 15;
   const floatPosition = "absolute";
-  const floatOverflow = "visible";
+  const floatOverflow = platformBools.isIos ? "visible" : "hidden";
   return (
     <Circle
       {...others}
@@ -55,7 +55,7 @@ ButtonFloat.propTypes = {
   component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   size: PropTypes.string,
   theme: PropTypes.object.isRequired, // eslint-disable-line
-  style: PropTypes.oneOf([PropTypes.object, PropTypes.array]) // eslint-disable-line
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]) // eslint-disable-line
 };
 
 export default _.flowRight([

@@ -9,6 +9,9 @@ const enModules = {
   location: {
     title: "Location",
     description: "Allows users to post localisation points"
+  },
+  unknown: {
+    title: "Unknown"
   }
 };
 

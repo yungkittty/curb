@@ -6,6 +6,7 @@ import { accountRecoverySaga } from "../../datas/account-recovery";
 import { usersSaga } from "../../datas/users";
 import { groupsSaga } from "../../datas/groups";
 import { mediasSaga } from "../../datas/medias";
+import { postSaga } from "../../datas/post";
 import { discoverySaga } from "../../datas/discovery";
 import { feedbackSaga } from "../../datas/feedback";
 
@@ -18,6 +19,7 @@ function* rootSaga() {
     usersSaga,
     groupsSaga,
     mediasSaga,
+    postSaga,
     discoverySaga,
     feedbackSaga
   ]);
