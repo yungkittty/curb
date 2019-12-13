@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import PollContainer from "./components/poll-container";
@@ -15,8 +14,8 @@ class PollDisplay extends React.Component {
   }
 
   renderItem({index}) {
-    const { options } = this.props;
-    return <PollButton option={options[index]}/>
+    const { options, contentId } = this.props;
+    return <PollButton option={options[index]} contentId={contentId}/>
     ;
   }
 
@@ -38,6 +37,7 @@ class PollDisplay extends React.Component {
 }
 
 PollDisplay.propTypes = {
+  contentId: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   t: PropTypes.func.isRequired,

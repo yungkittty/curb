@@ -31,7 +31,7 @@ class PollCreate extends React.Component {
   }
 
   checkIsModuleValid() {
-    const { question, options } = this.state;
+    const { question } = this.state;
     return question !== "";
   }
 
@@ -43,7 +43,6 @@ class PollCreate extends React.Component {
 
   handleOnOptionChange(optionIndex) {
     return ({  target: { value } }) => {
-      const { onModuleIsValid } = this.props;
       const options = this.state.options
       options[optionIndex] = value; 
       this.setState({options: options});
@@ -51,7 +50,6 @@ class PollCreate extends React.Component {
   }
 
   renderItem({index}) {
-    const { groupThemeColor } = this.props;
     return <PollOptions onChange={this.handleOnOptionChange(index)} placeholder="Reponses" />;
   }
 

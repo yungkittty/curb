@@ -66,8 +66,6 @@ const mediasActions = {
     payload: error,
     error: true
   }),
-  ///
-
   postMediaPollVoteRequest: payload => ({
     type: mediasActionsTypes.POST_MEDIA_POLL_VOTE_REQUEST,
     payload
