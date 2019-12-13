@@ -140,11 +140,11 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id],
-          users: _.union(
+          users: [
             // eslint-disable-line
-            state[action.payload.id].users,
+            ...state[action.payload.id].users,
             action.payload.currentUserId
-          )
+          ]
         }
       };
     case groupsActionsTypes.POST_GROUP_UNJOIN_SUCCESS:
