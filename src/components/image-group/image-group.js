@@ -11,6 +11,7 @@ import emojiRegex from "./utils/emoji-regex";
 const ImageGroup = ({
   groupName,
   groupAvatar,
+  compressLevel,
   groupTheme,
   theme,
   theme: { backgroundColor },
@@ -32,8 +33,11 @@ const ImageGroup = ({
       groupAvatar ? (
         <Image
           // eslint-disable-next-line
-          // eslint-disable-next-line
-          src={_.replace(groupAvatar, "medium", size.substr(0, 5) === "extra" ? "large" : size)}
+          src={_.replace(
+            _.replace(groupAvatar, "-compress-high", compressLevel ? `-compress-${compressLevel}` : ""),
+            "medium",
+            size
+          )}
           objectFit="cover"
           style={{
             width: innerDiameter,
@@ -57,12 +61,14 @@ const ImageGroup = ({
 );
 
 ImageGroup.defaultProps = {
+  compressLevel: undefined,
   placeholderColor: undefined
 };
 
 ImageGroup.propTypes = {
   groupName: PropTypes.string.isRequired,
   groupAvatar: PropTypes.string.isRequired,
+  compressLevel: PropTypes.oneOf(["low", "medium", "high"]),
   groupTheme: PropTypes.string.isRequired,
   theme: PropTypes.object.isRequired, // eslint-disable-line
   size: PropTypes.string.isRequired,

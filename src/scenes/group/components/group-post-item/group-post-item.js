@@ -5,6 +5,7 @@ import CardImageGallery from "../../../../components/card-image-gallery";
 import CardVideo from "../../../../components/card-video";
 import CardMap from "../../../../components/card-map";
 import CardPoll from "../../../../components/card-poll";
+import CardEvent from "../../../../components/card-event";
 import GroupCardContainer from "../group-card-container";
 import GroupCardLoadingOverlay from "../group-card-loading-overlay";
 import PostItemRule from "./components/post-item-rule";
@@ -26,7 +27,7 @@ class GroupPostItem extends React.Component {
     this.onSelectImage = this.onSelectImage.bind(this);
     this.onSelectVideo = this.onSelectVideo.bind(this);
     this.onClickLocation = this.onClickLocation.bind(this);
-    this.onClickPoll = this.onClickPoll.bind(this);
+    this.onClickEvent = this.onClickEvent.bind(this);
     this.submitPost = this.submitPost.bind(this);
     this.checkIsPostValid = this.checkIsPostValid.bind(this);
   }
@@ -74,6 +75,21 @@ class GroupPostItem extends React.Component {
     });
   }
 
+  onClickEvent() {
+    const { groupThemeColor } = this.props;
+    const key = "event";
+    this.pushToMediaList({
+      key,
+      component: (
+        <CardEvent
+          groupThemeColor={groupThemeColor}
+          onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key, isValid })}
+        />
+      ),
+      isValid: false
+    });
+  }
+
   onClickPoll() {
     const key = "poll";
     this.pushToMediaList({
@@ -93,7 +109,11 @@ class GroupPostItem extends React.Component {
 
   getPostMediaTypes(groupMediaTypes) {
     const {
+<<<<<<< HEAD
       mediaList: { video, location, poll }
+=======
+      mediaList: { video, location, event }
+>>>>>>> 8199ee9ed3c045b4156913db6c5b36607f9b7036
     } = this.state;
     const postMediaTypes = {};
     if (_.includes(groupMediaTypes, "text")) _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
@@ -102,7 +122,12 @@ class GroupPostItem extends React.Component {
       _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)
       _.merge(postMediaTypes, { location: { onClick: this.onClickLocation } });
+<<<<<<< HEAD
     if (_.includes(groupMediaTypes, "poll") && !poll) _.merge(postMediaTypes, { poll: { onClick: this.onClickPoll } });
+=======
+    if (_.includes(groupMediaTypes, "event") && !event)
+      _.merge(postMediaTypes, { event: { onClick: this.onClickEvent } });
+>>>>>>> 8199ee9ed3c045b4156913db6c5b36607f9b7036
     return postMediaTypes;
   }
 

@@ -4,6 +4,7 @@ const modulesList = [
   { id: "video", icon: "video" },
   { id: "location", icon: "map-marker-alt" },
   { id: "poll", icon: "poll-h" },
+  { id: "event", icon: "calendar-alt" },
   { id: "chat", icon: "comment-alt" }
 ];
 

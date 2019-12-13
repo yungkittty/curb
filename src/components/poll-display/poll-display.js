@@ -10,7 +10,7 @@ import PollButton from "./components/poll-button";
 
 class PollDisplay extends React.Component {
   constructor(props) {
-    super(props);    
+    super(props);
     this.renderItem = this.renderItem.bind(this);
   }
 

@@ -4,6 +4,7 @@ import CardVideo from "../../../components/card-video";
 import CardMap from "../../../components/card-map";
 import CardPoll from "../../../components/card-poll";
 import CardImageGallery from "../../../components/card-image-gallery";
+import CardEvent from "../../../components/card-event";
 import CardUnknown from "../../../components/card-unknown";
 
 const setMediaTypesProperties = mediaTypesList => {
@@ -29,6 +30,10 @@ const setMediaTypesProperties = mediaTypesList => {
         break;
       case "poll":
         _.assign(mediaList, { [type]: { component: <CardPoll {...JSON.parse(data)} contentId={contentId} /> } });
+      case "event":
+        _.assign(mediaList, {
+          [type]: { component: <CardEvent {...JSON.parse(data)} contentId={contentId} /> }
+        });
         break;
       default:
         _.assign(mediaList, { [type]: { component: <CardUnknown /> } });

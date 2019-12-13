@@ -30,7 +30,9 @@ const mediasApi = {
     });
   },
   postMediaLocation: ({ postId, data }) => axios.post(`/contents/locations/${postId}`, { data }),
-  postMediaPoll: ({ postId, data }) => axios.post(`/contents/polls/${postId}`, { data })
+  postMediaPoll: ({ postId, data }) => axios.post(`/contents/polls/${postId}`, { data }),
+  postMediaEvent: ({ postId, data }) => axios.post(`/contents/events/${postId}`, { data }),
+  postMediaEventJoin: ({ contentId }) => axios.post(`/contents/events/${contentId}/join`)
 };
 
 export default mediasApi;

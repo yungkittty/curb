@@ -11,8 +11,11 @@ import {
   postMediaImageRequestSaga,
   postMediaVideoRequestSaga,
   postMediaLocationRequestSaga,
-  postMediaPollRequestSaga
+  postMediaPollRequestSaga,
+  postMediaEventRequestSaga
 } from "../medias/medias-saga";
+import mediasActionsTypes from "../medias/medias-actions-types";
+import mediasApi from "../medias/medias-api";
 
 function* getPostListRequestSaga(action) {
   try {
@@ -113,10 +116,15 @@ function* postMediasRequestSaga(payload) {
     }
     if (mediaListData.location) {
       mediaActionsToWait.push(yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location }));
+<<<<<<< HEAD
     }
     if (mediaListData.poll) {
       mediaActionsToWait.push(yield fork(postMediaPollRequestSaga, { postId, data: mediaListData.poll }));
+=======
+>>>>>>> 8199ee9ed3c045b4156913db6c5b36607f9b7036
     }
+    if (mediaListData.event)
+      mediaActionsToWait.push(yield fork(postMediaEventRequestSaga, { postId, data: mediaListData.event }));
     for (let i = 0; i < mediaActionsToWait.length; i += 1) yield join(mediaActionsToWait[i]);
     yield put(postActions.postMediasSuccess({ postId }));
   } catch (error) {
@@ -143,6 +151,13 @@ function* postPostRequestSaga(action) {
   }
 }
 
+function* postMediaEventJoinRequestSaga(action) {
+  try {
+    const { contentId } = action.payload;
+    yield call(mediasApi.postMediaEventJoin, { contentId });
+  } catch (error) {}
+}
+
 const postSaga = all([
   takeLatest(postActionsTypes.GET_POST_LIST_REQUEST, getPostListRequestSaga),
   takeNormalize(postActionsTypes.GET_POST_REQUEST, getPostRequestSaga),
@@ -151,7 +166,8 @@ const postSaga = all([
   takeEvery(postActionsTypes.DELETE_POST_REQUEST, deletePostRequestSaga),
   takeLatest(postActionsTypes.POST_LIKE_POST_REQUEST, postLikePostRequestSaga),
   takeLatest(postActionsTypes.POST_POST_REQUEST, postPostRequestSaga),
-  takeLatest(postActionsTypes.POST_MEDIAS_REQUEST, postMediasRequestSaga)
+  takeLatest(postActionsTypes.POST_MEDIAS_REQUEST, postMediasRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST, postMediaEventJoinRequestSaga)
 ]);
 
 export default postSaga;

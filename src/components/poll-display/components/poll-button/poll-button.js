@@ -5,7 +5,7 @@ import ButtonOption from "./components/button-option"
 
 const PollButton = ({ option }) => (
   <ButtonContainer>
-    <ButtonOption>
+    <ButtonOption type="h3">
       {option}
     </ButtonOption>
   </ButtonContainer>

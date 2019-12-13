@@ -10,6 +10,8 @@ const mediaTypeToIcon = mediaType => {
       return "map-marker-alt";
     case "poll":
       return "poll-h";
+    case "event":
+      return "calendar-alt";
     default:
       return "exclamation-triangle";
   }

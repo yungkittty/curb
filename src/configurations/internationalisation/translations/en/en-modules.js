@@ -20,6 +20,10 @@ const enModules = {
     title: "Poll",
     description: "Allows users to post polls"
   },
+  event: {
+    title: "Event",
+    description: "Allows users to post events"
+  },
   chat: {
     title: "Chat",
     description: "Allows users to chat between them"
