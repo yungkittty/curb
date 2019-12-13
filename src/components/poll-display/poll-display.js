@@ -14,16 +14,9 @@ class PollDisplay extends React.Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  getData() {
-    const { question, options } = this.state;
-    return JSON.stringify({ question, options });
-  }
-
-  renderItem() {
-    const { theme } = this.props;
-    return <PollButton>
-              ok
-          </PollButton>
+  renderItem({index}) {
+    const { options } = this.props;
+    return <PollButton option={options[index]}/>
     ;
   }
 

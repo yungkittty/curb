@@ -52,7 +52,6 @@ class PollCreate extends React.Component {
 
   renderItem({index}) {
     const { groupThemeColor } = this.props;
-    console.log(index);
     return <PollOptions onChange={this.handleOnOptionChange(index)} placeholder="Reponses" />;
   }
 

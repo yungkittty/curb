@@ -1,15 +1,18 @@
-import styled from "styled-components";
-import Button from "../../../button";
+import React from "react";
+import PropTypes from "prop-types";
+import ButtonContainer from "./components/button-container";
+import ButtonOption from "./components/button-option"
 
-const PollButton = styled(Button)`
-  background-color: transparent;
-  border: 2px solid;
-  border-color: white;
-  height: 38px;
-  width: 80%;
-  text-align: center;
-  margin: 8px auto 8px auto;
-  border-radius: 20px;
-`;
+const PollButton = ({ option }) => (
+  <ButtonContainer>
+    <ButtonOption>
+      {option}
+    </ButtonOption>
+  </ButtonContainer>
+);
+
+PollButton.propTypes = {
+  option: PropTypes.string.isRequired,
+};
 
 export default PollButton;
