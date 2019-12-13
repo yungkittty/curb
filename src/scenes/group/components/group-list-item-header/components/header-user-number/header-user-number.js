@@ -16,8 +16,8 @@ const HeaderUserNumber = ({
     radius="extra-extra-small"
     scale="x2"
     backgroundColor="white"
-    style={{ marginLeft: 10 }}
-    contentStyle={{ color: stadiumContentColor, alignItems: "center", display: "flex" }}
+    style={{ marginLeft: 10, flexDirection: "row" }}
+    contentStyle={{ color: stadiumContentColor }}
   >
     <Text type="h5" weight={700} style={{ color: stadiumContentColor }}>
       {shortNumberFormatter(groupUsersId.length)}
@@ -26,7 +26,7 @@ const HeaderUserNumber = ({
       icon="users"
       color={stadiumContentColor}
       size="extra-extra-small"
-      style={{ marginLeft: platformBools.isWeb ? 6 : 3 }}
+      style={{ marginLeft: platformBools.isWeb ? 6 : 4 }}
     />
   </Stadium>
 );
