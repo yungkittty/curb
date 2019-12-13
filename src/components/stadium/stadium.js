@@ -9,6 +9,12 @@ const Stadium = ({
   radius,
   scale,
   onClick,
+  onChange,
+  onKeyPress,
+  onSubmitEditing,
+  placeholder,
+  value,
+  returnKeyType,
   gradientAngle,
   gradientColors,
   backgroundColor,
@@ -26,6 +32,12 @@ const Stadium = ({
     radius={radius}
     scale={scale}
     onClick={onClick}
+    onChange={onChange}
+    onKeyPress={onKeyPress}
+    onSubmitEditing={onSubmitEditing}
+    placeholder={placeholder}
+    value={value}
+    returnKeyType={returnKeyType}
     gradientAngle={gradientAngle}
     gradientColors={gradientColors}
     backgroundColor={backgroundColor}
@@ -47,6 +59,12 @@ Stadium.defaultProps = {
   style: undefined,
   scale: undefined,
   onClick: undefined,
+  onChange: undefined,
+  onKeyPress: undefined,
+  onSubmitEditing: undefined,
+  placeholder: undefined,
+  value: undefined,
+  returnKeyType: undefined,
   gradientAngle: undefined,
   gradientColors: undefined,
   backgroundColor: undefined,
@@ -63,6 +81,12 @@ Stadium.propTypes = {
   radius: PropTypes.string.isRequired,
   scale: PropTypes.string,
   onClick: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
+  onChange: PropTypes.func,
+  onKeyPress: PropTypes.func,
+  onSubmitEditing: PropTypes.func,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  returnKeyType: PropTypes.oneOf(["send"]),
   gradientAngle: PropTypes.number,
   gradientColors: PropTypes.arrayOf(PropTypes.string),
   backgroundColor: PropTypes.string,

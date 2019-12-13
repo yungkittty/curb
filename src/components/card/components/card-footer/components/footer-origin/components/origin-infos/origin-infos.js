@@ -6,13 +6,10 @@ import InfosTitlePlaceholder from "./components/infos-title-placeholder";
 import InfosTitle from "./components/infos-title";
 import InfosSubtitlePlaceholder from "./components/infos-subtitle-placeholder";
 import InfosSubtitle from "./components/infos-subtitle";
-import Button from "../../../../../../../button";
 
 const OriginInfos = ({
   // eslint-disable-line
   t,
-  theme,
-  userId,
   infosTitle,
   postDateCreation,
   isPost
@@ -35,21 +32,7 @@ const OriginInfos = ({
   })();
   return (
     <InfosContainer>
-      {!infosTitle ? (
-        <InfosTitlePlaceholder />
-      ) : (
-        <Button
-          // eslint-disable-line
-          onClick={`/users/${userId}`}
-          component={InfosTitle}
-          shouldFetch={false}
-          size="extra-small"
-          placeholderColor={theme.primaryVariantColor}
-          weight={700}
-        >
-          {infosTitle}
-        </Button>
-      )}
+      {!infosTitle ? <InfosTitlePlaceholder /> : <InfosTitle weight={700}>{infosTitle}</InfosTitle>}
       {/* eslint-disable-next-line */}
       {!isPost &&
         (!postDateCreation ? (

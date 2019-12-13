@@ -25,21 +25,19 @@ class MediaGroupPreview extends React.Component {
         style={{ backgroundColor: !groupAvatar && theme[`group${_.capitalize(groupTheme)}Color`] }}
         cardSize={cardSize}
       >
-        {groupAvatar ? (
+        {!!groupAvatar && (
           <PreviewImage
-            src={_.replace(groupAvatar, "medium", "large")}
+            src={_.replace(groupAvatar, "medium-compress-high", "landscape")}
             objectFit="cover"
             onLoad={() => this.setState({ isLoaded: true })}
           />
-        ) : (
-          undefined
         )}
         {((groupAvatar && isLoaded) || !groupAvatar) && (
           <React.Fragment>
             <PreviewText type="h2" weight={700}>
               {groupName}
             </PreviewText>
-            {groupTheme && (
+            {!!groupTheme && (
               <Stadium
                 // eslint-disable-line
                 radius="extra-extra-small"

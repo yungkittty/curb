@@ -76,7 +76,7 @@ class ListFlat extends React.Component {
     const scrollCurrentOffset = Math.round(clientWidth / itemLength);
     const scrollIndex = scrollCurrentIndex + scrollCurrentOffset;
     if (scrollIndex < itemsLength) {
-      listFlat.scrollToIndex({ index: scrollIndex });
+      listFlat.scrollToIndex({ index: scrollIndex - 1 });
     } else {
       listFlat.scrollToEnd();
     }
@@ -96,6 +96,7 @@ class ListFlat extends React.Component {
       style,
       contentContainerClassName,
       contentContainerStyle,
+      contentInnerContainerStyle,
       horizontal,
       isManuallyScrollable,
       ...others
@@ -117,7 +118,7 @@ class ListFlat extends React.Component {
             // eslint-disable-line
             icon="angle-left"
             onClick={this.scrollToLeft}
-            style={{ top: 30, left: 20 }}
+            style={{ left: 20, bottom: undefined }}
           />
         ) : null}
         <FlatList
@@ -126,6 +127,7 @@ class ListFlat extends React.Component {
           ref={this.listFlat}
           className={contentContainerClassName}
           style={contentContainerStyle}
+          contentContainerStyle={contentInnerContainerStyle}
           onScroll={this.onScroll}
           horizontal={horizontal}
         />
@@ -134,7 +136,7 @@ class ListFlat extends React.Component {
             // eslint-disable-line
             icon="angle-right"
             onClick={this.scrollToRight}
-            style={{ top: 30, right: 20 }}
+            style={{ right: 20, bottom: undefined }}
           />
         ) : null}
       </FlatContainer>
@@ -148,6 +150,7 @@ ListFlat.defaultProps = {
   style: undefined,
   contentContainerClassName: undefined,
   contentContainerStyle: undefined,
+  contentInnerContainerStyle: undefined,
   horizontal: false,
   isManuallyScrollable: true
 };
@@ -158,6 +161,7 @@ ListFlat.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   contentContainerClassName: PropTypes.string,
   contentContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  contentInnerContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   horizontal: PropTypes.bool,
   isManuallyScrollable: PropTypes.bool,
   data: PropTypes.array.isRequired, // eslint-disable-line

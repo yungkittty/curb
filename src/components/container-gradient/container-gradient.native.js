@@ -28,6 +28,24 @@ const ContainerGradient = ({
     paddingLeft,
     ...styleOthers
   } = _.isArray(style) ? _.reduce(style, _.extend, {}) : style;
+
+  const styleInnerOthers = {
+    display,
+    flexDirection,
+    alignItems,
+    justifyContent,
+    width,
+    height,
+    minWidth,
+    minHeight,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft
+  };
+
+  const isContainer = !others.as;
+
   return (
     <Container
       // eslint-disable-line
@@ -41,33 +59,24 @@ const ContainerGradient = ({
         height,
         minWidth,
         minHeight,
-        backgroundColor: gradientColors[0]
+        backgroundColor: gradientColors[0],
+        ...(!isContainer ? styleInnerOthers : {})
       }}
     >
-      <LinearGradient
-        // eslint-disable-line
-        useAngle
-        angle={gradientAngle}
-        angleCenter={{ x: 0.5, y: 0.5 }}
-        colors={gradientColors}
-        style={{
-          display,
-          flexDirection,
-          alignItems,
-          justifyContent,
-          width,
-          height,
-          minWidth,
-          minHeight,
-          paddingTop,
-          paddingRight,
-          paddingBottom,
-          paddingLeft
-        }}
-      >
-        {/* eslint-disable-line */}
-        {children}
-      </LinearGradient>
+      {isContainer ? (
+        <LinearGradient
+          // eslint-disable-line
+          useAngle
+          angle={gradientAngle}
+          angleCenter={{ x: 0.5, y: 0.5 }}
+          colors={gradientColors}
+          style={styleInnerOthers}
+        >
+          {children}
+        </LinearGradient>
+      ) : (
+        children
+      )}
     </Container>
   );
 };

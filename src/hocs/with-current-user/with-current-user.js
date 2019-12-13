@@ -51,6 +51,7 @@ const withCurrentUser = WrappedComponent => {
       groups: currentUserGroupsId,
       errorCode: currentUserErrorCode
     } = currentUser;
+    const currentUserChatsId = usersSelectors.getUsersChatsIdById(state, currentUserId);
     return {
       isFetchingCurrentUser,
       currentUserId,
@@ -58,6 +59,7 @@ const withCurrentUser = WrappedComponent => {
       currentUserName,
       currentUserAvatar,
       currentUserGroupsId,
+      currentUserChatsId,
       currentUserErrorCode
     };
   };
@@ -74,6 +76,7 @@ const withCurrentUser = WrappedComponent => {
     currentUserName: "",
     currentUserAvatar: "",
     currentUserGroupsId: [],
+    currentUserChatsId: [],
     currentUserErrorCode: ""
   };
 
@@ -85,6 +88,7 @@ const withCurrentUser = WrappedComponent => {
     currentUserName: PropTypes.string,
     currentUserAvatar: PropTypes.string,
     currentUserGroupsId: PropTypes.array, // eslint-disable-line
+    currentUserChatsId: PropTypes.array, // eslint-disable-line
     currentUserErrorCode: PropTypes.string,
     getUser: PropTypes.func.isRequired
   };

@@ -17,6 +17,8 @@ const Icon = ({
 }) => {
   const innerSize = (() => {
     switch (size) {
+      case "extra-extra-extra-small":
+        return 7;
       case "extra-extra-small":
         return 18;
       case "extra-small":
@@ -58,6 +60,7 @@ Icon.propTypes = {
   ]),
   size: PropTypes.oneOf([
     // eslint-disable-line
+    "extra-extra-extra-small",
     "extra-extra-small",
     "extra-small",
     "small",
