@@ -19,7 +19,7 @@
     "web-bundle:development": "eval \"$(paste -s -d ' ' .env.development) react-scripts build\"",
     "web-bundle:production": "eval \"$(paste -s -d ' ' .env.production) react-scripts build\"",
     "web-eject": "react-scripts eject",
-    "postinstall": "npx jetify"
+    "postinstall": "patch-package && npx jetify"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -29,6 +29,7 @@
     "axios": "^0.18.0",
     "i18next": "^19.0.1",
     "lodash": "^4.17.11",
+    "patch-package": "^6.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-code-input": "^3.8.1",
