@@ -13,8 +13,9 @@ import groupCreate from "./fr-group-create";
 import group from "./fr-group";
 import groupOptions from "./fr-group-options";
 import groupSettings from "./fr-group-settings";
-import chat from "./fr-chat";
 import errorCode from "./fr-error-code";
+import chat from "./fr-chat";
+import event from "./fr-event";
 
 export default {
   common,
@@ -32,6 +33,7 @@ export default {
   group,
   groupOptions,
   groupSettings,
-  chat,
-  errorCode
+  errorCode,
+  event,
+  chat
 };
