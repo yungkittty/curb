@@ -116,12 +116,9 @@ function* postMediasRequestSaga(payload) {
     }
     if (mediaListData.location) {
       mediaActionsToWait.push(yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location }));
-<<<<<<< HEAD
     }
     if (mediaListData.poll) {
       mediaActionsToWait.push(yield fork(postMediaPollRequestSaga, { postId, data: mediaListData.poll }));
-=======
->>>>>>> 8199ee9ed3c045b4156913db6c5b36607f9b7036
     }
     if (mediaListData.event)
       mediaActionsToWait.push(yield fork(postMediaEventRequestSaga, { postId, data: mediaListData.event }));
