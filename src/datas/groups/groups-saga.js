@@ -31,6 +31,7 @@ function* postGroupRequestSaga(action) {
 function* getGroupRequestSaga(action) {
   try {
     const { data: payload } = yield call(groupsApi.getGroup, action.payload);
+    if (action.payload.fetchPostList) yield put(postActions.getPostListRequest({ groupId: payload.id }));
     yield put(groupsActions.getGroupSuccess(payload));
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};

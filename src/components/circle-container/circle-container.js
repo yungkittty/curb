@@ -16,23 +16,25 @@ class CircleContainer extends React.Component {
   getInnerDiameter(diameter) {
     const innerDiameters = platformBools.isWeb
       ? // eslint-disable-line
-        [30, 40, 60, 80, 100, 200, 300]
-      : [20, 35, 50, 60, 70, 150, 200];
+        [15, 30, 40, 60, 80, 100, 200, 300]
+      : [10, 20, 35, 50, 60, 70, 150, 200];
     switch (diameter) {
-      case "extra-extra-small":
+      case "extra-extra-extra-small":
         return innerDiameters[0];
-      case "extra-small":
+      case "extra-extra-small":
         return innerDiameters[1];
-      case "small":
+      case "extra-small":
         return innerDiameters[2];
-      case "medium":
+      case "small":
         return innerDiameters[3];
-      case "large":
+      case "medium":
         return innerDiameters[4];
-      case "extra-large":
+      case "large":
         return innerDiameters[5];
-      case "extra-extra-large":
+      case "extra-large":
         return innerDiameters[6];
+      case "extra-extra-large":
+        return innerDiameters[7];
       default:
         return undefined;
     }
@@ -93,6 +95,7 @@ CircleContainer.propTypes = {
   ]).isRequired,
   diameter: PropTypes.oneOf([
     // eslint-disable-line
+    "extra-extra-extra-small",
     "extra-extra-small",
     "extra-small",
     "small",

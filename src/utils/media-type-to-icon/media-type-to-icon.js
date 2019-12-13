@@ -10,12 +10,8 @@ const mediaTypeToIcon = mediaType => {
       return "map-marker-alt";
     case "event":
       return "calendar-alt";
-    case "poll":
-      return "poll-h";
-    case "link":
-      return "link";
     default:
-      return undefined;
+      return "exclamation-triangle";
   }
 };
 

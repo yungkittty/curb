@@ -8,6 +8,8 @@ const InfosTitle = styled(Text).attrs(() => ({
     overflow: "hidden",
     whiteSpace: "nowrap"
   }
-}))``;
+}))`
+  margin-bottom: 5px;
+`;
 
 export default InfosTitle;

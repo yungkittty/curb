@@ -5,6 +5,7 @@ import { withTheme } from "styled-components";
 import ButtonContainer from "./components/button-container";
 import CircleContainer from "../../../circle-container";
 import ButtonText from "./components/button-text";
+import { platformBools } from "../../../../configurations/platform";
 import Icon from "../../../icon";
 
 const CardFloatingButton = ({
@@ -23,6 +24,7 @@ const CardFloatingButton = ({
       as={ButtonContainer}
       onClick={onFloatingButtonClick}
       disabled={floatingButtonDisabled}
+      style={{ overflow: platformBools.isIos ? "visible" : "hidden" }}
     >
       {floatingButtonComponent ? (
         React.cloneElement(floatingButtonComponent)

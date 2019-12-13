@@ -40,55 +40,29 @@ const mediasActions = {
     payload: error,
     error: true
   }),
-  postMediaImageRequest: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_IMAGE_REQUEST,
+  postMediaEventJoinRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST,
     payload
   }),
-  postMediaImageSuccess: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_IMAGE_SUCCESS,
+  postMediaEventJoinSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_JOIN_SUCCESS,
     payload
   }),
-  postMediaImageFailure: error => ({
-    type: mediasActionsTypes.POST_MEDIA_IMAGE_FAILURE,
+  postMediaEventJoinFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_JOIN_FAILURE,
     payload: error,
     error: true
   }),
-  postMediaLocationRequest: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_LOCATION_REQUEST,
+  postMediaEventLeaveRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_LEAVE_REQUEST,
     payload
   }),
-  postMediaLocationSuccess: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_LOCATION_SUCCESS,
+  postMediaEventLeaveSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_LEAVE_SUCCESS,
     payload
   }),
-  postMediaLocationFailure: error => ({
-    type: mediasActionsTypes.POST_MEDIA_LOCATION_FAILURE,
-    payload: error,
-    error: true
-  }),
-  postMediaTextRequest: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_TEXT_REQUEST,
-    payload
-  }),
-  postMediaTextSuccess: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_TEXT_SUCCESS,
-    payload
-  }),
-  postMediaTextFailure: error => ({
-    type: mediasActionsTypes.POST_MEDIA_TEXT_FAILURE,
-    payload: error,
-    error: true
-  }),
-  postMediaVideoRequest: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_VIDEO_REQUEST,
-    payload
-  }),
-  postMediaVideoSuccess: payload => ({
-    type: mediasActionsTypes.POST_MEDIA_VIDEO_SUCCESS,
-    payload
-  }),
-  postMediaVideoFailure: error => ({
-    type: mediasActionsTypes.POST_MEDIA_VIDEO_FAILURE,
+  postMediaEventLeaveFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_EVENT_LEAVE_FAILURE,
     payload: error,
     error: true
   })

@@ -40,7 +40,7 @@ jobs:
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
       install:
-        - npm install -g react-native-cli
+        - npm install -g @react-native-community/cli
       before_script:
         - echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - npm run mobile-bundle-android:${CURB_BUILD} || travis_terminate 1
@@ -58,7 +58,7 @@ jobs:
       env:
         - SKIP_BUNDLING=1
       install:
-        - npm install -g react-native-cli
+        - npm install -g @react-native-community/cli
       before_script:
         - npm run mobile-bundle-ios:${CURB_BUILD} || travis_terminate 1
       script:
