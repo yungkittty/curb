@@ -36,19 +36,17 @@ class PollCreate extends React.Component {
   }
 
   handleOnQuestionChange({ target: { value } }) {
-    console.log(value)
     const { onModuleIsValid } = this.props;
     onModuleIsValid({ isValid: this.checkIsModuleValid() });
-    //this.setState({ question: value });
+    this.setState({ question: value });
   }
 
   handleOnOptionChange(optionIndex) {
     return ({  target: { value } }) => {
       const { onModuleIsValid } = this.props;
-      const blabla = this.state.options
-      blabla[optionIndex] = value; 
-      console.log(blabla);
-      this.setState({options: blabla});
+      const options = this.state.options
+      options[optionIndex] = value; 
+      this.setState({options: options});
     }
   }
 

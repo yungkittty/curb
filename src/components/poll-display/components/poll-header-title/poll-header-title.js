@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Input from "../../../text";
+import Text from "../../../text";
 
-const PollHeaderTitle = styled(Input)`
+const PollHeaderTitle = styled(Text)`
   background-color: transparent;
   height: 38px;
   text-align: center;

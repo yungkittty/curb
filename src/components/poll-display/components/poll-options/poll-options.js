@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Input from "../../../input";
+import Text from "../../../text";
 
-const PollOptions = styled(Input)`
+const PollOptions = styled(Text)`
   background-color: transparent;
   border: 2px solid;
   border-color: white;
