@@ -3,7 +3,7 @@ import Container from "../../../container";
 
 const FormContainer = styled(Container)`
   width: 300px;
-  height: 57px;
+  min-height: 57px;
   position: relative;
   margin-top: 42px;
   border-bottom-width: 1px;

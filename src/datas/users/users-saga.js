@@ -1,10 +1,10 @@
-import { all, takeLatest, call, put } from "redux-saga/effects";
+import { all, takeLatest, call, join, fork, put } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import usersActionsTypes from "./users-actions-types";
 import usersActions from "./users-actions";
 import usersApi from "./users-api";
 import appAlertActions from "../app-alert/app-alert-actions";
-import mediasActions from "../medias/medias-actions";
+import { postMediaAvatarUserRequestSaga } from "../medias/medias-saga";
 
 function* getUserRequestSaga(action) {
   try {
@@ -18,9 +18,12 @@ function* getUserRequestSaga(action) {
 
 function* patchUserRequestSaga(action) {
   try {
-    const { id, avatar = {}, ...others } = action.payload;
-    yield call(usersApi.patchUser, { ...others, id });
-    if (avatar.file) yield put(mediasActions.postMediaAvatarUserRequest({ id, avatar }));
+    const { id, name, avatar = {}, ...others } = action.payload;
+    const userActionsToWait = [];
+    if (name) userActionsToWait.push(yield fork(usersApi.patchUser, { id, name }));
+    if (avatar.file)
+      userActionsToWait.push(yield fork(postMediaAvatarUserRequestSaga, { payload: { ...others, id, avatar } }));
+    for (let i = 0; i < userActionsToWait.length; i += 1) yield join(userActionsToWait[i]);
     yield put(usersActions.patchUserSuccess({ ...others, id }));
     const successAlert = { type: "success", message: "patchUser.userSuccess", icon: "check" };
     yield put(appAlertActions.pushAppAlert(successAlert));

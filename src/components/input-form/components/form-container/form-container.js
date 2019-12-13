@@ -14,7 +14,7 @@ const FormContainer = styled(Container)`
   }}px;
   position: relative;
   justify-content: center;
-  height: 59px;
+  min-height: 59px;
   margin-top: 52px;
   border-width: 0px 0px 1px 0px;
   border-style: solid;
