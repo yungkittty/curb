@@ -86,7 +86,7 @@ class GroupListItemMedia extends React.Component {
         cardMenu={this.getCardMenuOptions()}
         onFloatingButtonClick={!isPostLoading ? this.onLike : undefined}
         floatingButtonColor={isCurrentUserLiked ? groupThemeColor : theme.primaryColor}
-        floatingButtonDisabled={!currentUserId}
+        floatingButtonDisabled={!isCurrentUserJoinnedGroup}
         likeNumber={shortNumberFormatter(postReactionsNumber, 1, true)}
         moduleComponentProps={{ groupThemeColor, postId, isCurrentUserJoinnedGroup }}
       />
