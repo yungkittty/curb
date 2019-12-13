@@ -1,8 +1,10 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 import { withTheme } from "styled-components";
 import ListFlat from "../../components/list-flat";
+import GroupPostItem from "./components/group-post-item";
 import GroupListHeader from "./components/group-list-header";
 import GroupListItemHeader from "./components/group-list-item-header";
 import GroupListItemMedia from "./components/group-list-item-media";
@@ -14,7 +16,6 @@ import withGroup from "../../hocs/with-group";
 
 /* eslint-disable */
 
-import CreateMedia from "../create-media"; /** @TODO !! */
 import GroupSettings from "./scenes/group-settings";
 
 /* eslint-enable */
@@ -46,10 +47,10 @@ class Group extends React.Component {
     }
   }
 
-  getData() {
+  getData({ isGroupPostShowed }) {
     const { isFeed } = this.state;
-    const { groupMediasId } = this.props;
-    return [{}, ...(isFeed ? groupMediasId : [{}])];
+    const { groupPostsId } = this.props;
+    return [{}, ...(isGroupPostShowed ? [0] : []), ...(isFeed ? groupPostsId : [{}])];
   }
 
   getGroupGradient() {
@@ -88,7 +89,8 @@ class Group extends React.Component {
       groupDescription,
       groupStatus,
       currentUserId,
-      currentUserGroupsId
+      currentUserGroupsId,
+      groupUsersId
     } = this.props;
     const {
       // eslint-disable-line
@@ -106,19 +108,34 @@ class Group extends React.Component {
         groupStatus={groupStatus}
         groupGradientAngle={groupGradientAngle}
         groupGradientColors={groupGradientColors}
+        groupUsersId={groupUsersId}
         currentUserId={currentUserId}
         currentUserGroupsId={currentUserGroupsId}
       />
     );
   }
 
-  renderListItemMedia({ item: mediaId }) {
-    const { theme } = this.props;
-    return (
+  renderListItemMedia({ item: post }) {
+    const { t, theme, currentUserId, groupCreatorId, groupUsersId, groupId, groupTheme, groupMediaTypes } = this.props;
+    const groupThemeColor = theme[`group${_.capitalize(groupTheme)}Color`] || "transparent";
+    return post === 0 ? (
+      <GroupPostItem
+        currentUserId={currentUserId}
+        groupId={groupId}
+        groupThemeColor={groupThemeColor}
+        groupMediaTypes={groupMediaTypes}
+      />
+    ) : (
       <GroupListItemMedia
         // eslint-disable-line
-        mediaId={mediaId}
+        t={t}
         theme={theme}
+        currentUserId={currentUserId}
+        groupCreatorId={groupCreatorId}
+        groupThemeColor={groupThemeColor}
+        postId={post.id}
+        isPinned={post.pinned}
+        isCurrentUserJoinnedGroup={_.includes(groupUsersId, currentUserId)}
       />
     );
   }
@@ -170,12 +187,12 @@ class Group extends React.Component {
     const isCurrentUser = !!currentUserId;
     const isCurrentUserIn = _.includes(currentUserGroupsId, groupId);
     const isCurrentUserCreator = _.isEqual(currentUserId, groupCreatorId);
-    const isButtonFloatShowed = isCurrentUser && ((isFeed && isCurrentUserIn) || isCurrentUserCreator);
+    const isGroupPostShowed = isCurrentUser && isFeed && isCurrentUserIn;
     return (
       <React.Fragment>
         <ListFlat
           // eslint-disable-line
-          data={this.getData()}
+          data={this.getData({ isGroupPostShowed })}
           keyExtractor={(itemId, itemIndex) => (_.isString(itemId) ? itemId : itemIndex.toString())}
           stickyHeaderIndices={[0]}
           ListHeaderComponent={this.renderListHeader}
@@ -183,11 +200,11 @@ class Group extends React.Component {
           scrollEventThrottle={1}
           onScroll={this.toggleSticky}
         />
-        {isButtonFloatShowed ? (
+        {!isFeed && isCurrentUserCreator ? (
           <ButtonFloat
             // eslint-disable-line
-            icon={isFeed ? "plus" : "sliders-h"}
-            onClick={() => showAppModal({ scene: isFeed ? CreateMedia : GroupSettings })}
+            icon="sliders-h"
+            onClick={() => showAppModal({ scene: GroupSettings })}
           />
         ) : null}
       </React.Fragment>
@@ -196,6 +213,7 @@ class Group extends React.Component {
 }
 
 Group.propTypes = {
+  t: PropTypes.func.isRequired,
   showAppModal: PropTypes.func.isRequired,
   groupId: PropTypes.string.isRequired,
   groupCreatorId: PropTypes.string.isRequired,
@@ -206,7 +224,7 @@ Group.propTypes = {
   groupTheme: PropTypes.string.isRequired,
   groupUsersId: PropTypes.array.isRequired, // eslint-disable-line
   groupMediaTypes: PropTypes.array.isRequired, // eslint-disable-line
-  groupMediasId: PropTypes.array.isRequired, // eslint-disable-line
+  groupPostsId: PropTypes.array.isRequired, // eslint-disable-line
   currentUserId: PropTypes.string.isRequired,
   currentUserGroupsId: PropTypes.array.isRequired, // eslint-disable-line
   theme: PropTypes.object.isRequired // eslint-disable-line
@@ -214,6 +232,7 @@ Group.propTypes = {
 
 export default _.flowRight([
   // eslint-disable-line
+  withTranslation("common"),
   withAppModal,
   withCurrentUser,
   withGroup,

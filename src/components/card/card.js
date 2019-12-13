@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import CardContainer from "./components/card-container";
+import CardShadowContainer from "./components/card-shadow-container";
 import CardBorderContainer from "./components/card-border-container";
 import CardContent from "./components/card-content";
 import CardAddMediaTypes from "./components/card-add-media-types";
@@ -59,58 +60,50 @@ class Card extends React.Component {
       isCardExtended: !!_.size(mediaListWithoutText) > 0 || !!groupId
     });
     return (
-      <CardContainer
-        style={style}
-        className={className}
-        cardSize={cardSize}
-        as={groupId && Button}
-        onClick={groupId && `/groups/${groupId}`}
-      >
+      <CardContainer style={style} className={className} cardSize={cardSize}>
         {HeaderComponent && React.cloneElement(HeaderComponent)}
-        <CardBorderContainer>
-          {cardSize.isCardExtended && (
-            <CardContent
-              mediaList={mediaListWithoutText}
-              isPost={!!postMediaTypes}
+        <CardShadowContainer as={groupId && Button} onClick={groupId && `/groups/${groupId}`}>
+          <CardBorderContainer>
+            {cardSize.isCardExtended && (
+              <CardContent
+                mediaList={mediaListWithoutText}
+                isPost={!!postMediaTypes}
+                cardSize={cardSize}
+                groupId={groupId}
+                {...others}
+              />
+            )}
+            {!!postMediaTypes && !isOnlyPostTextMode && (
+              <CardAddMediaTypes postMediaTypes={postMediaTypesWithoutText} />
+            )}
+            <CardFooter
+              ref={this.textInputRef}
               cardSize={cardSize}
+              textDescription={
+                groupDescription || (_.size(mediaList) > 0 ? mediaList.text && mediaList.text.value : undefined)
+              }
+              isNoTextDescriptionPlaceholder={
+                (_.size(mediaList) > 0 && _.isUndefined(mediaList.text)) || !groupDescription
+              }
+              isPost={!!postMediaTypes}
+              postText={
+                _.has(postMediaTypes, "text")
+                  ? {
+                      ...postMediaTypes.text,
+                      value: _.has(mediaList, "text") ? mediaList.text.value : undefined
+                    }
+                  : undefined
+              }
               groupId={groupId}
+              haveMenu={!!cardMenu}
+              onMenuClick={this.onMenuOpen}
               {...others}
             />
-          )}
-          {!!postMediaTypes && !isOnlyPostTextMode && (
-            <CardAddMediaTypes postMediaTypes={postMediaTypesWithoutText} />
-          )}
-          <CardFooter
-            ref={this.textInputRef}
-            cardSize={cardSize}
-            textDescription={
-              groupDescription || (_.size(mediaList) > 0 ? mediaList.text && mediaList.text.value : undefined)
-            }
-            isNoTextDescriptionPlaceholder={
-              (_.size(mediaList) > 0 && _.isUndefined(mediaList.text)) || !groupDescription
-            }
-            isPost={!!postMediaTypes}
-            postText={
-              _.has(postMediaTypes, "text")
-                ? {
-                    ...postMediaTypes.text,
-                    value: _.has(mediaList, "text") ? mediaList.text.value : undefined
-                  }
-                : undefined
-            }
-            groupId={groupId}
-            haveMenu={!!cardMenu}
-            onMenuClick={this.onMenuOpen}
-            {...others}
-          />
-          {(OverlayComponent || isMenuShowed) && (
-            <CardOverlay
-              OverlayComponent={OverlayComponent}
-              optionsList={cardMenu}
-              onClose={this.onMenuClose}
-            />
-          )}
-        </CardBorderContainer>
+            {(OverlayComponent || isMenuShowed) && (
+              <CardOverlay OverlayComponent={OverlayComponent} optionsList={cardMenu} onClose={this.onMenuClose} />
+            )}
+          </CardBorderContainer>
+        </CardShadowContainer>
         {onFloatingButtonClick && !isMenuShowed && (
           <CardFloatingButton
             postType={!!postMediaTypes && _.size(mediaListWithoutText) === 0}

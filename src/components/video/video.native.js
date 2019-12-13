@@ -1,33 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Video from "react-native-video-controls";
+import Video from "react-native-video-player";
 import Container from "../container";
 
 // https://www.npmjs.com/package/react-native-video
-// https://www.npmjs.com/package/react-native-video-controls
+// https://www.npmjs.com/package/react-native-video-player
 
 class _Video extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isShowed: false };
+    this.state = { isShowed: false, isMuted: true };
     this.videoRef = React.createRef();
-    this.muteVideo = this.muteVideo.bind(this);
-  }
-
-  componentDidMount() {
-    this.muteVideo();
+    this.onMuteToggle = this.onMuteToggle.bind(this);
   }
 
   componentDidUpdate(prevProps) {
+    const { isMuted } = this.state;
     const { isShowedInCard } = this.props;
-
-    if (prevProps.isShowedInCard === isShowedInCard && !isShowedInCard) this.muteVideo();
+    if (prevProps.isShowedInCard === isShowedInCard) return;
+    if (isShowedInCard) {
+      this.videoRef.current.resume();
+    }
+    if (!isShowedInCard) {
+      this.videoRef.current.pause();
+      if (!isMuted) this.videoRef.current.onMutePress();
+    }
   }
 
-  muteVideo() {
-    this.videoRef.current.state.volume = 0;
-    this.videoRef.current.state.volumePosition = 0;
-    this.videoRef.current.state.volumeOffset = 0;
+  onMuteToggle() {
+    const { isMuted } = this.state;
+    this.setState({ isMuted: !isMuted });
   }
 
   render() {
@@ -52,7 +54,7 @@ class _Video extends React.Component {
         <Video
           {...others}
           ref={this.videoRef}
-          source={{ uri: isVideoFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src }}
+          video={{ uri: isVideoFromApi ? `${process.env.REACT_APP_API_URL}${src}` : src }}
           onLoadStart={event => {
             // eslint-disable-next-line
             onLoadStart && onLoadStart(event);
@@ -63,17 +65,17 @@ class _Video extends React.Component {
             onCanPlay && onCanPlay(event);
             this.setState({ isShowed: true });
           }}
-          resizeMode={objectFit}
-          style={{
-            width: "100%",
-            height: "100%"
+          customStyles={{
+            seekBarProgress: { backgroundColor: "rgba(255, 255, 255, 0.4)" },
+            seekBarKnob: { backgroundColor: "white" },
+            seekBarBackground: { backgroundColor: "rgba(0, 0, 0, 0.2)" },
+            controls: { backgroundColor: "rgba(0, 0, 0, 0.4)" }
           }}
-          toggleResizeModeOnFullscreen={false}
-          disableBack
-          disableFullscreen
+          onMutePress={this.onMuteToggle}
+          resizeMode={objectFit}
+          defaultMuted
           repeat
-          showOnStart={false}
-          paused={!isShowedInCard}
+          hideControlsOnStart
         />
       </Container>
     );
