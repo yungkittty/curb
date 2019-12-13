@@ -135,6 +135,30 @@ const byId = (state = {}, action) => {
           errorCode: ""
         }
       };
+    case groupsActionsTypes.POST_GROUP_JOIN_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          users: [
+            // eslint-disable-line
+            ...state[action.payload.id].users,
+            action.payload.currentUserId
+          ]
+        }
+      };
+    case groupsActionsTypes.POST_GROUP_UNJOIN_SUCCESS:
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id],
+          users: _.without(
+            // eslint-disable-line
+            state[action.payload.id].users,
+            action.payload.currentUserId
+          )
+        }
+      };
     case mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_SUCCESS:
       return {
         ...state,
@@ -190,10 +214,7 @@ const byId = (state = {}, action) => {
         ...state,
         [action.payload.groupId]: {
           ...state[action.payload.groupId],
-          filterdPosts: _.remove(
-            state[action.payload.groupId].filterdPosts,
-            ({ id }) => id !== action.payload.id
-          )
+          filterdPosts: _.remove(state[action.payload.groupId].filterdPosts, ({ id }) => id !== action.payload.id)
         }
       };
     default:
