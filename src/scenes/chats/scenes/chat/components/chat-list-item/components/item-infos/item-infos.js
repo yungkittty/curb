@@ -34,7 +34,7 @@ const ItemInfos = ({
       </Text>
       <Text type="h5">
         {/* eslint-disable-line */}
-        {`${messageDate.getDay()}/${messageDate.getMonth()}/${messageDate.getFullYear()} - ${messageDate.getHours()}:${_.repeat("0", +(messageDate.getSeconds() < 10))}${messageDate.getSeconds()}`}
+        {`${messageDate.getDay()}/${messageDate.getMonth()}/${messageDate.getFullYear()} - ${messageDate.getHours()}:${_.repeat("0", +(messageDate.getMinutes() < 10))}${messageDate.getMinutes()}`}
       </Text>
     </InfosContainer>
   );
