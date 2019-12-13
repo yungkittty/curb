@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
+import queryString from "query-string";
 import ButtonContainer from "./components/button-container";
 import ButtonText from "./components/button-text";
 import Icon from "../../../../../../components/icon";
@@ -21,8 +22,9 @@ class HeaderButton extends React.Component {
       groupId,
       postGroupJoin,
       postGroupUnjoin,
-      location: { state: { inviteToken } = {} }
+      location: { search = "" }
     } = this.props;
+    const { inviteToken } = queryString.parse(search);
     if (!isCurrentUserIn) {
       postGroupJoin({ id: groupId, token: inviteToken });
     } else {
