@@ -7,15 +7,14 @@ import appModalActions from "../app-modal/app-modal-actions";
 import appAlertActions from "../app-alert/app-alert-actions";
 import currentUserSelectors from "../current-user/current-user-selectors";
 import { postMediaAvatarGroupRequestSaga } from "../medias/medias-saga";
+import { postActions } from "../post";
 
 function* postGroupRequestSaga(action) {
   try {
     const { history, avatar = {}, ...others } = action.payload;
     const { data: payload } = yield call(groupsApi.postGroup, others);
     if (avatar.file)
-      yield join(
-        yield fork(postMediaAvatarGroupRequestSaga, { payload: { ...others, id: payload.id, avatar } })
-      );
+      yield join(yield fork(postMediaAvatarGroupRequestSaga, { payload: { ...others, id: payload.id, avatar } }));
     const currentUserId = yield select(currentUserSelectors.getCurrentUserId);
     yield put(groupsActions.postGroupSuccess({ ...payload, currentUserId }));
     const successAlert = { type: "success", message: "groupCreated", icon: "check" };
@@ -45,9 +44,7 @@ function* patchGroupRequestSaga(action) {
     const groupActionsToWait = [];
     groupActionsToWait.push(yield fork(groupsApi.patchGroup, { ...others, id }));
     if (avatar.file)
-      groupActionsToWait.push(
-        yield fork(postMediaAvatarGroupRequestSaga, { payload: { ...others, id, avatar } })
-      );
+      groupActionsToWait.push(yield fork(postMediaAvatarGroupRequestSaga, { payload: { ...others, id, avatar } }));
     for (let i = 0; i < groupActionsToWait.length; i += 1) yield join(groupActionsToWait[i]);
     yield put(groupsActions.patchGroupSuccess({ ...others, id }));
     const successAlert = { type: "success", message: "groupPatched", icon: "check" };

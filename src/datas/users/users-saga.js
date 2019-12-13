@@ -22,9 +22,7 @@ function* patchUserRequestSaga(action) {
     const userActionsToWait = [];
     if (name) userActionsToWait.push(yield fork(usersApi.patchUser, { id, name }));
     if (avatar.file)
-      userActionsToWait.push(
-        yield fork(postMediaAvatarUserRequestSaga, { payload: { ...others, id, avatar } })
-      );
+      userActionsToWait.push(yield fork(postMediaAvatarUserRequestSaga, { payload: { ...others, id, avatar } }));
     for (let i = 0; i < userActionsToWait.length; i += 1) yield join(userActionsToWait[i]);
     yield put(usersActions.patchUserSuccess({ ...others, id }));
     const successAlert = { type: "success", message: "patchUser.userSuccess", icon: "check" };
