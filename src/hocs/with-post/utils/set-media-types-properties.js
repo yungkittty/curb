@@ -30,6 +30,7 @@ const setMediaTypesProperties = mediaTypesList => {
         break;
       case "poll":
         _.assign(mediaList, { [type]: { component: <CardPoll {...JSON.parse(data)} contentId={contentId} /> } });
+        break;
       case "event":
         _.assign(mediaList, {
           [type]: { component: <CardEvent {...JSON.parse(data)} contentId={contentId} /> }

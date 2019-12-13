@@ -155,6 +155,13 @@ function* postMediaEventJoinRequestSaga(action) {
   } catch (error) {}
 }
 
+function* postMediaPollVoteRequestSaga(action) {
+  try {
+    const { contentId, option } = action.payload;
+    yield call(mediasApi.postMediaPollVote, { contentId, option });
+  } catch (error) {}
+}
+
 const postSaga = all([
   takeLatest(postActionsTypes.GET_POST_LIST_REQUEST, getPostListRequestSaga),
   takeNormalize(postActionsTypes.GET_POST_REQUEST, getPostRequestSaga),
@@ -164,7 +171,8 @@ const postSaga = all([
   takeLatest(postActionsTypes.POST_LIKE_POST_REQUEST, postLikePostRequestSaga),
   takeLatest(postActionsTypes.POST_POST_REQUEST, postPostRequestSaga),
   takeLatest(postActionsTypes.POST_MEDIAS_REQUEST, postMediasRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST, postMediaEventJoinRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST, postMediaEventJoinRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_POLL_VOTE_REQUEST, postMediaPollVoteRequestSaga)
 ]);
 
 export default postSaga;
