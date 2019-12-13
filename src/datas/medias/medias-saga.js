@@ -1,4 +1,4 @@
-import { all, takeLatest, call, put } from "redux-saga/effects";
+import { all, call, put } from "redux-saga/effects";
 import { takeNormalize } from "../../configurations/store/saga-effects";
 import mediasActionsTypes from "./medias-actions-types";
 import mediasActions from "./medias-actions";
