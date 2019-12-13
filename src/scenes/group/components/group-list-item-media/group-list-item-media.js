@@ -57,11 +57,7 @@ class GroupListItemMedia extends React.Component {
     return isPinned ? (
       <MediaHeaderContainer color={groupThemeColor}>
         <Icon size="extra-small" icon="thumbtack" color={groupThemeColor} />
-        <MediaHeaderText
-          type={platformBools.isWeb ? "h4" : undefined}
-          weight={600}
-          style={{ color: groupThemeColor }}
-        >
+        <MediaHeaderText type={platformBools.isWeb ? "h4" : undefined} weight={600} style={{ color: groupThemeColor }}>
           {t("pinnedPost")}
         </MediaHeaderText>
       </MediaHeaderContainer>
@@ -77,6 +73,7 @@ class GroupListItemMedia extends React.Component {
       isCurrentUserLiked,
       currentUserId,
       isPostLoading,
+      isCurrentUserJoinnedGroup,
       ...others
     } = this.props;
     return (
@@ -88,7 +85,7 @@ class GroupListItemMedia extends React.Component {
         cardMenu={this.getCardMenuOptions()}
         onFloatingButtonClick={!isPostLoading ? this.onLike : undefined}
         floatingButtonColor={isCurrentUserLiked ? groupThemeColor : theme.primaryColor}
-        floatingButtonDisabled={!currentUserId}
+        floatingButtonDisabled={!isCurrentUserJoinnedGroup}
         likeNumber={shortNumberFormatter(postReactionsNumber, 1, true)}
         moduleComponentProps={{ groupThemeColor }}
       />
@@ -111,7 +108,8 @@ GroupListItemMedia.propTypes = {
   postReactionsNumber: PropTypes.number.isRequired,
   isCurrentUserLiked: PropTypes.bool.isRequired,
   isPinned: PropTypes.bool.isRequired,
-  isPostLoading: PropTypes.bool.isRequired
+  isPostLoading: PropTypes.bool.isRequired,
+  isCurrentUserJoinnedGroup: PropTypes.bool.isRequired
 };
 
 export default withPost(GroupListItemMedia);
