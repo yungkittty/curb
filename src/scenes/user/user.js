@@ -31,42 +31,33 @@ class User extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { username: usernameState, avatar, editMode } = this.state;
     const {
-      isFetchingUsers,
-      usersErrorCode,
-      isFetchingMedias,
-      mediasErrorCode,
-      userId,
-      userName: usernameProps,
-      currentUserId
-    } = this.props;
-    const { username: initialUsername, avatar: initialAvatar } = this.initialState;
+      username: { value: usernameState },
+      editMode
+    } = this.state;
+    const { isFetchingUsers, userErrorCode, userId, userName: usernameProps, currentUserId } = this.props;
     // eslint-disable-next-line
-    if (!(userId === currentUserId) && editMode) this.setState({ editMode: false });
-
-    if (prevProps.isFetchingMedias && !isFetchingMedias)
+    if (userId !== currentUserId && editMode) this.setState({ editMode: false });
+    if (prevProps.isFetchingUsers && !isFetchingUsers && userErrorCode === "") {
+      this.initialState = { ...this.initialState, username: { value: usernameState } };
       // eslint-disable-next-line
-      this.setState({
-        avatar: mediasErrorCode === "" ? initialAvatar : { ...avatar, loadingProgress: undefined },
-        editMode: mediasErrorCode !== ""
-      });
-    if (prevProps.isFetchingUsers && !isFetchingUsers)
-      // eslint-disable-next-line
-      this.setState({ editMode: usersErrorCode !== "" });
-
-    // eslint-disable-next-line
-    if (usernameState.value === usernameProps) this.setState({ username: initialUsername });
+      this.setState(this.initialState);
+    }
+    if (!prevProps.userName && usernameProps)
+      this.initialState = { ...this.initialState, username: { value: usernameProps } };
   }
 
   submit() {
-    const { userId, userName, patchUser } = this.props;
+    const { userId, patchUser } = this.props;
     const { username, avatar } = this.state;
-    if ((username.value && username.value !== userName) || avatar.value.file) {
+    const { username: initialUsername } = this.initialState;
+    if ((username.value && username.value !== initialUsername.value) || avatar.value.file) {
       patchUser({
         id: userId,
         avatar: avatar.value,
-        name: username.value
+        name: username.value,
+        onUploadProgress: ({ loaded, total }) =>
+          this.setState({ avatar: { ...avatar, loadingProgress: loaded / total } })
       });
     }
   }
@@ -109,14 +100,12 @@ class User extends React.Component {
     const {
       // eslint-disable-line
       isFetchingUsers,
-      isFetchingMedias,
       userId,
       userName: usernameProps,
       currentUserId,
       theme,
       t
     } = this.props;
-
     return (
       <React.Fragment>
         <UserContainer>
@@ -152,7 +141,7 @@ class User extends React.Component {
           <ButtonFloat
             icon={editMode ? "check" : "pen"}
             onClick={this.handleSwapMode}
-            disabled={isFetchingMedias || isFetchingUsers}
+            disabled={isFetchingUsers}
           />
         ) : null}
       </React.Fragment>
@@ -162,9 +151,7 @@ class User extends React.Component {
 
 User.propTypes = {
   isFetchingUsers: PropTypes.bool.isRequired,
-  usersErrorCode: PropTypes.string.isRequired,
-  isFetchingMedias: PropTypes.bool.isRequired,
-  mediasErrorCode: PropTypes.string.isRequired,
+  userErrorCode: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   currentUserId: PropTypes.string.isRequired,

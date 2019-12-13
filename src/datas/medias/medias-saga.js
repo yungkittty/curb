@@ -89,9 +89,8 @@ function* postMediaEventRequestSaga(payload) {
 }
 
 const mediasSaga = all([
-  takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_USER_REQUEST, postMediaAvatarUserRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_AVATAR_GROUP_REQUEST, postMediaAvatarGroupRequestSaga)
+  // estlint-disable-line
+  takeNormalize(mediasActionsTypes.GET_MEDIA_REQUEST, getMediaRequestSaga)
 ]);
 
 export {
@@ -99,7 +98,9 @@ export {
   postMediaImageRequestSaga,
   postMediaVideoRequestSaga,
   postMediaLocationRequestSaga,
-  postMediaEventRequestSaga
+  postMediaEventRequestSaga,
+  postMediaAvatarUserRequestSaga,
+  postMediaAvatarGroupRequestSaga
 };
 
 export default mediasSaga;
