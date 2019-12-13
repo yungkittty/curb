@@ -1,14 +1,11 @@
 import styled from "styled-components";
+import withShadow from "../../../../hocs/with-shadow";
 import Container from "../../../container";
 
-const CardBorderContainer = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+const CardShadowContainer = styled(Container)`
   position: relative;
   border-radius: 12px;
-  overflow: hidden;
   background-color: white;
 `;
 
-export default CardBorderContainer;
+export default withShadow(4)(CardShadowContainer);

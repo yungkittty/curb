@@ -23,6 +23,7 @@ const CardFloatingButton = ({
       as={ButtonContainer}
       onClick={onFloatingButtonClick}
       disabled={floatingButtonDisabled}
+      style={{ overflow: "visible" }}
     >
       {floatingButtonComponent ? (
         React.cloneElement(floatingButtonComponent)
