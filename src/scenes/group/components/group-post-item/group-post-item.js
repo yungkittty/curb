@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import CardImageGallery from "../../../../components/card-image-gallery";
 import CardVideo from "../../../../components/card-video";
 import CardMap from "../../../../components/card-map";
+import CardEvent from "../../../../components/card-event";
 import GroupCardContainer from "../group-card-container";
 import GroupCardLoadingOverlay from "../group-card-loading-overlay";
 import PostItemRule from "./components/post-item-rule";
@@ -25,6 +26,7 @@ class GroupPostItem extends React.Component {
     this.onSelectImage = this.onSelectImage.bind(this);
     this.onSelectVideo = this.onSelectVideo.bind(this);
     this.onClickLocation = this.onClickLocation.bind(this);
+    this.onClickEvent = this.onClickEvent.bind(this);
     this.submitPost = this.submitPost.bind(this);
     this.checkIsPostValid = this.checkIsPostValid.bind(this);
   }
@@ -66,9 +68,21 @@ class GroupPostItem extends React.Component {
     this.pushToMediaList({
       key: "location",
       component: (
-        <CardMap
-          onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key: "location", isValid })}
-          draggable
+        <CardMap onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key: "location", isValid })} draggable />
+      ),
+      isValid: false
+    });
+  }
+
+  onClickEvent() {
+    const { groupThemeColor } = this.props;
+    const key = "event";
+    this.pushToMediaList({
+      key,
+      component: (
+        <CardEvent
+          groupThemeColor={groupThemeColor}
+          onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key, isValid })}
         />
       ),
       isValid: false
@@ -85,17 +99,17 @@ class GroupPostItem extends React.Component {
 
   getPostMediaTypes(groupMediaTypes) {
     const {
-      mediaList: { video, location }
+      mediaList: { video, location, event }
     } = this.state;
     const postMediaTypes = {};
-    if (_.includes(groupMediaTypes, "text"))
-      _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
-    if (_.includes(groupMediaTypes, "image"))
-      _.merge(postMediaTypes, { image: { onSelect: this.onSelectImage } });
+    if (_.includes(groupMediaTypes, "text")) _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
+    if (_.includes(groupMediaTypes, "image")) _.merge(postMediaTypes, { image: { onSelect: this.onSelectImage } });
     if (_.includes(groupMediaTypes, "video") && !video)
       _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)
       _.merge(postMediaTypes, { location: { onClick: this.onClickLocation } });
+    if (_.includes(groupMediaTypes, "event") && !event)
+      _.merge(postMediaTypes, { event: { onClick: this.onClickEvent } });
     return postMediaTypes;
   }
 
