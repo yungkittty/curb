@@ -4,7 +4,7 @@ import ButtonContainer from "./components/button-container";
 import ButtonOption from "./components/button-option"
 
 const PollButton = ({ option }) => (
-  <ButtonContainer>
+  <ButtonContainer onClick={() => pollVote({ contentId, post })}>
     <ButtonOption type="h3">
       {option}
     </ButtonOption>

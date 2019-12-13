@@ -1,3 +1,3 @@
-import PollButton from "./poll-button";
+import PollButton from "./poll-button-container";
 
 export default PollButton;

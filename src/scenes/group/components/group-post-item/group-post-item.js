@@ -28,6 +28,7 @@ class GroupPostItem extends React.Component {
     this.onSelectVideo = this.onSelectVideo.bind(this);
     this.onClickLocation = this.onClickLocation.bind(this);
     this.onClickEvent = this.onClickEvent.bind(this);
+    this.onClickPoll = this.onClickPoll.bind(this);
     this.submitPost = this.submitPost.bind(this);
     this.checkIsPostValid = this.checkIsPostValid.bind(this);
   }
@@ -94,7 +95,9 @@ class GroupPostItem extends React.Component {
     const key = "poll";
     this.pushToMediaList({
       key,
-      component: <CardPoll onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key, isValid })} />,
+      component: (
+        <CardPoll onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key, isValid })} />
+      ),
       isValid: false
     });
   }
@@ -109,11 +112,7 @@ class GroupPostItem extends React.Component {
 
   getPostMediaTypes(groupMediaTypes) {
     const {
-<<<<<<< HEAD
-      mediaList: { video, location, poll }
-=======
-      mediaList: { video, location, event }
->>>>>>> 8199ee9ed3c045b4156913db6c5b36607f9b7036
+      mediaList: { video, location, poll, event }
     } = this.state;
     const postMediaTypes = {};
     if (_.includes(groupMediaTypes, "text")) _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
@@ -122,12 +121,9 @@ class GroupPostItem extends React.Component {
       _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)
       _.merge(postMediaTypes, { location: { onClick: this.onClickLocation } });
-<<<<<<< HEAD
     if (_.includes(groupMediaTypes, "poll") && !poll) _.merge(postMediaTypes, { poll: { onClick: this.onClickPoll } });
-=======
     if (_.includes(groupMediaTypes, "event") && !event)
       _.merge(postMediaTypes, { event: { onClick: this.onClickEvent } });
->>>>>>> 8199ee9ed3c045b4156913db6c5b36607f9b7036
     return postMediaTypes;
   }
 
