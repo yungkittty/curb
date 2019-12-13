@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React, { memo, useEffect, useCallback, useMemo } from "react";
+import React, { useEffect, useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import ChatContainer from "./components/chat-container";
 import ChatList from "./components/chat-list";
@@ -8,8 +8,6 @@ import ChatInput from "./components/chat-input";
 import withCurrentUser from "../../../../hocs/with-current-user";
 import withChat from "../../../../hocs/with-chat";
 import { platformBools } from "../../../../configurations/platform";
-
-const ChatListMemo = memo(props => <ChatList {...props} />);
 
 const Chat = ({
   // eslint-disable-line
@@ -52,7 +50,7 @@ const Chat = ({
 
   return (
     <ChatContainer>
-      <ChatListMemo
+      <ChatList
         // eslint-disable-line
         data={chatMessagesReversed}
         keyExtractor={chatMessage => chatMessage.id}
