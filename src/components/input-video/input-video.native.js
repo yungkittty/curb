@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 import { withTranslation } from "react-i18next";
 import ImagePicker from "react-native-image-picker";
 import Button from "../button";
+import TestFairy from "react-native-testfairy";
 
 // https://github.com/react-native-community/react-native-image-picker/blob/master/docs/Reference.md
 
@@ -27,6 +28,7 @@ const InputVideo = ({ t, onSelect, ...others }) => (
           }
         },
         response => {
+          TestFairy.log(response);
           if (!response.didCancel && !response.error && !response.customButton) {
             const uri = Platform.OS === "android" ? response.uri : response.uri.replace("file://", "");
             const type =
