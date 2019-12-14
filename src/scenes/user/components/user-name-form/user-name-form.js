@@ -22,7 +22,7 @@ const UserNameForm = ({
     {readOnly ? (
       <Text style={textStyle}>{value}</Text>
     ) : (
-      <InputForm textStyle={textStyle} containerStyle={{ marginTop: 0 }} value={value} {...others} />
+      <InputForm textStyle={textStyle} value={value} isNoHeight isNoMargin {...others} />
     )}
   </FormContainer>
 );

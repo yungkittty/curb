@@ -30,12 +30,14 @@ class InputForm extends Component {
       error,
       value,
       maxLength,
+      isNoHeight,
+      isNoMargin,
       ...others
     } = this.props;
     const { focused } = this.state;
     const isFull = maxLength && value.length >= maxLength;
     return (
-      <FormContainer style={containerStyle} size={size} error={error}>
+      <FormContainer style={containerStyle} size={size} error={error} isNoHeight={isNoHeight} isNoMargin={isNoMargin}>
         {placeholder && ((isPlaceholderStatic && value === "") || !isPlaceholderStatic) && (
           <FormPlaceholder
             weight={300}
@@ -93,7 +95,9 @@ InputForm.defaultProps = {
   placeholder: undefined,
   isPlaceholderStatic: false,
   maxLength: undefined,
-  error: undefined
+  error: undefined,
+  isNoHeight: false,
+  isNoMargin: false
 };
 
 InputForm.propTypes = {
@@ -109,7 +113,9 @@ InputForm.propTypes = {
   maxLength: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  isNoHeight: PropTypes.bool,
+  isNoMargin: PropTypes.bool
 };
 
 export default withTheme(InputForm);

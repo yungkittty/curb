@@ -14,8 +14,8 @@ const FormContainer = styled(Container)`
   }}px;
   position: relative;
   justify-content: center;
-  min-height: 59px;
-  margin-top: 52px;
+  ${({ isNoHeight }) => !isNoHeight && "height: 59px;"}
+  ${({ isNoMargin }) => !isNoMargin && "margin-top: 52px;"}
   border-width: 0px 0px 1px 0px;
   border-style: solid;
   border-bottom-color: ${({ theme, error }) => (error ? theme.errorColor : theme.primaryColor)};
