@@ -1,5 +1,6 @@
 import _ from "lodash";
 import styled from "styled-components";
+import withShadow from "../../../../hocs/with-shadow";
 import Container from "../../../container";
 import ContainerPropagation from "./components/container-propagation";
 import ContainerAnimation from "./components/container-animation";
@@ -12,8 +13,8 @@ const ModalContainer = styled(Container)`
   z-index: 32;
   width: 700px;
   height: 740px;
+  max-height: 100%;
   border-radius: 25px;
-  box-shadow: 0px 19.2px 17.28px 0px rgba(0, 0, 0, 0.228);
   transition-property: opacity, transform;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
@@ -24,5 +25,6 @@ const ModalContainer = styled(Container)`
 export default _.flowRight([
   // eslint-disable-line
   ContainerPropagation,
-  ContainerAnimation
+  ContainerAnimation,
+  withShadow(32)
 ])(ModalContainer);
