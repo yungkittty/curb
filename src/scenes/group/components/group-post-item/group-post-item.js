@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import CardImageGallery from "../../../../components/card-image-gallery";
 import CardVideo from "../../../../components/card-video";
 import CardMap from "../../../../components/card-map";
+import CardPoll from "../../../../components/card-poll";
 import CardEvent from "../../../../components/card-event";
 import GroupCardContainer from "../group-card-container";
 import GroupCardLoadingOverlay from "../group-card-loading-overlay";
@@ -27,6 +28,7 @@ class GroupPostItem extends React.Component {
     this.onSelectVideo = this.onSelectVideo.bind(this);
     this.onClickLocation = this.onClickLocation.bind(this);
     this.onClickEvent = this.onClickEvent.bind(this);
+    this.onClickPoll = this.onClickPoll.bind(this);
     this.submitPost = this.submitPost.bind(this);
     this.checkIsPostValid = this.checkIsPostValid.bind(this);
   }
@@ -89,6 +91,17 @@ class GroupPostItem extends React.Component {
     });
   }
 
+  onClickPoll() {
+    const key = "poll";
+    this.pushToMediaList({
+      key,
+      component: (
+        <CardPoll onModuleIsValid={({ isValid }) => this.onModuleIsValid({ key, isValid })} />
+      ),
+      isValid: false
+    });
+  }
+
   onModuleIsValid({ key, isValid }) {
     const {
       mediaList,
@@ -99,7 +112,7 @@ class GroupPostItem extends React.Component {
 
   getPostMediaTypes(groupMediaTypes) {
     const {
-      mediaList: { video, location, event }
+      mediaList: { video, location, poll, event }
     } = this.state;
     const postMediaTypes = {};
     if (_.includes(groupMediaTypes, "text")) _.merge(postMediaTypes, { text: { onChange: this.onChangeText } });
@@ -108,6 +121,7 @@ class GroupPostItem extends React.Component {
       _.merge(postMediaTypes, { video: { onSelect: this.onSelectVideo } });
     if (_.includes(groupMediaTypes, "location") && !location)
       _.merge(postMediaTypes, { location: { onClick: this.onClickLocation } });
+    if (_.includes(groupMediaTypes, "poll") && !poll) _.merge(postMediaTypes, { poll: { onClick: this.onClickPoll } });
     if (_.includes(groupMediaTypes, "event") && !event)
       _.merge(postMediaTypes, { event: { onClick: this.onClickEvent } });
     return postMediaTypes;

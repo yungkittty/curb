@@ -57,7 +57,7 @@ function* postMediaImageRequestSaga(payload) {
     yield call(mediasApi.postMediaImage, payload);
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
-    yield put(mediasActions.postMediaImageFailure({ errorCode }));
+    yield put(mediasActions.postMediaTextFailure({ errorCode }));
   }
 }
 
@@ -76,6 +76,15 @@ function* postMediaLocationRequestSaga(payload) {
   } catch (error) {
     const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
     yield put(mediasActions.postMediaLocationFailure({ errorCode }));
+  }
+}
+
+function* postMediaPollRequestSaga(payload) {
+  try {
+    yield call(mediasApi.postMediaPoll, payload);
+  } catch (error) {
+    const { code: errorCode = "UNKNOWN" } = ((error || {}).response || {}).data || {};
+    yield put(mediasActions.postMediaPollFailure({ errorCode }));
   }
 }
 
@@ -98,6 +107,7 @@ export {
   postMediaImageRequestSaga,
   postMediaVideoRequestSaga,
   postMediaLocationRequestSaga,
+  postMediaPollRequestSaga,
   postMediaEventRequestSaga,
   postMediaAvatarUserRequestSaga,
   postMediaAvatarGroupRequestSaga

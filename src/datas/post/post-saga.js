@@ -11,6 +11,7 @@ import {
   postMediaImageRequestSaga,
   postMediaVideoRequestSaga,
   postMediaLocationRequestSaga,
+  postMediaPollRequestSaga,
   postMediaEventRequestSaga
 } from "../medias/medias-saga";
 import mediasActionsTypes from "../medias/medias-actions-types";
@@ -116,6 +117,9 @@ function* postMediasRequestSaga(payload) {
     if (mediaListData.location) {
       mediaActionsToWait.push(yield fork(postMediaLocationRequestSaga, { postId, data: mediaListData.location }));
     }
+    if (mediaListData.poll) {
+      mediaActionsToWait.push(yield fork(postMediaPollRequestSaga, { postId, data: mediaListData.poll }));
+    }
     if (mediaListData.event)
       mediaActionsToWait.push(yield fork(postMediaEventRequestSaga, { postId, data: mediaListData.event }));
     for (let i = 0; i < mediaActionsToWait.length; i += 1) yield join(mediaActionsToWait[i]);
@@ -151,6 +155,13 @@ function* postMediaEventJoinRequestSaga(action) {
   } catch (error) {}
 }
 
+function* postMediaPollVoteRequestSaga(action) {
+  try {
+    const { contentId, option } = action.payload;
+    yield call(mediasApi.postMediaPollVote, { contentId, option });
+  } catch (error) {}
+}
+
 const postSaga = all([
   takeLatest(postActionsTypes.GET_POST_LIST_REQUEST, getPostListRequestSaga),
   takeNormalize(postActionsTypes.GET_POST_REQUEST, getPostRequestSaga),
@@ -160,7 +171,8 @@ const postSaga = all([
   takeLatest(postActionsTypes.POST_LIKE_POST_REQUEST, postLikePostRequestSaga),
   takeLatest(postActionsTypes.POST_POST_REQUEST, postPostRequestSaga),
   takeLatest(postActionsTypes.POST_MEDIAS_REQUEST, postMediasRequestSaga),
-  takeLatest(mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST, postMediaEventJoinRequestSaga)
+  takeLatest(mediasActionsTypes.POST_MEDIA_EVENT_JOIN_REQUEST, postMediaEventJoinRequestSaga),
+  takeLatest(mediasActionsTypes.POST_MEDIA_POLL_VOTE_REQUEST, postMediaPollVoteRequestSaga)
 ]);
 
 export default postSaga;

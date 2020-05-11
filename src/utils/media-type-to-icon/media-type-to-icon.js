@@ -8,6 +8,8 @@ const mediaTypeToIcon = mediaType => {
       return "video";
     case "location":
       return "map-marker-alt";
+    case "poll":
+      return "poll-h";
     case "event":
       return "calendar-alt";
     default:

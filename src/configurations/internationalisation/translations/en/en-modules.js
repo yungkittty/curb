@@ -16,6 +16,10 @@ const enModules = {
     title: "Location",
     description: "Allows users to post localisation points"
   },
+  poll: {
+    title: "Poll",
+    description: "Allows users to post polls"
+  },
   event: {
     title: "Event",
     description: "Allows users to post events"

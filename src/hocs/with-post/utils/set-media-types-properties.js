@@ -2,13 +2,14 @@ import _ from "lodash";
 import React from "react";
 import CardVideo from "../../../components/card-video";
 import CardMap from "../../../components/card-map";
+import CardPoll from "../../../components/card-poll";
 import CardImageGallery from "../../../components/card-image-gallery";
 import CardEvent from "../../../components/card-event";
 import CardUnknown from "../../../components/card-unknown";
 
 const setMediaTypesProperties = mediaTypesList => {
   const mediaList = {};
-  _.forEach(mediaTypesList, ({ id: contentId, type, data }) => {
+  _.forEach(mediaTypesList, ({ id: contentId, type, data, postId }) => {
     switch (type) {
       case "text":
         _.assign(mediaList, { [type]: { value: data } });
@@ -26,6 +27,9 @@ const setMediaTypesProperties = mediaTypesList => {
         break;
       case "location":
         _.assign(mediaList, { [type]: { component: <CardMap {...JSON.parse(data)} /> } });
+        break;
+      case "poll":
+        _.assign(mediaList, { [type]: { component: <CardPoll {...JSON.parse(data)} contentId={contentId} postId={postId} /> } });
         break;
       case "event":
         _.assign(mediaList, {

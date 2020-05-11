@@ -65,7 +65,20 @@ const mediasActions = {
     type: mediasActionsTypes.POST_MEDIA_EVENT_LEAVE_FAILURE,
     payload: error,
     error: true
-  })
+  }),
+  postMediaPollVoteRequest: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_POLL_VOTE_REQUEST,
+    payload
+  }),
+  postMediaPollEventSuccess: payload => ({
+    type: mediasActionsTypes.POST_MEDIA_POLL_VOTE_SUCCESS,
+    payload
+  }),
+  postMediaPollEventFailure: error => ({
+    type: mediasActionsTypes.POST_MEDIA_POLL_VOTE_FAILURE,
+    payload: error,
+    error: true
+  }),
 };
 
 export default mediasActions;
