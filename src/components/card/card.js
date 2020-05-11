@@ -62,8 +62,8 @@ class Card extends React.Component {
     return (
       <CardContainer style={style} className={className} cardSize={cardSize}>
         {HeaderComponent && React.cloneElement(HeaderComponent)}
-        <CardShadowContainer as={groupId && Button} onClick={groupId && `/groups/${groupId}`}>
-          <CardBorderContainer>
+        <CardShadowContainer>
+          <CardBorderContainer as={groupId && Button} onClick={groupId && `/groups/${groupId}`}>
             {cardSize.isCardExtended && (
               <CardContent
                 mediaList={mediaListWithoutText}
