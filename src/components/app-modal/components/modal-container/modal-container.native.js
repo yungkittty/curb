@@ -1,7 +1,8 @@
+import _ from "lodash";
 import styled from "styled-components";
+import withShadow from "../../../../hocs/with-shadow";
 import Container from "../../../container";
 import ContainerAnimation from "./components/container-animation";
-import { platformBools } from "../../../../configurations/platform"
 
 // https://github.com/alekhurst/react-native-elevated-view/blob/master/index.js#L33 // 32
 
@@ -11,16 +12,12 @@ const ModalContainer = styled(Container)`
   z-index: 32;
   width: 100%;
   height: 100%;
-  ${platformBools.isAndroid ? `
-    elevation: 32;
-  ` : `
-    shadow-offset: 0px 19.2px;
-    shadow-radius: 17.28px;
-    shadow-color: rgba(0, 0, 0, 1);
-    shadow-opacity: 0.228;
-  `}
   background-color: ${({ theme }) => theme.backgroundColor};
   overflow: hidden;
 `;
 
-export default ContainerAnimation(ModalContainer);
+export default _.flowRight([
+  // eslint-disable-line
+  ContainerAnimation,
+  withShadow(32)
+])(ModalContainer);
